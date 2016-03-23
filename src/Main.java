@@ -20,6 +20,7 @@ public class Main {
         float dt; // change in time after game loop (while loop below) runs through one iteration
 
         while (true) {
+
             prevTime = currentTime;
             currentTime = System.currentTimeMillis();
             dt = currentTime - prevTime;
@@ -28,6 +29,7 @@ public class Main {
                 dt = 0.15f;
             }
             game.update(dt);
+            view.update(dt);
         }
 
     }

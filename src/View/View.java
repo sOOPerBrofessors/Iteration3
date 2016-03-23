@@ -19,5 +19,8 @@ public class View {
         mainPanel.setVisible(true);
     }
 
+    public void update(float dt){
+
+    }
 
 }
