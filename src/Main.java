@@ -8,16 +8,16 @@ import View.ViewUtilities.MainPanel;
  */
 public class Main {
 
-    Game game = new Game();
-    MainPanel mainPanel = new MainPanel();
-    View view = new View(mainPanel);
-    Controller controller = new Controller();
+    public static void main(String[] args) {
 
-    float prevTime; // time before update
-    float currentTime = System.currentTimeMillis();
-    float dt; // change in time after game loop (while loop below) runs through one iteration
+        Game game = new Game();
+        MainPanel mainPanel = new MainPanel();
+        View view = new View(mainPanel);
+        Controller controller = new Controller();
 
-    public void main(String []args) {
+        float prevTime; // time before update
+        float currentTime = System.currentTimeMillis();
+        float dt; // change in time after game loop (while loop below) runs through one iteration
 
         while (true) {
             prevTime = currentTime;
@@ -29,6 +29,7 @@ public class Main {
             }
             game.update(dt);
         }
+
     }
 
 }
