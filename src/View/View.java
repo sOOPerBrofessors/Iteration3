@@ -2,6 +2,7 @@ package View;
 
 import View.ViewUtilities.MainPanel;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -10,12 +11,12 @@ import java.awt.image.BufferStrategy;
  */
 public class View {
 
-    private Canvas canvas;
+    private JPanel panel;
     private BufferStrategy bs;
     private Graphics g;
 
     public View(MainPanel mainPanel){
-        canvas = mainPanel.getCanvas();
+        panel = mainPanel.getPanel();
         mainPanel.setVisible(true);
     }
 

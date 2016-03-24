@@ -13,7 +13,7 @@ import java.awt.event.ComponentEvent;
 public class MainPanel extends JFrame{
     private String title;
     private int windowHeight, windowWidth;
-    Canvas canvas;
+    JPanel panel;
 
     public MainPanel() {
         this.title = Settings.TITLE;
@@ -28,12 +28,12 @@ public class MainPanel extends JFrame{
         Dimension canvasDimension = new Dimension(windowWidth, windowHeight);
         setMinimumSize(canvasDimension);
 
-        canvas = new Canvas();
-        canvas.setPreferredSize(canvasDimension);
-        canvas.setMinimumSize(canvasDimension);
-        canvas.setFocusable(true);
+        panel = new JPanel();
+        panel.setPreferredSize(canvasDimension);
+        panel.setMinimumSize(canvasDimension);
+        panel.setFocusable(true);
         getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(canvas, BorderLayout.CENTER);
+        getContentPane().add(panel, BorderLayout.CENTER);
         pack();
 
 
@@ -43,8 +43,8 @@ public class MainPanel extends JFrame{
                 Settings.GAMEHEIGHT = windowHeight = getHeight();
                 Settings.GAMEWIDTH = windowWidth = getWidth();
 
-                canvas.setPreferredSize(new Dimension(windowWidth, windowHeight));
-                canvas.setFocusable(true);
+                panel.setPreferredSize(new Dimension(windowWidth, windowHeight));
+                panel.setFocusable(true);
                 repaint();
 
             }
@@ -52,7 +52,7 @@ public class MainPanel extends JFrame{
 
     }
 
-    public Canvas getCanvas() {
-        return canvas;
+    public JPanel getPanel() {
+        return panel;
     }
 }
