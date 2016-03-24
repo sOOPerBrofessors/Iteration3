@@ -3,9 +3,9 @@ package Model;
 /**
  * Created by Wimberley on 3/23/16.
  */
-public class Game {
+public class Model {
 
-    public Game(){
+    public Model(){
 
     }
 

@@ -1,4 +1,4 @@
-import Model.Game;
+import Model.Model;
 import View.View;
 import Controller.Controller;
 import View.ViewUtilities.MainPanel;
@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Game game = new Game();
+        Model game = new Model();
         MainPanel mainPanel = new MainPanel();
         View view = new View(mainPanel);
         Controller controller = new Controller();
