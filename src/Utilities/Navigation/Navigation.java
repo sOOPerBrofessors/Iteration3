@@ -11,16 +11,16 @@ import Utilities.Navigation.NavStrategy.*;
 public class Navigation {
     NavStrategy s;
 
-    /*
-    private constructor to be called by factory methods
-     */
+
+    //private constructor to be called by factory methods
+
     private Navigation(NavStrategy s) {
         this.s = s;
     } // end private constructor
 
-    /*
-    factory methods which return new specific implementations of a Navigation object
-     */
+
+    //factory methods which return new specific implementations of a Navigation object
+
     public Navigation makeAvianNav() {
         return new Navigation(new AvianStrategy());
     } // end makeAvianNav
@@ -50,8 +50,8 @@ public class Navigation {
      entity requesting to move and its target tile.
 
     the local NavStrategy handles calling the target tile's move operation which
-     either allows or disallows the entity to move.
-     */
+     either allows or disallows the entity to move.*/
+
     public void move(Tile targetTile, Entity entity) {
         if(s != null)
             s.move(targetTile, entity);
