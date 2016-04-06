@@ -1,9 +1,6 @@
 package View.ViewUtilities.Panels;
 
-
 import View.ViewManager;
-
-import javax.swing.*;
 
 /**
  * Created by Wimberley on 4/6/16.

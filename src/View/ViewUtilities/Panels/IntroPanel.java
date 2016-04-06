@@ -2,9 +2,11 @@ package View.ViewUtilities.Panels;
 
 import View.ViewManager;
 
-import javax.swing.*;
-import javax.swing.text.View;
-import java.awt.*;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,7 +31,25 @@ public class IntroPanel extends JPanel {
         JButton loadGame = new JButton("Load Game");
         JButton exitGame = new JButton("Exit Game");
 
-        // set actions of buttons
+        // switch to character creation state when new game button is pressed
+        newGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // switch state
+                //viewManager.;
+            }
+        });
+
+        // switch to load state when load game button is pressed
+        newGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // switch state
+                //viewManager.;
+            }
+        });
+
+        // close game when exit button is pressed
         exitGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

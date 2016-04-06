@@ -3,5 +3,5 @@ package Model.Entity;
 /**
  * Created by Wimberley on 4/6/16.
  */
-public abstract class Entity {
+public class Mount {
 }

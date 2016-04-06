@@ -4,8 +4,9 @@ import View.ViewUtilities.Panels.InitPanels;
 import View.ViewUtilities.Panels.IntroPanel;
 import View.ViewUtilities.MainFrame;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Graphics;
 
 /**
  * Created by Wimberley on 3/23/16.
@@ -27,15 +28,19 @@ public class ViewManager {
         introPanel = IntroPanel.getIntroPanel();
 
         displayIntro();
+        updateView();
         mainFrame.setVisible(true);
     }
 
     public void update(float dt){
+    }
 
+    public void updateView(){
+        mainFrame.add(activePanel);
     }
 
     public void displayIntro(){
-        mainFrame.add(introPanel);
+        activePanel = introPanel;
     }
 
     public void exitGame(){
