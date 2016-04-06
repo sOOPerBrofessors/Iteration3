@@ -6,13 +6,15 @@ import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
 import Model.Entity;
-import Utilities.Relationship;
 import Utilities.RelationshipList;
 import Utilities.Tickable;
 
 /**
  * Created by aseber on 4/6/16.
  */
+
+// tiredness of interests, affects weight of interest. If all you do is try and trade, eventually you'll go and do something else until that value lessens
+
 public class Memory
         implements
             Tickable,

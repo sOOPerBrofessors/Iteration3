@@ -9,6 +9,7 @@ public class Decision {
 
     public boolean isValid(VisualInformation visualInformation) {
 
+        // Given the current interest in this decision, check if that interest is still valid
         return false;
 
     }
