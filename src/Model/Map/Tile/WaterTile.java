@@ -1,13 +1,15 @@
 package Model.Map.Tile;
 
+import Model.Map.Tile.TileStrategy.AquaticTileStrategy;
+
 /**
  * Created by sgl on 4/5/16.
  */
 
 public class WaterTile extends MobileTile {
-    //private WaterTileStrategy waterTileStrategy;
+
 
     public WaterTile(){
-        //super(new WaterTileStrategy());
+        super(new AquaticTileStrategy());
     }
 }

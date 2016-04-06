@@ -2,6 +2,7 @@ package Utilities.Navigation;
 
 import Model.Map.Tile.Tile;
 import Model.Entity.Entity;
+
 import Utilities.Navigation.NavStrategy.*;
 
 /**
@@ -52,6 +53,7 @@ public class Navigation {
      entity requesting to move and its target tile.
 
     the local NavStrategy handles calling the target tile's move operation which
+<<<<<<< HEAD
      either allows or disallows the entity to move.*/
 
     public void move(Tile targetTile, Entity entity) {
