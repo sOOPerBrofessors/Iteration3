@@ -1,13 +1,12 @@
 package View;
 
-import View.ViewUtilities.InitPanels;
-import View.ViewUtilities.IntroPanel;
+import View.ViewUtilities.Panels.InitPanels;
+import View.ViewUtilities.Panels.IntroPanel;
 import View.ViewUtilities.MainFrame;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferStrategy;
-import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Graphics;
 
 /**
  * Created by Wimberley on 3/23/16.
@@ -20,25 +19,47 @@ public class ViewManager {
     // all views that need to be swapped between
     private JPanel introPanel;
 
-    private BufferStrategy bs;
     private Graphics g;
 
     public ViewManager(){
         mainFrame = new MainFrame();
-        mainFrame.setLayout(new BorderLayout());
-        InitPanels.initialize();
+        InitPanels.initialize(this);
         // set intro screen panel
         introPanel = IntroPanel.getIntroPanel();
 
         displayIntro();
+        updateView();
         mainFrame.setVisible(true);
     }
 
     public void update(float dt){
+    }
 
+    public void updateView(){
+        mainFrame.add(activePanel);
     }
 
     public void displayIntro(){
-        mainFrame.add(introPanel);
+        activePanel = introPanel;
+    }
+
+    public void displayInventory(){
+        //activePanel = inventoryPanel;
+    }
+
+    public void displayEquipment(){
+        //activePanel = equipmentPanel;
+    }
+
+    public void displayPauseMenu(){
+        //activePanel = pausePanel;
+    }
+
+    public void displaySkills(){
+        //activePanel = skillsPanel;
+    }
+
+    public void exitGame(){
+        System.exit(0);
     }
 }
