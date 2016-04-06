@@ -43,6 +43,22 @@ public class ViewManager {
         activePanel = introPanel;
     }
 
+    public void displayInventory(){
+        //activePanel = inventoryPanel;
+    }
+
+    public void displayEquipment(){
+        //activePanel = equipmentPanel;
+    }
+
+    public void displayPauseMenu(){
+        //activePanel = pausePanel;
+    }
+
+    public void displaySkills(){
+        //activePanel = skillsPanel;
+    }
+
     public void exitGame(){
         System.exit(0);
     }

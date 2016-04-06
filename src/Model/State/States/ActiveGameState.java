@@ -42,6 +42,8 @@ public class ActiveGameState extends GameState {
 
     public void playerSecondSkill(){}
 
+    public void playerInteract(){}
+
     @Override
     public void tick(){}
 }

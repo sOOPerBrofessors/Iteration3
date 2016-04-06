@@ -1,10 +1,7 @@
 package Controller;
 
 import Controller.ControllerUtility.Command;
-import Model.State.StateManager;
-import View.ViewManager;
 
-import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
 /**
@@ -13,7 +10,10 @@ import java.util.HashMap;
 public abstract class Controller {
 
     // common attributes to all controllers
-    protected HashMap<KeyEvent, Command> commands;
-    protected ViewManager viewManager;
-    protected StateManager stateManager;
+    protected HashMap<Integer, Command> commands;
+    protected ControllerManager controllerManager;
+
+    public Controller(ControllerManager controllerManager){
+        this.controllerManager = controllerManager;
+    }
 }
