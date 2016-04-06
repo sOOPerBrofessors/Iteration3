@@ -1,5 +1,7 @@
 package Utilities.Navigation;
 
+import Model.Map.Tile.Tile;
+import Model.Entity.Entity;
 import Utilities.Navigation.NavStrategy.*;
 
 /**
@@ -9,8 +11,8 @@ import Utilities.Navigation.NavStrategy.*;
  *  movement strategy.
  */
 public class Navigation {
-    NavStrategy s;
 
+    NavStrategy s;
 
     //private constructor to be called by factory methods
 
