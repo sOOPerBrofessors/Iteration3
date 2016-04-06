@@ -54,9 +54,9 @@ public class GameView extends JPanel{
 
     @Override
     protected void paintComponent(Graphics g) {
-        //System.out.println("Paint Game View!");
-        //super.paintComponent(g);
         //This doesn't get called anymore
+        System.out.println("GameView: Paint Game View!");
+        //super.paintComponent(g);
 //        g.setFont(new Font("Helvetica",1,50));
 //        g.setColor(new Color(67, 22, 244, 80));
 //        g.drawString("GAMEVIEWPORT",0,0);

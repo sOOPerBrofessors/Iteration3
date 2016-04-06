@@ -1,8 +1,7 @@
 package View;
 
 import Model.States.GameState;
-import Utilities.SpriteImageFactory;
-import View.TerrainView.Tileview;
+import View.TerrainView.GrassTileview;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,14 +17,14 @@ public class AreaViewport extends JPanel {
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 1000;
     public static final int MAXSIZE = 10;
-    private Tileview[][] tileViews = new Tileview[MAXSIZE][MAXSIZE];
+    private GrassTileview[][] tileViews = new GrassTileview[MAXSIZE][MAXSIZE];
     public AreaViewport(){
         //This needs to be initialized later on or grabbed from the inventory
         this.setBackground(Color.GRAY);
         setPreferredSize(new Dimension(WIDTH,HEIGHT));
         for (int i = 0; i < MAXSIZE; i++){
             for(int j = 0; j < MAXSIZE; j++){
-                tileViews[i][j] = new Tileview(i, j);
+                tileViews[i][j] = new GrassTileview(i, j);
             }
         }
     }

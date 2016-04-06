@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * Created by dyeung on 4/5/16.
  */
-public class Tileview extends JComponent{
+public class GrassTileview extends JComponent{
     private String url = "./res/terrain/grass_deep.png";
     private Image grassImage;
     private int x;
@@ -16,7 +16,7 @@ public class Tileview extends JComponent{
     private int width = 56;
     private int height = 48;
     private int row;
-    public Tileview(int x, int y){
+    public GrassTileview(int x, int y){
         this.x = x;
         this.y = y;
         //this.row = r;
