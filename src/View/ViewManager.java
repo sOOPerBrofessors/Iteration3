@@ -1,7 +1,7 @@
 package View;
 
-import View.ViewUtilities.InitPanels;
-import View.ViewUtilities.IntroPanel;
+import View.ViewUtilities.Panels.InitPanels;
+import View.ViewUtilities.Panels.IntroPanel;
 import View.ViewUtilities.MainFrame;
 
 import javax.swing.*;
@@ -22,7 +22,7 @@ public class ViewManager {
 
     public ViewManager(){
         mainFrame = new MainFrame();
-        InitPanels.initialize();
+        InitPanels.initialize(this);
         // set intro screen panel
         introPanel = IntroPanel.getIntroPanel();
 
@@ -36,5 +36,9 @@ public class ViewManager {
 
     public void displayIntro(){
         mainFrame.add(introPanel);
+    }
+
+    public void exitGame(){
+        System.exit(0);
     }
 }

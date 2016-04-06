@@ -1,7 +1,12 @@
-package View.ViewUtilities;
+package View.ViewUtilities.Panels;
+
+import View.ViewManager;
 
 import javax.swing.*;
+import javax.swing.text.View;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Wimberley on 4/6/16.
@@ -10,11 +15,11 @@ public class IntroPanel extends JPanel {
 
     private static JPanel introPanel;
 
-    public IntroPanel(){
-        introPanel = titlePanel();
+    public IntroPanel(ViewManager viewManager){
+        introPanel = titlePanel(viewManager);
     }
 
-    private JPanel titlePanel(){
+    private JPanel titlePanel(final ViewManager viewManager){
 
         // create JPanel with grid layout
         JPanel title = new JPanel(new GridBagLayout());
@@ -24,13 +29,24 @@ public class IntroPanel extends JPanel {
         JButton loadGame = new JButton("Load Game");
         JButton exitGame = new JButton("Exit Game");
 
+        // set actions of buttons
+        exitGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viewManager.exitGame();
+            }
+        });
+
         // set constraints
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(15,15,15,15);
 
         // add buttons to panel
+        constraints.gridy = 0;
         title.add(newGame, constraints);
+        constraints.gridy = 1;
         title.add(loadGame, constraints);
+        constraints.gridy = 2;
         title.add(exitGame, constraints);
 
         return title;
