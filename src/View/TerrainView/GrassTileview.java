@@ -1,6 +1,7 @@
 package View.TerrainView;
 
 import Utilities.SpriteImageFactory;
+import View.EntityView.EntityView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +17,7 @@ public class GrassTileview extends JComponent{
     private int width = 56;
     private int height = 48;
     private int row;
+    private EntityView entityView;
     public GrassTileview(int x, int y){
         this.x = x;
         this.y = y;
@@ -25,16 +27,22 @@ public class GrassTileview extends JComponent{
     }
     //Function to offset the x and y coordinates based off of the (x,y) positions
     public void offsetXY(int oldx, int oldy){
-        System.out.println(oldx + "," + oldy);
+        //System.out.println(oldx + "," + oldy);
         x = oldx*width;
         y = oldy*height + height*oldx/2;
 
-        System.out.println("Coordinates:" + x + "," + y);
+        //System.out.println("Coordinates:" + x + "," + y);
+    }
+    public void addEntityView(EntityView eV){
+        this.entityView = eV;
     }
     @Override
     public void paintComponent(Graphics g) {
-        //System.out.println("Paint compenent in tileview");
         g.drawImage(grassImage,x,y,78,52,null);
+        if (entityView != null) {
+            //System.out.println("GrassTileView: avatar is painted");
+            entityView.paintComponent(g);
+        }
     }
 
 }

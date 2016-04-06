@@ -1,7 +1,9 @@
 package View;
 
+import Model.States.GameState;
+import View.AreaViewport.AreaViewport;
+
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 /**
@@ -14,14 +16,14 @@ public class GameView extends JPanel{
     //used for testing purposes
     public static final int WIDTH = 100;
     public static final int HEIGHT = 100;
-    public GameView(){
+    public GameView(GameState gS){
         //When initalized it'll create the AreaViewport - might be changed for later though
         this.setLayout(new BorderLayout());
-        init();
+        init(gS);
     }
     //These views come built in with the GameView
-    public void init(){
-        areaViewport = new AreaViewport();
+    public void init(GameState gameState){
+        areaViewport = new AreaViewport(gameState);
         addView(areaViewport);
     }
     //These views can be added to the GameView

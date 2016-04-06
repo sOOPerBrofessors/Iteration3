@@ -1,5 +1,6 @@
 package View.ViewUtilities;
 
+import Controller.GameController;
 import Utilities.Settings;
 import View.GameView;
 
@@ -11,7 +12,7 @@ import java.awt.event.ComponentEvent;
 /**
  * Created by Wimberley on 3/23/16.
  */
-public class MainPanel extends JFrame implements Runnable{
+public class MainPanel extends JFrame implements Runnable {
     private String title;
     private int windowHeight, windowWidth;
     JPanel panel;

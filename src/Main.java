@@ -1,10 +1,13 @@
 import Model.Model;
+import Model.States.GameState;
+import Utilities.GameLoader;
 import View.View;
 import Controller.Controller;
 import Controller.GameController;
 import View.ViewUtilities.MainPanel;
 import View.GameView;
-import java.awt.EventQueue;
+
+import java.awt.*;
 
 /**
  * Created by Wimberley on 3/23/16.
@@ -13,28 +16,36 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        Model game = new Model();
-//        MainPanel mainPanel = new MainPanel();
-//        View view = new View(mainPanel);
-//        Controller controller = new GameController();
-
-        float prevTime; // time before update
-        float currentTime = System.currentTimeMillis();
-        float dt; // change in time after game loop (while loop below) runs through one iteration
-
         //USED FOR TESTING THE AREA VIEWPORT
 
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                GameLoader gL = new GameLoader();
+                GameState gs = gL.getGameState();
+
+                InputManager inputManager = new InputManager();
+                inputManager.setActiveController(new GameController(gs));
                 MainPanel mainPanel = new MainPanel();
-                GameView gv = new GameView();
+                GameView gv = new GameView(gs);
+
                 mainPanel.addView(gv);
+                mainPanel.addKeyListener(inputManager);
+
                 mainPanel.setVisible(true);
                 mainPanel.start();
             }
         });
+        //MIKES STUFF
 
+//        Model game = new Model();
+//        MainPanel mainPanel = new MainPanel();
+//        View view = new View(mainPanel);
+//        Controller controller = new GameController();
+
+//        float prevTime; // time before update
+//        float currentTime = System.currentTimeMillis();
+//        float dt; // change in time after game loop (while loop below) runs through one iteration
 
 //        while (true) {
 //
