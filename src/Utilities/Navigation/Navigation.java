@@ -1,5 +1,6 @@
 package Utilities.Navigation;
 
+import Model.Map.Tile.Tile;
 import Utilities.Navigation.NavStrategy.*;
 
 /**
@@ -52,8 +53,8 @@ public class Navigation {
     the local NavStrategy handles calling the target tile's move operation which
      either allows or disallows the entity to move.
      */
-    public void move(Tile targetTile, Entity entity) {
-        if(s != null)
-            s.move(targetTile, entity);
-    } // end move
+//    public void move(Tile targetTile, Entity entity) {
+//        if(s != null)
+//            s.move(targetTile, entity);
+//    } // end move
 } // end class Navigation
