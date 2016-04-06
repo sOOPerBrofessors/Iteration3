@@ -1,5 +1,6 @@
 package Utilities.Navigation;
 
+import Model.Map.Tile.Tile;
 import Utilities.Navigation.NavStrategy.*;
 
 /**

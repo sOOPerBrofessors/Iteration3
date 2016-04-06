@@ -15,7 +15,7 @@ public abstract class Tile {
 
     }
 
-    public void moveAquativ(){
+    public void moveAquatic(){
 
     }
 
