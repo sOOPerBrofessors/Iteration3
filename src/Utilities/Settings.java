@@ -10,4 +10,6 @@ public class Settings {
     public static int GAMEWIDTH = 800;
     public static int GAMEHEIGHT = 600;
     public static boolean debug = false;
+
+    public static void setDebug() { debug = true; }
 }

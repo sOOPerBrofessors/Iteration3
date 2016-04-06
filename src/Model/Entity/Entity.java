@@ -1,4 +1,6 @@
-package Model;
+package Model.Entity;
+
+import Model.Model;
 
 /**
  * Created by sgl on 4/6/16.
