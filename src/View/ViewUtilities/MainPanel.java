@@ -19,7 +19,7 @@ public class MainPanel extends JFrame implements Runnable {
 
     //Testing stuff
     private Timer timer;
-    private int DELAY = 40;
+    private int DELAY = 1000;
 
 
     public MainPanel() {

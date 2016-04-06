@@ -7,13 +7,6 @@ import Model.Entity.Entity;
  */
 public class Avatar extends Entity {
     public Avatar(){
-
     }
 
-    public void moveUp(){
-        //TODO: add moveup stuff
-        System.out.println("Avatar: moving up");
-        //For testing purposes 0 == up
-        notifyObserverMove(0); //this is an inherited class from entity
-    }
 }

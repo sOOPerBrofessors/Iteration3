@@ -17,9 +17,6 @@ public class GameState {
         this.map = map;
         this.avatar = avatar;
     }
-    public void moveUp(){
-        avatar.moveUp();
-    }
 
     //TEMP (maybe?)
     public Avatar getAvatar(){

@@ -30,19 +30,13 @@ public class GrassTileview extends JComponent{
         //System.out.println(oldx + "," + oldy);
         x = oldx*width;
         y = oldy*height + height*oldx/2;
+    }
 
-        //System.out.println("Coordinates:" + x + "," + y);
-    }
-    public void addEntityView(EntityView eV){
-        this.entityView = eV;
-    }
     @Override
     public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        System.out.println("GrassTileView: paint component: " + x + "," + y);
         g.drawImage(grassImage,x,y,78,52,null);
-        if (entityView != null) {
-            //System.out.println("GrassTileView: avatar is painted");
-            entityView.paintComponent(g);
-        }
     }
 
 }

@@ -18,17 +18,17 @@ public class GameController extends Controller {
         //BASIC TESTING STUFF FOR NOW
         //System.out.println(e);
         if (e.getKeyCode() == KeyEvent.VK_W) {
-            System.out.println("up");
-            gameState.moveUp();
+            gameState.getAvatar().moveNorth();
         }
         if (e.getKeyChar() == 's') {
-            System.out.println("down");
+            gameState.getAvatar().moveSouth();
         }
         if (e.getKeyChar() == 'a') {
-            System.out.println("left");
+            gameState.getAvatar().moveEast();
         }
         if (e.getKeyChar() == 'd') {
-            System.out.println("right");
+            gameState.getAvatar().moveWest();
+
         }
     }
 

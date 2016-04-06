@@ -28,5 +28,31 @@ public abstract class Entity implements EntityObservable {
         observers.add(entityObserver);
     }
 
+    public void moveNorth(){
+        notifyObserverMove(1); //this is an inherited class from entity
+    }
+    public void moveNorthWest(){
+        notifyObserverMove(-1);
+    }
+    public void moveWest(){
+        notifyObserverMove(1);
+    }
+    public void moveSouthWest(){
+        //TODO: add moveup stuff
+        notifyObserverMove(1);
+    }
+    public void moveSouth(){
+        //TODO: add moveup stuff
+        notifyObserverMove(1);
+    }
+    public void moveSouthEast(){
+        notifyObserverMove(1);
+    }
+    public void moveEast(){
+        notifyObserverMove(1);
+    }
+    public void moveNorthEast(){
+        notifyObserverMove(1);
+    }
 
 }

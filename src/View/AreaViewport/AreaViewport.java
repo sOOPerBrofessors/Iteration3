@@ -42,10 +42,8 @@ public class AreaViewport extends JPanel {
         for (int i = 0; i < MAXSIZE; i++){
             for(int j = 0; j < MAXSIZE; j++){
                 tileViews[i][j] = new GrassTileview(i, j);
-                if (i == 5 && j == 5) {
-                    //tileViews[i][j].add(avatarView); //(not sure how the add method works)
-                    tileViews[i][j].addEntityView(avatarView);
-                }
+
+                //add(tileViews[i][j]);
             }
         }
 
@@ -55,7 +53,7 @@ public class AreaViewport extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        //System.out.println("Is this not being called?");
+        System.out.println("Is this not being called?");
         //Painted the other way cause it looks better
 //        for (int i=MAXSIZE - 1; i>=0; i--) {
 //            for (int j = MAXSIZE - 1; j >=0; j--) {
@@ -70,7 +68,7 @@ public class AreaViewport extends JPanel {
                 tileViews[i][j].paintComponent(g);
             }
         }
-        //this.add(grass);
-        //this.repaint();
+
+        avatarView.paintComponent(g);
     }
 }
