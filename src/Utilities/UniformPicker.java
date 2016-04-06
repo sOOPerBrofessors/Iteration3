@@ -1,6 +1,5 @@
-package com.wecanteven.UtilityClasses;
+package Utilities;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Random;
 
