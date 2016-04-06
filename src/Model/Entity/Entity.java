@@ -1,7 +1,10 @@
 package Model.Entity;
 
 /**
- * Created by Wimberley on 4/6/16.
+ * Created by sgl on 4/6/16.
  */
-public abstract class Entity {
+
+//just so everything will compile
+public class Entity {
+
 }

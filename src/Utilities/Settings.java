@@ -50,4 +50,6 @@ public class Settings {
     public static int SKILLS = 0x53;
 
     // End Key Presses
+
+    public static void setDebug() { debug = true; }
 }

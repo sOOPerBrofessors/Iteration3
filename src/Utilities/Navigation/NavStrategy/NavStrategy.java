@@ -1,7 +1,6 @@
 package Utilities.Navigation.NavStrategy;
 
 import Model.Entity.Entity;
-
 import Model.Map.Tile.Tile;
 
 /**
