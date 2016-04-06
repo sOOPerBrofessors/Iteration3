@@ -1,7 +1,5 @@
 import Model.Model;
-import View.View;
-import Controller.Controller;
-import View.ViewUtilities.MainPanel;
+import View.ViewManager;
 
 /**
  * Created by Wimberley on 3/23/16.
@@ -11,9 +9,8 @@ public class Main {
     public static void main(String[] args) {
 
         Model game = new Model();
-        MainPanel mainPanel = new MainPanel();
-        View view = new View(mainPanel);
-        Controller controller = new Controller();
+        ViewManager view = new ViewManager();
+        //Controller controller = new Controller();
 
         float prevTime; // time before update
         float currentTime = System.currentTimeMillis();
