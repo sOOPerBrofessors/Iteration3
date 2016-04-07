@@ -5,20 +5,20 @@ import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Model.State.States.ActiveGameState;
 import Utilities.Settings;
+import View.ViewUtilities.Panels.GamePanel;
 
 import java.awt.event.KeyEvent;
 
 /**
  * Created by Wimberley on 4/6/16.
  */
-public class ActiveGameController extends Controller{
+public class GamePlayController extends Controller{
 
     private ActiveGameState state;
+    private GamePanel gamePanel;
 
-    public ActiveGameController(ControllerManager controllerManager, ActiveGameState state){
+    public GamePlayController(ControllerManager controllerManager){
         super(controllerManager);
-        this.state = state;
-        initCommands();
     }
     @Override
     public void keyPress(KeyEvent key){
@@ -138,5 +138,14 @@ public class ActiveGameController extends Controller{
                 controllerManager.setSkillsState();
             }
         });
+    }
+
+    public void setState(ActiveGameState state) {
+        this.state = state;
+        initCommands();
+    }
+
+    public void setGamePanel(GamePanel gamePanel) {
+        this.gamePanel = gamePanel;
     }
 }

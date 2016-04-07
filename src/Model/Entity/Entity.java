@@ -2,7 +2,7 @@ package Model.Entity;
 
 import java.util.ArrayList;
 
-import Utilities.Observable.EntityObservable;
+import Utilities.Observables.EntityObservable;
 import Utilities.Observers.EntityObserver;
 import Model.Map.Location;
 

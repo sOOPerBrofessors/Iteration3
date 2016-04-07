@@ -1,6 +1,6 @@
 package Controller;
 
-import Controller.Controllers.ActiveGameController;
+import Controller.Controllers.GamePlayController;
 import Model.State.StateManager;
 import View.ViewManager;
 
@@ -16,13 +16,19 @@ public class ControllerManager implements KeyListener {
 
     private ViewManager viewManager;
     private StateManager stateManager;
+
     private Controller activeController;
+    private GamePlayController gamePlayController;
+
+    public ControllerManager(){
+        gamePlayController = new GamePlayController(this);
+    }
 
     public ControllerManager(ViewManager viewManager, StateManager stateManager){
         this.viewManager = viewManager;
         this.stateManager = stateManager;
         //Needs to set active controller
-        //activeController = new ActiveGameController()
+        //activeController = new GamePlayController()
     }
 
     public void setInventoryState(){
@@ -62,5 +68,21 @@ public class ControllerManager implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    public void switchGamePlay(){
+        activeController = gamePlayController;
+    }
+
+    public void setViewManager(ViewManager viewManager){
+        this.viewManager = viewManager;
+    }
+
+    public void setStateManager(StateManager stateManager){
+        this.stateManager = stateManager;
+    }
+
+    public GamePlayController getGamePlayController(){
+        return gamePlayController;
     }
 }

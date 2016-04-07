@@ -1,15 +1,11 @@
+import Controller.ControllerManager;
+import Controller.Controllers.GamePlayController;
 import Model.Model;
+import Model.State.StateManager;
+import Model.State.States.ActiveGameState;
+import View.View;
+import View.ViewUtilities.Panels.GamePanel;
 import View.ViewManager;
-
-import Model.State.GameState;
-import Utilities.GameLoader;
-
-import Controller.Controller;
-import Controller.GameController;
-import View.ViewUtilities.MainPanel;
-import View.GameView;
-
-import java.awt.*;
 
 
 /**
@@ -18,35 +14,44 @@ import java.awt.*;
 public class Main {
 
     public static void main(String[] args) {
+        // creates all components that need to know of each other
+        Model gameLoop = new Model();
+        View view = new View();
 
-        //Controller controller = new Controller();
+        initialize(gameLoop, view);
 
-
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-
-                //Mike's stuff that I moved over
-                Model game = new Model();
-                ViewManager view = new ViewManager();
-
-                //Used to test the area view
-//                GameLoader gL = new GameLoader();
-//                GameState gs = gL.getGameState();
-//
-//                InputManager inputManager = new InputManager();
-//                inputManager.setActiveController(new GameController(gs));
-//                MainPanel mainPanel = new MainPanel();
-//                GameView gv = new GameView(gs);
-//
-//                mainPanel.addView(gv);
-//                mainPanel.addKeyListener(inputManager);
-//
-//                mainPanel.setVisible(true);
-//                mainPanel.start();
-            }
-        });
-
+        gameLoop.start();
+        view.start();
     }
 
+
+
+    private static void initialize(Model model, View view) {
+
+        // initialize view manager and get necessary views
+        ViewManager viewManager = view.getViewManager();
+        GamePanel gamePanel = viewManager.getGamePanel();
+
+        // initialize state manager and get necessary states
+        StateManager stateManager = model.getStateManager();
+        ActiveGameState activeGameState = stateManager.getActiveGameState();
+
+        // initialize controller manager and get necessary controllers
+        ControllerManager controller = new ControllerManager();
+        GamePlayController gamePlayController = controller.getGamePlayController();
+
+        // set necessary things for views
+        viewManager.setControllerManager(controller);
+        gamePanel.setAreaViewport(activeGameState);
+
+        // set necessary things for states
+        stateManager.setControllerManager(controller);
+        activeGameState.setActiveGameController(gamePlayController);
+
+        // set necessary things for controllers
+        controller.setStateManager(stateManager);
+        controller.setViewManager(viewManager);
+        //gamePlayController.setState(activeGameState);
+        gamePlayController.setGamePanel(gamePanel);
+    }
 }
