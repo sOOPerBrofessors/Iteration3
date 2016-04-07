@@ -52,4 +52,7 @@ public class Settings {
     // End Key Presses
 
     public static void setDebug() { debug = true; }
+
+    public static int TILEWIDTH = 56;
+    public static int TILEHEIGHT = 48;
 }

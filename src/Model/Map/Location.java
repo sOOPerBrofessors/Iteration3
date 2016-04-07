@@ -34,4 +34,15 @@ public class Location {
         this.y = y;
         this.z = z;
     }
+
+    //Added in
+    public int getZ(){
+        return z;
+    }
+    public int getX(){
+        return x;
+    }
+    public int getY(){
+        return y;
+    }
 }

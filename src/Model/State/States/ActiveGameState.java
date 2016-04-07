@@ -1,5 +1,7 @@
 package Model.State.States;
 
+import Model.Entity.Avatar;
+import Model.Map.Map;
 import Model.State.GameState;
 
 /**
@@ -8,8 +10,8 @@ import Model.State.GameState;
 public class ActiveGameState extends GameState {
 
 
-    public void ActiveGameState(){
-
+    public ActiveGameState(Map map, Avatar avatar){
+        super(map,avatar);
     }
 
 
