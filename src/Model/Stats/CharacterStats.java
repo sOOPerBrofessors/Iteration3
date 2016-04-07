@@ -12,7 +12,7 @@ public class CharacterStats extends EntityStats {
     private int hardiness;
     private int experience;
     private int level;
-    private int life;
+    private int health;
     private int mana;
     private int offensiveRating;
     private int defensiveRating;
@@ -25,7 +25,7 @@ public class CharacterStats extends EntityStats {
     private int baseHardiness;
     private int baseExperience;
     private int baseLevel;
-    private int baseLife;
+    private int baseHealth;
     private int baseMana;
     private int baseOffensiveRating;
     private int baseDefensiveRating;
@@ -79,10 +79,10 @@ public class CharacterStats extends EntityStats {
             level = 0;
         }
     }
-    public void lifeEffect(int effect){
-        life += effect;
-        if (life < 0){
-            life = 0;
+    public void healthEffect(int effect){
+        health += effect;
+        if (health < 0){
+            health = 0;
             livesEffect(-1); //decrement a life
         }
     }
