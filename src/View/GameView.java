@@ -12,10 +12,6 @@ import java.awt.*;
 public class GameView extends JPanel{
     private AreaViewport areaViewport;
 
-    //This stuff should be in the active view container
-    //used for testing purposes
-    public static final int WIDTH = 100;
-    public static final int HEIGHT = 100;
     public GameView(GameState gS){
         //When initalized it'll create the AreaViewport - might be changed for later though
         this.setLayout(new BorderLayout());
@@ -51,8 +47,6 @@ public class GameView extends JPanel{
     public void closeSkillsview(){
         //TODO:
     }
-
-
 
     @Override
     protected void paintComponent(Graphics g) {

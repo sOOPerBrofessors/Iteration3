@@ -1,6 +1,8 @@
 package View.EntityView;
 
 import EntityObserver.EntityObserver;
+import Model.Map.Location;
+import Utilities.Settings;
 import Utilities.SpriteImageFactory;
 
 import javax.swing.*;
@@ -9,40 +11,55 @@ import java.awt.*;
 /**
  * Created by dyeung on 4/6/16.
  */
-public class EntityView extends JComponent implements EntityObserver{
-    private Image avatarImage;
-    private int x;
-    private int y;
-    private int tileWidth = 56;
-    private int tileHeight = 48;
-    private int xLocation;
-    private int yLocation;
-    private String url = "./res/terrain/grass_deep.png";
-    public EntityView(int x, int y){
-        this.x = x;
-        this.y = y;
-        avatarImage = SpriteImageFactory.getImage(url);
-        offsetXY(x,y);
-    }
-    public void offsetXY(int oldx, int oldy){
-        System.out.println(oldx + "," + oldy);
-        xLocation = oldx*tileWidth;
-        yLocation = oldy*tileHeight + tileHeight*oldx/2;
-        System.out.println(xLocation + "," + yLocation);
-    }
-    @Override
-    public void updateMove(int direction) {
-        System.out.println("Entity: updated move");
+public abstract class EntityView extends JComponent implements EntityObserver{
+    private int x; // on the coordinate system
+    private int y; // on the coordinate system
+    private int tileWidth = Settings.TILEWIDTH;
+    private int tileHeight = Settings.TILEHEIGHT;
+    protected int xPixel; // on the map
+    protected int yPixel; // on the map
+    protected Location location;
 
-        x += direction;
-        y += direction;
-        offsetXY(x,y);
-        //TODO needs to change what tile I am on
+    public EntityView(Location location){
+        this.location = location;
+        x = location.getX();
+        y = location.getY();
+        updateCoordinateToScreenPosition();
+    }
+    //Function will create the x/y position on the actual screen
+    public void updateCoordinateToScreenPosition(){
+        //Might need to delegate to another class
+        xPixel = x*tileWidth - (x*tileWidth)/4;
+        yPixel = y*tileHeight + (tileHeight*x)/2;
     }
     @Override
-    public void paintComponent(Graphics g) {
-        System.out.println("EntityView: paint component");
-        g.drawImage(avatarImage,xLocation,yLocation,100,100,null);
-        super.paintComponent(g);
+    public void updateMove(Location direction) {
+        System.out.println("Before: " + x + "," + y + " : " + xPixel + "," + yPixel);
+
+        x += direction.getX();
+        y += direction.getY();
+        updateCoordinateToScreenPosition();
+
+        System.out.println("After: " + x + "," + y + " : " + xPixel + "," + yPixel);
+
+    }
+    public void updateCameraOffset (Location location){
+        xPixel += location.getX();
+        yPixel += location.getY();
+    }
+    public int getXPixel(){
+        return xPixel;
+    }
+    public int getYPixel(){
+        return yPixel;
+    }
+    public int getX(){
+        return x;
+    }
+    public int getY(){
+        return y;
+    }
+    public Location getEntityLocation(){
+        return location;
     }
 }

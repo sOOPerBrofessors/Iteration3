@@ -1,8 +1,13 @@
 package View.AreaViewport;
 
 import Model.Entity.Avatar;
+import Model.Map.Location;
+import Model.Map.Map;
+import Model.Map.Tile.GrassTile;
 import Model.States.GameState;
 import Utilities.GameLoader;
+import Utilities.Settings;
+import View.EntityView.AvatarView;
 import View.EntityView.EntityView;
 import View.TerrainView.GrassTileview;
 import View.View;
@@ -18,16 +23,14 @@ import java.awt.*;
 public class AreaViewport extends JPanel {
 
     //used for testing purposes
-    public static final int WIDTH = 1200;
-    public static final int HEIGHT = 1000;
-    public static final int MAXSIZE = 15;
+    public static final int MAXSIZE = 10;
 
     //TODO: Change this to map
     private GrassTileview[][] tileViews = new GrassTileview[MAXSIZE][MAXSIZE];
 
     //TODO: Add avatar views and stuff
-    private EntityView avatarView;
-
+    private AvatarView avatarView;
+    private CameraView cameraView;
     public AreaViewport(GameState gameState){
         //This needs to be initialized later on or grabbed from the inventory
         this.setBackground(Color.GRAY);
@@ -36,39 +39,55 @@ public class AreaViewport extends JPanel {
 
         //THIS IS HELLA TEMPORARY
         Avatar a = gameState.getAvatar();
-        avatarView = new EntityView(5,5);
+        Location loc = new Location(5,5,1);
+
+        //Might be a variable in AreaViewport
+        avatarView = new AvatarView(loc);
+        cameraView = new CameraView(avatarView);
         a.addObserver(avatarView);
+        //Initializing the map
+        Map map = gameState.getMap();
 
         for (int i = 0; i < MAXSIZE; i++){
             for(int j = 0; j < MAXSIZE; j++){
-                tileViews[i][j] = new GrassTileview(i, j);
-
+                Location location = new Location(i,j, 1);
+                tileViews[i][j] = new GrassTileview(location);
                 //add(tileViews[i][j]);
             }
         }
 
 
     }
+    public void offsetTiles(){
+        Location offset = cameraView.computeOffset();
+        System.out.println("Offset:" + offset.getX() + "," + offset.getY() + "," + offset.getZ());
+        for (int i = 0; i < MAXSIZE; i++) {
+            for (int j = 0; j < MAXSIZE; j++){
+                //updates the location of all the objects
+                tileViews[i][j].updateCameraOffset(offset);
+                //tileViews[i][j].setLocation();
+            }
+        }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        System.out.println("Is this not being called?");
-        //Painted the other way cause it looks better
-//        for (int i=MAXSIZE - 1; i>=0; i--) {
-//            for (int j = MAXSIZE - 1; j >=0; j--) {
-//                if (tileViews[i][j] != null) {
-//                    tileViews[i][j].paintComponent(g);
-//
-//                }
-//            }
-//        }
+    }
+    public void renderTiles(Graphics g){
         for (int i = 0; i < MAXSIZE; i++) {
             for (int j = 0; j < MAXSIZE; j++){
                 tileViews[i][j].paintComponent(g);
             }
         }
-
+    }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Location offset = cameraView.computeOffset();
+        if (cameraView.requiresOffset()) {
+            System.out.println("offset required");
+            offsetTiles();
+            avatarView.updateCameraOffset(offset);
+            System.out.println("Offset done");
+        }
+        renderTiles(g);
         avatarView.paintComponent(g);
     }
 }

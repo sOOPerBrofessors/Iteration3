@@ -2,6 +2,8 @@ package Model.Entity;
 
 import EntityObservable.EntityObservable;
 import EntityObserver.EntityObserver;
+import Model.Map.Location;
+
 import java.util.ArrayList;
 
 /**
@@ -17,7 +19,7 @@ public abstract class Entity implements EntityObservable {
 
     //An observable when a move is called will notify the observer that a move is called
     @Override
-    public void notifyObserverMove(int direction) {
+    public void notifyObserverMove(Location direction) {
         for (EntityObserver entityObserver : observers){
             entityObserver.updateMove(direction);
         }
@@ -29,30 +31,22 @@ public abstract class Entity implements EntityObservable {
     }
 
     public void moveNorth(){
-        notifyObserverMove(1); //this is an inherited class from entity
+        notifyObserverMove(new Location(0,-1,0)); //this is an inherited class from entity
     }
     public void moveNorthWest(){
-        notifyObserverMove(-1);
-    }
-    public void moveWest(){
-        notifyObserverMove(1);
+        notifyObserverMove(new Location(-1,0,0));
     }
     public void moveSouthWest(){
-        //TODO: add moveup stuff
-        notifyObserverMove(1);
+        notifyObserverMove(new Location(-1,1,0));
     }
     public void moveSouth(){
-        //TODO: add moveup stuff
-        notifyObserverMove(1);
+        notifyObserverMove(new Location(0,1,0));
     }
     public void moveSouthEast(){
-        notifyObserverMove(1);
-    }
-    public void moveEast(){
-        notifyObserverMove(1);
+        notifyObserverMove(new Location(1,0,0));
     }
     public void moveNorthEast(){
-        notifyObserverMove(1);
+        notifyObserverMove(new Location(1,1,0));
     }
 
 }

@@ -19,16 +19,21 @@ public class GameController extends Controller {
         //System.out.println(e);
         if (e.getKeyCode() == KeyEvent.VK_W) {
             gameState.getAvatar().moveNorth();
-        }
-        if (e.getKeyChar() == 's') {
+        }else
+        if (e.getKeyCode() == KeyEvent.VK_S) {
             gameState.getAvatar().moveSouth();
-        }
-        if (e.getKeyChar() == 'a') {
-            gameState.getAvatar().moveEast();
-        }
-        if (e.getKeyChar() == 'd') {
-            gameState.getAvatar().moveWest();
-
+        }else
+        if (e.getKeyCode() == KeyEvent.VK_Q) {
+            gameState.getAvatar().moveNorthWest();
+        }else
+        if (e.getKeyCode() == KeyEvent.VK_E) {
+            gameState.getAvatar().moveNorthEast();
+        }else
+        if (e.getKeyCode() == KeyEvent.VK_A) {
+            gameState.getAvatar().moveSouthWest();
+        }else
+        if (e.getKeyCode() == KeyEvent.VK_D) {
+            gameState.getAvatar().moveSouthEast();
         }
     }
 

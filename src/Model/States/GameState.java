@@ -22,4 +22,7 @@ public class GameState {
     public Avatar getAvatar(){
         return avatar;
     }
+    public Map getMap(){
+        return map;
+    }
 }
