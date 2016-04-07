@@ -37,15 +37,15 @@ public class AreaViewport extends JPanel {
 
 
         //THIS IS HELLA TEMPORARY
-        Avatar a = gameState.getAvatar();
-        Location loc = new Location(5,5,1);
+        //Avatar a = gameState.getAvatar();
+        //Location loc = new Location(5,5,1);
 
         //Might be a variable in AreaViewport
-        avatarView = new AvatarView(loc);
-        cameraView = new CameraView(avatarView);
-        a.addObserver(avatarView);
+        //avatarView = new AvatarView(loc);
+        //cameraView = new CameraView(avatarView);
+        //a.addObserver(avatarView);
         //Initializing the map
-        Map map = gameState.getMap();
+        //Map map = gameState.getMap();
 
         for (int i = 0; i < MAXSIZE; i++){
             for(int j = 0; j < MAXSIZE; j++){
@@ -79,14 +79,14 @@ public class AreaViewport extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Location offset = cameraView.computeOffset();
-        if (cameraView.requiresOffset()) {
+       // Location offset = cameraView.computeOffset();
+        /*if (cameraView.requiresOffset()) {
             System.out.println("offset required");
             offsetTiles();
-            avatarView.updateCameraOffset(offset);
+            //avatarView.updateCameraOffset(offset);
             System.out.println("Offset done");
-        }
-        renderTiles(g);
-        avatarView.paintComponent(g);
+        }*/
+        //renderTiles(g);
+        //avatarView.paintComponent(g);
     }
 }

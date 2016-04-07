@@ -4,9 +4,7 @@ import View.ViewManager;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,12 +14,14 @@ import java.awt.event.ActionListener;
 public class IntroPanel extends JPanel {
 
     private static JPanel introPanel;
+    private ViewManager viewManager;
 
     public IntroPanel(ViewManager viewManager){
-        introPanel = titlePanel(viewManager);
+        introPanel = introPanel();
+        this.viewManager = viewManager;
     }
 
-    private JPanel titlePanel(final ViewManager viewManager){
+    public JPanel introPanel(){
 
         // create JPanel with grid layout
         JPanel title = new JPanel(new GridBagLayout());
@@ -35,13 +35,13 @@ public class IntroPanel extends JPanel {
         newGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // switch state
+                viewManager.displayActiveGame();
                 //viewManager.;
             }
         });
 
         // switch to load state when load game button is pressed
-        newGame.addActionListener(new ActionListener() {
+        loadGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // switch state
@@ -53,7 +53,7 @@ public class IntroPanel extends JPanel {
         exitGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                viewManager.exitGame();
+                System.exit(0);
             }
         });
 
@@ -70,6 +70,14 @@ public class IntroPanel extends JPanel {
         title.add(exitGame, constraints);
 
         return title;
+    }
+
+    @Override
+    public void paint(Graphics g){
+        // calls JPanel paint method on g (deletes old image)
+        super.paint(g);
+
+        // paint some stuff
     }
 
     public static JPanel getIntroPanel(){

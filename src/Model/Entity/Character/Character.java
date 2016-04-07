@@ -1,5 +1,6 @@
 package Model.Entity.Character;
 
+import Model.Effect.Effect;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Character.Occupation.OccupationStrategy.OccupationStrategy;
 import Model.Entity.Entity;
@@ -19,6 +20,10 @@ public abstract class Character extends Entity{
         this.o = o;
         this.s = s;
     } // end private constructor
+
+    public void modifyHealth(int amount) {
+        // hp += amount
+    } // end modifyHealth
 
     public void equipWeapon(Weapon weapon) {
         // pack.equipWeapon(weapon);

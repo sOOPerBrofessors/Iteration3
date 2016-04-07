@@ -15,6 +15,9 @@ public abstract class GameState extends State{
     protected Map map;
     protected Avatar avatar;
 
+    public GameState(){
+    }
+
     public GameState(Map map, Avatar avatar){
         //This will be done in the gameloader thing
         this.map = map;
@@ -27,5 +30,13 @@ public abstract class GameState extends State{
     }
     public Model.Map.Map getMap(){
         return map;
+    }
+
+    public void setAvatar(Avatar player){
+        this.avatar = player;
+    }
+
+    public void setMap(Map map){
+        this.map = map;
     }
 }

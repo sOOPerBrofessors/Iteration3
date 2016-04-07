@@ -9,17 +9,26 @@ import View.ViewManager;
  */
 public class StateManager {
 
+    // controller manager used to issue commands when controller needs to be changed
+    private ControllerManager controllerManager;
+
     private State activeState;
     private ActiveGameState activeGameState;
 
-    private ControllerManager controllerManager;
-
-    public StateManager(ControllerManager controllerManager){
-        this.controllerManager = controllerManager;
+    public StateManager(){
+        activeGameState = new ActiveGameState();
+        activeState = activeGameState;
     }
 
     public void pauseGame(){
         //activeState = pauseState;
     }
 
+    public ActiveGameState getActiveGameState(){
+        return activeGameState;
+    }
+
+    public void setControllerManager(ControllerManager controllerManager) {
+        this.controllerManager = controllerManager;
+    }
 }
