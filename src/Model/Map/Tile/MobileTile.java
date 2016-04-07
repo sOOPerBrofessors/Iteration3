@@ -1,6 +1,6 @@
 package Model.Map.Tile;
 
-import Model.Entity;
+import Model.Entity.Entity;
 import Model.Map.Tile.TileStrategy.TileStrategy;
 
 /**

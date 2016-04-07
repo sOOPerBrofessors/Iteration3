@@ -1,6 +1,6 @@
-package View.ViewUtilities;
-import javax.swing.*;
+package View.ViewUtilities.Panels;
 
+import View.ViewManager;
 
 /**
  * Created by Wimberley on 4/6/16.
@@ -10,8 +10,8 @@ public class InitPanels {
     public InitPanels(){
     }
 
-    public static void initialize(){
+    public static void initialize(ViewManager viewManager){
         // initialize intro Jpanel onto main JFrame
-        new IntroPanel();
+        new IntroPanel(viewManager);
     }
 }
