@@ -1,7 +1,8 @@
-package View;
+package View.ViewUtilities.Panels;
 
 import Model.State.GameState;
 import View.AreaViewport.AreaViewport;
+import View.ViewManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,20 +10,22 @@ import java.awt.*;
 /**
  * Created by dyeung on 4/5/16.
  */
-public class GameView extends JPanel{
-    private AreaViewport areaViewport;
+public class GamePanel extends JPanel{
 
-    public GameView(GameState gS){
+    private AreaViewport areaViewport;
+    private ViewManager viewManager;
+
+    public GamePanel(ViewManager viewManager){
         //When initalized it'll create the AreaViewport - might be changed for later though
-        this.setLayout(new BorderLayout());
-        init(gS);
+        setLayout(new BorderLayout());
+        this.viewManager = viewManager;
     }
-    //These views come built in with the GameView
+    //These views come built in with the GamePanel
     public void init(GameState gameState){
         areaViewport = new AreaViewport(gameState);
         addView(areaViewport);
     }
-    //These views can be added to the GameView
+    //These views can be added to the GamePanel
     public void addInventoryView(){
         //TODO:
     }
@@ -51,7 +54,7 @@ public class GameView extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         //This doesn't get called anymore
-        System.out.println("GameView: Paint Game View!");
+        System.out.println("GamePanel: Paint Game View!");
         super.paintComponent(g);
 
 
@@ -65,5 +68,13 @@ public class GameView extends JPanel{
         this.remove(view);
         this.revalidate();
         this.repaint();
+    }
+
+    public void setAreaViewport(GameState gs){
+        init(gs);
+    }
+
+    public GamePanel getGamePanel(){
+        return this;
     }
 }

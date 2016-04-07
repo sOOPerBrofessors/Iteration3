@@ -14,12 +14,14 @@ import java.awt.event.ActionListener;
 public class IntroPanel extends JPanel {
 
     private static JPanel introPanel;
+    private ViewManager viewManager;
 
     public IntroPanel(ViewManager viewManager){
-        introPanel = titlePanel(viewManager);
+        introPanel = introPanel();
+        this.viewManager = viewManager;
     }
 
-    public JPanel titlePanel(final ViewManager viewManager){
+    public JPanel introPanel(){
 
         // create JPanel with grid layout
         JPanel title = new JPanel(new GridBagLayout());
@@ -33,13 +35,13 @@ public class IntroPanel extends JPanel {
         newGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // switch state
+                viewManager.displayActiveGame();
                 //viewManager.;
             }
         });
 
         // switch to load state when load game button is pressed
-        newGame.addActionListener(new ActionListener() {
+        loadGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // switch state

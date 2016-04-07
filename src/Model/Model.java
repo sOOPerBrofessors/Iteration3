@@ -1,5 +1,7 @@
 package Model;
 
+import Model.State.StateManager;
+
 import java.util.HashMap;
 
 /**
@@ -7,8 +9,10 @@ import java.util.HashMap;
  */
 public class Model implements Runnable{
 
-    public Model(){
+    private StateManager stateManager;
 
+    public Model(){
+        stateManager = new StateManager();
     }
 
     public void start(){
@@ -18,5 +22,9 @@ public class Model implements Runnable{
     @Override
     public void run() {
 
+    }
+
+    public StateManager getStateManager() {
+        return stateManager;
     }
 }

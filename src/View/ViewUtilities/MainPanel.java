@@ -1,13 +1,9 @@
 package View.ViewUtilities;
 
-import Controller.GameController;
 import Utilities.Settings;
-import View.GameView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 /**
  * Created by Wimberley on 3/23/16.

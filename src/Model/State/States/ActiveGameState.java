@@ -1,5 +1,6 @@
 package Model.State.States;
 
+import Controller.Controllers.GamePlayController;
 import Model.Entity.Avatar;
 import Model.Map.Map;
 import Model.State.GameState;
@@ -9,12 +10,16 @@ import Model.State.GameState;
  */
 public class ActiveGameState extends GameState {
 
+    private GamePlayController activeGameController;
 
     public ActiveGameState(Map map, Avatar avatar){
         super(map,avatar);
     }
 
+    public ActiveGameState(){
+        avatar = new Avatar();
 
+    }
 
     // player commands from controller
 
@@ -48,4 +53,8 @@ public class ActiveGameState extends GameState {
 
     @Override
     public void tick(){}
+
+    public void setActiveGameController(GamePlayController activeGameController) {
+        this.activeGameController = activeGameController;
+    }
 }

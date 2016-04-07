@@ -1,29 +1,29 @@
 package View;
 
+import Controller.ControllerManager;
+import Model.State.StateManager;
+import Utilities.Observer;
 import View.ViewUtilities.MainFrame;
-import View.ViewUtilities.Panels.InitPanels;
-import View.ViewUtilities.Panels.IntroPanel;
 
 import javax.swing.JFrame;
 
 /**
  * Created by Wimberley on 4/7/16.
  */
-public class View implements Runnable{
+public class View implements Runnable, Observer{
 
     private JFrame mainFrame;
     private ViewManager viewManager;
-    private IntroPanel introPanel;
+
+    private StateManager stateManager;
+    private ControllerManager controllerManager;
 
     public View(){
         mainFrame = new MainFrame();
-        mainFrame.setVisible(true);
         viewManager = new ViewManager();
-        introPanel = new IntroPanel(viewManager);
-    }
-
-    public void render(){
-        mainFrame.add(introPanel.titlePanel(viewManager));
+        viewManager.addObserver(this);
+        mainFrame.add(viewManager.getActivePanel());
+        mainFrame.setVisible(true);
     }
 
     @Override
@@ -36,11 +36,9 @@ public class View implements Runnable{
 
             lastTime = System.currentTimeMillis();
 
-            mainFrame.add(viewManager.getActivePanel());
-            // update to active panel from view manager
-            //updateView();
-            // calls paint method stored in active JPanel in ViewManager
-            //viewManager.getActivePanel().repaint();
+            // adjust for changes in panel
+            mainFrame.revalidate();
+            mainFrame.repaint();
 
             delta = System.currentTimeMillis() - lastTime;
 
@@ -58,8 +56,22 @@ public class View implements Runnable{
         new Thread(this).start();
     }
 
-    private void updateView(){
+    @Override
+    public void update() {
         mainFrame.getContentPane().removeAll();
         mainFrame.add(viewManager.getActivePanel());
+    }
+
+    @Override
+    public void remove() {
+
+    }
+
+    public ViewManager getViewManager() {
+        return viewManager;
+    }
+
+    public void setStateManager(StateManager stateManager) {
+        this.stateManager = stateManager;
     }
 }
