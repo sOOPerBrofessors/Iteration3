@@ -1,6 +1,5 @@
 package Model.Items.Takeable.Useable;
 
-import Model.Items.ItemStrategy.UseableStrategy;
 import Model.Items.Takeable.TakeableItem;
 
 /**
@@ -9,10 +8,8 @@ import Model.Items.Takeable.TakeableItem;
  * Abstract class for items which may be used/consumed by a character.
  */
 public abstract class UseableItem extends TakeableItem {
-    protected UseableStrategy s;
 
-    protected UseableItem(UseableStrategy s) {
+    protected UseableItem() {
         super();
-        this.s = s;
     } // end protected constructor
 } // end abstract class UseableItem
