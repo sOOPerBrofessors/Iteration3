@@ -19,7 +19,7 @@ public class IntroPanel extends JPanel {
         introPanel = titlePanel(viewManager);
     }
 
-    private JPanel titlePanel(final ViewManager viewManager){
+    public JPanel titlePanel(final ViewManager viewManager){
 
         // create JPanel with grid layout
         JPanel title = new JPanel(new GridBagLayout());

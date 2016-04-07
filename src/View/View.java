@@ -1,6 +1,8 @@
 package View;
 
 import View.ViewUtilities.MainFrame;
+import View.ViewUtilities.Panels.InitPanels;
+import View.ViewUtilities.Panels.IntroPanel;
 
 import javax.swing.JFrame;
 
@@ -11,11 +13,17 @@ public class View implements Runnable{
 
     private JFrame mainFrame;
     private ViewManager viewManager;
+    private IntroPanel introPanel;
 
-    public View(ViewManager viewManager){
+    public View(){
         mainFrame = new MainFrame();
         mainFrame.setVisible(true);
-        this.viewManager = viewManager;
+        viewManager = new ViewManager();
+        introPanel = new IntroPanel(viewManager);
+    }
+
+    public void render(){
+        mainFrame.add(introPanel.titlePanel(viewManager));
     }
 
     @Override
@@ -28,10 +36,11 @@ public class View implements Runnable{
 
             lastTime = System.currentTimeMillis();
 
+            mainFrame.add(viewManager.getActivePanel());
             // update to active panel from view manager
-            updateView();
+            //updateView();
             // calls paint method stored in active JPanel in ViewManager
-            viewManager.getActivePanel().repaint();
+            //viewManager.getActivePanel().repaint();
 
             delta = System.currentTimeMillis() - lastTime;
 

@@ -20,7 +20,7 @@ public class ActiveGameController extends Controller{
         this.state = state;
         initCommands();
     }
-
+    @Override
     public void keyPress(KeyEvent key){
         commands.get(key).execute();
     }
@@ -111,7 +111,7 @@ public class ActiveGameController extends Controller{
         commands.put(Settings.INVENTORY, new Command() {
             @Override
             public void execute() {
-                controllerManager.inventory();
+                controllerManager.setInventoryState();
             }
         });
 
@@ -119,7 +119,7 @@ public class ActiveGameController extends Controller{
         commands.put(Settings.EQUIP, new Command() {
             @Override
             public void execute() {
-                controllerManager.equipment();
+                controllerManager.setEquipmentState();
             }
         });
 
@@ -127,7 +127,7 @@ public class ActiveGameController extends Controller{
         commands.put(Settings.ESC, new Command() {
             @Override
             public void execute() {
-                controllerManager.pause();
+                controllerManager.setPauseState();
             }
         });
 
@@ -135,7 +135,7 @@ public class ActiveGameController extends Controller{
         commands.put(Settings.SKILLS, new Command() {
             @Override
             public void execute() {
-                controllerManager.skills();
+                controllerManager.setSkillsState();
             }
         });
     }
