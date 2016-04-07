@@ -13,7 +13,6 @@ import java.awt.Graphics;
  */
 public class ViewManager {
 
-    private JFrame mainFrame;
     private JPanel activePanel;
 
     // all views that need to be swapped between
@@ -22,21 +21,11 @@ public class ViewManager {
     private Graphics g;
 
     public ViewManager(){
-        mainFrame = new MainFrame();
         InitPanels.initialize(this);
         // set intro screen panel
         introPanel = IntroPanel.getIntroPanel();
 
         displayIntro();
-        updateView();
-        mainFrame.setVisible(true);
-    }
-
-    public void update(float dt){
-    }
-
-    public void updateView(){
-        mainFrame.add(activePanel);
     }
 
     public void displayIntro(){
@@ -59,7 +48,7 @@ public class ViewManager {
         //activePanel = skillsPanel;
     }
 
-    public void exitGame(){
-        System.exit(0);
+    public JPanel getActivePanel(){
+        return activePanel;
     }
 }

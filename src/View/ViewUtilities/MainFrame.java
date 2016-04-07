@@ -23,6 +23,8 @@ public class MainFrame extends JFrame{
         setMinimumSize(panelDimension);
         setLocationRelativeTo(null);
 
+        // canvas used to paint images onto frame
+
         getContentPane().setLayout(new BorderLayout());
         // move to View manager?
         pack();

@@ -4,9 +4,7 @@ import View.ViewManager;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -53,7 +51,7 @@ public class IntroPanel extends JPanel {
         exitGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                viewManager.exitGame();
+                System.exit(0);
             }
         });
 
@@ -70,6 +68,14 @@ public class IntroPanel extends JPanel {
         title.add(exitGame, constraints);
 
         return title;
+    }
+
+    @Override
+    public void paint(Graphics g){
+        // calls JPanel paint method on g (deletes old image)
+        super.paint(g);
+
+        // paint some stuff
     }
 
     public static JPanel getIntroPanel(){
