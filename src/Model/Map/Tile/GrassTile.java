@@ -1,5 +1,6 @@
 package Model.Map.Tile;
 
+import Model.Entity.Entity;
 import Model.Map.Tile.TileStrategy.CharTileStrategy;
 
 /**
@@ -13,5 +14,10 @@ public class GrassTile extends MobileTile {
 
     public GrassTile(){
         super(new CharTileStrategy());
+    }
+
+    @Override
+    public void moveChar(Entity entity){
+        super.entity = entity;
     }
 }

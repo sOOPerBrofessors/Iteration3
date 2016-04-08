@@ -12,4 +12,6 @@ public class DirtTile extends Tile {
     public DirtTile(){
         super(new DirtTileStrategy());
     }
+
+
 }

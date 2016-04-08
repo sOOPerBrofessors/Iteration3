@@ -1,5 +1,6 @@
 package Model.Map.Tile;
 
+import Model.Entity.Entity;
 import Model.Map.Tile.TileStrategy.TileStrategy;
 import Utilities.MessageHandler;
 
@@ -8,33 +9,33 @@ import Utilities.MessageHandler;
  */
 public abstract class Tile {
 
-    private TileStrategy tileStrategy;
+    protected TileStrategy tileStrategy;
 
     public Tile(TileStrategy tileStrategy){
         this.tileStrategy = tileStrategy;
     }
 
-    public void moveAvian(){
+    public void moveAvian(Entity entity){
         MessageHandler.printError("You cannot move to this tile.");
     }
 
-    public void moveAquatic(){
+    public void moveAquatic(Entity entity){
         MessageHandler.printError("You cannot move to this tile.");
     }
 
-    public  void moveBoat(){
+    public void moveBoat(Entity entity){
         MessageHandler.printError("You cannot move to this tile.");
     }
 
-    public void moveChar(){
+    public void moveChar(Entity entity){
         MessageHandler.printError("You cannot move to this tile.");
     }
 
-    public void moveProjectile(){
+    public void moveProjectile(Entity entity){
         MessageHandler.printError("You cannot move to this tile.");
     }
 
-    public void moveVehicle(){
+    public void moveVehicle(Entity entity){
         MessageHandler.printError("You cannot move to this tile.");
     }
 
