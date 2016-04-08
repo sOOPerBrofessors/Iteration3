@@ -1,7 +1,6 @@
 package Model.Map.Tile;
 
 import Model.Entity.Entity;
-import Model.Map.Tile.TileStrategy.TileStrategy;
 import Utilities.MessageHandler;
 
 /**
@@ -9,10 +8,9 @@ import Utilities.MessageHandler;
  */
 public abstract class Tile {
 
-    protected TileStrategy tileStrategy;
 
-    public Tile(TileStrategy tileStrategy){
-        this.tileStrategy = tileStrategy;
+    public Tile(){
+
     }
 
     public void moveAvian(Entity entity){
