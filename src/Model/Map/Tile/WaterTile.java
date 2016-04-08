@@ -1,5 +1,9 @@
 package Model.Map.Tile;
 
+
+import Model.Map.Location;
+import Utilities.Visitor.TileVisitor;
+import View.TerrainView.TileView;
 import Model.Entity.Entity;
 
 /**
@@ -21,5 +25,10 @@ public class WaterTile extends MobileTile {
     @Override
     public void moveBoat(Entity entity){
         this.entity = entity;
+    }
+
+    @Override
+    public TileView acceptTileVisitor(TileVisitor tv, Location location) {
+        return tv.createWaterTile(location);
     }
 }

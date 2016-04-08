@@ -1,6 +1,7 @@
 package View.ViewUtilities.Panels;
 
 import Model.State.GameState;
+import Model.State.States.ActiveGameState;
 import View.AreaViewport.AreaViewport;
 import View.ViewManager;
 
@@ -21,7 +22,7 @@ public class GamePanel extends JPanel{
         this.viewManager = viewManager;
     }
     //These views come built in with the GamePanel
-    public void init(GameState gameState){
+    public void init(ActiveGameState gameState){
         areaViewport = new AreaViewport(gameState);
         addView(areaViewport);
     }
@@ -57,7 +58,6 @@ public class GamePanel extends JPanel{
         System.out.println("GamePanel: Paint Game View!");
         super.paintComponent(g);
 
-
     }
     public void addView(JComponent view){
         this.add(view, BorderLayout.CENTER);
@@ -70,7 +70,7 @@ public class GamePanel extends JPanel{
         this.repaint();
     }
 
-    public void setAreaViewport(GameState gs){
+    public void setAreaViewport(ActiveGameState gs){
         init(gs);
     }
 

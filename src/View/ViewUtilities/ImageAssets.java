@@ -16,9 +16,9 @@ public class ImageAssets {
 
     //needs to be called once
     public static void init(){
-        SpriteSheet smasherSheet = new SpriteSheet(SpriteLoader.loadImage("/textures/Smasher.png"));
-        SpriteSheet sneakSheet = new SpriteSheet(SpriteLoader.loadImage("/textures/sneak.png"));
-        SpriteSheet terrainSheet = new SpriteSheet(SpriteLoader.loadImage("/textures/terrains.png"));
+        SpriteSheet smasherSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Smasher.png"));
+        SpriteSheet sneakSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Sneak.png"));
+        SpriteSheet terrainSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/grass.png"));
 
         smasherSW = smasherSheet.cropSheet(0,0, width, height);
         smasherNW = smasherSheet.cropSheet(width*1, 0, width, height);
@@ -35,8 +35,6 @@ public class ImageAssets {
         sneakS = sneakSheet.cropSheet(width*5, 0, width, height);
 
         grass = terrainSheet.cropSheet(0,0, width, height);
-
-
 
     }
 }
