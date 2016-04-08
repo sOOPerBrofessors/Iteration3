@@ -1,7 +1,6 @@
 package Model.Entity.Character;
 
 import Model.Entity.Character.Occupation.Occupation;
-import Model.Entity.Character.Occupation.OccupationStrategy.OccupationStrategy;
 import Model.Entity.Entity;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
@@ -14,12 +13,11 @@ import Model.Stats.CharacterStats;
  */
 public abstract class Character extends Entity{
     private Occupation o;
-    private OccupationStrategy s;
     private CharacterStats stats;
 
-    protected Character(Occupation o, OccupationStrategy s) {
+    protected Character(Occupation o, CharacterStats stats) {
         this.o = o;
-        this.s = s;
+        this.stats = stats;
     } // end private constructor
 
     /*
@@ -69,21 +67,21 @@ public abstract class Character extends Entity{
     } // end equipArmor
 
     public void equipSmasherWeapon(Weapon weapon) {
-        s.equipSmasherWeapon();
+        o.equipSmasherWeapon();
     } // end equipSmasherWeapon
     public void equipSmasherArmor(Armor armor) {
-        s.equipSmasherArmor();
+        o.equipSmasherArmor();
     } // end equipSmasherArmor
     public void equipSneakWeapon(Weapon weapon) {
-        s.equipSneakWeapon();
+        o.equipSneakWeapon();
     } // end equipSneakWeapon
     public void equipSneakArmor(Armor armor) {
-        s.equipSneakArmor();
+        o.equipSneakArmor();
     } // end equipSneakArmor
     public void equipSummonerWeapon(Weapon weapon) {
-        s.equipSummonerWeapon();
+        o.equipSummonerWeapon();
     } // end equipSummonerWeapon
     public void equipSummonerArmor(Armor armor) {
-        s.equipSummonerArmor();
+        o.equipSummonerArmor();
     } // end equipSummonerArmor
 } // end abstract class Character

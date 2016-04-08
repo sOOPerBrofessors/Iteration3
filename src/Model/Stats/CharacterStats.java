@@ -3,6 +3,11 @@ package Model.Stats;
 /**
  * Created by sgl on 4/7/16.
  *
+ * Class to hold character stats.  Initialized using factory methods which return a new instance of CharacterStats
+ *  using the private constructor.  Constructor parameters take in an unknown number of integers (the ... notation).
+ *  Will only be called locally, so don't be a dumbass and give it the wrong number of integers (or you'll get a null
+ *  pointer).
+ *
  * todo:
  *  add method to take in armor/weapon values on equipping an item and modify the equippedWeapon/equippedArmor values,
  *   then recompute offensiveRating/armorRating
@@ -43,13 +48,13 @@ public class CharacterStats extends EntityStats {
     private double experienceMultiplier;    // amount to multiply experienceThreshold by on level up
     private double levelMultiplier;         // amount to multiply primary stats by on level up
 
-    public CharacterStats(){
-        agility = baseAgility = 3;
-        experience = 0;
-        hardiness = baseHardiness = 3;
-        intellect = baseIntellect = 3;
-        lives = baseLives = 3;
-        strength = baseStrength = 3;
+    private CharacterStats(int... stats){
+        agility = baseAgility = stats[0];
+        experience = stats[1];
+        hardiness = baseHardiness = stats[2];
+        intellect = baseIntellect = stats[3];
+        lives = baseLives = stats[4];
+        strength = baseStrength = stats[5];
 
         equippedWeapon = equippedArmor = 0;
 
@@ -64,6 +69,49 @@ public class CharacterStats extends EntityStats {
         experienceMultiplier = 1.5;
         levelMultiplier = 1.2;
     } // end constructor
+
+    public static CharacterStats makeSmasherStats() {
+        return new CharacterStats(
+                3,      // agility
+                0,      // experience
+                3,      // hardiness
+                3,      // intellect
+                3,      // lives
+                5);     // strength
+    } // end factory method makeSmasherStats
+
+    public static CharacterStats makeSneakStats() {
+        return new CharacterStats(
+                5,      // agility
+                0,      // experience
+                3,      // hardiness
+                3,      // intellect
+                3,      // lives
+                3);     // strength
+    } // end factory method makeSneakStats
+
+    public static CharacterStats makeSummonerStats() {
+        return new CharacterStats(
+                3,      // agility
+                0,      // experience
+                3,      // hardiness
+                5,      // intellect
+                3,      // lives
+                5);     // strength
+    } // end factory method makeSummonerStats
+
+    public CharacterStats makeNPC() {
+        /*
+        not sure if this works.  Ideally, when you make an NPC's stats you'll do it by saying:
+            NPC.makeSmasher() {
+                return new NPC(new Smasher(), Smasher.initSmasherStats().makeNPC());
+            }
+         which I'm not 100% sure will do what I want it to do.  All this method should do is give that NPC the same
+         stats a character with that occupation should get with the exception of having one life.
+         */
+        baseLives = lives = 1;
+        return this;
+    } // end makeNPC
 
     public void livesEffect(int effect){
         lives += effect;
