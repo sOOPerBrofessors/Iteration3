@@ -12,15 +12,18 @@ import Model.Stats.CharacterStats;
  */
 public class Sneak extends Occupation {
 
+    @Override
     public void equipSneakWeapon(Weapon weapon, Character character) {
         character.equipWeapon(weapon);
     } // end equipSneakWeapon
 
+    @Override
     public void equipSneakArmor(Armor armor, Character character) {
         character.equipArmor(armor);
     } // end equipSneakArmor
 
-    public static CharacterStats initStats() {
+    @Override
+    public CharacterStats initStats() {
         return CharacterStats.makeSneakStats();
     } // end initStats
 } // end class Sneak

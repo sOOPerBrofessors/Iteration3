@@ -12,15 +12,18 @@ import Model.Stats.CharacterStats;
  */
 public class Smasher extends Occupation {
 
+    @Override
     public void equipSmasherWeapon(Weapon weapon, Character character) {
         character.equipWeapon(weapon);
     } // end equipSmasherWeapon
 
+    @Override
     public void equipSmasherArmor(Armor armor, Character character) {
         character.equipArmor(armor);
     } // end equipSmasherArmor
 
-    public static CharacterStats initStats() {
+    @Override
+    public CharacterStats initStats() {
         return CharacterStats.makeSmasherStats();
     } // end initStats
 } // end class Smasher
