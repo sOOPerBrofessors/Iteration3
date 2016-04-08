@@ -1,6 +1,6 @@
 package Model.State;
 
-import Model.Entity.Avatar;
+import Model.Entity.Character.Avatar;
 import Model.Entity.Entity;
 
 import java.util.ArrayList;

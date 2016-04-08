@@ -1,7 +1,7 @@
 package Model.State.States;
 
 import Controller.Controllers.GamePlayController;
-import Model.Entity.Avatar;
+import Model.Entity.Character.Avatar;
 import Model.Map.Map;
 import Model.State.GameState;
 
@@ -17,7 +17,7 @@ public class ActiveGameState extends GameState {
     }
 
     public ActiveGameState(){
-        avatar = new Avatar();
+        avatar = Avatar.makeSmasher();
 
     }
 
