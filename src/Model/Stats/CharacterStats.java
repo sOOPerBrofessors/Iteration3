@@ -2,40 +2,68 @@ package Model.Stats;
 
 /**
  * Created by sgl on 4/7/16.
+ *
+ * todo:
+ *  add method to take in armor/weapon values on equipping an item and modify the equippedWeapon/equippedArmor values,
+ *   then recompute offensiveRating/armorRating
  */
 public class CharacterStats extends EntityStats {
-
-    private int lives;
-    private int strength;
+    // primaryStats
+    private int baseAgility;
     private int agility;
-    private int intellect;
-    private int hardiness;
     private int experience;
-    private int level;
+    private int baseHardiness;
+    private int hardiness;
+    private int baseIntellect;
+    private int intellect;
+    private int baseLives;
+    private int lives;
+    private int baseStrength;
+    private int strength;
+
+    // derived stats
+    private int baseHealth;
     private int health;
+    private int level;
+    private int baseMana;
     private int mana;
+    private int baseOffensiveRating;
     private int offensiveRating;
+    private int baseDefensiveRating;
     private int defensiveRating;
+    private int baseArmorRating;
     private int armorRating;
 
-    private int baseLives;
-    private int baseStrength;
-    private int baseAgility;
-    private int baseIntellect;
-    private int baseHardiness;
-    private int baseExperience;
-    private int baseLevel;
-    private int baseHealth;
-    private int baseMana;
-    private int baseOffensiveRating;
-    private int baseDefensiveRating;
-    private int baseArmorRating;
+    // equipment values
+    private int equippedWeapon;
+    private int equippedArmor;
 
-
+    // miscellaneous
+    private int experienceThreshold;        // experience to next level
+    private double experienceMultiplier;    // amount to multiply experienceThreshold by on level up
+    private double levelMultiplier;         // amount to multiply primary stats by on level up
 
     public CharacterStats(){
+        agility = baseAgility = 3;
+        experience = 0;
+        hardiness = baseHardiness = 3;
+        intellect = baseIntellect = 3;
+        lives = baseLives = 3;
+        strength = baseStrength = 3;
 
-    }
+        equippedWeapon = equippedArmor = 0;
+
+        level = 1;
+        health = baseHealth = (baseHardiness + level);
+        mana = baseMana = (baseIntellect + level);
+        baseOffensiveRating = (equippedWeapon + baseStrength + level);
+        baseDefensiveRating = (baseAgility + level);
+        baseArmorRating = (equippedArmor + baseHardiness);
+
+        experienceThreshold = 10;
+        experienceMultiplier = 1.5;
+        levelMultiplier = 1.2;
+    } // end constructor
 
     public void livesEffect(int effect){
         lives += effect;
