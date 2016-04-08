@@ -1,6 +1,5 @@
 package View.AreaViewport;
 
-import Model.Entity.Avatar;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Tile.GrassTile;
