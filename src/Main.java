@@ -87,7 +87,6 @@ public class Main {
 
         // initialize controller manager and get necessary controllers
         ControllerManager controller = new ControllerManager();
-        view.setControllerManager(controller);
 
         GamePlayController gamePlayController = controller.getGamePlayController();
 
@@ -100,6 +99,7 @@ public class Main {
         activeGameState.setActiveGameController(gamePlayController);
 
         // set necessary things for controllers
+        view.setKeyListener(controller);
         controller.setStateManager(stateManager);
         controller.setViewManager(viewManager);
         gamePlayController.setState(activeGameState);

@@ -51,16 +51,19 @@ public class ViewManager implements Observable{
 
     public void createSmasher(){
         activePanel = gamePanel;
+        controllerManager.switchGamePlay();
         alert(); // notifies view of the updated panel
     }
 
     public void createSneak(){
         activePanel = gamePanel;
+        controllerManager.switchGamePlay();
         alert(); // notifies view of the updated panel
     }
 
     public void createSummoner(){
         activePanel = gamePanel;
+        controllerManager.switchGamePlay();
         alert(); // notifies view of the updated panel
     }
 
@@ -111,5 +114,6 @@ public class ViewManager implements Observable{
 
     public void setControllerManager(ControllerManager controllerManager) {
         this.controllerManager = controllerManager;
+        gamePanel.addKeyListener(controllerManager);
     }
 }
