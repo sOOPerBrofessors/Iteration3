@@ -1,6 +1,6 @@
 package Utilities;
 
-import Model.Entity.Avatar;
+import Model.Entity.Character.Avatar;
 import Model.Map.Map;
 import Model.Map.Tile.AirTile;
 import Model.Map.Tile.GrassTile;
@@ -27,7 +27,7 @@ public class GameLoader {
     GameState gameState;
     public GameLoader(){
         initMap();
-        avatar = new Avatar();
+        avatar = Avatar.makeSmasher();
         gameState = new ActiveGameState(map,avatar);
     }
     public void initMap(){
