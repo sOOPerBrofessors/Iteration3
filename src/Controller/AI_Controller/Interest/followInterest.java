@@ -5,11 +5,11 @@ import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation
 /**
  * Created by aseber on 4/8/16.
  */
-public class followInterest implements Interest {
+public class FollowInterest implements Interest {
 
     static {
 
-        Interest interest = new followInterest();
+        Interest interest = new FollowInterest();
         InterestFactory.addInterest(interest.getName(), interest);
 
     }
@@ -22,7 +22,7 @@ public class followInterest implements Interest {
 
     public String getName() {
 
-        return "followInterest";
+        return "FollowInterest";
 
     }
 
