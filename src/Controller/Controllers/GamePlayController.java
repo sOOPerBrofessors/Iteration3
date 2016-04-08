@@ -24,8 +24,10 @@ public class GamePlayController extends Controller{
     }
     @Override
     public void keyPress(KeyEvent key){
-        System.out.println("Key is being pressed in game play controller");
-        commands.get(key).execute();
+        System.out.println("Key is being pressed in gameplay controller");
+        if(commands.containsKey(key)) {
+            commands.get(key).execute();
+        }
     }
 
     private void initCommands(){
