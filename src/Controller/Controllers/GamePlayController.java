@@ -20,13 +20,13 @@ public class GamePlayController extends Controller{
 
     public GamePlayController(ControllerManager controllerManager){
         super(controllerManager);
-        commands = new HashMap<>();
     }
     @Override
     public void keyPress(KeyEvent key){
-        System.out.println("Key is being pressed in gameplay controller");
-        if(commands.containsKey(key)) {
-            commands.get(key).execute();
+        System.out.println("GamePlayController: Key is being pressed in gameplay controller: " + key.getKeyCode());
+        if(commands.containsKey(key.getKeyCode())) {
+            System.out.println("GameplayController:" + KeyEvent.VK_S);
+            commands.get(key.getKeyCode()).execute();
         }
     }
 
@@ -60,6 +60,7 @@ public class GamePlayController extends Controller{
         commands.put(Settings.DOWN, new Command() {
             @Override
             public void execute() {
+                System.out.println("GameplayController: Down is being called");
                 state.movePlayerS();
             }
         });

@@ -46,7 +46,7 @@ public abstract class Entity implements EntityObservable {
         notifyObserverMove(new Location(1,0,0));
     }
     public void moveNorthEast(){
-        notifyObserverMove(new Location(1,1,0));
+        notifyObserverMove(new Location(1,-1,0));
     }
 
 }
