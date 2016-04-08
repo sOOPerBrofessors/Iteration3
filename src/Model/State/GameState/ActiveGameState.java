@@ -1,9 +1,9 @@
-package Model.State.States;
+package Model.State.GameState;
 
 import Controller.Controllers.GamePlayController;
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
-import Model.State.GameState;
+import Model.State.GameState.GameState;
 
 /**
  * Created by Wimberley on 4/6/16.
