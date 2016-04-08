@@ -21,9 +21,7 @@ public class ControllerManager implements KeyListener {
     private GamePlayController gamePlayController;
 
     public ControllerManager(){
-
         gamePlayController = new GamePlayController(this);
-        activeController = gamePlayController;
     }
 
     public void setActiveController(Controller gs){
@@ -64,18 +62,17 @@ public class ControllerManager implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("Key is being pressed");
-        activeController.keyPress(e);
+        if(activeController != null) {
+            activeController.keyPress(e);
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
     }
 
     public void switchGamePlay(){
