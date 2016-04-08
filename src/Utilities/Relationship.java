@@ -51,7 +51,7 @@ public class Relationship {
 
     public String toString() {
 
-        return "Relationship - " + Double.toString(value);
+        return "Relationship: (" + Double.toString(value) + ")";
 
     }
 

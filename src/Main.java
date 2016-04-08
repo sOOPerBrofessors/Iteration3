@@ -1,13 +1,8 @@
-import Controller.AI_Controller.FrontalLobe.FrontalLobe;
-import Controller.AI_Controller.Memory.Memory;
-import Controller.AI_Controller.Personality.Personality;
-import Controller.AI_Controller.VisualCortex.VisualInformation.EntityRelationshipVisitor;
-import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
+import LoadSave.LoadFactionRelations;
+import LoadSave.LoadFactions;
 import Model.*;
-import Utilities.RelationshipList;
+import Model.Faction.FactionFactory;
 import View.ViewManager;
-
-import java.awt.*;
 
 /**
  * Created by Wimberley on 3/23/16.
@@ -15,6 +10,9 @@ import java.awt.*;
 public class Main {
 
     public static void main(String[] args) {
+
+        LoadSave.LoadData.load("data/factions.xml", new LoadFactions());
+        LoadSave.LoadData.load("data/faction_relationships.xml", new LoadFactionRelations());
 
         Model game = new Model();
         ViewManager view = new ViewManager();
