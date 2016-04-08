@@ -1,7 +1,7 @@
 package View;
 
 import Controller.ControllerManager;
-import Utilities.Observable;
+import Utilities.Subject;
 import Utilities.Observer;
 import View.ViewUtilities.Panels.CharacterCreationPanel;
 import View.ViewUtilities.Panels.GamePanel;
@@ -13,7 +13,7 @@ import java.awt.Graphics;
 /**
  * Created by Wimberley on 3/23/16.
  */
-public class ViewManager implements Observable{
+public class ViewManager implements Subject {
 
     // controller manager used to issue commands to change current controller
     private ControllerManager controllerManager;
