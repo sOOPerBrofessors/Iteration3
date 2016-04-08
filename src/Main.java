@@ -51,7 +51,7 @@ public class Main {
         // set necessary things for controllers
         controller.setStateManager(stateManager);
         controller.setViewManager(viewManager);
-        //gamePlayController.setState(activeGameState);
+        gamePlayController.setState(activeGameState);
         gamePlayController.setGamePanel(gamePanel);
     }
 }
