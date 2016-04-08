@@ -24,6 +24,10 @@ public class Settings {
 
     public static int UP_RIGHT = 105;
     public static int UP = 104;
+    public static int UP_ARROW = 38;
+    public static int LEFT_ARROW = 37;
+    public static int DOWN_ARROW = 40;
+    public static int RIGHT_ARROW = 39;
     public static int UP_LEFT = 103;
     public static int DOWN_LEFT = 97;
     public static int DOWN = 98;

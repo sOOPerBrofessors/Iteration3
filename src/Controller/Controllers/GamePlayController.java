@@ -20,10 +20,9 @@ public class GamePlayController extends Controller{
 
     public GamePlayController(ControllerManager controllerManager){
         super(controllerManager);
-        commands = new HashMap<>();
     }
     @Override
-    public void keyPress(KeyEvent key){
+    public void keyPress(Integer key){
         System.out.println("Key is being pressed in gameplay controller");
         if(commands.containsKey(key)) {
             commands.get(key).execute();
