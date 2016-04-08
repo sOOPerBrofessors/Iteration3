@@ -15,9 +15,9 @@ public abstract class Character extends Entity{
     private Occupation o;
     private CharacterStats stats;
 
-    protected Character(Occupation o, CharacterStats stats) {
+    protected Character(Occupation o) {
         this.o = o;
-        this.stats = stats;
+        this.stats = o.initStats();
     } // end private constructor
 
     /*
@@ -67,21 +67,21 @@ public abstract class Character extends Entity{
     } // end equipArmor
 
     public void equipSmasherWeapon(Weapon weapon) {
-        o.equipSmasherWeapon();
+        o.equipSmasherWeapon(weapon, this);
     } // end equipSmasherWeapon
     public void equipSmasherArmor(Armor armor) {
-        o.equipSmasherArmor();
+        o.equipSmasherArmor(armor, this);
     } // end equipSmasherArmor
     public void equipSneakWeapon(Weapon weapon) {
-        o.equipSneakWeapon();
+        o.equipSneakWeapon(weapon, this);
     } // end equipSneakWeapon
     public void equipSneakArmor(Armor armor) {
-        o.equipSneakArmor();
+        o.equipSneakArmor(armor, this);
     } // end equipSneakArmor
     public void equipSummonerWeapon(Weapon weapon) {
-        o.equipSummonerWeapon();
+        o.equipSummonerWeapon(weapon, this);
     } // end equipSummonerWeapon
     public void equipSummonerArmor(Armor armor) {
-        o.equipSummonerArmor();
+        o.equipSummonerArmor(armor, this);
     } // end equipSummonerArmor
 } // end abstract class Character
