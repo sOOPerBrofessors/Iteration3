@@ -22,6 +22,7 @@ public class ControllerManager implements KeyListener {
 
     public ControllerManager(){
         gamePlayController = new GamePlayController(this);
+        activeController = gamePlayController;
     }
 
     public ControllerManager(ViewManager viewManager, StateManager stateManager){

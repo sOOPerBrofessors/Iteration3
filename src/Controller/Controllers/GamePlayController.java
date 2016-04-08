@@ -33,6 +33,7 @@ public class GamePlayController extends Controller{
         commands.put(Settings.UP, new Command() {
             @Override
             public void execute() {
+                System.out.println("key is presses");
                 state.movePlayerN();
             }
         });

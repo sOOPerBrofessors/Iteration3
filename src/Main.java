@@ -52,6 +52,7 @@ public class Main {
         activeGameState.setActiveGameController(gamePlayController);
 
         // set necessary things for controllers
+        view.setKeyListener(controller);
         controller.setStateManager(stateManager);
         controller.setViewManager(viewManager);
         gamePlayController.setState(activeGameState);
