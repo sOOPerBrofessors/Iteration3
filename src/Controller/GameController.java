@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.State.GameState;
+import Model.State.GameState.GameState;
 
 import java.awt.event.KeyEvent;
 

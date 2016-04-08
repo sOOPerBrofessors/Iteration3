@@ -3,7 +3,7 @@ package View.AreaViewport;
 import Model.Entity.Character.Avatar;
 import Model.Map.Location;
 import Model.Map.Map;
-import Model.State.GameState;
+import Model.State.GameState.GameState;
 import View.EntityView.AvatarView;
 import View.TerrainView.TileView;
 

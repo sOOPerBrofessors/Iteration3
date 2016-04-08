@@ -23,6 +23,10 @@ public class ActiveGameState extends GameState {
 //
 //    }
 
+    @Override
+    public void tick(){
+
+    }
 
     // player commands from controller
 
@@ -59,9 +63,6 @@ public class ActiveGameState extends GameState {
     public void playerSecondSkill(){}
 
     public void playerInteract(){}
-
-    @Override
-    public void tick(){}
 
     public void setActiveGameController(GamePlayController activeGameController) {
         this.activeGameController = activeGameController;

@@ -6,11 +6,7 @@ import Model.Map.Tile.AirTile;
 import Model.Map.Tile.GrassTile;
 import Model.Map.Tile.Tile;
 import Model.Map.TileColumn;
-import Model.State.GameState;
-import Model.State.States.ActiveGameState;
-import View.EntityView.EntityView;
-
-import java.util.ArrayList;
+import Model.State.GameState.ActiveGameState;
 
 /**
  * Created by dyeung on 4/6/16.

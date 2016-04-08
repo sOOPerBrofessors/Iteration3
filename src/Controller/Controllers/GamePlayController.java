@@ -3,7 +3,7 @@ package Controller.Controllers;
 import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
-import Model.State.States.ActiveGameState;
+import Model.State.GameState.ActiveGameState;
 import Utilities.Settings;
 import View.ViewUtilities.Panels.GamePanel;
 
