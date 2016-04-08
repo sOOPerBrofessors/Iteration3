@@ -79,11 +79,11 @@ public class AreaViewport extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         //System.out.println("Area viewport is painting");
-       // Location offset = cameraView.computeOffset();
+         Location offset = cameraView.computeOffset();
 //        if (cameraView.requiresOffset()) {
 //            System.out.println("offset required");
 //            offsetTiles();
-//            //avatarView.updateCameraOffset(offset);
+//            avatarView.updateCameraOffset(offset);
 //            System.out.println("Offset done");
 //        }
         renderTiles(g);

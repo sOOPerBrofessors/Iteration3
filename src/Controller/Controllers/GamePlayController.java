@@ -23,8 +23,9 @@ public class GamePlayController extends Controller{
     }
     @Override
     public void keyPress(KeyEvent key){
-        System.out.println("GamePlayController: Key is being pressed in gameplay controller");
+        System.out.println("GamePlayController: Key is being pressed in gameplay controller: " + key.getKeyCode());
         if(commands.containsKey(key.getKeyCode())) {
+            System.out.println("GameplayController:" + KeyEvent.VK_S);
             commands.get(key.getKeyCode()).execute();
         }
     }
@@ -32,7 +33,7 @@ public class GamePlayController extends Controller{
     private void initCommands(){
 
         // up key press
-        commands.put(KeyEvent.VK_W, new Command() {
+        commands.put(Settings.UP, new Command() {
             @Override
             public void execute() {
                 state.movePlayerN();
@@ -40,7 +41,7 @@ public class GamePlayController extends Controller{
         });
 
         // up right key press
-        commands.put(KeyEvent.VK_E, new Command() {
+        commands.put(Settings.UP_RIGHT, new Command() {
             @Override
             public void execute() {
                 state.movePlayerNE();
@@ -48,7 +49,7 @@ public class GamePlayController extends Controller{
         });
 
         // down right key press
-        commands.put(KeyEvent.VK_D, new Command() {
+        commands.put(Settings.DOWN_RIGHT, new Command() {
             @Override
             public void execute() {
                 state.movePlayerSE();
@@ -56,15 +57,16 @@ public class GamePlayController extends Controller{
         });
 
         // down key press
-        commands.put(KeyEvent.VK_S, new Command() {
+        commands.put(Settings.DOWN, new Command() {
             @Override
             public void execute() {
+                System.out.println("GameplayController: Down is being called");
                 state.movePlayerS();
             }
         });
 
         // down left key press
-        commands.put(KeyEvent.VK_A, new Command() {
+        commands.put(Settings.DOWN_LEFT, new Command() {
             @Override
             public void execute() {
                 state.movePlayerSW();
@@ -72,7 +74,7 @@ public class GamePlayController extends Controller{
         });
 
         // up left key press
-        commands.put(KeyEvent.VK_Q, new Command() {
+        commands.put(Settings.UP_LEFT, new Command() {
             @Override
             public void execute() {
                 state.movePlayerNW();
