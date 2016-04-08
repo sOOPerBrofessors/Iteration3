@@ -4,6 +4,7 @@ import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Entity;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
+import Model.Map.Location;
 import Model.Stats.CharacterStats;
 
 /**
@@ -15,7 +16,8 @@ public abstract class Character extends Entity{
     private Occupation o;
     private CharacterStats stats;
 
-    protected Character(Occupation o, CharacterStats stats) {
+    protected Character(Occupation o, CharacterStats stats, Location location) {
+        super(location);
         this.o = o;
         this.stats = stats;
     } // end private constructor
