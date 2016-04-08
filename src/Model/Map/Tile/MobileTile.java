@@ -8,15 +8,13 @@ import Model.Map.Tile.TileStrategy.TileStrategy;
  */
 
 //MobileTile can hold a single entity
-public class MobileTile extends Tile{
+public abstract class MobileTile extends Tile{
     private Entity entity;
 
     public MobileTile(TileStrategy tileStrategy){
         super(tileStrategy);
         entity = null;
     }
-
-
 
 }
 

@@ -1,6 +1,7 @@
 package View.TerrainView;
 
 import Model.Map.Location;
+import Model.Map.Tile.Tile;
 import Utilities.Settings;
 import Utilities.SpriteImageFactory;
 import View.AreaViewport.CameraView;
@@ -13,10 +14,9 @@ import java.util.Set;
 /**
  * Created by dyeung on 4/5/16.
  */
-public class GrassTileview extends JComponent{
+public class GrassTileView extends TileView{
     private String url = "./res/terrain/grass.png";
     private Image grassImage;
-    private Location location;
 
     private int tileWidth = Settings.TILEWIDTH;
     private int tileHeight = Settings.TILEHEIGHT;
@@ -24,9 +24,9 @@ public class GrassTileview extends JComponent{
     protected int yPixel; // on the map
 
     //Might be needed later ( should the tile know what to put ontop of itself)
-    private EntityView entityView;
-    public GrassTileview(Location location){
-        this.location = location;
+    //private EntityView entityView;
+    public GrassTileView(Location location){
+        super(location);
         grassImage = SpriteImageFactory.getImage(url);
         updateCoordinateToScreenPosition();
     }
@@ -34,10 +34,14 @@ public class GrassTileview extends JComponent{
     public void updateCoordinateToScreenPosition(){
         int x = location.getX();
         int y = location.getY();
-        xPixel = x*tileWidth - (x*tileWidth)/4;
-        yPixel = y*tileHeight + (tileHeight*x)/2;
-    }
+        int xCenter = tileWidth/2;
+        int yCenter = tileHeight/2;
+        xPixel = xCenter + x*tileWidth - (x*(tileWidth-5))/4;
+        //yPixel = y*tileHeight + (tileHeight*x)/2;
+        yPixel = yCenter + y*(tileHeight - 7) + ((tileHeight-12)*x)/2;
 
+    }
+    @Override
     public void updateCameraOffset(Location location){
         updateCoordinateToScreenPosition();
         xPixel += location.getX();
@@ -47,14 +51,12 @@ public class GrassTileview extends JComponent{
     @Override
     public void paintComponent(Graphics g) {
         //super.paintComponent(g);
-        //System.out.println("GrassTileView: paint component: " + xPosition + "," + yPosition);
-        for (int i = 0; i < location.getZ(); i++) {
-            g.drawImage(grassImage,xPixel,yPixel,tileWidth,tileHeight,null);
-            String debug = xPixel + "," + yPixel;
-            Font f = new Font("Courier New", 1, 12);
-            g.setFont(f);
-            g.drawString(debug, xPixel+ (tileWidth/3), yPixel + (tileHeight/2));
-        }
+        System.out.println("GrassTileView: paint component: " + location.getX() + "," + location.getY());
+        g.drawImage(grassImage,xPixel,yPixel,tileWidth,tileHeight,null);
+        String debug = location.getX() + "," + location.getY();
+        Font f = new Font("Courier New", 1, 12);
+        g.setFont(f);
+        g.drawString(debug, xPixel+ (tileWidth/3), yPixel + (tileHeight/2));
     }
 
 }

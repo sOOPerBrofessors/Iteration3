@@ -21,11 +21,11 @@ public abstract class GameState extends State{
         this.avatar = avatar;
     }
 
-    //TEMP (maybe?)
+    //TEMP
     public Avatar getAvatar(){
         return avatar;
     }
-    public Model.Map.Map getMap(){
+    public Map getMap(){
         return map;
     }
 }

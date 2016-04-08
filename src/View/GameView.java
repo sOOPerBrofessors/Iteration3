@@ -2,6 +2,7 @@ package View;
 
 import Model.State.GameState;
 import View.AreaViewport.AreaViewport;
+import View.ViewUtilities.ImageAssets;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,9 +17,11 @@ public class GameView extends JPanel{
         //When initalized it'll create the AreaViewport - might be changed for later though
         this.setLayout(new BorderLayout());
         init(gS);
+        ImageAssets iA = new ImageAssets();
+        iA.init();
     }
     //These views come built in with the GameView
-    public void init(GameState gameState){
+    private void init(GameState gameState){
         areaViewport = new AreaViewport(gameState);
         addView(areaViewport);
     }
@@ -51,8 +54,8 @@ public class GameView extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         //This doesn't get called anymore
-        System.out.println("GameView: Paint Game View!");
-        super.paintComponent(g);
+        //System.out.println("GameView: Paint Game View!");
+        //super.paintComponent(g);
 
 
     }

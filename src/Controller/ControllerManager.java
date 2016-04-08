@@ -17,7 +17,15 @@ public class ControllerManager implements KeyListener {
     private ViewManager viewManager;
     private StateManager stateManager;
     private Controller activeController;
+    //David's testing version
+    public ControllerManager(){
 
+    }
+    public void setActiveController(Controller gs){
+        activeController = gs;
+    }
+    //End testing
+    //
     public ControllerManager(ViewManager viewManager, StateManager stateManager){
         this.viewManager = viewManager;
         this.stateManager = stateManager;
