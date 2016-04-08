@@ -4,6 +4,9 @@ import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Character.Occupation.Smasher;
 import Model.Entity.Character.Occupation.Sneak;
 import Model.Entity.Character.Occupation.Summoner;
+import Model.Map.Location;
+import Model.Stats.CharacterStats;
+
 
 /**
  * Created by broskj on 4/6/16.
@@ -12,20 +15,22 @@ import Model.Entity.Character.Occupation.Summoner;
  */
 public class Avatar extends Character {
 
-    private Avatar(Occupation o) {
-        super(o);
+    private Avatar(Occupation o, Location location) {
+        //I'm not sure how this is going to work but we need something here to define the initial location of an avatar
+        super(o, location);
     } // end constructor
 
-    public static Avatar makeSmasher() {
-        return new Avatar(new Smasher());
+    public static Avatar makeSmasher(Location location) {
+        return new Avatar(new Smasher(), location);
     } // end factory method makeSmasher
 
-    public static Avatar makeSneak() {
-        return new Avatar(new Sneak());
+    public static Avatar makeSneak(Location location) {
+        return new Avatar(new Sneak(),location);
     } // end factory method makeSneak
 
-    public Avatar makeSummoner() {
-        return new Avatar(new Summoner());
+    public static Avatar makeSummoner(Location location) {
+        return new Avatar(new Summoner(), location);
+
     } // end factory method makeSneak
 
     @Override

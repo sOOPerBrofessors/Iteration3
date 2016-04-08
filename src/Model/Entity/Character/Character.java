@@ -5,6 +5,7 @@ import Model.Entity.Entity;
 import Model.Inventory.Inventory;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
+import Model.Map.Location;
 import Model.Stats.CharacterStats;
 import Utilities.Observer;
 
@@ -18,7 +19,8 @@ public abstract class Character extends Entity implements Observer {
     protected CharacterStats stats;
     protected Inventory inventory;
 
-    protected Character(Occupation o) {
+    protected Character(Occupation o, Location location) {
+        super(location);
         this.o = o;
         this.stats = o.initStats();
         this.inventory = new Inventory();
