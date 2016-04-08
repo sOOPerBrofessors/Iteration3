@@ -1,6 +1,6 @@
 package Model.Map.Tile;
 
-import Model.Map.Tile.TileStrategy.AvianTileStrategy;
+import Model.Entity.Entity;
 
 /**
  * Created by sgl on 4/5/16.
@@ -10,6 +10,12 @@ import Model.Map.Tile.TileStrategy.AvianTileStrategy;
 public class AirTile extends MobileTile {
 
     public AirTile(){
-        super(new AvianTileStrategy());
     }
+
+    @Override
+    public void moveAvian(Entity entity) {
+        super.entity = entity;
+    }
+
+
 }
