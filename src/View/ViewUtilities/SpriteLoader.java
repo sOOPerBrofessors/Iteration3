@@ -9,7 +9,8 @@ import java.io.IOException;
 public class SpriteLoader {
     public static BufferedImage loadImage(String path){
         try {
-            return ImageIO.read(new File("res" + path));
+            //Changed the path to match res
+            return ImageIO.read(new File(path));
         } catch (IOException e) {
             e.printStackTrace();
         }

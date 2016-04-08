@@ -74,4 +74,8 @@ public class View implements Runnable, Observer{
     public void setStateManager(StateManager stateManager) {
         this.stateManager = stateManager;
     }
+
+    public void setControllerManager(ControllerManager controllerManager) {
+        mainFrame.addKeyListener(controllerManager);
+    }
 }

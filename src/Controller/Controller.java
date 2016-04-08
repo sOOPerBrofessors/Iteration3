@@ -16,6 +16,7 @@ public abstract class Controller {
 
     public Controller(ControllerManager controllerManager){
         this.controllerManager = controllerManager;
+        commands = new HashMap<>();
     }
 
     public abstract void keyPress(KeyEvent e);

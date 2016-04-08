@@ -16,30 +16,39 @@ public class ActiveGameState extends GameState {
         super(map,avatar);
     }
 
-    public ActiveGameState(){
-        avatar = Avatar.makeSmasher();
+    //The ActiveGameState is never creating any models. It is being created within the GameLoader and then passed in through
+    // a constructor
+//    public ActiveGameState(){
+//        avatar = Avatar.makeSmasher();
+//
+//    }
 
-    }
 
     // player commands from controller
 
     public void movePlayerN(){
-
+        avatar.moveNorth();
     }
 
-    public void movePlayerNE(){}
+    public void movePlayerNE(){
+        avatar.moveNorthEast();
+    }
 
     public void movePlayerSE(){
-
+        avatar.moveSouthEast();
     }
 
-    public void movePlayerS(){}
+    public void movePlayerS(){
+        avatar.moveSouth();
+    }
 
     public void movePlayerSW(){
-
+        avatar.moveSouthWest();
     }
 
-    public void movePlayerNW(){}
+    public void movePlayerNW(){
+        avatar.moveNorthWest();
+    }
 
     public void playerAttack(){}
 

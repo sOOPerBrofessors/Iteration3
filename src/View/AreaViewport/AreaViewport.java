@@ -1,14 +1,11 @@
 package View.AreaViewport;
 
+import Model.Entity.Character.Avatar;
 import Model.Map.Location;
 import Model.Map.Map;
-import Model.Map.Tile.GrassTile;
 import Model.State.GameState;
-import Utilities.GameLoader;
-import Utilities.Settings;
 import View.EntityView.AvatarView;
-import View.EntityView.EntityView;
-import View.TerrainView.GrassTileview;
+import View.TerrainView.TileView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,8 +21,9 @@ public class AreaViewport extends JPanel {
     public static final int MAXSIZE = 10;
 
     //TODO: Change this to map
-    private GrassTileview[][] tileViews = new GrassTileview[MAXSIZE][MAXSIZE];
-
+    //View objects
+    private TileView[][][] tileViews = new TileView[MAXSIZE][MAXSIZE][MAXSIZE];
+    private Map map;
     //TODO: Add avatar views and stuff
     private AvatarView avatarView;
     private CameraView cameraView;
@@ -36,34 +34,33 @@ public class AreaViewport extends JPanel {
 
 
         //THIS IS HELLA TEMPORARY
-        //Avatar a = gameState.getAvatar();
-        //Location loc = new Location(5,5,1);
+        Avatar a = gameState.getAvatar();
+        Location loc = new Location(5,5,1);
 
         //Might be a variable in AreaViewport
-        //avatarView = new AvatarView(loc);
-        //cameraView = new CameraView(avatarView);
-        //a.addObserver(avatarView);
+        avatarView = new AvatarView(loc);
+        cameraView = new CameraView(avatarView);
+        a.addObserver(avatarView);
         //Initializing the map
-        //Map map = gameState.getMap();
 
-        for (int i = 0; i < MAXSIZE; i++){
-            for(int j = 0; j < MAXSIZE; j++){
-                Location location = new Location(i,j, 1);
-                tileViews[i][j] = new GrassTileview(location);
-                //add(tileViews[i][j]);
-            }
-        }
+        map = gameState.getMap();
+        MapViewFactory mapViewFactory = new MapViewFactory();
+        tileViews = mapViewFactory.createMapViewObjects(map);
+
+
 
 
     }
-    public void offsetTiles(){
+    private void offsetTiles(){
         Location offset = cameraView.computeOffset();
-        System.out.println("Offset:" + offset.getX() + "," + offset.getY() + "," + offset.getZ());
-        for (int i = 0; i < MAXSIZE; i++) {
-            for (int j = 0; j < MAXSIZE; j++){
+        System.out.println("AreaViewPort: Offset:" + offset.getX() + "," + offset.getY() + "," + offset.getZ());
+        for (int i = 0; i < tileViews.length; i++) {
+            for (int j = 0; j < tileViews[0].length; j++){
                 //updates the location of all the objects
-                tileViews[i][j].updateCameraOffset(offset);
-                //tileViews[i][j].setLocation();
+                for (int k = 0; k < 10; k++){
+                    tileViews[i][j][k].updateCameraOffset(offset);
+
+                }
             }
         }
 
@@ -71,21 +68,25 @@ public class AreaViewport extends JPanel {
     public void renderTiles(Graphics g){
         for (int i = 0; i < MAXSIZE; i++) {
             for (int j = 0; j < MAXSIZE; j++){
-                tileViews[i][j].paintComponent(g);
+//                for (int k = 0; i < 10; i++) {
+//                    tileViews[i][j][k].paintComponent(g);
+//                }
+                tileViews[i][j][0].paintComponent(g);
             }
         }
     }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        //System.out.println("Area viewport is painting");
        // Location offset = cameraView.computeOffset();
-        /*if (cameraView.requiresOffset()) {
-            System.out.println("offset required");
-            offsetTiles();
-            //avatarView.updateCameraOffset(offset);
-            System.out.println("Offset done");
-        }*/
-        //renderTiles(g);
-        //avatarView.paintComponent(g);
+//        if (cameraView.requiresOffset()) {
+//            System.out.println("offset required");
+//            offsetTiles();
+//            //avatarView.updateCameraOffset(offset);
+//            System.out.println("Offset done");
+//        }
+        renderTiles(g);
+        avatarView.paintComponent(g);
     }
 }

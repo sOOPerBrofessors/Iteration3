@@ -8,6 +8,7 @@ import Model.Entity.Entity;
 
 //MobileTile can hold a single entity
 public abstract class MobileTile extends Tile{
+
     protected Entity entity;
 
     public MobileTile(){
