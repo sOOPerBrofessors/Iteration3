@@ -15,7 +15,6 @@ import Model.State.GameState;
 import Utilities.GameLoader;
 
 import Controller.ControllerManager;
-import Controller.GameController;
 import View.ViewUtilities.MainPanel;
 
 import java.awt.*;
