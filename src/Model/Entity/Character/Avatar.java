@@ -19,15 +19,15 @@ public class Avatar extends Character {
         super(o, s);
     } // end constructor
 
-    public Avatar makeSmasher() {
+    public static Avatar makeSmasher() {
         return new Avatar(new Smasher(), new SmasherStrategy());
     } // end factory method makeSmasher
 
-    public Avatar makeSneak() {
+    public static Avatar makeSneak() {
         return new Avatar(new Sneak(), new SneakStrategy());
     } // end factory method makeSneak
 
-    public Avatar makeSummoner() {
+    public static Avatar makeSummoner() {
         return new Avatar(new Summoner(), new SummonerStrategy());
     } // end factory method makeSneak
 } // end class Avatar
