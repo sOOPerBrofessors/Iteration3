@@ -1,7 +1,6 @@
 package View.AreaViewport;
 
 import Model.Map.Location;
-import Model.Map.Tile.WaterTile;
 import Model.Map.TileColumn;
 import Utilities.Visitor.TileVisitor;
 import Model.Map.Map;

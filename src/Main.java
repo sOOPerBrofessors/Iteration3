@@ -85,6 +85,7 @@ public class Main {
         // initialize controller manager and get necessary controllers
         ControllerManager controller = new ControllerManager();
         view.setControllerManager(controller);
+
         GamePlayController gamePlayController = controller.getGamePlayController();
 
         // set necessary things for views

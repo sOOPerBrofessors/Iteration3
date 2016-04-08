@@ -3,11 +3,8 @@ package View.AreaViewport;
 import Model.Entity.Avatar;
 import Model.Map.Location;
 import Model.Map.Map;
-import Model.Map.Tile.Tile;
-import Model.Map.TileColumn;
 import Model.State.GameState;
 import View.EntityView.AvatarView;
-import View.TerrainView.GrassTileView;
 import View.TerrainView.TileView;
 
 import javax.swing.*;
