@@ -1,5 +1,7 @@
 import Controller.ControllerManager;
 import Controller.Controllers.GamePlayController;
+import LoadSave.LoadFactionRelations;
+import LoadSave.LoadFactions;
 import Model.Model;
 import Model.State.StateManager;
 import Model.State.States.ActiveGameState;
@@ -14,6 +16,9 @@ import View.ViewManager;
 public class Main {
 
     public static void main(String[] args) {
+        LoadSave.LoadData.load("data/factions.xml", new LoadFactions());
+        LoadSave.LoadData.load("data/faction_relationships.xml", new LoadFactionRelations());
+
         // creates all components that need to know of each other
         Model gameLoop = new Model();
         View view = new View();
@@ -23,8 +28,6 @@ public class Main {
         gameLoop.start();
         view.start();
     }
-
-
 
     private static void initialize(Model model, View view) {
 
