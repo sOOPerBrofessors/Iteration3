@@ -1,7 +1,5 @@
 package Model.Map.Tile;
 
-import Model.Map.Tile.TileStrategy.DirtTileStrategy;
-
 /**
  * Created by sgl on 4/5/16.
  */
@@ -10,6 +8,7 @@ import Model.Map.Tile.TileStrategy.DirtTileStrategy;
 public class DirtTile extends Tile {
 
     public DirtTile(){
-        super(new DirtTileStrategy());
     }
+
+
 }
