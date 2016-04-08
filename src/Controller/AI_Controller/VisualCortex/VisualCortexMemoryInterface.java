@@ -7,6 +7,7 @@ import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation
  */
 public interface VisualCortexMemoryInterface {
 
+    // The setter for visualInformation
     void setVisualInformation(VisualInformation visualInformation);
 
 }

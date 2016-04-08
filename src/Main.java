@@ -1,5 +1,13 @@
-import Model.Model;
+import Controller.AI_Controller.FrontalLobe.FrontalLobe;
+import Controller.AI_Controller.Memory.Memory;
+import Controller.AI_Controller.Personality.Personality;
+import Controller.AI_Controller.VisualCortex.VisualInformation.EntityRelationshipVisitor;
+import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
+import Model.*;
+import Utilities.RelationshipList;
 import View.ViewManager;
+
+import java.awt.*;
 
 /**
  * Created by Wimberley on 3/23/16.

@@ -1,5 +1,6 @@
 package Controller.AI_Controller.FrontalLobe;
 
+import Controller.AI_Controller.Decision.Decision;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
 import Model.Entity;
 import Utilities.RelationshipList;
@@ -9,10 +10,15 @@ import Utilities.RelationshipList;
  */
 public interface FrontalLobeMemoryInterface {
 
+    // Getter for visual information
     VisualInformation getVisualInformation();
 
-    boolean isCurrentDecisionValid();
-
+    // Relationship related methods
     RelationshipList<Entity> getRelationships();
+    void setRelationships(RelationshipList<Entity> entityRelationships);
+
+    // Decision related methods
+    boolean isCurrentDecisionValid();
+    void setCurrentDecision(Decision currentDecision);
 
 }

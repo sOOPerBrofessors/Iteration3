@@ -7,6 +7,7 @@ import Controller.AI_Controller.Decision.Decision;
  */
 public interface MotorCortexMemoryInterface {
 
+    // The decision getter
     Decision getCurrentDecision();
 
 }
