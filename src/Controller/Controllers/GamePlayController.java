@@ -20,20 +20,20 @@ public class GamePlayController extends Controller{
 
     public GamePlayController(ControllerManager controllerManager){
         super(controllerManager);
-        commands = new HashMap<>();
     }
     @Override
     public void keyPress(KeyEvent key){
-        System.out.println("Key is being pressed in gameplay controller");
-        if(commands.containsKey(key)) {
-            commands.get(key).execute();
+        System.out.println("GamePlayController: Key is being pressed in gameplay controller");
+        System.out.println(key.getID());
+        if(commands.containsKey(key.getKeyCode())) {
+            commands.get(key.getKeyCode()).execute();
         }
     }
 
     private void initCommands(){
 
         // up key press
-        commands.put(Settings.UP, new Command() {
+        commands.put(KeyEvent.VK_W, new Command() {
             @Override
             public void execute() {
                 state.movePlayerN();

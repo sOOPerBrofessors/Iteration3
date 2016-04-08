@@ -1,25 +1,31 @@
 package View.TerrainView;
 
 import Model.Map.Location;
+import Model.Map.Tile.Tile;
+import Utilities.Settings;
 import Utilities.SpriteImageFactory;
+import View.AreaViewport.CameraView;
+import View.EntityView.EntityView;
 
+import javax.swing.*;
 import java.awt.*;
+import java.util.Set;
 
 /**
- * Created by dyeung on 4/7/16.
+ * Created by dyeung on 4/5/16.
  */
-public class WaterTileView extends TileView {
-    private String url = "./res/terrain/water.png";
-    public WaterTileView(Location location) {
+public class GrassTileView extends TileView{
+    private String url = "./res/terrain/grass_flat.png";
+
+
+
+    //Might be needed later ( should the tile know what to put ontop of itself)
+    //private EntityView entityView;
+    public GrassTileView(Location location){
         super(location);
         image = SpriteImageFactory.getImage(url);
-
     }
 
-    @Override
-    public void updateCameraOffset(Location location) {
-
-    }
 
     @Override
     public void paintComponent(Graphics g) {
@@ -31,4 +37,7 @@ public class WaterTileView extends TileView {
         g.setFont(f);
         g.drawString(debug, xPixel+ (tileWidth/3), yPixel + (tileHeight/2));
     }
+
 }
+
+

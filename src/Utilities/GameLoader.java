@@ -5,6 +5,7 @@ import Model.Map.Map;
 import Model.Map.Tile.AirTile;
 import Model.Map.Tile.GrassTile;
 import Model.Map.Tile.Tile;
+import Model.Map.Tile.WaterTile;
 import Model.Map.TileColumn;
 import Model.State.GameState;
 import Model.State.States.ActiveGameState;
@@ -45,7 +46,11 @@ public class GameLoader {
                     TileColumn tC = tmpList[i][j];
                     Tile tile;
                     if (k < 1) {
-                        tile = new GrassTile();
+                        if (i == 2 && (j>2 && j < 5)){
+                            tile = new WaterTile();
+                        }else{
+                            tile = new GrassTile();
+                        }
                     }else {
                         tile = new AirTile();
                     }
