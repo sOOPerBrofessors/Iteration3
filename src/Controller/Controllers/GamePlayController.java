@@ -41,7 +41,7 @@ public class GamePlayController extends Controller{
         });
 
         // up right key press
-        commands.put(Settings.UP_RIGHT, new Command() {
+        commands.put(KeyEvent.VK_E, new Command() {
             @Override
             public void execute() {
                 state.movePlayerNE();
@@ -49,7 +49,7 @@ public class GamePlayController extends Controller{
         });
 
         // down right key press
-        commands.put(Settings.DOWN_RIGHT, new Command() {
+        commands.put(KeyEvent.VK_D, new Command() {
             @Override
             public void execute() {
                 state.movePlayerSE();
@@ -57,7 +57,7 @@ public class GamePlayController extends Controller{
         });
 
         // down key press
-        commands.put(Settings.DOWN, new Command() {
+        commands.put(KeyEvent.VK_S, new Command() {
             @Override
             public void execute() {
                 state.movePlayerS();
@@ -65,7 +65,7 @@ public class GamePlayController extends Controller{
         });
 
         // down left key press
-        commands.put(Settings.DOWN_LEFT, new Command() {
+        commands.put(KeyEvent.VK_A, new Command() {
             @Override
             public void execute() {
                 state.movePlayerSW();
@@ -73,7 +73,7 @@ public class GamePlayController extends Controller{
         });
 
         // up left key press
-        commands.put(Settings.UP_LEFT, new Command() {
+        commands.put(KeyEvent.VK_Q, new Command() {
             @Override
             public void execute() {
                 state.movePlayerNW();

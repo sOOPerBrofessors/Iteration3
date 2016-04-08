@@ -53,9 +53,9 @@ public class Settings {
 
     public static void setDebug() { debug = true; }
     //Original grass
-//    public static int TILEWIDTH = 56;
-//    public static int TILEHEIGHT = 48;
+    public static int TILEWIDTH = 56;
+    public static int TILEHEIGHT = 48;
     //Grass flat
-    public static int TILEWIDTH = 96;
-    public static int TILEHEIGHT = 62;
+//    public static int TILEWIDTH = 96;
+//    public static int TILEHEIGHT = 62;
 }
