@@ -24,13 +24,15 @@ public class GameLoader {
 
     Map map;
     Avatar avatar;
-    GameState gameState;
+    ActiveGameState activeGameState;
     public GameLoader(){
+
         initMap();
         avatar = new Avatar();
-        gameState = new ActiveGameState(map,avatar);
+        activeGameState = new ActiveGameState(map,avatar);
     }
     public void initMap(){
+        System.out.println("GameLoader: Loading Map and Avatar and ActiveGameState");
         //Maybe for future
         //ArrayList< ArrayList<TileColumn> > tmpList = new ArrayList<>();
 
@@ -60,7 +62,7 @@ public class GameLoader {
     public Avatar getAvatar(){
         return avatar;
     }
-    public GameState getGameState(){
-        return gameState;
+    public ActiveGameState getActiveGameState(){
+        return activeGameState;
     }
 }

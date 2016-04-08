@@ -72,21 +72,27 @@ public class Main {
         ViewManager viewManager = view.getViewManager();
         GamePanel gamePanel = viewManager.getGamePanel();
 
+        //Use the GAMELOADER
+        GameLoader gameLoader = new GameLoader();
+
         // initialize state manager and get necessary states
         StateManager stateManager = model.getStateManager();
-        ActiveGameState activeGameState = stateManager.getActiveGameState();
+        ActiveGameState activeGameState = gameLoader.getActiveGameState();
+
+        stateManager.setActiveGameState(activeGameState);
+        gamePanel.setAreaViewport(activeGameState);
 
         // initialize controller manager and get necessary controllers
         ControllerManager controller = new ControllerManager();
+        view.setControllerManager(controller);
         GamePlayController gamePlayController = controller.getGamePlayController();
 
         // set necessary things for views
         viewManager.setControllerManager(controller);
 
-        gamePanel.setAreaViewport(activeGameState);
-
         // set necessary things for states
         stateManager.setControllerManager(controller);
+        //Why does the active game state need to know the controller?
         activeGameState.setActiveGameController(gamePlayController);
 
         // set necessary things for controllers
@@ -94,5 +100,6 @@ public class Main {
         controller.setViewManager(viewManager);
         //gamePlayController.setState(activeGameState);
         gamePlayController.setGamePanel(gamePanel);
+        gamePlayController.setState(activeGameState);
     }
 }

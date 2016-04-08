@@ -37,18 +37,18 @@ public class AreaViewport extends JPanel {
 
 
         //THIS IS HELLA TEMPORARY
-        //Avatar a = gameState.getAvatar();
-        //Location loc = new Location(5,5,1);
+        Avatar a = gameState.getAvatar();
+        Location loc = new Location(5,5,1);
 
         //Might be a variable in AreaViewport
-        //avatarView = new AvatarView(loc);
-        //cameraView = new CameraView(avatarView);
-        //a.addObserver(avatarView);
+        avatarView = new AvatarView(loc);
+        cameraView = new CameraView(avatarView);
+        a.addObserver(avatarView);
         //Initializing the map
 
-//        map = gameState.getMap();
-//        MapViewFactory mapViewFactory = new MapViewFactory();
-//        tileViews = mapViewFactory.createMapViewObjects(map);
+        map = gameState.getMap();
+        MapViewFactory mapViewFactory = new MapViewFactory();
+        tileViews = mapViewFactory.createMapViewObjects(map);
 
 
 
@@ -82,7 +82,7 @@ public class AreaViewport extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        System.out.println("Area viewport is painting");
+        //System.out.println("Area viewport is painting");
        // Location offset = cameraView.computeOffset();
 //        if (cameraView.requiresOffset()) {
 //            System.out.println("offset required");
@@ -90,7 +90,7 @@ public class AreaViewport extends JPanel {
 //            //avatarView.updateCameraOffset(offset);
 //            System.out.println("Offset done");
 //        }
-        //renderTiles(g);
-        //avatarView.paintComponent(g);
+        renderTiles(g);
+        avatarView.paintComponent(g);
     }
 }

@@ -51,7 +51,7 @@ public class GrassTileView extends TileView{
     @Override
     public void paintComponent(Graphics g) {
         //super.paintComponent(g);
-        System.out.println("GrassTileView: paint component: " + location.getX() + "," + location.getY());
+        //System.out.println("GrassTileView: paint component: " + location.getX() + "," + location.getY());
         g.drawImage(grassImage,xPixel,yPixel,tileWidth,tileHeight,null);
         String debug = location.getX() + "," + location.getY();
         Font f = new Font("Courier New", 1, 12);

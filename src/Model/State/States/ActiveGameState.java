@@ -16,30 +16,36 @@ public class ActiveGameState extends GameState {
         super(map,avatar);
     }
 
-    public ActiveGameState(){
-        avatar = new Avatar();
-
-    }
+//    public ActiveGameState(){
+//        avatar = new Avatar();
+//
+//    }
 
     // player commands from controller
 
     public void movePlayerN(){
-
+        avatar.moveNorth();
     }
 
-    public void movePlayerNE(){}
+    public void movePlayerNE(){
+        avatar.moveNorthEast();
+    }
 
     public void movePlayerSE(){
-
+        avatar.moveSouthEast();
     }
 
-    public void movePlayerS(){}
+    public void movePlayerS(){
+        avatar.moveSouth();
+    }
 
     public void movePlayerSW(){
-
+        avatar.moveSouthWest();
     }
 
-    public void movePlayerNW(){}
+    public void movePlayerNW(){
+        avatar.moveNorthWest();
+    }
 
     public void playerAttack(){}
 

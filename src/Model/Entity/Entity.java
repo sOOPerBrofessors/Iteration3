@@ -31,7 +31,7 @@ public abstract class Entity implements EntityObservable {
     }
 
     public void moveNorth(){
-        notifyObserverMove(new Location(0,-1,0)); //this is an inherited class from entity
+        notifyObserverMove(new Location(0,-1,0));
     }
     public void moveNorthWest(){
         notifyObserverMove(new Location(-1,0,0));
