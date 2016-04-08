@@ -50,7 +50,6 @@ public class GameLoader {
                         tile = new AirTile();
                     }
                     tC.addTiles(tile);
-
                 }
             }
         }

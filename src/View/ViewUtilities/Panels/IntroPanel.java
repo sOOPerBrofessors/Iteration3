@@ -35,7 +35,7 @@ public class IntroPanel extends JPanel {
         newGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                viewManager.displayActiveGame();
+                viewManager.displayCreate();
                 //viewManager.;
             }
         });

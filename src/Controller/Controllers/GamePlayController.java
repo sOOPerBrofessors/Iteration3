@@ -8,6 +8,7 @@ import Utilities.Settings;
 import View.ViewUtilities.Panels.GamePanel;
 
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
 
 /**
  * Created by Wimberley on 4/6/16.
@@ -19,6 +20,7 @@ public class GamePlayController extends Controller{
 
     public GamePlayController(ControllerManager controllerManager){
         super(controllerManager);
+        commands = new HashMap<>();
     }
     @Override
     public void keyPress(KeyEvent key){
