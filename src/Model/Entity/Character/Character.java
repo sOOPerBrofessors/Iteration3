@@ -2,22 +2,26 @@ package Model.Entity.Character;
 
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Entity;
+import Model.Inventory.Inventory;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
 import Model.Stats.CharacterStats;
+import Utilities.Observer;
 
 /**
  * Created by broskj on 4/6/16.
  *
  * Abstract class to act as the superclass to the player (Avatar) and NPCs.
  */
-public abstract class Character extends Entity{
+public abstract class Character extends Entity implements Observer {
     private Occupation o;
-    private CharacterStats stats;
+    protected CharacterStats stats;
+    protected Inventory inventory;
 
     protected Character(Occupation o) {
         this.o = o;
         this.stats = o.initStats();
+        this.inventory = new Inventory();
     } // end private constructor
 
     /*
@@ -59,11 +63,11 @@ public abstract class Character extends Entity{
     handle equipping items
      */
     public void equipWeapon(Weapon weapon) {
-        // pack.equipWeapon(weapon);
+        inventory.equipWeapon(weapon);
     } // end equipArmor
 
     public void equipArmor(Armor armor) {
-        // pack.equipArmor(armor);
+        inventory.equipArmor(armor);
     } // end equipArmor
 
     public void equipSmasherWeapon(Weapon weapon) {
