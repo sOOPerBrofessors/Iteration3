@@ -1,7 +1,7 @@
 package Model.State.States;
 
 import Controller.Controllers.GamePlayController;
-import Model.Entity.Avatar;
+import Model.Entity.Character.Avatar;
 import Model.Map.Map;
 import Model.State.GameState;
 
@@ -16,10 +16,13 @@ public class ActiveGameState extends GameState {
         super(map,avatar);
     }
 
+    //The ActiveGameState is never creating any models. It is being created within the GameLoader and then passed in through
+    // a constructor
 //    public ActiveGameState(){
-//        avatar = new Avatar();
+//        avatar = Avatar.makeSmasher();
 //
 //    }
+
 
     // player commands from controller
 

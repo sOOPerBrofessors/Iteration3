@@ -25,7 +25,7 @@ public abstract class EntityView extends JComponent implements EntityObserver{
         x = location.getX();
         y = location.getY();
         updateCoordinateToScreenPosition();
-        System.out.println("initial: " + x + "," + y );
+        System.out.println("EntityView: initial: " + x + "," + y );
     }
     //Function will create the x/y position on the actual screen
     public void updateCoordinateToScreenPosition(){
@@ -37,13 +37,13 @@ public abstract class EntityView extends JComponent implements EntityObserver{
     }
     @Override
     public void updateMove(Location direction) {
-        System.out.println("Before: " + x + "," + y + " : " + xPixel + "," + yPixel);
+        System.out.println("EntityView: Before: " + x + "," + y + " : " + xPixel + "," + yPixel);
 
         x += direction.getX();
         y += direction.getY();
         updateCoordinateToScreenPosition();
 
-        System.out.println("After: " + x + "," + y + " : " + xPixel + "," + yPixel);
+        System.out.println("EntityView: After: " + x + "," + y + " : " + xPixel + "," + yPixel);
 
     }
     public void updateCameraOffset (Location location){

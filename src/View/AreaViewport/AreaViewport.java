@@ -1,6 +1,6 @@
 package View.AreaViewport;
 
-import Model.Entity.Avatar;
+import Model.Entity.Character.Avatar;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.State.GameState;
@@ -53,7 +53,7 @@ public class AreaViewport extends JPanel {
     }
     private void offsetTiles(){
         Location offset = cameraView.computeOffset();
-        System.out.println("Offset:" + offset.getX() + "," + offset.getY() + "," + offset.getZ());
+        System.out.println("AreaViewPort: Offset:" + offset.getX() + "," + offset.getY() + "," + offset.getZ());
         for (int i = 0; i < tileViews.length; i++) {
             for (int j = 0; j < tileViews[0].length; j++){
                 //updates the location of all the objects
@@ -61,7 +61,6 @@ public class AreaViewport extends JPanel {
                     tileViews[i][j][k].updateCameraOffset(offset);
 
                 }
-                //tileViews[i][j].setLocation();
             }
         }
 
