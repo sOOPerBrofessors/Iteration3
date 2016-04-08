@@ -57,7 +57,6 @@ public class GamePanel extends JPanel{
         System.out.println("GamePanel: Paint Game View!");
         super.paintComponent(g);
 
-
     }
     public void addView(JComponent view){
         this.add(view, BorderLayout.CENTER);

@@ -14,6 +14,8 @@ public abstract class EntityView extends JComponent implements EntityObserver{
     private int y; // on the coordinate system
     private int tileWidth = Settings.TILEWIDTH;
     private int tileHeight = Settings.TILEHEIGHT;
+    protected int entityWidth = 30;
+    protected int entityHeight = 48;
     protected int xPixel; // on the map
     protected int yPixel; // on the map
     protected Location location;
@@ -23,12 +25,15 @@ public abstract class EntityView extends JComponent implements EntityObserver{
         x = location.getX();
         y = location.getY();
         updateCoordinateToScreenPosition();
+        System.out.println("initial: " + x + "," + y );
     }
     //Function will create the x/y position on the actual screen
     public void updateCoordinateToScreenPosition(){
         //Might need to delegate to another class
-        xPixel = x*tileWidth - (x*tileWidth)/4;
-        yPixel = y*tileHeight + (tileHeight*x)/2;
+        int xCenter = entityWidth/2;
+        int yCenter = entityHeight/2;
+        xPixel = xCenter + x*tileWidth - (x*(tileWidth-5))/4;
+        yPixel = yCenter + y*(tileHeight - 7) + ((tileHeight-12)*x)/2;
     }
     @Override
     public void updateMove(Location direction) {

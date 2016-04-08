@@ -16,11 +16,11 @@ import java.util.ArrayList;
  * Created by dyeung on 4/6/16.
  */
 public class GameLoader {
-    int startAvatarX = 5;
-    int startAvatarY = 5;
+    private int startAvatarX = 5;
+    private int startAvatarY = 5;
 
-    int maxTileRow = 15;
-    int maxTileCol = 15;
+    private int maxTileRow = 15;
+    private int maxTileCol = 15;
 
     Map map;
     Avatar avatar;
@@ -34,11 +34,13 @@ public class GameLoader {
         //Maybe for future
         //ArrayList< ArrayList<TileColumn> > tmpList = new ArrayList<>();
 
-        TileColumn[][] tmpList = new TileColumn[maxTileRow][maxTileCol];
+        TileColumn[][] tmpList = new TileColumn[15][15];
         for (int i = 0; i < maxTileRow; i++){
             for (int j = 0; j < maxTileCol; j++){
+                tmpList[i][j] = new TileColumn();
                 for (int k = 0; k < 10; k++){
-                    TileColumn tC = new TileColumn();
+
+                    TileColumn tC = tmpList[i][j];
                     Tile tile;
                     if (k < 1) {
                         tile = new GrassTile();

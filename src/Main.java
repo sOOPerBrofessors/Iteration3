@@ -7,6 +7,18 @@ import View.View;
 import View.ViewUtilities.Panels.GamePanel;
 import View.ViewManager;
 
+import View.ViewManager;
+
+import Model.State.GameState;
+import Utilities.GameLoader;
+
+import Controller.ControllerManager;
+import Controller.GameController;
+import View.ViewUtilities.MainPanel;
+
+import java.awt.*;
+
+
 
 /**
  * Created by Wimberley on 3/23/16.
@@ -19,6 +31,34 @@ public class Main {
         View view = new View();
 
         initialize(gameLoop, view);
+
+//        EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                //Mike's stuff that I moved over
+//                Model game = new Model();
+//                ViewManager view = new ViewManager();
+//
+//                //Used to test the area view
+//                GameLoader gL = new GameLoader();
+//                GameState gs = gL.getGameState();
+//                //StateManager state = new StateManager();
+//                ControllerManager inputManager = new ControllerManager();
+//                inputManager.setActiveController(new GameController(inputManager,gs));
+//
+//
+//
+//                MainPanel mainPanel = new MainPanel();
+//                GameView gv = new GameView(gs);
+//
+//                mainPanel.addView(gv);
+//                mainPanel.addKeyListener(inputManager);
+//
+//                mainPanel.setVisible(true);
+//                mainPanel.start();
+//            }
+//        });
 
         gameLoop.start();
         view.start();
@@ -42,6 +82,7 @@ public class Main {
 
         // set necessary things for views
         viewManager.setControllerManager(controller);
+
         gamePanel.setAreaViewport(activeGameState);
 
         // set necessary things for states
