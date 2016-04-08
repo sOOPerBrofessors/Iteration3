@@ -11,7 +11,7 @@ import org.w3c.dom.NodeList;
 /**
  * Created by aseber on 4/7/16.
  */
-public class LoadFactionRelations implements LoadVisitor {
+public class LoadFactionRelationsVisitor implements LoadVisitor {
 
     public void visit(LoadDocument document) {
 

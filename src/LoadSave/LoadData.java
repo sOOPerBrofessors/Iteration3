@@ -19,6 +19,13 @@ public class LoadData {
 
     public static void load(String path, LoadVisitor visitor) {
 
+        if (visitor == null) {
+
+            System.err.println("Failed loading data: " + path + ". Invalid visitor.");
+            return;
+
+        }
+
         path = IOUtilities.getFileSystemDependentPath(path);
         System.out.println("Loading Data: " + path);
 
