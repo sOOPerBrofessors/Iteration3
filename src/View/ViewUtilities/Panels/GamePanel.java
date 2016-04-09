@@ -1,8 +1,7 @@
 package View.ViewUtilities.Panels;
 
 import Controller.Controllers.GamePlayController;
-import Model.State.GameState;
-import Model.State.States.ActiveGameState;
+import Model.State.GameState.ActiveGameState;
 import View.AreaViewport.AreaViewport;
 import View.ViewManager;
 

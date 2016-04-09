@@ -12,7 +12,6 @@ import View.View;
 import View.ViewUtilities.Panels.GamePanel;
 import View.ViewManager;
 
-
 /**
  * Created by Wimberley on 3/23/16.
  */

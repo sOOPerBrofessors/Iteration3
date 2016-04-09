@@ -1,17 +1,24 @@
-package Model.State.States;
+package Model.State.GameState;
 
-import Controller.ControllerManager;
+import Controller.AI_Controller.Brain;
+import Controller.Controllers.GamePlayController;
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
-import Model.State.GameState;
 
 /**
  * Created by Wimberley on 4/6/16.
  */
+
 public class ActiveGameState extends GameState {
+
+    private GamePlayController activeGameController;
+    private Brain brain;
 
     public ActiveGameState(Map map, Avatar avatar){
         super(map,avatar);
+
+        //Instantiate Brain
+        //brain = new Brain()
     }
 
     //The ActiveGameState is never creating any models. It is being created within the GameLoader and then passed in through
@@ -21,6 +28,13 @@ public class ActiveGameState extends GameState {
 //
 //    }
 
+    @Override
+    public void tick(){
+        // TODO: Brain needs to be instantiated with entity and personality
+        //brain.tick(); //ticks AI
+        //possibly need to tick human input if can be inputted too fast
+        //need to tick rivers???
+    }
 
     // player commands from controller
 
@@ -58,10 +72,7 @@ public class ActiveGameState extends GameState {
 
     public void playerInteract(){}
 
-    @Override
-    public void tick(){}
-
-    public void setPlayer(Avatar player){
+    public void setPlayer(Avatar player) {
         this.player = player;
     }
 }
