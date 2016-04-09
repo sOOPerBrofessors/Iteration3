@@ -3,17 +3,24 @@ package Model.Inventory;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
 import Utilities.MessageHandler;
+import Utilities.Observer;
+import Utilities.Subject;
+
+import java.util.ArrayList;
 
 /**
  * Created by broskj on 4/8/16.
  */
-public class Inventory {
+public class Inventory implements Observer, Subject{
+    private ArrayList<Observer> observers;
     private Pack pack;
     private Equipment equipment;
 
     public Inventory() {
+        observers = new ArrayList<>();
         this.pack = new Pack();
         this.equipment = new Equipment();
+        equipment.addObserver(this);
     } // end default constructor
 
     public void equipWeapon(Weapon weapon) {
@@ -44,4 +51,28 @@ public class Inventory {
         }
     } // end unequipArmor
 
+    @Override
+    public void addObserver(Observer o) {
+        observers.add(o);
+    } // end addObserver
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    } // end removeObserver
+
+    @Override
+    public void alert() {
+        observers.forEach(Observer::update);
+    } // end alert
+
+    @Override
+    public void update() {
+        alert();
+    } // end update
+
+    @Override
+    public void remove() {
+
+    } // end remove
 } // end class Inventory
