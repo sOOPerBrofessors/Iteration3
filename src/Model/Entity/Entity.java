@@ -11,6 +11,7 @@ import Model.Map.Orientation;
 import Utilities.Observables.EntityObservable;
 import Utilities.Observers.EntityObserver;
 import Model.Map.Location;
+import Utilities.Tickable;
 
 /**
  * Created by dyeung on 4/6/16.
@@ -19,7 +20,7 @@ import Model.Map.Location;
  */
 
 //All entities are able now Observables for a specific model view
-public abstract class Entity implements EntityObservable, MapObject {
+public abstract class Entity implements EntityObservable, MapObject, Tickable{
     private Location location;
     private Navigation navigation;
     protected Orientation orientation;

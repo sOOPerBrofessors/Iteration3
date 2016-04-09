@@ -62,4 +62,9 @@ public class Avatar extends Character {
     public MapObjectView acceptMapVisitor(ColumnVisitor columnVisitor) {
         return columnVisitor.createCharacterView(this);
     }
+
+    @Override
+    public void tick() {
+        // not used
+    }
 }
