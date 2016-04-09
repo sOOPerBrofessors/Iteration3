@@ -1,5 +1,12 @@
 package Model.Stats;
 
+import Model.State.GameState.ActiveGameState;
+import Model.State.GameState.GameState;
+import Utilities.Observer;
+import Utilities.Subject;
+
+import java.util.ArrayList;
+
 /**
  * Created by sgl on 4/7/16.
  *
@@ -12,7 +19,8 @@ package Model.Stats;
  *  add method to take in armor/weapon values on equipping an item and modify the equippedWeapon/equippedArmor values,
  *   then recompute offensiveRating/armorRating
  */
-public class CharacterStats extends EntityStats {
+public class CharacterStats extends EntityStats implements Subject {
+    ArrayList<Observer> observers;
     // primaryStats
     private int baseAgility;
     private int agility;
@@ -49,6 +57,7 @@ public class CharacterStats extends EntityStats {
     private double levelMultiplier;         // amount to multiply primary stats by on level up
 
     private CharacterStats(int... stats){
+        observers = new ArrayList<>();
         agility = baseAgility = stats[0];
         experience = stats[1];
         hardiness = baseHardiness = stats[2];
@@ -113,47 +122,100 @@ public class CharacterStats extends EntityStats {
         return this;
     } // end makeNPC
 
+    public void levelUp() {
+        // increase level by one; reset lives
+        level++;
+        lives = baseLives;
+
+        // modify current xp and xp to next level
+        experience -= experienceThreshold;
+        experienceThreshold *= experienceMultiplier;
+
+        // modify base stats by a constant multiplier
+        baseAgility *= levelMultiplier + 1;
+        hardiness *= levelMultiplier + 1;
+        intellect *= levelMultiplier + 1;
+        strength *= levelMultiplier + 1;
+
+        // reflect new stats
+        agility = baseAgility;
+        hardiness = baseHardiness;
+        intellect = baseIntellect;
+        strength = baseStrength;
+
+        // recompute derived stats
+        recompute();
+
+        // reset health and mana
+        health = baseHealth;
+        mana = baseMana;
+    } // end levelup
+
+    public void kill() {
+        --lives;
+
+        if(lives == 0) {
+            agility = baseAgility;
+            hardiness = baseHardiness;
+            intellect = baseIntellect;
+            strength = baseStrength;
+        }
+
+        alert();
+
+        health = baseHealth;
+        mana = baseMana;
+    }
+
     public void livesEffect(int effect){
         lives += effect;
-        if (lives < 0){//GAME OVER
+        if (lives < 0) {//GAME OVER
             lives = 0;
         }
+        alert();
     }
     public void strengthEffect(int effect){
         strength += effect;
         if (strength < 0){
             strength = 0;
         }
+        alert();
     }
     public void agilityEffect(int effect){
         agility += effect;
         if (agility < 0){
             agility = 0;
         }
+        alert();
     }
     public void intellectEffect(int effect){
         intellect += effect;
         if (intellect < 0){
             intellect = 0;
         }
+        alert();
     }
     public void hardinessEffect(int effect){
         hardiness += effect;
         if (hardiness < 0){
             hardiness = 0;
         }
+        alert();
     }
     public void experienceEffect(int effect){
         experience += effect;
         if (experience < 0){
             experience = 0;
+        } else if (experience >= experienceThreshold) {
+            levelUp();
         }
+        alert();
     }
     public void levelEffect(int effect){
-        level += effect;
-        if (level < 0){
-            level = 0;
+        for(int i = 0; i < effect; i++) {
+            levelUp();
         }
+        alert();
     }
     public void healthEffect(int effect){
         health += effect;
@@ -161,31 +223,47 @@ public class CharacterStats extends EntityStats {
             health = 0;
             livesEffect(-1); //decrement a life
         }
+        alert();
     }
     public void manaEffect(int effect){
         mana += effect;
         if (mana < 0){
             mana = 0;
         }
-    }
-    public void offensiveRatingEffect(int effect){
-        offensiveRating += effect;
-        if (offensiveRating < 0){
-            offensiveRating = 0;
-        }
-    }
-    public void defensiveRatingEffect(int effect){
-        defensiveRating += effect;
-        if (defensiveRating < 0){
-            defensiveRating = 0;
-        }
-    }
-    public void armorRatingEffect(int effect){
-        armorRating += effect;
-        if (armorRating < 0){
-            armorRating = 0;
-        }
+        alert();
     }
 
+    public void setEquippedWeapon(int equippedWeapon) {
+         this.equippedWeapon = equippedWeapon;
+        alert();
 
+    } // end setEquippedWeapon
+
+    public void setEquippedArmor(int equippedArmor) {
+        this.equippedArmor = equippedArmor;
+        alert();
+    } // end setEquippedArmor
+
+    public void recompute() {
+        baseHealth = (hardiness + level);
+        baseMana = (intellect + level);
+        baseOffensiveRating = (equippedWeapon + strength + level);
+        baseDefensiveRating = (agility + level);
+        baseArmorRating = (equippedArmor + hardiness);
+    } // end recompute
+
+    @Override
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void alert() {
+        observers.forEach(Observer::update);
+    }
 }
