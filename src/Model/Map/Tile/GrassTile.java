@@ -22,8 +22,10 @@ public class GrassTile extends MobileTile {
         return tv.createGrassTile(location);
     }
 
-    public void moveChar(Entity entity){
+    public boolean moveChar(Entity entity){
         super.entity = entity;
+        // entity.setLocation();
+        return true;
     }
 
 

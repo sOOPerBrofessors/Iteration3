@@ -8,7 +8,7 @@ import Model.Map.Tile.Tile;
  */
 public class AvianStrategy implements NavStrategy {
     @Override
-    public void move(Tile targetTile, Entity entity) {
-        //targetTile.moveAvian(entity);
+    public boolean move(Tile targetTile, Entity entity) {
+        return targetTile.moveAvian(entity);
     }
 }

@@ -5,7 +5,6 @@ import Model.Entity.Character.Occupation.Smasher;
 import Model.Entity.Character.Occupation.Sneak;
 import Model.Entity.Character.Occupation.Summoner;
 import Model.Map.Location;
-import Model.Stats.CharacterStats;
 
 
 /**

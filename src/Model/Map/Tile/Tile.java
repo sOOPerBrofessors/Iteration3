@@ -16,28 +16,34 @@ public abstract class Tile {
 
     }
 
-    public void moveAvian(Entity entity){
+    public boolean moveAvian(Entity entity){
         MessageHandler.printError("You cannot move to this tile.");
+        return false;
     }
 
-    public void moveAquatic(Entity entity){
+    public boolean moveAquatic(Entity entity){
         MessageHandler.printError("You cannot move to this tile.");
+        return false;
     }
 
-    public void moveBoat(Entity entity){
+    public boolean moveBoat(Entity entity){
         MessageHandler.printError("You cannot move to this tile.");
+        return false;
     }
 
-    public void moveChar(Entity entity){
+    public boolean moveChar(Entity entity){
         MessageHandler.printError("You cannot move to this tile.");
+        return false;
     }
 
-    public void moveProjectile(Entity entity){
+    public boolean moveProjectile(Entity entity){
         MessageHandler.printError("You cannot move to this tile.");
+        return false;
     }
 
-    public void moveVehicle(Entity entity){
+    public boolean moveVehicle(Entity entity){
         MessageHandler.printError("You cannot move to this tile.");
+        return false;
     }
 
     public abstract TileView acceptTileVisitor(TileVisitor tv, Location location);

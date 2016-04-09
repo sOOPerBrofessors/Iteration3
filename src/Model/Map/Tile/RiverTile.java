@@ -15,8 +15,9 @@ public class RiverTile extends WaterTile {
     public RiverTile(){
     }
 
-    private void movePlayer(){
+    private boolean movePlayer(){
         //entity.move(direction);
+        return true;
     }
 
     @Override
