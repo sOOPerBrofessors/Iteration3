@@ -43,7 +43,7 @@ public class InterestFactory {
             } catch (Exception e) {
 
                 System.err.println("InterestFactory: Exception in getInterest method");
-                e.printStackTrace();
+//                e.printStackTrace();
 
             }
 
@@ -52,7 +52,7 @@ public class InterestFactory {
         if (interest == null) {
 
             System.err.println("InterestFactory: NULL interest returned from input: " + interestName);
-            throw new NullPointerException();
+//            throw new NullPointerException();
 
         }
 
