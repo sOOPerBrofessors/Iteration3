@@ -2,6 +2,7 @@ package Model.Inventory;
 
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
+import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
 import Utilities.Observer;
 import Utilities.Subject;
@@ -39,7 +40,7 @@ public class Inventory implements Observer, Subject{
         if(pack.hasRoom()) {
             pack.add(equipment.unequipWeapon());        // add equipped weapon to pack if room exists
         } else {
-            MessageHandler.printError("Inventory full.");
+            MessageHandler.println("Inventory full.", ErrorLevel.NOTICE);
         }
     } // end unequipWeapon
 
@@ -47,7 +48,7 @@ public class Inventory implements Observer, Subject{
         if(pack.hasRoom()) {
             pack.add(equipment.unequipArmor());         // add equipped armor to pack if room exists
         } else {
-            MessageHandler.printError("Inventory full.");
+            MessageHandler.println("Inventory full.", ErrorLevel.NOTICE);
         }
     } // end unequipArmor
 
