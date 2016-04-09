@@ -5,13 +5,14 @@ package Utilities;
  */
 public enum PersonFilter {
 
-    ALL(1, ""),
-    ANDY(2, "Andy"),
-    DAVID(4, "David"),
-    KYLE(8, "Kyle"),
-    SAM(16, "Sam"),
-    AUSTIN(32, "Austin"),
-    MICHAEL(64, "Michael");
+    UNSPECIFIED(1, "Unspecified"),
+    ALL(2, ""),
+    ANDY(4, "Andy"),
+    DAVID(8, "David"),
+    KYLE(16, "Kyle"),
+    SAM(32, "Sam"),
+    AUSTIN(64, "Austin"),
+    MICHAEL(128, "Michael");
 
     private int value;
     private String name;
