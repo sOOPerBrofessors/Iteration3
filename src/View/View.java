@@ -1,9 +1,9 @@
 package View;
 
 import Controller.ControllerManager;
-import Model.State.StateManager;
 import Utilities.Observer;
 import View.ViewUtilities.MainFrame;
+import Model.Model;
 
 import javax.swing.JFrame;
 
@@ -14,11 +14,10 @@ public class View implements Runnable, Observer{
 
     private JFrame mainFrame;
     private ViewManager viewManager;
+    private static Model gameLoop;
 
-    private StateManager stateManager;
-    private ControllerManager controllerManager;
-
-    public View(){
+    public View(Model gameLoop){
+        this.gameLoop = gameLoop;
         mainFrame = new MainFrame();
         viewManager = new ViewManager();
         viewManager.addObserver(this);
@@ -76,7 +75,7 @@ public class View implements Runnable, Observer{
         return viewManager;
     }
 
-    public void setStateManager(StateManager stateManager) {
-        this.stateManager = stateManager;
+    public static void startGameLoop(){
+        gameLoop.start();
     }
 }

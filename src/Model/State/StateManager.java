@@ -16,19 +16,15 @@ public class StateManager implements Tickable {
     private ActiveGameState activeGameState;
 
     public StateManager(){
-        //activeGameState = new ActiveGameState();
-        //activeState = activeGameState;
     }
 
     public void pauseGame(){
         //activeState = pauseState;
     }
+
     public void setActiveGameState(ActiveGameState activeGameState){
         this.activeGameState = activeGameState;
         activeState = activeGameState;
-    }
-    public ActiveGameState getActiveGameState(){
-        return activeGameState;
     }
 
     public void setControllerManager(ControllerManager controllerManager) {

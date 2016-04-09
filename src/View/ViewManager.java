@@ -120,11 +120,12 @@ public class ViewManager implements Subject {
 
     // initialize game once players selection is confirmed
     private void initGame(Avatar player){
-        activePanel = gamePanel;
-        controllerManager.switchGamePlay();
         GameLoader gameLoader = new GameLoader(player);
+        activePanel = gamePanel;
         stateManager.setActiveGameState(gameLoader.getActiveGameState());
         gamePanel.init(gameLoader.getActiveGameState());
+        controllerManager.switchGamePlay();
+        View.startGameLoop();
         alert(); // notifies view of the updated panel
     }
 }
