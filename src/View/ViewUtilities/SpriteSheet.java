@@ -13,7 +13,7 @@ public class SpriteSheet {
 
     // x/y is starting point of crop, widht/height is how tall and wide to crop
     public BufferedImage cropSheet(int x, int y, int width, int height){
-        //return sheet.getSubimage(x,y,width,height);
-        return sheet;
+        return sheet.getSubimage(x,y,width,height);
+        //return sheet;
     }
 }

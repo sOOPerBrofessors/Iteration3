@@ -46,7 +46,7 @@ public abstract class Tile {
         return false;
     }
 
-    public abstract TileView acceptTileVisitor(TileVisitor tv, Location location);
+    public abstract TileView acceptTileVisitor(TileVisitor tv);
 
 
 }

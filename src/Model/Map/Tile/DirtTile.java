@@ -16,10 +16,10 @@ public class DirtTile extends Tile {
     }
 
     @Override
-    public TileView acceptTileVisitor(TileVisitor tv, Location location) {
+    public TileView acceptTileVisitor(TileVisitor tv) {
         //tv.createAirTile(location)
         //TODO: CHANGE THIS TO GROUND TILE
-        return tv.createGrassTile(location);
+        return tv.createGrassTile();
     }
 
 }
