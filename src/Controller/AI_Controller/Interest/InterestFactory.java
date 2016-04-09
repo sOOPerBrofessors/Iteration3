@@ -1,7 +1,8 @@
 package Controller.AI_Controller.Interest;
 
 import Utilities.IOUtilities;
-import Utilities.Settings;
+import Utilities.ErrorLevel;
+import Utilities.PersonFilter;
 
 import java.io.File;
 import java.net.URL;
@@ -38,12 +39,11 @@ public class InterestFactory {
                 Interest newInterest = (Interest) classLoader.loadClass(packagePath + "." + interestName).getConstructor().newInstance();
                 addInterest(interestName, newInterest);
                 interest = interests.get(interestName);
-                Utilities.Debug.println("InterestFactory: Dynamically loaded " + interestName + ".java");
+                Utilities.MessageHandler.println("InterestFactory: Dynamically loaded " + interestName + ".java", ErrorLevel.NOTICE, PersonFilter.AUSTIN);
 
             } catch (Exception e) {
 
-                System.err.println("InterestFactory: Exception in getInterest method");
-                e.printStackTrace();
+                Utilities.MessageHandler.println("InterestFactory: Exception in getInterest method", ErrorLevel.ERROR, PersonFilter.AUSTIN);
 
             }
 
@@ -51,7 +51,7 @@ public class InterestFactory {
 
         if (interest == null) {
 
-            System.err.println("InterestFactory: NULL interest returned from input: " + interestName);
+            Utilities.MessageHandler.println("InterestFactory: NULL interest returned from input: " + interestName, ErrorLevel.CRITICAL, PersonFilter.AUSTIN);
             throw new NullPointerException();
 
         }

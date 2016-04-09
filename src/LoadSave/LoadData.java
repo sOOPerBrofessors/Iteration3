@@ -1,7 +1,9 @@
 package LoadSave;
 
 import Utilities.IOUtilities;
-import Utilities.Settings;
+import Utilities.ErrorLevel;
+import Utilities.MessageHandler;
+import Utilities.PersonFilter;
 import Visitors.LoadVisitor;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -22,13 +24,13 @@ public class LoadData {
 
         if (visitor == null) {
 
-            System.err.println("Failed loading data: " + path + ". Invalid visitor.");
+            MessageHandler.println("LoadData: Failed loading data: " + path + ". Invalid visitor.", ErrorLevel.ERROR, PersonFilter.AUSTIN);
             return;
 
         }
 
         path = IOUtilities.getFileSystemDependentPath(path);
-        Utilities.Debug.println("Loading Data: " + path);
+        MessageHandler.println("LoadData: Loading Data: " + path, ErrorLevel.NOTICE, PersonFilter.AUSTIN);
 
         try {
 
@@ -45,13 +47,13 @@ public class LoadData {
             loadedDocument.accept(visitor);
 
         } catch (SAXParseException e) {
-            System.err.println("LoadData: SAXParseException");
+            MessageHandler.println("LoadData: SAXParseException", ErrorLevel.ERROR, PersonFilter.AUSTIN);
         } catch (ParserConfigurationException e) {
-            System.err.println("LoadData: ParserConfigurationException");
+            MessageHandler.println("LoadData: ParserConfigurationException", ErrorLevel.ERROR, PersonFilter.AUSTIN);
         } catch (SAXException e) {
-            System.err.println("LoadData: SAXException");
+            MessageHandler.println("LoadData: SAXException", ErrorLevel.ERROR, PersonFilter.AUSTIN);
         } catch (IOException e) {
-            System.err.println("LoadData: IOException");
+            MessageHandler.println("LoadData: IOException", ErrorLevel.ERROR, PersonFilter.AUSTIN);
         }
 
     }

@@ -20,9 +20,9 @@ public class Main {
     public static void main(String[] args) {
 
         // This loads the factions and faction relationships
-        LoadData.load("data/factions.xml", new LoadFactionsVisitor());
-        LoadData.load("data/faction_relationships.xml", new LoadFactionRelationsVisitor());
-        LoadData.load("data/personalities.xml", new LoadPersonalitiesVisitor());
+        LoadData.load("res/DefaultData/factions.xml", new LoadFactionsVisitor());
+        LoadData.load("res/DefaultData/faction_relationships.xml", new LoadFactionRelationsVisitor());
+        LoadData.load("res/DefaultData/personalities.xml", new LoadPersonalitiesVisitor());
 
         // creates all components that need to know of each other
         Model gameLoop = new Model();
