@@ -19,7 +19,7 @@ public class Settings {
     public static int GAMEHEIGHT = 600;
     public static boolean debug = true;
     public static ErrorLevel errorLevel = ErrorLevel.WARNING;
-    public static PersonFilter personFilter = PersonFilter.ALL;
+    public static PersonFilter personFilter = PersonFilter.AUSTIN;
 
     // Key Presses
 

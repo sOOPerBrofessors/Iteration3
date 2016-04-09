@@ -37,7 +37,7 @@ public class MessageHandler {
 
     private static boolean isPersonFilterValid(PersonFilter personFilter) {
 
-        return (personFilter == Settings.personFilter || Settings.personFilter == PersonFilter.ALL);
+        return (personFilter == Settings.personFilter || Settings.personFilter == PersonFilter.ALL || personFilter == PersonFilter.UNSPECIFIED);
 
     }
 
