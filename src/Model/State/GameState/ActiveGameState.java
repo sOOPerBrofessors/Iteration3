@@ -32,7 +32,7 @@ public class ActiveGameState extends GameState {
 
     @Override
     public void tick(){
-        // TODO: Brain needs to be instantiated with
+        // TODO: Brain needs to be instantiated with entity and personality
         //brain.tick(); //ticks AI
         //possibly need to tick human input if can be inputted too fast
         //need to tick rivers???
