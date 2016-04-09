@@ -31,7 +31,7 @@ public class MessageHandler {
 
     public static void println(String string, ErrorLevel errorLevel) {
 
-        println(string, errorLevel, PersonFilter.ALL);
+        println(string, errorLevel, PersonFilter.UNSPECIFIED);
 
     }
 
