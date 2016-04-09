@@ -16,8 +16,6 @@ public class Map {
         maxRow = tiles.length;
         maxColumn = tiles[0].length;
     }
-    //Going to change this to array list with an array list of objects (instead of confusing 3d array)
-    //private Tile[][][] mapOfTiles;
     private TileColumn[][] mapOfTiles;
 
     //For loading -- might need some version of design pattern to get rid of this

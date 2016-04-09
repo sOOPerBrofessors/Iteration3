@@ -43,7 +43,7 @@ public class GameLoader {
                     TileColumn tC = tmpList[i][j];
 
                     if (k < 1) {
-                        if (i == 2 && (j>2 && j < 5)){
+                        if ((i == 2 || i == 1)&& (j>2 && j < 6)){
                             WaterTile tile = new WaterTile();
                             tC.addTiles(tile);
                         }else{
@@ -52,14 +52,20 @@ public class GameLoader {
 
                         }
                     }else {
-                        AirTile tile = new AirTile();
-                        tC.addTiles(tile);
+                        //Adds a height level
+                        if (i == 7 && (j > 6 && j < 9) && k < 5) {
+                            tC.addTiles(new GrassTile());
+                        }else {
+                            AirTile tile = new AirTile();
+                            tC.addTiles(tile);
+                        }
 
                     }
 
                 }
             }
         }
+
         //Initial location of the avatar
         tmpList[avatar.getLocation().getX()][avatar.getLocation().getY()].addMapObjects(avatar);
         map = new Map(tmpList);

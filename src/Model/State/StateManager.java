@@ -37,6 +37,6 @@ public class StateManager implements Tickable {
 
     @Override
     public void tick() {
-        activeState.tick();
+        //activeState.tick();
     }
 }

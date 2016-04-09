@@ -129,8 +129,9 @@ public class TileColumnView extends JComponent implements TileVisitor, ColumnVis
             TileView holder = listOfTiles.get(i);
             holder.setLocation(x,y,i); //"i" is considered z in this case
 
-            //The tile view should not have the centers added to it
-            holder.setPixels(xPixel, yPixel, i);
+            //The tile Y pixels should be increased based on the z coordinate per column
+            yPixel -= 8; //Now this will be the same as paintMapObjects
+            holder.setPixels(xPixel, yPixel);
             holder.paintComponent(g);
         }
     }
@@ -143,7 +144,7 @@ public class TileColumnView extends JComponent implements TileVisitor, ColumnVis
         int centeredY = yPixel - yCenter;
         for (int i = 0; i < listOfMapObjects.size(); i++){
             //The last value of the list of tiles should be the last height where to render for Z
-            listOfMapObjects.get(i).setPixels(centeredX,centeredY,listOfTiles.size());
+            listOfMapObjects.get(i).setPixels(centeredX,centeredY);
             listOfMapObjects.get(i).paintComponent(g);
         }
     }

@@ -47,10 +47,9 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
 
 
     @Override
-    public void setPixels(int x, int y, int z) {
+    public void setPixels(int x, int y) {
         //System.out.println("EntityView: Updates pixels to:" + x +","+ y);
         xPixel = x;
         yPixel = y;
-        //eventually z will offset yPixel by a certain amount
     }
 }

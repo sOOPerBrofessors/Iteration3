@@ -65,7 +65,7 @@ public class AreaViewport extends JPanel {
     public void renderTiles(Graphics g){
         for (int i = 0; i < MAXSIZE; i++) {
             for (int j = 0; j < MAXSIZE; j++){
-                tileColumnView[i][j].paintComponent(g);
+                tileColumnView[j][i].paintComponent(g);
             }
         }
     }

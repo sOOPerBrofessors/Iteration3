@@ -22,10 +22,9 @@ public abstract class TileView extends JComponent{
     public TileView(){
     }
 
-    public void setPixels(int x, int y, int z){
+    public void setPixels(int x, int y){
         xPixel = x;
         yPixel = y;
-        //z might need to be some offset to add to y;
     }
     public void setLocation(int x, int y, int z){
         location = new Location(x,y,z);
