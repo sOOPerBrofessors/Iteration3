@@ -1,58 +1,40 @@
 package View.AreaViewport;
 
+import Model.Entity.Character.Avatar;
 import Model.Map.Location;
+import Model.Map.MapObjects;
 import Model.Map.TileColumn;
+import Utilities.Visitor.ColumnVisitor;
 import Utilities.Visitor.TileVisitor;
 import Model.Map.Map;
+import View.EntityView.AvatarView;
+import View.MapView.TileColumnView;
 import View.TerrainView.*;
 
 /**
  * Created by dyeung on 4/7/16.
  */
-public class MapViewFactory implements TileVisitor {
+public class MapViewFactory {
     public MapViewFactory(){
 
     }
 
 
     //TWO IDEAS: WE CAN EITHER CREATE AN ARRAYLIST OR CREATE A TILE VIEW
-    public TileView[][][] createMapViewObjects(Map map){
+    public TileColumnView[][] createMapViewObjects(Map map){
 
         TileColumn[][] tC = map.getMapOfTiles();
 
         int maxRow = tC.length;
         int maxCol = tC[0].length;
-        int maxHeight = 10;
 
-        TileView[][][] tmp = new TileView[maxRow][maxCol][maxHeight];
+        TileColumnView[][] tmp = new TileColumnView[maxRow][maxCol];
         for (int i = 0; i < tC.length; i++){
             for (int j = 0; j < tC[0].length; j++){
-                for (int k = 0; k < 10; k++){
-                    Location location = new Location(i,j,k);
-                    tmp[i][j][k] = tC[i][j].getTileList().get(k).acceptTileVisitor(this,location);
-                }
+                tmp[i][j] = new TileColumnView(tC[i][j], new Location(i,j,0));
             }
         }
         return tmp;
     }
 
-    @Override
-    public TileView createWaterTile(Location location) {
-        return new WaterTileView(location);
-    }
-
-    @Override
-    public TileView createGrassTile(Location location) {
-        return new GrassTileView(location);
-    }
-
-    @Override
-    public TileView createAirTile(Location location) {
-        return new AirTileView(location);
-    }
-
-    @Override
-    public TileView createRiverTile(Location location) {
-        return new RiverTileView(location);
-    }
 }

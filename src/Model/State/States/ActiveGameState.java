@@ -3,6 +3,7 @@ package Model.State.States;
 import Controller.Controllers.GamePlayController;
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
+import Model.Map.Tile.Tile;
 import Model.State.GameState;
 
 /**
@@ -16,38 +17,31 @@ public class ActiveGameState extends GameState {
         super(map,avatar);
     }
 
-    //The ActiveGameState is never creating any models. It is being created within the GameLoader and then passed in through
-    // a constructor
-//    public ActiveGameState(){
-//        avatar = Avatar.makeSmasher();
-//
-//    }
-
 
     // player commands from controller
-
     public void movePlayerN(){
-        avatar.moveNorth(map.getTile(avatar.getLocation()));
+        //System.out.println("ActiveGameState: move player N");
+        avatar.moveNorth(map);
     }
 
     public void movePlayerNE(){
-        avatar.moveNorthEast(map.getTile(avatar.getLocation()));
+        avatar.moveNorthEast(map);
     }
 
     public void movePlayerSE(){
-        avatar.moveSouthEast(map.getTile(avatar.getLocation()));
+        avatar.moveSouthEast(map);
     }
 
     public void movePlayerS(){
-        avatar.moveSouth(map.getTile(avatar.getLocation()));
+        avatar.moveSouth(map);
     }
 
     public void movePlayerSW(){
-        avatar.moveSouthWest(map.getTile(avatar.getLocation()));
+        avatar.moveSouthWest(map);
     }
 
     public void movePlayerNW(){
-        avatar.moveNorthWest(map.getTile(avatar.getLocation()));
+        avatar.moveNorthWest(map);
     }
 
     public void playerAttack(){}

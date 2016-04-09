@@ -18,8 +18,8 @@ public class GrassTile extends MobileTile {
     }
 
     @Override
-    public TileView acceptTileVisitor(TileVisitor tv, Location location) {
-        return tv.createGrassTile(location);
+    public TileView acceptTileVisitor(TileVisitor tv) {
+        return tv.createGrassTile();
     }
 
     public boolean moveChar(Entity entity){

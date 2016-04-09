@@ -5,6 +5,9 @@ import Model.Entity.Character.Occupation.Smasher;
 import Model.Entity.Character.Occupation.Sneak;
 import Model.Entity.Character.Occupation.Summoner;
 import Model.Map.Location;
+import Model.Map.MapObjects;
+import Utilities.Visitor.ColumnVisitor;
+import View.MapView.MapObjectView;
 
 
 /**
@@ -40,5 +43,10 @@ public class Avatar extends Character {
     @Override
     public void remove() {
 
+    }
+
+    @Override
+    public MapObjectView acceptMapVisitor(ColumnVisitor columnVisitor) {
+        return columnVisitor.createAvatarView(this);
     }
 } // end class Avatar

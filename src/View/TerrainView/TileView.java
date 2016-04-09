@@ -2,9 +2,11 @@ package View.TerrainView;
 
 import Model.Map.Location;
 import Utilities.Settings;
+import View.MapView.MapObjectView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by dyeung on 4/7/16.
@@ -16,27 +18,17 @@ public abstract class TileView extends JComponent{
     protected int xPixel; // on the map
     protected int yPixel; // on the map
     protected Image image;
-
-    public TileView(Location location){
-        this.location = location;
-        updateCoordinateToScreenPosition();
+    //Not sure if what we need or not. Essentially a TileView will contain a set of viewable objects to paint
+    public TileView(){
     }
 
-
-    protected void updateCoordinateToScreenPosition(){
-        int x = location.getX();
-        int y = location.getY();
-        int xCenter = tileWidth/2;
-        int yCenter = tileHeight/2;
-        xPixel = xCenter + x*tileWidth - (x*(tileWidth))/4;
-        //yPixel = y*tileHeight + (tileHeight*x)/2;
-        yPixel = yCenter + y*(tileHeight - 5) + ((tileHeight-7)*x)/2;
+    public void setPixels(int x, int y, int z){
+        xPixel = x;
+        yPixel = y;
+        //z might need to be some offset to add to y;
     }
-
-    public void updateCameraOffset(Location location){
-        updateCoordinateToScreenPosition();
-        xPixel += location.getX();
-        yPixel += location.getY();
+    public void setLocation(int x, int y, int z){
+        location = new Location(x,y,z);
     }
     public abstract void paintComponent(Graphics g);
 }

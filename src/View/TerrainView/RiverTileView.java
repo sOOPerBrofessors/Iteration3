@@ -8,12 +8,7 @@ import java.awt.*;
  * Created by dyeung on 4/7/16.
  */
 public class RiverTileView extends TileView {
-    public RiverTileView(Location location) {
-        super(location);
-    }
-
-    @Override
-    public void updateCameraOffset(Location location) {
+    public RiverTileView() {
 
     }
 
