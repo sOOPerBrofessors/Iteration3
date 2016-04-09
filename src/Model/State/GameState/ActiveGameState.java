@@ -1,27 +1,39 @@
-package Model.State.States;
+package Model.State.GameState;
 
+import Controller.AI_Controller.Brain;
 import Controller.Controllers.GamePlayController;
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
 import Model.Map.Orientation;
 import Model.Map.Tile.Tile;
-import Model.State.GameState;
-
+import Model.State.GameState.GameState;
 /**
  * Created by Wimberley on 4/6/16.
  */
+
 public class ActiveGameState extends GameState {
 
     private GamePlayController activeGameController;
+    private Brain brain;
 
     public ActiveGameState(Map map, Avatar avatar){
         super(map,avatar);
+
+        //Instantiate Brain
+        //brain = new Brain()
     }
 
 
+    @Override
+    public void tick(){
+        // TODO: Brain needs to be instantiated with entity and personality
+        //brain.tick(); //ticks AI
+        //possibly need to tick human input if can be inputted too fast
+        //need to tick rivers???
+    }
+
     // player commands from controller
     public void movePlayerN(){
-        //System.out.println("ActiveGameState: move player N");
         avatar.move(map, Orientation.NORTH);
     }
 
@@ -54,9 +66,6 @@ public class ActiveGameState extends GameState {
     public void playerSecondSkill(){}
 
     public void playerInteract(){}
-
-    @Override
-    public void tick(){}
 
     public void setActiveGameController(GamePlayController activeGameController) {
         this.activeGameController = activeGameController;

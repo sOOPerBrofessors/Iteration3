@@ -1,24 +1,19 @@
+import Controller.AI_Controller.Personality.Personality;
+import Controller.AI_Controller.Personality.PersonalityFactory;
 import Controller.ControllerManager;
 import Controller.Controllers.GamePlayController;
-import LoadSave.LoadFactionRelations;
-import LoadSave.LoadFactions;
+import LoadSave.LoadData;
+import LoadSave.LoadFactionRelationsVisitor;
+import LoadSave.LoadFactionsVisitor;
+import LoadSave.LoadPersonalitiesVisitor;
 import Model.Model;
 import Model.State.StateManager;
-import Model.State.States.ActiveGameState;
+import Model.State.GameState.ActiveGameState;
 import View.View;
 import View.ViewUtilities.Panels.GamePanel;
 import View.ViewManager;
 
-import View.ViewManager;
-
-import Model.State.GameState;
 import Utilities.GameLoader;
-
-import Controller.ControllerManager;
-import View.ViewUtilities.MainPanel;
-
-import java.awt.*;
-
 
 
 /**
@@ -27,8 +22,11 @@ import java.awt.*;
 public class Main {
 
     public static void main(String[] args) {
-        LoadSave.LoadData.load("data/factions.xml", new LoadFactions());
-        LoadSave.LoadData.load("data/faction_relationships.xml", new LoadFactionRelations());
+
+        // This loads the factions and faction relationships
+        LoadData.load("data/factions.xml", new LoadFactionsVisitor());
+        LoadData.load("data/faction_relationships.xml", new LoadFactionRelationsVisitor());
+        LoadData.load("data/personalities.xml", new LoadPersonalitiesVisitor());
 
         // creates all components that need to know of each other
         Model gameLoop = new Model();

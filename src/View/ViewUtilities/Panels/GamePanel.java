@@ -1,7 +1,6 @@
 package View.ViewUtilities.Panels;
 
-import Model.State.GameState;
-import Model.State.States.ActiveGameState;
+import Model.State.GameState.ActiveGameState;
 import View.AreaViewport.AreaViewport;
 import View.ViewManager;
 

@@ -1,13 +1,13 @@
 package Model.State;
 
 import Controller.ControllerManager;
-import Model.State.States.ActiveGameState;
-import View.ViewManager;
+import Model.State.GameState.ActiveGameState;
+import Utilities.Tickable;
 
 /**
  * Created by Wimberley on 4/6/16.
  */
-public class StateManager {
+public class StateManager implements Tickable {
 
     // controller manager used to issue commands when controller needs to be changed
     private ControllerManager controllerManager;
@@ -33,5 +33,10 @@ public class StateManager {
 
     public void setControllerManager(ControllerManager controllerManager) {
         this.controllerManager = controllerManager;
+    }
+
+    @Override
+    public void tick() {
+        activeState.tick();
     }
 }
