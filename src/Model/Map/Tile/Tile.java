@@ -1,7 +1,7 @@
 package Model.Map.Tile;
 
-import Model.Map.Location;
 import Model.Entity.Entity;
+import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
 import Utilities.Visitor.TileVisitor;
 import View.TerrainView.TileView;
@@ -17,32 +17,32 @@ public abstract class Tile {
     }
 
     public boolean moveAvian(Entity entity){
-        MessageHandler.printError("You cannot move to this tile.");
+        MessageHandler.println("You cannot move to this tile.", ErrorLevel.ERROR);
         return false;
     }
 
     public boolean moveAquatic(Entity entity){
-        MessageHandler.printError("You cannot move to this tile.");
+        MessageHandler.println("You cannot move to this tile.", ErrorLevel.ERROR);
         return false;
     }
 
     public boolean moveBoat(Entity entity){
-        MessageHandler.printError("You cannot move to this tile.");
+        MessageHandler.println("You cannot move to this tile.", ErrorLevel.ERROR);
         return false;
     }
 
     public boolean moveChar(Entity entity){
-        MessageHandler.printError("You cannot move to this tile.");
+        MessageHandler.println("You cannot move to this tile.", ErrorLevel.ERROR);
         return false;
     }
 
     public boolean moveProjectile(Entity entity){
-        MessageHandler.printError("You cannot move to this tile.");
+        MessageHandler.println("You cannot move to this tile.", ErrorLevel.ERROR);
         return false;
     }
 
     public boolean moveVehicle(Entity entity){
-        MessageHandler.printError("You cannot move to this tile.");
+        MessageHandler.println("You cannot move to this tile.", ErrorLevel.ERROR);
         return false;
     }
 

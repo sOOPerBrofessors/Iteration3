@@ -4,6 +4,7 @@ import Model.Entity.Character.Character;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
 import Model.Stats.CharacterStats;
+import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
 
 /**
@@ -16,26 +17,26 @@ public abstract class Occupation {
     public abstract CharacterStats initStats();
 
     public void equipSmasherWeapon(Weapon weapon, Character character) {
-        MessageHandler.printError("You cannot equip this weapon.");
+        MessageHandler.println("You cannot equip this weapon.", ErrorLevel.ERROR);
     } // end equipSmasherWeapon
 
     public void equipSmasherArmor(Armor armor, Character character) {
-        MessageHandler.printError("You cannot equip this armor.");
+        MessageHandler.println("You cannot equip this armor.", ErrorLevel.ERROR);
     } // end equipSmasherArmor
 
     public void equipSneakWeapon(Weapon weapon, Character character) {
-        MessageHandler.printError("You cannot equip this item.");
+        MessageHandler.println("You cannot equip this weapon.", ErrorLevel.ERROR);
     } // end equipSneakWeapon
 
     public void equipSneakArmor(Armor armor, Character character) {
-        MessageHandler.printError("You cannot equip this armor.");
+        MessageHandler.println("You cannot equip this armor.", ErrorLevel.ERROR);
     } // end equipSneakArmor
 
     public void equipSummonerWeapon(Weapon weapon, Character character) {
-        MessageHandler.printError("You cannot equip this item.");
+        MessageHandler.println("You cannot equip this weapon.", ErrorLevel.ERROR);
     } // end equipSummonerWeapon
 
     public void equipSummonerArmor(Armor armor, Character character) {
-        MessageHandler.printError("You cannot equip this armor.");
+        MessageHandler.println("You cannot equip this armor.", ErrorLevel.ERROR);
     } // end equipSummonerArmor
 } // end class Occupation
