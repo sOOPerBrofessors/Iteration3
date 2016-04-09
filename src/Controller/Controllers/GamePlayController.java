@@ -21,6 +21,7 @@ public class GamePlayController extends Controller{
     public GamePlayController(ControllerManager controllerManager){
         super(controllerManager);
     }
+
     @Override
     public void keyPress(Integer key){
         if(commands.containsKey(key)) {

@@ -2,22 +2,20 @@ package View;
 
 import Controller.ControllerManager;
 import Model.Entity.Character.Avatar;
-import Model.Entity.Character.Occupation.Smasher;
 import Model.State.StateManager;
 import Utilities.GameLoader;
-import Utilities.Observable;
+import Utilities.Subject;
 import Utilities.Observer;
 import View.ViewUtilities.Panels.CharacterCreationPanel;
 import View.ViewUtilities.Panels.GamePanel;
 import View.ViewUtilities.Panels.IntroPanel;
 
 import javax.swing.JPanel;
-import java.awt.Graphics;
 
 /**
  * Created by Wimberley on 3/23/16.
  */
-public class ViewManager implements Observable{
+public class ViewManager implements Subject {
 
     // controller manager used to issue commands to change current controller
     private ControllerManager controllerManager;

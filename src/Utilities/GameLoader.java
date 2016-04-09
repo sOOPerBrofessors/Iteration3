@@ -1,10 +1,12 @@
 package Utilities;
 
 import Model.Entity.Character.Avatar;
+import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Tile.AirTile;
 import Model.Map.Tile.GrassTile;
 import Model.Map.Tile.Tile;
+import Model.Map.Tile.WaterTile;
 import Model.Map.TileColumn;
 import Model.State.GameState;
 import Model.State.States.ActiveGameState;
@@ -26,10 +28,15 @@ public class GameLoader {
     Avatar avatar;
     ActiveGameState activeGameState;
 
-    public GameLoader(Avatar player){
-        System.out.println("You are a: " + player.getOccupation().printOcc());
+    public GameLoader(Avatar player) {
         initMap();
-        activeGameState = new ActiveGameState(map,player);
+        activeGameState = new ActiveGameState(map, player);
+    }
+
+    public GameLoader(){
+        initMap();
+        avatar = Avatar.makeSmasher(new Location(5,5,0));
+        activeGameState = new ActiveGameState(map,avatar);
     }
 
     public void initMap(){
@@ -46,7 +53,11 @@ public class GameLoader {
                     TileColumn tC = tmpList[i][j];
                     Tile tile;
                     if (k < 1) {
-                        tile = new GrassTile();
+                        if (i == 2 && (j>2 && j < 5)){
+                            tile = new WaterTile();
+                        }else{
+                            tile = new GrassTile();
+                        }
                     }else {
                         tile = new AirTile();
                     }

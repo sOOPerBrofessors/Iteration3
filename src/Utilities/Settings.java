@@ -1,5 +1,7 @@
 package Utilities;
 
+import java.awt.event.KeyEvent;
+
 /**
  * Created by Wimberley on 3/23/16.
  */
@@ -21,20 +23,19 @@ public class Settings {
     public static int NW = 135;
 
     // adjustable keys
-
-    public static int UP_RIGHT = 105;
-    public static int UP = 104;
     public static int UP_ARROW = 38;
     public static int LEFT_ARROW = 37;
     public static int DOWN_ARROW = 40;
     public static int RIGHT_ARROW = 39;
-    public static int UP_LEFT = 103;
-    public static int DOWN_LEFT = 97;
-    public static int DOWN = 98;
-    public static int DOWN_RIGHT = 99;
+    public static int UP_RIGHT = KeyEvent.VK_E;
+    public static int UP = KeyEvent.VK_W;
+    public static int UP_LEFT = KeyEvent.VK_Q;
+    public static int DOWN_LEFT = KeyEvent.VK_A;
+    public static int DOWN = KeyEvent.VK_S;
+    public static int DOWN_RIGHT = KeyEvent.VK_D;
 
     public static int ATTACK = 32;
-    public static int EQUIP = 69;
+    public static int EQUIP = 10001; //This was overwritting VK_E which is used for movement
     public static int INVENTORY = 73;
 
     // end adjustable keys
@@ -50,13 +51,16 @@ public class Settings {
     public static int FOUR = 0x34;
     public static int DROP = 0x44;
     public static int MAP = 0x4D;
-    public static int INTERACT = 81;
-    public static int SKILLS = 0x53;
+    public static int INTERACT = 1000; //This was overwriting the "Q" key which is used for movement.
+    public static int SKILLS = 10001; //"originally"0x53 " s"This is most likely overwritting the "S" key which is used for movement;
 
     // End Key Presses
 
     public static void setDebug() { debug = true; }
-
+    //Original grass
     public static int TILEWIDTH = 56;
     public static int TILEHEIGHT = 48;
+    //Grass flat
+//    public static int TILEWIDTH = 96;
+//    public static int TILEHEIGHT = 62;
 }

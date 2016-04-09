@@ -8,7 +8,7 @@ import Model.Map.Tile.Tile;
  */
 public class CharStrategy implements NavStrategy {
     @Override
-    public void move(Tile targetTile, Entity entity) {
-        //targetTile.moveChar(entity);
+    public boolean move(Tile targetTile, Entity entity) {
+        return targetTile.moveChar(entity);
     }
 }

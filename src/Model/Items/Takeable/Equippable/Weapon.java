@@ -13,9 +13,14 @@ import Model.Items.ItemStrategy.EquippableStrategy.SummonerWeaponStrategy;
  *  likely need a decorator.
  */
 public class Weapon extends EquippableItem {
+    private int weaponValue;
 
     private Weapon(EquippableStrategy s) {
         super(s);
+        this.weaponValue = 0;
+        /*
+        todo: change constructor to take in weapon value
+         */
     } // end private constructor
 
     public Weapon makeSmasherWeapon() {
@@ -33,4 +38,6 @@ public class Weapon extends EquippableItem {
     public void onInteract(Character character) {
         s.onInteract(this, character);
     } // end onInteract
+
+    public int getWeaponValue() { return this.weaponValue; }
 } // end class Weapon
