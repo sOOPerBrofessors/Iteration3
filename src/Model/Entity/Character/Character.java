@@ -12,7 +12,7 @@ import Model.Stats.CharacterStats;
  * Abstract class to act as the superclass to the player (Avatar) and NPCs.
  */
 public abstract class Character extends Entity{
-    private Occupation o;
+    protected Occupation o;
     private CharacterStats stats;
 
     protected Character(Occupation o, CharacterStats stats) {

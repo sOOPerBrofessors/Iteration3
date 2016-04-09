@@ -25,12 +25,13 @@ public class GameLoader {
     Map map;
     Avatar avatar;
     ActiveGameState activeGameState;
-    public GameLoader(){
 
+    public GameLoader(Avatar player){
+        System.out.println("You are a: " + player.getOccupation().printOcc());
         initMap();
-        avatar = Avatar.makeSmasher();
-        activeGameState = new ActiveGameState(map,avatar);
+        activeGameState = new ActiveGameState(map,player);
     }
+
     public void initMap(){
         System.out.println("GameLoader: Loading Map and Avatar and ActiveGameState");
         //Maybe for future

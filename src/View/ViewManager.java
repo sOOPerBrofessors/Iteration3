@@ -1,6 +1,10 @@
 package View;
 
 import Controller.ControllerManager;
+import Model.Entity.Character.Avatar;
+import Model.Entity.Character.Occupation.Smasher;
+import Model.State.StateManager;
+import Utilities.GameLoader;
 import Utilities.Observable;
 import Utilities.Observer;
 import View.ViewUtilities.Panels.CharacterCreationPanel;
@@ -18,6 +22,9 @@ public class ViewManager implements Observable{
     // controller manager used to issue commands to change current controller
     private ControllerManager controllerManager;
 
+    // state manager used to issue commands to model
+    private StateManager stateManager;
+
     // view observers
     private Observer observer;
 
@@ -28,8 +35,6 @@ public class ViewManager implements Observable{
     private JPanel introPanel;
     private GamePanel gamePanel;
     private JPanel createPanel;
-
-    private Graphics g;
 
     public ViewManager(){
         // set intro screen panel
@@ -50,21 +55,15 @@ public class ViewManager implements Observable{
     }
 
     public void createSmasher(){
-        activePanel = gamePanel;
-        controllerManager.switchGamePlay();
-        alert(); // notifies view of the updated panel
+        initGame(Avatar.makeSmasher());
     }
 
     public void createSneak(){
-        activePanel = gamePanel;
-        controllerManager.switchGamePlay();
-        alert(); // notifies view of the updated panel
+        initGame(Avatar.makeSneak());
     }
 
     public void createSummoner(){
-        activePanel = gamePanel;
-        controllerManager.switchGamePlay();
-        alert(); // notifies view of the updated panel
+        initGame(Avatar.makeSummoner());
     }
 
     public void displayInventory(){
@@ -115,5 +114,19 @@ public class ViewManager implements Observable{
     public void setControllerManager(ControllerManager controllerManager) {
         this.controllerManager = controllerManager;
         gamePanel.addKeyListener(controllerManager);
+    }
+
+    public void setStateManager(StateManager stateManager) {
+        this.stateManager = stateManager;
+    }
+
+    // initialize game once players selection is confirmed
+    private void initGame(Avatar player){
+        activePanel = gamePanel;
+        controllerManager.switchGamePlay();
+        GameLoader gameLoader = new GameLoader(player);
+        stateManager.setActiveGameState(gameLoader.getActiveGameState());
+        gamePanel.init(gameLoader.getActiveGameState());
+        alert(); // notifies view of the updated panel
     }
 }
