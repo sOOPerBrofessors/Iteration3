@@ -31,13 +31,13 @@ public class MessageHandler {
 
     public static void println(String string, ErrorLevel errorLevel) {
 
-        println(string, errorLevel, PersonFilter.ALL);
+        println(string, errorLevel, PersonFilter.UNSPECIFIED);
 
     }
 
     private static boolean isPersonFilterValid(PersonFilter personFilter) {
 
-        return (personFilter == Settings.personFilter || Settings.personFilter == PersonFilter.ALL);
+        return (personFilter == Settings.personFilter || Settings.personFilter == PersonFilter.ALL || personFilter == PersonFilter.UNSPECIFIED);
 
     }
 
