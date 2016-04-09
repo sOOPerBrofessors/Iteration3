@@ -5,6 +5,9 @@ import Controller.Controllers.GamePlayController;
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
 
+import Model.Map.Orientation;
+import Model.Map.Tile.Tile;
+import Model.State.GameState.GameState;
 /**
  * Created by Wimberley on 4/6/16.
  */
@@ -21,12 +24,6 @@ public class ActiveGameState extends GameState {
         //brain = new Brain()
     }
 
-    //The ActiveGameState is never creating any models. It is being created within the GameLoader and then passed in through
-    // a constructor
-//    public ActiveGameState(){
-//        avatar = Avatar.makeSmasher();
-//
-//    }
 
     @Override
     public void tick(){
@@ -37,29 +34,28 @@ public class ActiveGameState extends GameState {
     }
 
     // player commands from controller
-
     public void movePlayerN(){
-        avatar.moveNorth(map.getTile(avatar.getLocation()));
+        avatar.move(map, Orientation.NORTH);
     }
 
     public void movePlayerNE(){
-        avatar.moveNorthEast(map.getTile(avatar.getLocation()));
+        avatar.move(map, Orientation.NORTHEAST);
     }
 
     public void movePlayerSE(){
-        avatar.moveSouthEast(map.getTile(avatar.getLocation()));
+        avatar.move(map, Orientation.SOUTHEAST);
     }
 
     public void movePlayerS(){
-        avatar.moveSouth(map.getTile(avatar.getLocation()));
+        avatar.move(map, Orientation.SOUTH);
     }
 
     public void movePlayerSW(){
-        avatar.moveSouthWest(map.getTile(avatar.getLocation()));
+        avatar.move(map, Orientation.SOUTHWEST);
     }
 
     public void movePlayerNW(){
-        avatar.moveNorthWest(map.getTile(avatar.getLocation()));
+        avatar.move(map, Orientation.NORTHWEST);
     }
 
     public void playerAttack(){}

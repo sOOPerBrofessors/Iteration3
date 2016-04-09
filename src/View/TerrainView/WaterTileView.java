@@ -10,14 +10,8 @@ import java.awt.*;
  */
 public class WaterTileView extends TileView {
     private String url = "./res/terrain/water.png";
-    public WaterTileView(Location location) {
-        super(location);
+    public WaterTileView() {
         image = SpriteImageFactory.getImage(url);
-
-    }
-
-    @Override
-    public void updateCameraOffset(Location location) {
 
     }
 
