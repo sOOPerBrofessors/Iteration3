@@ -27,6 +27,7 @@ public class ActiveGameState extends GameState {
     // player commands from controller
 
     public void movePlayerN(){
+
         avatar.moveNorth();
     }
 

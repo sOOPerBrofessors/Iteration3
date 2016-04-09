@@ -44,17 +44,22 @@ public class GameLoader {
                 for (int k = 0; k < 10; k++){
 
                     TileColumn tC = tmpList[i][j];
-                    Tile tile;
+
                     if (k < 1) {
                         if (i == 2 && (j>2 && j < 5)){
-                            tile = new WaterTile();
+                            WaterTile tile = new WaterTile();
+                            tC.addTiles(tile);
                         }else{
-                            tile = new GrassTile();
+                            GrassTile tile = new GrassTile();
+                            tC.addTiles(tile);
+
                         }
                     }else {
-                        tile = new AirTile();
+                        AirTile tile = new AirTile();
+                        tC.addTiles(tile);
+
                     }
-                    tC.addTiles(tile);
+
                 }
             }
         }
