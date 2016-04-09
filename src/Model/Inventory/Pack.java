@@ -16,7 +16,7 @@ public class Pack {
     } // end default constructor
 
     public void add(Item item) {
-        if(item != null && size() < 16) {
+        if(item != null && size() < cap) {
             items.add(item);
         }
     } // end add
@@ -36,5 +36,6 @@ public class Pack {
     public int size() {
         return items.size();
     } // end size
+    public boolean hasRoom() { return size() < cap; }
 
 } // end class Pack
