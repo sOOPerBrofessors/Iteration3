@@ -2,6 +2,7 @@ package Model.State;
 
 import Controller.ControllerManager;
 import Model.State.GameState.ActiveGameState;
+import Model.State.GameState.PausedGameState;
 import Utilities.Tickable;
 
 /**
@@ -14,9 +15,7 @@ public class StateManager implements Tickable {
 
     private State activeState;
     private ActiveGameState activeGameState;
-
-    public StateManager(){
-    }
+    private PausedGameState pausedGameState;
 
     public void pauseGame(){
         //activeState = pauseState;

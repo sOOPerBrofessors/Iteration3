@@ -1,10 +1,7 @@
 package Model.Faction;
 
-import Utilities.Relationship;
-import Utilities.RelationshipList;
-
-import java.util.HashMap;
-import java.util.Map;
+import Utilities.AIStuff.Relationship;
+import Utilities.AIStuff.RelationshipList;
 
 /**
  * Created by aseber on 4/7/16.

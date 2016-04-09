@@ -1,12 +1,9 @@
 package View.AreaViewport;
 
-import Model.Entity.Character.Avatar;
 import Model.Map.Location;
 import Model.Map.TileColumn;
 import Model.Map.Map;
-import View.EntityView.AvatarView;
 import View.MapView.TileColumnView;
-import View.TerrainView.*;
 import View.ViewUtilities.ImageAssets;
 
 /**
