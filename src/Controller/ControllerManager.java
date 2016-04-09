@@ -67,7 +67,7 @@ public class ControllerManager implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if(activeController != null) {
-            activeController.keyPress(e);
+            activeController.keyPress(e.getKeyCode());
         }
     }
 

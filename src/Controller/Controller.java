@@ -19,5 +19,5 @@ public abstract class Controller {
         commands = new HashMap<>();
     }
 
-    public abstract void keyPress(KeyEvent e);
+    public abstract void keyPress(Integer key);
 }

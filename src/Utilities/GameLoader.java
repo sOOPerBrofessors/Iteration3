@@ -23,17 +23,16 @@ public class GameLoader {
     Map map;
     Avatar avatar;
     ActiveGameState activeGameState;
-    public GameLoader(){
-        avatar = Avatar.makeSmasher(new Location(0,0,0));
-        initMap(avatar);
-        activeGameState = new ActiveGameState(map,avatar);
+
+    //Needs a constructor in order to create what type of occupation it is
+    public GameLoader(Avatar player) {
+        initMap(player);
+        activeGameState = new ActiveGameState(map, player);
     }
+
     //Map has to contain an avatar (might be unnecessary in the constructor though)
     public void initMap(Avatar avatar){
         System.out.println("GameLoader: Loading Map and Avatar and ActiveGameState");
-        //Maybe for future
-        //ArrayList< ArrayList<TileColumn> > tmpList = new ArrayList<>();
-
 
         TileColumn[][] tmpList = new TileColumn[15][15];
         for (int i = 0; i < maxTileRow; i++){

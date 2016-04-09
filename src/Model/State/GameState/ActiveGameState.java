@@ -4,6 +4,7 @@ import Controller.AI_Controller.Brain;
 import Controller.Controllers.GamePlayController;
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
+
 import Model.Map.Orientation;
 import Model.Map.Tile.Tile;
 import Model.State.GameState.GameState;
@@ -67,7 +68,7 @@ public class ActiveGameState extends GameState {
 
     public void playerInteract(){}
 
-    public void setActiveGameController(GamePlayController activeGameController) {
-        this.activeGameController = activeGameController;
+    public void setPlayer(Avatar player) {
+        this.player = player;
     }
 }

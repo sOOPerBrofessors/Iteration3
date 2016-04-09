@@ -31,6 +31,18 @@ public class Avatar extends Character {
 
     public static Avatar makeSummoner(Location location) {
         return new Avatar(new Summoner(), location);
+    } // end factory method makeSneak
+
+    public static Avatar makeSmasher() {
+        return new Avatar(new Smasher(), new Location(5,5,0));
+    } // end factory method makeSmasher
+
+    public static Avatar makeSneak() {
+        return new Avatar(new Sneak(),new Location(5,5,0));
+    } // end factory method makeSneak
+
+    public static Avatar makeSummoner() {
+        return new Avatar(new Summoner(), new Location(5,5,0));
 
     } // end factory method makeSneak
 

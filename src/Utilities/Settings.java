@@ -23,7 +23,10 @@ public class Settings {
     public static int NW = 135;
 
     // adjustable keys
-
+    public static int UP_ARROW = 38;
+    public static int LEFT_ARROW = 37;
+    public static int DOWN_ARROW = 40;
+    public static int RIGHT_ARROW = 39;
     public static int UP_RIGHT = KeyEvent.VK_E;
     public static int UP = KeyEvent.VK_W;
     public static int UP_LEFT = KeyEvent.VK_Q;
