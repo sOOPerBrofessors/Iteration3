@@ -48,13 +48,15 @@ public class Avatar extends Character {
 
     @Override
     public void update() {
-
-    }
+        stats.setEquippedArmor(inventory.getArmorValue());
+        stats.setEquippedWeapon(inventory.getWeaponValue());
+        stats.recompute();
+    } // end update
 
     @Override
     public void remove() {
-
-    }
+        inventory.removeObserver(this);
+    } // end remove
 
     @Override
     public MapObjectView acceptMapVisitor(ColumnVisitor columnVisitor) {
