@@ -25,7 +25,7 @@ public class Map {
     public Tile getTopTile(int x, int y) {
         //TODO: Needs some better checks for height difference
         //might be more helpful to add more defining functions withing 'TileColumn' to check for height
-        if (x < 0 || y < 0 || x > maxColumn || y > maxRow) {
+        if (x < 0 || y < 0 || x >= maxColumn || y >= maxRow) {
             return null;
         }else {
             return mapOfTiles[x][y].getTopTile();
