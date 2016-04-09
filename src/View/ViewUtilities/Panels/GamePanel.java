@@ -1,7 +1,7 @@
 package View.ViewUtilities.Panels;
 
-import Model.State.GameState;
-import Model.State.States.ActiveGameState;
+import Controller.Controllers.GamePlayController;
+import Model.State.GameState.ActiveGameState;
 import View.AreaViewport.AreaViewport;
 import View.ViewManager;
 
@@ -15,6 +15,7 @@ public class GamePanel extends JPanel{
 
     private AreaViewport areaViewport;
     private ViewManager viewManager;
+    private GamePlayController controller;
 
     public GamePanel(ViewManager viewManager){
         //When initalized it'll create the AreaViewport - might be changed for later though
@@ -25,6 +26,7 @@ public class GamePanel extends JPanel{
     public void init(ActiveGameState gameState){
         areaViewport = new AreaViewport(gameState);
         addView(areaViewport);
+        controller.setState(gameState);
     }
     //These views can be added to the GamePanel
     public void addInventoryView(){
@@ -70,11 +72,15 @@ public class GamePanel extends JPanel{
         this.repaint();
     }
 
-    public void setAreaViewport(ActiveGameState gs){
-        init(gs);
-    }
-
     public GamePanel getGamePanel(){
         return this;
+    }
+
+    public void setGamePlayController(GamePlayController gamePlayController){
+        controller = gamePlayController;
+    }
+
+    public GamePlayController getController(){
+        return controller;
     }
 }

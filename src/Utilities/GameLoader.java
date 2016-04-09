@@ -8,11 +8,7 @@ import Model.Map.Tile.GrassTile;
 import Model.Map.Tile.Tile;
 import Model.Map.Tile.WaterTile;
 import Model.Map.TileColumn;
-import Model.State.GameState;
-import Model.State.States.ActiveGameState;
-import View.EntityView.EntityView;
-
-import java.util.ArrayList;
+import Model.State.GameState.ActiveGameState;
 
 /**
  * Created by dyeung on 4/6/16.
@@ -27,15 +23,16 @@ public class GameLoader {
     Map map;
     Avatar avatar;
     ActiveGameState activeGameState;
-    public GameLoader(){
-        initMap();
-        avatar = Avatar.makeSmasher(new Location(5,5,0));
-        activeGameState = new ActiveGameState(map,avatar);
+
+    //Needs a constructor in order to create what type of occupation it is
+    public GameLoader(Avatar player) {
+        initMap(player);
+        activeGameState = new ActiveGameState(map, player);
     }
-    public void initMap(){
+
+    //Map has to contain an avatar (might be unnecessary in the constructor though)
+    public void initMap(Avatar avatar){
         System.out.println("GameLoader: Loading Map and Avatar and ActiveGameState");
-        //Maybe for future
-        //ArrayList< ArrayList<TileColumn> > tmpList = new ArrayList<>();
 
         TileColumn[][] tmpList = new TileColumn[15][15];
         for (int i = 0; i < maxTileRow; i++){
@@ -44,20 +41,27 @@ public class GameLoader {
                 for (int k = 0; k < 10; k++){
 
                     TileColumn tC = tmpList[i][j];
-                    Tile tile;
+
                     if (k < 1) {
                         if (i == 2 && (j>2 && j < 5)){
-                            tile = new WaterTile();
+                            WaterTile tile = new WaterTile();
+                            tC.addTiles(tile);
                         }else{
-                            tile = new GrassTile();
+                            GrassTile tile = new GrassTile();
+                            tC.addTiles(tile);
+
                         }
                     }else {
-                        tile = new AirTile();
+                        AirTile tile = new AirTile();
+                        tC.addTiles(tile);
+
                     }
-                    tC.addTiles(tile);
+
                 }
             }
         }
+        //Initial location of the avatar
+        tmpList[avatar.getLocation().getX()][avatar.getLocation().getY()].addMapObjects(avatar);
         map = new Map(tmpList);
     }
     public Map getMap(){

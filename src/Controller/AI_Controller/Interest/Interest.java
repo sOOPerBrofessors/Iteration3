@@ -9,5 +9,6 @@ public interface Interest {
 
     boolean isValid(VisualInformation visualInformation);
 
+    public String getName();
 
 }

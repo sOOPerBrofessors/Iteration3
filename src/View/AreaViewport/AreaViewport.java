@@ -3,8 +3,9 @@ package View.AreaViewport;
 import Model.Entity.Character.Avatar;
 import Model.Map.Location;
 import Model.Map.Map;
-import Model.State.GameState;
+import Model.State.GameState.GameState;
 import View.EntityView.AvatarView;
+import View.MapView.TileColumnView;
 import View.TerrainView.TileView;
 
 import javax.swing.*;
@@ -22,10 +23,10 @@ public class AreaViewport extends JPanel {
 
     //TODO: Change this to map
     //View objects
-    private TileView[][][] tileViews = new TileView[MAXSIZE][MAXSIZE][MAXSIZE];
+    private TileColumnView[][] tileColumnView;
     private Map map;
-    //TODO: Add avatar views and stuff
-    private AvatarView avatarView;
+
+    //private AvatarView avatarView;
     private CameraView cameraView;
     public AreaViewport(GameState gameState){
         //This needs to be initialized later on or grabbed from the inventory
@@ -36,15 +37,16 @@ public class AreaViewport extends JPanel {
         //THIS IS HELLA TEMPORARY
         Avatar avatar = gameState.getAvatar();
 
-        //Might be a variable in AreaViewport
-        avatarView = new AvatarView(avatar);
-        cameraView = new CameraView(avatarView);
-        avatar.addObserver(avatarView);
+        //Idea is that the camera view now follows the avatar and will conduct the location based on coordinates (not pixels)
+        cameraView = new CameraView(avatar);
+        //TODO: Observers are now not apart of avatar view since avatarView is constantly changing
+        //TODO: Avatar observers must be apart of tileColumn(?)
+        //avatar.addObserver(avatarView);
         //Initializing the map
-
+    
         map = gameState.getMap();
         MapViewFactory mapViewFactory = new MapViewFactory();
-        tileViews = mapViewFactory.createMapViewObjects(map);
+        tileColumnView = mapViewFactory.createMapViewObjects(map);
 
 
 
@@ -52,14 +54,10 @@ public class AreaViewport extends JPanel {
     }
     private void offsetTiles(){
         Location offset = cameraView.computeOffset();
-        System.out.println("AreaViewPort: Offset:" + offset.getX() + "," + offset.getY() + "," + offset.getZ());
-        for (int i = 0; i < tileViews.length; i++) {
-            for (int j = 0; j < tileViews[0].length; j++){
-                //updates the location of all the objects
-                for (int k = 0; k < 10; k++){
-                    tileViews[i][j][k].updateCameraOffset(offset);
-
-                }
+        //System.out.println("AreaViewPort: Offset:" + offset.getX() + "," + offset.getY() + "," + offset.getZ());
+        for (int i = 0; i < tileColumnView.length; i++) {
+            for (int j = 0; j < tileColumnView[0].length; j++){
+                tileColumnView[i][j].offsetCamera(offset);
             }
         }
 
@@ -67,10 +65,7 @@ public class AreaViewport extends JPanel {
     public void renderTiles(Graphics g){
         for (int i = 0; i < MAXSIZE; i++) {
             for (int j = 0; j < MAXSIZE; j++){
-//                for (int k = 0; i < 10; i++) {
-//                    tileViews[i][j][k].paintComponent(g);
-//                }
-                tileViews[i][j][0].paintComponent(g);
+                tileColumnView[i][j].paintComponent(g);
             }
         }
     }
@@ -78,14 +73,8 @@ public class AreaViewport extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         //System.out.println("Area viewport is painting");
-         Location offset = cameraView.computeOffset();
-//        if (cameraView.requiresOffset()) {
-//            System.out.println("offset required");
-//            offsetTiles();
-//            avatarView.updateCameraOffset(offset);
-//            System.out.println("Offset done");
-//        }
+
+        offsetTiles();
         renderTiles(g);
-        avatarView.paintComponent(g);
     }
 }

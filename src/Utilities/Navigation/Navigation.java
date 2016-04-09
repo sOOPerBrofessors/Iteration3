@@ -56,6 +56,8 @@ public class Navigation {
      either allows or disallows the entity to move.*/
 
     public boolean move(Tile targetTile, Entity entity) {
+       // System.out.println("Navigation: target position:" + entity.getLocation().getX() + "," + entity.getLocation().getY());
+        if (targetTile == null) return false;
         if(s != null)
             return s.move(targetTile, entity);
         return false;

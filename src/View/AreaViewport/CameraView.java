@@ -1,5 +1,6 @@
 package View.AreaViewport;
 
+import Model.Entity.Character.Avatar;
 import Model.Map.Location;
 import Utilities.Settings;
 import View.EntityView.AvatarView;
@@ -10,32 +11,46 @@ import java.util.Set;
  * Created by dyeung on 4/6/16.
  */
 public class CameraView {
-    private int startX;
-    private int startY;
-    private int endX;
-    private int endY;
-    private AvatarView avatarView; //The center view
-    public CameraView(AvatarView avatar){
-        this.avatarView = avatar;
+    //private AvatarView avatarView; //The center view
+    //We are not basing it off of the avatar
+//    public CameraView(AvatarView avatar){
+//        this.avatarView = avatar;
+//    }
+    private Avatar avatar;
+    private int xPixels;
+    private int yPixels;
+    private int tileWidth = Settings.TILEWIDTH;
+    private int tileHeight = Settings.TILEHEIGHT;
+    public CameraView(Avatar avatar){
+        this.avatar = avatar;
     }
+    
+    //TODO: Need to implement some sort of class that will tie in CameraView with the AreaViewport so we have 
+    //consistent pixel translations
     public Location computeOffset(){
-        //System.out.println("CameraView: " + avatarView.getX()  + "," + avatarView.getY() );
-        int x = Settings.GAMEWIDTH/2 - avatarView.getXPixel();
-        int y = Settings.GAMEHEIGHT/2 - avatarView.getYPixel();
+        updateLocationToPixels();
+        int x = Settings.GAMEWIDTH/2 - xPixels;
+        int y = Settings.GAMEHEIGHT/2 - yPixels;
         int z = 0;
         return new Location(x,y,z);
     }
-    public void update(Location location){
+    private void updateLocationToPixels(){
+        //TODO I might need to change this into a class
+        int x = avatar.getLocation().getX();
+        int y = avatar.getLocation().getY();
+
+        xPixels = x*tileWidth - (x*(tileWidth))/4 + getCenterX();
+        yPixels = y*(tileHeight - 5) + ((tileHeight-7)*x)/2 + getCenterY();
+//
+//        System.out.println("CameraView: Location " + x  + "," + y );
+//        System.out.println("CameraView: pixels " + xPixels  + "," + yPixels );
 
     }
-    //TERRIBLE WAY TO HANDLE. THINK OF BETTER WAY
-    public boolean requiresOffset(){
-        Location loc = computeOffset();
-        if (loc.getX() != 0 || loc.getY() != 0 || loc.getZ() != 0){
-            return true;
-        }else{
-            return false;
-        }
+    private int getCenterX(){
+        return tileWidth/4;
+    }
+    private int getCenterY(){
+        return -(tileHeight/2);
     }
 
 }

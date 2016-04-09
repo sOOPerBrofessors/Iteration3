@@ -1,15 +1,18 @@
 package View.EntityView;
 
 import Model.Entity.Entity;
+import Model.Map.Orientation;
 import Utilities.Observers.EntityObserver;
 import Model.Map.Location;
 import Utilities.Settings;
+import View.MapView.MapObjectView;
 
-import javax.swing.*;
+import java.awt.*;
+
 /**
  * Created by dyeung on 4/6/16.
  */
-public abstract class EntityView extends JComponent implements EntityObserver{
+public abstract class EntityView extends MapObjectView implements EntityObserver{
     private int x; // on the coordinate system
     private int y; // on the coordinate system
     private int tileWidth = Settings.TILEWIDTH;
@@ -19,82 +22,35 @@ public abstract class EntityView extends JComponent implements EntityObserver{
     protected int xPixel; // on the map
     protected int yPixel; // on the map
     protected Location location;
+    protected Orientation orientation;
     protected Entity entity; //property that  is being observered
+
     public EntityView(Entity observerable){
         entity = observerable;
         location = entity.getLocation();
+        orientation = entity.getOrientation();
         x = location.getX();
         y = location.getY();
-        updateCoordinateToScreenPosition();
-        //System.out.println("EntityView: initial: " + x + "," + y );
-    }
-    //Function will create the x/y position on the actual screen
-    public void updateCoordinateToScreenPosition(){
-        //Might need to delegate to another class
-        int xCenter = entityWidth/2;
-        int yCenter = entityHeight/2;
-        xPixel = xCenter + x*tileWidth - (x*(tileWidth-5))/4;
-        yPixel = yCenter + y*(tileHeight - 7) + ((tileHeight-12)*x)/2;
-    }
-    @Override
-    public void updateMoveN() {
-        updateLocation();
-        //TODO: Change orientation to North on all of these
     }
 
+
     @Override
-    public void updateMoveNW() {
+    public void updateMove() {
         updateLocation();
     }
 
-    @Override
-    public void updateMoveNE() {
-        updateLocation();
-    }
-
-    @Override
-    public void updateMoveS() {
-        updateLocation();
-    }
-
-    @Override
-    public void updateMoveSW() {
-        updateLocation();
-
-    }
-
-    @Override
-    public void updateMoveSE() {
-        updateLocation();
-
-    }
     private void updateLocation(){
-        location = entity.getLocation();
-        System.out.println("EntityView: Before: " + x + "," + y + " : " + xPixel + "," + yPixel);
-
         x = location.getX();
         y = location.getY();
-        updateCoordinateToScreenPosition();
+        System.out.println("EntityView: " + x + "," + y + " : " + xPixel + "," + yPixel);
+    }
 
-        System.out.println("EntityView: After: " + x + "," + y + " : " + xPixel + "," + yPixel);
-    }
-    public void updateCameraOffset (Location location){
-        xPixel += location.getX();
-        yPixel += location.getY();
-    }
-    public int getXPixel(){
-        return xPixel;
-    }
-    public int getYPixel(){
-        return yPixel;
-    }
-    public int getX(){
-        return x;
-    }
-    public int getY(){
-        return y;
-    }
-    public Location getEntityViewLocation(){
-        return location;
+
+    @Override
+    public void setPixels(int x, int y, int z) {
+        //System.out.println("EntityView: Updates pixels to:" + x +","+ y);
+        xPixel = x;
+        yPixel = y;
+        //eventually z will offset yPixel by a certain amount
     }
 }

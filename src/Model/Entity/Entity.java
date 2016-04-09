@@ -2,9 +2,12 @@ package Model.Entity;
 
 import java.util.ArrayList;
 
+import Model.Map.Map;
+import Model.Map.MapObject;
 import Model.Map.Tile.Tile;
 import Utilities.MessageHandler;
 import Utilities.Navigation.Navigation;
+import Model.Map.Orientation;
 import Utilities.Observables.EntityObservable;
 import Utilities.Observers.EntityObserver;
 import Model.Map.Location;
@@ -16,52 +19,24 @@ import Model.Map.Location;
  */
 
 //All entities are able now Observables for a specific model view
-public abstract class Entity implements EntityObservable {
+public abstract class Entity implements EntityObservable, MapObject {
     private Location location;
     private Navigation navigation;
+    protected Orientation orientation;
+
     private ArrayList<EntityObserver> observers;
 
     public Entity(Navigation navigation, Location location){
         this.navigation = navigation;
         this.location = location;
         observers = new ArrayList<>();
+        orientation = Orientation.SOUTH;
     }
 
-    //An observable when a move is called will notify the observer that a move is called
     @Override
-    public void notifyObserverMoveN() {
+    public void notifyObserverMove() {
         for (EntityObserver entityObserver : observers){
-            entityObserver.updateMoveN();
-        }
-    }
-    @Override
-    public void notifyObserverMoveNW() {
-        for (EntityObserver entityObserver : observers){
-            entityObserver.updateMoveNW();
-        }
-    }
-    @Override
-    public void notifyObserverMoveNE() {
-        for (EntityObserver entityObserver : observers){
-            entityObserver.updateMoveNE();
-        }
-    }
-    @Override
-    public void notifyObserverMoveS() {
-        for (EntityObserver entityObserver : observers){
-            entityObserver.updateMoveS();
-        }
-    }
-    @Override
-    public void notifyObserverMoveSE() {
-        for (EntityObserver entityObserver : observers){
-            entityObserver.updateMoveSE();
-        }
-    }
-    @Override
-    public void notifyObserverMoveSW() {
-        for (EntityObserver entityObserver : observers){
-            entityObserver.updateMoveSW();
+            entityObserver.updateMove();
         }
     }
 
@@ -69,58 +44,56 @@ public abstract class Entity implements EntityObservable {
     public void addObserver(EntityObserver entityObserver) {
         observers.add(entityObserver);
     }
-    //TODO: HOW TO HANDLE MOVING UP TILES
-    public void moveNorth(Tile targetTile){
-        if(navigation.move(targetTile, this)) {
-            updateLocation(0, -1);
-            notifyObserverMoveN();
-        }
-    }
-    public void moveNorthEast(Tile targetTile){
-        if(navigation.move(targetTile, this)) {
-            updateLocation(1, -1);
-            notifyObserverMoveNE();
-        }
-    }
-    public void moveSouthEast(Tile targetTile){
-        if(navigation.move(targetTile, this)) {
-            updateLocation(1, 0);
-            notifyObserverMoveSE();
-        }
-    }
 
-    public void moveSouth(Tile targetTile){
-        if(navigation.move(targetTile, this)) {
-            updateLocation(0, 1);
-            notifyObserverMoveS();
-        }
+
+    private Tile getNextTile(Map map, Orientation orientation){
+        int newX = location.getX() + orientation.x;
+        int newY = location.getY() + orientation.y;
+        return map.getTopTile(newX,newY);
     }
-    public void moveSouthWest(Tile targetTile){
-        if(navigation.move(targetTile, this)) {
-            updateLocation(-1, 1);
-            notifyObserverMoveSW();
-        }
-    }
-    public void moveNorthWest(Tile targetTile){
-        if(navigation.move(targetTile, this)) {
-            updateLocation(-1, 0);
-            notifyObserverMoveNW();
+    //TODO: HOW TO HANDLE MOVING UP TILES
+    public void move(Map map, Orientation orientation){
+        //System.out.println("Entity: update location was called from move:" + this.orientation + ":" + orientation);
+        if (navigation.move(getNextTile(map,orientation),this)){
+            updateLocation(map ,orientation);
         }
     }
 
     public Location getLocation() {
         return location;
     }
-
+    public Orientation getOrientation() {
+        return orientation;
+    }
+    public void setOrientation(Orientation orientation) {
+        this.orientation = orientation;
+    }
     //TODO: Add the z values stuff
-    private void updateLocation(int x, int y){
-        int newX = location.getX() + x;
-        int newY = location.getY() + y;
-        int newZ = location.getZ() + 0;
-        location.setNewLocation(newX,newY, newZ);
+    private void updateLocation(Map map, Orientation orientation){
+        //Might be better to have a removeAvatar() function within tilecolumn
+        //map.getTile(location.getX(), location.getY()).removeAvatar();
+        if (this.orientation.equals(orientation)) {
+            map.getMapOfTiles()[location.getX()][location.getY()].removeMapObject(this);
+
+            //Updates the new location
+            int newX = location.getX() + orientation.x;
+            int newY = location.getY() + orientation.y;
+            int newZ = location.getZ() + 0;
+            location.setNewLocation(newX, newY, newZ);
+            notifyObserverMove();
+
+            //Adds to the new tile
+            map.getMapOfTiles()[newX][newY].addMapObjects(this);
+        }else {
+            //Basically it'll only update orientation if key is pressed, else it'll start moving
+            setOrientation(orientation);
+        }
     }
 
     public void setLocation(Location location) {
         this.location = location;
     } // end setLocation
+
 }
+
+
