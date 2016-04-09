@@ -33,6 +33,23 @@ public class AvatarView extends EntityView {
     @Override
     public void paintComponent(Graphics g) {
         //System.out.println("AvatarView: paint was called");
+        //Used for testing purposes
+        //g.setColor(Color.blue);
+        //g.drawRect(xPixel,yPixel,entityWidth,entityHeight);
         g.drawImage(avatarImage,xPixel,yPixel,entityWidth, entityHeight,null);
+    }
+
+    //Used by Camera View to computer the offset
+    public int getXLocation(){
+        return location.getX();
+    }
+    public int getYLocation(){
+        return location.getY();
+    }
+    public int getXPixel(){
+        return xPixel;
+    }
+    public int getYPixel(){
+        return yPixel;
     }
 }

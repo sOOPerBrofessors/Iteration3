@@ -25,8 +25,8 @@ public class AreaViewport extends JPanel {
     //View objects
     private TileColumnView[][] tileColumnView;
     private Map map;
-    //TODO: Add avatar views and stuff
-    private AvatarView avatarView;
+
+    //private AvatarView avatarView;
     private CameraView cameraView;
     public AreaViewport(GameState gameState){
         //This needs to be initialized later on or grabbed from the inventory
@@ -37,10 +37,11 @@ public class AreaViewport extends JPanel {
         //THIS IS HELLA TEMPORARY
         Avatar avatar = gameState.getAvatar();
 
-        //Might be a variable in AreaViewport
-        avatarView = new AvatarView(avatar);
-        cameraView = new CameraView(avatarView);
-        avatar.addObserver(avatarView);
+        //Idea is that the camera view now follows the avatar and will conduct the location based on coordinates (not pixels)
+        cameraView = new CameraView(avatar);
+        //TODO: Observers are now not apart of avatar view since avatarView is constantly changing
+        //TODO: Avatar observers must be apart of tileColumn(?)
+        //avatar.addObserver(avatarView);
         //Initializing the map
     
         map = gameState.getMap();
@@ -73,8 +74,7 @@ public class AreaViewport extends JPanel {
         super.paintComponent(g);
         //System.out.println("Area viewport is painting");
 
-        //offsetTiles()
+        offsetTiles();
         renderTiles(g);
-        //avatarView.paintComponent(g); //NEEDS TO PAINT THIS FOR THE SOLE PURPOSE OF FOG OF WAR
     }
 }

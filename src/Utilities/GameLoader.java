@@ -28,7 +28,7 @@ public class GameLoader {
     Avatar avatar;
     ActiveGameState activeGameState;
     public GameLoader(){
-        avatar = Avatar.makeSmasher(new Location(5,5,0));
+        avatar = Avatar.makeSmasher(new Location(0,0,0));
         initMap(avatar);
         activeGameState = new ActiveGameState(map,avatar);
     }
@@ -65,7 +65,8 @@ public class GameLoader {
                 }
             }
         }
-        tmpList[5][5].addMapObjects(avatar);
+        //Initial location of the avatar
+        tmpList[avatar.getLocation().getX()][avatar.getLocation().getY()].addMapObjects(avatar);
         map = new Map(tmpList);
     }
     public Map getMap(){

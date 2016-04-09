@@ -33,10 +33,16 @@ public class TileColumnView extends JComponent implements TileVisitor, ColumnVis
     private int y;
     private int xPixel;
     private int yPixel;
+    private int xOffset;
+    private int yOffset;
     private int tileWidth = Settings.TILEWIDTH;
     private int tileHeight = Settings.TILEHEIGHT;
+    private int xCenter = tileWidth/2;
+    private int yCenter = tileHeight/2;
     private TileColumn tileColumn;
     public TileColumnView(TileColumn subject, Location location){
+        xOffset = 0;
+        yOffset = 0;
         x = location.getX();
         y = location.getY();
         listOfTiles = new ArrayList<>();
@@ -102,10 +108,8 @@ public class TileColumnView extends JComponent implements TileVisitor, ColumnVis
         }
     }
     private void updateCoordinateToScreenPosition(){
-        int xCenter = tileWidth/2;
-        int yCenter = tileHeight/2;
-        xPixel = xCenter + x*tileWidth - (x*(tileWidth))/4;
-        yPixel = yCenter + y*(tileHeight - 5) + ((tileHeight-7)*x)/2;
+        xPixel = x*tileWidth - (x*(tileWidth))/4 + xOffset;
+        yPixel = y*(tileHeight - 5) + ((tileHeight-7)*x)/2 + yOffset;
 
      //   System.out.println("TileColumnView: X/Y: " + x + "," + y + " : " + xPixel + "," + yPixel);
     }
@@ -124,6 +128,8 @@ public class TileColumnView extends JComponent implements TileVisitor, ColumnVis
             //In setPixels, the 3rd arguement is essentially the "z" height
             TileView holder = listOfTiles.get(i);
             holder.setLocation(x,y,i); //"i" is considered z in this case
+
+            //The tile view should not have the centers added to it
             holder.setPixels(xPixel, yPixel, i);
             holder.paintComponent(g);
         }
@@ -133,17 +139,19 @@ public class TileColumnView extends JComponent implements TileVisitor, ColumnVis
         //TODO: Might be temporary for now since i'll want to update the map objects upon click and not every time
         //Paint is called
         updateMapObjectViews();
-
+        int centeredX = xPixel + xCenter/2;
+        int centeredY = yPixel - yCenter;
         for (int i = 0; i < listOfMapObjects.size(); i++){
             //The last value of the list of tiles should be the last height where to render for Z
-            listOfMapObjects.get(i).setPixels(xPixel,yPixel,listOfTiles.size());
+            listOfMapObjects.get(i).setPixels(centeredX,centeredY,listOfTiles.size());
             listOfMapObjects.get(i).paintComponent(g);
         }
     }
+    //Updates the camera view
     public void offsetCamera(Location offset){
-            updateCoordinateToScreenPosition();
-            xPixel += offset.getX();
-            yPixel += offset.getY();
+            //updateCoordinateToScreenPosition();
+            xOffset = offset.getX();
+            yOffset = offset.getY();
     }
 
 }

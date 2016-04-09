@@ -49,22 +49,6 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
         System.out.println("EntityView: " + x + "," + y + " : " + xPixel + "," + yPixel);
     }
 
-    public int getXPixel(){
-        return xPixel;
-    }
-    public int getYPixel(){
-        return yPixel;
-    }
-    public int getX(){
-        return x;
-    }
-    public int getY(){
-        return y;
-    }
-    public Location getEntityViewLocation(){
-        return location;
-    }
-
 
     @Override
     public void setPixels(int x, int y, int z) {
