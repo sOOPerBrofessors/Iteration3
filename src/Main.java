@@ -25,7 +25,6 @@ public class Main {
         LoadData.load("data/factions.xml", new LoadFactionsVisitor());
         LoadData.load("data/faction_relationships.xml", new LoadFactionRelationsVisitor());
         LoadData.load("data/personalities.xml", new LoadPersonalitiesVisitor());
-        System.out.println(PersonalityFactory.getPersonality("friendly").printInterests());
 
         // creates all components that need to know of each other
         Model gameLoop = new Model();

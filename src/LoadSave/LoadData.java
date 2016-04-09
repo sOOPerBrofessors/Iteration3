@@ -1,6 +1,7 @@
 package LoadSave;
 
 import Utilities.IOUtilities;
+import Utilities.Settings;
 import Visitors.LoadVisitor;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -27,7 +28,7 @@ public class LoadData {
         }
 
         path = IOUtilities.getFileSystemDependentPath(path);
-        System.out.println("Loading Data: " + path);
+        Utilities.Debug.println("Loading Data: " + path);
 
         try {
 

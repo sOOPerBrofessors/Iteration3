@@ -7,13 +7,6 @@ import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation
  */
 public class AttackInterest implements Interest {
 
-    static {
-
-        Interest interest = new AttackInterest();
-        InterestFactory.addInterest(interest.getName(), interest);
-
-    }
-
     public boolean isValid(VisualInformation visualInformation) {
 
         return false;

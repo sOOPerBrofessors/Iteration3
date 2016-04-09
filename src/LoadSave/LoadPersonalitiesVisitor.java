@@ -4,15 +4,11 @@ import Controller.AI_Controller.Interest.Interest;
 import Controller.AI_Controller.Interest.InterestFactory;
 import Controller.AI_Controller.Personality.Personality;
 import Controller.AI_Controller.Personality.PersonalityFactory;
-import Model.Faction.Faction;
-import Model.Faction.FactionFactory;
 import Visitors.LoadVisitor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import java.util.ArrayList;
-import java.util.DoubleSummaryStatistics;
 import java.util.HashMap;
 
 /**

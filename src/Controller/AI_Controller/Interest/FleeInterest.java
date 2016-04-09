@@ -3,9 +3,9 @@ package Controller.AI_Controller.Interest;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
 
 /**
- * Created by aseber on 4/8/16.
+ * Created by aseber on 4/9/16.
  */
-public class TradeInterest implements Interest {
+public class FleeInterest implements Interest {
 
     public boolean isValid(VisualInformation visualInformation) {
 
@@ -15,7 +15,7 @@ public class TradeInterest implements Interest {
 
     public String getName() {
 
-        return "TradeInterest";
+        return "FleeInterest";
 
     }
 
