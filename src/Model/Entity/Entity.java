@@ -2,20 +2,27 @@ package Model.Entity;
 
 import java.util.ArrayList;
 
+import Model.Map.Tile.Tile;
+import Utilities.MessageHandler;
+import Utilities.Navigation.Navigation;
 import Utilities.Observables.EntityObservable;
 import Utilities.Observers.EntityObserver;
 import Model.Map.Location;
 
 /**
  * Created by dyeung on 4/6/16.
+ *
+ * TODO: in movePlayerDir(...), check if entity is facing that direction: if false, set direction; else, move
  */
 
 //All entities are able now Observables for a specific model view
 public abstract class Entity implements EntityObservable {
     private Location location;
-
+    private Navigation navigation;
     private ArrayList<EntityObserver> observers;
-    public Entity(Location location){
+
+    public Entity(Navigation navigation, Location location){
+        this.navigation = navigation;
         this.location = location;
         observers = new ArrayList<>();
     }
@@ -63,30 +70,42 @@ public abstract class Entity implements EntityObservable {
         observers.add(entityObserver);
     }
     //TODO: HOW TO HANDLE MOVING UP TILES
-    public void moveNorth(){
-        updateLocation(0,-1);
-        notifyObserverMoveN();
+    public void moveNorth(Tile targetTile){
+        if(navigation.move(targetTile, this)) {
+            updateLocation(0, -1);
+            notifyObserverMoveN();
+        }
     }
-    public void moveNorthEast(){
-        updateLocation(1,-1);
-        notifyObserverMoveNE();
+    public void moveNorthEast(Tile targetTile){
+        if(navigation.move(targetTile, this)) {
+            updateLocation(1, -1);
+            notifyObserverMoveNE();
+        }
     }
-    public void moveSouthEast(){
-        updateLocation(1,0);
-        notifyObserverMoveSE();
+    public void moveSouthEast(Tile targetTile){
+        if(navigation.move(targetTile, this)) {
+            updateLocation(1, 0);
+            notifyObserverMoveSE();
+        }
     }
 
-    public void moveSouth(){
-        updateLocation(0,1);
-        notifyObserverMoveS();
+    public void moveSouth(Tile targetTile){
+        if(navigation.move(targetTile, this)) {
+            updateLocation(0, 1);
+            notifyObserverMoveS();
+        }
     }
-    public void moveSouthWest(){
-        updateLocation(-1,1);
-        notifyObserverMoveSW();
+    public void moveSouthWest(Tile targetTile){
+        if(navigation.move(targetTile, this)) {
+            updateLocation(-1, 1);
+            notifyObserverMoveSW();
+        }
     }
-    public void moveNorthWest(){
-        updateLocation(-1,0);
-        notifyObserverMoveNW();
+    public void moveNorthWest(Tile targetTile){
+        if(navigation.move(targetTile, this)) {
+            updateLocation(-1, 0);
+            notifyObserverMoveNW();
+        }
     }
 
     public Location getLocation() {
@@ -100,4 +119,8 @@ public abstract class Entity implements EntityObservable {
         int newZ = location.getZ() + 0;
         location.setNewLocation(newX,newY, newZ);
     }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    } // end setLocation
 }
