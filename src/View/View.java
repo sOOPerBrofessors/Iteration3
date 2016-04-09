@@ -15,9 +15,6 @@ public class View implements Runnable, Observer{
     private JFrame mainFrame;
     private ViewManager viewManager;
 
-    private StateManager stateManager;
-    private ControllerManager controllerManager;
-
     public View(){
         mainFrame = new MainFrame();
         viewManager = new ViewManager();
@@ -74,9 +71,5 @@ public class View implements Runnable, Observer{
 
     public ViewManager getViewManager() {
         return viewManager;
-    }
-
-    public void setStateManager(StateManager stateManager) {
-        this.stateManager = stateManager;
     }
 }
