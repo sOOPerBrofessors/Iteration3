@@ -41,27 +41,27 @@ public class ActiveGameState extends GameState {
     // player commands from controller
 
     public void movePlayerN(){
-        avatar.moveNorth();
+        avatar.moveNorth(map.getTile(avatar.getLocation()));
     }
 
     public void movePlayerNE(){
-        avatar.moveNorthEast();
+        avatar.moveNorthEast(map.getTile(avatar.getLocation()));
     }
 
     public void movePlayerSE(){
-        avatar.moveSouthEast();
+        avatar.moveSouthEast(map.getTile(avatar.getLocation()));
     }
 
     public void movePlayerS(){
-        avatar.moveSouth();
+        avatar.moveSouth(map.getTile(avatar.getLocation()));
     }
 
     public void movePlayerSW(){
-        avatar.moveSouthWest();
+        avatar.moveSouthWest(map.getTile(avatar.getLocation()));
     }
 
     public void movePlayerNW(){
-        avatar.moveNorthWest();
+        avatar.moveNorthWest(map.getTile(avatar.getLocation()));
     }
 
     public void playerAttack(){}

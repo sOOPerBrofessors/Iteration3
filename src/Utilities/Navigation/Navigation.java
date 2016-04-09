@@ -24,27 +24,27 @@ public class Navigation {
 
     //factory methods which return new specific implementations of a Navigation object
 
-    public Navigation makeAvianNav() {
+    public static Navigation makeAvianNav() {
         return new Navigation(new AvianStrategy());
     } // end makeAvianNav
 
-    public Navigation makeAquaticNav() {
+    public static Navigation makeAquaticNav() {
         return new Navigation(new AquaticStrategy());
     } // end makeAquaticNav
 
-    public Navigation makeBoatNav() {
+    public static Navigation makeBoatNav() {
         return new Navigation(new BoatStrategy());
     } // end makeBoatNav
 
-    public Navigation makeCharNav() {
+    public static Navigation makeCharNav() {
         return new Navigation(new CharStrategy());
     } // end makeCharNav
 
-    public Navigation makeProjectileNav() {
+    public static Navigation makeProjectileNav() {
         return new Navigation(new ProjectileStrategy());
     } // end makeProjectileNav
 
-    public Navigation makeVehicleNav() {
+    public static Navigation makeVehicleNav() {
         return new Navigation(new VehicleStrategy());
     } // end makeVehicleNav
 
@@ -53,11 +53,11 @@ public class Navigation {
      entity requesting to move and its target tile.
 
     the local NavStrategy handles calling the target tile's move operation which
-<<<<<<< HEAD
      either allows or disallows the entity to move.*/
 
-    public void move(Tile targetTile, Entity entity) {
+    public boolean move(Tile targetTile, Entity entity) {
         if(s != null)
-            s.move(targetTile, entity);
+            return s.move(targetTile, entity);
+        return false;
     } // end move
 } // end class Navigation

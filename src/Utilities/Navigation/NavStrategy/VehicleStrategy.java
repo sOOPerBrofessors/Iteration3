@@ -8,7 +8,7 @@ import Model.Map.Tile.Tile;
  */
 public class VehicleStrategy implements NavStrategy {
     @Override
-    public void move(Tile targetTile, Entity entity) {
-        //targetTile.moveVehicle(entity);
+    public boolean move(Tile targetTile, Entity entity) {
+        return targetTile.moveVehicle(entity);
     }
 }

@@ -21,4 +21,8 @@ public class Map {
     public TileColumn[][] getMapOfTiles(){
         return mapOfTiles;
     }
+
+    public Tile getTile(Location location) {
+        return mapOfTiles[location.getX()][location.getY()].getTileList().get(0);
+    } // end getTile
 }
