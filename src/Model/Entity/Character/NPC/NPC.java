@@ -20,7 +20,7 @@ public class NPC extends Character implements Tickable{
     private Faction faction;
     private Personality personality;
 
-    private NPC(Occupation o, Location location, Personality personality, Faction faction) {
+    public NPC(Occupation o, Location location, Personality personality, Faction faction) {
         super(o, location);
         this.faction = faction;
         this.personality = personality;
@@ -37,7 +37,7 @@ public class NPC extends Character implements Tickable{
 
     @Override
     public MapObjectView acceptMapVisitor(ColumnVisitor columnVisitor) {
-        return null;
+        return columnVisitor.createCharacterView(this);
     }
 
     @Override

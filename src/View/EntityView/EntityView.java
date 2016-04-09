@@ -1,5 +1,6 @@
 package View.EntityView;
 
+import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Map.Orientation;
 import Utilities.Observers.EntityObserver;
@@ -13,6 +14,7 @@ import java.awt.*;
  * Created by dyeung on 4/6/16.
  */
 public abstract class EntityView extends MapObjectView implements EntityObserver{
+
     private int x; // on the coordinate system
     private int y; // on the coordinate system
     private int tileWidth = Settings.TILEWIDTH;
@@ -23,9 +25,9 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
     protected int yPixel; // on the map
     protected Location location;
     protected Orientation orientation;
-    protected Entity entity; //property that  is being observered
+    protected Character entity; //property that  is being observered
 
-    public EntityView(Entity observerable){
+    public EntityView(Character observerable){
         entity = observerable;
         location = entity.getLocation();
         orientation = entity.getOrientation();

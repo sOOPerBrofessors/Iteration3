@@ -1,5 +1,3 @@
-import Controller.AI_Controller.Personality.Personality;
-import Controller.AI_Controller.Personality.PersonalityFactory;
 import Controller.ControllerManager;
 import Controller.Controllers.GamePlayController;
 import LoadSave.LoadData;

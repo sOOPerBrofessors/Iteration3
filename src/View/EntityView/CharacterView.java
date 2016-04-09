@@ -1,6 +1,7 @@
 package View.EntityView;
 
 import Model.Entity.Character.Avatar;
+import Model.Entity.Character.Character;
 import View.EntityView.AvatarViewFactory.OccupationViewFactory;
 import View.ViewUtilities.ImageAssets;
 
@@ -9,17 +10,17 @@ import java.awt.*;
 /**
  * Created by dyeung on 4/6/16.
  */
-public class AvatarView extends EntityView {
+public class CharacterView extends EntityView {
 
     //private String url = "./res/Entity/newSneak.png";
     //Width height scale formula is Height/Width * new width = new height
     private Image avatarImage;
     private OccupationViewFactory occupationViewFactory;
-    private Avatar avatar;
+    private Character character;
 
-    public AvatarView(Avatar avatar){
-        super(avatar);
-        this.avatar = avatar;
+    public CharacterView(Character character){
+        super(character);
+        this.character = character;
         avatarImage = ImageAssets.sneakS;
         //occupationViewFactory = new OccupationViewFactory();
     }
@@ -30,7 +31,7 @@ public class AvatarView extends EntityView {
 
     @Override
     public void paintComponent(Graphics g) {
-        //System.out.println("AvatarView: paint was called");
+        //System.out.println("CharacterView: paint was called");
         //Used for testing purposes
         //g.setColor(Color.blue);
         //g.drawRect(xPixel,yPixel,entityWidth,entityHeight);
