@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<faction_relationships>
+    <relationship factionFrom="red" factionTo="blue" relation="-0.55"/>
+    <relationship factionFrom="red" factionTo="shopkeeper" relation="0.05"/>
+    <relationship factionFrom="blue" factionTo="red" relation="-0.35"/>
+    <relationship factionFrom="blue" factionTo="shopkeeper" relation="-0.1"/>
+    <relationship factionFrom="shopkeeper" factionTo="blue" relation="-0.15"/>
+    <relationship factionFrom="shopkeeper" factionTo="red" relation="0.12"/>
+</faction_relationships>
