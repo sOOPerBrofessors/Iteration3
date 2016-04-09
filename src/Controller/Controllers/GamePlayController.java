@@ -21,11 +21,11 @@ public class GamePlayController extends Controller{
     public GamePlayController(ControllerManager controllerManager){
         super(controllerManager);
     }
+
     @Override
-    public void keyPress(KeyEvent key){
-        //System.out.println("GamePlayController: Key is being pressed in gameplay controller: " + key.getKeyCode());
-        if(commands.containsKey(key.getKeyCode())) {
-            commands.get(key.getKeyCode()).execute();
+    public void keyPress(Integer key){
+        if(commands.containsKey(key)) {
+            commands.get(key).execute();
         }
     }
 
@@ -39,8 +39,22 @@ public class GamePlayController extends Controller{
             }
         });
 
+        commands.put(Settings.UP_ARROW, new Command() {
+            @Override
+            public void execute() {
+                state.movePlayerN();
+            }
+        });
+
         // up right key press
         commands.put(Settings.UP_RIGHT, new Command() {
+            @Override
+            public void execute() {
+                state.movePlayerNE();
+            }
+        });
+
+        commands.put(Settings.RIGHT_ARROW, new Command() {
             @Override
             public void execute() {
                 state.movePlayerNE();
@@ -63,6 +77,13 @@ public class GamePlayController extends Controller{
             }
         });
 
+        commands.put(Settings.DOWN_ARROW, new Command() {
+            @Override
+            public void execute() {
+                state.movePlayerS();
+            }
+        });
+
         // down left key press
         commands.put(Settings.DOWN_LEFT, new Command() {
             @Override
@@ -73,6 +94,13 @@ public class GamePlayController extends Controller{
 
         // up left key press
         commands.put(Settings.UP_LEFT, new Command() {
+            @Override
+            public void execute() {
+                state.movePlayerNW();
+            }
+        });
+
+        commands.put(Settings.LEFT_ARROW, new Command() {
             @Override
             public void execute() {
                 state.movePlayerNW();

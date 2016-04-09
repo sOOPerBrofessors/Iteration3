@@ -4,8 +4,6 @@ import Controller.AI_Controller.Brain;
 import Controller.Controllers.GamePlayController;
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
-import Model.State.GameState.GameState;
-import com.sun.xml.internal.bind.v2.TODO;
 
 /**
  * Created by Wimberley on 4/6/16.
@@ -74,7 +72,7 @@ public class ActiveGameState extends GameState {
 
     public void playerInteract(){}
 
-    public void setActiveGameController(GamePlayController activeGameController) {
-        this.activeGameController = activeGameController;
+    public void setPlayer(Avatar player) {
+        this.player = player;
     }
 }

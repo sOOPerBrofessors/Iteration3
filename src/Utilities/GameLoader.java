@@ -23,11 +23,18 @@ public class GameLoader {
     Map map;
     Avatar avatar;
     ActiveGameState activeGameState;
+
+    public GameLoader(Avatar player) {
+        initMap();
+        activeGameState = new ActiveGameState(map, player);
+    }
+
     public GameLoader(){
         initMap();
         avatar = Avatar.makeSmasher(new Location(5,5,0));
         activeGameState = new ActiveGameState(map,avatar);
     }
+
     public void initMap(){
         System.out.println("GameLoader: Loading Map and Avatar and ActiveGameState");
         //Maybe for future
