@@ -52,6 +52,14 @@ public class Inventory implements Observer, Subject{
         }
     } // end unequipArmor
 
+    public int getWeaponValue() {
+        return equipment.getWeaponValue();
+    } // end getWeaponValue
+
+    public int getArmorValue() {
+        return equipment.getArmorValue();
+    } // end getArmorValue
+
     @Override
     public void addObserver(Observer o) {
         observers.add(o);
