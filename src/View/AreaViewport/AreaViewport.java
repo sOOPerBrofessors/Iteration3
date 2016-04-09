@@ -4,9 +4,7 @@ import Model.Entity.Character.Avatar;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.State.GameState.GameState;
-import View.EntityView.AvatarView;
 import View.MapView.TileColumnView;
-import View.TerrainView.TileView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,7 +24,7 @@ public class AreaViewport extends JPanel {
     private TileColumnView[][] tileColumnView;
     private Map map;
 
-    //private AvatarView avatarView;
+    //private CharacterView avatarView;
     private CameraView cameraView;
     public AreaViewport(GameState gameState){
         //This needs to be initialized later on or grabbed from the inventory

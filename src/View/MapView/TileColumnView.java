@@ -1,14 +1,12 @@
 package View.MapView;
 
-import Model.Entity.Character.Avatar;
+import Model.Entity.Character.Character;
 import Model.Map.Location;
-import Model.Map.Tile.Tile;
 import Model.Map.TileColumn;
 import Utilities.Settings;
-import Utilities.Visitor.ColumnVisitable;
 import Utilities.Visitor.ColumnVisitor;
 import Utilities.Visitor.TileVisitor;
-import View.EntityView.AvatarView;
+import View.EntityView.CharacterView;
 import View.TerrainView.GrassTileView;
 import View.TerrainView.RiverTileView;
 import View.TerrainView.TileView;
@@ -16,9 +14,7 @@ import View.TerrainView.WaterTileView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Observable;
 
 /**
  * Created by dyeung on 4/8/16.
@@ -88,11 +84,6 @@ public class TileColumnView extends JComponent implements TileVisitor, ColumnVis
         return null;
     }
 
-    @Override
-    public AvatarView createAvatarView(Avatar avatar) {
-        return new AvatarView(avatar);
-    }
-
     public void addTileView (TileView tileView){
         if (listOfTiles.size() < 10) {
             listOfTiles.add(tileView);
@@ -107,6 +98,7 @@ public class TileColumnView extends JComponent implements TileVisitor, ColumnVis
             addMapObjectView(mapObjectView);
         }
     }
+
     private void updateCoordinateToScreenPosition(){
         xPixel = x*tileWidth - (x*(tileWidth))/4 + xOffset;
         yPixel = y*(tileHeight - 5) + ((tileHeight-7)*x)/2 + yOffset;
@@ -154,4 +146,8 @@ public class TileColumnView extends JComponent implements TileVisitor, ColumnVis
             yOffset = offset.getY();
     }
 
+    @Override
+    public CharacterView createCharacterView(Character character) {
+        return new CharacterView(character);
+    }
 }

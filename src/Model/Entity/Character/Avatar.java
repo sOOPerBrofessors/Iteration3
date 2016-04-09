@@ -58,7 +58,6 @@ public class Avatar extends Character {
 
     @Override
     public MapObjectView acceptMapVisitor(ColumnVisitor columnVisitor) {
-        return columnVisitor.createAvatarView(this);
+        return columnVisitor.createCharacterView(this);
     }
-
 }

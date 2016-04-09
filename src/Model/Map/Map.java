@@ -1,9 +1,6 @@
 package Model.Map;
 
 import Model.Map.Tile.Tile;
-import Model.Model;
-
-import java.util.ArrayList;
 
 /**
  * Created by sgl on 4/5/16.
