@@ -2,21 +2,19 @@ package View.AreaViewport;
 
 import Model.Entity.Character.Avatar;
 import Model.Map.Location;
-import Model.Map.MapObjects;
 import Model.Map.TileColumn;
-import Utilities.Visitor.ColumnVisitor;
-import Utilities.Visitor.TileVisitor;
 import Model.Map.Map;
 import View.EntityView.AvatarView;
 import View.MapView.TileColumnView;
 import View.TerrainView.*;
+import View.ViewUtilities.ImageAssets;
 
 /**
  * Created by dyeung on 4/7/16.
  */
 public class MapViewFactory {
     public MapViewFactory(){
-
+        ImageAssets.init(); //intializes all the image assest so I can call them statically later
     }
 
 

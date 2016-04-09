@@ -91,4 +91,9 @@ public abstract class Character extends Entity implements Observer {
     public void equipSummonerArmor(Armor armor) {
         o.equipSummonerArmor(armor, this);
     } // end equipSummonerArmor
+
+
+    public Occupation getOccupation(){
+        return o;
+    }
 } // end abstract class Character

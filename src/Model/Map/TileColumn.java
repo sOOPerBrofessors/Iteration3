@@ -20,7 +20,7 @@ public class TileColumn implements ColumnVisitable{
     private int topTile;
     private int topWater; //Maybe necessary?
 
-    ArrayList<MapObjects> objectList; //This needs to include items some how (might have to change this to like every single object)
+    ArrayList<MapObject> objectList; //This needs to include items some how (might have to change this to like every single object)
 
     public TileColumn(){
         topTile = 0;
@@ -29,8 +29,8 @@ public class TileColumn implements ColumnVisitable{
         objectList = new ArrayList<>();
     }
 
-    public void addMapObjects (MapObjects mapObjects) {
-        objectList.add(mapObjects);
+    public void addMapObjects (MapObject mapObject) {
+        objectList.add(mapObject);
     }
     public void addTiles(AirTile tile){
         if (tileList.size() < 10) {
@@ -65,7 +65,7 @@ public class TileColumn implements ColumnVisitable{
     public int getTopPosition(){
         return topTile;
     }
-    public ArrayList<MapObjects> getObjectList() {
+    public ArrayList<MapObject> getObjectList() {
         return objectList;
     }
 
@@ -73,13 +73,13 @@ public class TileColumn implements ColumnVisitable{
     public ArrayList<MapObjectView> acceptMapVisitor(ColumnVisitor columnVisitor) {
         //TODO: something like
         ArrayList<MapObjectView> objects = new ArrayList<>();
-        for (MapObjects mapObjects : objectList){
+        for (MapObject mapObjects : objectList){
             objects.add(mapObjects.acceptMapVisitor(columnVisitor));
         }
         return objects;
     }
 
-    public void removeMapObject(){
-        objectList.remove(0);
+    public void removeMapObject(MapObject mapObject){
+        objectList.remove(mapObject);
     }
 }

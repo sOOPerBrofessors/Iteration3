@@ -41,9 +41,9 @@ public class CameraView {
 
         xPixels = x*tileWidth - (x*(tileWidth))/4 + getCenterX();
         yPixels = y*(tileHeight - 5) + ((tileHeight-7)*x)/2 + getCenterY();
-
-        System.out.println("CameraView: Location " + x  + "," + y );
-        System.out.println("CameraView: pixels " + xPixels  + "," + yPixels );
+//
+//        System.out.println("CameraView: Location " + x  + "," + y );
+//        System.out.println("CameraView: pixels " + xPixels  + "," + yPixels );
 
     }
     private int getCenterX(){

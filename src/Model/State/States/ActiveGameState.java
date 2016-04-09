@@ -3,6 +3,7 @@ package Model.State.States;
 import Controller.Controllers.GamePlayController;
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
+import Model.Map.Orientation;
 import Model.Map.Tile.Tile;
 import Model.State.GameState;
 
@@ -21,27 +22,27 @@ public class ActiveGameState extends GameState {
     // player commands from controller
     public void movePlayerN(){
         //System.out.println("ActiveGameState: move player N");
-        avatar.moveNorth(map);
+        avatar.move(map, Orientation.NORTH);
     }
 
     public void movePlayerNE(){
-        avatar.moveNorthEast(map);
+        avatar.move(map, Orientation.NORTHEAST);
     }
 
     public void movePlayerSE(){
-        avatar.moveSouthEast(map);
+        avatar.move(map, Orientation.SOUTHEAST);
     }
 
     public void movePlayerS(){
-        avatar.moveSouth(map);
+        avatar.move(map, Orientation.SOUTH);
     }
 
     public void movePlayerSW(){
-        avatar.moveSouthWest(map);
+        avatar.move(map, Orientation.SOUTHWEST);
     }
 
     public void movePlayerNW(){
-        avatar.moveNorthWest(map);
+        avatar.move(map, Orientation.NORTHWEST);
     }
 
     public void playerAttack(){}

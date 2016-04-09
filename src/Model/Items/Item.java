@@ -1,6 +1,6 @@
 package Model.Items;
 
-import Model.Map.MapObjects;
+import Model.Map.MapObject;
 import Model.Model;
 import Utilities.Visitor.ColumnVisitor;
 import View.MapView.MapObjectView;
@@ -13,7 +13,7 @@ import View.MapView.MapObjectView;
  */
 //Why is this extending model???
 //public abstract class Item extends Model {
-public abstract class Item implements MapObjects {
+public abstract class Item implements MapObject {
 
     @Override
     public MapObjectView acceptMapVisitor(ColumnVisitor columnVisitor) {

@@ -39,11 +39,7 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
         updateLocation();
     }
 
-    public void updateOrientation(){
-        orientation = entity.getOrientation();
-    }
     private void updateLocation(){
-        updateOrientation();
         x = location.getX();
         y = location.getY();
         System.out.println("EntityView: " + x + "," + y + " : " + xPixel + "," + yPixel);

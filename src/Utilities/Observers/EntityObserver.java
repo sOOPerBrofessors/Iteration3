@@ -16,6 +16,6 @@ public interface EntityObserver {
 //    void updateMoveSE();
     void updateMove();
 
-    void updateOrientation();
+    void updateOrientationImage();
 
 }

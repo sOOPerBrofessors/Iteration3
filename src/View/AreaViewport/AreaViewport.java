@@ -54,7 +54,7 @@ public class AreaViewport extends JPanel {
     }
     private void offsetTiles(){
         Location offset = cameraView.computeOffset();
-        System.out.println("AreaViewPort: Offset:" + offset.getX() + "," + offset.getY() + "," + offset.getZ());
+        //System.out.println("AreaViewPort: Offset:" + offset.getX() + "," + offset.getY() + "," + offset.getZ());
         for (int i = 0; i < tileColumnView.length; i++) {
             for (int j = 0; j < tileColumnView[0].length; j++){
                 tileColumnView[i][j].offsetCamera(offset);

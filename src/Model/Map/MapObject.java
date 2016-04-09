@@ -8,6 +8,6 @@ import View.MapView.MapObjectView;
  */
 //These are all items that can exist within the top part of the map within tileColumn
     //Might actually be an interface since right now it literally does nothing but tie in Items and Entities together
-public interface MapObjects {
+public interface MapObject {
     MapObjectView acceptMapVisitor(ColumnVisitor columnVisitor);
 }
