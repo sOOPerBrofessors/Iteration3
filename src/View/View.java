@@ -67,6 +67,11 @@ public class View implements Runnable, Observer{
 
     }
 
+    public void setKeyListener(ControllerManager controller){
+        mainFrame.addKeyListener(controller);
+        mainFrame.setFocusable(true);
+    }
+
     public ViewManager getViewManager() {
         return viewManager;
     }

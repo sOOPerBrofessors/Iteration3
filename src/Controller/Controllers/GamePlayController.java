@@ -8,6 +8,7 @@ import Utilities.Settings;
 import View.ViewUtilities.Panels.GamePanel;
 
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
 
 /**
  * Created by Wimberley on 4/6/16.
@@ -22,7 +23,10 @@ public class GamePlayController extends Controller{
     }
     @Override
     public void keyPress(KeyEvent key){
-        commands.get(key).execute();
+        //System.out.println("GamePlayController: Key is being pressed in gameplay controller: " + key.getKeyCode());
+        if(commands.containsKey(key.getKeyCode())) {
+            commands.get(key.getKeyCode()).execute();
+        }
     }
 
     private void initCommands(){

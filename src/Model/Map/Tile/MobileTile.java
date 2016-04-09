@@ -8,6 +8,7 @@ import Model.Entity.Entity;
 
 //MobileTile can hold a single entity
 public abstract class MobileTile extends Tile{
+
     protected Entity entity;
 
     public MobileTile(){
@@ -16,12 +17,13 @@ public abstract class MobileTile extends Tile{
 
     //All MobileTiles will be able to be affected and traversed by projectiles
     @Override
-    public void moveProjectile(Entity entity){
+    public boolean moveProjectile(Entity entity){
         //if Tile isn't null apply projectile effect on entity currently occupying the Tile
         if (this.entity != null){
             //entity.applyEffect(super.entity);
         }
         else this.entity = entity;
+        return true;
     }
 
 }

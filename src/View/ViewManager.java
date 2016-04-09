@@ -1,8 +1,9 @@
 package View;
 
 import Controller.ControllerManager;
-import Utilities.Observable;
+import Utilities.Subject;
 import Utilities.Observer;
+import View.ViewUtilities.Panels.CharacterCreationPanel;
 import View.ViewUtilities.Panels.GamePanel;
 import View.ViewUtilities.Panels.IntroPanel;
 
@@ -12,7 +13,7 @@ import java.awt.Graphics;
 /**
  * Created by Wimberley on 3/23/16.
  */
-public class ViewManager implements Observable{
+public class ViewManager implements Subject {
 
     // controller manager used to issue commands to change current controller
     private ControllerManager controllerManager;
@@ -26,18 +27,43 @@ public class ViewManager implements Observable{
     // all views that need to be swapped between
     private JPanel introPanel;
     private GamePanel gamePanel;
+    private JPanel createPanel;
 
     private Graphics g;
 
     public ViewManager(){
         // set intro screen panel
-        introPanel = new IntroPanel(this).getIntroPanel();
+        introPanel = new IntroPanel(this).introPanel();
+        createPanel = new CharacterCreationPanel(this).createPanel();
         gamePanel = new GamePanel(this);
         activePanel = introPanel;
     }
 
     public void displayIntro(){
         activePanel = introPanel;
+        alert(); // notifies view of the updated panel
+    }
+
+    public void displayCreate(){
+        activePanel = createPanel;
+        alert(); // notifies view of the updated panel
+    }
+
+    public void createSmasher(){
+        activePanel = gamePanel;
+        controllerManager.switchGamePlay();
+        alert(); // notifies view of the updated panel
+    }
+
+    public void createSneak(){
+        activePanel = gamePanel;
+        controllerManager.switchGamePlay();
+        alert(); // notifies view of the updated panel
+    }
+
+    public void createSummoner(){
+        activePanel = gamePanel;
+        controllerManager.switchGamePlay();
         alert(); // notifies view of the updated panel
     }
 
@@ -88,5 +114,6 @@ public class ViewManager implements Observable{
 
     public void setControllerManager(ControllerManager controllerManager) {
         this.controllerManager = controllerManager;
+        gamePanel.addKeyListener(controllerManager);
     }
 }

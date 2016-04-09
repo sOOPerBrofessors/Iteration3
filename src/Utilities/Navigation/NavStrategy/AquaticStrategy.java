@@ -8,7 +8,7 @@ import Model.Map.Tile.Tile;
  */
 public class AquaticStrategy implements NavStrategy {
     @Override
-    public void move(Tile targetTile, Entity entity) {
-        //targetTile.moveAquatic(entity);
+    public boolean move(Tile targetTile, Entity entity) {
+        return targetTile.moveAquatic(entity);
     }
 }

@@ -1,25 +1,30 @@
 package Model.Entity.Character;
 
 import Model.Entity.Character.Occupation.Occupation;
-import Model.Entity.Character.Occupation.OccupationStrategy.OccupationStrategy;
 import Model.Entity.Entity;
+import Model.Inventory.Inventory;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
+import Model.Map.Location;
 import Model.Stats.CharacterStats;
+import Utilities.Navigation.Navigation;
+import Utilities.Observer;
 
 /**
  * Created by broskj on 4/6/16.
  *
  * Abstract class to act as the superclass to the player (Avatar) and NPCs.
  */
-public abstract class Character extends Entity{
+public abstract class Character extends Entity implements Observer {
     private Occupation o;
-    private OccupationStrategy s;
-    private CharacterStats stats;
+    protected CharacterStats stats;
+    protected Inventory inventory;
 
-    protected Character(Occupation o, OccupationStrategy s) {
+    protected Character(Occupation o, Location location) {
+        super(Navigation.makeCharNav(), location);
         this.o = o;
-        this.s = s;
+        this.stats = o.initStats();
+        this.inventory = new Inventory();
     } // end private constructor
 
     /*
@@ -61,29 +66,29 @@ public abstract class Character extends Entity{
     handle equipping items
      */
     public void equipWeapon(Weapon weapon) {
-        // pack.equipWeapon(weapon);
+        inventory.equipWeapon(weapon);
     } // end equipArmor
 
     public void equipArmor(Armor armor) {
-        // pack.equipArmor(armor);
+        inventory.equipArmor(armor);
     } // end equipArmor
 
     public void equipSmasherWeapon(Weapon weapon) {
-        s.equipSmasherWeapon();
+        o.equipSmasherWeapon(weapon, this);
     } // end equipSmasherWeapon
     public void equipSmasherArmor(Armor armor) {
-        s.equipSmasherArmor();
+        o.equipSmasherArmor(armor, this);
     } // end equipSmasherArmor
     public void equipSneakWeapon(Weapon weapon) {
-        s.equipSneakWeapon();
+        o.equipSneakWeapon(weapon, this);
     } // end equipSneakWeapon
     public void equipSneakArmor(Armor armor) {
-        s.equipSneakArmor();
+        o.equipSneakArmor(armor, this);
     } // end equipSneakArmor
     public void equipSummonerWeapon(Weapon weapon) {
-        s.equipSummonerWeapon();
+        o.equipSummonerWeapon(weapon, this);
     } // end equipSummonerWeapon
     public void equipSummonerArmor(Armor armor) {
-        s.equipSummonerArmor();
+        o.equipSummonerArmor(armor, this);
     } // end equipSummonerArmor
 } // end abstract class Character

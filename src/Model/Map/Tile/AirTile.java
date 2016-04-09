@@ -1,5 +1,8 @@
 package Model.Map.Tile;
 
+import Model.Map.Location;
+import Utilities.Visitor.TileVisitor;
+import View.TerrainView.TileView;
 import Model.Entity.Entity;
 
 /**
@@ -13,8 +16,12 @@ public class AirTile extends MobileTile {
     }
 
     @Override
-    public void moveAvian(Entity entity) {
+    public TileView acceptTileVisitor(TileVisitor tv, Location location) {
+        return tv.createAirTile(location);
+    }
+    public boolean moveAvian(Entity entity) {
         super.entity = entity;
+        return true;
     }
 
 

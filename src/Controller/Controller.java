@@ -10,15 +10,14 @@ import java.awt.event.KeyEvent;
  */
 public abstract class Controller {
 
-    // common attributes to all controllers
+    // common attributes and operations to all controllers
     protected HashMap<Integer, Command> commands;
     protected ControllerManager controllerManager;
 
     public Controller(ControllerManager controllerManager){
         this.controllerManager = controllerManager;
+        commands = new HashMap<>();
     }
 
     public abstract void keyPress(KeyEvent e);
-
-
 }

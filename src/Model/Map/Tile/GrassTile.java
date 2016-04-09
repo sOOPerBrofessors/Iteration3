@@ -1,5 +1,8 @@
 package Model.Map.Tile;
 
+import Model.Map.Location;
+import Utilities.Visitor.TileVisitor;
+import View.TerrainView.TileView;
 import Model.Entity.Entity;
 
 /**
@@ -15,8 +18,14 @@ public class GrassTile extends MobileTile {
     }
 
     @Override
-    public void moveChar(Entity entity){
+    public TileView acceptTileVisitor(TileVisitor tv, Location location) {
+        return tv.createGrassTile(location);
+    }
+
+    public boolean moveChar(Entity entity){
         super.entity = entity;
+        // entity.setLocation();
+        return true;
     }
 
 
