@@ -26,11 +26,10 @@ public class Main {
 
         // creates all components that need to know of each other
         Model gameLoop = new Model();
-        View view = new View();
+        View view = new View(gameLoop);
 
         initialize(gameLoop, view);
 
-        gameLoop.start();
         view.start();
     }
 
