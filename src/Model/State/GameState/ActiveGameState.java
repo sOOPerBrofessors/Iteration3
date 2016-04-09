@@ -6,8 +6,6 @@ import Model.Entity.Character.Avatar;
 import Model.Map.Map;
 
 import Model.Map.Orientation;
-import Model.Map.Tile.Tile;
-import Model.State.GameState.GameState;
 /**
  * Created by Wimberley on 4/6/16.
  */

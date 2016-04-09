@@ -16,6 +16,7 @@ public class AvatarView extends EntityView {
     private Image avatarImage;
     private OccupationViewFactory occupationViewFactory;
     private Avatar avatar;
+
     public AvatarView(Avatar avatar){
         super(avatar);
         this.avatar = avatar;

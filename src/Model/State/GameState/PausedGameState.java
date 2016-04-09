@@ -5,8 +5,11 @@ package Model.State.GameState;
  */
 public class PausedGameState extends GameState {
 
+    public PausedGameState(){
 
-    //Pause State doesn't actually tick anything
+    }
+
+    // ticks shopkeeper
     @Override
     public void tick() {
 
