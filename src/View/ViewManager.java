@@ -125,6 +125,7 @@ public class ViewManager implements Subject {
         stateManager.setActiveGameState(gameLoader.getActiveGameState());
         gamePanel.init(gameLoader.getActiveGameState());
         controllerManager.switchGamePlay();
+        View.startGameLoop();
         alert(); // notifies view of the updated panel
     }
 }
