@@ -17,7 +17,7 @@ import java.io.IOException;
 /**
  * Created by aseber on 4/7/16.
  */
-public class LoadFactions implements LoadVisitor {
+public class LoadFactionsVisitor implements LoadVisitor {
 
     public void visit(LoadDocument document) {
 
