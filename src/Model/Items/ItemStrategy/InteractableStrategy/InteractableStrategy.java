@@ -3,6 +3,7 @@ package Model.Items.ItemStrategy.InteractableStrategy;
 import Model.Entity.Character.Character;
 import Model.Items.Item;
 import Model.Items.ItemStrategy.ItemStrategy;
+import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
 
 /**
@@ -11,6 +12,6 @@ import Utilities.MessageHandler;
 public class InteractableStrategy implements ItemStrategy {
     @Override
     public void onInteract(Item item, Character character) {
-        MessageHandler.printError("You can't interact with this item.");
+        MessageHandler.println("You can't interact with this item.", ErrorLevel.ERROR);
     } // end onInteract
 } // end class InteractableStrategy

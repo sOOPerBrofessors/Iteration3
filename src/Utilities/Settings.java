@@ -7,11 +7,19 @@ import java.awt.event.KeyEvent;
  */
 public class Settings {
 
+    public static final int LEVEL_NOTICE = 1; // Trivial things to print out, e.g. just letting us know something was loaded
+    public static final int LEVEL_WARNING = 2; // A possible small error
+    public static final int LEVEL_ERROR = 4; // A large game error, however not game breaking
+    public static final int LEVEL_CRITICAL = 8; // A critical error that usually results in a crash
+    private static final int LEVEL_NONE = 16; // Not recommended to use unless you want no messages to show up
+
     public static String TITLE = "sOOPer Brogrammers!";
 
     public static int GAMEWIDTH = 800;
     public static int GAMEHEIGHT = 600;
-    public static boolean debug = false;
+    public static boolean debug = true;
+    public static ErrorLevel errorLevel = ErrorLevel.ERROR;
+    public static PersonFilter personFilter = PersonFilter.ALL;
 
     // Key Presses
 
