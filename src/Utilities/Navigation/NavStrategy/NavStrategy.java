@@ -11,5 +11,5 @@ import Model.Map.Tile.Tile;
  *  call, which handle tile movement different for certain entity types.
  */
 public interface NavStrategy {
-    public void move(Tile targetTile, Entity entity);
+    public boolean move(Tile targetTile, Entity entity);
 } // end interface NavStrategy
