@@ -18,7 +18,7 @@ public class Brain implements Tickable {
     private MotorCortex motorCortex;
     private Memory memory;
 
-    public Brain(Entity entity, Personality personality) {
+    public Brain(Entity entity, Personality personality) { //What if it took in an NPC which has a personality?
 
         memory = new Memory(entity, personality);
         visualCortex = new VisualCortex(memory);

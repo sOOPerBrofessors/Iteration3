@@ -8,21 +8,12 @@ import LoadSave.LoadFactionsVisitor;
 import LoadSave.LoadPersonalitiesVisitor;
 import Model.Model;
 import Model.State.StateManager;
-import Model.State.States.ActiveGameState;
+import Model.State.GameState.ActiveGameState;
 import View.View;
 import View.ViewUtilities.Panels.GamePanel;
 import View.ViewManager;
 
-import View.ViewManager;
-
-import Model.State.GameState;
 import Utilities.GameLoader;
-
-import Controller.ControllerManager;
-import View.ViewUtilities.MainPanel;
-
-import java.awt.*;
-
 
 
 /**
