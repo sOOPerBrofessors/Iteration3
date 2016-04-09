@@ -16,10 +16,11 @@ public abstract class GameState extends State {
     protected Map map;
     protected Avatar avatar;
 
-    public GameState(Map map, Avatar avatar){
+    public GameState(Map map, Avatar avatar, ArrayList<Entity> entities){
         //This will be done in the gameLoader
         this.map = map;
         this.avatar = avatar;
+        this.entities = entities;
     }
 
     //TEMP
