@@ -73,7 +73,7 @@ public abstract class Entity implements EntityObservable, MapObject {
         //Might be better to have a removeAvatar() function within tilecolumn
         //map.getTile(location.getX(), location.getY()).removeAvatar();
         if (this.orientation.equals(orientation)) {
-            map.getMapOfTiles()[location.getX()][location.getY()].removeMapObject(this);
+            map.getMapOfTiles()[location.getX()][location.getY()].removeMapObject(this); //LoD
 
             //Updates the new location
             int newX = location.getX() + orientation.x;

@@ -15,6 +15,11 @@ public abstract class MobileTile extends Tile{
         entity = null;
     }
 
+    //deregisters entity from Tile
+    public void removeEntity(){
+        entity = null;
+    }
+
     //All MobileTiles will be able to be affected and traversed by projectiles
     @Override
     public boolean moveProjectile(Entity entity){

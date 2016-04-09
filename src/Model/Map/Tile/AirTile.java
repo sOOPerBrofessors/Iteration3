@@ -19,7 +19,9 @@ public class AirTile extends MobileTile {
     public TileView acceptTileVisitor(TileVisitor tv) {
         return tv.createAirTile();
     }
+
     public boolean moveAvian(Entity entity) {
+        //if (super.entity!= null) return false;
         super.entity = entity;
         return true;
     }
