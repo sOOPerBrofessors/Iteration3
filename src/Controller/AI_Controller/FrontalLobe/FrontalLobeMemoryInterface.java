@@ -3,7 +3,7 @@ package Controller.AI_Controller.FrontalLobe;
 import Controller.AI_Controller.Decision.Decision;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
 import Model.Entity.Entity;
-import Utilities.RelationshipList;
+import Utilities.AIStuff.RelationshipList;
 
 /**
  * Created by aseber on 4/6/16.

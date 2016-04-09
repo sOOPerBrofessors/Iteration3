@@ -1,7 +1,7 @@
 package Utilities.Visitor;
 
-import Model.Entity.Character.Avatar;
-import View.EntityView.AvatarView;
+import Model.Entity.Character.Character;
+import View.EntityView.CharacterView;
 
 /**
  * Created by dyeung on 4/9/16.
@@ -15,5 +15,5 @@ public interface ColumnVisitor {
 
     //We actually can't do avatar since it requires an avatar to be passed in. Also doesn't make sense since there is only
     // one avatar
-    AvatarView createAvatarView(Avatar avatar);
+    public CharacterView createCharacterView(Character character);
 }

@@ -2,8 +2,7 @@ package View.ViewUtilities.Panels;
 
 import View.ViewManager;
 
-import javax.swing.JPanel;
-import javax.swing.JButton;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,9 +26,12 @@ public class IntroPanel extends JPanel {
         JPanel title = new JPanel(new GridBagLayout());
 
         // create buttons on intro screen
-        JButton newGame = new JButton("New Game");
-        JButton loadGame = new JButton("Load Game");
-        JButton exitGame = new JButton("Exit Game");
+        JButton newGame = new JButton(new ImageIcon("./res/Buttons/NewGame.png"));
+        newGame.setPreferredSize(new Dimension(200, 50));
+        JButton loadGame = new JButton(new ImageIcon("./res/Buttons/LoadGame.png"));
+        loadGame.setPreferredSize(new Dimension(200, 50));
+        JButton exitGame = new JButton(new ImageIcon("./res/Buttons/ExitGame.png"));
+        exitGame.setPreferredSize(new Dimension(200, 50));
 
         // switch to character creation state when new game button is pressed
         newGame.addActionListener(new ActionListener() {

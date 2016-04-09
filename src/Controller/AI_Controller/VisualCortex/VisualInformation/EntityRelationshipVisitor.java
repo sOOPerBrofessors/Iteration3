@@ -1,8 +1,8 @@
 package Controller.AI_Controller.VisualCortex.VisualInformation;
 
 import Model.Entity.Entity;
-import Utilities.Relationship;
-import Utilities.RelationshipList;
+import Utilities.AIStuff.Relationship;
+import Utilities.AIStuff.RelationshipList;
 import Visitors.VisualInformationVisitor;
 
 /**
