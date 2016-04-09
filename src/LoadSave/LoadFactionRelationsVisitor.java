@@ -2,7 +2,7 @@ package LoadSave;
 
 import Model.Faction.Faction;
 import Model.Faction.FactionFactory;
-import Utilities.Relationship;
+import Utilities.AIStuff.Relationship;
 import Visitors.LoadVisitor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

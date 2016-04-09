@@ -24,6 +24,8 @@ public class GameLoader {
     Avatar avatar;
     ActiveGameState activeGameState;
 
+
+
     //Needs a constructor in order to create what type of occupation it is
     public GameLoader(Avatar player) {
         initMap(player);
