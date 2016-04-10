@@ -26,8 +26,8 @@ public class NPCFactory {
         return gandorf;
     }
 
-    public static ArrayList<Entity> init(){
-        ArrayList<Entity> entities = new ArrayList<>();
+    public static ArrayList<NPC> init(){
+        ArrayList<NPC> entities = new ArrayList<>();
 
         entities.add(makeGanondorf());
 

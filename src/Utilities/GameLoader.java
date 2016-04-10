@@ -1,13 +1,11 @@
 package Utilities;
 
+import Controller.AI_Controller.AI_Controller;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.NPC.NPC;
-import Model.Entity.Entity;
-import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Tile.AirTile;
 import Model.Map.Tile.GrassTile;
-import Model.Map.Tile.Tile;
 import Model.Map.Tile.WaterTile;
 import Model.Map.TileColumn;
 import Model.State.GameState.ActiveGameState;
@@ -28,7 +26,7 @@ public class GameLoader {
     Map map;
     Avatar avatar;
     ActiveGameState activeGameState;
-    ArrayList<Entity> entities;
+    ArrayList<NPC> entities;
 
 
 
@@ -68,11 +66,14 @@ public class GameLoader {
         }
         //Initial location of the avatar
         entities = NPCFactory.init();
+        AI_Controller controller = new AI_Controller();
         for(int i = 0; i < entities.size(); i++){
+            entities.get(i).setController(controller);
             tmpList[entities.get(i).getLocation().getX()][entities.get(i).getLocation().getY()].addMapObjects(entities.get(i));
         }
         tmpList[avatar.getLocation().getX()][avatar.getLocation().getY()].addMapObjects(avatar);
         map = new Map(tmpList);
+        controller.setMap(map);
     }
 
     public Map getMap(){
