@@ -2,6 +2,7 @@ package View.EntityView;
 
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
+import Utilities.Visitor.OccupationViewVisitor;
 import View.EntityView.AvatarViewFactory.OccupationViewFactory;
 import View.ViewUtilities.ImageAssets;
 
@@ -10,7 +11,7 @@ import java.awt.*;
 /**
  * Created by dyeung on 4/6/16.
  */
-public class CharacterView extends EntityView {
+public class CharacterView extends EntityView implements OccupationViewVisitor {
 
     //private String url = "./res/Entity/newSneak.png";
     //Width height scale formula is Height/Width * new width = new height
@@ -21,8 +22,7 @@ public class CharacterView extends EntityView {
     public CharacterView(Character character){
         super(character);
         this.character = character;
-        avatarImage = ImageAssets.sneakS;
-        //occupationViewFactory = new OccupationViewFactory();
+        character.getOccupation().acceptOccupationViewVistor(this); //This will create the avatarImage necessary
     }
 
     private void renderOrientation(){
@@ -44,4 +44,19 @@ public class CharacterView extends EntityView {
         //avatarViewFactory.getView(this, avatar.getOccupation());
     }
 
+    @Override
+    public void createSmasherView() {
+        avatarImage = ImageAssets.smasherS;
+    }
+
+    //TODO: CHANGE TO SUMMONER (CREATE A SUMMONERVIEW)
+    @Override
+    public void createSummonerView() {
+        avatarImage = ImageAssets.smasherN;
+    }
+
+    @Override
+    public void createSneakView() {
+        avatarImage = ImageAssets.sneakS;
+    }
 }
