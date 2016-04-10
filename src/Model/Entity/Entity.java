@@ -69,7 +69,7 @@ public abstract class Entity implements EntityObservable, MapObject, Tickable, E
                 int difference = nextZ - location.getZ();
                 if (difference <= 1) { //Allows fall to happen, probably need some check to account if <0
                     if (navigation.move(getNextTile(map, orientation), this)) {
-                        updateLocation(map, orientation, location.getZ() + difference);
+                        updateLocation(map, orientation, difference);
                     }
                 }
             }
@@ -90,7 +90,7 @@ public abstract class Entity implements EntityObservable, MapObject, Tickable, E
     }
     private void updateLocation(Map map, Orientation orientation, int z){
         //Freaking long ass thing to remove an entity
-        Tile tile = map.getTileAt(location.getX(), location.getY(), z);
+        Tile tile = map.getTileAt(location.getX(), location.getY(), location.getZ());
         tile.notifyAndRemoveEntity();
         int newX = location.getX() + orientation.x;
         int newY = location.getY() + orientation.y;
