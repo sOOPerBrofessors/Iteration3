@@ -8,6 +8,7 @@ import Model.Map.Tile.Tile;
  * Created by sgl on 4/5/16.
  */
 public class Map {
+
     private int maxRow;
     private int maxColumn;
     public Map(TileColumn[][] tiles){

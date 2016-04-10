@@ -1,6 +1,7 @@
 package Model.State.GameState;
 
 import Model.Entity.Character.Avatar;
+import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Entity;
 
 import java.util.ArrayList;
@@ -12,11 +13,11 @@ import Model.State.State;
  */
 public abstract class GameState extends State {
 
-    protected ArrayList<Entity> entities;
+    protected ArrayList<NPC> entities;
     protected Map map;
     protected Avatar avatar;
 
-    public GameState(Map map, Avatar avatar, ArrayList<Entity> entities){
+    public GameState(Map map, Avatar avatar, ArrayList<NPC> entities){
         //This will be done in the gameLoader
         this.map = map;
         this.avatar = avatar;
