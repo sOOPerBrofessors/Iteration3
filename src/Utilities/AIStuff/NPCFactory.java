@@ -3,6 +3,7 @@ package Utilities.AIStuff;
 import Controller.AI_Controller.Brain;
 import Controller.AI_Controller.Personality.Personality;
 import Controller.AI_Controller.Personality.PersonalityFactory;
+import Model.Entity.Character.Character;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Character.Occupation.Smasher;
 import Model.Entity.Entity;
