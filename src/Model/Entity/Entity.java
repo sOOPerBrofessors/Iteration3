@@ -69,7 +69,7 @@ public abstract class Entity implements EntityObservable, MapObject, Tickable, E
                 int difference = nextZ - location.getZ();
                 if (difference <= 1) { //Allows fall to happen, probably need some check to account if <0
                     if (navigation.move(getNextTile(map, orientation), this)) {
-                        updateLocation(map, orientation, difference);
+                        updateLocation(map, orientation, location.getZ() + difference);
                     }
                 }
             }
