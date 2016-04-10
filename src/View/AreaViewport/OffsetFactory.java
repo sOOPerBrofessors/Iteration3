@@ -3,16 +3,13 @@ package View.AreaViewport;
 import Model.Entity.Entity;
 import Model.Map.Location;
 import Utilities.Settings;
-import javafx.util.Pair;
-
-import java.util.Set;
 
 /**
  * Created by dyeung on 4/10/16.
  */
 
 //Purpose of this class is for creating a generic offset to center the entities on the tile and place tiles next to each other
-public class OffsetFactory {
+public class OffsetFactory {/*
     public static int tileWidth = Settings.TILEWIDTH;
     public static int tileHeight = Settings.TILEHEIGHT;
 
@@ -29,5 +26,5 @@ public class OffsetFactory {
         int yPixel = y*(tileHeight - 5) + ((tileHeight-7)*x)/2;
 
         return new Pair<>(xPixel,yPixel);
-    }
+    }*/
 }
