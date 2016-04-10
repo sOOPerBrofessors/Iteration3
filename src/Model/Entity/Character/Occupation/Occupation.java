@@ -6,13 +6,14 @@ import Model.Items.Takeable.Equippable.Weapon;
 import Model.Stats.CharacterStats;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
+import Utilities.Visitor.OccupationVisitable;
 
 /**
  * Created by broskj on 4/6/16.
  *
  * Class designed to allow a Character access to certain skills, abilities, and items.
  */
-public abstract class Occupation {
+public abstract class Occupation implements OccupationVisitable {
 
     public abstract CharacterStats initStats();
 

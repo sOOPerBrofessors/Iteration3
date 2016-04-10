@@ -5,8 +5,8 @@ import Model.Entity.Character.Occupation.Smasher;
 import Model.Entity.Character.Occupation.Sneak;
 import Model.Entity.Character.Occupation.Summoner;
 import Model.Map.Location;
-import Utilities.Visitor.ColumnVisitor;
-import View.MapView.MapObjectView;
+import Utilities.Visitor.EntityViewVisitor;
+import View.EntityView.CharacterView;
 
 
 /**
@@ -48,17 +48,19 @@ public class Avatar extends Character {
 
     @Override
     public void update() {
-
-    }
+        stats.setEquippedArmor(inventory.getArmorValue());
+        stats.setEquippedWeapon(inventory.getWeaponValue());
+        stats.recompute();
+    } // end update
 
     @Override
     public void remove() {
-
-    }
+        inventory.removeObserver(this);
+    } // end remove
 
     @Override
-    public MapObjectView acceptMapVisitor(ColumnVisitor columnVisitor) {
-        return columnVisitor.createCharacterView(this);
+    public void acceptEntityVisitor(EntityViewVisitor entityViewVisitor) {
+        entityViewVisitor.createAvatarView(this);
     }
 
     @Override

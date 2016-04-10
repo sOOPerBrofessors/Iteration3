@@ -26,9 +26,12 @@ public class CharacterCreationPanel extends JPanel {
         JPanel create = new JPanel(new GridBagLayout());
 
         // create buttons on intro screen
-        JButton smasher = new JButton("Smasher");
-        JButton sneak = new JButton("Sneak");
-        JButton summoner = new JButton("Summoner");
+        JButton smasher = new JButton(new ImageIcon("./res/Buttons/SmasherButton.png"));
+        smasher.setPreferredSize(new Dimension(200, 50));
+        JButton sneak = new JButton(new ImageIcon("./res/Buttons/SneakButton.png"));
+        sneak.setPreferredSize(new Dimension(200, 50));
+        JButton summoner = new JButton(new ImageIcon("./res/Buttons/SummonerButton.png"));
+        summoner.setPreferredSize(new Dimension(200, 50));
 
         // switch to character creation state when new game button is pressed
         smasher.addActionListener(new ActionListener() {

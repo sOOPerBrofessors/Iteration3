@@ -32,46 +32,59 @@ public class GameLoader {
 
     //Needs a constructor in order to create what type of occupation it is
     public GameLoader(Avatar player) {
-        initMap(player);
+        avatar = player;
+        initMap(avatar);
+        initEntities();
         activeGameState = new ActiveGameState(map, player, entities);
+
     }
 
     //Map has to contain an avatar (might be unnecessary in the constructor though)
     public void initMap(Avatar avatar){
         MessageHandler.println("GameLoader: Loading Map and Avatar and ActiveGameState", ErrorLevel.NOTICE);
 
-        TileColumn[][] tmpList = new TileColumn[15][15];
+        TileColumn[][] tmpList = new TileColumn[maxTileRow][maxTileCol];
         for (int i = 0; i < maxTileRow; i++){
             for (int j = 0; j < maxTileCol; j++){
                 tmpList[i][j] = new TileColumn();
                 for (int k = 0; k < 10; k++){
-
                     TileColumn tC = tmpList[i][j];
-
                     if (k < 1) {
-                        if (i == 2 && (j>2 && j < 5)){
+                        if ((i == 2 || i == 1)&& (j>2 && j < 6)){
                             WaterTile tile = new WaterTile();
-                            tC.addTiles(tile);
+                            tC.createWaterTile(tile);
                         }else{
-                            GrassTile tile = new GrassTile();
-                            tC.addTiles(tile);
-
+                            tC.createGrassTile(new GrassTile());
                         }
                     }else {
-                        AirTile tile = new AirTile();
-                        tC.addTiles(tile);
+                        if (j == 8 && (i >= 2 && i <= 9) && k < (i)) {
+                            tC.createGrassTile(new GrassTile());
+                        }else {
+                            tC.createAirTile(new AirTile());
+                        }
                     }
                 }
             }
         }
+        map = new Map(tmpList);
+    }
+    public void initItems(){
+
+    }
+    public void initEntities(){
+        //Temporary
+        //map.addEntity(avatar);
+        map.addCharacter(avatar); //(This doesn't have to worry about 3d things)
         //Initial location of the avatar
+        TileColumn[][] tmpList = map.getMapOfTiles();
+
         entities = NPCFactory.init();
         AI_Controller controller = new AI_Controller();
         for(int i = 0; i < entities.size(); i++){
             entities.get(i).setController(controller);
-            tmpList[entities.get(i).getLocation().getX()][entities.get(i).getLocation().getY()].addMapObjects(entities.get(i));
+            tmpList[entities.get(i).getLocation().getX()][entities.get(i).getLocation().getY()].addEntity(entities.get(i));
         }
-        tmpList[avatar.getLocation().getX()][avatar.getLocation().getY()].addMapObjects(avatar);
+        tmpList[avatar.getLocation().getX()][avatar.getLocation().getY()].addCharacter(avatar);
         map = new Map(tmpList);
         controller.setMap(map);
     }

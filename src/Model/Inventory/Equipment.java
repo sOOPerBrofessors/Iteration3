@@ -39,6 +39,20 @@ public class Equipment implements Subject{
         return currentArmor;
     } // end equipArmor
 
+    public Weapon unequipWeapon() {
+        Weapon currentWeapon = this.weapon;
+        this.weapon = null;
+        alert();
+        return currentWeapon;
+    } // end unequipWeapon
+
+    public Armor unequipArmor() {
+        Armor currentArmor = this.armor;
+        this.armor = null;
+        alert();
+        return currentArmor;
+    } // end unequipArmor
+
     public int getArmorValue() { return armor.getArmorValue(); }
     public int getWeaponValue() { return weapon.getWeaponValue(); }
 

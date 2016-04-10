@@ -38,7 +38,7 @@ public class MotorCortex implements Tickable {
 
             npc.getController().move(npc, orientations.pick());
 
-            randomMovement = (int) Math.round(Math.random() * 60);
+            randomMovement = (int) Math.round(Math.random() * 20);
 
         }
 
