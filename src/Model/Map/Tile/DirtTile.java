@@ -1,8 +1,10 @@
 package Model.Map.Tile;
 
-import Model.Map.Location;
+import Model.Entity.Entity;
+import Utilities.ErrorLevel;
+import Utilities.MessageHandler;
+import Utilities.PersonFilter;
 import Utilities.Visitor.TileVisitor;
-import View.TerrainView.TileView;
 
 
 /**
@@ -16,10 +18,28 @@ public class DirtTile extends Tile {
     }
 
     @Override
-    public TileView acceptTileVisitor(TileVisitor tv) {
-        //tv.createAirTile(location)
-        //TODO: CHANGE THIS TO GROUND TILE
-        return tv.createGrassTile();
+    public void acceptTileVisitor(TileVisitor tv) {
+        tv.createDirtTile(this);
     }
 
+    @Override
+    public Entity getEntity() {
+        //System.out.println("DirtTile: Error: you are trying to get an entity of a tile");
+        return null;
+    }
+
+    @Override
+    public boolean hasEntity() {
+        return false;
+    }
+
+    @Override
+    public void removeEntity() {
+        MessageHandler.println("DirtTile: you shoulnd't be removing entities", ErrorLevel.ERROR, PersonFilter.DAVID);
+    }
+
+    @Override
+    public void addEntity(Entity entity) {
+        MessageHandler.println("Dirt tile: you shouldn't be adding entities in here", ErrorLevel.ERROR, PersonFilter.DAVID);
+    }
 }

@@ -11,6 +11,8 @@ public class ImageAssets {
     private static final int height = 96;
     private static final int sneakWidth = 42; //width and height of sprites
     private static final int sneakHeight = 70;
+    private static final int smasherWidth = 37; //width and height of sprites
+    private static final int smasherHeight = 75;
     public static BufferedImage smasherSW, smasherNW, smasherN, smasherNE, smasherSE, smasherS;
     public static BufferedImage sneakSW, sneakNW, sneakN, sneakNE, sneakSE, sneakS;
     public static BufferedImage grass;
@@ -21,12 +23,12 @@ public class ImageAssets {
         SpriteSheet sneakSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/newSneak.png"));
         SpriteSheet terrainSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/grass.png"));
 
-//        smasherSW = smasherSheet.cropSheet(0,0, width, height);
-//        smasherNW = smasherSheet.cropSheet(width*1, 0, width, height);
-//        smasherN = smasherSheet.cropSheet(width*2, 0, width, height);
-//        smasherNE = smasherSheet.cropSheet(width*3, 0, width, height);
-//        smasherSE = smasherSheet.cropSheet(width*4, 0, width, height);
-//        smasherS = smasherSheet.cropSheet(width*5, 0, width, height);
+        smasherSW = smasherSheet.cropSheet(0,0, smasherWidth, smasherHeight);
+        smasherNW = smasherSheet.cropSheet(smasherWidth*1, 0, smasherWidth, smasherHeight);
+        smasherN = smasherSheet.cropSheet(smasherWidth*2, 0, smasherWidth, smasherHeight);
+        smasherNE = smasherSheet.cropSheet(smasherWidth*3, 0, smasherWidth, smasherHeight);
+        smasherSE = smasherSheet.cropSheet(smasherWidth*4, 0, smasherWidth, smasherHeight);
+        smasherS = smasherSheet.cropSheet(smasherWidth*5, 0, smasherWidth, smasherHeight);
 
         sneakSW = sneakSheet.cropSheet(0,0, sneakWidth, sneakHeight);
         sneakNW = sneakSheet.cropSheet(sneakWidth*1, 0, sneakWidth, sneakHeight);

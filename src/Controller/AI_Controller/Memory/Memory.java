@@ -6,6 +6,7 @@ import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.Personality.Personality;
 import Controller.AI_Controller.VisualCortex.VisualCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
+import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Entity;
 import Utilities.AIStuff.RelationshipList;
 import Utilities.Tickable;
@@ -18,16 +19,16 @@ import Utilities.Tickable;
 
 public class Memory implements Tickable, VisualCortexMemoryInterface, FrontalLobeMemoryInterface, MotorCortexMemoryInterface {
 
-    private Entity entity;
+    private NPC npc;
     private Personality personality;
 
     private VisualInformation visualInformation;
     private RelationshipList<Entity> entityRelationships = new RelationshipList<>();
     private Decision currentDecision;
 
-    public Memory(Entity entity, Personality personality) {
+    public Memory(NPC npc, Personality personality) {
 
-        this.entity = entity;
+        this.npc = npc;
         this.personality = personality;
 
     }
@@ -55,7 +56,7 @@ public class Memory implements Tickable, VisualCortexMemoryInterface, FrontalLob
 
         }
 
-        return currentDecision.isValid(visualInformation);
+        return currentDecision.isValid(visualInformation, this);
 
     }
 
@@ -78,6 +79,12 @@ public class Memory implements Tickable, VisualCortexMemoryInterface, FrontalLob
     }
 
     // Methods for MotorCortexMemoryInterface //
+    public NPC getNPC() {
+
+        return npc;
+
+    }
+
     public Decision getCurrentDecision() {
 
         return currentDecision;

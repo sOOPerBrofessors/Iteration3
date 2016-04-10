@@ -20,17 +20,19 @@ public class WaterTile extends MobileTile {
     @Override
     public boolean moveAquatic(Entity entity){
         this.entity = entity;
+        notifyObservers();
         return true;
     }
 
     @Override
     public boolean moveBoat(Entity entity){
         this.entity = entity;
+        notifyObservers();
         return true;
     }
 
     @Override
-    public TileView acceptTileVisitor(TileVisitor tv) {
-        return tv.createWaterTile();
+    public void acceptTileVisitor(TileVisitor tv) {
+         tv.createWaterTile(this);
     }
 }

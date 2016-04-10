@@ -1,20 +1,19 @@
 package View.TerrainView;
 
-import Model.Map.Location;
 import Model.Map.Tile.Tile;
 
 import java.awt.*;
 
 /**
- * Created by dyeung on 4/7/16.
+ * Created by dyeung on 4/9/16.
  */
-public class RiverTileView extends TileView {
-    public RiverTileView(Tile tile) {
+public class AirTileView extends TileView {
+    public AirTileView(Tile tile) {
         super(tile);
     }
 
     @Override
     public void paintComponent(Graphics g) {
-
+        //Doesn't paint anything but the entity
     }
 }
