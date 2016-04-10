@@ -26,6 +26,28 @@ public abstract class MobileTile extends Tile{
         return true;
     }
 
+    public Entity getEntity(){
+        return entity;
+    }
+
+    @Override
+    public boolean hasEntity(){
+        if (entity != null) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    public void addEntity(Entity entity) {
+        this.entity = entity;
+    }
+
+    @Override
+    public void removeEntity() {
+        this.entity = null;
+    }
 }
 
 

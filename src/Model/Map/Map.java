@@ -1,5 +1,7 @@
 package Model.Map;
 
+import Model.Entity.Character.Character;
+import Model.Entity.Entity;
 import Model.Map.Tile.Tile;
 
 /**
@@ -13,8 +15,6 @@ public class Map {
         maxRow = tiles.length;
         maxColumn = tiles[0].length;
     }
-    //Going to change this to array list with an array list of objects (instead of confusing 3d array)
-    //private Tile[][][] mapOfTiles;
     private TileColumn[][] mapOfTiles;
 
     //For loading -- might need some version of design pattern to get rid of this
@@ -31,4 +31,24 @@ public class Map {
             return mapOfTiles[x][y].getTopTile();
         }
     } // end getTile
+
+    public TileColumn getTileColumn(int x, int y){
+        if (x < 0 || y < 0 || x >= maxColumn || y >= maxRow) {
+            return null;
+        }else {
+            return mapOfTiles[x][y];
+        }
+    }
+    //FOR LOADING
+    //Entities include projectile things that could be anywhere on 3d axis
+    public void addEntity(Entity entity){
+        mapOfTiles[entity.getX()][entity.getY()].addEntity(entity);
+    }
+    //Characters are essentially things that exist on the top of group types
+    public void addCharacter(Character character){
+        mapOfTiles[character.getX()][character.getY()].addCharacter(character);
+    }
+    public void removeEntity(Entity entity){
+        mapOfTiles[entity.getX()][entity.getY()].removeEntity(entity);
+    }
 }

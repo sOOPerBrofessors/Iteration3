@@ -2,7 +2,6 @@ package Model.Items;
 
 import Model.Map.MapObject;
 import Model.Model;
-import Utilities.Visitor.ColumnVisitor;
 import View.MapView.MapObjectView;
 
 /**
@@ -15,9 +14,6 @@ import View.MapView.MapObjectView;
 //public abstract class Item extends Model {
 public abstract class Item implements MapObject {
 
-    @Override
-    public MapObjectView acceptMapVisitor(ColumnVisitor columnVisitor) {
-        return null; //This will need to be implemented for every type of item view
-    }
+
 } // end abstract class Item
 
