@@ -55,7 +55,7 @@ public abstract class Entity implements EntityObservable, MapObject, Tickable, E
     private TileColumn getNextTileColumn(Map map, Orientation orientation){
         int newX = location.getX() + orientation.x;
         int newY = location.getY() + orientation.y;
-        return map.getMapOfTiles()[newX][newY];
+        return map.getTileColumn(newX,newY);
     }
     //TODO: HOW TO HANDLE MOVING UP TILES
     public void move(Map map, Orientation orientation){
@@ -63,11 +63,14 @@ public abstract class Entity implements EntityObservable, MapObject, Tickable, E
         if (this.orientation.equals(orientation)) {
             //This is done this way since when you call navigation.move it'll automatically move the entity-- thus we
             //need to check its orientation before the move
-            int nextZ = getNextTileColumn(map, orientation).getTopPosition() - 1;
-            int difference = nextZ - location.getZ();
-            if (difference <= 1) { //Allows fall to happen, probably need some check to account if <0
-                if (navigation.move(getNextTile(map, orientation), this)) {
-                    updateLocation(map, orientation, difference);
+            TileColumn tmp = getNextTileColumn(map, orientation);
+            if (tmp != null) {
+                int nextZ = tmp.getTopPosition() - 1;
+                int difference = nextZ - location.getZ();
+                if (difference <= 1) { //Allows fall to happen, probably need some check to account if <0
+                    if (navigation.move(getNextTile(map, orientation), this)) {
+                        updateLocation(map, orientation, difference);
+                    }
                 }
             }
 
