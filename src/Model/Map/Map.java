@@ -1,5 +1,7 @@
 package Model.Map;
 
+import Model.Entity.Character.Character;
+import Model.Entity.Entity;
 import Model.Map.Tile.Tile;
 import Model.Model;
 
@@ -32,4 +34,18 @@ public class Map {
             return mapOfTiles[x][y].getTopTile();
         }
     } // end getTile
+
+
+    //FOR LOADING
+    //Entities include projectile things that could be anywhere on 3d axis
+    public void addEntity(Entity entity){
+        mapOfTiles[entity.getX()][entity.getY()].addEntity(entity);
+    }
+    //Characters are essentially things that exist on the top of group types
+    public void addCharacter(Character character){
+        mapOfTiles[character.getX()][character.getY()].addCharacter(character);
+    }
+    public void removeEntity(Entity entity){
+        mapOfTiles[entity.getX()][entity.getY()].removeEntity(entity);
+    }
 }

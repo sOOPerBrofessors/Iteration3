@@ -11,6 +11,9 @@ import Model.Map.Orientation;
 import Utilities.Observables.EntityObservable;
 import Utilities.Observers.EntityObserver;
 import Model.Map.Location;
+import Utilities.Visitor.EntityVisitable;
+import Utilities.Visitor.EntityVisitor;
+import View.EntityView.EntityView;
 
 /**
  * Created by dyeung on 4/6/16.
@@ -19,7 +22,7 @@ import Model.Map.Location;
  */
 
 //All entities are able now Observables for a specific model view
-public abstract class Entity implements EntityObservable, MapObject {
+public abstract class Entity implements EntityObservable, MapObject, EntityVisitable {
     private Location location;
     private Navigation navigation;
     protected Orientation orientation;
@@ -54,8 +57,14 @@ public abstract class Entity implements EntityObservable, MapObject {
     //TODO: HOW TO HANDLE MOVING UP TILES
     public void move(Map map, Orientation orientation){
         //System.out.println("Entity: update location was called from move:" + this.orientation + ":" + orientation);
-        if (navigation.move(getNextTile(map,orientation),this)){
-            updateLocation(map ,orientation);
+        if (this.orientation.equals(orientation)) {
+            //This is done this way since when you call navigation.move it'll automatically move the entity-- thus we
+            //need to check its orientation before the move
+            if (navigation.move(getNextTile(map, orientation), this)) {
+                updateLocation(map, orientation);
+            }
+        }else {
+            setOrientation(orientation);
         }
     }
 
@@ -68,31 +77,30 @@ public abstract class Entity implements EntityObservable, MapObject {
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
     }
-    //TODO: Add the z values stuff
     private void updateLocation(Map map, Orientation orientation){
-        //Might be better to have a removeAvatar() function within tilecolumn
-        //map.getTile(location.getX(), location.getY()).removeAvatar();
-        if (this.orientation.equals(orientation)) {
-            map.getMapOfTiles()[location.getX()][location.getY()].removeMapObject(this);
-
-            //Updates the new location
-            int newX = location.getX() + orientation.x;
-            int newY = location.getY() + orientation.y;
-            int newZ = location.getZ() + 0;
-            location.setNewLocation(newX, newY, newZ);
-            notifyObserverMove();
-
-            //Adds to the new tile
-            map.getMapOfTiles()[newX][newY].addMapObjects(this);
-        }else {
-            //Basically it'll only update orientation if key is pressed, else it'll start moving
-            setOrientation(orientation);
-        }
+        //Freaking long ass thing to remove an entity
+        map.getMapOfTiles()[location.getX()][location.getY()].getTileAt(location.getZ()).removeEntity();
+        int newX = location.getX() + orientation.x;
+        int newY = location.getY() + orientation.y;
+        int newZ = location.getZ() + 0;
+        location.setNewLocation(newX, newY, newZ);
+        notifyObserverMove();
     }
 
     public void setLocation(Location location) {
         this.location = location;
     } // end setLocation
+
+    public int getX(){
+        return location.getX();
+    }
+    public int getY(){
+        return location.getY();
+    }
+    public int getZ(){
+        return location.getZ();
+    }
+
 
 }
 

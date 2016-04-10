@@ -30,7 +30,7 @@ public class WaterTile extends MobileTile {
     }
 
     @Override
-    public TileView acceptTileVisitor(TileVisitor tv) {
-        return tv.createWaterTile();
+    public void acceptTileVisitor(TileVisitor tv) {
+         tv.createWaterTile(this);
     }
 }

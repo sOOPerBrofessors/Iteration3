@@ -1,27 +1,44 @@
 package View.TerrainView;
 
+import Model.Entity.Character.Avatar;
+import Model.Entity.Entity;
 import Model.Map.Location;
+import Model.Map.Tile.Tile;
 import Utilities.Settings;
+import Utilities.Visitor.EntityVisitor;
+import View.EntityView.AvatarView;
+import View.EntityView.EntityView;
 import View.MapView.MapObjectView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Set;
 
 /**
  * Created by dyeung on 4/7/16.
  */
-public abstract class TileView extends JComponent{
+public abstract class TileView extends JComponent implements EntityVisitor {
     protected Location location;
     protected int tileWidth = Settings.TILEWIDTH;
     protected int tileHeight = Settings.TILEHEIGHT;
     protected int xPixel; // on the map
     protected int yPixel; // on the map
     protected Image image;
+    private EntityView entityView;
     //Not sure if what we need or not. Essentially a TileView will contain a set of viewable objects to paint
-    public TileView(){
+    private Tile tile;
+    public TileView(Tile tile){
+        this.tile = tile;
+        updateTileView();
     }
-
+    protected void updateTileView(){
+        entityView = null;
+        Entity entity = tile.getEntity();
+        if (entity != null) {
+            entity.acceptEntityVisitor(this);
+        }
+    }
     public void setPixels(int x, int y){
         xPixel = x;
         yPixel = y;
@@ -30,4 +47,26 @@ public abstract class TileView extends JComponent{
         location = new Location(x,y,z);
     }
     public abstract void paintComponent(Graphics g);
+
+    protected boolean hasEntity(){
+        if (entityView == null) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+    public void renderEntity(Graphics g){
+        if (hasEntity()){
+            //System.out.println(location.getX() + "," +location.getY() +"," +location.getZ());
+            int centeredX = xPixel + Settings.TILEWIDTH/4;
+            int centeredY = yPixel - Settings.TILEHEIGHT/2;
+            entityView.setPixels(centeredX, centeredY);
+            entityView.paintComponent(g);
+        }
+    }
+
+    @Override
+    public void createAvatarView(Avatar avatar) {
+        entityView = new AvatarView(avatar);
+    }
 }
