@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import Model.Map.*;
 import Model.Map.Tile.Tile;
 import Utilities.Navigation.Navigation;
-import Utilities.Observables.EntityObservable;
+import Utilities.Observers.EntityObservable;
 import Utilities.Observers.EntityObserver;
 import Utilities.Visitor.EntityVisitable;
 
@@ -90,7 +90,8 @@ public abstract class Entity implements EntityObservable, MapObject, Tickable, E
     }
     private void updateLocation(Map map, Orientation orientation, int z){
         //Freaking long ass thing to remove an entity
-        map.getMapOfTiles()[location.getX()][location.getY()].getTileAt(location.getZ()).removeEntity();
+        Tile tile = map.getTileAt(location.getX(), location.getY(), z);
+        tile.notifyAndRemoveEntity();
         int newX = location.getX() + orientation.x;
         int newY = location.getY() + orientation.y;
         int newZ = location.getZ() + z;

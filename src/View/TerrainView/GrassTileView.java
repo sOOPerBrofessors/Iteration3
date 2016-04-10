@@ -30,7 +30,7 @@ public class GrassTileView extends TileView{
     public void paintComponent(Graphics g) {
         //super.paintComponent(g);
         //System.out.println("GrassTileView: paint component: " + location.getX() + "," + location.getY());
-        updateTileView();
+
         g.drawImage(image,xPixel,yPixel,tileWidth,tileHeight,null);
 //        g.setColor(Color.GREEN);
 //        g.drawRect(xPixel,yPixel,tileWidth,tileHeight);

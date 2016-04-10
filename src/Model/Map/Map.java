@@ -39,6 +39,13 @@ public class Map {
             return mapOfTiles[x][y];
         }
     }
+    public Tile getTileAt(int x, int y, int z){
+        if (x < 0 || y < 0 || x >= maxColumn || y >= maxRow) {
+            return null;
+        }else {
+            return mapOfTiles[x][y].getTileAt(z);
+        }
+    }
     //FOR LOADING
     //Entities include projectile things that could be anywhere on 3d axis
     public void addEntity(Entity entity){
