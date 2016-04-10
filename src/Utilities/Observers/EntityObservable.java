@@ -1,4 +1,4 @@
-package Utilities.Observables;
+package Utilities.Observers;
 
 import Utilities.Observers.EntityObserver;
 import Model.Map.Location;

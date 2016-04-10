@@ -21,6 +21,7 @@ public class AirTile extends MobileTile {
     }
     public boolean moveAvian(Entity entity) {
         super.entity = entity;
+        notifyObservers();
         return true;
     }
 

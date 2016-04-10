@@ -2,9 +2,9 @@ package View.TerrainView;
 
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.NPC.NPC;
-import Model.Entity.Entity;
 import Model.Map.Location;
 import Model.Map.Tile.Tile;
+import Utilities.Observers.TileObserver;
 import Utilities.Settings;
 import Utilities.Visitor.EntityViewVisitor;
 import View.EntityView.CharacterView;
@@ -16,7 +16,7 @@ import java.awt.*;
 /**
  * Created by dyeung on 4/7/16.
  */
-public abstract class TileView extends JComponent implements EntityViewVisitor {
+public abstract class TileView extends JComponent implements EntityViewVisitor, TileObserver {
     protected Location location;
     protected int tileWidth = Settings.TILEWIDTH;
     protected int tileHeight = Settings.TILEHEIGHT;
@@ -26,15 +26,16 @@ public abstract class TileView extends JComponent implements EntityViewVisitor {
     private EntityView entityView;
     //Not sure if what we need or not. Essentially a TileView will contain a set of viewable objects to paint
     private Tile tile;
+
     public TileView(Tile tile){
         this.tile = tile;
         updateTileView();
+        tile.acceptTileObserver(this);
     }
     protected void updateTileView(){
         entityView = null;
-        Entity entity = tile.getEntity();
-        if (entity != null) {
-            entity.acceptEntityVisitor(this);
+        if (tile.hasEntity()){
+            tile.getEntity().acceptEntityVisitor(this);
         }
     }
     public void setPixels(int x, int y){
@@ -70,5 +71,10 @@ public abstract class TileView extends JComponent implements EntityViewVisitor {
     @Override
     public void createNPCView(NPC npc) {
         entityView = new CharacterView(npc);
+    }
+
+    @Override //This function is called when a tile is updated (for an example when a tile has a new entity)
+    public void update() {
+        updateTileView();
     }
 }
