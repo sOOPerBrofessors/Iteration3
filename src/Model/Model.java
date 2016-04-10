@@ -53,10 +53,8 @@ public class Model implements Runnable{
         }
     }
 
-
     public StateManager getStateManager() {
         return stateManager;
     }
-
 }
 

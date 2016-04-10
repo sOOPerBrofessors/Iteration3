@@ -25,6 +25,8 @@ public abstract class Character extends Entity implements Observer {
         this.o = o;
         this.stats = o.initStats();
         this.inventory = new Inventory();
+        stats.addObserver(this);
+        inventory.addObserver(this);
     } // end private constructor
 
     /*

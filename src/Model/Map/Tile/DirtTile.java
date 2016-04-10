@@ -1,11 +1,10 @@
 package Model.Map.Tile;
 
 import Model.Entity.Entity;
-import Model.Map.Location;
+import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
-import Utilities.Visitor.EntityVisitor;
+import Utilities.PersonFilter;
 import Utilities.Visitor.TileVisitor;
-import View.TerrainView.TileView;
 
 
 /**
@@ -36,11 +35,11 @@ public class DirtTile extends Tile {
 
     @Override
     public void removeEntity() {
-        MessageHandler.printError("Dirt Tile: Do nothing");
+        MessageHandler.println("DirtTile: you shoulnd't be removing entities", ErrorLevel.ERROR, PersonFilter.DAVID);
     }
 
     @Override
     public void addEntity(Entity entity) {
-        MessageHandler.printError("dirt tile: you shouldn't be adding entities in here");
+        MessageHandler.println("Dirt tile: you shouldn't be adding entities in here", ErrorLevel.ERROR, PersonFilter.DAVID);
     }
 }

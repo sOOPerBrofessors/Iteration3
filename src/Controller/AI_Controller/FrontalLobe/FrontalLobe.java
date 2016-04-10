@@ -3,7 +3,7 @@ package Controller.AI_Controller.FrontalLobe;
 import Controller.AI_Controller.VisualCortex.VisualInformation.EntityRelationshipVisitor;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
 import Model.Entity.Entity;
-import Utilities.RelationshipList;
+import Utilities.AIStuff.RelationshipList;
 import Utilities.Tickable;
 
 /**

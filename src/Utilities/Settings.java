@@ -7,26 +7,25 @@ import java.awt.event.KeyEvent;
  */
 public class Settings {
 
+    public static final int LEVEL_NOTICE = 1;
+    public static final int LEVEL_WARNING = 2;
+    public static final int LEVEL_ERROR = 4;
+    public static final int LEVEL_CRITICAL = 8;
+
+
     public static String TITLE = "sOOPer Brogrammers!";
 
     public static int GAMEWIDTH = 800;
     public static int GAMEHEIGHT = 600;
-    public static boolean debug = false;
+    public static boolean debug = true;
+    public static ErrorLevel errorLevel = ErrorLevel.WARNING;
+    public static PersonFilter personFilter = PersonFilter.AUSTIN;
 
     // Key Presses
-
-    public static int NORTH = 90;
-    public static int NE = 45;
-    public static int SE = 315;
-    public static int SOUTH = 270;
-    public static int SW = 225;
-    public static int NW = 135;
-
-    // adjustable keys
-    public static int UP_ARROW = 38;
-    public static int LEFT_ARROW = 37;
-    public static int DOWN_ARROW = 40;
-    public static int RIGHT_ARROW = 39;
+    public static int UP_ARROW = KeyEvent.VK_UP;
+    public static int LEFT_ARROW = KeyEvent.VK_LEFT;
+    public static int DOWN_ARROW = KeyEvent.VK_DOWN;
+    public static int RIGHT_ARROW = KeyEvent.VK_RIGHT;
     public static int UP_RIGHT = KeyEvent.VK_E;
     public static int UP = KeyEvent.VK_W;
     public static int UP_LEFT = KeyEvent.VK_Q;

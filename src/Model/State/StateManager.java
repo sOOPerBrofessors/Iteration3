@@ -2,6 +2,7 @@ package Model.State;
 
 import Controller.ControllerManager;
 import Model.State.GameState.ActiveGameState;
+import Model.State.GameState.PausedGameState;
 import Utilities.Tickable;
 
 /**
@@ -14,21 +15,15 @@ public class StateManager implements Tickable {
 
     private State activeState;
     private ActiveGameState activeGameState;
-
-    public StateManager(){
-        //activeGameState = new ActiveGameState();
-        //activeState = activeGameState;
-    }
+    private PausedGameState pausedGameState;
 
     public void pauseGame(){
         //activeState = pauseState;
     }
+
     public void setActiveGameState(ActiveGameState activeGameState){
         this.activeGameState = activeGameState;
         activeState = activeGameState;
-    }
-    public ActiveGameState getActiveGameState(){
-        return activeGameState;
     }
 
     public void setControllerManager(ControllerManager controllerManager) {

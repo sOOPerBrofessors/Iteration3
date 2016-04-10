@@ -18,8 +18,6 @@ public class EntityStats {
     }
 
     public EntityStats(){
-        healthEffect(100);
-        movementEffect(5);
     }
 
     public void healthEffect(int effect){

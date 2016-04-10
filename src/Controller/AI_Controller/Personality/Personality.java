@@ -1,9 +1,7 @@
 package Controller.AI_Controller.Personality;
 
 import Controller.AI_Controller.Interest.Interest;
-import Utilities.Relationship;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 

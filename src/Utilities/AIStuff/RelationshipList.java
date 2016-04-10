@@ -1,8 +1,9 @@
-package Utilities;
+package Utilities.AIStuff;
+
+import Utilities.AIStuff.Relationship;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by aseber on 4/6/16.

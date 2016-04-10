@@ -7,7 +7,7 @@ import Controller.AI_Controller.Personality.Personality;
 import Controller.AI_Controller.VisualCortex.VisualCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
 import Model.Entity.Entity;
-import Utilities.RelationshipList;
+import Utilities.AIStuff.RelationshipList;
 import Utilities.Tickable;
 
 /**

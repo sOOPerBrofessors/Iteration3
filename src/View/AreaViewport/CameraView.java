@@ -3,17 +3,14 @@ package View.AreaViewport;
 import Model.Entity.Character.Avatar;
 import Model.Map.Location;
 import Utilities.Settings;
-import View.EntityView.AvatarView;
-
-import java.util.Set;
 
 /**
  * Created by dyeung on 4/6/16.
  */
 public class CameraView {
-    //private AvatarView avatarView; //The center view
+    //private CharacterView avatarView; //The center view
     //We are not basing it off of the avatar
-//    public CameraView(AvatarView avatar){
+//    public CameraView(CharacterView avatar){
 //        this.avatarView = avatar;
 //    }
     private Avatar avatar;

@@ -1,9 +1,6 @@
 package Model.Map.Tile;
 
 import Model.Entity.Entity;
-import Utilities.Visitor.EntityVisitor;
-import Utilities.Visitor.TileVisitor;
-import View.TerrainView.TileView;
 
 /**
  * Created by sgl on 4/5/16.

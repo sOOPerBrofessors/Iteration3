@@ -2,19 +2,23 @@ package View.MapView;
 
 import Model.Entity.Character.Avatar;
 import Model.Entity.Entity;
+import Model.Entity.Character.Character;
 import Model.Map.Location;
 import Model.Map.Tile.Tile;
 import Model.Map.TileColumn;
 import Utilities.Settings;
 import Utilities.Visitor.TileVisitor;
-import View.EntityView.AvatarView;
 import View.TerrainView.*;
+import Utilities.Visitor.TileVisitor;
+import View.EntityView.CharacterView;
+import View.TerrainView.GrassTileView;
+import View.TerrainView.RiverTileView;
+import View.TerrainView.TileView;
+import View.TerrainView.WaterTileView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Observable;
 
 /**
  * Created by dyeung on 4/8/16.

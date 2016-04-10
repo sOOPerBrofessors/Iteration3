@@ -1,24 +1,22 @@
 package View.TerrainView;
 
 import Model.Entity.Character.Avatar;
+import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Entity;
 import Model.Map.Location;
 import Model.Map.Tile.Tile;
 import Utilities.Settings;
-import Utilities.Visitor.EntityVisitor;
-import View.EntityView.AvatarView;
+import Utilities.Visitor.EntityViewVisitor;
+import View.EntityView.CharacterView;
 import View.EntityView.EntityView;
-import View.MapView.MapObjectView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Set;
 
 /**
  * Created by dyeung on 4/7/16.
  */
-public abstract class TileView extends JComponent implements EntityVisitor {
+public abstract class TileView extends JComponent implements EntityViewVisitor {
     protected Location location;
     protected int tileWidth = Settings.TILEWIDTH;
     protected int tileHeight = Settings.TILEHEIGHT;
@@ -67,6 +65,10 @@ public abstract class TileView extends JComponent implements EntityVisitor {
 
     @Override
     public void createAvatarView(Avatar avatar) {
-        entityView = new AvatarView(avatar);
+        entityView = new CharacterView(avatar);
+    }
+    @Override
+    public void createNPCView(NPC npc) {
+        entityView = new CharacterView(npc);
     }
 }

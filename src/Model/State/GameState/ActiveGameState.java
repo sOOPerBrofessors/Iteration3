@@ -1,36 +1,29 @@
 package Model.State.GameState;
 
-import Controller.AI_Controller.Brain;
-import Controller.Controllers.GamePlayController;
 import Model.Entity.Character.Avatar;
+import Model.Entity.Entity;
 import Model.Map.Map;
 
 import Model.Map.Orientation;
-import Model.Map.Tile.Tile;
-import Model.State.GameState.GameState;
+
+import java.util.ArrayList;
+
 /**
  * Created by Wimberley on 4/6/16.
  */
 
 public class ActiveGameState extends GameState {
 
-    private GamePlayController activeGameController;
-    private Brain brain;
-
-    public ActiveGameState(Map map, Avatar avatar){
-        super(map,avatar);
-
-        //Instantiate Brain
-        //brain = new Brain()
+    public ActiveGameState(Map map, Avatar avatar, ArrayList<Entity> entities){
+        super(map,avatar, entities);
     }
 
 
     @Override
     public void tick(){
-        // TODO: Brain needs to be instantiated with entity and personality
-        //brain.tick(); //ticks AI
-        //possibly need to tick human input if can be inputted too fast
-        //need to tick rivers???
+        for(int i = 0; i < entities.size(); i++){
+            entities.get(i).tick();
+        }
     }
 
     // player commands from controller

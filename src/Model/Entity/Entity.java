@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import Model.Map.Map;
 import Model.Map.MapObject;
 import Model.Map.Tile.Tile;
-import Utilities.MessageHandler;
 import Utilities.Navigation.Navigation;
 import Model.Map.Orientation;
 import Utilities.Observables.EntityObservable;
 import Utilities.Observers.EntityObserver;
 import Model.Map.Location;
 import Utilities.Visitor.EntityVisitable;
-import Utilities.Visitor.EntityVisitor;
-import View.EntityView.EntityView;
+
+import Utilities.Tickable;
+
 
 /**
  * Created by dyeung on 4/6/16.
@@ -22,7 +22,8 @@ import View.EntityView.EntityView;
  */
 
 //All entities are able now Observables for a specific model view
-public abstract class Entity implements EntityObservable, MapObject, EntityVisitable {
+
+public abstract class Entity implements EntityObservable, MapObject, Tickable, EntityVisitable{
     private Location location;
     private Navigation navigation;
     protected Orientation orientation;

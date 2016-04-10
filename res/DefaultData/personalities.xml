@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<personalities>
+    <personality name="friendly" scatter_brainedness="0.2" aggressiveness="0.1" laziness="0.15">
+        <interest name="TalkInterest" value="0.65"/>
+        <interest name="FollowInterest" value="0.10"/>
+        <interest name="ExploreInterest" value="0.25"/>
+    </personality>
+    <personality name="enemy" scatter_brainedness="0.15" aggressiveness="0.35" laziness="0.1">
+        <interest name="AttackInterest" value="0.75"/>
+        <interest name="ExploreInterest" value="0.35"/>
+    </personality>
+    <personality name="shopkeeper" scatter_brainedness="0.15" aggressiveness="0.1" laziness="0.25">
+        <interest name="TradeInterest" value="0.75"/>
+        <interest name="TalkInterest" value="0.35"/>
+        <interest name="ExploreInterest" value="0.15"/>
+    </personality>
+    <personality name="thief" scatter_brainedness="0.35" aggressiveness="0.05" laziness="0.1">
+        <interest name="ItemPickupInterest" value="0.8"/>
+    </personality>
+</personalities>

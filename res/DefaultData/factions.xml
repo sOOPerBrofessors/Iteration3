@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<factions>
+    <faction name="red"/>
+    <faction name="blue"/>
+    <faction name="shopkeeper"/>
+    <faction name="neutral"/>
+    <faction name="blah"/>
+</factions>

@@ -3,9 +3,6 @@ package Model.Map;
 import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Map.Tile.Tile;
-import Model.Model;
-
-import java.util.ArrayList;
 
 /**
  * Created by sgl on 4/5/16.

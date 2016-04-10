@@ -1,4 +1,6 @@
-package Utilities;
+package Utilities.AIStuff;
+
+import Utilities.MathUtilities;
 
 /**
  * Created by aseber on 4/6/16.
