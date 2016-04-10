@@ -16,9 +16,6 @@ import java.awt.*;
  */
 public class AreaViewport extends JPanel {
 
-    //used for testing purposes
-    public static final int MAXSIZE = 10;
-
     //TODO: Change this to map
     //View objects
     private TileColumnView[][] tileColumnView;
@@ -31,28 +28,17 @@ public class AreaViewport extends JPanel {
         this.setBackground(Color.GRAY);
         setPreferredSize(new Dimension(WIDTH,HEIGHT));
 
-
-        //THIS IS HELLA TEMPORARY
         Avatar avatar = gameState.getAvatar();
-
-        //Idea is that the camera view now follows the avatar and will conduct the location based on coordinates (not pixels)
         cameraView = new CameraView(avatar);
-        //TODO: Observers are now not apart of avatar view since avatarView is constantly changing
-        //TODO: Avatar observers must be apart of tileColumn(?)
-        //avatar.addObserver(avatarView);
-        //Initializing the map
-    
+
         map = gameState.getMap();
         MapViewFactory mapViewFactory = new MapViewFactory();
         tileColumnView = mapViewFactory.createMapViewObjects(map);
 
 
-
-
     }
     private void offsetTiles(){
         Location offset = cameraView.computeOffset();
-        //System.out.println("AreaViewPort: Offset:" + offset.getX() + "," + offset.getY() + "," + offset.getZ());
         for (int i = 0; i < tileColumnView.length; i++) {
             for (int j = 0; j < tileColumnView[0].length; j++){
                 tileColumnView[i][j].offsetCamera(offset);
@@ -61,16 +47,15 @@ public class AreaViewport extends JPanel {
 
     }
     public void renderTiles(Graphics g){
-        for (int i = 0; i < MAXSIZE; i++) {
-            for (int j = 0; j < MAXSIZE; j++){
-                tileColumnView[i][j].paintComponent(g);
+        for (int i = 0; i < tileColumnView.length; i++) {
+            for (int j = 0; j < tileColumnView[0].length; j++){
+                tileColumnView[j][i].paintComponent(g);
             }
         }
     }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        //System.out.println("Area viewport is painting");
 
         offsetTiles();
         renderTiles(g);

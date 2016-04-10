@@ -21,7 +21,7 @@ public class RiverTile extends WaterTile {
     }
 
     @Override
-    public TileView acceptTileVisitor(TileVisitor tv) {
-        return tv.createAirTile();
+    public void acceptTileVisitor(TileVisitor tv) {
+         tv.createAirTile(this);
     }
 }

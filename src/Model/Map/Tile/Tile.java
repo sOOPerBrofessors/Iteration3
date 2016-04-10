@@ -3,13 +3,12 @@ package Model.Map.Tile;
 import Model.Entity.Entity;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
-import Utilities.Visitor.TileVisitor;
-import View.TerrainView.TileView;
+import Utilities.Visitor.TileVisitable;
 
 /**
  * Created by sgl on 4/5/16.
  */
-public abstract class Tile {
+public abstract class Tile implements TileVisitable{
 
 
     public Tile(){
@@ -46,7 +45,8 @@ public abstract class Tile {
         return false;
     }
 
-    public abstract TileView acceptTileVisitor(TileVisitor tv);
-
-
+    public abstract Entity getEntity();
+    public abstract void addEntity(Entity entity);
+    public abstract void removeEntity();
+    public abstract boolean hasEntity();
 }
