@@ -35,7 +35,7 @@ public class ImageAssets {
         sneakSE = sneakSheet.cropSheet(sneakWidth*4, 0, sneakWidth, sneakHeight);
         sneakS = sneakSheet.cropSheet(sneakWidth*5, 0, sneakWidth, sneakHeight);
 
-//        grass = terrainSheet.cropSheet(0,0, width, height);
+//      grass = terrainSheet.cropSheet(0,0, width, height);
 
     }
 
