@@ -40,7 +40,7 @@ public class GameLoader {
 
     //Map has to contain an avatar (might be unnecessary in the constructor though)
     public void initMap(Avatar avatar){
-        System.out.println("GameLoader: Loading Map and Avatar and ActiveGameState");
+        MessageHandler.println("GameLoader: Loading Map and Avatar and ActiveGameState", ErrorLevel.NOTICE);
 
         TileColumn[][] tmpList = new TileColumn[15][15];
         for (int i = 0; i < maxTileRow; i++){
