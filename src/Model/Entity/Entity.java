@@ -2,14 +2,11 @@ package Model.Entity;
 
 import java.util.ArrayList;
 
-import Model.Map.Map;
-import Model.Map.MapObject;
+import Model.Map.*;
 import Model.Map.Tile.Tile;
 import Utilities.Navigation.Navigation;
-import Model.Map.Orientation;
 import Utilities.Observables.EntityObservable;
 import Utilities.Observers.EntityObserver;
-import Model.Map.Location;
 import Utilities.Visitor.EntityVisitable;
 
 import Utilities.Tickable;
@@ -55,15 +52,25 @@ public abstract class Entity implements EntityObservable, MapObject, Tickable, E
         int newY = location.getY() + orientation.y;
         return map.getTopTile(newX,newY);
     }
+    private TileColumn getNextTileColumn(Map map, Orientation orientation){
+        int newX = location.getX() + orientation.x;
+        int newY = location.getY() + orientation.y;
+        return map.getMapOfTiles()[newX][newY];
+    }
     //TODO: HOW TO HANDLE MOVING UP TILES
     public void move(Map map, Orientation orientation){
         //System.out.println("Entity: update location was called from move:" + this.orientation + ":" + orientation);
         if (this.orientation.equals(orientation)) {
             //This is done this way since when you call navigation.move it'll automatically move the entity-- thus we
             //need to check its orientation before the move
-            if (navigation.move(getNextTile(map, orientation), this)) {
-                updateLocation(map, orientation);
+            int nextZ = getNextTileColumn(map, orientation).getTopPosition() - 1;
+            int difference = nextZ - location.getZ();
+            if (difference <= 1) { //Allows fall to happen, probably need some check to account if <0
+                if (navigation.move(getNextTile(map, orientation), this)) {
+                    updateLocation(map, orientation, difference);
+                }
             }
+
         }else {
             setOrientation(orientation);
         }
@@ -78,12 +85,12 @@ public abstract class Entity implements EntityObservable, MapObject, Tickable, E
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
     }
-    private void updateLocation(Map map, Orientation orientation){
+    private void updateLocation(Map map, Orientation orientation, int z){
         //Freaking long ass thing to remove an entity
         map.getMapOfTiles()[location.getX()][location.getY()].getTileAt(location.getZ()).removeEntity();
         int newX = location.getX() + orientation.x;
         int newY = location.getY() + orientation.y;
-        int newZ = location.getZ() + 0;
+        int newZ = location.getZ() + z;
         location.setNewLocation(newX, newY, newZ);
         notifyObserverMove();
     }

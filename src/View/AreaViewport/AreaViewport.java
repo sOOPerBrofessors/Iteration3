@@ -16,9 +16,6 @@ import java.awt.*;
  */
 public class AreaViewport extends JPanel {
 
-    //used for testing purposes
-    public static final int MAXSIZE = 10;
-
     //TODO: Change this to map
     //View objects
     private TileColumnView[][] tileColumnView;
@@ -50,8 +47,8 @@ public class AreaViewport extends JPanel {
 
     }
     public void renderTiles(Graphics g){
-        for (int i = 0; i < MAXSIZE; i++) {
-            for (int j = 0; j < MAXSIZE; j++){
+        for (int i = 0; i < tileColumnView.length; i++) {
+            for (int j = 0; j < tileColumnView[0].length; j++){
                 tileColumnView[j][i].paintComponent(g);
             }
         }
