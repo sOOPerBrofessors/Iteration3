@@ -1,14 +1,17 @@
 package Model.Map.Tile;
 
 import Model.Entity.Entity;
+import Utilities.Observers.TileObservable;
+import Utilities.Observers.TileObserver;
+
+import java.util.ArrayList;
 
 /**
  * Created by sgl on 4/5/16.
  */
 
 //MobileTile can hold a single entity
-public abstract class MobileTile extends Tile{
-
+public abstract class MobileTile extends Tile {
     protected Entity entity;
 
     public MobileTile(){
@@ -48,6 +51,7 @@ public abstract class MobileTile extends Tile{
     public void removeEntity() {
         this.entity = null;
     }
+
 }
 
 

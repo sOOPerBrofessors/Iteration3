@@ -31,16 +31,16 @@ public class TileColumnView extends JComponent implements TileVisitor {
     private int y;
     private int xPixel;
     private int yPixel;
-    private int xOffset;
-    private int yOffset;
+    private int xCameraOffset;
+    private int yCameraOffset;
     private int tileWidth = Settings.TILEWIDTH;
     private int tileHeight = Settings.TILEHEIGHT;
     private int xCenter = tileWidth/2;
     private int yCenter = tileHeight/2;
     private TileColumn tileColumn;
     public TileColumnView(TileColumn subject, Location location){
-        xOffset = 0;
-        yOffset = 0;
+        xCameraOffset = 0;
+        yCameraOffset = 0;
         x = location.getX();
         y = location.getY();
         listOfTiles = new ArrayList<>();
@@ -90,8 +90,8 @@ public class TileColumnView extends JComponent implements TileVisitor {
     }
 
     private void updateCoordinateToScreenPosition(){
-        xPixel = x*tileWidth - (x*(tileWidth))/4 + xOffset;
-        yPixel = y*(tileHeight - 5) + ((tileHeight-7)*x)/2 + yOffset;
+        xPixel = x*tileWidth - (x*(tileWidth))/4 + xCameraOffset;
+        yPixel = y*(tileHeight - 5) + ((tileHeight-7)*x)/2 + yCameraOffset;
     }
     public void paintComponent(Graphics g){
         //First make sure that you are up to date on the position
@@ -101,6 +101,7 @@ public class TileColumnView extends JComponent implements TileVisitor {
         paintTileColumn(g);
 
     }
+    //TODO this will eventually paint all the coloumns because of entites on air
     private void paintTileColumn(Graphics g){
         for (int i = 0; i < listOfTiles.size(); i++){
             //In setPixels, the 3rd arguement is essentially the "z" height
@@ -121,8 +122,8 @@ public class TileColumnView extends JComponent implements TileVisitor {
     //Updates the camera view
     public void offsetCamera(Location offset){
             //updateCoordinateToScreenPosition();
-            xOffset = offset.getX();
-            yOffset = offset.getY();
+            xCameraOffset = offset.getX();
+            yCameraOffset = offset.getY();
     }
 
 }

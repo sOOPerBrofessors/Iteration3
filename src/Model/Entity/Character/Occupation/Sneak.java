@@ -4,6 +4,7 @@ import Model.Entity.Character.Character;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
 import Model.Stats.CharacterStats;
+import Utilities.Visitor.OccupationViewVisitor;
 
 /**
  * Created by broskj on 4/6/16.
@@ -26,4 +27,9 @@ public class Sneak extends Occupation {
     public CharacterStats initStats() {
         return CharacterStats.makeSneakStats();
     } // end initStats
+
+    @Override
+    public void acceptOccupationViewVistor(OccupationViewVisitor occupationViewVisitor) {
+        occupationViewVisitor.createSneakView();
+    }
 } // end class Sneak
