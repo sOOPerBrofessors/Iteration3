@@ -53,11 +53,6 @@ public abstract class Tile implements TileVisitable, TileObservable{
     public abstract void addEntity(Entity entity);
     public abstract void removeEntity();
     public abstract boolean hasEntity();
-    public void notifyAndRemoveEntity(){
-        //Make sure to remove first and then notify the tileView that there is nothing on that tile
-        removeEntity();
-        notifyObservers();
-    }
     @Override
     public void notifyObservers() {
         for(TileObserver tileObserver : observers){
