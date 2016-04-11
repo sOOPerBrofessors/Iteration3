@@ -27,9 +27,14 @@ public class GrassTile extends MobileTile {
     }
 
     public boolean moveChar(Entity entity){
-        super.entity = entity;
-        notifyObservers();
-        return true;
+        if(super.entity == null) {
+            super.entity = entity;
+            notifyObservers();
+            return true;
+        } else {
+            super.moveChar(entity);
+            return false;
+        }
     }
 
 
