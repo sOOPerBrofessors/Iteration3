@@ -3,6 +3,7 @@ package Utilities.AIStuff;
 import Controller.AI_Controller.Brain;
 import Controller.AI_Controller.Personality.Personality;
 import Controller.AI_Controller.Personality.PersonalityFactory;
+import Model.Entity.Character.Character;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Character.Occupation.Smasher;
 import Model.Entity.Entity;
@@ -26,8 +27,8 @@ public class NPCFactory {
         return gandorf;
     }
 
-    public static ArrayList<Entity> init(){
-        ArrayList<Entity> entities = new ArrayList<>();
+    public static ArrayList<NPC> init(){
+        ArrayList<NPC> entities = new ArrayList<>();
 
         entities.add(makeGanondorf());
 

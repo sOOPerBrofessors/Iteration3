@@ -1,6 +1,7 @@
 package Controller.AI_Controller.MotorCortex;
 
 import Controller.AI_Controller.Decision.Decision;
+import Model.Entity.Character.NPC.NPC;
 
 /**
  * Created by aseber on 4/6/16.
@@ -8,6 +9,7 @@ import Controller.AI_Controller.Decision.Decision;
 public interface MotorCortexMemoryInterface {
 
     // The decision getter
+    NPC getNPC();
     Decision getCurrentDecision();
 
 }

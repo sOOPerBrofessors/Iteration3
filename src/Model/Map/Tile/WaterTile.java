@@ -20,6 +20,7 @@ public class WaterTile extends MobileTile {
     @Override
     public boolean moveAquatic(Entity entity){
         this.entity = entity;
+        notifyObservers();
         return true;
     }
 
@@ -27,11 +28,12 @@ public class WaterTile extends MobileTile {
     public boolean moveBoat(Entity entity){
         //if (super.entity!= null) return false;
         this.entity = entity;
+        notifyObservers();
         return true;
     }
 
     @Override
-    public TileView acceptTileVisitor(TileVisitor tv) {
-        return tv.createWaterTile();
+    public void acceptTileVisitor(TileVisitor tv) {
+         tv.createWaterTile(this);
     }
 }

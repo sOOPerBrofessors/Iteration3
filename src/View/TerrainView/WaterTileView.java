@@ -1,6 +1,7 @@
 package View.TerrainView;
 
 import Model.Map.Location;
+import Model.Map.Tile.Tile;
 import Utilities.SpriteImageFactory;
 
 import java.awt.*;
@@ -9,8 +10,9 @@ import java.awt.*;
  * Created by dyeung on 4/7/16.
  */
 public class WaterTileView extends TileView {
-    private String url = "./res/terrain/water.png";
-    public WaterTileView() {
+    private String url = "./res/terrain/water2.png";
+    public WaterTileView(Tile tile) {
+        super(tile);
         image = SpriteImageFactory.getImage(url);
 
     }

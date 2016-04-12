@@ -7,19 +7,13 @@ import java.awt.event.KeyEvent;
  */
 public class Settings {
 
-    public static final int LEVEL_NOTICE = 1;
-    public static final int LEVEL_WARNING = 2;
-    public static final int LEVEL_ERROR = 4;
-    public static final int LEVEL_CRITICAL = 8;
-
-
     public static String TITLE = "sOOPer Brogrammers!";
 
     public static int GAMEWIDTH = 800;
     public static int GAMEHEIGHT = 600;
     public static boolean debug = true;
-    public static ErrorLevel errorLevel = ErrorLevel.WARNING;
-    public static PersonFilter personFilter = PersonFilter.AUSTIN;
+    public static ErrorLevel errorLevel = ErrorLevel.NOTICE;
+    public static PersonFilter personFilter = PersonFilter.ALL;
 
     // Key Presses
     public static int UP_ARROW = KeyEvent.VK_UP;

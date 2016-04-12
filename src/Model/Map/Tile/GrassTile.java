@@ -21,15 +21,21 @@ public class GrassTile extends MobileTile {
     }
 
     @Override
-    public TileView acceptTileVisitor(TileVisitor tv) {
-        return tv.createGrassTile();
+    public void acceptTileVisitor(TileVisitor tv) {
+        //TODO: ADD ITEM STUFF
+        tv.createGrassTile(this);
     }
 
     public boolean moveChar(Entity entity){
-        //if (super.entity!= null) return false;
-        super.entity = entity;
-        // entity.setLocation();
-        return true;
+
+        if(super.entity == null) {
+            super.entity = entity;
+            notifyObservers();
+            return true;
+        } else {
+            super.moveChar(entity);
+            return false;
+        }
     }
 
 
