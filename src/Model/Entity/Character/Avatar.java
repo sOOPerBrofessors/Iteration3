@@ -62,9 +62,4 @@ public class Avatar extends Character {
     public void acceptEntityVisitor(EntityViewVisitor entityViewVisitor) {
         entityViewVisitor.createAvatarView(this);
     }
-
-    @Override
-    public void tick() {
-        // not used
-    }
 }

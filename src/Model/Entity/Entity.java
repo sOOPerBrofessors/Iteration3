@@ -20,7 +20,7 @@ import Utilities.Tickable;
 
 //All entities are able now Observables for a specific model view
 
-public abstract class Entity implements EntityObservable, MapObject, Tickable, EntityVisitable{
+public abstract class Entity implements EntityObservable, MapObject, EntityVisitable{
     private Location location;
     private Navigation navigation;
     protected Orientation orientation;
