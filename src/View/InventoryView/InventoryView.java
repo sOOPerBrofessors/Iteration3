@@ -3,6 +3,8 @@ package View.InventoryView;
 import Model.Entity.Entity;
 import Model.Inventory.Inventory;
 import Model.Items.Item;
+import Model.Items.Takeable.Equippable.Armor;
+import Model.Items.Takeable.Equippable.Weapon;
 import Model.State.GameState.ActiveGameState;
 import Utilities.Observers.EntityObservable;
 import Utilities.Observers.EntityObserver;
@@ -13,6 +15,7 @@ import javafx.beans.Observable;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -23,14 +26,24 @@ import java.util.HashMap;
 //Displays Inventory in 4x4 matrix. x goes to the right, y goes down
 public class InventoryView extends JComponent implements Observer{
     private Inventory inventory;
+    //private ArrayList<Item> inventoryList;
+    //private Armor equippedArmor;
+    //private Weapon equippedWeapon;
     private HashMap<Item, BufferedImage> itemViewMap;
     private ArrayList<BufferedImage> itemViewList;
+    private BufferedImage weaponImage;
+    private BufferedImage armorImage;
     private int xSel, ySel, xMax, yMax;
 
 
     public InventoryView(ActiveGameState gameState){
-        this.inventory =  gameState.getAvatar().getInventory(); // TODO: Fix the LOD VIOLATION! (Is there a fix?)
+        inventory = gameState.getAvatar().getInventory();
+        //add items with respective image to itemViewMap
+        //this.inventoryList =  inventory.getPack().getItems(); // TODO: Fix the LOD VIOLATION!!! (Is there a fix?)
+        //this.equippedArmor = inventory.getEquipment().getArmor();
+        //this.equippedWeapon = inventory.getEquipment().getWeapon();
         ySel = 0;
+        xSel = 0;
         xMax = Settings.MAX_INVENTORY_SIZE/4;
         yMax = Settings.MAX_INVENTORY_SIZE/4;
     }

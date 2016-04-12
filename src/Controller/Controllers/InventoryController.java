@@ -66,8 +66,9 @@ public class InventoryController extends Controller {
         commands.put(Settings.ESC, new Command() {
             @Override
             public void execute() {
-                //remove inventory from AreaView
-                controllerManager.setPauseState();
+                //TODO: Change to active state!
+                //TODO: TELL GAMEPANEL TO remove INVENTORY PANEL
+                //TODO: switch back to inventory Controller
             }
         });
 
