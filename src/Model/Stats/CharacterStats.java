@@ -1,9 +1,7 @@
 package Model.Stats;
 
-import Model.State.GameState.ActiveGameState;
-import Model.State.GameState.GameState;
-import Utilities.Observer;
-import Utilities.Subject;
+import Utilities.Observers.Observer;
+import Utilities.Observers.Subject;
 
 import java.util.ArrayList;
 

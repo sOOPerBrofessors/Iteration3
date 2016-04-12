@@ -8,7 +8,7 @@ import Model.Items.Takeable.Equippable.Weapon;
 import Model.Map.Location;
 import Model.Stats.CharacterStats;
 import Utilities.Navigation.Navigation;
-import Utilities.Observer;
+import Utilities.Observers.Observer;
 
 /**
  * Created by broskj on 4/6/16.
