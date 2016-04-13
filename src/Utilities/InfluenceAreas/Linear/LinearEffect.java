@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class LinearEffect implements InfluenceArea{
 
-    public static ArrayList<Location> getInfluencedAreaUp(int length) {
+    public static ArrayList<Location> getInfluencedAreaTop(int length) {
         ArrayList<Location> list = new ArrayList<>();
         return list;
     }
