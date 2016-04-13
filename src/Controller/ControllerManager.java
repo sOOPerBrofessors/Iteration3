@@ -1,7 +1,12 @@
 package Controller;
 
 import Controller.Controllers.GamePlayController;
+import Controller.Controllers.InventoryController;
+import Model.Inventory.Inventory;
 import Model.State.StateManager;
+import Utilities.ErrorLevel;
+import Utilities.MessageHandler;
+import Utilities.PersonFilter;
 import View.ViewManager;
 
 import java.awt.event.KeyEvent;
@@ -19,9 +24,11 @@ public class ControllerManager implements KeyListener {
 
     private Controller activeController;
     private GamePlayController gamePlayController;
+    private InventoryController inventoryController;
 
     public ControllerManager(){
         gamePlayController = new GamePlayController(this);
+        //inventoryController = new InventoryController(this);
     }
 
     public void setActiveController(Controller gs){
@@ -38,8 +45,10 @@ public class ControllerManager implements KeyListener {
 
     public void setInventoryState(){
         viewManager.displayInventory();
-        stateManager.pauseGame();
+        stateManager.pauseGame(); // don't think pause game is working, ai guy still moves
         //activeController = inventoryController;
+        //activeController = new InventoryController(this);
+        MessageHandler.println("ControllerManager.setInventoryState called" , ErrorLevel.NOTICE, PersonFilter.SAM);
     }
 
     public void setEquipmentState(){

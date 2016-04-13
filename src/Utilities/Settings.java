@@ -29,7 +29,7 @@ public class Settings {
 
     public static int ATTACK = 32;
     public static int EQUIP = 10001; //This was overwritting VK_E which is used for movement
-    public static int INVENTORY = 73;
+    public static int INVENTORY = 73; // 'i'
 
     // end adjustable keys
 

@@ -3,9 +3,12 @@ package View;
 import Controller.ControllerManager;
 import Model.Entity.Character.Avatar;
 import Model.State.StateManager;
+import Utilities.ErrorLevel;
 import Utilities.GameLoader;
+import Utilities.MessageHandler;
 import Utilities.Observers.Subject;
 import Utilities.Observers.Observer;
+import Utilities.PersonFilter;
 import View.InventoryView.InventoryView;
 import View.ViewUtilities.Panels.CharacterCreationPanel;
 import View.ViewUtilities.Panels.GamePanel;
@@ -42,6 +45,7 @@ public class ViewManager implements Subject {
         createPanel = new CharacterCreationPanel(this).createPanel();
         gamePanel = new GamePanel(this);
         activePanel = introPanel;
+        //inventoryView = new InventoryView()
     }
 
     public void displayIntro(){
@@ -68,7 +72,8 @@ public class ViewManager implements Subject {
 
     public void displayInventory(){
         //activePanel = inventoryPanel;
-
+        gamePanel.addInventoryView();
+        MessageHandler.println("ViewManager.displayInventory called", ErrorLevel.ERROR.NOTICE, PersonFilter.SAM);
     }
 
     public void displayActiveGame(){
