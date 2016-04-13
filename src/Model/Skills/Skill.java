@@ -1,9 +1,14 @@
 package Model.Skills;
 
+import Model.Entity.Character.Avatar;
+import com.sun.org.glassfish.external.statistics.Stats;
+
 import java.util.Random;
 
 /**
  * Created by AndyZhu on 5/4/2016.
+ *
+ * All skills are active. Skill is the parent of all kinds of skills.
  */
 public abstract class Skill { //TODO: skills should also be ticked if we want to display remaining CD
     //TODO: complete everything after avatar is done
@@ -12,14 +17,13 @@ public abstract class Skill { //TODO: skills should also be ticked if we want to
     private double coolDownTime;
     private double timePerformed;
     private double remainingCoolDownTime;
-    private double manaCost;
+    private int manaCost;
 
-
-    /* protected Avatar avatar;
+    protected Avatar avatar;
 
     public Skill (Avatar avatar) {
         this.avatar = avatar;
-    }*/
+    }
 
     public void levelUp() {
         if (level < 10) {// and avatar have enough skill point
@@ -28,17 +32,15 @@ public abstract class Skill { //TODO: skills should also be ticked if we want to
         }
     }
 
-    public abstract void executeSkill();
+    public abstract void execute();
 
     public void enforceManaCost() {
-        /*
-        avatar.modifyMana( -manaCost );
-         */
+        avatar.manaEffect( -manaCost );
     }
 
     public void tick() {
         //TODO: this is dumb implementation
-        coolDownTime = (System.currentTimeMillis() - timePerformed) / 1000;
+        remainingCoolDownTime = (System.currentTimeMillis() - timePerformed) / 1000;
     }
 
     protected boolean checkCD() {
@@ -53,6 +55,10 @@ public abstract class Skill { //TODO: skills should also be ticked if we want to
         double compareNumber = random.nextDouble();
 
         return compareNumber <= chanceOfSuccess;
+    }
+
+    protected void setTimePerformed() {
+        timePerformed = System.currentTimeMillis();
     }
 
     // accessors
