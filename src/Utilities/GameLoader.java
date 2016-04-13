@@ -1,12 +1,12 @@
 package Utilities;
 
+import Controller.AI_Controller.AI_Controller;
 import Model.Entity.Character.Avatar;
-import Model.Entity.Character.Character;
 import Model.Entity.Character.NPC.NPC;
-import Model.Entity.Entity;
-import Model.Map.Location;
 import Model.Map.Map;
-import Model.Map.Tile.*;
+import Model.Map.Tile.AirTile;
+import Model.Map.Tile.GrassTile;
+import Model.Map.Tile.WaterTile;
 import Model.Map.TileColumn;
 import Model.State.GameState.ActiveGameState;
 import Utilities.AIStuff.NPCFactory;
@@ -26,21 +26,23 @@ public class GameLoader {
     Map map;
     Avatar avatar;
     ActiveGameState activeGameState;
-    ArrayList<Entity> entities;
+    ArrayList<NPC> entities;
 
 
 
     //Needs a constructor in order to create what type of occupation it is
     public GameLoader(Avatar player) {
         avatar = player;
-        initMap();
+        initMap(avatar);
         initEntities();
         activeGameState = new ActiveGameState(map, player, entities);
 
     }
 
     //Map has to contain an avatar (might be unnecessary in the constructor though)
-    public void initMap(){
+    public void initMap(Avatar avatar){
+        MessageHandler.println("GameLoader: Loading Map and Avatar and ActiveGameState", ErrorLevel.NOTICE);
+
         TileColumn[][] tmpList = new TileColumn[maxTileRow][maxTileCol];
         for (int i = 0; i < maxTileRow; i++){
             for (int j = 0; j < maxTileCol; j++){
@@ -77,10 +79,14 @@ public class GameLoader {
         TileColumn[][] tmpList = map.getMapOfTiles();
 
         entities = NPCFactory.init();
+        AI_Controller controller = new AI_Controller();
         for(int i = 0; i < entities.size(); i++){
+            entities.get(i).setController(controller);
             tmpList[entities.get(i).getLocation().getX()][entities.get(i).getLocation().getY()].addEntity(entities.get(i));
         }
         tmpList[avatar.getLocation().getX()][avatar.getLocation().getY()].addCharacter(avatar);
+        map = new Map(tmpList);
+        controller.setMap(map);
     }
 
     public Map getMap(){

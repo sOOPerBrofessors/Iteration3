@@ -15,7 +15,6 @@ import Utilities.Tickable;
 /**
  * Created by dyeung on 4/6/16.
  *
- * TODO: in movePlayerDir(...), check if entity is facing that direction: if false, set direction; else, move
  */
 
 //All entities are able now Observables for a specific model view

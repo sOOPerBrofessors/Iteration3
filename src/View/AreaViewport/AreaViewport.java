@@ -4,6 +4,7 @@ import Model.Entity.Character.Avatar;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.State.GameState.GameState;
+import View.AreaViewport.FogOfWar.FogOfWar;
 import View.MapView.TileColumnView;
 
 import javax.swing.*;
@@ -23,6 +24,7 @@ public class AreaViewport extends JPanel {
 
     //private CharacterView avatarView;
     private CameraView cameraView;
+    private FogOfWar fogOfWar;
     public AreaViewport(GameState gameState){
         //This needs to be initialized later on or grabbed from the inventory
         this.setBackground(Color.GRAY);
@@ -30,7 +32,7 @@ public class AreaViewport extends JPanel {
 
         Avatar avatar = gameState.getAvatar();
         cameraView = new CameraView(avatar);
-
+        fogOfWar = new FogOfWar(avatar);
         map = gameState.getMap();
         MapViewFactory mapViewFactory = new MapViewFactory();
         tileColumnView = mapViewFactory.createMapViewObjects(map);
@@ -38,15 +40,19 @@ public class AreaViewport extends JPanel {
 
     }
     private void offsetTiles(){
+        //Might be useful to have a check to see if offset is 0 before doing anything
         Location offset = cameraView.computeOffset();
         for (int i = 0; i < tileColumnView.length; i++) {
             for (int j = 0; j < tileColumnView[0].length; j++){
                 tileColumnView[i][j].offsetCamera(offset);
             }
         }
-
+    }
+    private void updateFogOfWar(){
+        fogOfWar.setFogOfWar(tileColumnView);
     }
     public void renderTiles(Graphics g){
+        Location offset = cameraView.computeOffset();
         for (int i = 0; i < tileColumnView.length; i++) {
             for (int j = 0; j < tileColumnView[0].length; j++){
                 tileColumnView[j][i].paintComponent(g);
@@ -56,8 +62,10 @@ public class AreaViewport extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+        //TODO:These things only need to be called when an update happens from map
         offsetTiles();
+        updateFogOfWar();
+        //This is always called
         renderTiles(g);
     }
 }

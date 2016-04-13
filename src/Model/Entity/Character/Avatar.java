@@ -15,10 +15,10 @@ import View.EntityView.CharacterView;
  * Class to be operated by the player.
  */
 public class Avatar extends Character {
-
     private Avatar(Occupation o, Location location) {
         //I'm not sure how this is going to work but we need something here to define the initial location of an avatar
         super(o, location);
+        //Temporary
     } // end constructor
 
     public static Avatar makeSmasher(Location location) {

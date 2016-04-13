@@ -1,7 +1,7 @@
 package Model.State.GameState;
 
 import Model.Entity.Character.Avatar;
-import Model.Entity.Entity;
+import Model.Entity.Character.NPC.NPC;
 import Model.Map.Map;
 
 import Model.Map.Orientation;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class ActiveGameState extends GameState {
 
-    public ActiveGameState(Map map, Avatar avatar, ArrayList<Entity> entities){
+    public ActiveGameState(Map map, Avatar avatar, ArrayList<NPC> entities){
         super(map,avatar, entities);
     }
 

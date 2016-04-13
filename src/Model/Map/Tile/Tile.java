@@ -64,4 +64,5 @@ public abstract class Tile implements TileVisitable, TileObservable{
     public void acceptTileObserver(TileObserver tileObserver) {
         observers.add(tileObserver);
     }
+
 }
