@@ -5,6 +5,7 @@ import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Model.State.GameState.ActiveGameState;
 import Utilities.Settings;
+import View.ViewManager;
 import View.ViewUtilities.Panels.GamePanel;
 
 import java.awt.event.KeyEvent;
@@ -143,6 +144,8 @@ public class GamePlayController extends Controller{
         commands.put(Settings.INVENTORY, new Command() {
             @Override
             public void execute() {
+                //TODO: Change to paused state!
+                //TODO: TELL GAMEPANEL TO ADD INVENTORY PANEL
                 controllerManager.setInventoryState();
             }
         });

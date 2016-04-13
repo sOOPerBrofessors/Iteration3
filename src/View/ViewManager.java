@@ -4,8 +4,9 @@ import Controller.ControllerManager;
 import Model.Entity.Character.Avatar;
 import Model.State.StateManager;
 import Utilities.GameLoader;
-import Utilities.Subject;
-import Utilities.Observer;
+import Utilities.Observers.Subject;
+import Utilities.Observers.Observer;
+import View.InventoryView.InventoryView;
 import View.ViewUtilities.Panels.CharacterCreationPanel;
 import View.ViewUtilities.Panels.GamePanel;
 import View.ViewUtilities.Panels.IntroPanel;
@@ -33,6 +34,7 @@ public class ViewManager implements Subject {
     private JPanel introPanel;
     private GamePanel gamePanel;
     private JPanel createPanel;
+    private InventoryView inventoryView;
 
     public ViewManager(){
         // set intro screen panel
@@ -66,6 +68,7 @@ public class ViewManager implements Subject {
 
     public void displayInventory(){
         //activePanel = inventoryPanel;
+
     }
 
     public void displayActiveGame(){

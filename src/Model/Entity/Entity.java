@@ -90,6 +90,7 @@ public abstract class Entity implements EntityObservable, MapObject, EntityVisit
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
     }
+
     private void updateLocation(Map map, Orientation orientation, int z){
         //Freaking long ass thing to remove an entity
         Tile tile = map.getTileAt(location.getX(), location.getY(), location.getZ());
