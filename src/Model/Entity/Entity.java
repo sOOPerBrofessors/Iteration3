@@ -46,17 +46,19 @@ public abstract class Entity implements EntityObservable, MapObject, EntityVisit
         observers.add(entityObserver);
     }
 
-
+    //TODO: question: should getNextTile and getNextTileColumn handled by map instead of entity?
     private Tile getNextTile(Map map, Orientation orientation){
         int newX = location.getX() + orientation.x;
         int newY = location.getY() + orientation.y;
         return map.getTopTile(newX,newY);
     }
+
     private TileColumn getNextTileColumn(Map map, Orientation orientation){
         int newX = location.getX() + orientation.x;
         int newY = location.getY() + orientation.y;
         return map.getTileColumn(newX,newY);
     }
+
     //TODO: HOW TO HANDLE MOVING UP TILES
     public void move(Map map, Orientation orientation){
         //System.out.println("Entity: update location was called from move:" + this.orientation + ":" + orientation);
