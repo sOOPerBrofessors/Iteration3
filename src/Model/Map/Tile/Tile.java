@@ -1,6 +1,7 @@
 package Model.Map.Tile;
 
 import Model.Entity.Entity;
+import Model.Items.Item;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
 import Utilities.Observers.TileObservable;
@@ -53,6 +54,7 @@ public abstract class Tile implements TileVisitable, TileObservable{
     public abstract void addEntity(Entity entity);
     public abstract void removeEntity();
     public abstract boolean hasEntity();
+
     @Override
     public void notifyObservers() {
         for(TileObserver tileObserver : observers){

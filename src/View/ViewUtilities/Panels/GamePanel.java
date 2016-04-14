@@ -3,7 +3,6 @@ package View.ViewUtilities.Panels;
 import Controller.Controllers.GamePlayController;
 import Model.State.GameState.ActiveGameState;
 import Utilities.Observers.Observer;
-import Utilities.Observers.Subject;
 import View.AreaViewport.AreaViewport;
 import View.InventoryView.InventoryView;
 import View.ViewManager;
