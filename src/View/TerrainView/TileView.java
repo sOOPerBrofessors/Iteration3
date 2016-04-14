@@ -9,9 +9,11 @@ import Utilities.Settings;
 import Utilities.Visitor.EntityViewVisitor;
 import View.EntityView.CharacterView;
 import View.EntityView.EntityView;
+import View.MapView.MapObjectView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by dyeung on 4/7/16.
@@ -54,6 +56,7 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
             return true;
         }
     }
+    //TODO: change this so it just renders map object views
     public void renderEntity(Graphics g){
         if (hasEntity()){
             //System.out.println(location.getX() + "," +location.getY() +"," +location.getZ());
