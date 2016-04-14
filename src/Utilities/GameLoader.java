@@ -90,7 +90,7 @@ public class GameLoader {
             entities.get(i).setController(controller);
             map.addEntity(entities.get(i));
         }
-        
+
         controller.setMap(map);
     }
 
