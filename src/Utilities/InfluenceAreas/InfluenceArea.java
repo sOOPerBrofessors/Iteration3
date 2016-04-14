@@ -1,6 +1,10 @@
 package Utilities.InfluenceAreas;
 
 import Model.Map.Location;
+import Model.Map.Orientation;
+import Utilities.ErrorLevel;
+import Utilities.MessageHandler;
+import Utilities.PersonFilter;
 
 import java.util.ArrayList;
 
@@ -8,6 +12,14 @@ import java.util.ArrayList;
  * Created by AndyZhu on 13/4/2016.
  */
 public abstract class InfluenceArea {
+    protected static Orientation[] orientationArr = {
+            Orientation.NORTH,
+            Orientation.NORTHEAST,
+            Orientation.SOUTHEAST,
+            Orientation.SOUTH,
+            Orientation.SOUTHWEST,
+            Orientation.NORTHWEST
+    };
     /**
      * change xLimit, yLimit, and zLimit for different map size
      * @param list : ArrayList<Location>
@@ -30,5 +42,20 @@ public abstract class InfluenceArea {
             }
         }
         return newList;
+    }
+
+    protected static int getOrientationIndex(Orientation orientation) {
+        for (int i = 0; i < orientationArr.length; i++) {
+            if (orientationArr[i] == orientation)
+                return i;
+        }
+        MessageHandler.println("InfluenceArea: orientation not found", ErrorLevel.NOTICE, PersonFilter.ANDY);
+        return 0;
+    }
+
+    protected static int getNextOriIndexClockwise (int i) {
+        if (i == orientationArr.length - 1)
+            return 0;
+        return i + 1;
     }
 }
