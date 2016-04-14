@@ -27,7 +27,7 @@ public abstract class Character extends Entity implements Observer {
         this.inventory = new Inventory();
         stats.addObserver(this);
         inventory.addObserver(this);
-        this.radiusVisibility = 4; //might need to change to some sort of default later
+        this.radiusVisibility = 3; //might need to change to some sort of default later
     } // end private constructor
 
     /*

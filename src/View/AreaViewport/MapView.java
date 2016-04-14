@@ -42,5 +42,10 @@ public class MapView {
             tileColumnView[x][y].setVisibleState();
         }
     }
+    public void setNonVisibleState(int x, int y){
+        if (notOutBounds(x,y)){
+            tileColumnView[x][y].setNonVisibleState();
+        }
+    }
 
 }

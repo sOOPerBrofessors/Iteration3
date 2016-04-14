@@ -56,7 +56,7 @@ public class AreaViewport extends JPanel {
         Location offset = cameraView.computeOffset();
         for (int i = 0; i < mapView.getXBound(); i++) {
             for (int j = 0; j < mapView.getYBound(); j++){
-                mapView.render(g, i, j);
+                mapView.render(g, j, i);
             }
         }
     }
@@ -66,8 +66,8 @@ public class AreaViewport extends JPanel {
         //TODO:These things only need to be called when an update happens from map
         offsetTiles();
         updateFogOfWar();
+
         //This is always called
-        System.out.println("repainting");
         renderTiles(g);
     }
 }

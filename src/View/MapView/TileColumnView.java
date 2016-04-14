@@ -53,13 +53,13 @@ public class TileColumnView extends JComponent implements TileVisitor {
         updateCoordinateToScreenPosition();
         tileColumn = subject;
         updateTileViews(); //This needs to be called to get all the correct tiles.
-        tileViewState = new NonVisibleState();
+        tileViewState = new ShroudedState();
     }
     //Function basically copies the list  with its tile column subject
     private void updateTileViews(){
         //Top position represent the top tile that is not an air tile
         for (int k = 0; k < tileColumn.getTopPosition(); k++){
-            tileColumn.getTileList().get(k).acceptTileVisitor(this);
+            tileColumn.getTileAt(k).acceptTileVisitor(this);
         }
     }
 
@@ -110,9 +110,6 @@ public class TileColumnView extends JComponent implements TileVisitor {
     private void paintTileColumn(Graphics g) {
         tileViewState.drawState(this, g);
     }
-    private void paintMapObjects(TileView tileView, Graphics g){
-        tileView.renderEntity(g);
-    }
     //Updates the camera view
     public void offsetCamera(Location offset){
             //updateCoordinateToScreenPosition();
@@ -131,12 +128,11 @@ public class TileColumnView extends JComponent implements TileVisitor {
             yPixel -= 8; //Now this will be the same as paintMapObjects
             holder.setPixels(xPixel, yPixel);
             holder.paintComponent(g);
-
-            paintMapObjects(holder, g); //paints the tileview
         }
     }
     public void paintNonVisible(Graphics g){
         //paint seen but not visible tile
+        paintVisible(g); //for now just paint visible 
     }
 
     public void setVisibleState(){
