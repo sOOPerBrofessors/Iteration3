@@ -50,68 +50,36 @@ public class Location {
         return y;
     }
 
-    //get adjacent locations
+    //get adjacent locations, mainly used by InfluenceAreas
     public Location getAdjacentTop() {
-        //TODO: check limit
         return new Location(x, y, z + 1);
     }
 
     public Location getAdjacentBottom() {
-        if (z > 0)
-            return new Location(x, y, z - 1);
-        else {
-            MessageHandler.println("Location: you are trying to reach out of map", ErrorLevel.NOTICE, PersonFilter.ANDY);
-            return this;
-        }
+        return new Location(x, y, z - 1);
     }
 
     public Location getAdjacentNorth() {
-        if (y > 0)
-            return new Location(x, y - 1, z);
-        else {
-            MessageHandler.println("Location: you are trying to reach out of map", ErrorLevel.NOTICE, PersonFilter.ANDY);
-            return this;
-        }
+        return new Location(x, y - 1, z);
     }
 
     public Location getAdjacentNorthEast() {
-        if (y > 0) //TODO: check x limit
-            return new Location(x + 1, y - 1, z);
-        else {
-            MessageHandler.println("Location: you are trying to reach out of map", ErrorLevel.NOTICE, PersonFilter.ANDY);
-            return this;
-        }
+        return new Location(x + 1, y - 1, z);
     }
 
     public Location getAdjacentSouthEast() {
-        //TODO:check x and y limits
         return new Location(x + 1, y, z);
     }
 
     public Location getAdjacentSouth() {
-        if (y < 100) //TODO: update y limit
-            return new Location(x, y + 1, z);
-        else {
-            MessageHandler.println("Location: you are trying to reach out of map", ErrorLevel.NOTICE, PersonFilter.ANDY);
-            return this;
-        }
+        return new Location(x, y + 1, z);
     }
 
     public Location getAdjacentSouthWest() {
-        if (x > 0) //TODO: check y limit
-            return new Location(x - 1, y + 1, z);
-        else {
-            MessageHandler.println("Location: you are trying to reach out of map", ErrorLevel.NOTICE, PersonFilter.ANDY);
-            return this;
-        }
+        return new Location(x - 1, y + 1, z);
     }
 
     public Location getAdjacentNorthWest() {
-        if (x > 0 )
-            return new Location(x - 1, y, z);
-        else {
-            MessageHandler.println("Location: you are trying to reach out of map", ErrorLevel.NOTICE, PersonFilter.ANDY);
-            return this;
-        }
+        return new Location(x - 1, y, z);
     }
 }
