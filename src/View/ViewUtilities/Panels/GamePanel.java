@@ -1,9 +1,9 @@
 package View.ViewUtilities.Panels;
 
 import Controller.Controllers.GamePlayController;
+import Model.Inventory.Inventory;
 import Model.State.GameState.ActiveGameState;
 import Utilities.Observers.Observer;
-import Utilities.Observers.Subject;
 import View.AreaViewport.AreaViewport;
 import View.InventoryView.InventoryView;
 import View.ViewManager;
@@ -38,9 +38,9 @@ public class GamePanel extends JPanel{
     //These views come built in with the GamePanel
     public void init(ActiveGameState gameState){
         areaViewport = new AreaViewport(gameState);
+        inventoryView = new InventoryView(gameState);
         addView(areaViewport);
         controller.setState(gameState);
-        inventoryView = new InventoryView(gameState);
     }
 
     //These views can be added to the GamePanel
@@ -101,6 +101,8 @@ public class GamePanel extends JPanel{
     public GamePanel getGamePanel(){
         return this;
     }
+
+    public InventoryView getInventoryView() {return inventoryView;}
 
     public void setGamePlayController(GamePlayController gamePlayController){
         controller = gamePlayController;

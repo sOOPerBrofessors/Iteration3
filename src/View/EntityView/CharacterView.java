@@ -63,9 +63,9 @@ public class CharacterView extends EntityView implements OccupationViewVisitor {
         int height = Settings.GAMEHEIGHT;
 
         g.setColor(Color.BLACK);
-        g.drawRect(xPixel-width/128,yPixel-16,width/16,height/56);
+        g.drawRect(xPixel-width/128,yPixel-16,width/16+1,height/56+1);
         g.setColor(Color.RED);
-        g.fillRect(xPixel-width/128,yPixel-16,(int)((health/baseHealth)*width/16), height/56);
+        g.fillRect(xPixel-width/128+1,yPixel-16+1,(int)((health/baseHealth)*width/16), height/56);
     } // end drawHealthBar
 
     @Override

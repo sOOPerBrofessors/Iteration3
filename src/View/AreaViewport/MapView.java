@@ -47,5 +47,4 @@ public class MapView {
             tileColumnView[x][y].setNonVisibleState();
         }
     }
-
 }
