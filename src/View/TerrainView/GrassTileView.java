@@ -48,9 +48,7 @@ public class GrassTileView extends TileView{
         g2d.setFont(f);
         g2d.drawString(debug, (xPixel+ (tileWidth/3))*Settings.SCALEFACTOR, (yPixel + (tileHeight/2))*Settings.SCALEFACTOR);
 
-
         renderEntity(g2d);
-
         g2d.dispose();
     }
 
