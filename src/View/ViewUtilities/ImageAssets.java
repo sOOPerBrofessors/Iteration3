@@ -22,8 +22,11 @@ public class ImageAssets {
     public static BufferedImage sneakSW, sneakNW, sneakN, sneakNE, sneakSE, sneakS;
     public static BufferedImage grass, grass2, dirt, water;
 
+    public static BufferedImage healthPotion;
+
     //needs to be called once
     public static void init(){
+        SpriteSheet healthPotionSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/HealthPotion.png"));
         SpriteSheet smasherSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Smasher.png"));
         SpriteSheet sneakSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Sneak.png"));
         SpriteSheet terrainSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/terrainsWithWater.png"));
@@ -47,6 +50,7 @@ public class ImageAssets {
         grass2 = terrainSheet.cropSheet(terrainWidth*2,0,terrainWidth,terrainHeight);
         dirt = terrainSheet.cropSheet(terrainWidth,0,terrainWidth,terrainHeight);
         water = waterSheet.cropSheet(0,0,terrainWidth,terrainHeight);
-    }
 
+        healthPotion = healthPotionSheet.cropSheet(0,0,Settings.POTIONWIDTH, Settings.POTIONHEIGHT);
+    }
 }
