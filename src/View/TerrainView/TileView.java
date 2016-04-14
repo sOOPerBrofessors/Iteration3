@@ -57,7 +57,7 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
         }
     }
     //TODO: change this so it just renders map object views
-    public void renderEntity(Graphics g){
+    public void renderEntity(Graphics2D g){
         if (hasEntity()){
             //System.out.println(location.getX() + "," +location.getY() +"," +location.getZ());
             int centeredX = xPixel + Settings.TILEWIDTH/4;

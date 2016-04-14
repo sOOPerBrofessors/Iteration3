@@ -27,7 +27,7 @@ import java.util.HashMap;
  */
 
 //Displays Inventory in 4x4 matrix. x goes to the right, y goes down
-public class InventoryView extends JComponent implements Observer{
+public class InventoryView extends JPanel implements Observer{
 
     private Inventory inventory;
     //private ArrayList<Item> inventoryList;
@@ -70,9 +70,9 @@ public class InventoryView extends JComponent implements Observer{
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setColor(Color.ORANGE);
-        g2d.drawRect(0,0,Settings.GAMEHEIGHT,Settings.GAMEWIDTH);
+        g2d.drawRect(Settings.GAMEWIDTH/4,Settings.GAMEHEIGHT/4,Settings.GAMEHEIGHT/2,Settings.GAMEWIDTH/4);
+        g2d.fillRect(Settings.GAMEWIDTH/4,Settings.GAMEHEIGHT/4,Settings.GAMEHEIGHT/2, Settings.GAMEWIDTH/4);
         g2d.dispose();
-        MessageHandler.println("InventoryView paintcomponentCalled" , ErrorLevel.ERROR, PersonFilter.SAM);
     }
 
 

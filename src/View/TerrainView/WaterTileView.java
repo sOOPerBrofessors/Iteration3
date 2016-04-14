@@ -42,9 +42,11 @@ public class WaterTileView extends TileView {
         String debug = location.getX() + "," + location.getY();
         Font f = new Font("Courier New", 1, 12);
 
-        renderEntity(g);
         g2d.setFont(f);
         g2d.drawString(debug, (xPixel+ (tileWidth/3))*Settings.SCALEFACTOR, (yPixel + (tileHeight/2))*Settings.SCALEFACTOR);
+        g2d.dispose();
+
+        renderEntity(g2d);
         g2d.dispose();
     }
 }

@@ -43,14 +43,10 @@ public class ImageAssets {
         sneakSE = sneakSheet.cropSheet(sneakWidth*4, 0, sneakWidth, sneakHeight);
         sneakS = sneakSheet.cropSheet(sneakWidth*5, 0, sneakWidth, sneakHeight);
 
-//      grass = terrainSheet.cropSheet(0,0, width, height);
-
         grass = terrainSheet.cropSheet(0,0,terrainWidth,terrainHeight);
         grass2 = terrainSheet.cropSheet(terrainWidth*2,0,terrainWidth,terrainHeight);
         dirt = terrainSheet.cropSheet(terrainWidth,0,terrainWidth,terrainHeight);
         water = waterSheet.cropSheet(0,0,terrainWidth,terrainHeight);
-
-
     }
 
 }
