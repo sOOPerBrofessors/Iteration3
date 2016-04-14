@@ -4,6 +4,7 @@ import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Character.Occupation.Smasher;
 import Model.Entity.Character.Occupation.Sneak;
 import Model.Entity.Character.Occupation.Summoner;
+import Model.Inventory.Inventory;
 import Model.Map.Location;
 import Utilities.Visitor.EntityViewVisitor;
 import View.EntityView.CharacterView;
@@ -45,6 +46,10 @@ public class Avatar extends Character {
         return new Avatar(new Summoner(), new Location(5,5,0));
 
     } // end factory method makeSneak
+
+    public Inventory getInventory(){ //needed for InventoryView - Sam
+        return inventory;
+    }
 
     @Override
     public void update() {

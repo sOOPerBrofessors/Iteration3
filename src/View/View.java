@@ -1,7 +1,7 @@
 package View;
 
 import Controller.ControllerManager;
-import Utilities.Observer;
+import Utilities.Observers.Observer;
 import View.ViewUtilities.MainFrame;
 import Model.Model;
 
