@@ -38,12 +38,10 @@ public class GamePanel extends JPanel{
 
     //These views can be added to the GamePanel
     public void addInventoryView(){
-        //TODO:
         addView(inventoryView);
     }
 
     public void closeInventoryView(){
-        //TODO:
         closeView(inventoryView);
     }
 

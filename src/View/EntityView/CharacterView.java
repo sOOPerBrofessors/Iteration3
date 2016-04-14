@@ -2,6 +2,7 @@ package View.EntityView;
 
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
+import Utilities.Settings;
 import Utilities.Visitor.OccupationViewVisitor;
 import View.EntityView.AvatarViewFactory.OccupationViewFactory;
 import View.ViewUtilities.ImageAssets;
@@ -35,7 +36,21 @@ public class CharacterView extends EntityView implements OccupationViewVisitor {
         //g.setColor(Color.blue);
         //g.drawRect(xPixel,yPixel,entityWidth,entityHeight);
         updateOrientationImage();
-        g.drawImage(avatarImage,xPixel,yPixel,entityWidth, entityHeight,null);
+        //g.drawImage(avatarImage,xPixel,yPixel,entityWidth, entityHeight,null);
+
+
+        Graphics2D g2d = (Graphics2D) g.create();
+        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+
+        g2d.drawImage(avatarImage,xPixel* Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,entityWidth*Settings.SCALEFACTOR,entityHeight* Settings.SCALEFACTOR,null);
+//        g.setColor(Color.GREEN);
+//        g.drawRect(xPixel,yPixel,tileWidth,tileHeight);
+
+
+        g2d.dispose();
     }
 
     @Override
