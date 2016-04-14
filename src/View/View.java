@@ -4,6 +4,8 @@ import Controller.ControllerManager;
 import Utilities.Observers.Observer;
 import View.ViewUtilities.MainFrame;
 import Model.Model;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 
 import javax.swing.JFrame;
 
