@@ -2,7 +2,6 @@ package Controller;
 
 import Controller.Controllers.GamePlayController;
 import Controller.Controllers.InventoryController;
-import Model.Inventory.Inventory;
 import Model.State.StateManager;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
@@ -28,7 +27,7 @@ public class ControllerManager implements KeyListener {
 
     public ControllerManager(){
         gamePlayController = new GamePlayController(this);
-        //inventoryController = new InventoryController(this);
+        inventoryController = new InventoryController(this);
     }
 
     public void setActiveController(Controller gs){
@@ -44,27 +43,26 @@ public class ControllerManager implements KeyListener {
     }
 
     public void setInventoryState(){
+        activeController = inventoryController;
+        stateManager.pauseGame(); // switches to pausedGameState
         viewManager.displayInventory();
-        stateManager.pauseGame(); // don't think pause game is working, ai guy still moves
-        //activeController = inventoryController;
-        //activeController = new InventoryController(this);
         MessageHandler.println("ControllerManager.setInventoryState called" , ErrorLevel.NOTICE, PersonFilter.SAM);
     }
 
     public void setEquipmentState(){
-        viewManager.displayEquipment();
+        //viewManager.displayEquipment();
         stateManager.pauseGame();
         //activeController = equipmentController;
     }
 
     public void setPauseState(){
-        viewManager.displayPauseMenu();
+        //viewManager.displayPauseMenu();
         stateManager.pauseGame();
         //activeController = pauseController
     }
 
     public void setSkillsState(){
-        viewManager.displaySkills();
+        //viewManager.displaySkills();
         stateManager.pauseGame();
         //activeController = skillsController
     }
@@ -86,6 +84,8 @@ public class ControllerManager implements KeyListener {
 
     public void switchGamePlay(){
         activeController = gamePlayController;
+        stateManager.activeGame(); // makes Game state Active
+        viewManager.closeInventory();
     }
 
     public void setViewManager(ViewManager viewManager){

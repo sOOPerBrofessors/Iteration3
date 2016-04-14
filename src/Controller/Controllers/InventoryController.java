@@ -13,12 +13,13 @@ import View.ViewUtilities.Panels.GamePanel;
  * Created by sgl on 4/9/16. //Essentially copying Mike's GameplayController
  */
 public class InventoryController extends Controller {
-    private PausedGameState state; //does it need a handle to PausedGameState???
+
     private GamePanel gamePanel;
     private InventoryView inventoryView; //Needs handle to inventoryView
 
     public InventoryController(ControllerManager controllerManager){
         super(controllerManager);
+        initCommands();
     }
 
     @Override
@@ -66,22 +67,20 @@ public class InventoryController extends Controller {
         commands.put(Settings.ESC, new Command() {
             @Override
             public void execute() {
-                //TODO: Change to active state!
-                //TODO: TELL GAMEPANEL TO remove INVENTORY PANEL
-                //TODO: switch back to inventory Controller
+                controllerManager.switchGamePlay();
             }
         });
 
-
-    }
-
-    public void setState(PausedGameState state) {
-        this.state = state;
-        initCommands();
+        // Exit InventoryView
+        commands.put(Settings.INVENTORY, new Command() {
+            @Override
+            public void execute() {
+                controllerManager.switchGamePlay();
+            }
+        });
     }
 
     public void setGamePanel(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
 }
-
