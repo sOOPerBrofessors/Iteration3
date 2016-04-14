@@ -1,6 +1,7 @@
 package Utilities.InfluenceAreas.Planer;
 
 import Model.Map.Location;
+import Model.Map.Orientation;
 import Utilities.InfluenceAreas.InfluenceArea;
 
 import java.util.ArrayList;
@@ -21,43 +22,20 @@ public class RadialEffect extends InfluenceArea{
      * @return ArrayList of all the locations inside the radius
      */
     /* Example of use:
-    ArrayList<Location> list = RadialEffect.getInfluenceArea(new Location(x, y, z), radius);
+    ArrayList<Location> list = RadialEffect.getRadialArea(new Location(x, y, z), radius);
     for (int i = 0; i < list.size(); i++) {
         //actions here
     }
     */
-    public static ArrayList<Location> getInfluenceArea(Location location, int radius) {
+    public static ArrayList<Location> getRadialArea(Location location, int radius) {
         ArrayList<Location> list = new ArrayList<>();
-        Location northPoint = location.getAdjacentNorth();
-        Location tempPoint;
+
+        Location northPoint = location.getAdjacent(Orientation.NORTH);
+
         list.add(location);
         for (int i = 1; i <= radius; i++) {
-            tempPoint = northPoint;
-            for (int j = 0; j < i; j++) {
-                tempPoint = tempPoint.getAdjacentSouthEast();
-                list.add(tempPoint);
-            }
-            for (int j = 0; j < i; j++) {
-                tempPoint = tempPoint.getAdjacentSouth();
-                list.add(tempPoint);
-            }
-            for (int j = 0; j < i; j++) {
-                tempPoint = tempPoint.getAdjacentSouthWest();
-                list.add(tempPoint);
-            }
-            for (int j = 0; j < i; j++) {
-                tempPoint = tempPoint.getAdjacentNorthWest();
-                list.add(tempPoint);
-            }
-            for (int j = 0; j < i; j++) {
-                tempPoint = tempPoint.getAdjacentNorth();
-                list.add(tempPoint);
-            }
-            for (int j = 0; j < i; j++) {
-                tempPoint = tempPoint.getAdjacentNorthEast();
-                list.add(tempPoint);
-            }
-            northPoint = northPoint.getAdjacentNorth();
+            list = addLocationsOnCurrentRadius(list, i, northPoint);
+            northPoint = northPoint.getAdjacent(Orientation.NORTH);
         }
         list = removeOutOfMapLocations(list);
         return list;
@@ -82,8 +60,7 @@ public class RadialEffect extends InfluenceArea{
         ArrayList<ArrayList<Location>> list = new ArrayList<>();
         ArrayList<Location> innerList = new ArrayList<>();
 
-        Location northPoint = location.getAdjacentNorth();
-        Location tempPoint;
+        Location northPoint = location.getAdjacent(Orientation.NORTH);
 
         innerList.add(location);
         list.add(innerList);
@@ -91,35 +68,24 @@ public class RadialEffect extends InfluenceArea{
         for (int i = 1; i <= radius; i++) {
             innerList = new ArrayList<>();
 
-            tempPoint = northPoint;
+            innerList = addLocationsOnCurrentRadius(innerList, i, northPoint);
 
-            for (int j = 0; j < i; j++) {
-                tempPoint = tempPoint.getAdjacentSouthEast();
-                innerList.add(tempPoint);
-            }
-            for (int j = 0; j < i; j++) {
-                tempPoint = tempPoint.getAdjacentSouth();
-                innerList.add(tempPoint);
-            }
-            for (int j = 0; j < i; j++) {
-                tempPoint = tempPoint.getAdjacentSouthWest();
-                innerList.add(tempPoint);
-            }
-            for (int j = 0; j < i; j++) {
-                tempPoint = tempPoint.getAdjacentNorthWest();
-                innerList.add(tempPoint);
-            }
-            for (int j = 0; j < i; j++) {
-                tempPoint = tempPoint.getAdjacentNorth();
-                innerList.add(tempPoint);
-            }
-            for (int j = 0; j < i; j++) {
-                tempPoint = tempPoint.getAdjacentNorthEast();
-                innerList.add(tempPoint);
-            }
-            northPoint = northPoint.getAdjacentNorth();
+            northPoint = northPoint.getAdjacent(Orientation.NORTH);
+
             innerList = removeOutOfMapLocations(innerList);
             list.add(innerList);
+        }
+        return list;
+    }
+
+    private static ArrayList<Location> addLocationsOnCurrentRadius(ArrayList<Location> list, int curRadius, Location northPoint) {
+        int curOrientationIndex = 2; //SouthEast
+        for (int j = 0; j < 6; j++) {
+            for (int k = 0; k < curRadius; k++) {
+                northPoint = northPoint.getAdjacent(orientationArr[curOrientationIndex]);
+                list.add(northPoint);
+            }
+            curOrientationIndex = getNextOriIndexClockwise(curOrientationIndex);
         }
         return list;
     }
