@@ -3,8 +3,11 @@ package View.EntityView;
 import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Map.Orientation;
+import Utilities.ErrorLevel;
+import Utilities.MessageHandler;
 import Utilities.Observers.EntityObserver;
 import Model.Map.Location;
+import Utilities.PersonFilter;
 import Utilities.Settings;
 import View.MapView.MapObjectView;
 
@@ -17,8 +20,8 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
 
     private int x; // on the coordinate system
     private int y; // on the coordinate system
-    private int tileWidth = Settings.TILEWIDTH;
-    private int tileHeight = Settings.TILEHEIGHT;
+
+    protected OrientationView orientationView;
     protected int entityWidth = Settings.ENTITYWIDTH;
     protected int entityHeight = Settings.ENTITYHEIGHT;
     protected int xPixel; // on the map
@@ -26,6 +29,7 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
     protected Location location;
     protected Orientation orientation;
     protected Character entity; //property that  is being observered
+
 
     public EntityView(Character observerable){
         entity = observerable;
@@ -38,8 +42,12 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
 
     @Override
     public void updateMove() {
+        //System.out.println("update move");
+        MessageHandler.println("Entity is moving", ErrorLevel.NOTICE, PersonFilter.DAVID);
         updateLocation();
+        updateOrientation();
     }
+    public abstract void updateOrientation();
 
     private void updateLocation(){
         x = location.getX();
