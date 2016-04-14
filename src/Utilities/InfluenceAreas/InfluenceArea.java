@@ -10,8 +10,12 @@ import java.util.ArrayList;
 
 /**
  * Created by AndyZhu on 13/4/2016.
+ *
+ * Parent of all kinds of influence areas
+ * Has several utility methods for it's subclasses to use
  */
 public abstract class InfluenceArea {
+
     protected static Orientation[] orientationArr = {
             Orientation.NORTH,
             Orientation.NORTHEAST,
