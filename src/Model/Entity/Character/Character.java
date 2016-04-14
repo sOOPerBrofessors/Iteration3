@@ -6,6 +6,7 @@ import Model.Inventory.Inventory;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
 import Model.Map.Location;
+import Model.Map.Orientation;
 import Model.Stats.CharacterStats;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
