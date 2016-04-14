@@ -26,5 +26,7 @@ public class WaterTileView extends TileView {
         Font f = new Font("Courier New", 1, 12);
         g.setFont(f);
         g.drawString(debug, xPixel+ (tileWidth/3), yPixel + (tileHeight/2));
+
+        renderEntity(g);
     }
 }

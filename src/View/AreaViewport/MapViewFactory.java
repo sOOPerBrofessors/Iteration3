@@ -15,8 +15,7 @@ public class MapViewFactory {
     }
 
 
-    //TWO IDEAS: WE CAN EITHER CREATE AN ARRAYLIST OR CREATE A TILE VIEW
-    public TileColumnView[][] createMapViewObjects(Map map){
+    public MapView createMapViewObjects(Map map){
 
         TileColumn[][] tC = map.getMapOfTiles();
 
@@ -29,7 +28,7 @@ public class MapViewFactory {
                 tmp[i][j] = new TileColumnView(tC[i][j], new Location(i,j,0));
             }
         }
-        return tmp;
+        return new MapView(tmp);
     }
 
 }
