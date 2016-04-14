@@ -43,11 +43,6 @@ public class NPC extends Character implements Tickable{
 
     }
 
-    /*public static NPC makeEnemy(){
-        return new NPC(new Smasher(), new Location(1,1,0), new Personality("Ganondorf", ), )
-    }*/
-
-
     @Override
     public void update() {
 

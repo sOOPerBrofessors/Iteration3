@@ -1,5 +1,7 @@
 package View.ViewUtilities;
 
+import Utilities.Settings;
+
 import java.awt.image.BufferedImage;
 
 /**
@@ -7,21 +9,25 @@ import java.awt.image.BufferedImage;
  */
 public class ImageAssets {
 
-    private static final int width = 96; //width and height of sprites
-    private static final int height = 96;
-    private static final int sneakWidth = 42; //width and height of sprites
-    private static final int sneakHeight = 70;
-    private static final int smasherWidth = 37; //width and height of sprites
-    private static final int smasherHeight = 75;
+    //private static final int width = 96; //width and height of sprites
+    //private static final int height = 96;
+    private static final int sneakWidth = Settings.ENTITYWIDTH; //width and height of sprites
+    private static final int sneakHeight = Settings.ENTITYHEIGHT;
+    private static final int smasherWidth = Settings.ENTITYWIDTH; //width and height of sprites
+    private static final int smasherHeight = Settings.ENTITYHEIGHT;
+    private static final int terrainWidth = 96;
+    private static final int terrainHeight = 72;
+
     public static BufferedImage smasherSW, smasherNW, smasherN, smasherNE, smasherSE, smasherS;
     public static BufferedImage sneakSW, sneakNW, sneakN, sneakNE, sneakSE, sneakS;
-    public static BufferedImage grass;
+    public static BufferedImage grass, grass2, dirt, water;
 
     //needs to be called once
     public static void init(){
-        SpriteSheet smasherSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/newSmasher.png"));
-        SpriteSheet sneakSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/newSneak.png"));
-        SpriteSheet terrainSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/grass.png"));
+        SpriteSheet smasherSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Smasher.png"));
+        SpriteSheet sneakSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Sneak.png"));
+        SpriteSheet terrainSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/terrainsWithWater.png"));
+        SpriteSheet waterSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/water2.png"));
 
         smasherSW = smasherSheet.cropSheet(0,0, smasherWidth, smasherHeight);
         smasherNW = smasherSheet.cropSheet(smasherWidth*1, 0, smasherWidth, smasherHeight);
@@ -37,8 +43,10 @@ public class ImageAssets {
         sneakSE = sneakSheet.cropSheet(sneakWidth*4, 0, sneakWidth, sneakHeight);
         sneakS = sneakSheet.cropSheet(sneakWidth*5, 0, sneakWidth, sneakHeight);
 
-//        grass = terrainSheet.cropSheet(0,0, width, height);
-
+        grass = terrainSheet.cropSheet(0,0,terrainWidth,terrainHeight);
+        grass2 = terrainSheet.cropSheet(terrainWidth*2,0,terrainWidth,terrainHeight);
+        dirt = terrainSheet.cropSheet(terrainWidth,0,terrainWidth,terrainHeight);
+        water = waterSheet.cropSheet(0,0,terrainWidth,terrainHeight);
     }
 
 }

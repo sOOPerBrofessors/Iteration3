@@ -1,5 +1,9 @@
 package Model.Map;
 
+import Utilities.ErrorLevel;
+import Utilities.MessageHandler;
+import Utilities.PersonFilter;
+
 /**
  * Created by sgl on 4/5/16.
  */
@@ -44,5 +48,38 @@ public class Location {
     }
     public int getY(){
         return y;
+    }
+
+    //get adjacent locations, mainly used by InfluenceAreas
+    public Location getAdjacentTop() {
+        return new Location(x, y, z + 1);
+    }
+
+    public Location getAdjacentBottom() {
+        return new Location(x, y, z - 1);
+    }
+
+    public Location getAdjacentNorth() {
+        return new Location(x, y - 1, z);
+    }
+
+    public Location getAdjacentNorthEast() {
+        return new Location(x + 1, y - 1, z);
+    }
+
+    public Location getAdjacentSouthEast() {
+        return new Location(x + 1, y, z);
+    }
+
+    public Location getAdjacentSouth() {
+        return new Location(x, y + 1, z);
+    }
+
+    public Location getAdjacentSouthWest() {
+        return new Location(x - 1, y + 1, z);
+    }
+
+    public Location getAdjacentNorthWest() {
+        return new Location(x - 1, y, z);
     }
 }

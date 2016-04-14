@@ -1,9 +1,11 @@
 package View;
 
 import Controller.ControllerManager;
-import Utilities.Observer;
+import Utilities.Observers.Observer;
 import View.ViewUtilities.MainFrame;
 import Model.Model;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 
 import javax.swing.JFrame;
 
