@@ -21,6 +21,7 @@ public class ImageAssets {
     public static BufferedImage smasherSW, smasherNW, smasherN, smasherNE, smasherSE, smasherS;
     public static BufferedImage sneakSW, sneakNW, sneakN, sneakNE, sneakSE, sneakS;
     public static BufferedImage grass, grass2, dirt, water;
+    public static BufferedImage invSlot, eqSlot, select;
 
     //needs to be called once
     public static void init(){
@@ -28,6 +29,7 @@ public class ImageAssets {
         SpriteSheet sneakSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Sneak.png"));
         SpriteSheet terrainSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/terrainsWithWater.png"));
         SpriteSheet waterSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/water2.png"));
+        SpriteSheet invButtonsSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Buttons/InventoryButtons.png"));
 
         smasherSW = smasherSheet.cropSheet(0,0, smasherWidth, smasherHeight);
         smasherNW = smasherSheet.cropSheet(smasherWidth*1, 0, smasherWidth, smasherHeight);
@@ -47,6 +49,10 @@ public class ImageAssets {
         grass2 = terrainSheet.cropSheet(terrainWidth*2,0,terrainWidth,terrainHeight);
         dirt = terrainSheet.cropSheet(terrainWidth,0,terrainWidth,terrainHeight);
         water = waterSheet.cropSheet(0,0,terrainWidth,terrainHeight);
+
+        invSlot = invButtonsSheet.cropSheet(0,0,60,60);
+        eqSlot = invButtonsSheet.cropSheet(60,0,60,60);
+        select = invButtonsSheet.cropSheet(120,0,60,60);
     }
 
 }

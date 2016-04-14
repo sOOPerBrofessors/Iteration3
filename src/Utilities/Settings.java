@@ -9,8 +9,8 @@ public class Settings {
 
     public static String TITLE = "sOOPer Brogrammers!";
 
-    public static int GAMEWIDTH = 800;
-    public static int GAMEHEIGHT = 600;
+    public static int GAMEWIDTH = 1080;
+    public static int GAMEHEIGHT = 720;
     public static int SCALEFACTOR = 1;
     public static boolean debug = true;
     public static ErrorLevel errorLevel = ErrorLevel.NOTICE;
