@@ -26,6 +26,7 @@ public class WaterTile extends MobileTile {
 
     @Override
     public boolean moveBoat(Entity entity){
+        //if (super.entity!= null) return false;
         this.entity = entity;
         notifyObservers();
         return true;

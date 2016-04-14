@@ -8,7 +8,7 @@ import Model.Items.Takeable.Equippable.Weapon;
 import Model.Map.Location;
 import Model.Stats.CharacterStats;
 import Utilities.Navigation.Navigation;
-import Utilities.Observer;
+import Utilities.Observers.Observer;
 
 /**
  * Created by broskj on 4/6/16.
@@ -19,7 +19,7 @@ public abstract class Character extends Entity implements Observer {
     private Occupation o;
     protected CharacterStats stats;
     protected Inventory inventory;
-
+    private int radiusVisibility;
     protected Character(Occupation o, Location location) {
         super(Navigation.makeCharNav(), location);
         this.o = o;
@@ -27,6 +27,7 @@ public abstract class Character extends Entity implements Observer {
         this.inventory = new Inventory();
         stats.addObserver(this);
         inventory.addObserver(this);
+        this.radiusVisibility = 3; //might need to change to some sort of default later
     } // end private constructor
 
     /*
@@ -97,5 +98,8 @@ public abstract class Character extends Entity implements Observer {
 
     public Occupation getOccupation(){
         return o;
+    }
+    public int getRadiusVisibility(){
+        return radiusVisibility;
     }
 } // end abstract class Character
