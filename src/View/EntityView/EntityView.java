@@ -19,8 +19,8 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
     private int y; // on the coordinate system
     private int tileWidth = Settings.TILEWIDTH;
     private int tileHeight = Settings.TILEHEIGHT;
-    protected int entityWidth = 30;
-    protected int entityHeight = 48;
+    protected int entityWidth = Settings.ENTITYWIDTH;
+    protected int entityHeight = Settings.ENTITYHEIGHT;
     protected int xPixel; // on the map
     protected int yPixel; // on the map
     protected Location location;

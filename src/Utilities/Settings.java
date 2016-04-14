@@ -11,6 +11,7 @@ public class Settings {
 
     public static int GAMEWIDTH = 800;
     public static int GAMEHEIGHT = 600;
+    public static int SCALEFACTOR = 1;
     public static boolean debug = true;
     public static ErrorLevel errorLevel = ErrorLevel.NOTICE;
     public static PersonFilter personFilter = PersonFilter.ALL;
@@ -51,8 +52,10 @@ public class Settings {
 
     public static void setDebug() { debug = true; }
     //Original grass
-    public static int TILEWIDTH = 56;
-    public static int TILEHEIGHT = 48;
+    public static int TILEWIDTH = 96;
+    public static int TILEHEIGHT = 62; //used to be 48, shouldn't it be 62???
+    public static int ENTITYWIDTH = 42;
+    public static int ENTITYHEIGHT = 75;
     //Grass flat
 //    public static int TILEWIDTH = 96;
 //    public static int TILEHEIGHT = 62;
