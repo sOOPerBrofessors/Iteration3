@@ -25,6 +25,7 @@ import java.util.HashMap;
 
 //Displays Inventory in 4x4 matrix. x goes to the right, y goes down
 public class InventoryView extends JComponent implements Observer{
+
     private Inventory inventory;
     //private ArrayList<Item> inventoryList;
     //private Armor equippedArmor;

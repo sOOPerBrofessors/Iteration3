@@ -27,38 +27,46 @@ public class GamePanel extends JPanel{
         this.viewManager = viewManager;
         //inventoryView = new InventoryView();
     }
+
     //These views come built in with the GamePanel
     public void init(ActiveGameState gameState){
         areaViewport = new AreaViewport(gameState);
         addView(areaViewport);
         controller.setState(gameState);
-
         inventoryView = new InventoryView(gameState);
     }
+
     //These views can be added to the GamePanel
     public void addInventoryView(){
         //TODO:
         addView(inventoryView);
     }
+
     public void closeInventoryView(){
         //TODO:
         closeView(inventoryView);
     }
+
     public void addEquipmentView(){
         //TODO:
     }
+
     public void closeEquipmentView(){
         //TODO:
     }
+
     public void addStatusView(){
         //TODO:
     }
+
     public void closeStatusView(){
         //TODO:
     }
+
     public void addSkillsView(){
         //TODO:
     }
+
     public void closeSkillsview(){
         //TODO:
     }
@@ -70,11 +78,13 @@ public class GamePanel extends JPanel{
         super.paintComponent(g);
 
     }
+
     public void addView(JComponent view){
         this.add(view, BorderLayout.CENTER);
         this.revalidate();
         this.repaint();
     }
+
     public void closeView(JComponent view){
         this.remove(view);
         this.revalidate();

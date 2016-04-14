@@ -13,6 +13,7 @@ import View.ViewUtilities.Panels.GamePanel;
  * Created by sgl on 4/9/16. //Essentially copying Mike's GameplayController
  */
 public class InventoryController extends Controller {
+
     private PausedGameState state; //does it need a handle to PausedGameState???
     private GamePanel gamePanel;
     private InventoryView inventoryView; //Needs handle to inventoryView

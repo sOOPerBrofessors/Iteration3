@@ -1,6 +1,7 @@
 package Controller;
 
 import Controller.Controllers.GamePlayController;
+import Controller.Controllers.InventoryController;
 import Model.State.StateManager;
 import View.ViewManager;
 
@@ -19,9 +20,11 @@ public class ControllerManager implements KeyListener {
 
     private Controller activeController;
     private GamePlayController gamePlayController;
+    private InventoryController inventoryController;
 
     public ControllerManager(){
         gamePlayController = new GamePlayController(this);
+        inventoryController = new InventoryController(this);
     }
 
     public void setActiveController(Controller gs){
@@ -37,9 +40,8 @@ public class ControllerManager implements KeyListener {
     }
 
     public void setInventoryState(){
-        viewManager.displayInventory();
+        activeController =inventoryController;
         stateManager.pauseGame();
-        //activeController = inventoryController;
     }
 
     public void setEquipmentState(){
