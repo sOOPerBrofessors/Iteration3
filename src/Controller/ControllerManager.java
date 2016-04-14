@@ -99,4 +99,6 @@ public class ControllerManager implements KeyListener {
     public GamePlayController getGamePlayController(){
         return gamePlayController;
     }
+
+    public ViewManager getViewManager(){return viewManager;}
 }

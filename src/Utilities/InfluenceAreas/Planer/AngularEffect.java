@@ -86,6 +86,9 @@ public class AngularEffect extends InfluenceArea {
         orientationIndex = getNextOriIndexClockwise(orientationIndex);
         orientationIndex = getNextOriIndexClockwise(orientationIndex);
 
+        //if even then expand out curRadius/2 in both directions
+        //if odd expand out curRadius/2 (truncated) in both directions
+        //i < 2 for two direction
         for (int i = 0; i < 2; i++) {
             for (int j = 1; j <= curRadius / 2; j++) {
                 temp = temp.getAdjacent(orientationArr[orientationIndex]);
