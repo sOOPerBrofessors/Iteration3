@@ -1,4 +1,6 @@
-package Utilities;
+package Utilities.Observers;
+
+import Utilities.Observers.Observer;
 
 /**
  * Created by broskj on 4/5/16.
