@@ -1,6 +1,7 @@
 package View;
 
 import Controller.ControllerManager;
+import Controller.Controllers.InventoryController;
 import Model.Entity.Character.Avatar;
 import Model.State.StateManager;
 import Utilities.ErrorLevel;
@@ -42,6 +43,7 @@ public class ViewManager implements Subject {
         introPanel = new IntroPanel(this).introPanel();
         createPanel = new CharacterCreationPanel(this).createPanel();
         gamePanel = new GamePanel(this);
+
         activePanel = introPanel;
         //inventoryView = new InventoryView()
     }
@@ -88,6 +90,8 @@ public class ViewManager implements Subject {
         return activePanel;
     }
 
+    public GamePanel getGamePanel() {return gamePanel;}
+
     @Override
     public void addObserver(Observer o) {
         observer = o;
@@ -101,10 +105,6 @@ public class ViewManager implements Subject {
     @Override
     public void alert() {
         observer.update();
-    }
-
-    public GamePanel getGamePanel() {
-        return gamePanel;
     }
 
     public void setControllerManager(ControllerManager controllerManager) {
@@ -124,6 +124,7 @@ public class ViewManager implements Subject {
         stateManager.setPausedGameState(gameLoader.getPausedGameState());
         gamePanel.init(gameLoader.getActiveGameState()); // initilaizes the game view
         controllerManager.switchGamePlay(); // switch to gameplay controller
+        InventoryController.setInventoryView(gamePanel);
         View.startGameLoop(); // starts loop in Model class
         alert(); // notifies view of the updated panel
     }
