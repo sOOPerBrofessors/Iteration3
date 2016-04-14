@@ -57,8 +57,8 @@ public class Settings {
     public static int ENTITYWIDTH = 42;
     public static int ENTITYHEIGHT = 75;
 
-    public static int POTIONWIDTH = 38;
-    public static int POTIONHEIGHT = 42;
+    public static int POTIONWIDTH = 32;
+    public static int POTIONHEIGHT = 32;
     //Grass flat
 //    public static int TILEWIDTH = 96;
 //    public static int TILEHEIGHT = 62;
