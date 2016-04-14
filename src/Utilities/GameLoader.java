@@ -9,6 +9,7 @@ import Model.Map.Tile.GrassTile;
 import Model.Map.Tile.WaterTile;
 import Model.Map.TileColumn;
 import Model.State.GameState.ActiveGameState;
+import Model.State.GameState.PausedGameState;
 import Utilities.AIStuff.NPCFactory;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class GameLoader {
     Map map;
     Avatar avatar;
     ActiveGameState activeGameState;
+    PausedGameState pausedGameState;
     ArrayList<NPC> entities;
 
 
@@ -34,7 +36,7 @@ public class GameLoader {
         initMap(avatar);
         initEntities();
         activeGameState = new ActiveGameState(map, player, entities);
-
+        pausedGameState = new PausedGameState(map, player, entities);
     }
 
     //Map has to contain an avatar (might be unnecessary in the constructor though)
@@ -92,5 +94,8 @@ public class GameLoader {
     }
     public ActiveGameState getActiveGameState(){
         return activeGameState;
+    }
+    public PausedGameState getPausedGameState() {
+        return pausedGameState;
     }
 }

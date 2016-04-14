@@ -36,9 +36,8 @@ public class AreaViewport extends JPanel {
         map = gameState.getMap();
         MapViewFactory mapViewFactory = new MapViewFactory();
         mapView = mapViewFactory.createMapViewObjects(map);
-
-
     }
+
     private void offsetTiles(){
         //Might be useful to have a check to see if offset is 0 before doing anything
         Location offset = cameraView.computeOffset();
@@ -49,6 +48,7 @@ public class AreaViewport extends JPanel {
             }
         }
     }
+
     private void updateFogOfWar(){
         fogOfWar.setFogOfWar(mapView);
     }
@@ -60,6 +60,7 @@ public class AreaViewport extends JPanel {
             }
         }
     }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

@@ -18,7 +18,11 @@ public class StateManager implements Tickable {
     private PausedGameState pausedGameState;
 
     public void pauseGame(){
-        //activeState = pauseState;
+        activeState = pausedGameState;
+    }
+
+    public void activeGame(){
+        activeState = activeGameState;
     }
 
     public void setActiveGameState(ActiveGameState activeGameState){
@@ -28,6 +32,10 @@ public class StateManager implements Tickable {
 
     public void setControllerManager(ControllerManager controllerManager) {
         this.controllerManager = controllerManager;
+    }
+
+    public void setPausedGameState(PausedGameState pausedGameState){
+        this.pausedGameState = pausedGameState;
     }
 
     @Override

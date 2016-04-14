@@ -2,7 +2,7 @@ package View.AreaViewport.FogOfWar;
 
 import Model.Entity.Character.Avatar;
 import Model.Map.Location;
-import Utilities.InfluenceAreas.Planer.AreaEffect;
+import Utilities.InfluenceAreas.Planer.RadialEffect;
 import View.AreaViewport.MapView;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class FogOfWar {
     public void setFogOfWar(MapView mapView){
         setNonVisible(mapView);
         this.oldLocation = new Location(avatar.getX(),avatar.getY(),0);
-        ArrayList<Location> visible = AreaEffect.getInfluenceArea(avatar.getLocation(), radius);
+        ArrayList<Location> visible = RadialEffect.getInfluenceArea(avatar.getLocation(), radius);
         for (Location location : visible){
             int x = location.getX();
             int y = location.getY();
@@ -37,7 +37,7 @@ public class FogOfWar {
     //This will set all the previous states back to non-visible (they had to already have been shrouded)
     private void setNonVisible(MapView mapView){
         //Location is the previous location
-        ArrayList<Location> nonVisible = AreaEffect.getInfluenceArea(oldLocation, radius);
+        ArrayList<Location> nonVisible = RadialEffect.getInfluenceArea(oldLocation, radius);
         for (Location location : nonVisible){
             int x = location.getX();
             int y = location.getY();
