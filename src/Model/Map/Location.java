@@ -51,35 +51,15 @@ public class Location {
     }
 
     //get adjacent locations, mainly used by InfluenceAreas
+    public Location getAdjacent (Orientation orientation) {
+        return new Location(x + orientation.x, y + orientation.y, z);
+    }
+
     public Location getAdjacentTop() {
         return new Location(x, y, z + 1);
     }
 
     public Location getAdjacentBottom() {
         return new Location(x, y, z - 1);
-    }
-
-    public Location getAdjacentNorth() {
-        return new Location(x, y - 1, z);
-    }
-
-    public Location getAdjacentNorthEast() {
-        return new Location(x + 1, y - 1, z);
-    }
-
-    public Location getAdjacentSouthEast() {
-        return new Location(x + 1, y, z);
-    }
-
-    public Location getAdjacentSouth() {
-        return new Location(x, y + 1, z);
-    }
-
-    public Location getAdjacentSouthWest() {
-        return new Location(x - 1, y + 1, z);
-    }
-
-    public Location getAdjacentNorthWest() {
-        return new Location(x - 1, y, z);
     }
 }
