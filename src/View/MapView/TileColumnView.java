@@ -53,7 +53,7 @@ public class TileColumnView extends JComponent implements TileVisitor {
         updateCoordinateToScreenPosition();
         tileColumn = subject;
         updateTileViews(); //This needs to be called to get all the correct tiles.
-        tileViewState = new VisibleState();
+        tileViewState = new NonVisibleState();
     }
     //Function basically copies the list  with its tile column subject
     private void updateTileViews(){

@@ -19,7 +19,7 @@ public class AreaViewport extends JPanel {
 
     //TODO: Change this to map
     //View objects
-    private TileColumnView[][] tileColumnView;
+    private MapView mapView;
     private Map map;
 
     //private CharacterView avatarView;
@@ -35,27 +35,28 @@ public class AreaViewport extends JPanel {
         fogOfWar = new FogOfWar(avatar);
         map = gameState.getMap();
         MapViewFactory mapViewFactory = new MapViewFactory();
-        tileColumnView = mapViewFactory.createMapViewObjects(map);
+        mapView = mapViewFactory.createMapViewObjects(map);
 
 
     }
     private void offsetTiles(){
         //Might be useful to have a check to see if offset is 0 before doing anything
         Location offset = cameraView.computeOffset();
-        for (int i = 0; i < tileColumnView.length; i++) {
-            for (int j = 0; j < tileColumnView[0].length; j++){
-                tileColumnView[i][j].offsetCamera(offset);
+        for (int i = 0; i < mapView.getXBound(); i++) {
+            for (int j = 0; j < mapView.getYBound(); j++){
+
+                mapView.offsetCamera(offset, i, j);
             }
         }
     }
     private void updateFogOfWar(){
-        fogOfWar.setFogOfWar(tileColumnView);
+        fogOfWar.setFogOfWar(mapView);
     }
     public void renderTiles(Graphics g){
         Location offset = cameraView.computeOffset();
-        for (int i = 0; i < tileColumnView.length; i++) {
-            for (int j = 0; j < tileColumnView[0].length; j++){
-                tileColumnView[j][i].paintComponent(g);
+        for (int i = 0; i < mapView.getXBound(); i++) {
+            for (int j = 0; j < mapView.getYBound(); j++){
+                mapView.render(g, i, j);
             }
         }
     }
@@ -66,6 +67,7 @@ public class AreaViewport extends JPanel {
         offsetTiles();
         updateFogOfWar();
         //This is always called
+        System.out.println("repainting");
         renderTiles(g);
     }
 }
