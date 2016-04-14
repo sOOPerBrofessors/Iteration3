@@ -1,5 +1,6 @@
 package Controller.Controllers;
 
+import Model.Inventory.Inventory;
 import Model.State.GameState.ActiveGameState;
 import Controller.Controller;
 import Controller.ControllerManager;
@@ -7,6 +8,7 @@ import Controller.ControllerUtility.Command;
 import Model.State.GameState.PausedGameState;
 import Utilities.Settings;
 import View.InventoryView.InventoryView;
+import View.ViewManager;
 import View.ViewUtilities.Panels.GamePanel;
 
 /**
@@ -15,11 +17,19 @@ import View.ViewUtilities.Panels.GamePanel;
 public class InventoryController extends Controller {
 
     private GamePanel gamePanel;
-    private InventoryView inventoryView; //Needs handle to inventoryView
+    private ViewManager viewManager;
+    private static InventoryView inventoryView; //Needs handle to inventoryView
 
     public InventoryController(ControllerManager controllerManager){
         super(controllerManager);
+        //viewManager = controllerManager.getViewManager();
+        //gamePanel = viewManager.getGamePanel();
+        //inventoryView = controllerManager.getViewManager().getGamePanel().getInventoryView();
         initCommands();
+    }
+
+    public static void setInventoryView(GamePanel gamePanel){
+        inventoryView = gamePanel.getInventoryView();
     }
 
     @Override
