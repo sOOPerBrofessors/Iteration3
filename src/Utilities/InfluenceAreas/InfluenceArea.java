@@ -14,8 +14,8 @@ public abstract class InfluenceArea {
      * @return a new list with only valid locations. i.e. locations inside map
      */
     protected static ArrayList<Location> removeOutOfMapLocations (ArrayList<Location> list) {
-        int xLimit = 10;
-        int yLimit = 10;
+        int xLimit = 14;
+        int yLimit = 14;
         int zLimit = 10;
         int curX, curY, curZ;
         ArrayList<Location> newList = new ArrayList<>();
