@@ -6,9 +6,12 @@ import Model.Items.Item;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
 import Model.State.GameState.ActiveGameState;
+import Utilities.ErrorLevel;
+import Utilities.MessageHandler;
 import Utilities.Observers.EntityObservable;
 import Utilities.Observers.EntityObserver;
 import Utilities.Observers.Observer;
+import Utilities.PersonFilter;
 import Utilities.Settings;
 import javafx.beans.Observable;
 
@@ -46,15 +49,16 @@ public class InventoryView extends JComponent implements Observer{
         xSel = 0;
         xMax = Settings.MAX_INVENTORY_SIZE/4;
         yMax = Settings.MAX_INVENTORY_SIZE/4;
+        MessageHandler.println("InventoryView initialized", ErrorLevel.NOTICE, PersonFilter.SAM);
     }
 
-    public void selectRight(){ if (xSel < 4) xSel++; }
+    public void selectRight(){ if (xSel < xMax) xSel++; }
 
     public void selectLeft(){ if (xSel>0) xSel--; }
 
     public void selectUp(){ if (ySel>0) ySel--; }
 
-    public void selectDown(){ if (ySel<4) ySel++; }
+    public void selectDown(){ if (ySel< yMax) ySel++; }
 
     public void interactWithItem(){ //MAKE SURE INVENTORY HANDLES ERROR CHECKING IF TRYING TO USE AN ITEMSLOT THAT ISN'T FILLED!!!
         //y*4+x
@@ -63,8 +67,11 @@ public class InventoryView extends JComponent implements Observer{
 
     @Override
     protected void paintComponent(Graphics g) {
-        g.setColor(Color.ORANGE);
-        g.drawRect(200,200,200,200);
+        Graphics2D g2d = (Graphics2D) g.create();
+        g2d.setColor(Color.ORANGE);
+        g2d.drawRect(0,0,Settings.GAMEHEIGHT,Settings.GAMEWIDTH);
+        g2d.dispose();
+        MessageHandler.println("InventoryView paintcomponentCalled" , ErrorLevel.ERROR, PersonFilter.SAM);
     }
 
 
