@@ -58,7 +58,6 @@ public abstract class Entity implements EntityObservable, MapObject, Tickable, E
         return map.getTileColumn(newX,newY);
     }
 
-    //TODO: HOW TO HANDLE MOVING UP TILES
     public void move(Map map, Orientation orientation){
         //System.out.println("Entity: update location was called from move:" + this.orientation + ":" + orientation);
         if (this.orientation.equals(orientation)) {

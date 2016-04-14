@@ -17,9 +17,7 @@ import java.util.ArrayList;
  * Created by dyeung on 4/6/16.
  */
 public class GameLoader {
-    private int startAvatarX = 5;
-    private int startAvatarY = 5;
-
+    
     private int maxTileRow = 15;
     private int maxTileCol = 15;
 
@@ -75,17 +73,14 @@ public class GameLoader {
         //Temporary
         //map.addEntity(avatar);
         map.addCharacter(avatar); //(This doesn't have to worry about 3d things)
-        //Initial location of the avatar
-        TileColumn[][] tmpList = map.getMapOfTiles();
 
         entities = NPCFactory.init();
         AI_Controller controller = new AI_Controller();
         for(int i = 0; i < entities.size(); i++){
             entities.get(i).setController(controller);
-            tmpList[entities.get(i).getLocation().getX()][entities.get(i).getLocation().getY()].addEntity(entities.get(i));
+            map.addEntity(entities.get(i));
         }
-        tmpList[avatar.getLocation().getX()][avatar.getLocation().getY()].addCharacter(avatar);
-        map = new Map(tmpList);
+
         controller.setMap(map);
     }
 
