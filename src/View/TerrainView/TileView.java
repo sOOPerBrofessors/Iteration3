@@ -19,6 +19,7 @@ import java.util.ArrayList;
  * Created by dyeung on 4/7/16.
  */
 public abstract class TileView extends JComponent implements EntityViewVisitor, TileObserver {
+
     protected Location location;
     protected int tileWidth = Settings.TILEWIDTH;
     protected int tileHeight = Settings.TILEHEIGHT;
@@ -44,9 +45,11 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
         xPixel = x;
         yPixel = y;
     }
+
     public void setLocation(int x, int y, int z){
         location = new Location(x,y,z);
     }
+
     public abstract void paintComponent(Graphics g);
 
     protected boolean hasEntity(){
