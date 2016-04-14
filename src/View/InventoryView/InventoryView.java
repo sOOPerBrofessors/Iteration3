@@ -13,7 +13,7 @@ import Utilities.Observers.EntityObserver;
 import Utilities.Observers.Observer;
 import Utilities.PersonFilter;
 import Utilities.Settings;
-import javafx.beans.Observable;
+//import javafx.beans.Observable;
 
 import javax.swing.*;
 import java.awt.*;
