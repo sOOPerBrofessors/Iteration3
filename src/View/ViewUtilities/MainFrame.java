@@ -29,5 +29,4 @@ public class MainFrame extends JFrame{
         // move to View manager?
         pack();
     }
-
 }

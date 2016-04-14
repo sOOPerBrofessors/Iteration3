@@ -1,6 +1,7 @@
 package Model.Map.Tile;
 
 import Model.Entity.Entity;
+import Model.Items.Item;
 import Utilities.Observers.TileObservable;
 import Utilities.Observers.TileObserver;
 

@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * Created by dyeung on 4/6/16.
  */
 public class TileColumn implements TileVisitor{
+
     ArrayList<Tile> tileList;
 
     private int topGroundTile;

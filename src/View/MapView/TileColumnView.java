@@ -1,8 +1,5 @@
 package View.MapView;
 
-import Model.Entity.Character.Avatar;
-import Model.Entity.Entity;
-import Model.Entity.Character.Character;
 import Model.Map.Location;
 import Model.Map.Tile.Tile;
 import Model.Map.TileColumn;
@@ -13,8 +10,6 @@ import View.AreaViewport.FogOfWar.ShroudedState;
 import View.AreaViewport.FogOfWar.TileViewState;
 import View.AreaViewport.FogOfWar.VisibleState;
 import View.TerrainView.*;
-import Utilities.Visitor.TileVisitor;
-import View.EntityView.CharacterView;
 import View.TerrainView.GrassTileView;
 import View.TerrainView.RiverTileView;
 import View.TerrainView.TileView;
@@ -30,6 +25,7 @@ import java.util.ArrayList;
 //Purpose of this class is to emulate and (?)observer the tile slot within map
     // The observing might not be necessary as everything else is observing the other mapobjects
 public class TileColumnView extends JComponent implements TileVisitor {
+
     ArrayList<TileView> listOfTiles;
     private int x;
     private int y;
@@ -43,6 +39,7 @@ public class TileColumnView extends JComponent implements TileVisitor {
     private int yCenter = tileHeight/2;
     private TileColumn tileColumn;
     private TileViewState tileViewState;
+
     public TileColumnView(TileColumn subject, Location location){
         tileViewState = new VisibleState();
         xCameraOffset = 0;
@@ -98,6 +95,7 @@ public class TileColumnView extends JComponent implements TileVisitor {
         xPixel = x*tileWidth - (x*(tileWidth))/4 + xCameraOffset;
         yPixel = y*(tileHeight - 5) + ((tileHeight-7)*x)/2 + yCameraOffset;
     }
+
     public void paintComponent(Graphics g){
         //First make sure that you are up to date on the position
         updateCoordinateToScreenPosition();
@@ -107,10 +105,12 @@ public class TileColumnView extends JComponent implements TileVisitor {
         paintTileColumn(g);
 
     }
+
     private void paintTileColumn(Graphics g) {
         tileViewState.drawState(this, g);
     }
     //Updates the camera view
+
     public void offsetCamera(Location offset){
             //updateCoordinateToScreenPosition();
             xCameraOffset = offset.getX();
