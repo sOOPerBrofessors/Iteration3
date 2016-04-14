@@ -19,7 +19,6 @@ public class CharacterView extends EntityView implements OccupationViewVisitor {
     private Image avatarImage;
     private OccupationViewFactory occupationViewFactory;
     private Character character;
-
     public CharacterView(Character character){
         super(character);
         this.character = character;
@@ -74,4 +73,5 @@ public class CharacterView extends EntityView implements OccupationViewVisitor {
     public void createSneakView() {
         avatarImage = ImageAssets.sneakS;
     }
+
 }

@@ -44,5 +44,8 @@ public class WaterTileView extends TileView {
         g2d.setFont(f);
         g2d.drawString(debug, (xPixel+ (tileWidth/3))*Settings.SCALEFACTOR, (yPixel + (tileHeight/2))*Settings.SCALEFACTOR);
         g2d.dispose();
+
+        renderEntity(g2d);
+        g2d.dispose();
     }
 }

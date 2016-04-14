@@ -15,7 +15,6 @@ import Utilities.Tickable;
 /**
  * Created by dyeung on 4/6/16.
  *
- * TODO: in movePlayerDir(...), check if entity is facing that direction: if false, set direction; else, move
  */
 
 //All entities are able now Observables for a specific model view
@@ -90,14 +89,13 @@ public abstract class Entity implements EntityObservable, MapObject, Tickable, E
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
     }
-
-    private void updateLocation(Map map, Orientation orientation, int z){
+    private void updateLocation(Map map, Orientation orientation, int difference){
         //Freaking long ass thing to remove an entity
         Tile tile = map.getTileAt(location.getX(), location.getY(), location.getZ());
-        tile.notifyAndRemoveEntity();
+        tile.removeEntity();
         int newX = location.getX() + orientation.x;
         int newY = location.getY() + orientation.y;
-        int newZ = location.getZ() + z;
+        int newZ = location.getZ() + difference;
         location.setNewLocation(newX, newY, newZ);
         notifyObserverMove();
     }
