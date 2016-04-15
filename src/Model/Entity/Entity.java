@@ -87,6 +87,9 @@ public abstract class Entity implements EntityObservable, MapObject, EntityVisit
     }
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
+        //Should be a notify observer orientation change
+        notifyObserverMove();
+
     }
     private void updateLocation(Map map, Orientation orientation, int difference){
         //Freaking long ass thing to remove an entity

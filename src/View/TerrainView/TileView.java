@@ -81,6 +81,9 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
 
     @Override //This function is called when a tile is updated (for an example when a tile has a new entity)
     public void update() {
+        //System.out.println("TileView: entity was moved");
         updateTileView();
     }
+
+
 }

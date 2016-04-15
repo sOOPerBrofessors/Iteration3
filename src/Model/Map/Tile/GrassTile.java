@@ -15,7 +15,6 @@ import java.util.ArrayList;
 //This tile can hold LandEntities and items
 public class GrassTile extends MobileTile {
 
-    private ArrayList<Item> itemList = new ArrayList<Item>();
 
     public GrassTile(){
     }
