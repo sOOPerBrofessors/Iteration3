@@ -34,6 +34,9 @@ public class HUD {
         if(experienceRatio > 1)
             experienceRatio = 1;
         FontMetrics fm = g.getFontMetrics();
+        int level = avatar.getLevel();
+        String currentLevel = "Lvl " + level,
+                nextLevel = "Lvl " + (level+1);
 
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
@@ -56,8 +59,9 @@ public class HUD {
         // draw experience text
         g2d.setColor(new Color(247, 255, 204));
         String xpMessage = xp + " / " + xpThreshold;
-        int messageWidth = fm.stringWidth(xpMessage);
-        g2d.drawString(xpMessage, (168+(337/2) - messageWidth/2), 116);
+        g2d.drawString(currentLevel, 195+fm.stringWidth(currentLevel)/2, 116);
+        g2d.drawString(xpMessage, (168+(310/2) - fm.stringWidth(xpMessage)/2), 116);
+        g2d.drawString(nextLevel, 505-fm.stringWidth(nextLevel)/2-25, 116);
 
         g2d.setColor(new Color(5, 255, 78, 200));
         g2d.fillOval(2,2,163,163);
