@@ -14,7 +14,6 @@ public class MapViewFactory {
         ImageAssets.init(); //intializes all the image assest so I can call them statically later
     }
 
-
     public MapView createMapViewObjects(Map map){
 
         int maxRow = map.getMaxRow();
@@ -28,5 +27,4 @@ public class MapViewFactory {
         }
         return new MapView(tmp);
     }
-
 }

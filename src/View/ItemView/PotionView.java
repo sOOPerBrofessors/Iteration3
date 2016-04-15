@@ -15,4 +15,9 @@ public class PotionView extends ItemView {
         itemWidth = Settings.POTIONWIDTH;
     }
 
+    @Override
+    protected void updateCoordinateToScreenPosition(int xOffset, int yOffset) {
+        xPixel = (int)(x*itemWidth*2.5 + xOffset);
+        yPixel = (int)(y*itemHeight*2.63 + yOffset);
+    }
 }

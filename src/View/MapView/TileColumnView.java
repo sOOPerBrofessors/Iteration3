@@ -105,7 +105,6 @@ public class TileColumnView extends JComponent implements TileVisitor {
         //Paint the tileColumns
 
         paintTileColumn(g);
-
     }
 
     private void paintTileColumn(Graphics g) {
@@ -118,9 +117,11 @@ public class TileColumnView extends JComponent implements TileVisitor {
             xCameraOffset = offset.getX();
             yCameraOffset = offset.getY();
     }
+
     public void paintShrouded(Graphics g){
         //Paint empty tile
     }
+
     public void paintVisible(Graphics g){
         for (int i = 0; i < listOfTiles.size(); i++) {
             //In setPixels, the 3rd arguement is essentially the "z" height

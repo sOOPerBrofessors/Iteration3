@@ -80,7 +80,7 @@ public class AreaViewport extends JPanel{
         updateFogOfWar();
         //This is always called
         renderTiles(g);
-
+        renderItems(g);
         hud.updateHUD(g);
     }
 }
