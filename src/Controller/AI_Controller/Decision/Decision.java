@@ -3,8 +3,7 @@ package Controller.AI_Controller.Decision;
 import Controller.AI_Controller.Interest.Interest;
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
-
-import java.awt.*;
+import Model.Map.Orientation;
 
 /**
  * Created by aseber on 4/6/16.
@@ -14,7 +13,7 @@ public class Decision {
     // We should only change decisions if the decision is finished, or the entity has randomly decided to drop it.
     // Dropping decisions is less likely if  the entity is more interested in the decision
 
-    private Point pointOfInterest;
+    private Orientation orientationToMoveTo;
     private Interest interest;
     private double weight;
 
@@ -22,7 +21,7 @@ public class Decision {
 
         this.interest = interest;
         this.weight = weight;
-        this.pointOfInterest = interest.derivePointOfInterest(visualInformation, memoryInterface);
+        this.orientationToMoveTo = interest.derivePointOfInterest(visualInformation, memoryInterface);
 
     }
 
@@ -30,26 +29,26 @@ public class Decision {
     public boolean isValid(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         // Given the current interest in this decision, check if that interest is still valid
-        return !interest.isFinished(getPointOfInterest(), visualInformation, memoryInterface);
+        return !interest.isFinished(visualInformation, memoryInterface);
 
     }
 
     public void update(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         interest.update(visualInformation, memoryInterface);
-        setPointOfInterest(interest.derivePointOfInterest(visualInformation, memoryInterface));
+        setOrientationToMoveTo(interest.derivePointOfInterest(visualInformation, memoryInterface));
 
     }
 
-    private void setPointOfInterest(Point newPointOfInterest) {
+    private void setOrientationToMoveTo(Orientation newOrientationToMoveTo) {
 
-        this.pointOfInterest = newPointOfInterest;
+        this.orientationToMoveTo = newOrientationToMoveTo;
 
     }
 
-    public final Point getPointOfInterest() {
+    public final Orientation getOrientationToMoveTo() {
 
-        return pointOfInterest;
+        return orientationToMoveTo;
 
     }
 

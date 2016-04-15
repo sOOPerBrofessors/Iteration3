@@ -2,21 +2,24 @@ package Controller.AI_Controller.Interest.PointInterests;
 
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
+import Model.Map.Orientation;
+import Utilities.UniformPicker;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by aseber on 4/8/16.
  */
 public class ExploreInterest extends PointInterest {
 
-    public boolean isFinished(Point pointOfInterest, VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
+    public boolean isFinished(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
-        return !((pointOfInterest).equals(memoryInterface.getNPC().getLocation()));
+        return false;//!((memoryInterface.getNPC().getLocation()).equals(memoryInterface.getNPC().getLocation()));
 
     }
 
-    public boolean isSatisfiable(Point pointOfInterest, VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
+    public boolean isSatisfiable(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         return true;
 
@@ -29,11 +32,20 @@ public class ExploreInterest extends PointInterest {
 
     }
 
-    public Point derivePointOfInterest(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
+    public Orientation derivePointOfInterest(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         // TODO: Use visitor?
         // TODO: Need a way to get the rim of this entities known tiles, so we can explore new regions!
-        return new Point(0, 0);
+        UniformPicker<Orientation> orientations = new UniformPicker<>();
+        ArrayList<Orientation> validOrientations = memoryInterface.getNPC().getController().moveableOrientations(memoryInterface.getNPC());
+
+        for (Orientation orientation : validOrientations) {
+
+            orientations.add(orientation, 1.0);
+
+        }
+
+        return orientations.pick();
 
     }
 

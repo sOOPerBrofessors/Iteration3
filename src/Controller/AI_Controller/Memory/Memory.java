@@ -8,6 +8,7 @@ import Controller.AI_Controller.VisualCortex.VisualCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Entity;
+import Model.Map.Orientation;
 import Utilities.AIStuff.RelationshipList;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
@@ -92,6 +93,12 @@ public class Memory implements Tickable, VisualCortexMemoryInterface, FrontalLob
     public NPC getNPC() {
 
         return npc;
+
+    }
+
+    public Orientation getOrientationToMove() {
+
+        return currentDecision.getOrientationToMoveTo();
 
     }
 

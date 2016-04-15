@@ -64,7 +64,6 @@ public class FrontalLobe implements Tickable {
 
         if (memory.isCurrentDecisionValid()) {
 
-            MessageHandler.println("CHANGE", ErrorLevel.NOTICE, PersonFilter.AUSTIN);
             // TODO: change to scatter-brainedness
             if (scatterBrainCheck()) {
 
