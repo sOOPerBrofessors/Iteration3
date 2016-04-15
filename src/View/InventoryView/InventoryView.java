@@ -13,12 +13,7 @@ import Utilities.Observers.EntityObserver;
 import Utilities.Observers.Observer;
 import Utilities.PersonFilter;
 import Utilities.Settings;
-<<<<<<< HEAD
-//import javafx.beans.Observable;
-=======
 import View.ViewUtilities.ImageAssets;
-import javafx.beans.Observable;
->>>>>>> 0a99fe5f291bbd1056eed9491699d263ce2cb45d
 
 import javax.swing.*;
 import java.awt.*;

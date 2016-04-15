@@ -22,10 +22,18 @@ public class HUD {
     } // end constructor
 
     public void updateHUD(Graphics g) {
-        double health = avatar.getHealth();
-        double baseHealth = avatar.getBaseHealth();
-        double mana = avatar.getMana();
-        double baseMana = avatar.getBaseMana();
+        double healthRatio = avatar.getHealth()*1.0 / avatar.getBaseHealth()*1.0;
+        if(healthRatio > 1)
+            healthRatio = 1;
+        double manaRatio = avatar.getMana()*1.0 / avatar.getBaseMana()*1.0;
+        if(manaRatio > 1)
+            manaRatio = 1;
+        int xp = avatar.getExperience(),
+                xpThreshold = avatar.getExperienceThreshold();
+        double experienceRatio = xp*1.0 / xpThreshold*1.0;
+        if(experienceRatio > 1)
+            experienceRatio = 1;
+        FontMetrics fm = g.getFontMetrics();
 
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
@@ -33,11 +41,29 @@ public class HUD {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
-        //TODO: draw circle
-        g2d.setColor(Color.BLACK);
-        g2d.drawOval(0,0,128,128);
-        g2d.setColor(new Color(41, 255, 0,80));
-        g2d.fillOval(0,0,128,128);
-        g2d.drawImage(ImageAssets.smasherS, 32,32, 64, 64, null);
+        // draw health bar
+        g2d.setColor(new Color(255, 2, 3, 120));
+        g2d.fillRect(140,17,(int)(337 * healthRatio),24);
+
+        // draw mana bar
+        g2d.setColor(new Color(13, 17, 255, 120));
+        g2d.fillRect(170,58,(int)(337 * manaRatio),24);
+
+        // draw experience bar
+        g2d.setColor(new Color(255, 197, 0, 120));
+        g2d.fillRect(168,99,(int)(337 * experienceRatio),24);
+
+        // draw experience text
+        g2d.setColor(new Color(247, 255, 204));
+        String xpMessage = xp + " / " + xpThreshold;
+        int messageWidth = fm.stringWidth(xpMessage);
+        g2d.drawString(xpMessage, (168+(337/2) - messageWidth/2), 116);
+
+        g2d.setColor(new Color(5, 255, 78, 200));
+        g2d.fillOval(2,2,168,168);
+        g2d.drawImage(ImageAssets.hud, 0, 0, 520, 180, null);
+        g2d.drawImage(ImageAssets.sneakS, 55, 55, 64, 64, null);
+
+        g2d.dispose();
     } // end updateHUD
 } // end class HUD
