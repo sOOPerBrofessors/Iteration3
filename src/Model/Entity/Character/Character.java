@@ -66,6 +66,10 @@ public abstract class Character extends Entity implements Observer {
         stats.strengthEffect(amount);
     } // end strengthEffect
 
+    public void experienceEffect(int amount) {
+        stats.experienceEffect(amount);
+    } // end experienceEffect
+
     /*
     handle equipping items
      */
