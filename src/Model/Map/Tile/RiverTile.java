@@ -1,8 +1,7 @@
 package Model.Map.Tile;
 
-import Model.Map.Location;
+import Model.Map.Orientation;
 import Utilities.Visitor.TileVisitor;
-import View.TerrainView.TileView;
 
 
 /**
@@ -10,10 +9,36 @@ import View.TerrainView.TileView;
  */
 public class RiverTile extends WaterTile {
     private int flowRate;
-    private int direction;
+    private Orientation direction;
 
-    public RiverTile(){
-    }
+    private RiverTile(int flowRate, Orientation direction){
+        this.flowRate = flowRate;
+        this.direction = direction;
+    } // end private constructor
+
+    public RiverTile makeNRiverTile(int flowRate) {
+        return new RiverTile(flowRate, Orientation.NORTH);
+    } // end factory method makeNRiverTile
+
+    public RiverTile makeNERiverTile(int flowRate) {
+        return new RiverTile(flowRate, Orientation.NORTHEAST);
+    } // end factory method makeNERiverTile
+
+    public RiverTile makeSERiverTile(int flowRate) {
+        return new RiverTile(flowRate, Orientation.SOUTHEAST);
+    } // end factory method makeSERiverTile
+
+    public RiverTile makeSRiverTile(int flowRate) {
+        return new RiverTile(flowRate, Orientation.SOUTH);
+    } // end factory method makeSRiverTile
+
+    public RiverTile makeSWRiverTile(int flowRate) {
+        return new RiverTile(flowRate, Orientation.SOUTHWEST);
+    } // end factory method makeSWRiverTile
+
+    public RiverTile makeNWRiverTile(int flowRate) {
+        return new RiverTile(flowRate, Orientation.NORTHWEST);
+    } // end factory method makeNWRiverTile
 
     private boolean movePlayer(){
         //entity.move(direction);
