@@ -43,15 +43,15 @@ public class HUD {
 
         // draw health bar
         g2d.setColor(new Color(255, 2, 3, 120));
-        g2d.fillRect(140,17,(int)(337 * healthRatio),24);
+        g2d.fillRect(174,17,(int)(303 * healthRatio),24);
 
         // draw mana bar
         g2d.setColor(new Color(13, 17, 255, 120));
-        g2d.fillRect(170,58,(int)(337 * manaRatio),24);
+        g2d.fillRect(195,58,(int)(312 * manaRatio),24);
 
         // draw experience bar
         g2d.setColor(new Color(255, 197, 0, 120));
-        g2d.fillRect(168,99,(int)(337 * experienceRatio),24);
+        g2d.fillRect(195,99,(int)(310 * experienceRatio),24);
 
         // draw experience text
         g2d.setColor(new Color(247, 255, 204));
@@ -60,7 +60,7 @@ public class HUD {
         g2d.drawString(xpMessage, (168+(337/2) - messageWidth/2), 116);
 
         g2d.setColor(new Color(5, 255, 78, 200));
-        g2d.fillOval(2,2,168,168);
+        g2d.fillOval(2,2,163,163);
         g2d.drawImage(ImageAssets.hud, 0, 0, 520, 180, null);
         g2d.drawImage(ImageAssets.sneakS, 55, 55, 64, 64, null);
 
