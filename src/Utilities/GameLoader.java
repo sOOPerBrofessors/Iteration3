@@ -35,7 +35,7 @@ public class GameLoader {
     public GameLoader(Avatar player) {
         avatar = player;
         initMap();
-        //initEntities();
+        initNPC();
         initPlayer();
         initItems();
         activeGameState = new ActiveGameState(map, player, entities);
@@ -62,7 +62,7 @@ public class GameLoader {
     private void initPlayer(){
         map.addCharacter(avatar); //(This doesn't have to worry about 3d things)
     }
-    private void initEntities() {
+    private void initNPC() {
 
 
         entities = NPCFactory.init();

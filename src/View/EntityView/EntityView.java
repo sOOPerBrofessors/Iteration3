@@ -61,4 +61,8 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
         xPixel = x;
         yPixel = y;
     }
+
+    public void removeObservable(){
+        entity.removeObserver(this);
+    }
 }

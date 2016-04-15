@@ -14,8 +14,6 @@ import java.awt.*;
  * Created by dyeung on 4/6/16.
  */
 public class CharacterView extends EntityView implements OccupationViewVisitor {
-
-    //private String url = "./res/Entity/newSneak.png";
     //Width height scale formula is Height/Width * new width = new height
     private Image characterImage;
     public CharacterView(Character character){
