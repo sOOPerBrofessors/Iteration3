@@ -1,9 +1,7 @@
 package Model.Stats;
 
-import Model.State.GameState.ActiveGameState;
-import Model.State.GameState.GameState;
-import Utilities.Observer;
-import Utilities.Subject;
+import Utilities.Observers.Observer;
+import Utilities.Observers.Subject;
 
 import java.util.ArrayList;
 
@@ -234,14 +232,14 @@ public class CharacterStats extends EntityStats implements Subject {
     }
 
     public void setEquippedWeapon(int equippedWeapon) {
-         this.equippedWeapon = equippedWeapon;
-        alert();
+        this.equippedWeapon = equippedWeapon;
+        //alert();
 
     } // end setEquippedWeapon
 
     public void setEquippedArmor(int equippedArmor) {
         this.equippedArmor = equippedArmor;
-        alert();
+        //alert();
     } // end setEquippedArmor
 
     public void recompute() {
@@ -265,5 +263,112 @@ public class CharacterStats extends EntityStats implements Subject {
     @Override
     public void alert() {
         observers.forEach(Observer::update);
+    }
+    public int getBaseAgility() {
+        return baseAgility;
+    }
+
+    public int getAgility() {
+        return agility;
+    }
+
+    public int getExperience() {
+        return experience;
+    }
+
+    public int getBaseHardiness() {
+        return baseHardiness;
+    }
+
+    public int getHardiness() {
+        return hardiness;
+    }
+
+    public int getBaseIntellect() {
+        return baseIntellect;
+    }
+
+    public int getIntellect() {
+        return intellect;
+    }
+
+    public int getBaseLives() {
+        return baseLives;
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public int getBaseStrength() {
+        return baseStrength;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getBaseHealth() {
+        return baseHealth;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getBaseMana() {
+        return baseMana;
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public int getBaseOffensiveRating() {
+        return baseOffensiveRating;
+    }
+
+    public int getOffensiveRating() {
+        return offensiveRating;
+    }
+
+    public int getBaseDefensiveRating() {
+        return baseDefensiveRating;
+    }
+
+    public int getDefensiveRating() {
+        return defensiveRating;
+    }
+
+    public int getBaseArmorRating() {
+        return baseArmorRating;
+    }
+
+    public int getArmorRating() {
+        return armorRating;
+    }
+
+    public int getEquippedWeapon() {
+        return equippedWeapon;
+    }
+
+    public int getEquippedArmor() {
+        return equippedArmor;
+    }
+
+    public int getExperienceThreshold() {
+        return experienceThreshold;
+    }
+
+    public double getExperienceMultiplier() {
+        return experienceMultiplier;
+    }
+
+    public double getLevelMultiplier() {
+        return levelMultiplier;
     }
 }

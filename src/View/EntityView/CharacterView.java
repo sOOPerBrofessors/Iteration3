@@ -2,6 +2,8 @@ package View.EntityView;
 
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
+import Model.Map.Orientation;
+import Utilities.Settings;
 import Utilities.Visitor.OccupationViewVisitor;
 import View.EntityView.AvatarViewFactory.OccupationViewFactory;
 import View.ViewUtilities.ImageAssets;
@@ -15,48 +17,65 @@ public class CharacterView extends EntityView implements OccupationViewVisitor {
 
     //private String url = "./res/Entity/newSneak.png";
     //Width height scale formula is Height/Width * new width = new height
-    private Image avatarImage;
-    private OccupationViewFactory occupationViewFactory;
-    private Character character;
-
+    private Image characterImage;
     public CharacterView(Character character){
         super(character);
-        this.character = character;
-        character.getOccupation().acceptOccupationViewVistor(this); //This will create the avatarImage necessary
-    }
-
-    private void renderOrientation(){
-        avatarImage = ImageAssets.sneakS;
+        character.getOccupation().acceptOccupationViewVistor(this, orientation); //This will create the avatarImage necessary
+        characterImage = orientationView.getCurrentDirectionImage();
     }
 
     @Override
     public void paintComponent(Graphics g) {
-        //System.out.println("CharacterView: paint was called");
-        //Used for testing purposes
-        //g.setColor(Color.blue);
-        //g.drawRect(xPixel,yPixel,entityWidth,entityHeight);
-        updateOrientationImage();
-        g.drawImage(avatarImage,xPixel,yPixel,entityWidth, entityHeight,null);
+
+        Graphics2D g2d = (Graphics2D) g.create();
+        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+
+        g2d.drawImage(characterImage,xPixel* Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,entityWidth*Settings.SCALEFACTOR,entityHeight* Settings.SCALEFACTOR,null);
+
+
+        g2d.dispose();
+
+        // doesn't work
+        drawHealthBar(g);
+    }
+
+    public void drawHealthBar(Graphics g) {
+        double health = entity.getHealth();
+        double baseHealth = entity.getBaseHealth();
+        int width = Settings.GAMEWIDTH;
+        int height = Settings.GAMEHEIGHT;
+
+        g.setColor(Color.BLACK);
+        g.drawRect(xPixel-width/128,yPixel-16,width/16+1,height/56+1);
+        g.setColor(Color.RED);
+        g.fillRect(xPixel-width/128+1,yPixel-16+1,(int)((health/baseHealth)*width/16), height/56);
+    } // end drawHealthBar
+
+    @Override
+    public void updateOrientation(){
+        if (orientation != entity.getOrientation()){
+            orientationView.setDirection(orientation);
+            characterImage = orientationView.getCurrentDirectionImage();
+        }
     }
 
     @Override
-    public void updateOrientationImage() {
-        //avatarViewFactory.getView(this, avatar.getOccupation());
-    }
-
-    @Override
-    public void createSmasherView() {
-        avatarImage = ImageAssets.smasherS;
+    public void createSmasherView(Orientation orientation) {
+        orientationView = OccupationViewFactory.createSmasherView(orientation);
     }
 
     //TODO: CHANGE TO SUMMONER (CREATE A SUMMONERVIEW)
     @Override
-    public void createSummonerView() {
-        avatarImage = ImageAssets.smasherN;
+    public void createSummonerView(Orientation orientation) {
+        orientationView = OccupationViewFactory.createSummonerView(orientation);
     }
 
     @Override
-    public void createSneakView() {
-        avatarImage = ImageAssets.sneakS;
+    public void createSneakView(Orientation orientation) {
+        orientationView = OccupationViewFactory.createSneakView(orientation);
     }
+
 }

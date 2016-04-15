@@ -1,6 +1,7 @@
 package Model.Map.Tile;
 
 import Model.Entity.Entity;
+import Model.Items.Item;
 import Utilities.Observers.TileObservable;
 import Utilities.Observers.TileObserver;
 
@@ -22,7 +23,7 @@ public abstract class MobileTile extends Tile {
     @Override
     public boolean moveProjectile(Entity entity){
         //if Tile isn't null apply projectile effect on entity currently occupying the Tile
-        if (this.entity != null){
+        if (hasEntity()){
             //entity.applyEffect(super.entity);
         }
         else this.entity = entity;
@@ -50,6 +51,7 @@ public abstract class MobileTile extends Tile {
     @Override
     public void removeEntity() {
         this.entity = null;
+        notifyObservers();
     }
 
 }

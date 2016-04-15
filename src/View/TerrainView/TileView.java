@@ -9,14 +9,17 @@ import Utilities.Settings;
 import Utilities.Visitor.EntityViewVisitor;
 import View.EntityView.CharacterView;
 import View.EntityView.EntityView;
+import View.MapView.MapObjectView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by dyeung on 4/7/16.
  */
 public abstract class TileView extends JComponent implements EntityViewVisitor, TileObserver {
+
     protected Location location;
     protected int tileWidth = Settings.TILEWIDTH;
     protected int tileHeight = Settings.TILEHEIGHT;
@@ -42,9 +45,11 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
         xPixel = x;
         yPixel = y;
     }
+
     public void setLocation(int x, int y, int z){
         location = new Location(x,y,z);
     }
+
     public abstract void paintComponent(Graphics g);
 
     protected boolean hasEntity(){
@@ -54,7 +59,8 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
             return true;
         }
     }
-    public void renderEntity(Graphics g){
+    //TODO: change this so it just renders map object views
+    public void renderEntity(Graphics2D g){
         if (hasEntity()){
             //System.out.println(location.getX() + "," +location.getY() +"," +location.getZ());
             int centeredX = xPixel + Settings.TILEWIDTH/4;

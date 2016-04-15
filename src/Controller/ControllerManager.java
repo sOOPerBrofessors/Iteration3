@@ -1,7 +1,11 @@
 package Controller;
 
 import Controller.Controllers.GamePlayController;
+import Controller.Controllers.InventoryController;
 import Model.State.StateManager;
+import Utilities.ErrorLevel;
+import Utilities.MessageHandler;
+import Utilities.PersonFilter;
 import View.ViewManager;
 
 import java.awt.event.KeyEvent;
@@ -19,9 +23,11 @@ public class ControllerManager implements KeyListener {
 
     private Controller activeController;
     private GamePlayController gamePlayController;
+    private InventoryController inventoryController;
 
     public ControllerManager(){
         gamePlayController = new GamePlayController(this);
+        inventoryController = new InventoryController(this);
     }
 
     public void setActiveController(Controller gs){
@@ -37,25 +43,26 @@ public class ControllerManager implements KeyListener {
     }
 
     public void setInventoryState(){
+        activeController = inventoryController;
+        stateManager.pauseGame(); // switches to pausedGameState
         viewManager.displayInventory();
-        stateManager.pauseGame();
-        //activeController = inventoryController;
+        MessageHandler.println("ControllerManager.setInventoryState called" , ErrorLevel.NOTICE, PersonFilter.SAM);
     }
 
     public void setEquipmentState(){
-        viewManager.displayEquipment();
+        //viewManager.displayEquipment();
         stateManager.pauseGame();
         //activeController = equipmentController;
     }
 
     public void setPauseState(){
-        viewManager.displayPauseMenu();
+        //viewManager.displayPauseMenu();
         stateManager.pauseGame();
         //activeController = pauseController
     }
 
     public void setSkillsState(){
-        viewManager.displaySkills();
+        //viewManager.displaySkills();
         stateManager.pauseGame();
         //activeController = skillsController
     }
@@ -77,6 +84,8 @@ public class ControllerManager implements KeyListener {
 
     public void switchGamePlay(){
         activeController = gamePlayController;
+        stateManager.activeGame(); // makes Game state Active
+        viewManager.closeInventory();
     }
 
     public void setViewManager(ViewManager viewManager){
@@ -90,4 +99,6 @@ public class ControllerManager implements KeyListener {
     public GamePlayController getGamePlayController(){
         return gamePlayController;
     }
+
+    public ViewManager getViewManager(){return viewManager;}
 }

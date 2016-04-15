@@ -4,8 +4,8 @@ import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
-import Utilities.Observer;
-import Utilities.Subject;
+import Utilities.Observers.Observer;
+import Utilities.Observers.Subject;
 
 import java.util.ArrayList;
 
@@ -59,6 +59,10 @@ public class Inventory implements Observer, Subject{
     public int getArmorValue() {
         return equipment.getArmorValue();
     } // end getArmorValue
+
+    public Pack getPack() { return pack;}
+
+    public Equipment getEquipment(){return equipment;}
 
     @Override
     public void addObserver(Observer o) {

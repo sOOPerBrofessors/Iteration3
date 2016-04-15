@@ -1,16 +1,15 @@
 package View.MapView;
 
-import Model.Entity.Character.Avatar;
-import Model.Entity.Entity;
-import Model.Entity.Character.Character;
 import Model.Map.Location;
 import Model.Map.Tile.Tile;
 import Model.Map.TileColumn;
 import Utilities.Settings;
 import Utilities.Visitor.TileVisitor;
+import View.AreaViewport.FogOfWar.NonVisibleState;
+import View.AreaViewport.FogOfWar.ShroudedState;
+import View.AreaViewport.FogOfWar.TileViewState;
+import View.AreaViewport.FogOfWar.VisibleState;
 import View.TerrainView.*;
-import Utilities.Visitor.TileVisitor;
-import View.EntityView.CharacterView;
 import View.TerrainView.GrassTileView;
 import View.TerrainView.RiverTileView;
 import View.TerrainView.TileView;
@@ -26,6 +25,7 @@ import java.util.ArrayList;
 //Purpose of this class is to emulate and (?)observer the tile slot within map
     // The observing might not be necessary as everything else is observing the other mapobjects
 public class TileColumnView extends JComponent implements TileVisitor {
+
     ArrayList<TileView> listOfTiles;
     private int x;
     private int y;
@@ -38,7 +38,10 @@ public class TileColumnView extends JComponent implements TileVisitor {
     private int xCenter = tileWidth/2;
     private int yCenter = tileHeight/2;
     private TileColumn tileColumn;
+    private TileViewState tileViewState;
+
     public TileColumnView(TileColumn subject, Location location){
+        tileViewState = new VisibleState();
         xCameraOffset = 0;
         yCameraOffset = 0;
         x = location.getX();
@@ -47,12 +50,13 @@ public class TileColumnView extends JComponent implements TileVisitor {
         updateCoordinateToScreenPosition();
         tileColumn = subject;
         updateTileViews(); //This needs to be called to get all the correct tiles.
+        tileViewState = new ShroudedState();
     }
     //Function basically copies the list  with its tile column subject
     private void updateTileViews(){
         //Top position represent the top tile that is not an air tile
         for (int k = 0; k < tileColumn.getTopPosition(); k++){
-            tileColumn.getTileList().get(k).acceptTileVisitor(this);
+            tileColumn.getTileAt(k).acceptTileVisitor(this);
         }
     }
 
@@ -84,26 +88,39 @@ public class TileColumnView extends JComponent implements TileVisitor {
 
     protected void addTileView (TileView tileView){
         tileView.setLocation(x,y,listOfTiles.size());
-        if (listOfTiles.size() < 10) {
-            listOfTiles.add(tileView);
-        }
+        listOfTiles.add(tileView);
     }
 
     private void updateCoordinateToScreenPosition(){
         xPixel = x*tileWidth - (x*(tileWidth))/4 + xCameraOffset;
         yPixel = y*(tileHeight - 5) + ((tileHeight-7)*x)/2 + yCameraOffset;
     }
+
     public void paintComponent(Graphics g){
         //First make sure that you are up to date on the position
         updateCoordinateToScreenPosition();
 
         //Paint the tileColumns
+
         paintTileColumn(g);
 
     }
-    //TODO this will eventually paint all the coloumns because of entites on air
-    private void paintTileColumn(Graphics g){
-        for (int i = 0; i < listOfTiles.size(); i++){
+
+    private void paintTileColumn(Graphics g) {
+        tileViewState.drawState(this, g);
+    }
+    //Updates the camera view
+
+    public void offsetCamera(Location offset){
+            //updateCoordinateToScreenPosition();
+            xCameraOffset = offset.getX();
+            yCameraOffset = offset.getY();
+    }
+    public void paintShrouded(Graphics g){
+        //Paint empty tile
+    }
+    public void paintVisible(Graphics g){
+        for (int i = 0; i < listOfTiles.size(); i++) {
             //In setPixels, the 3rd arguement is essentially the "z" height
             TileView holder = listOfTiles.get(i);
 
@@ -111,19 +128,18 @@ public class TileColumnView extends JComponent implements TileVisitor {
             yPixel -= 8; //Now this will be the same as paintMapObjects
             holder.setPixels(xPixel, yPixel);
             holder.paintComponent(g);
-
-            paintMapObjects(holder,g); //paints the tileview
         }
     }
-
-    private void paintMapObjects(TileView tileView, Graphics g){
-        tileView.renderEntity(g);
+    public void paintNonVisible(Graphics g){
+        //paint seen but not visible tile
+        paintVisible(g); //for now just paint visible 
     }
-    //Updates the camera view
-    public void offsetCamera(Location offset){
-            //updateCoordinateToScreenPosition();
-            xCameraOffset = offset.getX();
-            yCameraOffset = offset.getY();
+
+    public void setVisibleState(){
+        tileViewState = new VisibleState();
+    }
+    public void setNonVisibleState(){
+        tileViewState = new NonVisibleState();
     }
 
 }
