@@ -52,7 +52,7 @@ public class MapFactory {
                     TileColumn tC = tmpList[i][j];
                     if (k < 1) {
                         if ((i == 2 || i == 1) && (j > 2 && j < 8)) {
-                            tC.visitWaterTile(new RiverTile());
+                            tC.visitWaterTile(RiverTile.makeSERiverTile(2));
                         } else {
                             tC.visitGrassTile(new GrassTile());
                         }
