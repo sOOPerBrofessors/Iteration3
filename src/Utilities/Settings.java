@@ -9,11 +9,12 @@ public class Settings {
 
     public static String TITLE = "sOOPer Brogrammers!";
 
-    public static int GAMEWIDTH = 800;
-    public static int GAMEHEIGHT = 600;
+    public static int GAMEWIDTH = 1080;
+    public static int GAMEHEIGHT = 720;
+    public static int SCALEFACTOR = 1;
     public static boolean debug = true;
     public static ErrorLevel errorLevel = ErrorLevel.NOTICE;
-    public static PersonFilter personFilter = PersonFilter.ALL;
+    public static PersonFilter personFilter = PersonFilter.DAVID;
 
     // Key Presses
     public static int UP_ARROW = KeyEvent.VK_UP;
@@ -26,10 +27,11 @@ public class Settings {
     public static int DOWN_LEFT = KeyEvent.VK_A;
     public static int DOWN = KeyEvent.VK_S;
     public static int DOWN_RIGHT = KeyEvent.VK_D;
+    public static int TEST_KEY = KeyEvent.VK_T;
 
     public static int ATTACK = 32;
     public static int EQUIP = 10001; //This was overwritting VK_E which is used for movement
-    public static int INVENTORY = 73;
+    public static int INVENTORY = 73; // 'i'
 
     // end adjustable keys
 
@@ -51,9 +53,17 @@ public class Settings {
 
     public static void setDebug() { debug = true; }
     //Original grass
-    public static int TILEWIDTH = 56;
-    public static int TILEHEIGHT = 48;
+    public static int TILEWIDTH = 96;
+    public static int TILEHEIGHT = 62; //used to be 48, shouldn't it be 62???
+    public static int ENTITYWIDTH = 42;
+    public static int ENTITYHEIGHT = 75;
+
+    public static int POTIONWIDTH = 32;
+    public static int POTIONHEIGHT = 32;
     //Grass flat
 //    public static int TILEWIDTH = 96;
 //    public static int TILEHEIGHT = 62;
+
+    public static final int MAX_INVENTORY_SIZE = 16;
+
 }

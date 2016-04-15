@@ -6,9 +6,10 @@ import Model.Inventory.Inventory;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
 import Model.Map.Location;
+import Model.Map.Orientation;
 import Model.Stats.CharacterStats;
 import Utilities.Navigation.Navigation;
-import Utilities.Observer;
+import Utilities.Observers.Observer;
 
 /**
  * Created by broskj on 4/6/16.
@@ -19,7 +20,7 @@ public abstract class Character extends Entity implements Observer {
     private Occupation o;
     protected CharacterStats stats;
     protected Inventory inventory;
-
+    private int radiusVisibility;
     protected Character(Occupation o, Location location) {
         super(Navigation.makeCharNav(), location);
         this.o = o;
@@ -27,6 +28,7 @@ public abstract class Character extends Entity implements Observer {
         this.inventory = new Inventory();
         stats.addObserver(this);
         inventory.addObserver(this);
+        this.radiusVisibility = 3; //might need to change to some sort of default later
     } // end private constructor
 
     /*
@@ -97,5 +99,115 @@ public abstract class Character extends Entity implements Observer {
 
     public Occupation getOccupation(){
         return o;
+    }
+    public int getRadiusVisibility(){
+        return radiusVisibility;
+    }
+    public int getBaseAgility() {
+        return stats.getBaseAgility();
+    }
+
+    public int getAgility() {
+        return stats.getAgility();
+    }
+
+    public int getExperience() {
+        return stats.getExperience();
+    }
+
+    public int getBaseHardiness() {
+        return stats.getBaseHardiness();
+    }
+
+    public int getHardiness() {
+        return stats.getHardiness();
+    }
+
+    public int getBaseIntellect() {
+        return stats.getBaseIntellect();
+    }
+
+    public int getIntellect() {
+        return stats.getIntellect();
+    }
+
+    public int getBaseLives() {
+        return stats.getBaseLives();
+    }
+
+    public int getLives() {
+        return stats.getLives();
+    }
+
+    public int getBaseStrength() {
+        return stats.getBaseStrength();
+    }
+
+    public int getStrength() {
+        return stats.getStrength();
+    }
+
+    public int getBaseHealth() {
+        return stats.getBaseHealth();
+    }
+
+    public int getHealth() {
+        return stats.getHealth();
+    }
+
+    public int getLevel() {
+        return stats.getLevel();
+    }
+
+    public int getBaseMana() {
+        return stats.getBaseMana();
+    }
+
+    public int getMana() {
+        return stats.getMana();
+    }
+
+    public int getBaseOffensiveRating() {
+        return stats.getBaseOffensiveRating();
+    }
+
+    public int getOffensiveRating() {
+        return stats.getOffensiveRating();
+    }
+
+    public int getBaseDefensiveRating() {
+        return stats.getBaseDefensiveRating();
+    }
+
+    public int getDefensiveRating() {
+        return stats.getDefensiveRating();
+    }
+
+    public int getBaseArmorRating() {
+        return stats.getBaseArmorRating();
+    }
+
+    public int getArmorRating() {
+        return stats.getArmorRating();
+    }
+
+    public int getEquippedWeapon() {
+        return stats.getOffensiveRating();
+    }
+
+    public int getEquippedArmor() {
+        return stats.getArmorRating();
+    }
+
+    public int getExperienceThreshold() {
+        return stats.getExperienceThreshold();
+    }
+
+    public double getExperienceMultiplier() {
+        return stats.getExperienceMultiplier();
+    }
+
+    public double getLevelMultiplier() {
+        return stats.getLevelMultiplier();
     }
 } // end abstract class Character

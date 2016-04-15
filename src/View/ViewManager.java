@@ -1,11 +1,15 @@
 package View;
 
 import Controller.ControllerManager;
+import Controller.Controllers.InventoryController;
 import Model.Entity.Character.Avatar;
 import Model.State.StateManager;
+import Utilities.ErrorLevel;
 import Utilities.GameLoader;
-import Utilities.Subject;
-import Utilities.Observer;
+import Utilities.MessageHandler;
+import Utilities.Observers.Subject;
+import Utilities.Observers.Observer;
+import Utilities.PersonFilter;
 import View.ViewUtilities.Panels.CharacterCreationPanel;
 import View.ViewUtilities.Panels.GamePanel;
 import View.ViewUtilities.Panels.IntroPanel;
@@ -39,7 +43,9 @@ public class ViewManager implements Subject {
         introPanel = new IntroPanel(this).introPanel();
         createPanel = new CharacterCreationPanel(this).createPanel();
         gamePanel = new GamePanel(this);
+
         activePanel = introPanel;
+        //inventoryView = new InventoryView()
     }
 
     public void displayIntro(){
@@ -64,8 +70,14 @@ public class ViewManager implements Subject {
         initGame(Avatar.makeSummoner());
     }
 
-    public void displayInventory(){
-        //activePanel = inventoryPanel;
+    public void displayInventory() {
+        gamePanel.addInventoryView();
+        stateManager.pauseGame();
+    }
+
+    public void closeInventory(){
+        gamePanel.closeInventoryView();
+        stateManager.activeGame();
     }
 
     public void displayActiveGame(){
@@ -74,21 +86,11 @@ public class ViewManager implements Subject {
         alert();
     }
 
-    public void displayEquipment(){
-        //activePanel = equipmentPanel;
-    }
-
-    public void displayPauseMenu(){
-        //activePanel = pausePanel;
-    }
-
-    public void displaySkills(){
-        //activePanel = skillsPanel;
-    }
-
     public JPanel getActivePanel(){
         return activePanel;
     }
+
+    public GamePanel getGamePanel() {return gamePanel;}
 
     @Override
     public void addObserver(Observer o) {
@@ -105,10 +107,6 @@ public class ViewManager implements Subject {
         observer.update();
     }
 
-    public GamePanel getGamePanel() {
-        return gamePanel;
-    }
-
     public void setControllerManager(ControllerManager controllerManager) {
         this.controllerManager = controllerManager;
         gamePanel.addKeyListener(controllerManager);
@@ -120,12 +118,14 @@ public class ViewManager implements Subject {
 
     // initialize game once players selection is confirmed
     private void initGame(Avatar player){
-        GameLoader gameLoader = new GameLoader(player);
+        GameLoader gameLoader = new GameLoader(player); // initializes player and attributes of GameState
         activePanel = gamePanel;
         stateManager.setActiveGameState(gameLoader.getActiveGameState());
-        gamePanel.init(gameLoader.getActiveGameState());
-        controllerManager.switchGamePlay();
-        View.startGameLoop();
+        stateManager.setPausedGameState(gameLoader.getPausedGameState());
+        gamePanel.init(gameLoader.getActiveGameState()); // initilaizes the game view
+        controllerManager.switchGamePlay(); // switch to gameplay controller
+        InventoryController.setInventoryView(gamePanel);
+        View.startGameLoop(); // starts loop in Model class
         alert(); // notifies view of the updated panel
     }
 }

@@ -15,12 +15,11 @@ import Utilities.Tickable;
 /**
  * Created by dyeung on 4/6/16.
  *
- * TODO: in movePlayerDir(...), check if entity is facing that direction: if false, set direction; else, move
  */
 
 //All entities are able now Observables for a specific model view
 
-public abstract class Entity implements EntityObservable, MapObject, Tickable, EntityVisitable{
+public abstract class Entity implements EntityObservable, MapObject, EntityVisitable{
     private Location location;
     private Navigation navigation;
     protected Orientation orientation;
@@ -46,18 +45,19 @@ public abstract class Entity implements EntityObservable, MapObject, Tickable, E
         observers.add(entityObserver);
     }
 
-
+    //TODO: question: should getNextTile and getNextTileColumn handled by map instead of entity?
     private Tile getNextTile(Map map, Orientation orientation){
         int newX = location.getX() + orientation.x;
         int newY = location.getY() + orientation.y;
         return map.getTopTile(newX,newY);
     }
+
     private TileColumn getNextTileColumn(Map map, Orientation orientation){
         int newX = location.getX() + orientation.x;
         int newY = location.getY() + orientation.y;
         return map.getTileColumn(newX,newY);
     }
-    //TODO: HOW TO HANDLE MOVING UP TILES
+
     public void move(Map map, Orientation orientation){
         //System.out.println("Entity: update location was called from move:" + this.orientation + ":" + orientation);
         if (this.orientation.equals(orientation)) {
@@ -88,13 +88,13 @@ public abstract class Entity implements EntityObservable, MapObject, Tickable, E
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
     }
-    private void updateLocation(Map map, Orientation orientation, int z){
+    private void updateLocation(Map map, Orientation orientation, int difference){
         //Freaking long ass thing to remove an entity
         Tile tile = map.getTileAt(location.getX(), location.getY(), location.getZ());
-        tile.notifyAndRemoveEntity();
+        tile.removeEntity();
         int newX = location.getX() + orientation.x;
         int newY = location.getY() + orientation.y;
-        int newZ = location.getZ() + z;
+        int newZ = location.getZ() + difference;
         location.setNewLocation(newX, newY, newZ);
         notifyObserverMove();
     }
