@@ -20,11 +20,6 @@ public class Map {
 
     private static TileColumn[][] mapOfTiles;
 
-    //For loading -- might need some version of design pattern to get rid of this
-    public TileColumn[][] getMapOfTiles(){
-        return mapOfTiles;
-    }
-
     public Tile getTopTile(int x, int y) {
         //TODO: Needs some better checks for height difference
         //might be more helpful to add more defining functions withing 'TileColumn' to check for height
@@ -59,6 +54,15 @@ public class Map {
             return mapOfTiles[x][y].getTileAt(z);
         }
     }
+    //Accessor methods to tileColumns
+    public int getMaxRow(){
+        return maxRow;
+    }
+    public int getMaxColumn(){
+        return maxColumn;
+    }
+
+
     //FOR LOADING
     //Entities include projectile things that could be anywhere on 3d axis
     public void addEntity(Entity entity){

@@ -33,6 +33,7 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
 
     public EntityView(Character observerable){
         entity = observerable;
+        observerable.addObserver(this);
         location = entity.getLocation();
         orientation = entity.getOrientation();
         x = location.getX();
@@ -52,12 +53,16 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
     private void updateLocation(){
         x = location.getX();
         y = location.getY();
-        System.out.println("EntityView: " + x + "," + y + " : " + xPixel + "," + yPixel);
+        //System.out.println("EntityView: " + x + "," + y + " : " + xPixel + "," + yPixel);
     }
 
     @Override
     public void setPixels(int x, int y) {
         xPixel = x;
         yPixel = y;
+    }
+
+    public void removeObservable(){
+        entity.removeObserver(this);
     }
 }

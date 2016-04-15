@@ -17,15 +17,13 @@ public class MapViewFactory {
 
     public MapView createMapViewObjects(Map map){
 
-        TileColumn[][] tC = map.getMapOfTiles();
-
-        int maxRow = tC.length;
-        int maxCol = tC[0].length;
+        int maxRow = map.getMaxRow();
+        int maxCol = map.getMaxColumn();
 
         TileColumnView[][] tmp = new TileColumnView[maxRow][maxCol];
-        for (int i = 0; i < tC.length; i++){
-            for (int j = 0; j < tC[0].length; j++){
-                tmp[i][j] = new TileColumnView(tC[i][j], new Location(i,j,0));
+        for (int i = 0; i < maxRow; i++){
+            for (int j = 0; j < maxCol; j++){
+                tmp[i][j] = new TileColumnView(map.getTileColumn(i,j), new Location(i,j,0));
             }
         }
         return new MapView(tmp);
