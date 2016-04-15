@@ -22,17 +22,16 @@ public abstract class ItemView extends JComponent{
     public void paintComponent(Graphics g, Location offset){
         updateCoordinateToScreenPosition(offset.getX(), offset.getY());
         Graphics2D g2d = (Graphics2D) g.create();
-        g2d.drawImage(image,xPixel* Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,itemWidth*Settings.SCALEFACTOR,itemHeight* Settings.SCALEFACTOR,null);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        System.out.println(image.toString());
+        g2d.drawImage(image,xPixel*Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,itemWidth*Settings.SCALEFACTOR,itemHeight*Settings.SCALEFACTOR, null);
         g2d.dispose();
-    };
+    }
 
     public void setLocation(int x, int y){
-        xPixel = x*itemWidth - (x*(itemWidth))/4;
-        yPixel = y*(itemHeight - 5) + ((itemHeight-7)*x)/2;
+        this.x = x;
+        this.y = y;
     }
 
-    private void updateCoordinateToScreenPosition(int xOffset, int yOffset){
-        xPixel =+ xOffset;
-        yPixel =+ yOffset;
-    }
+    protected abstract void updateCoordinateToScreenPosition(int xOffset, int yOffset);
 }

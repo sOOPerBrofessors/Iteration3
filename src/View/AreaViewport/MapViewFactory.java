@@ -14,7 +14,6 @@ public class MapViewFactory {
         ImageAssets.init(); //intializes all the image assest so I can call them statically later
     }
 
-
     public MapView createMapViewObjects(Map map){
 
         TileColumn[][] tC = map.getMapOfTiles();
@@ -30,5 +29,4 @@ public class MapViewFactory {
         }
         return new MapView(tmp);
     }
-
 }
