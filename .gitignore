@@ -31,3 +31,4 @@ Intellij.xml
 .DS_Store
 Iteration3.iml
 git-update
+*.xcf
