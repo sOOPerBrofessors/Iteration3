@@ -3,6 +3,7 @@ package Model.Entity.Character.Occupation;
 import Model.Entity.Character.Character;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
+import Model.Map.Orientation;
 import Model.Stats.CharacterStats;
 import Utilities.Visitor.OccupationViewVisitor;
 
@@ -29,7 +30,7 @@ public class Sneak extends Occupation {
     } // end initStats
 
     @Override
-    public void acceptOccupationViewVistor(OccupationViewVisitor occupationViewVisitor) {
-        occupationViewVisitor.createSneakView();
+    public void acceptOccupationViewVistor(OccupationViewVisitor occupationViewVisitor, Orientation orientation) {
+        occupationViewVisitor.createSneakView(orientation);
     }
 } // end class Sneak

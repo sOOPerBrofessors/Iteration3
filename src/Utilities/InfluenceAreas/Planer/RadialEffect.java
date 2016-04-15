@@ -44,7 +44,7 @@ public class RadialEffect extends InfluenceArea{
     /**
      * @param location : Location
      * @param radius : int
-     * @return ArrayList<ArrayList<Location>>
+     * @return an ArrayList of ArrayLists of Locations, each inner ArrayList contains Locations with the same radius
      */
     /* Example of use
     ArrayList<ArrayList<Location>> list = RadialEffect.getAreaWithRadius(new Location(x, y, z), radius);

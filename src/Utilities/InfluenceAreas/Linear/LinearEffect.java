@@ -25,6 +25,7 @@ public class LinearEffect extends InfluenceArea{
     public static ArrayList<Location> getLinearSameLevel(Location location, Orientation orientation, int length) {
         ArrayList<Location> list = new ArrayList<>();
         Location cur = location;
+        list.add(cur);
         for (int i = 0; i < length; i++) {
             cur = new Location(cur.getX() + orientation.x, cur.getY() + orientation.y, cur.getZ());
             list.add(cur);
@@ -41,6 +42,7 @@ public class LinearEffect extends InfluenceArea{
     public static ArrayList<Location> getLinearTop(Location location, int length) {
         ArrayList<Location> list = new ArrayList<>();
         Location cur = location;
+        list.add(cur);
         for (int i = 0; i < length; i++) {
             cur = new Location(cur.getX(), cur.getY(), cur.getZ() + 1);
             list.add(cur);
@@ -57,6 +59,7 @@ public class LinearEffect extends InfluenceArea{
     public static ArrayList<Location> getLinearBottom(Location location, int length) {
         ArrayList<Location> list = new ArrayList<>();
         Location cur = location;
+        list.add(cur);
         for (int i = 0; i < length; i++) {
             cur = new Location(cur.getX(), cur.getY(), cur.getZ() - 1);
             list.add(cur);
