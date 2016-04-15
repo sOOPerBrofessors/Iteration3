@@ -17,6 +17,7 @@ import Utilities.AIStuff.NPCFactory;
 import Utilities.GameFactory.MapFactory;
 import Utilities.ItemStuff.ItemFactory;
 import Utilities.ItemStuff.ItemManager;
+import View.ViewUtilities.ImageAssets;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,6 +35,7 @@ public class GameLoader {
 
     //Needs a constructor in order to create what type of occupation it is
     public GameLoader(Avatar player) {
+        ImageAssets.init();
         avatar = player;
         initMap();
         initNPC();
