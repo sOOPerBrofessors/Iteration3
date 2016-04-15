@@ -13,6 +13,7 @@ import Model.Map.TileColumn;
 import Model.State.GameState.ActiveGameState;
 import Model.State.GameState.PausedGameState;
 import Utilities.AIStuff.NPCFactory;
+import Utilities.GameFactory.MapFactory;
 import Utilities.ItemStuff.ItemFactory;
 import Utilities.ItemStuff.ItemManager;
 
@@ -23,9 +24,6 @@ import java.util.HashMap;
  * Created by dyeung on 4/6/16.
  */
 public class GameLoader {
-    
-    private int maxTileRow = 15;
-    private int maxTileCol = 15;
 
     Map map;
     Avatar avatar;
@@ -36,41 +34,24 @@ public class GameLoader {
     //Needs a constructor in order to create what type of occupation it is
     public GameLoader(Avatar player) {
         avatar = player;
-        initMap(avatar);
-        initEntities();
+        initMap();
+        initNPC();
+        initPlayer();
         initItems();
         activeGameState = new ActiveGameState(map, player, entities);
         pausedGameState = new PausedGameState(map, player, entities);
     }
 
     //Map has to contain an avatar (might be unnecessary in the constructor though)
-    public void initMap(Avatar avatar) {
+    public void initMap() {
         MessageHandler.println("GameLoader: Loading Map and Avatar and ActiveGameState", ErrorLevel.NOTICE);
-
-        TileColumn[][] tmpList = new TileColumn[maxTileRow][maxTileCol];
-        for (int i = 0; i < maxTileRow; i++) {
-            for (int j = 0; j < maxTileCol; j++) {
-                tmpList[i][j] = new TileColumn();
-                for (int k = 0; k < 10; k++) {
-                    TileColumn tC = tmpList[i][j];
-                    if (k < 1) {
-                        if ((i == 2 || i == 1) && (j > 2 && j < 6)) {
-                            WaterTile tile = new WaterTile();
-                            tC.createWaterTile(tile);
-                        } else {
-                            tC.createGrassTile(new GrassTile());
-                        }
-                    } else {
-                        if (j == 8 && (i >= 2 && i <= 9) && k < (i)) {
-                            tC.createGrassTile(new GrassTile());
-                        } else {
-                            tC.createAirTile(new AirTile());
-                        }
-                    }
-                }
-            }
-        }
-        map = new Map(tmpList);
+        int maxRow = 15;
+        int maxCol = 15;
+        MapFactory mapFactory = new MapFactory(maxRow, maxCol);
+        //This would be the original map
+        //map = mapFactory.createNewMap();
+        //This is the testing map with rivers
+        map = mapFactory.createNewMapRiver();
     }
 
     private void initItems() {
@@ -78,9 +59,11 @@ public class GameLoader {
         ItemManager.setItems(ItemFactory.getItems());
         ItemManager.setItemViews(ItemFactory.getItemViews());
     }
-
-    private void initEntities() {
+    private void initPlayer(){
         map.addCharacter(avatar); //(This doesn't have to worry about 3d things)
+    }
+    private void initNPC() {
+
 
         entities = NPCFactory.init();
 
@@ -90,8 +73,12 @@ public class GameLoader {
             entities.get(i).setController(controller);
             map.addEntity(entities.get(i));
         }
-        
+
         controller.setMap(map);
+    }
+
+    private void initAreaEffect(){
+
     }
 
     public Map getMap() {

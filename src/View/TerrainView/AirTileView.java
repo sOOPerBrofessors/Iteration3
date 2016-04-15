@@ -1,6 +1,7 @@
 package View.TerrainView;
 
 import Model.Map.Tile.Tile;
+import View.ViewUtilities.ImageAssets;
 
 import java.awt.*;
 
@@ -10,6 +11,7 @@ import java.awt.*;
 public class AirTileView extends TileView {
     public AirTileView(Tile tile) {
         super(tile);
+        image = null;
     }
 
     @Override

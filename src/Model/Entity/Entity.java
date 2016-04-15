@@ -40,9 +40,15 @@ public abstract class Entity implements EntityObservable, MapObject, EntityVisit
         }
     }
 
+
     @Override
     public void addObserver(EntityObserver entityObserver) {
         observers.add(entityObserver);
+    }
+
+    @Override
+    public void removeObserver(EntityObserver entityObserver) {
+        observers.remove(entityObserver);
     }
 
     //TODO: question: should getNextTile and getNextTileColumn handled by map instead of entity?
@@ -101,6 +107,9 @@ public abstract class Entity implements EntityObservable, MapObject, EntityVisit
     }
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
+        //Should be a notify observer orientation change
+        notifyObserverMove();
+
     }
     private void updateLocation(Map map, Orientation orientation, int difference){
         //Freaking long ass thing to remove an entity

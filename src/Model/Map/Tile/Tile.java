@@ -79,7 +79,12 @@ public abstract class Tile implements TileVisitable, TileObservable{
     public abstract void addEntity(Entity entity);
     public abstract void removeEntity();
     public abstract boolean hasEntity();
+    public void addItem(Item item){
 
+    }
+    public void removeItem(){
+
+    }
     @Override
     public void notifyObservers() {
         for(TileObserver tileObserver : observers){

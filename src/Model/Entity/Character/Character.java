@@ -1,5 +1,6 @@
 package Model.Entity.Character;
 
+import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Entity;
 import Model.Inventory.Inventory;
@@ -100,7 +101,9 @@ public abstract class Character extends Entity implements Observer {
         o.equipSummonerArmor(armor, this);
     } // end equipSummonerArmor
 
-
+    public void rideMount(Mount mount){
+        mount.addCharacter(this);
+    }
     public Occupation getOccupation(){
         return o;
     }

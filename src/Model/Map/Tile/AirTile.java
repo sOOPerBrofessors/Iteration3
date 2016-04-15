@@ -14,7 +14,7 @@ public class AirTile extends MobileTile {
 
     @Override
     public void acceptTileVisitor(TileVisitor tv) {
-         tv.createAirTile(this);
+         tv.visitAirTile(this);
     }
 
     public boolean moveAvian(Entity entity) {
