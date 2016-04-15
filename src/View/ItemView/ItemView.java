@@ -1,6 +1,9 @@
 package View.ItemView;
 
 import Model.Map.Location;
+import Utilities.ErrorLevel;
+import Utilities.MessageHandler;
+import Utilities.PersonFilter;
 import Utilities.Settings;
 
 import javax.swing.*;
@@ -23,7 +26,7 @@ public abstract class ItemView extends JComponent{
         updateCoordinateToScreenPosition(offset.getX(), offset.getY());
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        System.out.println(image.toString());
+        MessageHandler.println(image.toString(), ErrorLevel.NOTICE, PersonFilter.DAVID);
         g2d.drawImage(image,xPixel*Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,itemWidth*Settings.SCALEFACTOR,itemHeight*Settings.SCALEFACTOR, null);
         g2d.dispose();
     }
