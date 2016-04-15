@@ -41,7 +41,7 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
             tile.getEntity().acceptEntityVisitor(this);
         }
     }
-    public void setPixels(int x, int y){
+     public void setPixels(int x, int y){
         xPixel = x;
         yPixel = y;
     }

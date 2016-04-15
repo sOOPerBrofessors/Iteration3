@@ -23,7 +23,7 @@ public class GrassTile extends MobileTile {
     @Override
     public void acceptTileVisitor(TileVisitor tv) {
         //TODO: ADD ITEM STUFF
-        tv.createGrassTile(this);
+        tv.visitGrassTile(this);
     }
 
     public boolean moveChar(Entity entity){

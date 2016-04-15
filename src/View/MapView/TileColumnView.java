@@ -61,28 +61,28 @@ public class TileColumnView extends JComponent implements TileVisitor {
     }
 
     @Override
-    public void createWaterTile(Tile tile) {
+    public void visitWaterTile(Tile tile) {
          addTileView(new WaterTileView(tile));
     }
 
     @Override
-    public void createGrassTile(Tile tile) {
+    public void visitGrassTile(Tile tile) {
         addTileView(new GrassTileView(tile));
     }
 
     @Override
-    public void createRiverTile(Tile tile) {
+    public void visitRiverTile(Tile tile) {
         addTileView(new RiverTileView(tile));
     }
 
     //Air tile is nothing at the moment; (might possibly be other stuff in the future
     @Override
-    public void createAirTile(Tile tile) {
+    public void visitAirTile(Tile tile) {
         addTileView(new AirTileView(tile));
     }
 
     @Override
-    public void createDirtTile(Tile tile) {
+    public void visitDirtTile(Tile tile) {
         addTileView(new DirtTileView(tile));
     }
 

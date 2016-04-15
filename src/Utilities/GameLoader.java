@@ -55,16 +55,15 @@ public class GameLoader {
                     TileColumn tC = tmpList[i][j];
                     if (k < 1) {
                         if ((i == 2 || i == 1) && (j > 2 && j < 6)) {
-                            WaterTile tile = new WaterTile();
-                            tC.createWaterTile(tile);
+                            tC.visitWaterTile(new WaterTile());
                         } else {
-                            tC.createGrassTile(new GrassTile());
+                            tC.visitGrassTile(new GrassTile());
                         }
                     } else {
                         if (j == 8 && (i >= 2 && i <= 9) && k < (i)) {
-                            tC.createGrassTile(new GrassTile());
+                            tC.visitGrassTile(new GrassTile());
                         } else {
-                            tC.createAirTile(new AirTile());
+                            tC.visitAirTile(new AirTile());
                         }
                     }
                 }
