@@ -173,6 +173,13 @@ public class GamePlayController extends Controller{
                 controllerManager.setSkillsState();
             }
         });
+
+        commands.put(Settings.TEST_KEY, new Command() {
+            @Override
+            public void execute() {
+                state.getAvatar().healthEffect(-1);
+            }
+        });
     }
 
     public void setState(ActiveGameState state) {
