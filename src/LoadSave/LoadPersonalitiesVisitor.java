@@ -33,7 +33,7 @@ public class LoadPersonalitiesVisitor implements LoadVisitor {
             double scatter_brainedness = Double.parseDouble(currentElement.getAttribute("scatter_brainedness"));
             double aggressiveness = Double.parseDouble(currentElement.getAttribute("aggressiveness"));
             double laziness = Double.parseDouble(currentElement.getAttribute("laziness"));
-            HashMap<Interest, Double> interests = new HashMap<>();
+            HashMap<String, Double> interests = new HashMap<>();
 
             NodeList interestList = currentElement.getElementsByTagName("interest");
 
@@ -42,7 +42,7 @@ public class LoadPersonalitiesVisitor implements LoadVisitor {
                 Element currentElement2 = (Element) interestList.item(i2);
                 String interestName = currentElement2.getAttribute("name");
                 double interestValue = Double.parseDouble(currentElement2.getAttribute("value"));
-                interests.put(InterestFactory.getInterest(interestName), interestValue);
+                interests.put(interestName, interestValue);
 
             }
 

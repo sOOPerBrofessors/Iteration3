@@ -1,4 +1,4 @@
-package Controller.AI_Controller.Interest;
+package Controller.AI_Controller.Interest.EntityInterests;
 
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
@@ -8,9 +8,9 @@ import java.awt.*;
 /**
  * Created by aseber on 4/8/16.
  */
-public class FollowInterest extends EntityInterest {
+public class TalkInterest {// extends EntityInterest {
 
-    public boolean isValid(Point pointOfInterest, VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
+    public boolean isValid(Point pointOfInterest, VisualInformation visualInformatio, MotorCortexMemoryInterface memoryInterface) {
 
         return false;
 
@@ -24,7 +24,7 @@ public class FollowInterest extends EntityInterest {
 
     public String getName() {
 
-        return "FollowInterest";
+        return "TalkInterest";
 
     }
 
