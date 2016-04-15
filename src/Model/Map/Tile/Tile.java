@@ -50,6 +50,31 @@ public abstract class Tile implements TileVisitable, TileObservable{
         return false;
     }
 
+    public boolean canMoveAvian(){
+        return false;
+    }
+
+    public boolean canMoveAquatic(){
+        return false;
+    }
+
+    public boolean canMoveBoat(){
+        return false;
+
+    }
+
+    public boolean canMoveChar(){
+        return false;
+    }
+
+    public boolean canMoveProjectile(){
+        return false;
+    }
+
+    public boolean canMoveVehicle(){
+        return false;
+    }
+
     public abstract Entity getEntity();
     public abstract void addEntity(Entity entity);
     public abstract void removeEntity();

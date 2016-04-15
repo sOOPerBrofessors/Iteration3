@@ -81,8 +81,15 @@ public abstract class Entity implements EntityObservable, MapObject, EntityVisit
 
     public boolean canMove(Map map, Orientation orientation) {
 
-        // TODO: Need to actually implement this!
-        return true;
+        Tile nextTile = getNextTile(map, orientation);
+
+        if (nextTile != null) {
+
+            return navigation.canMove(nextTile);
+
+        }
+
+        return false;
 
     }
 

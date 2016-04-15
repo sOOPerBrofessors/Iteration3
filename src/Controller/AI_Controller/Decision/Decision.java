@@ -21,7 +21,8 @@ public class Decision {
 
         this.interest = interest;
         this.weight = weight;
-        this.orientationToMoveTo = interest.derivePointOfInterest(visualInformation, memoryInterface);
+        interest.initialize(visualInformation, memoryInterface);
+        orientationToMoveTo = interest.getNextOrientationToMove();
 
     }
 
@@ -36,7 +37,7 @@ public class Decision {
     public void update(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         interest.update(visualInformation, memoryInterface);
-        setOrientationToMoveTo(interest.derivePointOfInterest(visualInformation, memoryInterface));
+        setOrientationToMoveTo(interest.getNextOrientationToMove());
 
     }
 

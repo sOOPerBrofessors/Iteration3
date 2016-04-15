@@ -11,4 +11,11 @@ public class AquaticStrategy implements NavStrategy {
     public boolean move(Tile targetTile, Entity entity) {
         return targetTile.moveAquatic(entity);
     }
+
+    public boolean canMove(Tile targetTile) {
+
+        return targetTile.canMoveAquatic();
+
+    }
+
 }

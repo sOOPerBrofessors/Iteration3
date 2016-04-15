@@ -8,11 +8,23 @@ import Model.Entity.Entity;
  */
 public abstract class EntityInterest extends Interest {
 
-    Entity targetEntity;
+    private Entity targetEntity;
 
-    public void setTarget(Entity targetEntity) {
+    public final void setTarget(Entity targetEntity) {
 
         this.targetEntity = targetEntity;
+
+    }
+
+    protected final Entity getTargetEntity() {
+
+        return targetEntity;
+
+    }
+
+    public final InterestType getType() {
+
+        return InterestType.ENTITY;
 
     }
 

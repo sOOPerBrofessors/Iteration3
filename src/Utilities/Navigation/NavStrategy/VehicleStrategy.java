@@ -11,4 +11,11 @@ public class VehicleStrategy implements NavStrategy {
     public boolean move(Tile targetTile, Entity entity) {
         return targetTile.moveVehicle(entity);
     }
+
+    public boolean canMove(Tile targetTile) {
+
+        return targetTile.canMoveVehicle();
+
+    }
+
 }

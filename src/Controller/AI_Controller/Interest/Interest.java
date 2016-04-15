@@ -19,6 +19,9 @@ public abstract class Interest {
 
     }
 
+    // Initializes the orientation to move
+    abstract public void initialize(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface);
+
     // Checks to see if the interest is finished, this will immediately finish the decision
     abstract public boolean isFinished(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface);
 
@@ -34,7 +37,7 @@ public abstract class Interest {
     abstract public String getName();
 
     // Allows the interest to return its declared point of interest
-    abstract public Orientation derivePointOfInterest(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface);
+    abstract public Orientation getNextOrientationToMove();
 
     // Gets the declared value of the interest, the higher the value, the higher the probabliity of its corresponding
     // decision will be picked from a uniform picker.

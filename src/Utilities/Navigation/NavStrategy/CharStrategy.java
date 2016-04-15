@@ -11,4 +11,11 @@ public class CharStrategy implements NavStrategy {
     public boolean move(Tile targetTile, Entity entity) {
         return targetTile.moveChar(entity);
     }
+
+    public boolean canMove(Tile targetTile) {
+
+        return targetTile.canMoveChar();
+
+    }
+
 }
