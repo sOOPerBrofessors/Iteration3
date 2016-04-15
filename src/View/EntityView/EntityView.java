@@ -44,7 +44,6 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
     @Override
     public void updateMove() {
         //System.out.println("update move");
-        MessageHandler.println("Entity is moving", ErrorLevel.NOTICE, PersonFilter.DAVID);
         updateLocation();
         updateOrientation();
     }

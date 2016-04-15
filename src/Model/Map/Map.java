@@ -2,6 +2,7 @@ package Model.Map;
 
 import Model.Entity.Character.Character;
 import Model.Entity.Entity;
+import Model.Map.AreaEffect.AreaOfEffect;
 import Model.Map.Tile.Tile;
 
 /**
@@ -76,5 +77,12 @@ public class Map {
 
     public void removeEntity(Entity entity){
         mapOfTiles[entity.getX()][entity.getY()].removeEntity(entity);
+    }
+
+    public void addAOE(AreaOfEffect areaOfEffect, Location location){
+        int x = location.getX();
+        int y = location.getY();
+        int z = location.getZ();
+        getTileAt(x,y,z).addAOE(areaOfEffect);
     }
 }

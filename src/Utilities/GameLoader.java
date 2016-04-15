@@ -4,6 +4,7 @@ import Controller.AI_Controller.AI_Controller;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.NPC.NPC;
 import Model.Items.Item;
+import Model.Map.AreaEffect.HealDamageAOE;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Tile.AirTile;
@@ -38,6 +39,7 @@ public class GameLoader {
         initNPC();
         initPlayer();
         initItems();
+        initAreaEffect();
         activeGameState = new ActiveGameState(map, player, entities);
         pausedGameState = new PausedGameState(map, player, entities);
     }
@@ -78,7 +80,8 @@ public class GameLoader {
     }
 
     private void initAreaEffect(){
-
+        map.addAOE(new HealDamageAOE(5), new Location(1,1,0));
+        map.addAOE(new HealDamageAOE(10), new Location(1,1,0));
     }
 
     public Map getMap() {

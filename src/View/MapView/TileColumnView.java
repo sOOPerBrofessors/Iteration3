@@ -17,6 +17,8 @@ import View.TerrainView.WaterTileView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.RescaleOp;
 import java.util.ArrayList;
 
 /**
@@ -136,6 +138,7 @@ public class TileColumnView extends JComponent implements TileVisitor {
         //Using overlay or making it just different color?
         //paint seen but not visible tile
         // Set the opacity.
+
         float MIN_OPACITY = 0.4f; // The min opacity for a visible tile
         Graphics2D g2 = (Graphics2D) g.create();
         float opacity = 1.0f - (1 - MIN_OPACITY);

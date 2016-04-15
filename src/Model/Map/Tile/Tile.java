@@ -1,13 +1,16 @@
 package Model.Map.Tile;
 
+import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Items.Item;
+import Model.Map.AreaEffect.AreaOfEffect;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
 import Utilities.Observers.TileObservable;
 import Utilities.Observers.TileObserver;
 import Utilities.Visitor.TileVisitable;
 
+import java.awt.geom.Area;
 import java.util.ArrayList;
 
 /**
@@ -79,12 +82,12 @@ public abstract class Tile implements TileVisitable, TileObservable{
     public abstract void addEntity(Entity entity);
     public abstract void removeEntity();
     public abstract boolean hasEntity();
-    public void addItem(Item item){
+    public abstract void addItem(Item item);
+    public abstract void removeItem();
 
-    }
-    public void removeItem(){
-
-    }
+    //Might need to move these things to the TileColumn
+    public abstract void interactAOE(Character character);
+    public abstract void addAOE(AreaOfEffect areaOfEffect);
     @Override
     public void notifyObservers() {
         for(TileObserver tileObserver : observers){

@@ -30,6 +30,7 @@ public class GrassTile extends MobileTile {
         if(super.entity == null) {
             super.entity = entity;
             notifyObservers();
+            //I guess we also need to notify that there are effects within the tiles
             return true;
         } else {
             super.moveChar(entity);
@@ -40,5 +41,7 @@ public class GrassTile extends MobileTile {
     public boolean canMoveChar() {
         return super.entity == null;
     }
+
+
 
 }
