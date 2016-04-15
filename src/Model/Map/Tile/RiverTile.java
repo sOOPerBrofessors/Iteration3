@@ -16,27 +16,27 @@ public class RiverTile extends WaterTile {
         this.direction = direction;
     } // end private constructor
 
-    public RiverTile makeNRiverTile(int flowRate) {
+    public static RiverTile makeNRiverTile(int flowRate) {
         return new RiverTile(flowRate, Orientation.NORTH);
     } // end factory method makeNRiverTile
 
-    public RiverTile makeNERiverTile(int flowRate) {
+    public static RiverTile makeNERiverTile(int flowRate) {
         return new RiverTile(flowRate, Orientation.NORTHEAST);
     } // end factory method makeNERiverTile
 
-    public RiverTile makeSERiverTile(int flowRate) {
+    public static RiverTile makeSERiverTile(int flowRate) {
         return new RiverTile(flowRate, Orientation.SOUTHEAST);
     } // end factory method makeSERiverTile
 
-    public RiverTile makeSRiverTile(int flowRate) {
+    public static RiverTile makeSRiverTile(int flowRate) {
         return new RiverTile(flowRate, Orientation.SOUTH);
     } // end factory method makeSRiverTile
 
-    public RiverTile makeSWRiverTile(int flowRate) {
+    public static RiverTile makeSWRiverTile(int flowRate) {
         return new RiverTile(flowRate, Orientation.SOUTHWEST);
     } // end factory method makeSWRiverTile
 
-    public RiverTile makeNWRiverTile(int flowRate) {
+    public static RiverTile makeNWRiverTile(int flowRate) {
         return new RiverTile(flowRate, Orientation.NORTHWEST);
     } // end factory method makeNWRiverTile
 
