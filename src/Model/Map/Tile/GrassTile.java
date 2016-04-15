@@ -37,5 +37,8 @@ public class GrassTile extends MobileTile {
         }
     }
 
+    public boolean canMoveChar() {
+        return super.entity == null;
+    }
 
 }

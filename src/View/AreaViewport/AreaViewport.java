@@ -8,6 +8,7 @@ import Model.State.GameState.GameState;
 import Utilities.ItemStuff.ItemManager;
 import Utilities.Observers.Observer;
 import View.AreaViewport.FogOfWar.FogOfWar;
+import View.AreaViewport.HUDView.HUD;
 import View.MapView.TileColumnView;
 
 import javax.swing.*;
@@ -29,6 +30,7 @@ public class AreaViewport extends JPanel{
     //private CharacterView avatarView;
     private CameraView cameraView;
     private FogOfWar fogOfWar;
+    private HUD hud;
     public AreaViewport(GameState gameState){
         //This needs to be initialized later on or grabbed from the inventory
         this.setBackground(Color.GRAY);
@@ -37,6 +39,7 @@ public class AreaViewport extends JPanel{
         Avatar avatar = gameState.getAvatar();
         cameraView = new CameraView(avatar);
         fogOfWar = new FogOfWar(avatar);
+        hud = new HUD(avatar);
         map = gameState.getMap();
         MapViewFactory mapViewFactory = new MapViewFactory();
         mapView = mapViewFactory.createMapViewObjects(map);
@@ -77,6 +80,7 @@ public class AreaViewport extends JPanel{
         updateFogOfWar();
         //This is always called
         renderTiles(g);
-        renderItems(g);
+
+        hud.updateHUD(g);
     }
 }

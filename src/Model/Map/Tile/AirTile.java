@@ -12,9 +12,6 @@ import Model.Entity.Entity;
 //contains AirTileStrategy --> birds can fly here
 public class AirTile extends MobileTile {
 
-    public AirTile(){
-    }
-
     @Override
     public void acceptTileVisitor(TileVisitor tv) {
          tv.visitAirTile(this);
@@ -27,5 +24,8 @@ public class AirTile extends MobileTile {
         return true;
     }
 
+    public boolean canMoveAvian() {
+        return super.entity == null;
+    }
 
 }

@@ -11,4 +11,11 @@ public class BoatStrategy implements NavStrategy {
     public boolean move(Tile targetTile, Entity entity) {
         return targetTile.moveBoat(entity);
     }
+
+    public boolean canMove(Tile targetTile) {
+
+        return targetTile.canMoveBoat();
+
+    }
+
 }

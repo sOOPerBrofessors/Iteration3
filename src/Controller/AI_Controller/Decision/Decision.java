@@ -3,20 +3,26 @@ package Controller.AI_Controller.Decision;
 import Controller.AI_Controller.Interest.Interest;
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
-
-import java.awt.*;
+import Model.Map.Orientation;
 
 /**
  * Created by aseber on 4/6/16.
  */
-public abstract class Decision {
+public class Decision {
 
-    private Point pointOfInterest;
+    // We should only change decisions if the decision is finished, or the entity has randomly decided to drop it.
+    // Dropping decisions is less likely if  the entity is more interested in the decision
+
+    private Orientation orientationToMoveTo;
     private Interest interest;
+    private double weight;
 
-    protected void setInterest(Interest interest) {
+    public Decision(Interest interest, double weight, VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         this.interest = interest;
+        this.weight = weight;
+        interest.initialize(visualInformation, memoryInterface);
+        orientationToMoveTo = interest.getNextOrientationToMove();
 
     }
 
@@ -24,27 +30,40 @@ public abstract class Decision {
     public boolean isValid(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         // Given the current interest in this decision, check if that interest is still valid
-        return interest.isValid(getPointOfInterest(), visualInformation, memoryInterface);
+        return !interest.isFinished(visualInformation, memoryInterface);
 
     }
 
     public void update(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         interest.update(visualInformation, memoryInterface);
-        //setPointOfInterest(interest.);
+        setOrientationToMoveTo(interest.getNextOrientationToMove());
 
     }
 
-    protected void setPointOfInterest(Point newPointOfInterest) {
+    private void setOrientationToMoveTo(Orientation newOrientationToMoveTo) {
 
-        this.pointOfInterest = newPointOfInterest;
+        this.orientationToMoveTo = newOrientationToMoveTo;
 
     }
 
-    public final Point getPointOfInterest() {
+    public final Orientation getOrientationToMoveTo() {
 
-        return pointOfInterest;
+        return orientationToMoveTo;
 
+    }
+
+    public double getValue() {
+
+        // TODO: Need to multiply by distance!
+        return interest.getValue();
+
+    }
+
+    public String toString() {
+
+
+        return interest.toString() + " (" + weight + ")";
     }
 
 }

@@ -1,4 +1,4 @@
-package Controller.AI_Controller.Interest;
+package Controller.AI_Controller.Interest.ItemInterests;
 
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
@@ -6,26 +6,25 @@ import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation
 import java.awt.*;
 
 /**
- * Created by aseber on 4/8/16.
+ * Created by aseber on 4/9/16.
  */
-public class ExploreInterest extends PointInterest {
+public class ItemPickupInterest {// extends ItemInterest {
 
     public boolean isValid(Point pointOfInterest, VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
-        return !((pointOfInterest).equals(memoryInterface.getNPC().getLocation()));
+        return false;
 
     }
 
     public void update(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
-        // No need to update the interest point for a simple exploration. May be necessary for a more complicated guardInterest
-        return;
+
 
     }
 
     public String getName() {
 
-        return "ExploreInterest";
+        return "ItemPickupInterest";
 
     }
 

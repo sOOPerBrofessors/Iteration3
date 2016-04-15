@@ -11,4 +11,11 @@ public class ProjectileStrategy implements NavStrategy {
     public boolean move(Tile targetTile, Entity entity) {
         return targetTile.moveProjectile(entity);
     }
+
+    public boolean canMove(Tile targetTile) {
+
+        return targetTile.canMoveProjectile();
+
+    }
+
 }

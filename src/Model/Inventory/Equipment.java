@@ -53,8 +53,8 @@ public class Equipment implements Subject{
         return currentArmor;
     } // end unequipArmor
 
-    public int getArmorValue() { return armor.getArmorValue(); }
-    public int getWeaponValue() { return weapon.getWeaponValue(); }
+    public int getArmorValue() { return armor != null ? armor.getArmorValue() : 0; }
+    public int getWeaponValue() { return weapon != null ? weapon.getWeaponValue() : 0; }
 
     public Armor getArmor() {return armor;}
 

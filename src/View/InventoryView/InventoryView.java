@@ -14,7 +14,6 @@ import Utilities.Observers.Observer;
 import Utilities.PersonFilter;
 import Utilities.Settings;
 import View.ViewUtilities.ImageAssets;
-import javafx.beans.Observable;
 
 import javax.swing.*;
 import java.awt.*;

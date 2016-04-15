@@ -53,12 +53,6 @@ public class MessageHandler {
 
         output += errorLevel.toString();
 
-        if (Settings.personFilter == PersonFilter.ALL) {
-
-            output += " (" + personFilter.toString() + ")";
-
-        }
-
         output += ": " + string;
 
         if (errorLevel.compare(ErrorLevel.ERROR) >= 0) {

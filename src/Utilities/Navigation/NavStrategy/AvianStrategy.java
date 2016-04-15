@@ -11,4 +11,9 @@ public class AvianStrategy implements NavStrategy {
     public boolean move(Tile targetTile, Entity entity) {
         return targetTile.moveAvian(entity);
     }
+    public boolean canMove(Tile targetTile) {
+
+        return targetTile.canMoveAvian();
+
+    }
 }

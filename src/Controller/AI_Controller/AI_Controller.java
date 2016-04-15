@@ -6,6 +6,8 @@ import Model.Map.Orientation;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
 
+import java.util.ArrayList;
+
 /**
  * Created by aseber on 4/9/16.
  */
@@ -28,6 +30,30 @@ public class AI_Controller {
         }
 
         entity.move(map, orientation);
+
+    }
+
+    public boolean canMove(Entity entity, Orientation orientation) {
+
+        return entity.canMove(map, orientation);
+
+    }
+
+    public ArrayList<Orientation> moveableOrientations(Entity entity) {
+
+        ArrayList<Orientation> orientations = new ArrayList<>();
+
+        for (Orientation orientation : Orientation.values()) {
+
+            if (canMove(entity, orientation)) {
+
+                orientations.add(orientation);
+
+            }
+
+        }
+
+        return orientations;
 
     }
 

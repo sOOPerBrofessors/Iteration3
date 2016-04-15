@@ -23,7 +23,7 @@ public class GrassTileView extends TileView{
     private ArrayList<ItemView> itemViewArrayList;
     public GrassTileView(Tile tile){
         super(tile);
-        image = ImageAssets.grass2;
+        image = ImageAssets.grass;
         itemViewArrayList = new ArrayList<>();
     }
 

@@ -35,7 +35,23 @@ public class CharacterView extends EntityView implements OccupationViewVisitor {
 
 
         g2d.dispose();
+
+        // doesn't work
+        drawHealthBar(g);
     }
+
+    public void drawHealthBar(Graphics g) {
+        double health = entity.getHealth();
+        double baseHealth = entity.getBaseHealth();
+        int width = Settings.GAMEWIDTH;
+        int height = Settings.GAMEHEIGHT;
+
+        g.setColor(Color.BLACK);
+        g.drawRect(xPixel-width/128,yPixel-16,width/16+1,height/56+1);
+        g.setColor(Color.RED);
+        g.fillRect(xPixel-width/128+1,yPixel-16+1,(int)((health/baseHealth)*width/16), height/56);
+    } // end drawHealthBar
+
     @Override
     public void updateOrientation(){
         if (orientation != entity.getOrientation()){

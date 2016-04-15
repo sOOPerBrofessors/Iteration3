@@ -1,19 +1,22 @@
 package Utilities.InfluenceAreas.Volumetric;
 
 import Model.Map.Location;
+import Model.Map.Orientation;
 import Utilities.InfluenceAreas.InfluenceArea;
+import Utilities.InfluenceAreas.Linear.LinearEffect;
 import Utilities.InfluenceAreas.Planer.RadialEffect;
 
 import java.util.ArrayList;
 
 /**
  * Created by AndyZhu on 13/4/2016.
- *
- * This class has four public methods
+ * Tested by Andy on 14/4/2016
+ * This class has five public methods
  * 1st get all locations in the prism with full height
  * 2nd get all locations in the prism with full height, with radius
  * 3rd get all locations in the prism with height higher than the location passed in
  * 4th get all locations in the prism with height higher than the location passed in, with radius
+ * 5th get all locations in a line of columns
  */
 public class PrismEffect extends InfluenceArea {
 
@@ -108,6 +111,15 @@ public class PrismEffect extends InfluenceArea {
         return validatedList;
     }
 
+    public static ArrayList<Location> getColumnsOnOneLine(Location location, Orientation orientation, int length) {
+        ArrayList<Location> tempList = LinearEffect.getLinearSameLevel(location, orientation, length);
+        ArrayList<Location> list = new ArrayList<>();
+        for (Location aList : tempList) {
+            list = addLocationsInSameColumnFullHeight(list, aList);
+        }
+        list = removeOutOfMapLocations(list);
+        return list;
+    }
 
     /**
      * Below are private methods

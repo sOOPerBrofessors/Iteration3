@@ -62,4 +62,11 @@ public class Navigation {
             return s.move(targetTile, entity);
         return false;
     } // end move
+
+    public boolean canMove(Tile targetTile) {
+
+        return s.canMove(targetTile);
+
+    }
+
 } // end class Navigation
