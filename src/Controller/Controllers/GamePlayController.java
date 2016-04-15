@@ -177,7 +177,7 @@ public class GamePlayController extends Controller{
         commands.put(Settings.TEST_KEY, new Command() {
             @Override
             public void execute() {
-                state.getAvatar().healthEffect(-1);
+                state.getAvatar().experienceEffect(3);
             }
         });
     }
