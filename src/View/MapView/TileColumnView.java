@@ -52,7 +52,7 @@ public class TileColumnView extends JComponent implements TileVisitor {
         updateTileViews(); //This needs to be called to get all the correct tiles.
         //TODO: This needs to be shrouded state in the beginning
         //tileViewState = new ShroudedState();
-        tileViewState = new VisibleState();
+        tileViewState = new ShroudedState();
     }
     //Function basically copies the list  with its tile column subject
     private void updateTileViews(){
@@ -133,8 +133,15 @@ public class TileColumnView extends JComponent implements TileVisitor {
         }
     }
     public void paintNonVisible(Graphics g){
+        //Using overlay or making it just different color?
         //paint seen but not visible tile
-        paintVisible(g); //for now just paint visible 
+        // Set the opacity.
+        float MIN_OPACITY = 0.4f; // The min opacity for a visible tile
+        Graphics2D g2 = (Graphics2D) g.create();
+        float opacity = 1.0f - (1 - MIN_OPACITY);
+        AlphaComposite acomp = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity);
+        g2.setComposite(acomp);
+        paintVisible(g2); //for now just paint visible
     }
 
     public void setVisibleState(){
