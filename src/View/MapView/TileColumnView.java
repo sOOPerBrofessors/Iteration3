@@ -50,6 +50,8 @@ public class TileColumnView extends JComponent implements TileVisitor {
         updateCoordinateToScreenPosition();
         tileColumn = subject;
         updateTileViews(); //This needs to be called to get all the correct tiles.
+        //TODO: This needs to be shrouded state in the beginning
+        //tileViewState = new ShroudedState();
         tileViewState = new ShroudedState();
     }
     //Function basically copies the list  with its tile column subject
@@ -61,28 +63,28 @@ public class TileColumnView extends JComponent implements TileVisitor {
     }
 
     @Override
-    public void createWaterTile(Tile tile) {
+    public void visitWaterTile(Tile tile) {
          addTileView(new WaterTileView(tile));
     }
 
     @Override
-    public void createGrassTile(Tile tile) {
+    public void visitGrassTile(Tile tile) {
         addTileView(new GrassTileView(tile));
     }
 
     @Override
-    public void createRiverTile(Tile tile) {
+    public void visitRiverTile(Tile tile) {
         addTileView(new RiverTileView(tile));
     }
 
     //Air tile is nothing at the moment; (might possibly be other stuff in the future
     @Override
-    public void createAirTile(Tile tile) {
+    public void visitAirTile(Tile tile) {
         addTileView(new AirTileView(tile));
     }
 
     @Override
-    public void createDirtTile(Tile tile) {
+    public void visitDirtTile(Tile tile) {
         addTileView(new DirtTileView(tile));
     }
 
@@ -132,8 +134,15 @@ public class TileColumnView extends JComponent implements TileVisitor {
         }
     }
     public void paintNonVisible(Graphics g){
+        //Using overlay or making it just different color?
         //paint seen but not visible tile
-        paintVisible(g); //for now just paint visible 
+        // Set the opacity.
+        float MIN_OPACITY = 0.4f; // The min opacity for a visible tile
+        Graphics2D g2 = (Graphics2D) g.create();
+        float opacity = 1.0f - (1 - MIN_OPACITY);
+        AlphaComposite acomp = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity);
+        g2.setComposite(acomp);
+        paintVisible(g2); //for now just paint visible
     }
 
     public void setVisibleState(){

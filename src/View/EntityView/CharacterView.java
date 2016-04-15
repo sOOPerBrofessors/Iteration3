@@ -14,13 +14,11 @@ import java.awt.*;
  * Created by dyeung on 4/6/16.
  */
 public class CharacterView extends EntityView implements OccupationViewVisitor {
-
-    //private String url = "./res/Entity/newSneak.png";
     //Width height scale formula is Height/Width * new width = new height
     private Image characterImage;
     public CharacterView(Character character){
         super(character);
-        character.getOccupation().acceptOccupationViewVistor(this, orientation); //This will create the avatarImage necessary
+        character.getOccupation().acceptOccupationViewVistor(this, orientation); //This will create the correct Occupation View
         characterImage = orientationView.getCurrentDirectionImage();
     }
 
@@ -57,7 +55,7 @@ public class CharacterView extends EntityView implements OccupationViewVisitor {
     @Override
     public void updateOrientation(){
         if (orientation != entity.getOrientation()){
-            orientationView.setDirection(orientation);
+            orientationView.setDirection(entity.getOrientation());
             characterImage = orientationView.getCurrentDirectionImage();
         }
     }
