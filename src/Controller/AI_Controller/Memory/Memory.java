@@ -9,6 +9,9 @@ import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Entity;
 import Utilities.AIStuff.RelationshipList;
+import Utilities.ErrorLevel;
+import Utilities.MessageHandler;
+import Utilities.PersonFilter;
 import Utilities.Tickable;
 
 /**
@@ -74,7 +77,14 @@ public class Memory implements Tickable, VisualCortexMemoryInterface, FrontalLob
 
     public void setCurrentDecision(Decision currentDecision) {
 
+        MessageHandler.println("Memory: setCurrentDecision: " + currentDecision.toString(), ErrorLevel.NOTICE, PersonFilter.AUSTIN);
         this.currentDecision = currentDecision;
+
+    }
+
+    public Personality getPersonality() {
+
+        return personality;
 
     }
 

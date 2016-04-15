@@ -9,14 +9,20 @@ import java.awt.*;
 /**
  * Created by aseber on 4/6/16.
  */
-public abstract class Decision {
+public class Decision {
+
+    // We should only change decisions if the decision is finished, or the entity has randomly decided to drop it.
+    // Dropping decisions is less likely if  the entity is more interested in the decision
 
     private Point pointOfInterest;
     private Interest interest;
+    private double weight;
 
-    protected void setInterest(Interest interest) {
+    public Decision(Interest interest, double weight, VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         this.interest = interest;
+        this.weight = weight;
+        this.pointOfInterest = interest.derivePointOfInterest(visualInformation, memoryInterface);
 
     }
 
@@ -24,18 +30,18 @@ public abstract class Decision {
     public boolean isValid(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         // Given the current interest in this decision, check if that interest is still valid
-        return interest.isValid(getPointOfInterest(), visualInformation, memoryInterface);
+        return !interest.isFinished(getPointOfInterest(), visualInformation, memoryInterface);
 
     }
 
     public void update(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         interest.update(visualInformation, memoryInterface);
-        //setPointOfInterest(interest.);
+        setPointOfInterest(interest.derivePointOfInterest(visualInformation, memoryInterface));
 
     }
 
-    protected void setPointOfInterest(Point newPointOfInterest) {
+    private void setPointOfInterest(Point newPointOfInterest) {
 
         this.pointOfInterest = newPointOfInterest;
 
@@ -45,6 +51,19 @@ public abstract class Decision {
 
         return pointOfInterest;
 
+    }
+
+    public double getValue() {
+
+        // TODO: Need to multiply by distance!
+        return interest.getValue();
+
+    }
+
+    public String toString() {
+
+
+        return interest.toString() + " (" + weight + ")";
     }
 
 }

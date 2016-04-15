@@ -1,7 +1,11 @@
 package Controller.AI_Controller.Personality;
 
+import Controller.AI_Controller.Decision.Decision;
 import Controller.AI_Controller.Interest.Interest;
+import Controller.AI_Controller.Interest.InterestFactory;
 
+import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,9 +18,9 @@ public class Personality {
     private double scatter_brainedness;
     private double aggressiveness;
     private double laziness;
-    private HashMap<Interest, Double> interests = new HashMap<>();
+    private HashMap<String, Double> interests = new HashMap<>();
 
-    public Personality(String name, double scatter_brainedness, double aggressiveness, double laziness, HashMap<Interest, Double> interests) {
+    public Personality(String name, double scatter_brainedness, double aggressiveness, double laziness, HashMap<String, Double> interests) {
 
         this.name = name;
         this.scatter_brainedness = scatter_brainedness;
@@ -32,13 +36,51 @@ public class Personality {
 
     }
 
+    public double getScatter_brainedness() {
+
+        return scatter_brainedness;
+
+    }
+
+    public double getAggressiveness() {
+
+        return aggressiveness;
+
+    }
+
+    public double getLaziness() {
+
+        return laziness;
+
+    }
+
+    public HashMap<Interest, Double> getInterestsFromType(Interest.InterestType type) {
+
+        HashMap<Interest, Double> interestsByType = new HashMap<>();
+
+        for (Map.Entry<String, Double> entry : interests.entrySet()) {
+
+            Interest interest = InterestFactory.getInterest(entry.getKey());
+
+            if (interest.getType() == type) {
+
+                interestsByType.put(interest, entry.getValue());
+
+            }
+
+        }
+
+        return interestsByType;
+
+    }
+
     public String printInterests() {
 
-        String output = new String();
+        String output = "";
 
         output += "Personality: " + getName() + "\n";
         output += "Beginning of InterestList:\n";
-        for (Map.Entry<Interest, Double> entry : interests.entrySet()) {
+        for (Map.Entry<String, Double> entry : interests.entrySet()) {
 
             output += "\tEntry: (" + entry.getKey() + ", " + entry.getValue() + ")\n";
 
