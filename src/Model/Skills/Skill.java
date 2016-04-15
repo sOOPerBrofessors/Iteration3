@@ -12,12 +12,12 @@ import java.util.Random;
  */
 public abstract class Skill { //TODO: skills should also be ticked if we want to display remaining CD
     //TODO: complete everything after avatar is done
-    private int level; //level range: [1, 10]
-    private String name;
-    private double coolDownTime;
-    private double timePerformed;
-    private double remainingCoolDownTime;
-    private int manaCost;
+    protected int level; //level range: [1, 10]
+    protected String name;
+    protected double coolDownTime;
+    protected double timePerformed;
+    protected double remainingCoolDownTime;
+    protected int manaCost;
 
     protected Avatar avatar;
 
