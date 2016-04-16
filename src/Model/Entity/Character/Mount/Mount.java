@@ -5,7 +5,7 @@ import Model.Entity.Entity;
 import Model.Map.Location;
 import Utilities.Navigation.Navigation;
 import Utilities.Tickable;
-import Utilities.Visitor.EntityViewVisitor;
+import Utilities.Visitor.CharacterVisitor;
 
 /**
  * Created by Wimberley on 4/6/16.
@@ -23,10 +23,6 @@ public abstract class Mount extends Entity implements Tickable{
 
     }
 
-    @Override
-    public void acceptEntityVisitor(EntityViewVisitor entityViewVisitor) {
-
-    }
 
     public void addCharacter(Character character){
         this.character = character;

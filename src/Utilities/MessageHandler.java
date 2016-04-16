@@ -37,13 +37,13 @@ public class MessageHandler {
 
     private static boolean isPersonFilterValid(PersonFilter personFilter) {
 
-        return (personFilter == Settings.personFilter || Settings.personFilter == PersonFilter.ALL || personFilter == PersonFilter.UNSPECIFIED);
+        return (personFilter == PersonalSettings.personFilter || PersonalSettings.personFilter == PersonFilter.ALL || personFilter == PersonFilter.UNSPECIFIED);
 
     }
 
     private static boolean isErrorLevelValid(ErrorLevel errorLevel) {
 
-        return errorLevel.compare(Settings.errorLevel) >= 0;
+        return errorLevel.compare(PersonalSettings.errorLevel) >= 0;
 
     }
 

@@ -1,28 +1,54 @@
 package View.AreaViewport.HUDView;
 
 import Model.Entity.Character.Avatar;
+import Utilities.GameMessageQueue;
 import Utilities.Settings;
-import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+
+import View.ViewUtilities.Sprites.ImageAssets;
 
 /**
  * Created by broskj on 4/14/16.
+ *
+ * Designed to be an overlay on the main interface.  Contains a status orb that reflects combat status and health
+ *  ratio; health, mana, and experience bars; and a game message box.
+ *
+ *
  */
 public class HUD {
     private Avatar avatar;
-    private int width = Settings.GAMEWIDTH;
-    private int height = Settings.GAMEHEIGHT;
+    private static BufferedImage occupationSprite;
+    private static Color statusColor = new Color(5, 255, 78, 200);
+    private int width = Settings.GAMEWIDTH,
+        height = Settings.GAMEHEIGHT;
 
     public HUD(Avatar avatar) {
         this.avatar = avatar;
     } // end constructor
 
+    public static void setOccupationSprite(BufferedImage newOccupationSprite) {
+        occupationSprite = newOccupationSprite;
+    } // end setOccupationSprite
+
+    public static void setStatusCombat() {
+        statusColor = new Color(255, 2, 30, 200);
+    } // end setStatusCombat
+
+    public static void setStatusRegular() {
+        statusColor = new Color(5, 255, 78, 200);
+    } // end setStatusCombat
+
     public void updateHUD(Graphics g) {
-        double healthRatio = avatar.getHealth()*1.0 / avatar.getBaseHealth()*1.0;
+        int health = avatar.getHealth(),
+                baseHealth = avatar.getBaseHealth();
+        int mana = avatar.getMana(),
+                baseMana = avatar.getBaseMana();
+        double healthRatio = health*1.0 / baseHealth*1.0;
         if(healthRatio > 1)
             healthRatio = 1;
-        double manaRatio = avatar.getMana()*1.0 / avatar.getBaseMana()*1.0;
+        double manaRatio = mana*1.0 / baseMana*1.0;
         if(manaRatio > 1)
             manaRatio = 1;
         int xp = avatar.getExperience(),
@@ -53,18 +79,62 @@ public class HUD {
         g2d.setColor(new Color(255, 197, 0, 120));
         g2d.fillRect(195,99,(int)(310 * experienceRatio),24);
 
-        // draw experience text
+        // draw text onto bars
         g2d.setColor(new Color(247, 255, 204));
+        g2d.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+
+        // draw health text
+        String hpMessage = health + " / " + baseHealth;
+        g2d.drawString(hpMessage, (174 + (303/2) - fm.stringWidth(hpMessage)/2), 34);
+
+        // draw mana text
+        String manaMessage = mana + " / " + baseMana;
+        g2d.drawString(manaMessage, (195+(310/2) - fm.stringWidth(manaMessage)/2), 75);
+
+        // draw experience text
         String xpMessage = xp + " / " + xpThreshold;
         g2d.drawString(currentLevel, 195+fm.stringWidth(currentLevel)/2, 116);
-        g2d.drawString(xpMessage, (168+(310/2) - fm.stringWidth(xpMessage)/2), 116);
+        g2d.drawString(xpMessage, (195+(310/2) - fm.stringWidth(xpMessage)/2), 116);
         g2d.drawString(nextLevel, 505-fm.stringWidth(nextLevel)/2-25, 116);
 
-        g2d.setColor(new Color(5, 255, 78, 200));
+        if(healthRatio <= 0.4)
+            pulseOrb(g2d, healthRatio);
+        else if(!avatar.isInCombat())
+            statusColor = new Color(5, 255, 78, 200);
+        g2d.setColor(statusColor);
+
         g2d.fillOval(2,2,163,163);
         g2d.drawImage(ImageAssets.hud, 0, 0, 520, 180, null);
-        g2d.drawImage(ImageAssets.sneakS, 55, 55, 64, 64, null);
+        g2d.drawImage(occupationSprite, 55, 45, 64, 84, null);
+
+        renderGameMessages(g2d);
 
         g2d.dispose();
     } // end updateHUD
+
+    public void renderGameMessages(Graphics2D g2d) {
+        int messageBoxW = 13*Settings.CHAR_LIMIT, messageBoxH = 130;
+        g2d.drawImage(ImageAssets.messageBox, width-messageBoxW, 0, messageBoxW, messageBoxH, null);
+
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 20));
+
+        for(int i = 0; i < GameMessageQueue.queue.size(); i++) {
+            g2d.drawString(GameMessageQueue.queue.get(i), width-messageBoxW+20, (22*(GameMessageQueue.queue.size()-i))+5);
+        }
+    } // end renderGameMessages
+
+    public void pulseOrb(Graphics2D g2d, double ratio) {
+        //int a = statusColor.getAlpha();
+        if (ratio == 0) {
+            statusColor = new Color(255,2,30,200);
+            g2d.setColor(statusColor);
+        } else {
+            double modifier = Math.cos(Math.PI * System.currentTimeMillis() / (ratio * 1440));
+            int a = Math.abs((int) (200 * Math.pow(modifier,2)));
+
+            statusColor = new Color(255, 2, 30, a);
+            g2d.setColor(statusColor);
+        }
+    }
 } // end class HUD

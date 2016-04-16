@@ -72,7 +72,6 @@ public class StatsView extends JPanel implements Observer {
         g2d.setFont(new Font("Courier New", 1, 48));
         g2d.drawString("Stats", xBorderOffset*3+50, yBorderOffset+50);
 
-
         g2d.setColor(Color.BLACK);
         g2d.setFont(new Font("Courier New", 1, 22));
 
@@ -80,10 +79,6 @@ public class StatsView extends JPanel implements Observer {
             g2d.drawString(statsArray[i], xBorderOffset+50, yBorderOffset*7/4+30*i);
             g2d.drawString(Integer.toString(statsValArray[i]),xBorderOffset*13/2, yBorderOffset*7/4+30*i);
         }
-
-
         g2d.dispose();
-
-
     }
 }

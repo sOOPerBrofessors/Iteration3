@@ -11,26 +11,30 @@ import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Orientation;
 import Model.Map.Tile.Terrain.Terrain;
-import Model.Map.Tile.Tile;
 import Model.Stats.CharacterStats;
+import Utilities.CombatTimer;
+import Utilities.GameMessageQueue;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
+import Utilities.Visitor.CharacterVisitable;
 
 import java.util.ArrayList;
+
 
 /**
  * Created by broskj on 4/6/16.
  *
  * Abstract class to act as the superclass to the player (Avatar) and NPCs.
  */
-public abstract class Character extends Entity implements Observer, Subject {
+public abstract class Character extends Entity implements Observer, Subject, CharacterVisitable {
     private ArrayList<Observer> observers;
 
     private Occupation o;
     protected CharacterStats stats;
     protected Inventory inventory;
     private int radiusVisibility;
+    private CombatTimer combatTimer;
 
     protected Character(Occupation o, Location location) {
         super(Navigation.makeCharNav(), location);
@@ -40,9 +44,17 @@ public abstract class Character extends Entity implements Observer, Subject {
         stats.addObserver(this);
         inventory.addObserver(this);
         this.radiusVisibility = 3; //might need to change to some sort of default later
-
         observers = new ArrayList<>();
+        combatTimer = new CombatTimer();
     } // end private constructor
+
+    public boolean isInCombat() {
+        return combatTimer.isRunning();
+    } // end isInCombat
+
+    public void startCombatTimer() {
+        combatTimer.start();
+    } // end startCombatTimer
 
     @Override
     public void addObserver(Observer o) {
@@ -58,6 +70,7 @@ public abstract class Character extends Entity implements Observer, Subject {
     public void alert() {
         observers.forEach(Observer::update);
     }
+
     /*
     handle passing effects to stats
      */
@@ -78,6 +91,12 @@ public abstract class Character extends Entity implements Observer, Subject {
 
     public void healthEffect(int amount) {
         stats.healthEffect(amount);
+        if(amount >= 0)
+            GameMessageQueue.push("You gained " + amount + " health.");
+        else {
+            GameMessageQueue.push("You took " + -1 * amount + " damage.");
+            startCombatTimer();
+        }
         alert();
     } // end lifeEffect
 
@@ -86,8 +105,17 @@ public abstract class Character extends Entity implements Observer, Subject {
         alert();
     } // end livesEffect
 
+    public void levelEffect(int amount) {
+        stats.levelEffect(amount);
+        alert();
+    } // end levelsEffect
+
     public void manaEffect(int amount) {
         stats.manaEffect(amount);
+        if(amount >= 0)
+            GameMessageQueue.push("You gained " + amount + " mana.");
+        else
+            GameMessageQueue.push("Lost " + -1*amount + " mana.");
         alert();
     } // end manaEffect
 
@@ -103,6 +131,10 @@ public abstract class Character extends Entity implements Observer, Subject {
 
     public void experienceEffect(int amount) {
         stats.experienceEffect(amount);
+        if(amount >= 0)
+            GameMessageQueue.push("You gained " + amount + " experience.");
+        else
+            GameMessageQueue.push("Lost " + -1*amount + " experience.");
         alert();
     } // end experienceEffect
 
@@ -274,8 +306,15 @@ public abstract class Character extends Entity implements Observer, Subject {
 
     public void pickUpItem(Item item){
         inventory.pickUpItem(item);
+        alert();
     }
 
     public CharacterStats getCharacterStats() {return stats;}
+
+    public abstract void onInteract();
+    public Inventory getInventory(){ //needed for InventoryView - Sam
+        return inventory;
+    }
+
 
 } // end abstract class Character

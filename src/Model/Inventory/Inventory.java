@@ -4,6 +4,7 @@ import Model.Items.Item;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
 import Utilities.ErrorLevel;
+import Utilities.GameMessageQueue;
 import Utilities.MessageHandler;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
@@ -41,7 +42,7 @@ public class Inventory implements Observer, Subject{
         if(pack.hasRoom()) {
             pack.add(equipment.unequipWeapon());        // add equipped weapon to pack if room exists
         } else {
-            MessageHandler.println("Inventory full.", ErrorLevel.NOTICE);
+            GameMessageQueue.push("Inventory full, can't remove weapon.");
         }
     } // end unequipWeapon
 
@@ -49,7 +50,7 @@ public class Inventory implements Observer, Subject{
         if(pack.hasRoom()) {
             pack.add(equipment.unequipArmor());         // add equipped armor to pack if room exists
         } else {
-            MessageHandler.println("Inventory full.", ErrorLevel.NOTICE);
+            GameMessageQueue.push("Inventory full, can't remove armor.");
         }
     } // end unequipArmor
 
@@ -92,5 +93,7 @@ public class Inventory implements Observer, Subject{
 
     public void pickUpItem(Item item){
         pack.add(item);
+        System.out.println("item added to pack, size is " + pack.size());
     }
+
 } // end class Inventory

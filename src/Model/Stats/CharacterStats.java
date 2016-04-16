@@ -220,6 +220,8 @@ public class CharacterStats extends EntityStats implements Subject {
         if (health < 0){
             health = 0;
             livesEffect(-1); //decrement a life
+        } else if (health > baseHealth) {
+            health = baseHealth;
         }
         else if (health > baseHealth) {
             health = baseHealth;
@@ -230,6 +232,8 @@ public class CharacterStats extends EntityStats implements Subject {
         mana += effect;
         if (mana < 0){
             mana = 0;
+        } else if (mana > baseMana) {
+            mana = baseMana;
         }
         else if (mana > baseMana) {
             mana = baseMana;

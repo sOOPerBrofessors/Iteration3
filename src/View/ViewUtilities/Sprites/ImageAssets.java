@@ -28,15 +28,26 @@ public class ImageAssets {
     public static BufferedImage enemyS, enemySW, enemyNW, enemyN, enemyNE, enemySE;
     public static BufferedImage grass, grass2, dirt, water;
     public static BufferedImage invSlot, eqSlot, select;
-    public static BufferedImage hud;
+    public static BufferedImage hud, messageBox;
 
+    // items
     public static BufferedImage healthPotion;
     public static BufferedImage sword;
     public static BufferedImage itemBag;
+    public static BufferedImage chestPlate;
+    public static BufferedImage closedChest;
+    public static BufferedImage openChest;
+    public static BufferedImage money;
+    public static BufferedImage chestKey;
 
     //needs to be called once
     public static void init(){
         SpriteSheet healthPotionSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/HealthPotion.png"));
+        SpriteSheet chestKeySheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/key.png"));
+        SpriteSheet moneySheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/Money.png"));
+        SpriteSheet chestPlateSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/ChestPlate.png"));
+        SpriteSheet closedChestSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/ClosedChest.png"));
+        SpriteSheet openChestSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/OpenChest.png"));
         SpriteSheet itemBagSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/ItemBag.png"));
         SpriteSheet swordSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/Sword.png"));
         SpriteSheet smasherSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Smasher.png"));
@@ -46,6 +57,7 @@ public class ImageAssets {
         SpriteSheet waterSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/water2.png"));
         SpriteSheet invButtonsSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Buttons/InventoryButtons.png"));
         SpriteSheet hudSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/hud.png"));
+        SpriteSheet messageBoxSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/messagebox.png"));
 
         smasherSW = smasherSheet.cropSheet(0,0, smasherWidth, smasherHeight);
         smasherNW = smasherSheet.cropSheet(smasherWidth*1, 0, smasherWidth, smasherHeight);
@@ -85,10 +97,16 @@ public class ImageAssets {
         select = invButtonsSheet.cropSheet(120,0,60,60);
 
         hud = hudSheet.cropSheet(0,0,960,320);
+        messageBox = messageBoxSheet.cropSheet(0,0,640,400);
 
         //items
-        healthPotion = healthPotionSheet.cropSheet(0,0,Settings.USABLEWIDTH, Settings.USABLEHEIGHT);
-        sword = swordSheet.cropSheet(0,0,Settings.USABLEWIDTH, Settings.USABLEHEIGHT);
-        itemBag = itemBagSheet.cropSheet(0,0,Settings.USABLEWIDTH, Settings.USABLEHEIGHT);
+        healthPotion = healthPotionSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
+        sword = swordSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
+        itemBag = itemBagSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
+        chestPlate = chestPlateSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
+        openChest = openChestSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
+        closedChest = closedChestSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
+        money = moneySheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
+        chestKey = chestKeySheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
     }
 }

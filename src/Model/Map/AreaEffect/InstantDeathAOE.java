@@ -2,6 +2,7 @@ package Model.Map.AreaEffect;
 
 import Model.Entity.Character.Character;
 import Model.Map.AreaEffect.AreaOfEffect;
+import Utilities.Visitor.AOEVisitor;
 
 /**
  * Created by dyeung on 4/15/16.
@@ -14,5 +15,10 @@ public class InstantDeathAOE extends AreaOfEffect {
     @Override
     public void onInteract(Character character) {
         character.healthEffect(value);
+    }
+
+    @Override
+    public void acceptAOEVisitor(AOEVisitor aoeVisitor) {
+        aoeVisitor.visitInstantDeath();
     }
 }
