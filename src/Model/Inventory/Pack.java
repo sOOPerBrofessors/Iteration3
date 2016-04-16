@@ -21,7 +21,7 @@ public class Pack {
             items.add(item);
             GameMessageQueue.push("Picked up an item.");
         } else if (size() >= cap) {
-            GameMessageQueue.push("Inventory full, can't take item.");
+            GameMessageQueue.push("Your inventory is full.");
         }
     } // end add
 
