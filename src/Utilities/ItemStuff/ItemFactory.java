@@ -43,6 +43,11 @@ public class ItemFactory {
         allItemViews.put(money, moneyView);
         mapItemViews.put(money, moneyView);
 
+        // create money in chest
+        TakeableItem treasure = Money.makeMoney(100);
+        ItemView treasureView = new UsableView(ImageAssets.money);
+        allItemViews.put(money, moneyView);
+
         // create new health potion
         TakeableItem healthPotion = Potion.makeHealthPotion(10);
         ItemView healthView = new UsableView(ImageAssets.healthPotion);
@@ -80,7 +85,7 @@ public class ItemFactory {
         mapItemViews.put(chestKey, chestKeyView);
 
         // create closed chest
-        Interactable closedChest = new Chest((Quest)chestKey);
+        Interactable closedChest = new Chest((Quest)chestKey, treasure);
         ItemView closedChestView = new InteractableView(ImageAssets.closedChest);
         Location closedChestLocation = new Location(3,4, map.getTopTilePosition(3,4));
         closedChestView.setLocation(3,4);

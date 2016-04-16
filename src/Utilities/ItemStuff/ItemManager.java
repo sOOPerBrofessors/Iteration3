@@ -72,6 +72,10 @@ public class ItemManager implements Subject{
         allItemViews.remove(item);
     }
 
+    public void addItem(Item item, Location location){
+        //takableItems
+    }
+
     @Override
     public void addObserver(Observer o) {
         observer = o;
