@@ -35,13 +35,17 @@ public class ItemManager implements Subject{
     }
 
     public void contact(Character character){
+        Location temp = null;
         for(Location key : takableItems.keySet()) {
             if (key.equals(character.getLocation())) {
                 takableItems.get(key).onInteract(character);
                 mapItemViews.remove(takableItems.get(key));
-                takableItems.remove(key);
+                temp = key;
                 alert();
             }
+        }
+        if(temp != null){
+            takableItems.remove(temp);
         }
     }
 
