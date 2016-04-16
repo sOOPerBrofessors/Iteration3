@@ -20,6 +20,8 @@ public class Pack {
         if(item != null && size() < cap) {
             items.add(item);
             GameMessageQueue.push("Picked up an item.");
+        } else if (size() >= cap) {
+            GameMessageQueue.push("Inventory full, can't take item.");
         }
     } // end add
 
