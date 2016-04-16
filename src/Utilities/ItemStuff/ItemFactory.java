@@ -5,6 +5,7 @@ import Model.Items.Interactable.Interactable;
 import Model.Items.Item;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
+import Model.Items.Takeable.Useable.Money;
 import Model.Items.Takeable.TakeableItem;
 import Model.Items.Takeable.Useable.Potion;
 import Model.Map.Location;
@@ -29,6 +30,14 @@ public class ItemFactory {
         takableItems = new HashMap<>();
         itemViews = new HashMap<>();
         interactableItems = new HashMap<>();
+
+        // create money
+        TakeableItem money = Money.makeMoney(50);
+        ItemView moneyView = new UsableView(ImageAssets.money);
+        Location moneyLocation = new Location(4,5, map.getTopTilePosition(4,5));
+        moneyView.setLocation(4,5);
+        takableItems.put(moneyLocation, money);
+        itemViews.put(money, moneyView);
 
         // create new health potion
         TakeableItem healthPotion = Potion.makeHealthPotion(10);
@@ -61,6 +70,7 @@ public class ItemFactory {
         closedChestView.setLocation(3,4);
         interactableItems.put(closedChestLocation, closedChest);
         itemViews.put(closedChest,closedChestView);
+
     }
 
     public static HashMap<Location, TakeableItem> getTakableItems(){

@@ -37,10 +37,12 @@ public class ImageAssets {
     public static BufferedImage chestPlate;
     public static BufferedImage closedChest;
     public static BufferedImage openChest;
+    public static BufferedImage money;
 
     //needs to be called once
     public static void init(){
         SpriteSheet healthPotionSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/HealthPotion.png"));
+        SpriteSheet moneySheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/Money.png"));
         SpriteSheet chestPlateSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/ChestPlate.png"));
         SpriteSheet closedChestSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/ClosedChest.png"));
         SpriteSheet openChestSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/OpenChest.png"));
@@ -102,5 +104,6 @@ public class ImageAssets {
         chestPlate = chestPlateSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
         openChest = openChestSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
         closedChest = closedChestSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
+        money = moneySheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
     }
 }
