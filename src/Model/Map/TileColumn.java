@@ -64,17 +64,14 @@ public class TileColumn implements TileVisitable, TerrainVisitable{
 
 
     //For loading
-    public void addEntity(Entity entity){
-        int z = entity.getLocation().getZ();
-        tileList.get(z).addEntity(entity);
+    public void addCharacter(Character character){
+        int z = character.getLocation().getZ();
+        tileList.get(z).addCharacter(character);
 
     }
-    public void addCharacter(Character character){
-        getTopTile().addEntity(character);
-    }
-    public void removeEntity(Entity entity){
-        int z = entity.getZ();
-        tileList.get(z).removeEntity();
+    public void removeCharacter(Character character){
+        int z = character.getZ();
+        tileList.get(z).removeCharacter();
     }
 
     @Override
