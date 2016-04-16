@@ -84,10 +84,10 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
         }
     }
 
-    public void renderItem(Graphics2D g){
+    public void renderItem(Graphics g){
         if(hasItem()) {
             itemView.setPixels(xPixel, yPixel);
-            itemView.paintComponent(g);
+            itemView.paintComponent((Graphics2D)g.create());
         }
     }
 

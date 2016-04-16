@@ -28,10 +28,12 @@ public class ItemManager implements Subject{
     }
 
     public void contact(Character character){
-        if(items.containsKey(character.getLocation())) {
-            character.pickUpItem(items.get(character.getLocation()));
-            itemViews.remove(items.get(character.getLocation()));
-            alert();
+        for(Location key : items.keySet()) {
+            if (key.equals(character.getLocation())) {
+                character.pickUpItem(items.get(key));
+                itemViews.remove(items.get(key));
+                alert();
+            }
         }
     }
 
