@@ -6,6 +6,8 @@ import Model.Map.Orientation;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
 
+import java.util.ArrayList;
+
 /**
  * Created by aseber on 4/9/16.
  */
@@ -19,15 +21,40 @@ public class AI_Controller {
 
     }
 
-    public void move(Entity entity, Orientation orientation) {
+    public boolean move(Entity entity, Orientation orientation) {
 
         if (map == null) {
 
             MessageHandler.println("AI_Controller: Map null in move method call", ErrorLevel.ERROR);
+            throw new NullPointerException();
 
         }
 
-        entity.move(map, orientation);
+        return entity.move(map, orientation);
+
+    }
+
+    public boolean canMove(Entity entity, Orientation orientation) {
+
+        return entity.canMove(map, orientation);
+
+    }
+
+    public ArrayList<Orientation> moveableOrientations(Entity entity) {
+
+        ArrayList<Orientation> orientations = new ArrayList<>();
+
+        for (Orientation orientation : Orientation.values()) {
+
+            if (canMove(entity, orientation)) {
+
+                orientations.add(orientation);
+
+            }
+
+        }
+
+        return orientations;
 
     }
 

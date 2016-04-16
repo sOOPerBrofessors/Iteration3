@@ -1,18 +1,12 @@
 package View.TerrainView;
 
-import Model.Map.Location;
 import Model.Map.Tile.Tile;
 import Utilities.Settings;
-import Utilities.SpriteImageFactory;
-import View.AreaViewport.CameraView;
-import View.EntityView.EntityView;
 import View.ItemView.ItemView;
-import View.ViewUtilities.ImageAssets;
+import View.ViewUtilities.Sprites.ImageAssets;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Set;
 
 /**
  * Created by dyeung on 4/5/16.
@@ -39,9 +33,6 @@ public class GrassTileView extends TileView{
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         g2d.drawImage(image,xPixel*Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,tileWidth*Settings.SCALEFACTOR,tileHeight* Settings.SCALEFACTOR,null);
-//        g.setColor(Color.GREEN);
-//        g.drawRect(xPixel,yPixel,tileWidth,tileHeight);
-
         String debug = location.getX() + "," + location.getY();
         Font f = new Font("Courier New", 1, 12);
 

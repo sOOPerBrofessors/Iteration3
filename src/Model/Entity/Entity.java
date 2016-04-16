@@ -40,9 +40,15 @@ public abstract class Entity implements EntityObservable, MapObject, EntityVisit
         }
     }
 
+
     @Override
     public void addObserver(EntityObserver entityObserver) {
         observers.add(entityObserver);
+    }
+
+    @Override
+    public void removeObserver(EntityObserver entityObserver) {
+        observers.remove(entityObserver);
     }
 
     //TODO: question: should getNextTile and getNextTileColumn handled by map instead of entity?
@@ -58,7 +64,7 @@ public abstract class Entity implements EntityObservable, MapObject, EntityVisit
         return map.getTileColumn(newX,newY);
     }
 
-    public void move(Map map, Orientation orientation){
+    public boolean move(Map map, Orientation orientation){
         //System.out.println("Entity: update location was called from move:" + this.orientation + ":" + orientation);
         if (this.orientation.equals(orientation)) {
             //This is done this way since when you call navigation.move it'll automatically move the entity-- thus we
@@ -70,6 +76,7 @@ public abstract class Entity implements EntityObservable, MapObject, EntityVisit
                 if (difference <= 1) { //Allows fall to happen, probably need some check to account if <0
                     if (navigation.move(getNextTile(map, orientation), this)) {
                         updateLocation(map, orientation, difference);
+                        return true;
                     }
                 }
             }
@@ -77,6 +84,23 @@ public abstract class Entity implements EntityObservable, MapObject, EntityVisit
         }else {
             setOrientation(orientation);
         }
+
+        return false;
+
+    }
+
+    public boolean canMove(Map map, Orientation orientation) {
+
+        Tile nextTile = getNextTile(map, orientation);
+
+        if (nextTile == null) {
+
+            return false;
+
+        }
+
+        return navigation.canMove(nextTile);
+
     }
 
     public Location getLocation() {
@@ -87,6 +111,9 @@ public abstract class Entity implements EntityObservable, MapObject, EntityVisit
     }
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
+        //Should be a notify observer orientation change
+        notifyObserverMove();
+
     }
     private void updateLocation(Map map, Orientation orientation, int difference){
         //Freaking long ass thing to remove an entity

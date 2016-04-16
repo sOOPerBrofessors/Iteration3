@@ -27,7 +27,6 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
     protected int yPixel; // on the map
     protected Image image;
     private EntityView entityView;
-    //Not sure if what we need or not. Essentially a TileView will contain a set of viewable objects to paint
     private Tile tile;
 
     public TileView(Tile tile){
@@ -35,13 +34,15 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
         updateTileView();
         tile.acceptTileObserver(this);
     }
+    //TODO: make it so it just records the tile...this should not have to have
     protected void updateTileView(){
-        entityView = null;
         if (tile.hasEntity()){
             tile.getEntity().acceptEntityVisitor(this);
+        }else {
+            removeEntityView();
         }
     }
-    public void setPixels(int x, int y){
+     public void setPixels(int x, int y){
         xPixel = x;
         yPixel = y;
     }
@@ -81,6 +82,15 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
 
     @Override //This function is called when a tile is updated (for an example when a tile has a new entity)
     public void update() {
+        //System.out.println("TileView: entity was moved");
         updateTileView();
     }
+    private void removeEntityView(){
+        if(entityView != null) {
+            entityView.removeObservable();
+            entityView = null;
+        }
+    }
+
+
 }

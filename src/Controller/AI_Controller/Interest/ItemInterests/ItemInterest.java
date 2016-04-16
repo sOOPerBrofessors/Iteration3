@@ -1,5 +1,6 @@
-package Controller.AI_Controller.Interest;
+package Controller.AI_Controller.Interest.ItemInterests;
 
+import Controller.AI_Controller.Interest.Interest;
 import Model.Items.Item;
 
 /**

@@ -10,6 +10,7 @@ import java.awt.*;
 public class AirTileView extends TileView {
     public AirTileView(Tile tile) {
         super(tile);
+        image = null;
     }
 
     @Override

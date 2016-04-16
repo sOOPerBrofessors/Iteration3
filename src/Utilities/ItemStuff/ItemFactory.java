@@ -6,7 +6,7 @@ import Model.Map.Location;
 import Model.Map.Map;
 import View.ItemView.ItemView;
 import View.ItemView.PotionView;
-import View.ViewUtilities.ImageAssets;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.util.HashMap;
 
@@ -15,10 +15,13 @@ import java.util.HashMap;
  */
 public class ItemFactory {
 
-    private static HashMap<Location, Item> items = new HashMap<>();
-    private static HashMap<Item, ItemView> itemViews = new HashMap<>();
+    private static HashMap<Location, Item> items;
+    private static HashMap<Item, ItemView> itemViews;
 
     public static void init(){
+        items = new HashMap<>();
+        itemViews = new HashMap<>();
+
         // create new health potion and add to ItemManager
         Item healthPotion = Potion.makeHealthPotion(10);
         ItemView healthView = new PotionView(ImageAssets.healthPotion);

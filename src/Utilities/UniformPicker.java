@@ -1,6 +1,7 @@
 package Utilities;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -11,7 +12,6 @@ public class UniformPicker<T> {
     // We store all the values in a hashmap with their weights
     private HashMap<T, Double> values = new HashMap<>();
     private double totalWeight = 0.0;
-    private static final Random rng = new Random(System.currentTimeMillis());
 
     // Method for adding values to the hashmap
     public void add(T value, Double weight) {
@@ -38,15 +38,28 @@ public class UniformPicker<T> {
     // Then picking a randomly distributed number and returning the value that fits in that space.
     public T pick() {
 
+        if (isEmpty()) {
+
+            MessageHandler.println("UniformPicker: Trying to pick from an empty set!", ErrorLevel.ERROR);
+            return null;
+
+        }
+
         T value = getNextValue();
         remove(value);
         return value;
 
     }
 
+    public boolean isEmpty() {
+
+        return values.isEmpty();
+
+    }
+
     private T getNextValue() {
 
-        HashMap<T, Range> normalizedValues = normalizeValues(values);
+        HashMap<T, Range> normalizedValues = normalizeValues();
         double d = getNextRandom();
 
         for (HashMap.Entry<T, Range> value : normalizedValues.entrySet()) {
@@ -59,18 +72,18 @@ public class UniformPicker<T> {
 
         }
 
-        System.err.println("UniformPicker: Reached end of normalized values and couldn't find a suitable value. d = " + d);
+        MessageHandler.println("UniformPicker: Reached end of normalized values and couldn't find a suitable value. d = " + d, ErrorLevel.ERROR);
         return null;
 
     }
 
     private double getNextRandom() {
 
-        return rng.nextDouble();
+        return Math.random();
 
     }
 
-    private HashMap<T, Range> normalizeValues(HashMap<T, Double> values) {
+    private HashMap<T, Range> normalizeValues() {
 
         HashMap<T, Range> normalizedValues = new HashMap<>();
         double location = 0.0;
@@ -91,6 +104,23 @@ public class UniformPicker<T> {
 
     }
 
+    public String toString() {
+
+        String output = "";
+
+        output += "UniformPicker values:\n";
+        HashMap<T, Range> normalizedValues = normalizeValues();
+
+        for (Map.Entry<T, Range> entry : normalizedValues.entrySet()) {
+
+            output += "\t" + entry.getKey() + entry.getValue() + "\n";
+
+        }
+
+        return output;
+
+    }
+
     private class Range {
 
         private double begin;
@@ -106,6 +136,12 @@ public class UniformPicker<T> {
         public boolean inRange(double value) {
 
             return (begin <= value && value < end);
+
+        }
+
+        public String toString() {
+
+            return "(" + begin + " - " + end + ")";
 
         }
 

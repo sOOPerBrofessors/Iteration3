@@ -15,4 +15,5 @@ public interface EntityObservable {
 //    void notifyObserverMoveSE();
     void notifyObserverMove();
     void addObserver(EntityObserver entityObserver);
+    void removeObserver(EntityObserver entityObserver);
 }

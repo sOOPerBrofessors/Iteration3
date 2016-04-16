@@ -19,7 +19,7 @@ public class DirtTile extends Tile {
 
     @Override
     public void acceptTileVisitor(TileVisitor tv) {
-        tv.createDirtTile(this);
+        tv.visitDirtTile(this);
     }
 
     @Override

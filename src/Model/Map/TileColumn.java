@@ -27,33 +27,33 @@ public class TileColumn implements TileVisitor{
     }
 
     @Override
-    public void createWaterTile(Tile tile) {
+    public void visitWaterTile(Tile tile) {
         tileList.add(tile);
         topWater++;
         topTileNotAir++;
     }
 
     @Override
-    public void createGrassTile(Tile tile) {
+    public void visitGrassTile(Tile tile) {
         tileList.add(tile);
         topGroundTile++;
         topTileNotAir++;
     }
 
     @Override
-    public void createAirTile(Tile tile) {
+    public void visitAirTile(Tile tile) {
         tileList.add(tile);
     }
 
     @Override
-    public void createRiverTile(Tile tile) {
+    public void visitRiverTile(Tile tile) {
         tileList.add(tile);
         topTileNotAir++;
         topWater++;
     }
 
     @Override
-    public void createDirtTile(Tile tile) {
+    public void visitDirtTile(Tile tile) {
         tileList.add(tile);
         topTileNotAir++;
         topGroundTile++;

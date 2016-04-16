@@ -32,8 +32,16 @@ public class WaterTile extends MobileTile {
         return true;
     }
 
+    public boolean canMoveAquatic() {
+        return super.entity == null;
+    }
+
+    public boolean canMoveBoat() {
+        return super.entity == null;
+    }
+
     @Override
     public void acceptTileVisitor(TileVisitor tv) {
-         tv.createWaterTile(this);
+         tv.visitWaterTile(this);
     }
 }
