@@ -1,4 +1,4 @@
-package View.ViewUtilities;
+package View.ViewUtilities.Sprites;
 
 import Utilities.Settings;
 

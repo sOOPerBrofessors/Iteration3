@@ -1,12 +1,11 @@
 package View.AreaViewport;
 
 import Model.Map.Location;
-import Model.Map.TileColumn;
 import Model.Map.Map;
 import Utilities.ItemStuff.ItemManager;
 import View.ItemView.ItemView;
 import View.MapView.TileColumnView;
-import View.ViewUtilities.ImageAssets;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.util.HashMap;
 

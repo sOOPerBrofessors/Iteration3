@@ -1,10 +1,8 @@
 package View.TerrainView;
 
-import Model.Map.Location;
 import Model.Map.Tile.Tile;
 import Utilities.Settings;
-import Utilities.SpriteImageFactory;
-import View.ViewUtilities.ImageAssets;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.awt.*;
 
