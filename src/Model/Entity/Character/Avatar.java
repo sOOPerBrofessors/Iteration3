@@ -6,9 +6,10 @@ import Model.Entity.Character.Occupation.Sneak;
 import Model.Entity.Character.Occupation.Summoner;
 import Model.Inventory.Inventory;
 import Model.Map.Location;
-import Utilities.Observers.Observer;
-import Utilities.Visitor.EntityViewVisitor;
-import View.EntityView.CharacterView;
+import Model.Map.Map;
+import Model.Map.Orientation;
+import Utilities.Visitor.CharacterVisitor;
+import com.sun.org.apache.xpath.internal.operations.Or;
 
 
 /**
@@ -60,9 +61,20 @@ public class Avatar extends Character {
     } // end remove
 
     @Override
-    public void acceptEntityVisitor(EntityViewVisitor entityViewVisitor) {
-        entityViewVisitor.createAvatarView(this);
+    public void acceptCharacterVisitor(CharacterVisitor characterVisitor) {
+        characterVisitor.visitAvatar(this);
     }
 
+    //Player specific items
+    public void checkInteract(Map map){
+        int newX = getX() + orientation.x;
+        int newY = getY() + orientation.y;
+        //the new location doesn't matter what z position it is, it will check for the the highest tile at a point
+        map.checkTileInteraction(this, location, new Location(newX,newY,0));
+    }
 
+    @Override
+    public void onInteract() {
+        //Do nothing on interact
+    }
 }
