@@ -21,6 +21,35 @@ public class Map {
 
     private static TileColumn[][] mapOfTiles;
 
+    //MAP movement for character (This will only walk on the top of the characters, will most likely
+    //need a separate move for fishes that swim below or birds that go above
+    public boolean moveCharacter(Character character, Location newLocation){
+        int currentZ = character.getZ();
+        int newX = newLocation.getX();
+        int newY = newLocation.getY();
+        int newZ = getTopTilePosition(newX, newY);
+        if (checkHeightDifference(currentZ, newZ) && getTopTile(newX,newY).moveCharacter(character)) {
+            character.updateLocation(newLocation);
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+    private boolean checkHeightDifference(int current, int target){
+        if ((target - current) <= 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+
+
+
+    //Other stuff for map
+
     public Tile getTopTile(int x, int y) {
         //TODO: Needs some better checks for height difference
         //might be more helpful to add more defining functions withing 'TileColumn' to check for height
@@ -64,7 +93,7 @@ public class Map {
     }
 
 
-    //FOR LOADING
+    //FOR LOADING IN MAP OBJECTS (ENTITY/ITEM)
     //Entities include projectile things that could be anywhere on 3d axis
     public void addEntity(Entity entity){
         mapOfTiles[entity.getX()][entity.getY()].addEntity(entity);
@@ -82,7 +111,7 @@ public class Map {
     public void addAOE(AreaOfEffect areaOfEffect, Location location){
         int x = location.getX();
         int y = location.getY();
-        int z = location.getZ();
-        getTileAt(x,y,z).addAOE(areaOfEffect);
+        //int z = location.getZ();
+        getTopTile(x,y).addAOE(areaOfEffect);
     }
 }

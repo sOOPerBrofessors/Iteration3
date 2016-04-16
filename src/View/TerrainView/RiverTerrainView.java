@@ -10,10 +10,9 @@ import java.awt.*;
 /**
  * Created by dyeung on 4/7/16.
  */
-public class RiverTileView extends TileView {
-    public RiverTileView(Tile tile) {
-        super(tile);
-        image = ImageAssets.water;
+public class RiverTerrainView extends TerrainView {
+    public RiverTerrainView() {
+        super(ImageAssets.water); //suppose to be for river
     }
 
     @Override
@@ -26,15 +25,5 @@ public class RiverTileView extends TileView {
 
         g2d.drawImage(image,xPixel* Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,tileWidth*Settings.SCALEFACTOR,tileHeight* Settings.SCALEFACTOR,null);
 
-
-        String debug = location.getX() + "," + location.getY();
-        Font f = new Font("Courier New", 1, 12);
-
-        g2d.setFont(f);
-        g2d.drawString(debug, (xPixel+ (tileWidth/3))*Settings.SCALEFACTOR, (yPixel + (tileHeight/2))*Settings.SCALEFACTOR);
-        g2d.dispose();
-
-        renderEntity(g2d);
-        g2d.dispose();
     }
 }

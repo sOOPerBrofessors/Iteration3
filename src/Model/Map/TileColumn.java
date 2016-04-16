@@ -3,18 +3,17 @@ package Model.Map;
 import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Map.Tile.*;
-import Utilities.Visitor.TileVisitor;
-import View.MapView.MapObjectView;
+import Utilities.Visitor.*;
 
 import java.util.ArrayList;
 
 /**
  * Created by dyeung on 4/6/16.
  */
-public class TileColumn implements TileVisitor{
+public class TileColumn implements TileVisitable, TerrainVisitable{
 
     ArrayList<Tile> tileList;
-
+    //WATER IS ALWAYS ABOVE GROUND IN THIS ITERATION (So it goes from topGround -> checks topWater -> top tile not air
     private int topGroundTile;
     private int topWater; //Maybe necessary?
     private int topTileNotAir;
@@ -25,35 +24,25 @@ public class TileColumn implements TileVisitor{
         topTileNotAir = 0;
         tileList = new ArrayList<>();
     }
-
-    @Override
-    public void visitWaterTile(Tile tile) {
+    public void addWaterTile(Tile tile){
         tileList.add(tile);
         topWater++;
         topTileNotAir++;
     }
-
-    @Override
-    public void visitGrassTile(Tile tile) {
+    public void addAirTile(Tile tile){
+        tileList.add(tile);
+    }
+    public void addGrassTile(Tile tile){
         tileList.add(tile);
         topGroundTile++;
         topTileNotAir++;
     }
-
-    @Override
-    public void visitAirTile(Tile tile) {
+    public void addRiverTile(Tile tile){
         tileList.add(tile);
-    }
-
-    @Override
-    public void visitRiverTile(Tile tile) {
-        tileList.add(tile);
-        topTileNotAir++;
         topWater++;
+        topTileNotAir++;
     }
-
-    @Override
-    public void visitDirtTile(Tile tile) {
+    public void addDirtTile(Tile tile){
         tileList.add(tile);
         topTileNotAir++;
         topGroundTile++;
@@ -92,5 +81,17 @@ public class TileColumn implements TileVisitor{
         tileList.get(z).removeEntity();
     }
 
+    @Override
+    public void acceptTerrainVisitor(TerrainVisitor tv) {
+        for(Tile tile : tileList){
+            tile.acceptTerrainVisitor(tv);
+        }
+    }
 
+    @Override
+    public void acceptTileVisitor(TileVisitor tv) {
+        for(Tile tile : tileList){
+            tile.acceptTileVisitor(tv);
+        }
+    }
 }

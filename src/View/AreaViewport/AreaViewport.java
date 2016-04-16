@@ -6,10 +6,8 @@ import Model.Map.Location;
 import Model.Map.Map;
 import Model.State.GameState.GameState;
 import Utilities.ItemStuff.ItemManager;
-import Utilities.Observers.Observer;
 import View.AreaViewport.FogOfWar.FogOfWar;
 import View.AreaViewport.HUDView.HUD;
-import View.MapView.TileColumnView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -81,6 +79,6 @@ public class AreaViewport extends JPanel{
         //This is always called
         renderTiles(g);
         renderItems(g);
-        hud.updateHUD(g);
+       // hud.updateHUD(g);
     }
 }

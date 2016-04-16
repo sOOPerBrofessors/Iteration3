@@ -6,16 +6,29 @@ import Model.Map.Tile.Tile;
 /**
  * Created by broskj on 4/5/16.
  */
-public class ProjectileStrategy implements NavStrategy {
+public class ProjectileStrategy extends NavStrategy {
     @Override
     public boolean move(Tile targetTile, Entity entity) {
-        return targetTile.moveProjectile(entity);
+        return false; //targetTile.moveProjectile(entity);
     }
 
-    public boolean canMove(Tile targetTile) {
-
-        return targetTile.canMoveProjectile();
-
+    @Override
+    public void visitWaterTerrain() {
+        canMoveFlag = true;
     }
 
+    @Override
+    public void visitGrassTerrain() {
+        canMoveFlag = true;
+    }
+
+    @Override
+    public void visitAirTerrain() {
+        canMoveFlag = true;
+    }
+
+    @Override
+    public void visitRiverTerrain() {
+        canMoveFlag = true;
+    }
 }

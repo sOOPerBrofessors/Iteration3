@@ -8,14 +8,18 @@ import java.awt.*;
 /**
  * Created by dyeung on 4/9/16.
  */
-public class AirTileView extends TileView {
-    public AirTileView(Tile tile) {
-        super(tile);
-        image = null;
+public class AirTerrainView extends TerrainView {
+    public AirTerrainView() {
+        super(null);
     }
 
     @Override
     public void paintComponent(Graphics g) {
         //Doesn't paint anything but the entity
+    }
+
+    @Override
+    public void renderDebug(Graphics g, int xLocation, int yLocation) {
+        //Don't do anything
     }
 }

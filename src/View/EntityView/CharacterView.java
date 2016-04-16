@@ -4,7 +4,7 @@ import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Map.Orientation;
 import Utilities.Settings;
-import Utilities.Visitor.OccupationViewVisitor;
+import Utilities.Visitor.OccupationVisitor;
 import View.EntityView.AvatarViewFactory.OccupationViewFactory;
 import View.ViewUtilities.ImageAssets;
 
@@ -13,12 +13,12 @@ import java.awt.*;
 /**
  * Created by dyeung on 4/6/16.
  */
-public class CharacterView extends EntityView implements OccupationViewVisitor {
+public class CharacterView extends EntityView implements OccupationVisitor {
     //Width height scale formula is Height/Width * new width = new height
     private Image characterImage;
     public CharacterView(Character character){
         super(character);
-        character.getOccupation().acceptOccupationViewVistor(this, orientation); //This will create the correct Occupation View
+        character.getOccupation().acceptOccupationVistor(this, orientation); //This will create the correct Occupation View
         characterImage = orientationView.getCurrentDirectionImage();
     }
 
@@ -32,7 +32,6 @@ public class CharacterView extends EntityView implements OccupationViewVisitor {
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         g2d.drawImage(characterImage,xPixel* Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,entityWidth*Settings.SCALEFACTOR,entityHeight* Settings.SCALEFACTOR,null);
-
 
         g2d.dispose();
 
@@ -61,18 +60,18 @@ public class CharacterView extends EntityView implements OccupationViewVisitor {
     }
 
     @Override
-    public void createSmasherView(Orientation orientation) {
+    public void visitSmasher(Orientation orientation) {
         orientationView = OccupationViewFactory.createSmasherView(orientation);
     }
 
     //TODO: CHANGE TO SUMMONER (CREATE A SUMMONERVIEW)
     @Override
-    public void createSummonerView(Orientation orientation) {
+    public void visitSummoner(Orientation orientation) {
         orientationView = OccupationViewFactory.createSummonerView(orientation);
     }
 
     @Override
-    public void createSneakView(Orientation orientation) {
+    public void visitSneak(Orientation orientation) {
         orientationView = OccupationViewFactory.createSneakView(orientation);
     }
 

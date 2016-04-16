@@ -1,24 +1,14 @@
 package View.MapView;
 
 import Model.Map.Location;
-import Model.Map.Tile.Tile;
-import Model.Map.TileColumn;
 import Utilities.Settings;
-import Utilities.Visitor.TileVisitor;
 import View.AreaViewport.FogOfWar.NonVisibleState;
 import View.AreaViewport.FogOfWar.ShroudedState;
 import View.AreaViewport.FogOfWar.TileViewState;
 import View.AreaViewport.FogOfWar.VisibleState;
-import View.TerrainView.*;
-import View.TerrainView.GrassTileView;
-import View.TerrainView.RiverTileView;
-import View.TerrainView.TileView;
-import View.TerrainView.WaterTileView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.RescaleOp;
 import java.util.ArrayList;
 
 /**
@@ -26,7 +16,7 @@ import java.util.ArrayList;
  */
 //Purpose of this class is to emulate and (?)observer the tile slot within map
     // The observing might not be necessary as everything else is observing the other mapobjects
-public class TileColumnView extends JComponent implements TileVisitor {
+public class TileColumnView extends JComponent {
 
     ArrayList<TileView> listOfTiles;
     private int x;
@@ -39,58 +29,19 @@ public class TileColumnView extends JComponent implements TileVisitor {
     private int tileHeight = Settings.TILEHEIGHT;
     private int xCenter = tileWidth/2;
     private int yCenter = tileHeight/2;
-    private TileColumn tileColumn;
     private TileViewState tileViewState;
 
-    public TileColumnView(TileColumn subject, Location location){
-        tileViewState = new VisibleState();
+    public TileColumnView(ArrayList<TileView> subject, Location location){
         xCameraOffset = 0;
         yCameraOffset = 0;
         x = location.getX();
         y = location.getY();
-        listOfTiles = new ArrayList<>();
+        listOfTiles = subject;
         updateCoordinateToScreenPosition();
-        tileColumn = subject;
-        updateTileViews(); //This needs to be called to get all the correct tiles.
-        //TODO: This needs to be shrouded state in the beginning
-        //tileViewState = new ShroudedState();
         tileViewState = new ShroudedState();
     }
-    //Function basically copies the list  with its tile column subject
-    private void updateTileViews(){
-        //Top position represent the top tile that is not an air tile
-        for (int k = 0; k < tileColumn.getTopPosition(); k++){
-            tileColumn.getTileAt(k).acceptTileVisitor(this);
-        }
-    }
 
-    @Override
-    public void visitWaterTile(Tile tile) {
-         addTileView(new WaterTileView(tile));
-    }
-
-    @Override
-    public void visitGrassTile(Tile tile) {
-        addTileView(new GrassTileView(tile));
-    }
-
-    @Override
-    public void visitRiverTile(Tile tile) {
-        addTileView(new RiverTileView(tile));
-    }
-
-    //Air tile is nothing at the moment; (might possibly be other stuff in the future
-    @Override
-    public void visitAirTile(Tile tile) {
-        addTileView(new AirTileView(tile));
-    }
-
-    @Override
-    public void visitDirtTile(Tile tile) {
-        addTileView(new DirtTileView(tile));
-    }
-
-    protected void addTileView (TileView tileView){
+    public void addTileView (TileView tileView){
         tileView.setLocation(x,y,listOfTiles.size());
         listOfTiles.add(tileView);
     }
@@ -154,5 +105,6 @@ public class TileColumnView extends JComponent implements TileVisitor {
     public void setNonVisibleState(){
         tileViewState = new NonVisibleState();
     }
+
 
 }

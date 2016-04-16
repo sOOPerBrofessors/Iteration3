@@ -17,20 +17,15 @@ import java.util.Set;
 /**
  * Created by dyeung on 4/5/16.
  */
-public class GrassTileView extends TileView{
-    //private String url = "./res/terrain/grass.png";
-
-    private ArrayList<ItemView> itemViewArrayList;
-    public GrassTileView(Tile tile){
-        super(tile);
-        image = ImageAssets.grass;
-        itemViewArrayList = new ArrayList<>();
+public class GrassTerrainView extends TerrainView{
+    public GrassTerrainView(){
+        super(ImageAssets.grass);
     }
 
     @Override
     public void paintComponent(Graphics g) {
         //super.paintComponent(g);
-        //System.out.println("GrassTileView: paint component: " + location.getX() + "," + location.getY());
+        //System.out.println("GrassTerrainView: paint component: " + location.getX() + "," + location.getY());
 
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
@@ -39,14 +34,7 @@ public class GrassTileView extends TileView{
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         g2d.drawImage(image,xPixel*Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,tileWidth*Settings.SCALEFACTOR,tileHeight* Settings.SCALEFACTOR,null);
-        String debug = location.getX() + "," + location.getY();
-        Font f = new Font("Courier New", 1, 12);
 
-        g2d.setFont(f);
-        g2d.drawString(debug, (xPixel+ (tileWidth/3))*Settings.SCALEFACTOR, (yPixel + (tileHeight/2))*Settings.SCALEFACTOR);
-
-        renderEntity(g2d);
-        g2d.dispose();
     }
 
 }

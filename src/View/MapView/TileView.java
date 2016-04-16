@@ -1,4 +1,4 @@
-package View.TerrainView;
+package View.MapView;
 
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.NPC.NPC;
@@ -7,18 +7,18 @@ import Model.Map.Tile.Tile;
 import Utilities.Observers.TileObserver;
 import Utilities.Settings;
 import Utilities.Visitor.EntityViewVisitor;
+import Utilities.Visitor.TerrainVisitor;
 import View.EntityView.CharacterView;
 import View.EntityView.EntityView;
-import View.MapView.MapObjectView;
+import View.TerrainView.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * Created by dyeung on 4/7/16.
  */
-public abstract class TileView extends JComponent implements EntityViewVisitor, TileObserver {
+public class TileView extends JComponent implements EntityViewVisitor, TileObserver, TerrainVisitor {
 
     protected Location location;
     protected int tileWidth = Settings.TILEWIDTH;
@@ -28,11 +28,17 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
     protected Image image;
     private EntityView entityView;
     private Tile tile;
-
-    public TileView(Tile tile){
+    private TerrainView terrainView;
+    public TileView(Tile tile, Location location){
+        this.location = location;
         this.tile = tile;
-        updateTileView();
+        init();
         tile.acceptTileObserver(this);
+    }
+
+    private void init(){
+        tile.getTerrain().acceptTerrainVisitor(this);
+        updateTileView();
     }
     //TODO: make it so it just records the tile...this should not have to have
     protected void updateTileView(){
@@ -43,15 +49,22 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
         }
     }
      public void setPixels(int x, int y){
-        xPixel = x;
-        yPixel = y;
+         xPixel = x;
+         yPixel = y;
+         terrainView.setXY(x,y);
     }
 
     public void setLocation(int x, int y, int z){
         location = new Location(x,y,z);
     }
 
-    public abstract void paintComponent(Graphics g);
+    public void paintComponent(Graphics g){
+        Graphics2D g2d = (Graphics2D) g.create();
+
+        renderTerrain(g2d);
+        renderEntity(g2d);
+        g2d.dispose();
+    }
 
     protected boolean hasEntity(){
         if (entityView == null) {
@@ -60,8 +73,12 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
             return true;
         }
     }
-    //TODO: change this so it just renders map object views
-    public void renderEntity(Graphics2D g){
+    public void renderTerrain(Graphics g){
+        terrainView.paintComponent(g);
+        terrainView.renderDebug(g,location.getX(),location.getY());
+    }
+
+    public void renderEntity(Graphics g){
         if (hasEntity()){
             //System.out.println(location.getX() + "," +location.getY() +"," +location.getZ());
             int centeredX = xPixel + Settings.TILEWIDTH/4;
@@ -92,5 +109,29 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
         }
     }
 
+    @Override
+    public void visitWaterTerrain() {
+        terrainView = new WaterTerrainView();
+    }
+
+    @Override
+    public void visitGrassTerrain() {
+        terrainView = new GrassTerrainView();
+    }
+
+    @Override
+    public void visitAirTerrain() {
+        terrainView = new AirTerrainView();
+    }
+
+    @Override
+    public void visitRiverTerrain() {
+        terrainView = new RiverTerrainView();
+    }
+
+    @Override
+    public void visitDirtTerrain() {
+        terrainView = new DirtTerrainView();
+    }
 
 }

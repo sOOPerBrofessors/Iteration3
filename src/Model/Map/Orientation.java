@@ -5,18 +5,19 @@ package Model.Map;
  */
 public enum Orientation {
 
-    NORTH(0,-1),
-    NORTHEAST(1,-1),
-    SOUTHEAST(1,0),
-    SOUTH(0,1),
-    SOUTHWEST(-1,1),
-    NORTHWEST(-1,0);
-
+    NORTH(0,-1,0),
+    NORTHEAST(1,-1,0),
+    SOUTHEAST(1,0,0),
+    SOUTH(0,1,0),
+    SOUTHWEST(-1,1,0),
+    NORTHWEST(-1,0,0),
+    UP(0,0,1),
+    DOWN(0,0,-1);
     //Since this is a structure we can have it public
     public int x;
     public int y;
-
-    Orientation(int x, int y) {
+    public int z;
+    Orientation(int x, int y, int z) {
         this.x = x;
         this.y = y;
     }

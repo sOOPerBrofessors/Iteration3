@@ -10,6 +10,7 @@ import Utilities.Observers.EntityObserver;
 import Utilities.Visitor.EntityVisitable;
 
 import Utilities.Tickable;
+import com.sun.org.apache.xpath.internal.operations.Or;
 
 
 /**
@@ -20,8 +21,8 @@ import Utilities.Tickable;
 //All entities are able now Observables for a specific model view
 
 public abstract class Entity implements EntityObservable, MapObject, EntityVisitable{
-    private Location location;
-    private Navigation navigation;
+    protected Location location;
+    protected Navigation navigation;
     protected Orientation orientation;
 
     private ArrayList<EntityObserver> observers;
@@ -58,32 +59,23 @@ public abstract class Entity implements EntityObservable, MapObject, EntityVisit
         return map.getTopTile(newX,newY);
     }
 
-    private TileColumn getNextTileColumn(Map map, Orientation orientation){
-        int newX = location.getX() + orientation.x;
-        int newY = location.getY() + orientation.y;
-        return map.getTileColumn(newX,newY);
-    }
+    //Because the movement for projectiles is very different from Character, I decided to switch this here
+    public abstract void move(Map map, Orientation orientation);
 
-    public void move(Map map, Orientation orientation){
-        //System.out.println("Entity: update location was called from move:" + this.orientation + ":" + orientation);
-        if (this.orientation.equals(orientation)) {
-            //This is done this way since when you call navigation.move it'll automatically move the entity-- thus we
-            //need to check its orientation before the move
-            TileColumn tmp = getNextTileColumn(map, orientation);
-            if (tmp != null) {
-                int nextZ = tmp.getTopPosition() - 1;
-                int difference = nextZ - location.getZ();
-                if (difference <= 1) { //Allows fall to happen, probably need some check to account if <0
-                    if (navigation.move(getNextTile(map, orientation), this)) {
-                        updateLocation(map, orientation, difference);
-                    }
-                }
-            }
-
-        }else {
-            setOrientation(orientation);
-        }
-    }
+    //OLD CODE
+//    public void moveCharacter(Map map, Orientation orientation){
+//        //System.out.println("Entity: update location was called from move:" + this.orientation + ":" + orientation);
+//        if (this.orientation.equals(orientation)) {
+//            int x = location.getX() + orientation.x;
+//            int y = location.getY() + orientation.y;
+//            Location newLocation = new Location(x,y,0);
+//            map.moveCharacter(this, newLocation);
+//            TileColumn tmp = getNextTileColumn(map, orientation);
+//
+//        }else {
+//            setOrientation(orientation);
+//        }
+//    }
 
     public boolean canMove(Map map, Orientation orientation) {
 
@@ -111,13 +103,10 @@ public abstract class Entity implements EntityObservable, MapObject, EntityVisit
         notifyObserverMove();
 
     }
-    private void updateLocation(Map map, Orientation orientation, int difference){
-        //Freaking long ass thing to remove an entity
-        Tile tile = map.getTileAt(location.getX(), location.getY(), location.getZ());
-        tile.removeEntity();
-        int newX = location.getX() + orientation.x;
-        int newY = location.getY() + orientation.y;
-        int newZ = location.getZ() + difference;
+    public void updateLocation(Location location){
+        int newX = location.getX();
+        int newY = location.getY();
+        int newZ = location.getZ();
         location.setNewLocation(newX, newY, newZ);
         notifyObserverMove();
     }
