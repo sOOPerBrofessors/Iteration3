@@ -1,6 +1,7 @@
 package Model.Items.ItemStrategy;
 
 import Model.Entity.Character.Character;
+import Model.Inventory.Inventory;
 import Model.Items.Item;
 
 /**
@@ -11,9 +12,10 @@ import Model.Items.Item;
  *  to the tile being faced by the Entity which will trigger an action with that tile;
  *  given that the tile contains a door, the door will open and no longer be an obstacle.
  */
-public class QuestStrategy implements ItemStrategy {
-    @Override
-    public void onInteract(Item item, Character character) {
+public class QuestStrategy {
+
+    public boolean onInteract(Inventory inventory) {
         //entity.interactWithFacingTile(item);
+        return false;
     } // end onInteract
 } // end class QuestStrategy
