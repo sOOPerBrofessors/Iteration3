@@ -1,7 +1,9 @@
 package Utilities.ItemStuff;
 
 import Model.Entity.Character.Character;
+import Model.Items.Interactable.Interactable;
 import Model.Items.Item;
+import Model.Items.Takeable.TakeableItem;
 import Model.Map.Location;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
@@ -14,31 +16,38 @@ import java.util.HashMap;
  */
 public class ItemManager implements Subject{
 
-    private HashMap<Location, Item> items;
+    private HashMap<Location, Item> takableItems;
     private HashMap<Item, ItemView> itemViews;
+    private HashMap<Location, Interactable> interactableItems;
     private Observer observer;
 
-    public ItemManager(HashMap<Location, Item> items, HashMap<Item, ItemView> itemViews){
-        this.items = items;
+    public ItemManager(HashMap<Location, Item> takableItems, HashMap<Location, Interactable> interactableItems, HashMap<Item, ItemView> itemViews){
+        this.takableItems = takableItems;
         this.itemViews = itemViews;
+        this.interactableItems = interactableItems;
     }
 
-    public HashMap<Location, Item> getItems(){
-        return items;
+    public HashMap<Location, Item> getTakableItems(){
+        return takableItems;
     }
 
     public void contact(Character character){
-        for(Location key : items.keySet()) {
+        for(Location key : takableItems.keySet()) {
             if (key.equals(character.getLocation())) {
-                character.pickUpItem(items.get(key));
-                itemViews.remove(items.get(key));
+                character.pickUpItem(takableItems.get(key));
+                itemViews.remove(takableItems.get(key));
                 alert();
             }
         }
     }
 
     public void interact(Character character){
-        //interactable items
+        Location adjacent = character.getLocation().getAdjacent(character.getOrientation());
+        for(Location key : takableItems.keySet()){
+            if(key.equals(adjacent)){
+                takableItems.get(key).onInteract(character);
+            }
+        }
     }
 
     public ItemView[] getItemViews(){

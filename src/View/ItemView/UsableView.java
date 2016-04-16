@@ -11,7 +11,7 @@ public class UsableView extends ItemView {
 
     public UsableView(Image image){
         this.image = image;
-        itemHeight = Settings.USABLEHEIGHT;
-        itemWidth = Settings.USABLEWIDTH;
+        itemHeight = Settings.TAKABLEHEIGHT;
+        itemWidth = Settings.TAKABLEWIDTH;
     }
 }

@@ -3,13 +3,7 @@ package Utilities;
 import Controller.AI_Controller.AI_Controller;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.NPC.NPC;
-import Model.Items.Item;
-import Model.Map.Location;
 import Model.Map.Map;
-import Model.Map.Tile.AirTile;
-import Model.Map.Tile.GrassTile;
-import Model.Map.Tile.WaterTile;
-import Model.Map.TileColumn;
 import Model.State.GameState.ActiveGameState;
 import Model.State.GameState.PausedGameState;
 import Utilities.AIStuff.NPCFactory;
@@ -19,7 +13,6 @@ import Utilities.ItemStuff.ItemManager;
 import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by dyeung on 4/6/16.
@@ -41,7 +34,7 @@ public class GameLoader {
         initNPC();
         initPlayer();
         initItems();
-        itemManager = new ItemManager(ItemFactory.getItems(), ItemFactory.getItemViews());
+        itemManager = new ItemManager(ItemFactory.getTakableItems(), ItemFactory.getItemViews());
         activeGameState = new ActiveGameState(map, player, entities, itemManager);
         pausedGameState = new PausedGameState(map, player, entities, itemManager);
     }

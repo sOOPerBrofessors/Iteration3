@@ -23,7 +23,7 @@ public class Location {
     public boolean equals(Location location){
         if (location.x != this.x) return false;
         if (location.y != this.y) return false;
-        //if (location.z != this.z) return false;
+        if (location.z != this.z) return false;
         return true;
     }
 

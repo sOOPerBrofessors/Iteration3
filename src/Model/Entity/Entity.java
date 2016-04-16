@@ -84,9 +84,7 @@ public abstract class Entity implements EntityObservable, MapObject, EntityVisit
         }else {
             setOrientation(orientation);
         }
-
         return false;
-
     }
 
     public boolean canMove(Map map, Orientation orientation) {
