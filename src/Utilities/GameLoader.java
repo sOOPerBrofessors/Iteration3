@@ -11,7 +11,7 @@ import Model.State.GameState.ActiveGameState;
 import Model.State.GameState.PausedGameState;
 import Utilities.AIStuff.NPCFactory;
 import Utilities.GameFactory.MapFactory;
-import Utilities.ItemStuff.ItemFactory;
+import Utilities.ItemStuff.ItemFactory.ItemFactory;
 import Utilities.ItemStuff.ItemManager;
 import View.ViewUtilities.Sprites.ImageAssets;
 
