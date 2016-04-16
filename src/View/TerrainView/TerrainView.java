@@ -31,7 +31,7 @@ public class TerrainView implements TerrainVisitor{
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         if (image != null) {
-            g2d.drawImage(image, xPixel * Settings.SCALEFACTOR, yPixel * Settings.SCALEFACTOR, tileWidth * Settings.SCALEFACTOR, tileHeight * Settings.SCALEFACTOR, null);
+            g2d.drawImage(image, xPixel * Settings.SCALEFACTOR, yPixel * Settings.SCALEFACTOR, (tileWidth + 3) * Settings.SCALEFACTOR, (tileHeight + 5) * Settings.SCALEFACTOR, null);
             renderDebug(g,xLocation,yLocation);
         }
     }

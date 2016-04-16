@@ -93,4 +93,5 @@ public class Inventory implements Observer, Subject{
         pack.add(item);
     }
 
+
 } // end class Inventory
