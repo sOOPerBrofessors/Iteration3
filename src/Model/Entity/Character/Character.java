@@ -94,6 +94,7 @@ public abstract class Character extends Entity implements Observer, Subject {
             GameMessageQueue.push("Gained " + amount + " health.");
         else {
             GameMessageQueue.push("Took " + -1 * amount + " damage.");
+            startCombatTimer();
         }
         alert();
     } // end lifeEffect
