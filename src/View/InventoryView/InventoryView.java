@@ -26,7 +26,7 @@ import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
  */
 
 //Displays Inventory in 4x4 matrix. x goes to the right, y goes down
-public class InventoryView extends ViewPanel implements Observer{
+public class InventoryView extends AllDirPanel implements Observer{
 
     private Inventory inventory; //handle to Avatar's inventory
     ArrayList<Item> items; //handle to Avatar's ArrayList of Items

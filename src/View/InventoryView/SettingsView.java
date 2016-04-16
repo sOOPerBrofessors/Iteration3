@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * Created by sgl on 4/16/16.
  */
-public class SettingsView extends ViewPanel implements Observer {
+public class SettingsView extends VertPanel implements Observer {
     @Override
     public void update() {
 
@@ -16,6 +16,16 @@ public class SettingsView extends ViewPanel implements Observer {
 
     @Override
     public void remove() {
+
+    }
+
+    @Override
+    public void selectUp() {
+
+    }
+
+    @Override
+    public void selectDown() {
 
     }
 
@@ -30,4 +40,6 @@ public class SettingsView extends ViewPanel implements Observer {
 
         g2d.dispose();
     }
+
+
 }

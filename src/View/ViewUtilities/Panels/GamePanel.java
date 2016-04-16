@@ -88,6 +88,14 @@ public class GamePanel extends JPanel{
 
     public InventoryView getInventoryView() {return inventoryView;}
 
+    public PauseView getPauseView() {return pauseView; }
+
+    public SettingsView getSettingsView() {return settingsView; }
+
+    public SkillsView getSkillsView() {return skillsView; }
+
+    public TradeView getTradeView() { return tradeView; }
+
     public StatsView getStatsView(){return statsView;}
 
     public void setGamePlayController(GamePlayController gamePlayController){

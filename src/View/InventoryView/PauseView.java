@@ -8,9 +8,19 @@ import java.awt.*;
 /**
  * Created by sgl on 4/16/16.
  */
-public class PauseView extends ViewPanel {
+public class PauseView extends VertPanel {
 
     private int sel = 0;
+
+    @Override
+    public void selectUp() {
+
+    }
+
+    @Override
+    public void selectDown() {
+
+    }
 
     @Override
     public void paintComponent(Graphics g){
@@ -23,4 +33,6 @@ public class PauseView extends ViewPanel {
 
         g2d.dispose();
     }
+
+
 }

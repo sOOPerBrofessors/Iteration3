@@ -1,30 +1,21 @@
 package Controller.Controllers;
 
-import Model.Inventory.Inventory;
-import Model.State.GameState.ActiveGameState;
 import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
-import Model.State.GameState.PausedGameState;
 import Utilities.Settings;
 import View.InventoryView.InventoryView;
-import View.ViewManager;
 import View.ViewUtilities.Panels.GamePanel;
 
 /**
  * Created by sgl on 4/9/16. //Essentially copying Mike's GameplayController
  */
-public class InventoryController extends Controller {
+public class InventoryController extends Controller { //NOT VERY OOPY
 
-    private GamePanel gamePanel;
-    private ViewManager viewManager;
     private static InventoryView inventoryView; //Needs handle to inventoryView
 
     public InventoryController(ControllerManager controllerManager){
         super(controllerManager);
-        //viewManager = controllerManager.getViewManager();
-        //gamePanel = viewManager.getGamePanel();
-        //inventoryView = controllerManager.getViewManager().getGamePanel().getInventoryView();
         initCommands();
     }
 
@@ -88,9 +79,5 @@ public class InventoryController extends Controller {
                 controllerManager.switchGamePlay();
             }
         });
-    }
-
-    public void setGamePanel(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
     }
 }
