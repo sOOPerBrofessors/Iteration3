@@ -4,6 +4,7 @@ import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Entity;
 import Model.Inventory.Inventory;
+import Model.Items.Item;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
 import Model.Map.Location;
@@ -23,11 +24,11 @@ import java.util.ArrayList;
 public abstract class Character extends Entity implements Observer, Subject {
     private ArrayList<Observer> observers;
 
-
     private Occupation o;
     protected CharacterStats stats;
     protected Inventory inventory;
     private int radiusVisibility;
+
     protected Character(Occupation o, Location location) {
         super(Navigation.makeCharNav(), location);
         this.o = o;
@@ -249,6 +250,10 @@ public abstract class Character extends Entity implements Observer, Subject {
 
     public double getLevelMultiplier() {
         return stats.getLevelMultiplier();
+    }
+
+    public void pickUpItem(Item item){
+        inventory.pickUpItem(item);
     }
 
     public CharacterStats getCharacterStats() {return stats;}

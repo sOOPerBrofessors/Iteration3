@@ -31,10 +31,14 @@ public class ImageAssets {
     public static BufferedImage hud;
 
     public static BufferedImage healthPotion;
+    public static BufferedImage sword;
+    public static BufferedImage itemBag;
 
     //needs to be called once
     public static void init(){
         SpriteSheet healthPotionSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/HealthPotion.png"));
+        SpriteSheet itemBagSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/ItemBag.png"));
+        SpriteSheet swordSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/Sword.png"));
         SpriteSheet smasherSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Smasher.png"));
         SpriteSheet sneakSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Sneak.png"));
         SpriteSheet EnemySummonerSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Enemy_Summoner.png"));
@@ -82,6 +86,9 @@ public class ImageAssets {
 
         hud = hudSheet.cropSheet(0,0,960,320);
 
-        healthPotion = healthPotionSheet.cropSheet(0,0,Settings.POTIONWIDTH, Settings.POTIONHEIGHT);
+        //items
+        healthPotion = healthPotionSheet.cropSheet(0,0,Settings.USABLEWIDTH, Settings.USABLEHEIGHT);
+        sword = swordSheet.cropSheet(0,0,Settings.USABLEWIDTH, Settings.USABLEHEIGHT);
+        itemBag = itemBagSheet.cropSheet(0,0,Settings.USABLEWIDTH, Settings.USABLEHEIGHT);
     }
 }

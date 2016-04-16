@@ -26,7 +26,7 @@ public class DirtTileView extends TileView{
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
-        g2d.drawImage(image,xPixel* Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,tileWidth*Settings.SCALEFACTOR,tileHeight* Settings.SCALEFACTOR,null);
+        g2d.drawImage(image,xPixel* Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,tileWidth*Settings.SCALEFACTOR+3,tileHeight* Settings.SCALEFACTOR+5,null);
 //        g.setColor(Color.GREEN);
 //        g.drawRect(xPixel,yPixel,tileWidth,tileHeight);
 
