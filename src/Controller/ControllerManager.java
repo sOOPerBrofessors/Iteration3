@@ -2,6 +2,7 @@ package Controller;
 
 import Controller.Controllers.GamePlayController;
 import Controller.Controllers.InventoryController;
+import Controller.Controllers.StatsController;
 import Model.State.StateManager;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
@@ -24,10 +25,12 @@ public class ControllerManager implements KeyListener {
     private Controller activeController;
     private GamePlayController gamePlayController;
     private InventoryController inventoryController;
+    private StatsController statsController;
 
     public ControllerManager(){
         gamePlayController = new GamePlayController(this);
         inventoryController = new InventoryController(this);
+        statsController = new StatsController(this);
     }
 
     public void setActiveController(Controller gs){
@@ -49,14 +52,21 @@ public class ControllerManager implements KeyListener {
         MessageHandler.println("ControllerManager.setInventoryState called" , ErrorLevel.NOTICE, PersonFilter.SAM);
     }
 
-    public void setEquipmentState(){
-        //viewManager.displayEquipment();
-        stateManager.pauseGame();
-        //activeController = equipmentController;
+    //InventoryStats shows Equipment as well
+//    public void setEquipmentState(){
+//        //viewManager.displayEquipment();
+//        stateManager.pauseGame();
+//        //activeController = equipmentController;
+//    }
+
+    public void setStatsState(){
+        activeController = statsController;
+        stateManager.pauseGame(); // switches to pausedGameState
+        viewManager.displayStats();
+        MessageHandler.println("ControllerManager.setStatsState called" , ErrorLevel.NOTICE, PersonFilter.SAM);
     }
 
     public void setPauseState(){
-        //viewManager.displayPauseMenu();
         stateManager.pauseGame();
         //activeController = pauseController
     }
@@ -85,7 +95,8 @@ public class ControllerManager implements KeyListener {
     public void switchGamePlay(){
         activeController = gamePlayController;
         stateManager.activeGame(); // makes Game state Active
-        viewManager.closeInventory();
+        //viewManager.closeInventory();
+        viewManager.closeAll();
     }
 
     public void setViewManager(ViewManager viewManager){

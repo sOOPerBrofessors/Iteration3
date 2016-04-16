@@ -6,7 +6,7 @@ import Model.Map.Location;
 import Model.Map.Map;
 import View.ItemView.ItemView;
 import View.ItemView.PotionView;
-import View.ViewUtilities.ImageAssets;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.util.HashMap;
 

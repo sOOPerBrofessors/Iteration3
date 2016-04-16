@@ -2,12 +2,9 @@ package View.AreaViewport.HUDView;
 
 import Model.Entity.Character.Avatar;
 import Utilities.Settings;
-import View.ViewUtilities.ImageAssets;
-import com.sun.corba.se.impl.orbutil.graph.Graph;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.awt.*;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 
 /**
  * Created by broskj on 4/14/16.
