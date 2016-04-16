@@ -8,6 +8,8 @@ import Model.Inventory.Inventory;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Orientation;
+import Utilities.Visitor.AvatarVisitable;
+import Utilities.Visitor.AvatarVisitor;
 import Utilities.Visitor.CharacterVisitor;
 import com.sun.org.apache.xpath.internal.operations.Or;
 
@@ -17,7 +19,7 @@ import com.sun.org.apache.xpath.internal.operations.Or;
  *
  * Class to be operated by the player.
  */
-public class Avatar extends Character {
+public class Avatar extends Character implements AvatarVisitable {
     private Avatar(Occupation o, Location location) {
         //I'm not sure how this is going to work but we need something here to define the initial location of an avatar
         super(o, location);
@@ -76,5 +78,10 @@ public class Avatar extends Character {
     @Override
     public void onInteract() {
         //Do nothing on interact
+    }
+
+    @Override
+    public void acceptAvatarVistor(AvatarVisitor avatarVisitor) {
+        avatarVisitor.visitInventory(inventory);
     }
 }

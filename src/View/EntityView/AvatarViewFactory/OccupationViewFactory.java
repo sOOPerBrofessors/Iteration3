@@ -15,7 +15,6 @@ public class OccupationViewFactory {
     public static OrientationView createSmasherView(Orientation orientation){
         return new OrientationView(orientation, ImageAssets.smasherN, ImageAssets.smasherNW, ImageAssets.smasherNE,ImageAssets.smasherS,ImageAssets.smasherSE,ImageAssets.smasherSW);
     }
-    //TODO: Need to change to summoner
     public static OrientationView createSummonerView(Orientation orientation){
         return new OrientationView(orientation, ImageAssets.summonerN, ImageAssets.summonerNW, ImageAssets.summonerNE,ImageAssets.summonerS,ImageAssets.summonerSE,ImageAssets.summonerSW);
     }

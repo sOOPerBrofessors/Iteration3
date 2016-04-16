@@ -11,11 +11,13 @@ import Model.Entity.Character.Character;
  * Needs an Effect.
  */
 public class Potion extends UseableItem {
-
+    String name;
     private Potion(Effect e, int amount) {
         super();
         this.e = e;
         this.amount = amount;
+        //Used for testing, all potions are the same, assuming a name will be given to potion
+        this.name = "Potion!";
     } // end constructor
 
     public static Potion makeAgilityPotion(int amount) {
@@ -49,4 +51,8 @@ public class Potion extends UseableItem {
     public static Potion makeStrengthPotion(int amount) {
         return new Potion(Character::strengthEffect, amount);
     } // end factory method makeStrengthPotion
+
+    public String getName(){
+        return name;
+    }
 } // end class Potion

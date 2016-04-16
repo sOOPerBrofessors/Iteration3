@@ -31,6 +31,6 @@ public class Summoner extends Occupation {
 
     @Override
     public void acceptOccupationVistor(OccupationVisitor occupationViewVisitor, Orientation orientation) {
-        occupationViewVisitor.visitSneak(orientation);
+        occupationViewVisitor.visitSummoner(orientation);
     }
 } // end class Summoner

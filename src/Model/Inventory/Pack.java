@@ -45,4 +45,8 @@ public class Pack {
 
     public ArrayList<Item> getItems(){return items;}
 
+    public Item getItemAt(int index){
+        return items.get(index);
+    }
+
 } // end class Pack

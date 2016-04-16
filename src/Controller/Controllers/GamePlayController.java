@@ -4,8 +4,11 @@ import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Model.State.GameState.ActiveGameState;
+import Utilities.GameLoaderSaver.GameSaver;
 import Utilities.Settings;
 import View.ViewUtilities.Panels.GamePanel;
+
+import java.awt.event.KeyEvent;
 
 /**
  * Created by Wimberley on 4/6/16.
@@ -197,6 +200,14 @@ public class GamePlayController extends Controller{
                         state.getAvatar().manaEffect(-1*((int)(Math.random()*3)+1));
                         break;
                 }
+            }
+        });
+
+        commands.put(KeyEvent.VK_9, new Command() {
+            @Override
+            public void execute() {
+                GameSaver gameSaver = new GameSaver();
+                gameSaver.startSave(state);
             }
         });
     }
