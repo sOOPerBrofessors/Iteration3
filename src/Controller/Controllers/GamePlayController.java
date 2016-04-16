@@ -128,7 +128,7 @@ public class GamePlayController extends Controller{
         commands.put(Settings.ONE, new Command() {
             @Override
             public void execute() {
-                state.playerFirstSkill();
+                state.playerExecuteSkill(0);
             }
         });
 
@@ -184,6 +184,7 @@ public class GamePlayController extends Controller{
             @Override
             public void execute() {
                 state.getAvatar().experienceEffect(3);
+                state.getAvatar().healthEffect(-2);
             }
         });
     }

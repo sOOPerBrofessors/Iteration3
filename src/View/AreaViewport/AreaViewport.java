@@ -8,6 +8,7 @@ import Model.State.GameState.GameState;
 import Utilities.ItemStuff.ItemManager;
 import View.AreaViewport.FogOfWar.FogOfWar;
 import View.AreaViewport.HUDView.HUD;
+import View.SkillView.ObservedNPC;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +29,7 @@ public class AreaViewport extends JPanel{
     private CameraView cameraView;
     private FogOfWar fogOfWar;
     private HUD hud;
+    private ObservedNPC observedNPC;
 
     public AreaViewport(GameState gameState){
         //This needs to be initialized later on or grabbed from the inventory
@@ -39,6 +41,7 @@ public class AreaViewport extends JPanel{
         fogOfWar = new FogOfWar(avatar);
         hud = new HUD(avatar);
         map = gameState.getMap();
+        observedNPC = new ObservedNPC(avatar);
         MapViewFactory mapViewFactory = new MapViewFactory();
         mapView = mapViewFactory.createMapViewObjects(map);
         mapView.setItemManager(gameState.getItemManager());
@@ -76,5 +79,6 @@ public class AreaViewport extends JPanel{
         //This is always called
         renderTiles(g);
         hud.updateHUD(g);
+        observedNPC.updateObservation(g);
     }
 }

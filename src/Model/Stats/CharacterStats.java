@@ -221,12 +221,18 @@ public class CharacterStats extends EntityStats implements Subject {
             health = 0;
             livesEffect(-1); //decrement a life
         }
+        else if (health > baseHealth) {
+            health = baseHealth;
+        }
         alert();
     }
     public void manaEffect(int effect){
         mana += effect;
         if (mana < 0){
             mana = 0;
+        }
+        else if (mana > baseMana) {
+            mana = baseMana;
         }
         alert();
     }

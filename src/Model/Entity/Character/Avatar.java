@@ -6,6 +6,9 @@ import Model.Entity.Character.Occupation.Sneak;
 import Model.Entity.Character.Occupation.Summoner;
 import Model.Inventory.Inventory;
 import Model.Map.Location;
+import Model.Skills.BindWounds;
+import Model.Skills.RangedSkills.Observation;
+import Model.Skills.Skill;
 import Utilities.Observers.Observer;
 import Utilities.Visitor.EntityViewVisitor;
 import View.EntityView.CharacterView;
@@ -17,9 +20,18 @@ import View.EntityView.CharacterView;
  * Class to be operated by the player.
  */
 public class Avatar extends Character {
+
+    private Skill[] skills;
+
     private Avatar(Occupation o, Location location) {
-        //I'm not sure how this is going to work but we need something here to define the initial location of an avatar
+        //TODO:I'm not sure how this is going to work but we need something here to define the initial location of an avatar
         super(o, location);
+        //skill initialize
+        skills = new Skill[] {
+                new BindWounds(this),
+                new Observation(this)
+        };
+
         //Temporary
     } // end constructor
 
@@ -50,6 +62,10 @@ public class Avatar extends Character {
 
     public Inventory getInventory(){ //needed for InventoryView - Sam
         return inventory;
+    }
+
+    public Skill getSkill (int index) {
+        return skills[index];
     }
 
     @Override

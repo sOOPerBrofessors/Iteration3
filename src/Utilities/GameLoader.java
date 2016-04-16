@@ -35,7 +35,7 @@ public class GameLoader {
         entities = new ArrayList<>();
         avatar = player;
         initMap();
-        //initNPC();
+        initNPC();
         initPlayer();
         initItems();
         initAreaEffect();
