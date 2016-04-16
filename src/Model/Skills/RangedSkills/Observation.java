@@ -31,7 +31,7 @@ public class Observation extends RangedSkill{
         super(avatar);
         name = "Observation";
         manaCost = 1;
-        coolDownTime = 5;
+        coolDownTime = 2;
     }
 
     public ObservationInfo execute(Map map, Orientation orientation) {
