@@ -7,9 +7,11 @@ import Model.Entity.Character.Character;
  */
 public class Quest extends TakeableItem {
 
+    public static Quest makeKey(){
+        return new Quest();
+    }
     // probably the most useless class ever
     @Override
-
     protected void utilize(Character character) {
         //character.removeItem(this);
     }

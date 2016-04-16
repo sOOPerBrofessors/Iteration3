@@ -38,7 +38,7 @@ public class GameLoader {
         //initNPC();
         initPlayer();
         initItems();
-        itemManager = new ItemManager(ItemFactory.getTakableItems(), ItemFactory.getInteractableItems(), ItemFactory.getItemViews());
+        itemManager = new ItemManager(ItemFactory.getTakableItems(), ItemFactory.getInteractableItems(), ItemFactory.getAllItemViews(), ItemFactory.getMapItemViews());
         initAreaEffect();
         activeGameState = new ActiveGameState(map, player, entities, itemManager);
         pausedGameState = new PausedGameState(map, player, entities, itemManager);
@@ -99,4 +99,6 @@ public class GameLoader {
     public PausedGameState getPausedGameState() {
         return pausedGameState;
     }
+
+
 }

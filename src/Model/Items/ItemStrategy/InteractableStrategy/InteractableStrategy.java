@@ -16,4 +16,5 @@ public class InteractableStrategy {
         MessageHandler.println("You can't interact with this item.", ErrorLevel.ERROR);
         return false;
     } // end onInteract
+
 } // end class InteractableStrategy
