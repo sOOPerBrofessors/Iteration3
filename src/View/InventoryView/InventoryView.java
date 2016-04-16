@@ -113,8 +113,8 @@ public class InventoryView extends ViewPanel implements Observer{
         //get rid of opaqueness
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         g2d.setColor(new Color(166, 0, 4, 255));
-        g2d.setFont(new Font("Courier New", 1, 48));
-        g2d.drawString("Inventory "+xSel+","+ySel +" Equipment", xBorderOffset+squareSize, yBorderOffset+50);
+        g2d.setFont(new Font("Courier New", 1, 36));
+        g2d.drawString("Inventory        Equipment", xBorderOffset+squareSize*2, yBorderOffset+50);
 
         //highlight selection
         if (armorSel){

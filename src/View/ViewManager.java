@@ -92,6 +92,25 @@ public class ViewManager implements Subject {
         stateManager.activeGame();
     }
 
+    public void displayPauseScreen(){
+        gamePanel.addPauseView();
+        stateManager.pauseGame();
+    }
+
+    public void closePauseScreen(){
+        gamePanel.closePauseView();
+        stateManager.activeGame();
+    }
+
+    public void displaySettings(){
+        gamePanel.addSettingsView();
+        stateManager.pauseGame();
+    }
+
+    public void closeSettings(){
+        gamePanel.closePauseView();
+    }
+
     public void displayActiveGame(){
         activePanel = gamePanel;
         controllerManager.switchGamePlay();

@@ -23,6 +23,11 @@ public class TradeView extends ViewPanel implements Observer {
     public void paintComponent(Graphics g){
         Graphics2D g2d = (Graphics2D) g.create();
         drawBackground(g2d);
+
+        g2d.setColor(new Color(166, 0, 4, 255));
+        g2d.setFont(new Font("Courier New", 1, 48));
+        g2d.drawString("Trading", xBorderOffset*3, yBorderOffset+50);
+
         g2d.dispose();
     }
 }
