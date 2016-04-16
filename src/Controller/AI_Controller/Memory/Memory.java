@@ -96,9 +96,9 @@ public class Memory implements Tickable, VisualCortexMemoryInterface, FrontalLob
 
     }
 
-    public Orientation getOrientationToMove() {
+    public void moveNPC() {
 
-        return currentDecision.getOrientationToMoveTo();
+        getCurrentDecision().moveStep(getNPC());
 
     }
 

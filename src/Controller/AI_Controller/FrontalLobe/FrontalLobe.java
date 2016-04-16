@@ -62,25 +62,32 @@ public class FrontalLobe implements Tickable {
 
     private boolean shouldChangeDecisions() {
 
-        if (memory.isCurrentDecisionValid()) {
+        if (!memory.isCurrentDecisionValid()) {
 
-            // TODO: change to scatter-brainedness
-            if (scatterBrainCheck()) {
-
-                return false;
-
-            }
+            MessageHandler.println("FrontalLobe: current decision not valid", ErrorLevel.NOTICE, PersonFilter.AUSTIN);
+            return true;
 
         }
 
-        return true;
+        if (isScatterBrainTrue()) {
+
+            MessageHandler.println("FrontalLobe: scatter brain returned true", ErrorLevel.NOTICE, PersonFilter.AUSTIN);
+            return true;
+
+        }
+
+        return false;
 
     }
 
-    private boolean scatterBrainCheck() {
+    private boolean isScatterBrainTrue() {
 
         Personality personality = memory.getPersonality();
-        return personality.getScatter_brainedness() <= Math.random();
+//        System.out.println(personality.getScatter_brainedness());
+//        double r = Math.random();
+//        System.out.println(r);
+//        System.out.println(personality.getScatter_brainedness() >= r);
+        return personality.getScatter_brainedness() >= Math.random();
 
     }
 

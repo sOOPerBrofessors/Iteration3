@@ -21,15 +21,16 @@ public class AI_Controller {
 
     }
 
-    public void move(Entity entity, Orientation orientation) {
+    public boolean move(Entity entity, Orientation orientation) {
 
         if (map == null) {
 
             MessageHandler.println("AI_Controller: Map null in move method call", ErrorLevel.ERROR);
+            throw new NullPointerException();
 
         }
 
-        entity.move(map, orientation);
+        return entity.move(map, orientation);
 
     }
 

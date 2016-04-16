@@ -12,8 +12,6 @@ import java.util.ArrayList;
  */
 public class ExploreInterest extends PointInterest {
 
-    Orientation orientationToMove;
-
     public void initialize(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         // TODO: Use visitor?
@@ -27,13 +25,15 @@ public class ExploreInterest extends PointInterest {
 
         }
 
-        orientationToMove =  orientations.pick();
+        addToMovementQueue(orientations.pick());
+//        addToMovementQueue(orientations.pick());
+//        addToMovementQueue(orientations.pick());
 
     }
 
     public boolean isFinished(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
-        return false;//!((memoryInterface.getNPC().getLocation()).equals(memoryInterface.getNPC().getLocation()));
+        return isMovementQueueEmpty();
 
     }
 
@@ -46,14 +46,6 @@ public class ExploreInterest extends PointInterest {
     public void update(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         // No need to update the interest point for a simple exploration. May be necessary for a more complicated guardInterest
-
-        return;
-
-    }
-
-    public Orientation getNextOrientationToMove() {
-
-        return orientationToMove;
 
     }
 
