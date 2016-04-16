@@ -9,6 +9,7 @@ import Model.Items.Takeable.Equippable.Weapon;
 import Model.Map.Location;
 import Model.Map.Orientation;
 import Model.Stats.CharacterStats;
+import Utilities.GameMessageQueue;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
 
@@ -49,6 +50,10 @@ public abstract class Character extends Entity implements Observer {
 
     public void healthEffect(int amount) {
         stats.healthEffect(amount);
+        if(amount >= 0)
+            GameMessageQueue.push("Gained " + amount + " health.");
+        else
+            GameMessageQueue.push("Took " + -1*amount + " damage.");
     } // end lifeEffect
 
     public void livesEffect(int amount) {
@@ -57,6 +62,10 @@ public abstract class Character extends Entity implements Observer {
 
     public void manaEffect(int amount) {
         stats.manaEffect(amount);
+        if(amount >= 0)
+            GameMessageQueue.push("Gained " + amount + " mana.");
+        else
+            GameMessageQueue.push("Lost " + -1*amount + " mana.");
     } // end manaEffect
 
     public void movementEffect(int amount) {
@@ -69,6 +78,10 @@ public abstract class Character extends Entity implements Observer {
 
     public void experienceEffect(int amount) {
         stats.experienceEffect(amount);
+        if(amount >= 0)
+            GameMessageQueue.push("Gained " + amount + " experience.");
+        else
+            GameMessageQueue.push("Lost " + -1*amount + " experience.");
     } // end experienceEffect
 
     /*
