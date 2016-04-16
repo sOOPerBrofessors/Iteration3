@@ -21,7 +21,7 @@ public class NPCFactory {
     public static NPC makeGanondorf(){
         Personality personality = PersonalityFactory.getPersonality("enemy");
         Faction faction = FactionFactory.getFaction("red");
-        NPC gandorf = new NPC(new Smasher(), new Location(1,1,0), personality, faction);
+        NPC gandorf = new NPC(new Smasher(), new Location(5,3,0), personality, faction);
         Brain brain = new Brain(gandorf);
         gandorf.setBrain(brain);
         return gandorf;

@@ -26,8 +26,6 @@ public class ExploreInterest extends PointInterest {
         }
 
         addToMovementQueue(orientations.pick());
-//        addToMovementQueue(orientations.pick());
-//        addToMovementQueue(orientations.pick());
 
     }
 

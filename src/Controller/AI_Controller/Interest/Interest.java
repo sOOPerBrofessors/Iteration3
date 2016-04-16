@@ -39,13 +39,13 @@ public abstract class Interest {
 
     }
 
-    protected final Orientation deQueueMovement() {
+    public final void consumeMovement() {
 
-        if (movementQueue.isEmpty()) {
+        movementQueue.poll();
 
-            throw new NullPointerException();
+    }
 
-        }
+    protected final Orientation getNextMovement() {
 
         return movementQueue.peek();
 
@@ -66,7 +66,7 @@ public abstract class Interest {
     // Allows the interest to return its declared point of interest
     public final Orientation getNextOrientationToMove() {
 
-        return deQueueMovement();
+        return getNextMovement();
 
     }
 

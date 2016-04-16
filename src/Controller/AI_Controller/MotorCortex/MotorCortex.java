@@ -21,7 +21,7 @@ public class MotorCortex implements Tickable {
 
         if (--randomMovement < 0) {
 
-            randomMovement = (int) Math.round(Math.random() * 20);
+            randomMovement = 20;
             memory.moveNPC();
 
         }

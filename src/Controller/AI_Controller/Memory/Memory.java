@@ -78,7 +78,7 @@ public class Memory implements Tickable, VisualCortexMemoryInterface, FrontalLob
 
     public void setCurrentDecision(Decision currentDecision) {
 
-        MessageHandler.println("Memory: setCurrentDecision: " + currentDecision.toString(), ErrorLevel.NOTICE, PersonFilter.AUSTIN);
+        MessageHandler.println("Memory: setCurrentDecision: " + currentDecision.toString(), ErrorLevel.DEV, PersonFilter.AUSTIN);
         this.currentDecision = currentDecision;
 
     }
