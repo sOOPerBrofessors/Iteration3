@@ -4,6 +4,7 @@ import Controller.AI_Controller.AI_Controller;
 import Controller.AI_Controller.Brain;
 import Controller.AI_Controller.Personality.Personality;
 import Model.Entity.Character.Character;
+import Model.Entity.Character.NPC.NPCStrategy.NPCStrategy;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Faction.Faction;
 import Model.Map.Location;
@@ -18,12 +19,14 @@ public class NPC extends Character implements Tickable{
     private Brain brain;
     private Faction faction;
     private Personality personality;
+    private NPCStrategy npcStrategy;
     AI_Controller controller;
 
-    public NPC(Occupation o, Location location, Personality personality, Faction faction) {
+    public NPC(Occupation o, Location location, Personality personality, Faction faction, NPCStrategy npcStrategy) {
         super(o, location);
         this.faction = faction;
         this.personality = personality;
+        this.npcStrategy = npcStrategy;
     }
 
     @Override
@@ -69,6 +72,6 @@ public class NPC extends Character implements Tickable{
     @Override
     public void onInteract() {
         System.out.println("NPC: I am being interacted on");
-        //Do stuff when interacted on
+        npcStrategy.onInteract();
     }
 }
