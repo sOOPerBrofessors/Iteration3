@@ -9,7 +9,7 @@ import Model.Map.Orientation;
 //This will be inherited by occupation
 public interface OccupationVisitable {
     //This will allow occupation views to visit
-    void acceptOccupationViewVistor(OccupationViewVisitor occupationViewVisitor, Orientation orientation);
+    void acceptOccupationVistor(OccupationVisitor occupationViewVisitor, Orientation orientation);
 
     //In the future might require just strictly occupation visitors to visit (for load/save)
 //    void acceptOccupationVistor(OccupationViewVisitor occupationVisitor);

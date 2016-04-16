@@ -9,12 +9,10 @@ import java.awt.*;
 /**
  * Created by dyeung on 4/9/16.
  */
-public class DirtTileView extends TileView{
+public class DirtTerrainView extends TerrainView{
     //private String url = "./res/terrain/grass.png"; //For now it'll look like a grass tile
-    public DirtTileView(Tile tile){
-        super(tile);
-        //image = SpriteImageFactory.getImage(url);
-        image = ImageAssets.dirt;
+    public DirtTerrainView(){
+        super(ImageAssets.dirt);
     }
     @Override
     public void paintComponent(Graphics g) {
@@ -30,10 +28,6 @@ public class DirtTileView extends TileView{
 //        g.setColor(Color.GREEN);
 //        g.drawRect(xPixel,yPixel,tileWidth,tileHeight);
 
-        String debug = location.getX() + "," + location.getY();
-        Font f = new Font("Courier New", 1, 12);
-        g2d.setFont(f);
-        g2d.drawString(debug, (xPixel+ (tileWidth/3))*Settings.SCALEFACTOR, (yPixel + (tileHeight/2))*Settings.SCALEFACTOR);
-        g2d.dispose();
+
     }
 }

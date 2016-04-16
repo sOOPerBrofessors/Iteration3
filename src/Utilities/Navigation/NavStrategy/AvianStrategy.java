@@ -6,14 +6,15 @@ import Model.Map.Tile.Tile;
 /**
  * Created by broskj on 4/5/16.
  */
-public class AvianStrategy implements NavStrategy {
+public class AvianStrategy extends NavStrategy {
     @Override
     public boolean move(Tile targetTile, Entity entity) {
-        return targetTile.moveAvian(entity);
+        //return targetTile.moveAvian(entity);
+        return false;
     }
-    public boolean canMove(Tile targetTile) {
 
-        return targetTile.canMoveAvian();
-
+    @Override
+    public void visitAirTerrain() {
+        canMoveFlag = true;
     }
 }
