@@ -3,19 +3,9 @@ package Controller.Controllers;
 import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
-import Model.Items.Takeable.Useable.Potion;
-import Model.Map.Location;
 import Model.State.GameState.ActiveGameState;
 import Utilities.Settings;
-import Utilities.TimedEvent;
-import View.AreaViewport.HUDView.HUD;
-import View.ViewManager;
 import View.ViewUtilities.Panels.GamePanel;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.util.HashMap;
 
 /**
  * Created by Wimberley on 4/6/16.
