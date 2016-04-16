@@ -31,7 +31,7 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
     being rendered at wrong times (IE a projectile having a health bar). The projectile should have its own orientation view
     to render
     */
-    private Entity entity; //property that  is being observered
+    protected Entity entity; //property that  is being observered
 
 
     public EntityView(Entity observerable){

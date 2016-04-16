@@ -7,6 +7,7 @@ import Model.Items.ItemStrategy.InteractableStrategy.InteractableStrategy;
  * Created by broskj on 4/7/16.
  */
 public abstract class Interactable extends Item {
+
     InteractableStrategy s;
 
     protected Interactable(InteractableStrategy s) {

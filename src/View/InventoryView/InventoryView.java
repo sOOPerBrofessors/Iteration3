@@ -128,7 +128,7 @@ public class InventoryView extends JPanel implements Observer{
     public void update() {
 
         //inventory.
-        //this.inventoryList =  inventory.getPack().getItems(); // TODO: Fix the LOD VIOLATION!!! (Is there a fix?)
+        //this.inventoryList =  inventory.getPack().getMapTakableItems(); // TODO: Fix the LOD VIOLATION!!! (Is there a fix?)
         //this.equippedArmor = inventory.getEquipment().getArmor();
         //this.equippedWeapon = inventory.getEquipment().getWeapon();
     }

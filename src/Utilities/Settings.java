@@ -13,8 +13,7 @@ public class Settings {
     public static int GAMEHEIGHT = 720;
     public static int SCALEFACTOR = 1;
     public static boolean debug = false;
-    public static ErrorLevel errorLevel = ErrorLevel.NOTICE;
-
+    public static ErrorLevel errorLevel = ErrorLevel.NONE;
     public static PersonFilter personFilter = PersonFilter.UNSPECIFIED;
 
     // Key Presses
@@ -61,12 +60,18 @@ public class Settings {
     public static int ENTITYWIDTH = 42;
     public static int ENTITYHEIGHT = 75;
 
-    public static int USABLEWIDTH = 32;
-    public static int USABLEHEIGHT = 32;
+    public static int TAKABLEWIDTH = 32;
+    public static int TAKABLEHEIGHT = 32;
+
+    public static int INTERACTABLEWIDTH = 48;
+    public static int INTERACTABLEHEIGHT = 48;
     //Grass flat
 //    public static int TILEWIDTH = 96;
 //    public static int TILEHEIGHT = 62;
 
     public static final int MAX_INVENTORY_SIZE = 16;
+
+    // int to limit character count in game window
+    public static final int CHAR_LIMIT = 36;
 
 }
