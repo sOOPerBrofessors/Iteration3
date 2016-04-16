@@ -56,7 +56,7 @@ public class Observation extends RangedSkill{
             if (curTile.hasCharacter()) {
                 enemy = curTile.getCharacter();
                 Random rand = new Random();
-                int modifier = rand.nextInt(10 - level);
+                int modifier = rand.nextInt(10 - level + i);
                 int observedLevel = rand.nextInt(10) > 5 ? enemy.getLevel() + modifier : enemy.getLevel() - modifier;
                 int observedHealth = rand.nextInt(10) > 5 ? enemy.getHealth() + modifier : enemy.getHealth() - modifier;
                 int observedOffensive = rand.nextInt(10) > 5 ? enemy.getOffensiveRating() + modifier : enemy.getOffensiveRating() - modifier;
