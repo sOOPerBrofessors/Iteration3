@@ -9,12 +9,18 @@ import Model.Items.Takeable.TakeableItem;
  * Created by broskj on 4/7/16.
  */
 public class Chest extends Interactable {
+
     public Chest(Quest requiredItem, TakeableItem treasure) {
         super(new ChestStrategy(requiredItem, treasure));
+        success = false;
     } // end constructor
 
     public void onInteract(Character character) {
-        s.onInteract(character.getInventory());
+        updateSuccess(s.onInteract(character));
     } // end onInteract
 
+    // improve if have time
+    private void updateSuccess(boolean success){
+        this.success = success;
+    }
 } // end class Chest

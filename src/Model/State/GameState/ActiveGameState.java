@@ -68,6 +68,7 @@ public class ActiveGameState extends GameState {
 
     public void playerInteract(){
         avatar.checkInteract(map);
+        itemManager.interact(avatar);
     }
 
     public void setPlayer(Avatar player) {

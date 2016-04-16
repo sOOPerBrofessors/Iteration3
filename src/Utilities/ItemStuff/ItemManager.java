@@ -7,7 +7,9 @@ import Model.Items.Takeable.TakeableItem;
 import Model.Map.Location;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
+import View.ItemView.InteractableView;
 import View.ItemView.ItemView;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.util.HashMap;
 
@@ -54,6 +56,13 @@ public class ItemManager implements Subject{
         for(Location key : interactableItems.keySet()){
             if(key.equals(adjacent)){
                 interactableItems.get(key).onInteract(character);
+                if(interactableItems.get(key).isSuccess()){
+                    ItemView temp = new InteractableView(ImageAssets.openChest);
+                    temp.setLocation(key.getX(), key.getY());
+                    mapItemViews.remove(key);
+                    mapItemViews.put(interactableItems.get(key), temp);
+                    alert();
+                }
             }
         }
     }

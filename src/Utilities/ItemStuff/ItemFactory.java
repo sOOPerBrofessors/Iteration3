@@ -46,7 +46,7 @@ public class ItemFactory {
         // create money in chest
         TakeableItem treasure = Money.makeMoney(100);
         ItemView treasureView = new UsableView(ImageAssets.money);
-        allItemViews.put(money, moneyView);
+        allItemViews.put(treasure, treasureView);
 
         // create new health potion
         TakeableItem healthPotion = Potion.makeHealthPotion(10);
@@ -90,7 +90,6 @@ public class ItemFactory {
         Location closedChestLocation = new Location(3,4, map.getTopTilePosition(3,4));
         closedChestView.setLocation(3,4);
         interactableItems.put(closedChestLocation, closedChest);
-        allItemViews.put(closedChest,closedChestView);
         mapItemViews.put(closedChest,closedChestView);
     }
 

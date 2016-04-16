@@ -11,7 +11,6 @@ import Model.Map.Orientation;
 import Utilities.Visitor.CharacterVisitor;
 import com.sun.org.apache.xpath.internal.operations.Or;
 
-
 /**
  * Created by broskj on 4/6/16.
  *

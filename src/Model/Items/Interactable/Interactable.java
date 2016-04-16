@@ -10,8 +10,14 @@ public abstract class Interactable extends Item {
 
     InteractableStrategy s;
 
+    protected boolean success;
+
     protected Interactable(InteractableStrategy s) {
         super();
         this.s = s;
     } // end protected constructor
+
+    public boolean isSuccess() {
+        return success;
+    }
 } // end abstract class Interactable

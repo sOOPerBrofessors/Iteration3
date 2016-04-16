@@ -18,10 +18,11 @@ public class ChestStrategy extends InteractableStrategy {
         this.treasure = treasure;
     }
 
-    public boolean onInteract(Inventory inventory) {
-        for(Item item : inventory.getPack().getItems()){
+    public boolean onInteract(Character character) {
+        // lod like crazy
+        for(Item item : character.getInventory().getPack().getItems()){
             if(item == requiredItem){
-                inventory.pickUpItem(treasure);
+                character.pickUpItem(treasure);
                 treasure = null;
                 return true;
             }
