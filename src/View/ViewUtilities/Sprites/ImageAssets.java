@@ -98,7 +98,7 @@ public class ImageAssets {
         sword = swordSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
         itemBag = itemBagSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
         chestPlate = chestPlateSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
-        openChest = openChestSheet.cropSheet(0,0,Settings.INTERACTABLEWIDTH, Settings.INTERACTABLEHEIGHT);
-        closedChest = closedChestSheet.cropSheet(0,0,Settings.INTERACTABLEWIDTH, Settings.INTERACTABLEHEIGHT);
+        openChest = openChestSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
+        closedChest = closedChestSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
     }
 }

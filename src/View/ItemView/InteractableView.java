@@ -14,4 +14,9 @@ public class InteractableView extends ItemView{
         itemHeight = Settings.INTERACTABLEHEIGHT;
         itemWidth = Settings.INTERACTABLEWIDTH;
     }
+
+    @Override
+    protected void adjustHeight() {
+        yPixel = yPixel+40;
+    }
 }

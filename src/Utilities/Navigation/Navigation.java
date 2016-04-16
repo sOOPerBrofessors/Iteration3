@@ -1,5 +1,6 @@
 package Utilities.Navigation;
 
+import Model.Map.Tile.Terrain.Terrain;
 import Model.Map.Tile.Tile;
 import Model.Entity.Entity;
 
@@ -63,9 +64,19 @@ public class Navigation {
         return false;
     } // end move
 
-    public boolean canMove(Tile targetTile) {
+    public boolean canMove(Terrain terrain) {
 
-        return s.canMove(targetTile);
+        return s.canMove(terrain);
+
+    }
+    public boolean canMove(Tile tile) {
+
+        return s.canMove(tile.getTerrain());
+
+    }
+
+    public void move(Terrain terrain, Entity entity){
+        //s.move(terrain,entity);
 
     }
 

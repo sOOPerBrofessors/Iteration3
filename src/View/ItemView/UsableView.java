@@ -14,4 +14,10 @@ public class UsableView extends ItemView {
         itemHeight = Settings.TAKABLEHEIGHT;
         itemWidth = Settings.TAKABLEWIDTH;
     }
+
+    @Override
+    protected void adjustHeight() {
+        xPixel = xPixel+8;
+        yPixel = yPixel+50;
+    }
 }

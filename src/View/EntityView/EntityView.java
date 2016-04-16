@@ -17,49 +17,50 @@ import java.awt.*;
  * Created by dyeung on 4/6/16.
  */
 public abstract class EntityView extends MapObjectView implements EntityObserver{
-
-    private int x; // on the coordinate system
-    private int y; // on the coordinate system
+    //Honestly the x and y shouldn't matter, its only for printing on the coordinate system and testing
+    protected int x; // on the coordinate system
+    protected int y; // on the coordinate system
 
     protected OrientationView orientationView;
-    protected int entityWidth = Settings.ENTITYWIDTH;
-    protected int entityHeight = Settings.ENTITYHEIGHT;
     protected int xPixel; // on the map
     protected int yPixel; // on the map
-    protected Location location;
     protected Orientation orientation;
-    protected Character entity; //property that  is being observered
+
+    /*Entity is private because it is only available to update its position and orientation.
+    All the view rendering must be done by that specific class. This is to avoid specific items
+    being rendered at wrong times (IE a projectile having a health bar). The projectile should have its own orientation view
+    to render
+    */
+    private Entity entity; //property that  is being observered
 
 
-    public EntityView(Character observerable){
+    public EntityView(Entity observerable){
         entity = observerable;
         observerable.addObserver(this);
-        location = entity.getLocation();
         orientation = entity.getOrientation();
-        x = location.getX();
-        y = location.getY();
+        x = entity.getX();
+        y = entity.getY();
     }
 
 
     @Override
     public void updateMove() {
         //System.out.println("update move");
-        MessageHandler.println("Entity is moving", ErrorLevel.NOTICE, PersonFilter.DAVID);
         updateLocation();
         updateOrientation();
     }
     public abstract void updateOrientation();
 
     private void updateLocation(){
-        x = location.getX();
-        y = location.getY();
-        //System.out.println("EntityView: " + x + "," + y + " : " + xPixel + "," + yPixel);
+        x = entity.getX();
+        y = entity.getY();
     }
 
     @Override
     public void setPixels(int x, int y) {
         xPixel = x;
         yPixel = y;
+        adjustHeight();
     }
 
     public void removeObservable(){

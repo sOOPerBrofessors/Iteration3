@@ -8,7 +8,10 @@ import Model.Items.Item;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
 import Model.Map.Location;
+import Model.Map.Map;
 import Model.Map.Orientation;
+import Model.Map.Tile.Terrain.Terrain;
+import Model.Map.Tile.Tile;
 import Model.Stats.CharacterStats;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
@@ -252,9 +255,27 @@ public abstract class Character extends Entity implements Observer, Subject {
         return stats.getLevelMultiplier();
     }
 
+    @Override
+    public boolean move(Map map, Orientation orientation) {
+        if (this.orientation.equals(orientation)) {
+            int x = location.getX() + orientation.x;
+            int y = location.getY() + orientation.y;
+            //z is zero here. Since it is a character it will move based on the next possible height
+            Location newLocation = new Location(x,y,0);
+            return map.moveCharacter(this, newLocation);
+        }else {
+            setOrientation(orientation);
+            return false;
+        }
+    }
+    public boolean checkStrategy(Terrain terrain){
+       return navigation.canMove(terrain);
+    }
+
     public void pickUpItem(Item item){
         inventory.pickUpItem(item);
     }
 
     public CharacterStats getCharacterStats() {return stats;}
+
 } // end abstract class Character

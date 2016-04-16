@@ -30,10 +30,10 @@ public class ItemFactory {
         itemViews = new HashMap<>();
         interactableItems = new HashMap<>();
 
-        // create new health potion and add to ItemManager
+        // create new health potion
         TakeableItem healthPotion = Potion.makeHealthPotion(10);
         ItemView healthView = new UsableView(ImageAssets.healthPotion);
-        Location healthLocation = new Location(4,4,map.getTopTilePosition(4,4) - 1);
+        Location healthLocation = new Location(4,4,map.getTopTilePosition(4,4));
         healthView.setLocation(4,4);
         takableItems.put(healthLocation, healthPotion);
         itemViews.put(healthPotion, healthView);
@@ -41,7 +41,7 @@ public class ItemFactory {
         // create sword
         TakeableItem sword = Weapon.makeSmasherWeapon(5);
         ItemView swordView = new UsableView(ImageAssets.sword);
-        Location swordLocation = new Location(4,3,map.getTopTilePosition(4,3) - 1);
+        Location swordLocation = new Location(4,3,map.getTopTilePosition(4,3));
         swordView.setLocation(4,3);
         takableItems.put(swordLocation, sword);
         itemViews.put(sword, swordView);
@@ -49,7 +49,7 @@ public class ItemFactory {
         // create chest armor
         TakeableItem chestArmor = Armor.makeSmasherArmor(5);
         ItemView chestArmorView = new UsableView(ImageAssets.chestPlate);
-        Location chestArmorLocation = new Location(3,3,map.getTopTilePosition(3,3) - 1);
+        Location chestArmorLocation = new Location(3,3,map.getTopTilePosition(3,3));
         chestArmorView.setLocation(3,3);
         takableItems.put(chestArmorLocation, chestArmor);
         itemViews.put(chestArmor, chestArmorView);
@@ -57,7 +57,7 @@ public class ItemFactory {
         // create closed chest
         Interactable closedChest = new Chest();
         ItemView closedChestView = new InteractableView(ImageAssets.closedChest);
-        Location closedChestLocation = new Location(3,4, map.getTopTilePosition(3,4) - 1);
+        Location closedChestLocation = new Location(3,4, map.getTopTilePosition(3,4));
         closedChestView.setLocation(3,4);
         interactableItems.put(closedChestLocation, closedChest);
         itemViews.put(closedChest,closedChestView);

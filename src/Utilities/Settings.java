@@ -12,8 +12,9 @@ public class Settings {
     public static int GAMEWIDTH = 1080;
     public static int GAMEHEIGHT = 720;
     public static int SCALEFACTOR = 1;
-    public static boolean debug = true;
+    public static boolean debug = false;
     public static ErrorLevel errorLevel = ErrorLevel.NOTICE;
+
     public static PersonFilter personFilter = PersonFilter.UNSPECIFIED;
 
     // Key Presses

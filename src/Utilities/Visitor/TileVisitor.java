@@ -1,17 +1,16 @@
 package Utilities.Visitor;
 
-import Model.Entity.Entity;
-import Model.Map.Location;
-import Model.Map.Tile.Tile;
-import View.TerrainView.TileView;
+import Model.Entity.Character.Character;
+import Model.Items.Item;
+import Model.Map.AreaEffect.AreaOfEffect;
+import Model.Map.Tile.Terrain.Terrain;
 
 /**
- * Created by dyeung on 4/7/16.
+ * Created by dyeung on 4/15/16.
  */
 public interface TileVisitor {
-    void visitWaterTile(Tile tile);
-    void visitGrassTile(Tile tile);
-    void visitAirTile(Tile tile);
-    void visitRiverTile(Tile tile);
-    void visitDirtTile(Tile tile);
+    void visitTileTerrain(Terrain terrain);
+    void visitTileHasCharacter(Character character);
+    void visitTileHasItem(Item item);
+    void visitTileHasAOE(AreaOfEffect areaOfEffect);
 }
