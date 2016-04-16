@@ -31,7 +31,7 @@ public class AreaViewport extends JPanel{
 
     public AreaViewport(GameState gameState){
         //This needs to be initialized later on or grabbed from the inventory
-        this.setBackground(Color.GRAY);
+        this.setBackground(Color.BLACK);
         setPreferredSize(new Dimension(WIDTH,HEIGHT));
 
         Avatar avatar = gameState.getAvatar();
