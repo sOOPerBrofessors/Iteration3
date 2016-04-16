@@ -1,5 +1,6 @@
 package Model.Entity.Character;
 
+import Model.Effect.Effect;
 import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Entity;
@@ -7,11 +8,13 @@ import Model.Inventory.Inventory;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
 import Model.Map.Location;
-import Model.Map.Orientation;
 import Model.Stats.CharacterStats;
+import Utilities.CombatTimer;
 import Utilities.GameMessageQueue;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
+import Utilities.TimedEvent;
+import View.AreaViewport.HUDView.HUD;
 
 /**
  * Created by broskj on 4/6/16.
@@ -23,6 +26,8 @@ public abstract class Character extends Entity implements Observer {
     protected CharacterStats stats;
     protected Inventory inventory;
     private int radiusVisibility;
+    private CombatTimer combatTimer;
+
     protected Character(Occupation o, Location location) {
         super(Navigation.makeCharNav(), location);
         this.o = o;
@@ -31,7 +36,16 @@ public abstract class Character extends Entity implements Observer {
         stats.addObserver(this);
         inventory.addObserver(this);
         this.radiusVisibility = 3; //might need to change to some sort of default later
+        combatTimer = new CombatTimer();
     } // end private constructor
+
+    public boolean isInCombat() {
+        return combatTimer.isRunning();
+    } // end isInCombat
+
+    public void startCombatTimer() {
+        combatTimer.start();
+    } // end startCombatTimer
 
     /*
     handle passing effects to stats
@@ -52,9 +66,10 @@ public abstract class Character extends Entity implements Observer {
         stats.healthEffect(amount);
         if(amount >= 0)
             GameMessageQueue.push("Gained " + amount + " health.");
-        else
-            GameMessageQueue.push("Took " + -1*amount + " damage.");
-    } // end lifeEffect
+        else {
+            GameMessageQueue.push("Took " + -1 * amount + " damage.");
+        }
+    } // end lifeEffec
 
     public void livesEffect(int amount) {
         stats.livesEffect(amount);
