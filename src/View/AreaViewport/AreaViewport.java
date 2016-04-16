@@ -79,6 +79,6 @@ public class AreaViewport extends JPanel{
         //This is always called
         renderTiles(g);
         hud.updateHUD(g);
-        observedNPC.updateObservation(g);
+        //observedNPC.updateObservation(g);
     }
 }

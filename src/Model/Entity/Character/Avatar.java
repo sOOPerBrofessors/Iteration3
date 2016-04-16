@@ -10,7 +10,6 @@ import Model.Skills.BindWounds;
 import Model.Skills.RangedSkills.Observation;
 import Model.Skills.Skill;
 import Utilities.Observers.Observer;
-import Utilities.Visitor.EntityViewVisitor;
 import View.EntityView.CharacterView;
 import Model.Map.Map;
 import Model.Map.Orientation;

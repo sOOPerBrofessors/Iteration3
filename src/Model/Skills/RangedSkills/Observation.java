@@ -53,8 +53,8 @@ public class Observation extends RangedSkill{
         for (int i = 1; i < affectedArea.size(); i++) {
             Location location = affectedArea.get(i);
             curTile = map.getTopTile(location.getX(),location.getY());
-            if (curTile.hasEntity()) {
-                enemy = (Character) curTile.getEntity();
+            if (curTile.hasCharacter()) {
+                enemy = curTile.getCharacter();
                 Random rand = new Random();
                 int modifier = rand.nextInt(10 - level);
                 int observedLevel = rand.nextInt(10) > 5 ? enemy.getLevel() + modifier : enemy.getLevel() - modifier;
