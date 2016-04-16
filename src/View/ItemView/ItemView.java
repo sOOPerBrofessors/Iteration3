@@ -40,16 +40,14 @@ public abstract class ItemView  extends MapObjectView {
         this.y = y;
     }
 
-
     public void setPixels(int xPixel, int yPixel){
         this.xPixel = xPixel;
         this.yPixel = yPixel;
         adjustHeight();
     }
-    @Override
-    protected void adjustHeight(){
 
-    }
+    @Override
+    protected abstract void adjustHeight();
 
     public int getY() {
         return y;

@@ -11,8 +11,6 @@ import Model.Entity.Character.Character;
  * Needs an Effect.
  */
 public class Potion extends UseableItem {
-    Effect e;
-    int amount;
 
     private Potion(Effect e, int amount) {
         super();
@@ -51,8 +49,4 @@ public class Potion extends UseableItem {
     public static Potion makeStrengthPotion(int amount) {
         return new Potion(Character::strengthEffect, amount);
     } // end factory method makeStrengthPotion
-
-    public void onInteract(Character character) {
-        e.execute(character, amount);
-    } // end onInteract
 } // end class Potion

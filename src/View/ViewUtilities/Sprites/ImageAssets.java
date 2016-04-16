@@ -30,13 +30,20 @@ public class ImageAssets {
     public static BufferedImage invSlot, eqSlot, select;
     public static BufferedImage hud, messageBox;
 
+    // items
     public static BufferedImage healthPotion;
     public static BufferedImage sword;
     public static BufferedImage itemBag;
+    public static BufferedImage chestPlate;
+    public static BufferedImage closedChest;
+    public static BufferedImage openChest;
 
     //needs to be called once
     public static void init(){
         SpriteSheet healthPotionSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/HealthPotion.png"));
+        SpriteSheet chestPlateSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/ChestPlate.png"));
+        SpriteSheet closedChestSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/ClosedChest.png"));
+        SpriteSheet openChestSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/OpenChest.png"));
         SpriteSheet itemBagSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/ItemBag.png"));
         SpriteSheet swordSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/Sword.png"));
         SpriteSheet smasherSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Smasher.png"));
@@ -89,8 +96,11 @@ public class ImageAssets {
         messageBox = messageBoxSheet.cropSheet(0,0,640,400);
 
         //items
-        healthPotion = healthPotionSheet.cropSheet(0,0,Settings.USABLEWIDTH, Settings.USABLEHEIGHT);
-        sword = swordSheet.cropSheet(0,0,Settings.USABLEWIDTH, Settings.USABLEHEIGHT);
-        itemBag = itemBagSheet.cropSheet(0,0,Settings.USABLEWIDTH, Settings.USABLEHEIGHT);
+        healthPotion = healthPotionSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
+        sword = swordSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
+        itemBag = itemBagSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
+        chestPlate = chestPlateSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
+        openChest = openChestSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
+        closedChest = closedChestSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
     }
 }
