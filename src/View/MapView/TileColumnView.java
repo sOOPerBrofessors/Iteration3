@@ -34,7 +34,6 @@ public class TileColumnView extends JComponent {
     private int xCenter = tileWidth/2;
     private int yCenter = tileHeight/2;
     private TileViewState tileViewState;
-
     public TileColumnView(ArrayList<TileView> subject, Location location){
         xCameraOffset = 0;
         yCameraOffset = 0;
@@ -43,11 +42,6 @@ public class TileColumnView extends JComponent {
         listOfTiles = subject;
         updateCoordinateToScreenPosition();
         tileViewState = new ShroudedState();
-    }
-
-    public void addTileView (TileView tileView){
-        tileView.setLocation(x,y,listOfTiles.size());
-        listOfTiles.add(tileView);
     }
 
     private void updateCoordinateToScreenPosition(){
@@ -112,12 +106,12 @@ public class TileColumnView extends JComponent {
     public void setNonVisibleState(){
         tileViewState = new NonVisibleState();
     }
-
+    //This isn't going to work now that we have air tiles. What if I drop an item while a bird is above my head?
     public void setItemView(ItemView itemView){
         listOfTiles.get(listOfTiles.size() - 1).addItemView(itemView);
     }
-
     public void clearItemView(){
         listOfTiles.get(listOfTiles.size() - 1).removeItemView();
     }
+
 }

@@ -7,6 +7,7 @@ import Utilities.Visitor.OccupationVisitor;
 import View.EntityView.AvatarViewFactory.OccupationViewFactory;
 
 import java.awt.*;
+import java.util.Set;
 
 /**
  * Created by dyeung on 4/6/16.
@@ -14,41 +15,50 @@ import java.awt.*;
 
 public class CharacterView extends EntityView implements OccupationVisitor {
     //Width height scale formula is Height/Width * new width = new height
-    private Image characterImage;
+    private Image image;
     private Character character;
+    protected int viewHeight = Settings.ENTITYHEIGHT;
+    protected int viewWidth = Settings.ENTITYWIDTH;
     public CharacterView(Character character){
         super(character);
         this.character = character;
         character.getOccupation().acceptOccupationVistor(this, orientation); //This will create the correct Occupation View
-        characterImage = orientationView.getCurrentDirectionImage();
+        image = orientationView.getCurrentDirectionImage();
     }
 
     @Override
-    public void paintComponent(Graphics g) {
-
-        Graphics2D g2d = (Graphics2D) g.create();
+    public void paintComponent(Graphics2D g2d) {
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 
-        g2d.drawImage(characterImage,xPixel* Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,entityWidth*Settings.SCALEFACTOR,entityHeight* Settings.SCALEFACTOR,null);
+        g2d.drawImage(image,xPixel* Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,viewWidth*Settings.SCALEFACTOR,viewHeight* Settings.SCALEFACTOR,null);
+//        g2d.drawImage(image, xPixel, yPixel, viewWidth, viewHeight, null);
+//        g2d.setColor(Color.green);
+//        g2d.drawString(x +"," + y, xPixel, yPixel);
+//        g2d.drawRect(xPixel, yPixel, 100, 100);
 
         g2d.dispose();
 
         // doesn't work
-        drawHealthBar(g);
+        drawHealthBar(g2d);
     }
 
-    public void drawHealthBar(Graphics g) {
+    @Override
+    protected void adjustHeight() {
+        yPixel = yPixel - viewHeight;
+    }
+
+    public void drawHealthBar(Graphics2D g2d) {
         double health = character.getHealth();
         double baseHealth = character.getBaseHealth();
         int width = Settings.GAMEWIDTH;
         int height = Settings.GAMEHEIGHT;
 
-        g.setColor(Color.BLACK);
-        g.drawRect(xPixel-width/128,yPixel-16,width/16+1,height/56+1);
-        g.setColor(Color.RED);
-        g.fillRect(xPixel-width/128+1,yPixel-16+1,(int)((health/baseHealth)*width/16), height/56);
+        g2d.setColor(Color.BLACK);
+        g2d.drawRect(xPixel-width/128,yPixel-16,width/16+1,height/56+1);
+        g2d.setColor(Color.RED);
+        g2d.fillRect(xPixel-width/128+1,yPixel-16+1,(int)((health/baseHealth)*width/16), height/56);
     } // end drawHealthBar
 
     @Override
@@ -56,7 +66,7 @@ public class CharacterView extends EntityView implements OccupationVisitor {
         if (orientation != character.getOrientation()){
             orientation = character.getOrientation();
             orientationView.setDirection(character.getOrientation());
-            characterImage = orientationView.getCurrentDirectionImage();
+            image = orientationView.getCurrentDirectionImage();
         }
     }
 

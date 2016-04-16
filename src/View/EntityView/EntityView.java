@@ -17,16 +17,13 @@ import java.awt.*;
  * Created by dyeung on 4/6/16.
  */
 public abstract class EntityView extends MapObjectView implements EntityObserver{
-
-    private int x; // on the coordinate system
-    private int y; // on the coordinate system
+    //Honestly the x and y shouldn't matter, its only for printing on the coordinate system and testing
+    protected int x; // on the coordinate system
+    protected int y; // on the coordinate system
 
     protected OrientationView orientationView;
-    protected int entityWidth = Settings.ENTITYWIDTH;
-    protected int entityHeight = Settings.ENTITYHEIGHT;
     protected int xPixel; // on the map
     protected int yPixel; // on the map
-    protected Location location;
     protected Orientation orientation;
 
     /*Entity is private because it is only available to update its position and orientation.
@@ -40,11 +37,9 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
     public EntityView(Entity observerable){
         entity = observerable;
         observerable.addObserver(this);
-        location = entity.getLocation();
         orientation = entity.getOrientation();
-
-        x = location.getX();
-        y = location.getY();
+        x = entity.getX();
+        y = entity.getY();
     }
 
 
@@ -59,15 +54,13 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
     private void updateLocation(){
         x = entity.getX();
         y = entity.getY();
-//        x = location.getX();
-//        y = location.getY();
-        //System.out.println("EntityView: " + x + "," + y + " : " + xPixel + "," + yPixel);
     }
 
     @Override
     public void setPixels(int x, int y) {
         xPixel = x;
         yPixel = y;
+        adjustHeight();
     }
 
     public void removeObservable(){

@@ -57,7 +57,6 @@ public class TileView extends JComponent implements EntityViewVisitor, TileObser
      public void setPixels(int x, int y){
          xPixel = x;
          yPixel = y;
-         terrainView.setXY(x,y);
     }
 
     public void setLocation(int x, int y, int z){
@@ -68,11 +67,15 @@ public class TileView extends JComponent implements EntityViewVisitor, TileObser
         Graphics2D g2d = (Graphics2D) g.create();
 
         renderTerrain(g2d);
-        renderEntity(g2d);
-        renderItem(g2d);
+        renderObjects(g2d);
         g2d.dispose();
     }
-
+    private void renderObjects(Graphics2D g2d){
+        int centeredX = xPixel + Settings.TILEWIDTH/4;
+        int centeredY = yPixel + Settings.TILEHEIGHT/2;
+        renderEntity(g2d, centeredX, centeredY);
+        renderItem(g2d, centeredX, centeredY);
+    }
     protected boolean hasEntity(){
         if (entityView == null) {
             return false;
@@ -81,7 +84,8 @@ public class TileView extends JComponent implements EntityViewVisitor, TileObser
         }
     }
 
-    public void renderTerrain(Graphics g){
+    private void renderTerrain(Graphics g){
+        terrainView.setXY(xPixel,yPixel);
         terrainView.paintComponent(g);
         terrainView.renderDebug(g,location.getX(),location.getY());
     }
@@ -96,20 +100,22 @@ public class TileView extends JComponent implements EntityViewVisitor, TileObser
     }
 
     //TODO: change this so it just renders map object views
-    public void renderEntity(Graphics g){
+    private void renderEntity(Graphics2D g2d, int centeredX, int centeredY){
         if (hasEntity()){
             //System.out.println(location.getX() + "," +location.getY() +"," +location.getZ());
-            int centeredX = xPixel + Settings.TILEWIDTH/4;
-            int centeredY = yPixel - Settings.TILEHEIGHT/2;
+//            System.out.println("TileView entity:" + location.getX() + "," + location.getY() + "," + location.getZ());
+//            System.out.println("TileView entity:" + centeredX + "," + centeredY);
             entityView.setPixels(centeredX, centeredY);
-            entityView.paintComponent(g);
+            entityView.paintComponent(g2d);
         }
     }
 
-    public void renderItem(Graphics g){
+    private void renderItem(Graphics2D g2d, int centeredX, int centeredY){
         if(hasItem()) {
-            itemView.setPixels(xPixel, yPixel);
-            itemView.paintComponent((Graphics2D)g.create());
+//            System.out.println("TileView item:" + location.getX() + "," + location.getY() + "," + location.getZ());
+//            System.out.println("TileView item:" + centeredX + "," + centeredY);
+            itemView.setPixels(centeredX, centeredY);
+            itemView.paintComponent(g2d);
         }
     }
 
