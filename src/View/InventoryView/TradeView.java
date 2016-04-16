@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * Created by sgl on 4/16/16.
  */
-public class SettingsView extends ViewPanel implements Observer {
+public class TradeView extends ViewPanel implements Observer {
     @Override
     public void update() {
 
@@ -21,6 +21,6 @@ public class SettingsView extends ViewPanel implements Observer {
 
     @Override
     public void paintComponent(Graphics g){
-
+        //drawBackground(g);
     }
 }

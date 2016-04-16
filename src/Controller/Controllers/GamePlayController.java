@@ -154,12 +154,12 @@ public class GamePlayController extends Controller{
         });
 
         // equipment key press
-        commands.put(Settings.EQUIP, new Command() {
-            @Override
-            public void execute() {
-
-            }
-        });
+//        commands.put(Settings.EQUIP, new Command() {
+//            @Override
+//            public void execute() {
+//
+//            }
+//        });
 
         // pause game key press
         commands.put(Settings.ESC, new Command() {
