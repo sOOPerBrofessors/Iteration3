@@ -2,9 +2,7 @@ package View.EntityView.AvatarViewFactory;
 
 import Model.Map.Orientation;
 import View.EntityView.OrientationView;
-import View.ViewUtilities.ImageAssets;
-
-import java.awt.*;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 /**
  * Created by dyeung on 4/9/16.

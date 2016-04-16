@@ -6,6 +6,7 @@ import Model.State.GameState.ActiveGameState;
 import Utilities.Observers.Observer;
 import View.AreaViewport.AreaViewport;
 import View.InventoryView.InventoryView;
+import View.InventoryView.StatsView;
 import View.ViewManager;
 
 import javax.swing.*;
@@ -21,6 +22,7 @@ public class GamePanel extends JPanel{
     private GamePlayController controller;
 
     private InventoryView inventoryView;
+    private StatsView statsView;
 
     //
     private int paintOrder;
@@ -39,6 +41,7 @@ public class GamePanel extends JPanel{
     public void init(ActiveGameState gameState){
         areaViewport = new AreaViewport(gameState);
         inventoryView = new InventoryView(gameState);
+        statsView = new StatsView(gameState);
         addView(areaViewport);
         controller.setState(gameState);
     }
@@ -52,13 +55,13 @@ public class GamePanel extends JPanel{
         closeView(inventoryView);
     }
 
-    public void addEquipmentView(){
-        //TODO:
-    }
+    public void addStatsView() {addView(statsView); }
+//
+    public void closeStatsView() {closeView(statsView);}
 
-    public void closeEquipmentView(){
-        //TODO:
-    }
+    //currently part of InventoryView
+//    public void addEquipmentView(){}
+//    public void closeEquipmentView(){}
 
     public void addStatusView(){
         //TODO:
@@ -103,6 +106,8 @@ public class GamePanel extends JPanel{
     }
 
     public InventoryView getInventoryView() {return inventoryView;}
+
+    public StatsView getStatsView(){return statsView;}
 
     public void setGamePlayController(GamePlayController gamePlayController){
         controller = gamePlayController;

@@ -13,26 +13,27 @@ import Model.Items.ItemStrategy.EquippableStrategy.SummonerWeaponStrategy;
  *  likely need a decorator.
  */
 public class Weapon extends EquippableItem {
+
     private int weaponValue;
 
-    private Weapon(EquippableStrategy s) {
+    private Weapon(EquippableStrategy s, int value) {
         super(s);
-        this.weaponValue = 0;
+        this.weaponValue = value;
         /*
         todo: change constructor to take in weapon value
          */
     } // end private constructor
 
-    public Weapon makeSmasherWeapon() {
-        return new Weapon(new SmasherWeaponStrategy());
+    public static Weapon makeSmasherWeapon(int value) {
+        return new Weapon(new SmasherWeaponStrategy(), value);
     } // end factory method makeSmasherWeapon
 
-    public Weapon makeSneakWeapon() {
-        return new Weapon(new SneakWeaponStrategy());
+    public Weapon makeSneakWeapon(int value) {
+        return new Weapon(new SneakWeaponStrategy(), value);
     } // end factory method makeSneakWeapon
 
-    public Weapon makeSummonerWeapon() {
-        return new Weapon(new SummonerWeaponStrategy());
+    public Weapon makeSummonerWeapon(int value) {
+        return new Weapon(new SummonerWeaponStrategy(), value);
     } // end factory method makeSummonerWeapon
 
     public void onInteract(Character character) {

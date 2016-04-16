@@ -23,12 +23,12 @@ public class AreaViewport extends JPanel{
     //View objects
     private MapView mapView;
     private Map map;
-    private HashMap<Location, Item> items;
 
     //private CharacterView avatarView;
     private CameraView cameraView;
     private FogOfWar fogOfWar;
     private HUD hud;
+
     public AreaViewport(GameState gameState){
         //This needs to be initialized later on or grabbed from the inventory
         this.setBackground(Color.GRAY);
@@ -41,6 +41,7 @@ public class AreaViewport extends JPanel{
         map = gameState.getMap();
         MapViewFactory mapViewFactory = new MapViewFactory();
         mapView = mapViewFactory.createMapViewObjects(map);
+        mapView.setItemManager(gameState.getItemManager());
     }
 
     private void offsetTiles(){
@@ -66,10 +67,6 @@ public class AreaViewport extends JPanel{
         }
     }
 
-    private void renderItems(Graphics g){
-        ItemManager.renderItems(g, cameraView.computeOffset());
-    }
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -78,7 +75,6 @@ public class AreaViewport extends JPanel{
         updateFogOfWar();
         //This is always called
         renderTiles(g);
-        renderItems(g);
-       // hud.updateHUD(g);
+        hud.updateHUD(g);
     }
 }

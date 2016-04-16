@@ -6,7 +6,10 @@ import Model.Map.Tile.Tile;
 import Model.Map.TileColumn;
 import View.MapView.TileColumnView;
 import View.MapView.TileView;
-import View.ViewUtilities.ImageAssets;
+
+
+import java.util.HashMap;
+
 
 import java.util.ArrayList;
 
@@ -14,8 +17,9 @@ import java.util.ArrayList;
  * Created by dyeung on 4/7/16.
  */
 public class MapViewFactory {
+
+    //gets views of items through itemManager
     public MapViewFactory(){
-        ImageAssets.init(); //intializes all the image assest so I can call them statically later
     }
 
     public MapView createMapViewObjects(Map map){
@@ -41,3 +45,4 @@ public class MapViewFactory {
         return new TileColumnView(tileViews, new Location(x,y,0));
     }
 }
+

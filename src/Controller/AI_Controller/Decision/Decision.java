@@ -3,6 +3,7 @@ package Controller.AI_Controller.Decision;
 import Controller.AI_Controller.Interest.Interest;
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
+import Model.Entity.Character.NPC.NPC;
 import Model.Map.Orientation;
 
 /**
@@ -14,6 +15,7 @@ public class Decision {
     // Dropping decisions is less likely if  the entity is more interested in the decision
 
     private Orientation orientationToMoveTo;
+    private boolean movementAvailable;
     private Interest interest;
     private double weight;
 
@@ -37,19 +39,56 @@ public class Decision {
     public void update(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         interest.update(visualInformation, memoryInterface);
-        setOrientationToMoveTo(interest.getNextOrientationToMove());
+
+        if (!isMovementAvailable()) {
+
+            setNextMovementStep(interest.getNextOrientationToMove());
+
+        }
 
     }
 
-    private void setOrientationToMoveTo(Orientation newOrientationToMoveTo) {
+    public final void moveStep(NPC npc) {
 
-        this.orientationToMoveTo = newOrientationToMoveTo;
+        // Move the NPC to the next step
+        boolean moved = npc.getController().move(npc, getOrientationToMoveTo());
+
+        // If movement successful
+        if (moved) {
+
+            // consume the movement action, requiring us to update() to get a new one.
+            consumeMovement();
+
+        }
 
     }
 
-    public final Orientation getOrientationToMoveTo() {
+    private final Orientation getOrientationToMoveTo() {
 
         return orientationToMoveTo;
+
+    }
+
+    private boolean isMovementAvailable() {
+
+        return movementAvailable;
+
+    }
+
+    private void consumeMovement() {
+
+        movementAvailable = false;
+
+    }
+
+    private void setNextMovementStep(Orientation orientationToMoveTo) {
+
+        if (orientationToMoveTo != null) {
+
+            this.orientationToMoveTo = orientationToMoveTo;
+            movementAvailable = true;
+
+        }
 
     }
 

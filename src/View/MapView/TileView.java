@@ -11,6 +11,8 @@ import Utilities.Visitor.TerrainVisitor;
 import View.EntityView.CharacterView;
 import View.EntityView.EntityView;
 import View.TerrainView.*;
+import View.ItemView.ItemView;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,18 +30,21 @@ public class TileView extends JComponent implements EntityViewVisitor, TileObser
     protected Image image;
     private EntityView entityView;
     private Tile tile;
+    private ItemView itemView;
+
     private TerrainView terrainView;
     public TileView(Tile tile, Location location){
         this.location = location;
+
         this.tile = tile;
         init();
         tile.acceptTileObserver(this);
     }
-
     private void init(){
         tile.getTerrain().acceptTerrainVisitor(this);
         updateTileView();
     }
+
     //TODO: make it so it just records the tile...this should not have to have
     protected void updateTileView(){
         if (tile.hasEntity()){
@@ -48,6 +53,7 @@ public class TileView extends JComponent implements EntityViewVisitor, TileObser
             removeEntityView();
         }
     }
+
      public void setPixels(int x, int y){
          xPixel = x;
          yPixel = y;
@@ -73,11 +79,22 @@ public class TileView extends JComponent implements EntityViewVisitor, TileObser
             return true;
         }
     }
+
     public void renderTerrain(Graphics g){
         terrainView.paintComponent(g);
         terrainView.renderDebug(g,location.getX(),location.getY());
     }
 
+
+    protected boolean hasItem(){
+        if (itemView == null) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    //TODO: change this so it just renders map object views
     public void renderEntity(Graphics g){
         if (hasEntity()){
             //System.out.println(location.getX() + "," +location.getY() +"," +location.getZ());
@@ -85,6 +102,13 @@ public class TileView extends JComponent implements EntityViewVisitor, TileObser
             int centeredY = yPixel - Settings.TILEHEIGHT/2;
             entityView.setPixels(centeredX, centeredY);
             entityView.paintComponent(g);
+        }
+    }
+
+    public void renderItem(Graphics g){
+        if(hasItem()) {
+            itemView.setPixels(xPixel, yPixel);
+            itemView.paintComponent((Graphics2D)g.create());
         }
     }
 
@@ -102,11 +126,21 @@ public class TileView extends JComponent implements EntityViewVisitor, TileObser
         //System.out.println("TileView: entity was moved");
         updateTileView();
     }
+
     private void removeEntityView(){
         if(entityView != null) {
             entityView.removeObservable();
             entityView = null;
         }
+    }
+
+    public void addItemView(ItemView itemView){
+        this.itemView = itemView;
+
+    }
+
+    public void removeItemView(){
+        itemView = null;
     }
 
     @Override

@@ -16,7 +16,8 @@ public class BoatMount extends Mount {
     }
 
     @Override
-    public void move(Map map, Orientation orientation) {
-
+    public boolean move(Map map, Orientation orientation) {
+        //The move functionality for Mount might be different from character or projectile
+        return false;
     }
 }

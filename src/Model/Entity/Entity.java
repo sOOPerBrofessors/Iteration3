@@ -60,34 +60,20 @@ public abstract class Entity implements EntityObservable, MapObject, EntityVisit
     }
 
     //Because the movement for projectiles is very different from Character, I decided to switch this here
-    public abstract void move(Map map, Orientation orientation);
+    public abstract boolean move(Map map, Orientation orientation);
 
-    //OLD CODE
-//    public void moveCharacter(Map map, Orientation orientation){
-//        //System.out.println("Entity: update location was called from move:" + this.orientation + ":" + orientation);
-//        if (this.orientation.equals(orientation)) {
-//            int x = location.getX() + orientation.x;
-//            int y = location.getY() + orientation.y;
-//            Location newLocation = new Location(x,y,0);
-//            map.moveCharacter(this, newLocation);
-//            TileColumn tmp = getNextTileColumn(map, orientation);
-//
-//        }else {
-//            setOrientation(orientation);
-//        }
-//    }
 
     public boolean canMove(Map map, Orientation orientation) {
 
         Tile nextTile = getNextTile(map, orientation);
 
-        if (nextTile != null) {
+        if (nextTile == null) {
 
-            return navigation.canMove(nextTile);
+            return false;
 
         }
 
-        return false;
+        return navigation.canMove(nextTile);
 
     }
 

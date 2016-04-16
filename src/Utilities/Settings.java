@@ -14,7 +14,8 @@ public class Settings {
     public static int SCALEFACTOR = 1;
     public static boolean debug = false;
     public static ErrorLevel errorLevel = ErrorLevel.NOTICE;
-    public static PersonFilter personFilter = PersonFilter.DAVID;
+
+    public static PersonFilter personFilter = PersonFilter.UNSPECIFIED;
 
     // Key Presses
     public static int UP_ARROW = KeyEvent.VK_UP;
@@ -31,7 +32,8 @@ public class Settings {
 
     public static int ATTACK = 32;
     public static int EQUIP = 10001; //This was overwritting VK_E which is used for movement
-    public static int INVENTORY = 73; // 'i'
+    public static int INVENTORY = KeyEvent.VK_I; // 'i'
+    public static int STATS = KeyEvent.VK_O;
 
     // end adjustable keys
 
@@ -49,6 +51,7 @@ public class Settings {
     public static int INTERACT = 1000; //This was overwriting the "Q" key which is used for movement.
     public static int SKILLS = 10001; //"originally"0x53 " s"This is most likely overwritting the "S" key which is used for movement;
 
+
     // End Key Presses
 
     public static void setDebug() { debug = true; }
@@ -58,8 +61,8 @@ public class Settings {
     public static int ENTITYWIDTH = 42;
     public static int ENTITYHEIGHT = 75;
 
-    public static int POTIONWIDTH = 32;
-    public static int POTIONHEIGHT = 32;
+    public static int USABLEWIDTH = 32;
+    public static int USABLEHEIGHT = 32;
     //Grass flat
 //    public static int TILEWIDTH = 96;
 //    public static int TILEHEIGHT = 62;

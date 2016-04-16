@@ -53,12 +53,6 @@ public class AttackInterest extends EntityInterest {
 
     }
 
-    public Orientation getNextOrientationToMove() {
-
-        return Orientation.NORTH;
-
-    }
-
     public String getName() {
 
         return "AttackInterest";

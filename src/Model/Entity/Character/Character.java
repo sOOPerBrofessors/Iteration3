@@ -4,6 +4,7 @@ import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Entity;
 import Model.Inventory.Inventory;
+import Model.Items.Item;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
 import Model.Map.Location;
@@ -14,17 +15,23 @@ import Model.Map.Tile.Tile;
 import Model.Stats.CharacterStats;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
+import Utilities.Observers.Subject;
+
+import java.util.ArrayList;
 
 /**
  * Created by broskj on 4/6/16.
  *
  * Abstract class to act as the superclass to the player (Avatar) and NPCs.
  */
-public abstract class Character extends Entity implements Observer {
+public abstract class Character extends Entity implements Observer, Subject {
+    private ArrayList<Observer> observers;
+
     private Occupation o;
     protected CharacterStats stats;
     protected Inventory inventory;
     private int radiusVisibility;
+
     protected Character(Occupation o, Location location) {
         super(Navigation.makeCharNav(), location);
         this.o = o;
@@ -33,45 +40,70 @@ public abstract class Character extends Entity implements Observer {
         stats.addObserver(this);
         inventory.addObserver(this);
         this.radiusVisibility = 3; //might need to change to some sort of default later
+
+        observers = new ArrayList<>();
     } // end private constructor
 
+    @Override
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void alert() {
+        observers.forEach(Observer::update);
+    }
     /*
     handle passing effects to stats
      */
     public void agilityEffect(int amount) {
         stats.agilityEffect(amount);
+        alert();
     } // end agilityEffect
 
     public void hardinessEffect(int amount) {
         stats.hardinessEffect(amount);
+        alert();
     } // end hardinessEffect
 
     public void intellectEffect(int amount) {
         stats.intellectEffect(amount);
+        alert();
     } // end intellectEffect
 
     public void healthEffect(int amount) {
         stats.healthEffect(amount);
+        alert();
     } // end lifeEffect
 
     public void livesEffect(int amount) {
         stats.livesEffect(amount);
+        alert();
     } // end livesEffect
 
     public void manaEffect(int amount) {
         stats.manaEffect(amount);
+        alert();
     } // end manaEffect
 
     public void movementEffect(int amount) {
         stats.movementEffect(amount);
+        alert();
     } // end movementEffect
 
     public void strengthEffect(int amount) {
         stats.strengthEffect(amount);
+        alert();
     } // end strengthEffect
 
     public void experienceEffect(int amount) {
         stats.experienceEffect(amount);
+        alert();
     } // end experienceEffect
 
     /*
@@ -79,10 +111,12 @@ public abstract class Character extends Entity implements Observer {
      */
     public void equipWeapon(Weapon weapon) {
         inventory.equipWeapon(weapon);
+        alert();
     } // end equipArmor
 
     public void equipArmor(Armor armor) {
         inventory.equipArmor(armor);
+        alert();
     } // end equipArmor
 
     public void equipSmasherWeapon(Weapon weapon) {
@@ -222,19 +256,26 @@ public abstract class Character extends Entity implements Observer {
     }
 
     @Override
-    public void move(Map map, Orientation orientation) {
+    public boolean move(Map map, Orientation orientation) {
         if (this.orientation.equals(orientation)) {
             int x = location.getX() + orientation.x;
             int y = location.getY() + orientation.y;
             //z is zero here. Since it is a character it will move based on the next possible height
             Location newLocation = new Location(x,y,0);
-            map.moveCharacter(this, newLocation);
-
+            return map.moveCharacter(this, newLocation);
         }else {
             setOrientation(orientation);
+            return false;
         }
     }
     public boolean checkStrategy(Terrain terrain){
        return navigation.canMove(terrain);
     }
+
+    public void pickUpItem(Item item){
+        inventory.pickUpItem(item);
+    }
+
+    public CharacterStats getCharacterStats() {return stats;}
+
 } // end abstract class Character
