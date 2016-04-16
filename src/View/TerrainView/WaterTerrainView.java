@@ -9,12 +9,9 @@ import java.awt.*;
 /**
  * Created by dyeung on 4/7/16.
  */
-public class WaterTileView extends TileView {
-    //private String url = "./res/terrain/water2.png";
-    public WaterTileView(Tile tile) {
-        super(tile);
-        //image = SpriteImageFactory.getImage(url);
-        image = ImageAssets.water;
+public class WaterTerrainView extends TerrainView {
+    public WaterTerrainView() {
+        super(ImageAssets.water);
     }
 
     @Override
@@ -28,15 +25,5 @@ public class WaterTileView extends TileView {
 
         g2d.drawImage(image,xPixel* Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,tileWidth*Settings.SCALEFACTOR+3,tileHeight* Settings.SCALEFACTOR+5,null);
 
-
-        String debug = location.getX() + "," + location.getY();
-        Font f = new Font("Courier New", 1, 12);
-
-        g2d.setFont(f);
-        g2d.drawString(debug, (xPixel+ (tileWidth/3))*Settings.SCALEFACTOR, (yPixel + (tileHeight/2))*Settings.SCALEFACTOR);
-        g2d.dispose();
-
-        renderEntity(g2d);
-        g2d.dispose();
     }
 }

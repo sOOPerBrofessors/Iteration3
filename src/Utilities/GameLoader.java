@@ -3,13 +3,10 @@ package Utilities;
 import Controller.AI_Controller.AI_Controller;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.NPC.NPC;
-import Model.Items.Item;
+import Model.Map.AreaEffect.HealDamageAOE;
+import Model.Map.AreaEffect.TakeDamageAOE;
 import Model.Map.Location;
 import Model.Map.Map;
-import Model.Map.Tile.AirTile;
-import Model.Map.Tile.GrassTile;
-import Model.Map.Tile.WaterTile;
-import Model.Map.TileColumn;
 import Model.State.GameState.ActiveGameState;
 import Model.State.GameState.PausedGameState;
 import Utilities.AIStuff.NPCFactory;
@@ -19,7 +16,6 @@ import Utilities.ItemStuff.ItemManager;
 import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by dyeung on 4/6/16.
@@ -36,11 +32,13 @@ public class GameLoader {
     //Needs a constructor in order to create what type of occupation it is
     public GameLoader(Avatar player) {
         ImageAssets.init();
+        entities = new ArrayList<>();
         avatar = player;
         initMap();
-        initNPC();
+        //initNPC();
         initPlayer();
         initItems();
+        initAreaEffect();
         itemManager = new ItemManager(ItemFactory.getItems(), ItemFactory.getItemViews());
         activeGameState = new ActiveGameState(map, player, entities, itemManager);
         pausedGameState = new PausedGameState(map, player, entities, itemManager);
@@ -82,7 +80,8 @@ public class GameLoader {
     }
 
     private void initAreaEffect(){
-
+        map.addAOE(new HealDamageAOE(5), new Location(1,1,0));
+        map.addAOE(new TakeDamageAOE(10), new Location(3,1,0));
     }
 
     public Map getMap() {

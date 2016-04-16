@@ -6,16 +6,20 @@ import Model.Map.Tile.Tile;
 /**
  * Created by broskj on 4/5/16.
  */
-public class VehicleStrategy implements NavStrategy {
+public class VehicleStrategy extends NavStrategy {
     @Override
     public boolean move(Tile targetTile, Entity entity) {
-        return targetTile.moveVehicle(entity);
+        return false; ///targetTile.moveVehicle(entity);
     }
 
     public boolean canMove(Tile targetTile) {
 
-        return targetTile.canMoveVehicle();
+        return false; //targetTile.canMoveVehicle();
 
     }
 
+    @Override
+    public void visitGrassTerrain() {
+        canMoveFlag = true;
+    }
 }
