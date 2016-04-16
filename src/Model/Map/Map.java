@@ -3,6 +3,9 @@ package Model.Map;
 import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Map.Tile.Tile;
+import Utilities.AIStuff.Pathfinding.TileLocationTuple;
+
+import java.util.HashSet;
 
 /**
  * Created by sgl on 4/5/16.
@@ -19,6 +22,12 @@ public class Map {
     }
 
     private static TileColumn[][] mapOfTiles;
+
+    public Tile getTile(Location location) {
+
+        return getTileAt(location.getX(), location.getY(), location.getZ());
+
+    }
 
     public Tile getTopTile(int x, int y) {
         //TODO: Needs some better checks for height difference
@@ -39,6 +48,39 @@ public class Map {
             return mapOfTiles[x][y].getTopPosition();
         }
     } // end getTile
+
+    public TileLocationTuple getTileNeighbor(int x, int y, int z, Orientation orientation) {
+
+        int newX = x + orientation.x;
+        int newY = y + orientation.y;
+        Tile topTile = getTopTile(newX, newY);
+        int nextZ = getTopTilePosition(newX, newY) - 1;
+        int difference = nextZ - z;
+
+        if (difference <= 1) {
+
+            return new TileLocationTuple(topTile, new Location(newX, newY, nextZ));
+
+        }
+
+        // We don't want to consider tiles with a significant height difference neighbors so that pathfinding works well.
+        return null;
+
+    }
+
+    public HashSet<TileLocationTuple> getTileNeighbors(int x, int y, int z) {
+
+        HashSet<TileLocationTuple> neighbors = new HashSet<>();
+
+        for (Orientation orientation : Orientation.values()) {
+
+            neighbors.add(getTileNeighbor(x, y, z, orientation));
+
+        }
+
+        return neighbors;
+
+    }
 
     public TileColumn getTileColumn(int x, int y){
         if (x < 0 || y < 0 || x >= maxColumn || y >= maxRow) {

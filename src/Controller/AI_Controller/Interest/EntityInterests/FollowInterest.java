@@ -14,6 +14,7 @@ public class FollowInterest extends EntityInterest {
     public void initialize(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         // TODO: Need to pathfind to entity, and save the entities current location!
+        addToMovementQueue(computePathToTarget(memoryInterface.getNPC()));
 
     }
 
@@ -36,7 +37,8 @@ public class FollowInterest extends EntityInterest {
 
             if (!getTargetEntity().getLocation().equals(targetOldLocation)) {
 
-                // compute path to target
+                resetMovementQueue();
+                addToMovementQueue(computePathToTarget(memoryInterface.getNPC()));
 
             }
 

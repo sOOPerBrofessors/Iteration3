@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class NPCFactory {
 
     public static NPC makeGanondorf(){
-        Personality personality = PersonalityFactory.getPersonality("enemy");
+        Personality personality = PersonalityFactory.getPersonality("friendly");
         Faction faction = FactionFactory.getFaction("red");
         NPC gandorf = new NPC(new Smasher(), new Location(5,3,0), personality, faction);
         Brain brain = new Brain(gandorf);

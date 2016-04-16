@@ -66,7 +66,6 @@ public class GameLoader {
     }
     private void initNPC() {
 
-
         entities = NPCFactory.init();
 
         AI_Controller controller = new AI_Controller();
@@ -77,6 +76,9 @@ public class GameLoader {
         }
 
         controller.setMap(map);
+
+        controller.findPath(entities.get(0), new Location(1, 0, 1));
+
     }
 
     private void initAreaEffect(){

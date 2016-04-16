@@ -1,6 +1,7 @@
 package Controller.AI_Controller.FrontalLobe;
 
 import Controller.AI_Controller.Decision.Decision;
+import Controller.AI_Controller.Interest.EntityInterests.EntityInterest;
 import Controller.AI_Controller.Interest.Interest;
 import Controller.AI_Controller.Interest.PointInterests.ExploreInterest;
 import Controller.AI_Controller.Memory.Memory;
@@ -11,6 +12,7 @@ import Model.Entity.Entity;
 import Utilities.*;
 import Utilities.AIStuff.RelationshipList;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -89,7 +91,14 @@ public class FrontalLobe implements Tickable {
 
         for (Map.Entry<Interest, Double> entry : entityInterests.entrySet()) {
 
+            for (Map.Entry<Point, Entity> entry2 : memory.getVisualInformation().getEntityInformation().entrySet()) {
 
+                EntityInterest interest = (EntityInterest) entry.getKey();
+                interest.setTarget(entry2.getValue());
+                Decision decision = new Decision(interest, entry.getValue(), memory.getVisualInformation(), (Memory) memory);
+                decisionPicker.add(decision, decision.getValue());
+
+            }
 
         }
 
