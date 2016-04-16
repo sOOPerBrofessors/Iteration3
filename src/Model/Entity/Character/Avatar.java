@@ -45,7 +45,6 @@ public class Avatar extends Character {
 
     public static Avatar makeSummoner() {
         return new Avatar(new Summoner(), new Location(5,5,0));
-
     } // end factory method makeSneak
 
     public Inventory getInventory(){ //needed for InventoryView - Sam

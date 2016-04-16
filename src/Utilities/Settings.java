@@ -17,6 +17,7 @@ public class Settings {
 
     public static PersonFilter personFilter = PersonFilter.SAM;
 
+
     // Key Presses
     public static int UP_ARROW = KeyEvent.VK_UP;
     public static int LEFT_ARROW = KeyEvent.VK_LEFT;
@@ -71,5 +72,8 @@ public class Settings {
 //    public static int TILEHEIGHT = 62;
 
     public static final int MAX_INVENTORY_SIZE = 16;
+
+    // int to limit character count in game window
+    public static final int CHAR_LIMIT = 36;
 
 }

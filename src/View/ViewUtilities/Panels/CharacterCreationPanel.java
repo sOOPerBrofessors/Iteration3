@@ -1,6 +1,8 @@
 package View.ViewUtilities.Panels;
 
+import View.AreaViewport.HUDView.HUD;
 import View.ViewManager;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,6 +40,7 @@ public class CharacterCreationPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewManager.createSmasher();
+                HUD.setOccupationSprite(ImageAssets.smasherS);
             }
         });
 
@@ -46,6 +49,7 @@ public class CharacterCreationPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewManager.createSneak();
+                HUD.setOccupationSprite(ImageAssets.sneakS);
             }
         });
 
@@ -54,6 +58,7 @@ public class CharacterCreationPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewManager.createSummoner();
+                HUD.setOccupationSprite(ImageAssets.summonerS);
             }
         });
 
