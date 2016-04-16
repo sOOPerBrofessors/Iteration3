@@ -36,8 +36,8 @@ public class CharacterView extends EntityView implements OccupationViewVisitor {
 
         g2d.dispose();
 
-        // doesn't work
-        drawHealthBar(g);
+        if(entity.isInCombat())
+            drawHealthBar(g);
     }
 
     public void drawHealthBar(Graphics g) {
