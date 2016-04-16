@@ -12,6 +12,6 @@ public class Door extends Interactable {
     } // end constructor
 
     public void onInteract(Character character) {
-        s.onInteract(this, character);
+        //s.onInteract(character.getInventory);
     } // end onInteract
 } // end class Door

@@ -305,4 +305,8 @@ public abstract class Character extends Entity implements Observer, Subject {
 
     public CharacterStats getCharacterStats() {return stats;}
 
+    public Inventory getInventory(){ //needed for InventoryView - Sam
+        return inventory;
+    }
+
 } // end abstract class Character
