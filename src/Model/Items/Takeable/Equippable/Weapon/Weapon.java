@@ -12,29 +12,13 @@ import Model.Items.Takeable.Equippable.EquippableItem;
  * Weapon class that uses factory methods to create occupation-specific weapons.  Will
  *  likely need a decorator.
  */
-public class Weapon extends EquippableItem {
-
+public abstract class Weapon extends EquippableItem {
     private int weaponValue;
 
-    private Weapon(String name, String description, EquippableStrategy s, int value) {
+    protected Weapon(String name, String description, EquippableStrategy s, int weaponValue) {
         super(name, description, s);
-        this.weaponValue = value;
-        /*
-        todo: change constructor to take in weapon value
-         */
-    } // end private constructor
-
-    public static Weapon makeSmasherWeapon(String name, String description, int value) {
-        return new Weapon(name, description, new SmasherWeaponStrategy(), value);
-    } // end factory method makeSmasherWeapon
-
-    public Weapon makeSneakWeapon(String name, String description, int value) {
-        return new Weapon(name, description, new SneakWeaponStrategy(), value);
-    } // end factory method makeSneakWeapon
-
-    public Weapon makeSummonerWeapon(String name, String description, int value) {
-        return new Weapon(name, description, new SummonerWeaponStrategy(), value);
-    } // end factory method makeSummonerWeapon
+        this.weaponValue = weaponValue;
+    }
 
     public int getWeaponValue() { return this.weaponValue; }
 } // end class Weapon

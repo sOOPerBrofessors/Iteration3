@@ -23,4 +23,7 @@ public abstract class TakeableItem extends Item {
     } // end onInteract
 
     protected abstract void utilize(Character character); // either apply item's effect or equip
+
+    public String getName() { return name; }
+    public String getDescription() { return description; }
 }
