@@ -1,5 +1,6 @@
 package Model.Items;
 
+import Model.Entity.Character.Character;
 import Model.Map.MapObject;
 import Model.Model;
 import View.MapView.MapObjectView;
@@ -12,6 +13,7 @@ import View.MapView.MapObjectView;
  */
 public abstract class Item implements MapObject {
 
+    public abstract void onInteract(Character character);
 
 } // end abstract class Item
 

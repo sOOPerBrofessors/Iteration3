@@ -4,6 +4,7 @@ import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Entity;
 import Model.Inventory.Inventory;
+import Model.Items.Item;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
 import Model.Map.Location;
@@ -18,10 +19,12 @@ import Utilities.Observers.Observer;
  * Abstract class to act as the superclass to the player (Avatar) and NPCs.
  */
 public abstract class Character extends Entity implements Observer {
+
     private Occupation o;
     protected CharacterStats stats;
     protected Inventory inventory;
     private int radiusVisibility;
+
     protected Character(Occupation o, Location location) {
         super(Navigation.makeCharNav(), location);
         this.o = o;
@@ -216,5 +219,9 @@ public abstract class Character extends Entity implements Observer {
 
     public double getLevelMultiplier() {
         return stats.getLevelMultiplier();
+    }
+
+    public void pickUpItem(Item item){
+        inventory.pickUpItem(item);
     }
 } // end abstract class Character

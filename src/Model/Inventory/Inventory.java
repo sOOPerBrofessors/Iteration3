@@ -1,5 +1,6 @@
 package Model.Inventory;
 
+import Model.Items.Item;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
 import Utilities.ErrorLevel;
@@ -88,4 +89,8 @@ public class Inventory implements Observer, Subject{
     public void remove() {
 
     } // end remove
+
+    public void pickUpItem(Item item){
+        pack.add(item);
+    }
 } // end class Inventory
