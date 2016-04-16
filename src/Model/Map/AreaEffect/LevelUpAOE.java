@@ -12,7 +12,7 @@ public class LevelUpAOE extends AreaOfEffect{
 
     @Override
     public void onInteract(Character character) {
-        character.livesEffect(value);
+        character.levelEffect(value);
 
     }
 }

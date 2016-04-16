@@ -8,7 +8,7 @@ import Model.Entity.Character.Occupation.Occupation;
 import Model.Faction.Faction;
 import Model.Map.Location;
 import Utilities.Tickable;
-import Utilities.Visitor.EntityViewVisitor;
+import Utilities.Visitor.CharacterVisitor;
 
 /**
  * Created by Wimberley on 4/9/16.
@@ -62,7 +62,7 @@ public class NPC extends Character implements Tickable{
     }
 
     @Override
-    public void acceptEntityVisitor(EntityViewVisitor entityViewVisitor) {
-        entityViewVisitor.createNPCView(this);
+    public void acceptCharacterVisitor(CharacterVisitor characterVisitor) {
+        characterVisitor.visitNPC(this);
     }
 }

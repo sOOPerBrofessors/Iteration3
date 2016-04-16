@@ -4,7 +4,9 @@ import Controller.AI_Controller.AI_Controller;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.NPC.NPC;
 import Model.Map.AreaEffect.HealDamageAOE;
+import Model.Map.AreaEffect.LevelUpAOE;
 import Model.Map.AreaEffect.TakeDamageAOE;
+import Model.Map.AreaEffect.TeleportAOE;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.State.GameState.ActiveGameState;
@@ -73,7 +75,7 @@ public class GameLoader {
 
         for (int i = 0; i < entities.size(); i++) {
             entities.get(i).setController(controller);
-            map.addEntity(entities.get(i));
+            map.addCharacter(entities.get(i));
         }
 
         controller.setMap(map);
@@ -81,15 +83,8 @@ public class GameLoader {
 
     private void initAreaEffect(){
         map.addAOE(new HealDamageAOE(5), new Location(1,1,0));
-        map.addAOE(new TakeDamageAOE(10), new Location(3,1,0));
-    }
-
-    public Map getMap() {
-        return map;
-    }
-
-    public Avatar getAvatar() {
-        return avatar;
+        map.addAOE(new LevelUpAOE(1), new Location(3,1,0));
+        map.addAOE(new TeleportAOE(0, new Location(10,10,1)), new Location(3,1,0));
     }
 
     public ActiveGameState getActiveGameState() {

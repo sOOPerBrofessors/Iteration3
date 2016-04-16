@@ -1,15 +1,18 @@
 package View.MapView;
 
-import Model.Entity.Character.Avatar;
-import Model.Entity.Character.NPC.NPC;
+import Model.Entity.Character.Character;
+import Model.Items.Item;
+import Model.Map.AreaEffect.AreaOfEffect;
 import Model.Map.Location;
+import Model.Map.Tile.Terrain.Terrain;
 import Model.Map.Tile.Tile;
+import Model.Projectile.Projectile;
 import Utilities.Observers.TileObserver;
 import Utilities.Settings;
-import Utilities.Visitor.EntityViewVisitor;
-import Utilities.Visitor.TerrainVisitor;
+import Utilities.Visitor.TileVisitor;
 import View.EntityView.CharacterView;
-import View.EntityView.EntityView;
+import View.MapView.AOEView.AreaOfEffectView;
+import View.MapView.ProjectileView.ProjectileView;
 import View.TerrainView.*;
 import View.ItemView.ItemView;
 
@@ -20,7 +23,7 @@ import java.awt.*;
 /**
  * Created by dyeung on 4/7/16.
  */
-public class TileView extends JComponent implements EntityViewVisitor, TileObserver, TerrainVisitor {
+public class TileView extends JComponent implements TileObserver, TileVisitor {
 
     protected Location location;
     protected int tileWidth = Settings.TILEWIDTH;
@@ -28,30 +31,28 @@ public class TileView extends JComponent implements EntityViewVisitor, TileObser
     protected int xPixel; // on the map
     protected int yPixel; // on the map
     protected Image image;
-    private EntityView entityView;
+    private CharacterView characterView;
     private Tile tile;
     private ItemView itemView;
-
+    private AreaOfEffectView areaOfEffectView;
     private TerrainView terrainView;
+    private ProjectileView projectileView;
     public TileView(Tile tile, Location location){
         this.location = location;
 
         this.tile = tile;
         init();
         tile.acceptTileObserver(this);
+        tile.acceptTileVisitor(this);
     }
     private void init(){
-        tile.getTerrain().acceptTerrainVisitor(this);
+        //tile.getTerrain().acceptTerrainVisitor(this);
         updateTileView();
     }
 
     //TODO: make it so it just records the tile...this should not have to have
     protected void updateTileView(){
-        if (tile.hasEntity()){
-            tile.getEntity().acceptEntityVisitor(this);
-        }else {
-            removeEntityView();
-        }
+       tile.acceptTileVisitor(this);
     }
 
      public void setPixels(int x, int y){
@@ -73,26 +74,38 @@ public class TileView extends JComponent implements EntityViewVisitor, TileObser
     private void renderObjects(Graphics2D g2d){
         int centeredX = xPixel + Settings.TILEWIDTH/4;
         int centeredY = yPixel + Settings.TILEHEIGHT/2;
-        renderEntity(g2d, centeredX, centeredY);
+
+        renderAOE(g2d, centeredX, centeredY);
         renderItem(g2d, centeredX, centeredY);
+        renderEntity(g2d, centeredX, centeredY);
     }
-    protected boolean hasEntity(){
-        if (entityView == null) {
+    private void renderTerrain(Graphics g){
+        terrainView.setXY(xPixel,yPixel);
+        terrainView.paintComponent(g, location.getX(), location.getY());
+    }
+    private void renderAOE(Graphics g, int centerX, int centerY){
+        if (hasAOE()) {
+            areaOfEffectView.setPixels(centerX, centerY);
+            Graphics2D g2d = (Graphics2D) g.create();
+            areaOfEffectView.paintComponent(g2d);
+        }
+    }
+    protected boolean hasCharacter(){
+        if (characterView == null) {
             return false;
         }else {
             return true;
         }
     }
-
-    private void renderTerrain(Graphics g){
-        terrainView.setXY(xPixel,yPixel);
-        terrainView.paintComponent(g);
-        terrainView.renderDebug(g,location.getX(),location.getY());
-    }
-
-
     protected boolean hasItem(){
         if (itemView == null) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+    protected boolean hasAOE(){
+        if (areaOfEffectView == null) {
             return false;
         }else {
             return true;
@@ -101,12 +114,9 @@ public class TileView extends JComponent implements EntityViewVisitor, TileObser
 
     //TODO: change this so it just renders map object views
     private void renderEntity(Graphics2D g2d, int centeredX, int centeredY){
-        if (hasEntity()){
-            //System.out.println(location.getX() + "," +location.getY() +"," +location.getZ());
-//            System.out.println("TileView entity:" + location.getX() + "," + location.getY() + "," + location.getZ());
-//            System.out.println("TileView entity:" + centeredX + "," + centeredY);
-            entityView.setPixels(centeredX, centeredY);
-            entityView.paintComponent(g2d);
+        if (hasCharacter()){
+            characterView.setPixels(centeredX, centeredY);
+            characterView.paintComponent(g2d);
         }
     }
 
@@ -119,25 +129,17 @@ public class TileView extends JComponent implements EntityViewVisitor, TileObser
         }
     }
 
-    @Override
-    public void createAvatarView(Avatar avatar) {
-        entityView = new CharacterView(avatar);
-    }
-    @Override
-    public void createNPCView(NPC npc) {
-        entityView = new CharacterView(npc);
-    }
+
 
     @Override //This function is called when a tile is updated (for an example when a tile has a new entity)
     public void update() {
-        //System.out.println("TileView: entity was moved");
         updateTileView();
     }
 
-    private void removeEntityView(){
-        if(entityView != null) {
-            entityView.removeObservable();
-            entityView = null;
+    private void removeCharacterView(){
+        if(characterView != null) {
+            characterView.removeObservable();
+            characterView = null;
         }
     }
 
@@ -150,29 +152,35 @@ public class TileView extends JComponent implements EntityViewVisitor, TileObser
         itemView = null;
     }
 
+
     @Override
-    public void visitWaterTerrain() {
-        terrainView = new WaterTerrainView();
+    public void visitTileTerrain(Terrain terrain) {
+        terrainView = new TerrainView(terrain);
     }
 
     @Override
-    public void visitGrassTerrain() {
-        terrainView = new GrassTerrainView();
+    public void visitTileHasCharacter(Character character) {
+        removeCharacterView();
+        if (character != null) characterView = new CharacterView(character);
+    }
+
+//    @Override
+//    public void visitTileHasItem(Item item) {
+//        //do nothing
+//    }
+
+    @Override
+    public void visitTileHasAOE(AreaOfEffect areaOfEffect) {
+        if(areaOfEffect != null) {
+            areaOfEffectView = new AreaOfEffectView(areaOfEffect);
+        }
     }
 
     @Override
-    public void visitAirTerrain() {
-        terrainView = new AirTerrainView();
-    }
-
-    @Override
-    public void visitRiverTerrain() {
-        terrainView = new RiverTerrainView();
-    }
-
-    @Override
-    public void visitDirtTerrain() {
-        terrainView = new DirtTerrainView();
+    public void visitTileHasProjectile(Projectile projectile) {
+        if(projectile != null) {
+            projectileView = new ProjectileView(projectile);
+        }
     }
 
 }

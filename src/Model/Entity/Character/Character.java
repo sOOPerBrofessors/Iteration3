@@ -16,6 +16,7 @@ import Model.Stats.CharacterStats;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
+import Utilities.Visitor.CharacterVisitable;
 
 import java.util.ArrayList;
 
@@ -24,7 +25,7 @@ import java.util.ArrayList;
  *
  * Abstract class to act as the superclass to the player (Avatar) and NPCs.
  */
-public abstract class Character extends Entity implements Observer, Subject {
+public abstract class Character extends Entity implements Observer, Subject, CharacterVisitable {
     private ArrayList<Observer> observers;
 
     private Occupation o;
@@ -85,6 +86,11 @@ public abstract class Character extends Entity implements Observer, Subject {
         stats.livesEffect(amount);
         alert();
     } // end livesEffect
+
+    public void levelEffect(int amount) {
+        stats.levelEffect(amount);
+        alert();
+    } // end levelsEffect
 
     public void manaEffect(int amount) {
         stats.manaEffect(amount);

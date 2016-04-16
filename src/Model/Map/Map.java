@@ -4,6 +4,7 @@ import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Map.AreaEffect.AreaOfEffect;
 import Model.Map.Tile.Tile;
+import Model.Projectile.Projectile;
 
 /**
  * Created by sgl on 4/5/16.
@@ -30,7 +31,7 @@ public class Map {
         int newZ = getTopTilePosition(newX, newY);
         if (checkBounds(newX, newY) && checkHeightDifference(currentZ, newZ) && getTopTile(newX,newY).moveCharacter(character)) {
             //Map needs to handle removement of the current entity on that tile.
-            getTileAt(character.getX(), character.getY(), character.getZ()).removeEntity();
+            getTileAt(character.getX(), character.getY(), character.getZ()).removeCharacter();
             character.updateLocation(new Location(newX, newY, newZ));
             return true;
         }else{
@@ -104,17 +105,16 @@ public class Map {
 
     //FOR LOADING IN MAP OBJECTS (ENTITY/ITEM)
     //Entities include projectile things that could be anywhere on 3d axis
-    public void addEntity(Entity entity){
-        mapOfTiles[entity.getX()][entity.getY()].addEntity(entity);
-    }
+    public void addProjectile(Projectile projectile){
 
+    }
     //Characters are essentially things that exist on the top of group types
     public void addCharacter(Character character){
         mapOfTiles[character.getX()][character.getY()].addCharacter(character);
     }
 
-    public void removeEntity(Entity entity){
-        mapOfTiles[entity.getX()][entity.getY()].removeEntity(entity);
+    public void removeCharacter(Character character){
+        mapOfTiles[character.getX()][character.getY()].removeCharacter(character);
     }
 
     public void addAOE(AreaOfEffect areaOfEffect, Location location){

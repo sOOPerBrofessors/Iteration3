@@ -6,9 +6,7 @@ import Model.Entity.Character.Occupation.Sneak;
 import Model.Entity.Character.Occupation.Summoner;
 import Model.Inventory.Inventory;
 import Model.Map.Location;
-import Utilities.Observers.Observer;
-import Utilities.Visitor.EntityViewVisitor;
-import View.EntityView.CharacterView;
+import Utilities.Visitor.CharacterVisitor;
 
 
 /**
@@ -65,9 +63,7 @@ public class Avatar extends Character {
     } // end remove
 
     @Override
-    public void acceptEntityVisitor(EntityViewVisitor entityViewVisitor) {
-        entityViewVisitor.createAvatarView(this);
+    public void acceptCharacterVisitor(CharacterVisitor characterVisitor) {
+        characterVisitor.visitAvatar(this);
     }
-
-
 }
