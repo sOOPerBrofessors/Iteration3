@@ -1,5 +1,6 @@
 package Utilities;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /**
@@ -46,7 +47,7 @@ public class Settings {
     public static int FOUR = 0x34;
     public static int DROP = 0x44;
     public static int MAP = 0x4D;
-    public static int INTERACT = 1000; //This was overwriting the "Q" key which is used for movement.
+    public static int INTERACT = KeyEvent.VK_ENTER; //This was overwriting the "Q" key which is used for movement.
     public static int SKILLS = 10001; //"originally"0x53 " s"This is most likely overwritting the "S" key which is used for movement;
 
 

@@ -1,8 +1,11 @@
 package View.EntityView;
 
+import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
+import Model.Entity.Character.NPC.NPC;
 import Model.Map.Orientation;
 import Utilities.Settings;
+import Utilities.Visitor.CharacterVisitor;
 import Utilities.Visitor.OccupationVisitor;
 import View.EntityView.AvatarViewFactory.OccupationViewFactory;
 
@@ -13,7 +16,7 @@ import java.util.Set;
  * Created by dyeung on 4/6/16.
  */
 
-public class CharacterView extends EntityView implements OccupationVisitor {
+public class CharacterView extends EntityView implements OccupationVisitor, CharacterVisitor {
     //Width height scale formula is Height/Width * new width = new height
     private Image image;
     private Character character;
@@ -86,4 +89,13 @@ public class CharacterView extends EntityView implements OccupationVisitor {
         orientationView = OccupationViewFactory.createSneakView(orientation);
     }
 
+    @Override
+    public void visitAvatar(Avatar avatar) {
+
+    }
+
+    @Override
+    public void visitNPC(NPC npc) {
+
+    }
 }

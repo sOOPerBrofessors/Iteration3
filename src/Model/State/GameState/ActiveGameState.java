@@ -23,7 +23,7 @@ public class ActiveGameState extends GameState {
     @Override
     public void tick(){
         for(int i = 0; i < entities.size(); i++){
-            entities.get(i).tick();
+            //entities.get(i).tick();
         }
     }
 
@@ -66,7 +66,9 @@ public class ActiveGameState extends GameState {
 
     public void playerSecondSkill(){}
 
-    public void playerInteract(){}
+    public void playerInteract(){
+        avatar.checkInteract(map);
+    }
 
     public void setPlayer(Avatar player) {
         this.player = player;
