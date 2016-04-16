@@ -5,6 +5,7 @@ import Model.Entity.Character.NPC.NPC;
 import Model.Map.Map;
 
 import Model.Map.Orientation;
+import Utilities.ItemStuff.ItemManager;
 
 import java.util.ArrayList;
 
@@ -14,8 +15,8 @@ import java.util.ArrayList;
 
 public class ActiveGameState extends GameState {
 
-    public ActiveGameState(Map map, Avatar avatar, ArrayList<NPC> entities){
-        super(map,avatar, entities);
+    public ActiveGameState(Map map, Avatar avatar, ArrayList<NPC> entities, ItemManager itemManager){
+        super(map,avatar, entities, itemManager);
     }
 
 
@@ -29,26 +30,32 @@ public class ActiveGameState extends GameState {
     // player commands from controller
     public void movePlayerN(){
         avatar.move(map, Orientation.NORTH);
+        itemManager.contact(avatar);
     }
 
     public void movePlayerNE(){
         avatar.move(map, Orientation.NORTHEAST);
+        itemManager.contact(avatar);
     }
 
     public void movePlayerSE(){
         avatar.move(map, Orientation.SOUTHEAST);
+        itemManager.contact(avatar);
     }
 
     public void movePlayerS(){
         avatar.move(map, Orientation.SOUTH);
+        itemManager.contact(avatar);
     }
 
     public void movePlayerSW(){
         avatar.move(map, Orientation.SOUTHWEST);
+        itemManager.contact(avatar);
     }
 
     public void movePlayerNW(){
         avatar.move(map, Orientation.NORTHWEST);
+        itemManager.contact(avatar);
     }
 
     public void playerAttack(){}

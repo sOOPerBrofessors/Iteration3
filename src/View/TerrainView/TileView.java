@@ -9,6 +9,7 @@ import Utilities.Settings;
 import Utilities.Visitor.EntityViewVisitor;
 import View.EntityView.CharacterView;
 import View.EntityView.EntityView;
+import View.ItemView.ItemView;
 import View.MapView.MapObjectView;
 
 import javax.swing.*;
@@ -28,12 +29,14 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
     protected Image image;
     private EntityView entityView;
     private Tile tile;
+    private ItemView itemView;
 
     public TileView(Tile tile){
         this.tile = tile;
         updateTileView();
         tile.acceptTileObserver(this);
     }
+
     //TODO: make it so it just records the tile...this should not have to have
     protected void updateTileView(){
         if (tile.hasEntity()){
@@ -42,6 +45,7 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
             removeEntityView();
         }
     }
+
      public void setPixels(int x, int y){
         xPixel = x;
         yPixel = y;
@@ -60,6 +64,15 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
             return true;
         }
     }
+
+    protected boolean hasItem(){
+        if (itemView == null) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+
     //TODO: change this so it just renders map object views
     public void renderEntity(Graphics2D g){
         if (hasEntity()){
@@ -68,6 +81,13 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
             int centeredY = yPixel - Settings.TILEHEIGHT/2;
             entityView.setPixels(centeredX, centeredY);
             entityView.paintComponent(g);
+        }
+    }
+
+    public void renderItem(Graphics g){
+        if(hasItem()) {
+            itemView.setPixels(xPixel, yPixel);
+            itemView.paintComponent((Graphics2D)g.create());
         }
     }
 
@@ -85,6 +105,7 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
         //System.out.println("TileView: entity was moved");
         updateTileView();
     }
+
     private void removeEntityView(){
         if(entityView != null) {
             entityView.removeObservable();
@@ -92,5 +113,11 @@ public abstract class TileView extends JComponent implements EntityViewVisitor, 
         }
     }
 
+    public void addItemView(ItemView itemView){
+        this.itemView = itemView;
+    }
 
+    public void removeItemView(){
+        itemView = null;
+    }
 }

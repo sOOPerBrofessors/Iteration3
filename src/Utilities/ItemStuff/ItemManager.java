@@ -1,35 +1,64 @@
 package Utilities.ItemStuff;
 
+import Model.Entity.Character.Character;
 import Model.Items.Item;
 import Model.Map.Location;
+import Utilities.Observers.Observer;
+import Utilities.Observers.Subject;
 import View.ItemView.ItemView;
 
-import java.awt.*;
 import java.util.HashMap;
 
 /**
  * Created by Wimberley on 4/14/16.
  */
-public class ItemManager{
+public class ItemManager implements Subject{
 
-    private static HashMap<Location, Item> items;
-    private static HashMap<Item, ItemView> itemViews;
+    private HashMap<Location, Item> items;
+    private HashMap<Item, ItemView> itemViews;
+    private Observer observer;
 
-    public static void setItems(HashMap<Location, Item> newItems) {
-        items = newItems;
+    public ItemManager(HashMap<Location, Item> items, HashMap<Item, ItemView> itemViews){
+        this.items = items;
+        this.itemViews = itemViews;
     }
 
-    public static HashMap<Location, Item> getItems(){
+    public HashMap<Location, Item> getItems(){
         return items;
     }
 
-    public static void renderItems(Graphics g, Location offset){
-        for(ItemView view: itemViews.values()){
-            view.paintComponent(g, offset);
+    public void contact(Character character){
+        for(Location key : items.keySet()) {
+            if (key.equals(character.getLocation())) {
+                character.pickUpItem(items.get(key));
+                itemViews.remove(items.get(key));
+                alert();
+            }
         }
     }
 
-    public static void setItemViews(HashMap<Item, ItemView> views) {
-        itemViews = views;
+    public void interact(Character character){
+        //interactable items
+    }
+
+    public ItemView[] getItemViews(){
+        ItemView [] views;
+        views = itemViews.values().toArray(new ItemView[itemViews.size()]);
+        return views;
+    }
+
+    @Override
+    public void addObserver(Observer o) {
+        observer = o;
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observer = null;
+    }
+
+    @Override
+    public void alert() {
+        observer.update();
     }
 }

@@ -9,8 +9,8 @@ import Model.Map.Tile.Tile;
  */
 public class Map {
 
-    private static int maxRow;
-    private static int maxColumn;
+    private int maxRow;
+    private int maxColumn;
 
     public Map(TileColumn[][] tiles){
         mapOfTiles = tiles;
@@ -18,7 +18,7 @@ public class Map {
         maxColumn = tiles[0].length;
     }
 
-    private static TileColumn[][] mapOfTiles;
+    private TileColumn[][] mapOfTiles;
 
     public Tile getTopTile(int x, int y) {
         //TODO: Needs some better checks for height difference
@@ -30,7 +30,7 @@ public class Map {
         }
     } // end getTile
 
-    public static int getTopTilePosition(int x, int y) {
+    public int getTopTilePosition(int x, int y) {
         //TODO: Needs some better checks for height difference
         //might be more helpful to add more defining functions withing 'TileColumn' to check for height
         if (x < 0 || y < 0 || x >= maxColumn || y >= maxRow) {

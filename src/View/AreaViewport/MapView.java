@@ -1,6 +1,9 @@
 package View.AreaViewport;
 
 import Model.Map.Location;
+import Utilities.ItemStuff.ItemManager;
+import Utilities.Observers.Observer;
+import View.ItemView.ItemView;
 import View.MapView.TileColumnView;
 
 import java.awt.*;
@@ -8,7 +11,10 @@ import java.awt.*;
 /**
  * Created by dyeung on 4/13/16.
  */
-public class MapView {
+public class MapView implements Observer{
+
+    private ItemManager itemManager;
+    private ItemView[] itemViews;
     private TileColumnView[][] tileColumnView;
 
     public MapView(TileColumnView[][] tileColumnView){
@@ -45,6 +51,38 @@ public class MapView {
     public void setNonVisibleState(int x, int y){
         if (notOutBounds(x,y)){
             tileColumnView[x][y].setNonVisibleState();
+        }
+    }
+
+    public void setItemManager(ItemManager itemManager){
+        this.itemManager = itemManager;
+        itemManager.addObserver(this);
+        itemManager.alert();
+    }
+
+    @Override
+    public void update() {
+
+        clearItemViews();
+
+        // updates item views
+        itemViews = itemManager.getItemViews();
+        for(ItemView view: itemViews){
+            tileColumnView[view.getX()][view.getY()].setItemView(view);
+        }
+    }
+
+    @Override
+    public void remove() {
+
+    }
+
+    public void clearItemViews(){
+        if(itemViews != null) {
+            // clear old item views
+            for (ItemView view : itemViews) {
+                tileColumnView[view.getX()][view.getY()].clearItemView();
+            }
         }
     }
 }
