@@ -1,10 +1,9 @@
 package View.AreaViewport;
 
 import Model.Map.Location;
-import Model.Map.TileColumn;
 import Model.Map.Map;
 import View.MapView.TileColumnView;
-import View.ViewUtilities.ImageAssets;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 /**
  * Created by dyeung on 4/7/16.

@@ -1,12 +1,10 @@
 package View.EntityView;
 
-import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Map.Orientation;
 import Utilities.Settings;
 import Utilities.Visitor.OccupationViewVisitor;
 import View.EntityView.AvatarViewFactory.OccupationViewFactory;
-import View.ViewUtilities.ImageAssets;
 
 import java.awt.*;
 

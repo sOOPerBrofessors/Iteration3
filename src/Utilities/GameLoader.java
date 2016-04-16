@@ -16,7 +16,7 @@ import Utilities.AIStuff.NPCFactory;
 import Utilities.GameFactory.MapFactory;
 import Utilities.ItemStuff.ItemFactory;
 import Utilities.ItemStuff.ItemManager;
-import View.ViewUtilities.ImageAssets;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.util.ArrayList;
 import java.util.HashMap;

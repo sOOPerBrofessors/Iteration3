@@ -70,6 +70,11 @@ public class ViewManager implements Subject {
         initGame(Avatar.makeSummoner());
     }
 
+    public void closeAll(){
+        closeInventory();
+        closeStats();
+    }
+
     public void displayInventory() {
         gamePanel.addInventoryView();
         stateManager.pauseGame();
@@ -77,6 +82,16 @@ public class ViewManager implements Subject {
 
     public void closeInventory(){
         gamePanel.closeInventoryView();
+        stateManager.activeGame();
+    }
+
+    public void displayStats() {
+        gamePanel.addStatsView();
+        stateManager.pauseGame();
+    }
+
+    public void closeStats(){
+        gamePanel.closeStatsView();
         stateManager.activeGame();
     }
 
