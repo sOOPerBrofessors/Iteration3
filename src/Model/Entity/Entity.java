@@ -107,7 +107,7 @@ public abstract class Entity implements EntityObservable, MapObject, EntityVisit
         int newX = location.getX();
         int newY = location.getY();
         int newZ = location.getZ();
-        location.setNewLocation(newX, newY, newZ);
+        this.location.setNewLocation(newX, newY, newZ);
         notifyObserverMove();
     }
 

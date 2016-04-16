@@ -10,9 +10,9 @@ public enum Orientation {
     SOUTHEAST(1,0,0),
     SOUTH(0,1,0),
     SOUTHWEST(-1,1,0),
-    NORTHWEST(-1,0,0),
-    UP(0,0,1),
-    DOWN(0,0,-1);
+    NORTHWEST(-1,0,0);
+//    UP(0,0,1),
+//    DOWN(0,0,-1);
     //Since this is a structure we can have it public
     public int x;
     public int y;

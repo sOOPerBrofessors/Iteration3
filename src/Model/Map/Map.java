@@ -28,8 +28,10 @@ public class Map {
         int newX = newLocation.getX();
         int newY = newLocation.getY();
         int newZ = getTopTilePosition(newX, newY);
-        if (checkHeightDifference(currentZ, newZ) && getTopTile(newX,newY).moveCharacter(character)) {
-            character.updateLocation(newLocation);
+        if (checkBounds(newX, newY) && checkHeightDifference(currentZ, newZ) && getTopTile(newX,newY).moveCharacter(character)) {
+            //Map needs to handle removement of the current entity on that tile.
+            getTileAt(character.getX(), character.getY(), character.getZ()).removeEntity();
+            character.updateLocation(new Location(newX, newY, newZ));
             return true;
         }else{
             return false;
@@ -49,6 +51,13 @@ public class Map {
 
 
     //Other stuff for map
+    public boolean checkBounds(int x, int y){
+        if (x < 0 || y < 0 || x >= maxColumn || y >= maxRow) {
+            return false;
+        }else {
+            return true;
+        }
+    }
 
     public Tile getTopTile(int x, int y) {
         //TODO: Needs some better checks for height difference

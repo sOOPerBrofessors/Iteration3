@@ -48,10 +48,6 @@ public class TileColumn implements TileVisitable, TerrainVisitable{
         topGroundTile++;
     }
 
-    public ArrayList<Tile> getTileList(){
-        return tileList;
-    }
-
     public Tile getTopTile(){
         return tileList.get(topTileNotAir - 1);
     }
@@ -59,7 +55,7 @@ public class TileColumn implements TileVisitable, TerrainVisitable{
         return tileList.get(i);
     }
     public int getTopPosition(){
-        return topTileNotAir;
+        return topTileNotAir - 1;
     }
 
     public int getMaxSize() {

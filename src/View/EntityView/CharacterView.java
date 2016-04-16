@@ -16,8 +16,10 @@ import java.awt.*;
 public class CharacterView extends EntityView implements OccupationVisitor {
     //Width height scale formula is Height/Width * new width = new height
     private Image characterImage;
+    private Character character;
     public CharacterView(Character character){
         super(character);
+        this.character = character;
         character.getOccupation().acceptOccupationVistor(this, orientation); //This will create the correct Occupation View
         characterImage = orientationView.getCurrentDirectionImage();
     }
@@ -40,8 +42,8 @@ public class CharacterView extends EntityView implements OccupationVisitor {
     }
 
     public void drawHealthBar(Graphics g) {
-        double health = entity.getHealth();
-        double baseHealth = entity.getBaseHealth();
+        double health = character.getHealth();
+        double baseHealth = character.getBaseHealth();
         int width = Settings.GAMEWIDTH;
         int height = Settings.GAMEHEIGHT;
 
@@ -53,8 +55,9 @@ public class CharacterView extends EntityView implements OccupationVisitor {
 
     @Override
     public void updateOrientation(){
-        if (orientation != entity.getOrientation()){
-            orientationView.setDirection(entity.getOrientation());
+        if (orientation != character.getOrientation()){
+            orientation = character.getOrientation();
+            orientationView.setDirection(character.getOrientation());
             characterImage = orientationView.getCurrentDirectionImage();
         }
     }

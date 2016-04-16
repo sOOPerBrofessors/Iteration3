@@ -31,9 +31,10 @@ public class GameLoader {
     //Needs a constructor in order to create what type of occupation it is
     public GameLoader(Avatar player) {
         ImageAssets.init();
+        entities = new ArrayList<>();
         avatar = player;
         initMap();
-        //initNPC();
+        initNPC();
         initPlayer();
         initItems();
         initAreaEffect();

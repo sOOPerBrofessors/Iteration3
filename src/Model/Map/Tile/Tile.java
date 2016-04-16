@@ -75,6 +75,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
     }
     public void addEntity(Entity entity) {
         this.entity = entity;
+        notifyObservers();
     }
 
     public void removeEntity() {
@@ -84,6 +85,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
 
     public void addAOE(AreaOfEffect areaOfEffect){
         this.areaOfEffect = areaOfEffect;
+        notifyObservers();
     }
 
     //ADD ALL INTERACTIONS TO ENTITY ON THAT TILE

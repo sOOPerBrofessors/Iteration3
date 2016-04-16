@@ -28,14 +28,21 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
     protected int yPixel; // on the map
     protected Location location;
     protected Orientation orientation;
-    protected Character entity; //property that  is being observered
+
+    /*Entity is private because it is only available to update its position and orientation.
+    All the view rendering must be done by that specific class. This is to avoid specific items
+    being rendered at wrong times (IE a projectile having a health bar). The projectile should have its own orientation view
+    to render
+    */
+    private Entity entity; //property that  is being observered
 
 
-    public EntityView(Character observerable){
+    public EntityView(Entity observerable){
         entity = observerable;
         observerable.addObserver(this);
         location = entity.getLocation();
         orientation = entity.getOrientation();
+
         x = location.getX();
         y = location.getY();
     }
@@ -50,8 +57,10 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
     public abstract void updateOrientation();
 
     private void updateLocation(){
-        x = location.getX();
-        y = location.getY();
+        x = entity.getX();
+        y = entity.getY();
+//        x = location.getX();
+//        y = location.getY();
         //System.out.println("EntityView: " + x + "," + y + " : " + xPixel + "," + yPixel);
     }
 
