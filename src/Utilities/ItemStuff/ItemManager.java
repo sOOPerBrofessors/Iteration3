@@ -62,7 +62,7 @@ public class ItemManager implements Subject{
                     mapItemViews.remove(key);
                     mapItemViews.put(interactableItems.get(key), temp);
                     alert();
-                }:x
+                }
             }
         }
     }

@@ -125,7 +125,7 @@ public class GamePlayController extends Controller{
         commands.put(Settings.ONE, new Command() {
             @Override
             public void execute() {
-                state.playerFirstSkill();
+                state.playerExecuteSkill(0);
             }
         });
 
