@@ -1,11 +1,12 @@
 package Utilities.GameFactory;
 
 import Model.Map.Map;
-import Model.Map.Tile.AirTile;
-import Model.Map.Tile.GrassTile;
-import Model.Map.Tile.RiverTile;
-import Model.Map.Tile.WaterTile;
+import Model.Map.Tile.Tile;
 import Model.Map.TileColumn;
+import Model.Map.Tile.Terrain.AirTerrain;
+import Model.Map.Tile.Terrain.GrassTerrain;
+import Model.Map.Tile.Terrain.RiverTerrain;
+import Model.Map.Tile.Terrain.WaterTerrain;
 
 /**
  * Created by dyeung on 4/15/16.
@@ -27,15 +28,15 @@ public class MapFactory {
                     TileColumn tC = tmpList[i][j];
                     if (k < 1) {
                         if ((i == 2 || i == 1) && (j > 2 && j < 6)) {
-                            tC.visitWaterTile(new WaterTile());
+                            tC.addWaterTile(new Tile(new WaterTerrain()));
                         } else {
-                            tC.visitGrassTile(new GrassTile());
+                            tC.addGrassTile(new Tile(new GrassTerrain()));
                         }
                     } else {
                         if (j == 8 && (i >= 2 && i <= 9) && k < (i)) {
-                            tC.visitGrassTile(new GrassTile());
+                            tC.addGrassTile(new Tile(new GrassTerrain()));
                         } else {
-                            tC.visitAirTile(new AirTile());
+                            tC.addAirTile(new Tile(new AirTerrain()));
                         }
                     }
                 }
@@ -52,15 +53,15 @@ public class MapFactory {
                     TileColumn tC = tmpList[i][j];
                     if (k < 1) {
                         if ((i == 2 || i == 1) && (j > 2 && j < 8)) {
-                            tC.visitWaterTile(RiverTile.makeSERiverTile(2));
+                            tC.addWaterTile(new Tile(new WaterTerrain()));
                         } else {
-                            tC.visitGrassTile(new GrassTile());
+                            tC.addGrassTile(new Tile(new GrassTerrain()));
                         }
                     } else {
                         if (j == 8 && (i >= 2 && i <= 9) && k < (i)) {
-                            tC.visitGrassTile(new GrassTile());
+                            tC.addGrassTile(new Tile(new GrassTerrain()));
                         } else {
-                            tC.visitAirTile(new AirTile());
+                            tC.addAirTile(new Tile(new AirTerrain()));
                         }
                     }
                 }
@@ -68,4 +69,5 @@ public class MapFactory {
         }
         return new Map(tmpList);
     }
+
 }

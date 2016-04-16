@@ -96,7 +96,7 @@ public class HUD {
         g2d.drawString(xpMessage, (195+(310/2) - fm.stringWidth(xpMessage)/2), 116);
         g2d.drawString(nextLevel, 505-fm.stringWidth(nextLevel)/2-25, 116);
 
-        if(healthRatio < 0.4)
+        if(healthRatio <= 0.4)
             pulseOrb(g2d, healthRatio);
         else if(!avatar.isInCombat())
             statusColor = new Color(5, 255, 78, 200);

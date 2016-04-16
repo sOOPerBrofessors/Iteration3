@@ -1,6 +1,7 @@
 package Model.Inventory;
 
 import Model.Items.Item;
+import Utilities.GameMessageQueue;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,7 @@ public class Pack {
     public void add(Item item) {
         if(item != null && size() < cap) {
             items.add(item);
+            GameMessageQueue.push("Picked up an item.");
         }
     } // end add
 

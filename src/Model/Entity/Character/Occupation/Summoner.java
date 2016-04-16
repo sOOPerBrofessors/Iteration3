@@ -5,7 +5,7 @@ import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
 import Model.Map.Orientation;
 import Model.Stats.CharacterStats;
-import Utilities.Visitor.OccupationViewVisitor;
+import Utilities.Visitor.OccupationVisitor;
 
 /**
  * Created by broskj on 4/6/16.
@@ -30,7 +30,7 @@ public class Summoner extends Occupation {
     } // end initStats
 
     @Override
-    public void acceptOccupationViewVistor(OccupationViewVisitor occupationViewVisitor, Orientation orientation) {
-        occupationViewVisitor.createSummonerView(orientation);
+    public void acceptOccupationVistor(OccupationVisitor occupationViewVisitor, Orientation orientation) {
+        occupationViewVisitor.visitSneak(orientation);
     }
 } // end class Summoner
