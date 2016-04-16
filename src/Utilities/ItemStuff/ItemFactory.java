@@ -31,7 +31,7 @@ public class ItemFactory {
         interactableItems = new HashMap<>();
 
         // create new health potion
-        TakeableItem healthPotion = Potion.makeHealthPotion(10);
+        TakeableItem healthPotion = Potion.makeHealthPotion("Health Potion", "A health potion", 10);
         ItemView healthView = new UsableView(ImageAssets.healthPotion);
         Location healthLocation = new Location(4,4,map.getTopTilePosition(4,4));
         healthView.setLocation(4,4);
@@ -39,7 +39,7 @@ public class ItemFactory {
         itemViews.put(healthPotion, healthView);
 
         // create sword
-        TakeableItem sword = Weapon.makeSmasherWeapon(5);
+        TakeableItem sword = Weapon.makeSmasherWeapon("Sword", "A sword for a Smasher", 5);
         ItemView swordView = new UsableView(ImageAssets.sword);
         Location swordLocation = new Location(4,3,map.getTopTilePosition(4,3));
         swordView.setLocation(4,3);
@@ -47,7 +47,7 @@ public class ItemFactory {
         itemViews.put(sword, swordView);
 
         // create chest armor
-        TakeableItem chestArmor = Armor.makeSmasherArmor(5);
+        TakeableItem chestArmor = Armor.makeSmasherArmor("Armor", "Some Smasher armor", 5);
         ItemView chestArmorView = new UsableView(ImageAssets.chestPlate);
         Location chestArmorLocation = new Location(3,3,map.getTopTilePosition(3,3));
         chestArmorView.setLocation(3,3);

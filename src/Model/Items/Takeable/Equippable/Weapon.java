@@ -15,24 +15,24 @@ public class Weapon extends EquippableItem {
 
     private int weaponValue;
 
-    private Weapon(EquippableStrategy s, int value) {
-        super(s);
+    private Weapon(String name, String description, EquippableStrategy s, int value) {
+        super(name, description, s);
         this.weaponValue = value;
         /*
         todo: change constructor to take in weapon value
          */
     } // end private constructor
 
-    public static Weapon makeSmasherWeapon(int value) {
-        return new Weapon(new SmasherWeaponStrategy(), value);
+    public static Weapon makeSmasherWeapon(String name, String description, int value) {
+        return new Weapon(name, description, new SmasherWeaponStrategy(), value);
     } // end factory method makeSmasherWeapon
 
-    public Weapon makeSneakWeapon(int value) {
-        return new Weapon(new SneakWeaponStrategy(), value);
+    public Weapon makeSneakWeapon(String name, String description, int value) {
+        return new Weapon(name, description, new SneakWeaponStrategy(), value);
     } // end factory method makeSneakWeapon
 
-    public Weapon makeSummonerWeapon(int value) {
-        return new Weapon(new SummonerWeaponStrategy(), value);
+    public Weapon makeSummonerWeapon(String name, String description, int value) {
+        return new Weapon(name, description, new SummonerWeaponStrategy(), value);
     } // end factory method makeSummonerWeapon
 
     public int getWeaponValue() { return this.weaponValue; }

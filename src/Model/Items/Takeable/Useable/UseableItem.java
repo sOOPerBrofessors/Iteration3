@@ -14,8 +14,8 @@ public abstract class UseableItem extends TakeableItem {
     protected Effect e;
     protected int amount;
 
-    protected UseableItem() {
-        super();
+    protected UseableItem(String name, String description) {
+        super(name, description);
     } // end protected constructor
 
     // apply effect to passed in character

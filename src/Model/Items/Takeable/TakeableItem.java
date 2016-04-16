@@ -9,6 +9,13 @@ import Model.Items.Item;
  * Abstract class for items which may be picked up from the map by a character.
  */
 public abstract class TakeableItem extends Item {
+    private String name;
+    private String description;
+
+    public TakeableItem(String name, String description) {
+        this.name = name;
+        this.description = description;
+    } // end constructor
 
     // if character interacts with item on map
     public void onInteract(Character character) {

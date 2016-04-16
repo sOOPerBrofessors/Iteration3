@@ -12,41 +12,41 @@ import Model.Entity.Character.Character;
  */
 public class Potion extends UseableItem {
 
-    private Potion(Effect e, int amount) {
-        super();
+    private Potion(String name, String description, Effect e, int amount) {
+        super(name, description);
         this.e = e;
         this.amount = amount;
     } // end constructor
 
-    public static Potion makeAgilityPotion(int amount) {
-        return new Potion(Character::agilityEffect, amount);
+    public static Potion makeAgilityPotion(String name, String description, int amount) {
+        return new Potion(name, description, Character::agilityEffect, amount);
     } // end factory method makeAgilityPotion
 
-    public static Potion makeHardinessPotion(int amount) {
-        return new Potion(Character::hardinessEffect, amount);
+    public static Potion makeHardinessPotion(String name, String description, int amount) {
+        return new Potion(name, description, Character::hardinessEffect, amount);
     } // end factory method makeHardinessPotion
 
-    public static Potion makeIntellectPotion(int amount) {
-        return new Potion(Character::intellectEffect, amount);
+    public static Potion makeIntellectPotion(String name, String description, int amount) {
+        return new Potion(name, description, Character::intellectEffect, amount);
     } // end factory method makeIntellectPotion
 
-    public static Potion makeHealthPotion(int amount) {
-        return new Potion(Character::healthEffect, amount);
+    public static Potion makeHealthPotion(String name, String description, int amount) {
+        return new Potion(name, description, Character::healthEffect, amount);
     } // end factory method makeHealthPotion
 
-    public static Potion makeLifePotion(int amount) {
-        return new Potion(Character::livesEffect, amount);
+    public static Potion makeLifePotion(String name, String description, int amount) {
+        return new Potion(name, description, Character::livesEffect, amount);
     } // end factory method makeLifePotion
 
-    public static Potion makeManaPotion(int amount) {
-        return new Potion(Character::manaEffect, amount);
+    public static Potion makeManaPotion(String name, String description, int amount) {
+        return new Potion(name, description, Character::manaEffect, amount);
     } // end factory method makeManaPotion
 
-    public static Potion makeMovementPotion(int amount) {
-        return new Potion(Character::movementEffect, amount);
+    public static Potion makeMovementPotion(String name, String description, int amount) {
+        return new Potion(name, description, Character::movementEffect, amount);
     } // end factory method makeMovementPotion
 
-    public static Potion makeStrengthPotion(int amount) {
-        return new Potion(Character::strengthEffect, amount);
+    public static Potion makeStrengthPotion(String name, String description, int amount) {
+        return new Potion(name, description, Character::strengthEffect, amount);
     } // end factory method makeStrengthPotion
 } // end class Potion
