@@ -1,17 +1,21 @@
 package View.AreaViewport;
 
 import Model.Map.Location;
-import Model.Map.TileColumn;
 import Model.Map.Map;
+import Utilities.ItemStuff.ItemManager;
+import View.ItemView.ItemView;
 import View.MapView.TileColumnView;
-import View.ViewUtilities.ImageAssets;
+import View.ViewUtilities.Sprites.ImageAssets;
+
+import java.util.HashMap;
 
 /**
  * Created by dyeung on 4/7/16.
  */
 public class MapViewFactory {
+
+    //gets views of items through itemManager
     public MapViewFactory(){
-        ImageAssets.init(); //intializes all the image assest so I can call them statically later
     }
 
     public MapView createMapViewObjects(Map map){

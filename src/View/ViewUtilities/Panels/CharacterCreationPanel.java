@@ -2,7 +2,7 @@ package View.ViewUtilities.Panels;
 
 import View.AreaViewport.HUDView.HUD;
 import View.ViewManager;
-import View.ViewUtilities.ImageAssets;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 import javax.swing.*;
 import java.awt.*;

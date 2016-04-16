@@ -7,7 +7,6 @@ import LoadSave.LoadPersonalitiesVisitor;
 import Model.Model;
 import Model.State.StateManager;
 import View.View;
-import View.ViewUtilities.ImageAssets;
 import View.ViewUtilities.Panels.GamePanel;
 import View.ViewManager;
 

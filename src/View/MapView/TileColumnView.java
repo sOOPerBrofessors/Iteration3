@@ -9,6 +9,7 @@ import View.AreaViewport.FogOfWar.NonVisibleState;
 import View.AreaViewport.FogOfWar.ShroudedState;
 import View.AreaViewport.FogOfWar.TileViewState;
 import View.AreaViewport.FogOfWar.VisibleState;
+import View.ItemView.ItemView;
 import View.TerrainView.*;
 import View.TerrainView.GrassTileView;
 import View.TerrainView.RiverTileView;
@@ -123,6 +124,8 @@ public class TileColumnView extends JComponent implements TileVisitor {
     }
 
     public void paintVisible(Graphics g){
+        // add item to tile
+
         for (int i = 0; i < listOfTiles.size(); i++) {
             //In setPixels, the 3rd arguement is essentially the "z" height
             TileView holder = listOfTiles.get(i);
@@ -133,6 +136,7 @@ public class TileColumnView extends JComponent implements TileVisitor {
             holder.paintComponent(g);
         }
     }
+
     public void paintNonVisible(Graphics g){
         //Using overlay or making it just different color?
         //paint seen but not visible tile
@@ -152,4 +156,11 @@ public class TileColumnView extends JComponent implements TileVisitor {
         tileViewState = new NonVisibleState();
     }
 
+    public void setItemView(ItemView itemView){
+        listOfTiles.get(listOfTiles.size() - 1).addItemView(itemView);
+    }
+
+    public void clearItemView(){
+        listOfTiles.get(listOfTiles.size() - 1).removeItemView();
+    }
 }

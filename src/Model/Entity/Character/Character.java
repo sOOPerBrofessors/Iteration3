@@ -5,6 +5,7 @@ import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Entity;
 import Model.Inventory.Inventory;
+import Model.Items.Item;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
 import Model.Map.Location;
@@ -15,13 +16,19 @@ import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
 import Utilities.TimedEvent;
 import View.AreaViewport.HUDView.HUD;
+import Utilities.Observers.Subject;
+
+import java.util.ArrayList;
+
 
 /**
  * Created by broskj on 4/6/16.
  *
  * Abstract class to act as the superclass to the player (Avatar) and NPCs.
  */
-public abstract class Character extends Entity implements Observer {
+public abstract class Character extends Entity implements Observer, Subject {
+    private ArrayList<Observer> observers;
+
     private Occupation o;
     protected CharacterStats stats;
     protected Inventory inventory;
@@ -36,6 +43,7 @@ public abstract class Character extends Entity implements Observer {
         stats.addObserver(this);
         inventory.addObserver(this);
         this.radiusVisibility = 3; //might need to change to some sort of default later
+        observers = new ArrayList<>();
         combatTimer = new CombatTimer();
     } // end private constructor
 
@@ -47,19 +55,37 @@ public abstract class Character extends Entity implements Observer {
         combatTimer.start();
     } // end startCombatTimer
 
+    @Override
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void alert() {
+        observers.forEach(Observer::update);
+    }
+
     /*
     handle passing effects to stats
      */
     public void agilityEffect(int amount) {
         stats.agilityEffect(amount);
+        alert();
     } // end agilityEffect
 
     public void hardinessEffect(int amount) {
         stats.hardinessEffect(amount);
+        alert();
     } // end hardinessEffect
 
     public void intellectEffect(int amount) {
         stats.intellectEffect(amount);
+        alert();
     } // end intellectEffect
 
     public void healthEffect(int amount) {
@@ -69,10 +95,12 @@ public abstract class Character extends Entity implements Observer {
         else {
             GameMessageQueue.push("Took " + -1 * amount + " damage.");
         }
-    } // end lifeEffec
+        alert();
+    } // end lifeEffect
 
     public void livesEffect(int amount) {
         stats.livesEffect(amount);
+        alert();
     } // end livesEffect
 
     public void manaEffect(int amount) {
@@ -81,14 +109,17 @@ public abstract class Character extends Entity implements Observer {
             GameMessageQueue.push("Gained " + amount + " mana.");
         else
             GameMessageQueue.push("Lost " + -1*amount + " mana.");
+        alert();
     } // end manaEffect
 
     public void movementEffect(int amount) {
         stats.movementEffect(amount);
+        alert();
     } // end movementEffect
 
     public void strengthEffect(int amount) {
         stats.strengthEffect(amount);
+        alert();
     } // end strengthEffect
 
     public void experienceEffect(int amount) {
@@ -97,6 +128,7 @@ public abstract class Character extends Entity implements Observer {
             GameMessageQueue.push("Gained " + amount + " experience.");
         else
             GameMessageQueue.push("Lost " + -1*amount + " experience.");
+        alert();
     } // end experienceEffect
 
     /*
@@ -104,10 +136,12 @@ public abstract class Character extends Entity implements Observer {
      */
     public void equipWeapon(Weapon weapon) {
         inventory.equipWeapon(weapon);
+        alert();
     } // end equipArmor
 
     public void equipArmor(Armor armor) {
         inventory.equipArmor(armor);
+        alert();
     } // end equipArmor
 
     public void equipSmasherWeapon(Weapon weapon) {
@@ -245,4 +279,10 @@ public abstract class Character extends Entity implements Observer {
     public double getLevelMultiplier() {
         return stats.getLevelMultiplier();
     }
+
+    public void pickUpItem(Item item){
+        inventory.pickUpItem(item);
+    }
+
+    public CharacterStats getCharacterStats() {return stats;}
 } // end abstract class Character

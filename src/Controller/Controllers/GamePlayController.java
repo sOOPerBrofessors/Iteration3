@@ -151,9 +151,15 @@ public class GamePlayController extends Controller{
         commands.put(Settings.INVENTORY, new Command() {
             @Override
             public void execute() {
-                //TODO: Change to paused state!
-                //TODO: TELL GAMEPANEL TO ADD INVENTORY PANEL
                 controllerManager.setInventoryState();
+            }
+        });
+
+        // Stats key press
+        commands.put(Settings.STATS, new Command() {
+            @Override
+            public void execute() {
+                controllerManager.setStatsState();
             }
         });
 
@@ -161,7 +167,7 @@ public class GamePlayController extends Controller{
         commands.put(Settings.EQUIP, new Command() {
             @Override
             public void execute() {
-                controllerManager.setEquipmentState();
+
             }
         });
 

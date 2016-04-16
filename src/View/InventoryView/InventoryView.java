@@ -1,24 +1,18 @@
 package View.InventoryView;
 
-import Model.Entity.Entity;
 import Model.Inventory.Inventory;
 import Model.Items.Item;
-import Model.Items.Takeable.Equippable.Armor;
-import Model.Items.Takeable.Equippable.Weapon;
 import Model.State.GameState.ActiveGameState;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
-import Utilities.Observers.EntityObservable;
-import Utilities.Observers.EntityObserver;
 import Utilities.Observers.Observer;
 import Utilities.PersonFilter;
 import Utilities.Settings;
-import View.ViewUtilities.ImageAssets;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -132,6 +126,7 @@ public class InventoryView extends JPanel implements Observer{
 
     @Override
     public void update() {
+
         //inventory.
         //this.inventoryList =  inventory.getPack().getItems(); // TODO: Fix the LOD VIOLATION!!! (Is there a fix?)
         //this.equippedArmor = inventory.getEquipment().getArmor();

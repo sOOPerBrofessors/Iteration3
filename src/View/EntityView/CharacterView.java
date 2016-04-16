@@ -1,12 +1,10 @@
 package View.EntityView;
 
-import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Map.Orientation;
 import Utilities.Settings;
 import Utilities.Visitor.OccupationViewVisitor;
 import View.EntityView.AvatarViewFactory.OccupationViewFactory;
-import View.ViewUtilities.ImageAssets;
 
 import java.awt.*;
 
@@ -14,8 +12,10 @@ import java.awt.*;
  * Created by dyeung on 4/6/16.
  */
 public class CharacterView extends EntityView implements OccupationViewVisitor {
+
     //Width height scale formula is Height/Width * new width = new height
     private Image characterImage;
+
     public CharacterView(Character character){
         super(character);
         character.getOccupation().acceptOccupationViewVistor(this, orientation); //This will create the correct Occupation View
@@ -28,8 +28,7 @@ public class CharacterView extends EntityView implements OccupationViewVisitor {
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 
         g2d.drawImage(characterImage,xPixel* Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,entityWidth*Settings.SCALEFACTOR,entityHeight* Settings.SCALEFACTOR,null);
 

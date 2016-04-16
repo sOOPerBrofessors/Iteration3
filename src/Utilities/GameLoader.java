@@ -16,7 +16,7 @@ import Utilities.AIStuff.NPCFactory;
 import Utilities.GameFactory.MapFactory;
 import Utilities.ItemStuff.ItemFactory;
 import Utilities.ItemStuff.ItemManager;
-import View.ViewUtilities.ImageAssets;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,11 +26,12 @@ import java.util.HashMap;
  */
 public class GameLoader {
 
-    Map map;
-    Avatar avatar;
-    ActiveGameState activeGameState;
-    PausedGameState pausedGameState;
-    ArrayList<NPC> entities;
+    private Map map;
+    private Avatar avatar;
+    private ActiveGameState activeGameState;
+    private PausedGameState pausedGameState;
+    private ArrayList<NPC> entities;
+    private ItemManager itemManager;
 
     //Needs a constructor in order to create what type of occupation it is
     public GameLoader(Avatar player) {
@@ -40,8 +41,9 @@ public class GameLoader {
         initNPC();
         initPlayer();
         initItems();
-        activeGameState = new ActiveGameState(map, player, entities);
-        pausedGameState = new PausedGameState(map, player, entities);
+        itemManager = new ItemManager(ItemFactory.getItems(), ItemFactory.getItemViews());
+        activeGameState = new ActiveGameState(map, player, entities, itemManager);
+        pausedGameState = new PausedGameState(map, player, entities, itemManager);
     }
 
     //Map has to contain an avatar (might be unnecessary in the constructor though)
@@ -57,13 +59,13 @@ public class GameLoader {
     }
 
     private void initItems() {
-        ItemFactory.init();
-        ItemManager.setItems(ItemFactory.getItems());
-        ItemManager.setItemViews(ItemFactory.getItemViews());
+        ItemFactory.init(map);
     }
-    private void initPlayer(){
+
+    private void initPlayer() {
         map.addCharacter(avatar); //(This doesn't have to worry about 3d things)
     }
+
     private void initNPC() {
 
 

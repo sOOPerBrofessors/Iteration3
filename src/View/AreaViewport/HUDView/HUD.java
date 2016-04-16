@@ -3,10 +3,10 @@ package View.AreaViewport.HUDView;
 import Model.Entity.Character.Avatar;
 import Utilities.GameMessageQueue;
 import Utilities.Settings;
-import View.ViewUtilities.ImageAssets;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 /**
  * Created by broskj on 4/14/16.
