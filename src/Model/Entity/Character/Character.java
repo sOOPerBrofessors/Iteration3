@@ -300,6 +300,7 @@ public abstract class Character extends Entity implements Observer, Subject {
 
     public void pickUpItem(Item item){
         inventory.pickUpItem(item);
+        alert();
     }
 
     public CharacterStats getCharacterStats() {return stats;}
