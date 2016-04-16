@@ -37,8 +37,8 @@ public class AreaViewport extends JPanel{
         cameraView = new CameraView(avatar);
         fogOfWar = new FogOfWar(avatar);
         hud = new HUD(avatar);
+        observedNPC = new ObservedNPC();
         map = gameState.getMap();
-        observedNPC = new ObservedNPC(avatar);
         MapViewFactory mapViewFactory = new MapViewFactory();
         mapView = mapViewFactory.createMapViewObjects(map);
         mapView.setItemManager(gameState.getItemManager());
@@ -76,6 +76,6 @@ public class AreaViewport extends JPanel{
         //This is always called
         renderTiles(g);
         hud.updateHUD(g);
-        //observedNPC.updateObservation(g);
+        observedNPC.updateObservation(g);
     }
 }

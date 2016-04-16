@@ -4,6 +4,7 @@ import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Model.State.GameState.ActiveGameState;
+import Utilities.ObservationTimer;
 import Utilities.Settings;
 import View.ViewUtilities.Panels.GamePanel;
 
@@ -72,7 +73,7 @@ public class GamePlayController extends Controller{
         });
 
         // skill two key press
-        commands.put(Settings.TWO, () -> state.playerSecondSkill());
+        commands.put(Settings.TWO, () -> new ObservationTimer(state.playerSecondSkill()).start());
 
         // inventory key press
         commands.put(Settings.INVENTORY, () -> controllerManager.setInventoryState());
