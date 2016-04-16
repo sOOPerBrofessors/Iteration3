@@ -8,7 +8,6 @@ import View.ViewUtilities.Sprites.ImageAssets;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static Utilities.Settings.newline;
 
 /**
  * Created by AndyZhu on 16/4/2016.

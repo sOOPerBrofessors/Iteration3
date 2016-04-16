@@ -14,7 +14,6 @@ import Utilities.PersonFilter;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static Utilities.Settings.newline;
 
 /**
  * Created by AndyZhu on 13/4/2016.
@@ -46,7 +45,7 @@ public class Observation extends RangedSkill{
         else {
             MessageHandler.println(name + "Failed for some reason", ErrorLevel.NOTICE, PersonFilter.ANDY);
             observedMsg = new ArrayList<>();
-            observedMsg.add("Failed");
+            observedMsg.add("Observation Failed");
             observationInfo = new ObservationInfo(observedMsg);
             return observationInfo;
         }
