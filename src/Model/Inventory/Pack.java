@@ -1,6 +1,7 @@
 package Model.Inventory;
 
 import Model.Items.Item;
+import Model.Items.Takeable.TakeableItem;
 import Utilities.GameMessageQueue;
 
 import java.util.ArrayList;
@@ -9,17 +10,17 @@ import java.util.ArrayList;
  * Created by broskj on 4/8/16.
  */
 public class Pack {
-    ArrayList<Item> items;
+    ArrayList<TakeableItem> items;
     final int cap = 16;
 
     public Pack() {
         items = new ArrayList<>();
     } // end default constructor
 
-    public void add(Item item) {
+    public void add(TakeableItem item) {
         if(item != null && size() < cap) {
             items.add(item);
-            GameMessageQueue.push("Picked up an item.");
+            GameMessageQueue.push("Picked up a " + item.getName());
         } else if (size() >= cap) {
             GameMessageQueue.push("Your inventory is full.");
         }
@@ -42,6 +43,6 @@ public class Pack {
     } // end size
     public boolean hasRoom() { return size() < cap; }
 
-    public ArrayList<Item> getItems(){return items;}
+    public ArrayList<TakeableItem> getItems(){return items;}
 
 } // end class Pack

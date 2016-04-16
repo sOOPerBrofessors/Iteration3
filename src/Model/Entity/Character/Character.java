@@ -4,9 +4,9 @@ import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Entity;
 import Model.Inventory.Inventory;
-import Model.Items.Item;
 import Model.Items.Takeable.Equippable.Armor;
-import Model.Items.Takeable.Equippable.Weapon;
+import Model.Items.Takeable.Equippable.Weapon.Weapon;
+import Model.Items.Takeable.TakeableItem;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Orientation;
@@ -298,7 +298,7 @@ public abstract class Character extends Entity implements Observer, Subject {
        return navigation.canMove(terrain);
     }
 
-    public void pickUpItem(Item item){
+    public void pickUpItem(TakeableItem item){
         inventory.pickUpItem(item);
     }
 

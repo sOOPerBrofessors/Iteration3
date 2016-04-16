@@ -1,4 +1,4 @@
-package Utilities.ItemStuff;
+package Utilities.ItemStuff.ItemFactory;
 
 import Model.Items.Interactable.Chest;
 import Model.Items.Interactable.Interactable;
@@ -31,7 +31,7 @@ public class ItemFactory {
         interactableItems = new HashMap<>();
 
         // create new health potion
-        TakeableItem healthPotion = Potion.makeHealthPotion("Health Potion", "A health potion", 10);
+        Potion healthPotion = ItemFactory.makeBasicHealthPotion();
         ItemView healthView = new UsableView(ImageAssets.healthPotion);
         Location healthLocation = new Location(4,4,map.getTopTilePosition(4,4));
         healthView.setLocation(4,4);
@@ -39,7 +39,7 @@ public class ItemFactory {
         itemViews.put(healthPotion, healthView);
 
         // create sword
-        TakeableItem sword = Weapon.makeSmasherWeapon("Sword", "A sword for a Smasher", 5);
+        Weapon sword = ItemFactory.makeWoodenSword();
         ItemView swordView = new UsableView(ImageAssets.sword);
         Location swordLocation = new Location(4,3,map.getTopTilePosition(4,3));
         swordView.setLocation(4,3);
@@ -47,7 +47,7 @@ public class ItemFactory {
         itemViews.put(sword, swordView);
 
         // create chest armor
-        TakeableItem chestArmor = Armor.makeSmasherArmor("Armor", "Some Smasher armor", 5);
+        Armor chestArmor = ItemFactory.makeLightChainmail();
         ItemView chestArmorView = new UsableView(ImageAssets.chestPlate);
         Location chestArmorLocation = new Location(3,3,map.getTopTilePosition(3,3));
         chestArmorView.setLocation(3,3);
@@ -62,6 +62,60 @@ public class ItemFactory {
         interactableItems.put(closedChestLocation, closedChest);
         itemViews.put(closedChest,closedChestView);
     }
+
+    public static Potion makeBasicHealthPotion() {
+        return Potion.makeHealthPotion("Basic Health potion",
+                "A basic health potion (+3)",
+                3);
+    } // end factory method makeHealthPotion
+
+    public static Potion makeGoodHealthPotion() {
+        return Potion.makeHealthPotion("Good Health potion",
+                "A good health potion (+6)",
+                6);
+    } // end factory method makeHealthPotion
+
+    public static Potion makeSuperHealthPotion() {
+        return Potion.makeHealthPotion("Super Health potion",
+                "A super health potion (+10)",
+                10);
+    } // end factory method makeHealthPotion
+
+    public static Weapon makeWoodenSword() {
+        return Weapon.makeSmasherWeapon("Wooden Sword",
+                "A wooden sword for warriors (+2)",
+                2);
+    } // end factory method makeSmasherWeapon
+
+    public static Weapon makeSteelSword() {
+        return Weapon.makeSmasherWeapon("Steel Sword",
+                "A steel sword for warriors (+5)",
+                5);
+    } // end factory method makeSmasherWeapon
+
+    public static Weapon makeDiamondSword() {
+        return Weapon.makeSmasherWeapon("Diamond Sword",
+                "A Diamond sword for warriors (+9)",
+                9);
+    } // end factory method makeSmasherWeapon
+
+    public static Armor makeLightChainmail () {
+        return Armor.makeSmasherArmor("Light Chainmail",
+                "Some basic chainmail armor for warriors",
+                2);
+    } // end factory method makeSmasherWeapon
+
+    public static Armor makeSteelArmor () {
+        return Armor.makeSmasherArmor("Steel Armor",
+                "Some steel platemail for warriors",
+                2);
+    } // end factory method makeSmasherWeapon
+
+    public static Armor makeDiamondArmor () {
+        return Armor.makeSmasherArmor("Light Chainmail",
+                "Some diamond platemail for warriors",
+                2);
+    } // end factory method makeSmasherWeapon
 
     public static HashMap<Location, TakeableItem> getTakableItems(){
         return takableItems;
