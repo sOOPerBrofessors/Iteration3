@@ -4,6 +4,7 @@ import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Model.State.GameState.ActiveGameState;
+import Utilities.ObservationTimer;
 import Utilities.Settings;
 import View.ViewUtilities.Panels.GamePanel;
 
@@ -133,7 +134,7 @@ public class GamePlayController extends Controller{
         commands.put(Settings.TWO, new Command() {
             @Override
             public void execute() {
-                state.playerSecondSkill();
+                new ObservationTimer(state.playerSecondSkill()).start();
             }
         });
 

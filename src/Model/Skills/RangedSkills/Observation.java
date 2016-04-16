@@ -14,6 +14,8 @@ import Utilities.PersonFilter;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static Utilities.Settings.newline;
+
 /**
  * Created by AndyZhu on 13/4/2016.
  *
@@ -24,14 +26,14 @@ public class Observation extends RangedSkill{
     ArrayList<Location> affectedArea;
     Tile curTile;
     Character enemy;
-    String observedMsg;
+    ArrayList<String> observedMsg;
     ObservationInfo observationInfo;
 
     public Observation (Avatar avatar){
         super(avatar);
         name = "Observation";
         manaCost = 1;
-        coolDownTime = 2;
+        coolDownTime = 5;
     }
 
     public ObservationInfo execute(Map map, Orientation orientation) {
@@ -43,7 +45,10 @@ public class Observation extends RangedSkill{
         }
         else {
             MessageHandler.println(name + "Failed for some reason", ErrorLevel.NOTICE, PersonFilter.ANDY);
-            return null;
+            observedMsg = new ArrayList<>();
+            observedMsg.add("Failed");
+            observationInfo = new ObservationInfo(observedMsg);
+            return observationInfo;
         }
     }
 
@@ -60,15 +65,17 @@ public class Observation extends RangedSkill{
                 int observedLevel = rand.nextInt(10) > 5 ? enemy.getLevel() + modifier : enemy.getLevel() - modifier;
                 int observedHealth = rand.nextInt(10) > 5 ? enemy.getHealth() + modifier : enemy.getHealth() - modifier;
                 int observedOffensive = rand.nextInt(10) > 5 ? enemy.getOffensiveRating() + modifier : enemy.getOffensiveRating() - modifier;
-                observedMsg = "Level: " + observedLevel + "\nHealth: " + observedHealth + "\nOffensive rating: " + observedOffensive;
+                observedMsg = new ArrayList<>();
+                observedMsg.add("Level: " + observedLevel);
+                observedMsg.add("Health: " + observedHealth);
+                observedMsg.add("Offensive rating: " + observedOffensive);
                 observationInfo = new ObservationInfo(enemy.getLocation(), observedMsg);
-                //TODO: testing here
-                System.out.println("Location: (" + enemy.getLocation().getX() + ", " + enemy.getLocation().getY() +")");
-                System.out.println(observedMsg);
                 return observationInfo;
             }
         }
-        System.out.println("No enemy found");
-        return null;
+        observedMsg = new ArrayList<>();
+        observedMsg.add("No enemy found");
+        observationInfo = new ObservationInfo(observedMsg);
+        return observationInfo;
     }
 }
