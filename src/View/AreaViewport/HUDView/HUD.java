@@ -14,6 +14,7 @@ import java.awt.image.BufferedImage;
 public class HUD {
     private Avatar avatar;
     private static BufferedImage occupationSprite;
+    private static Color statusColor = new Color(5, 255, 78, 200);
     private int width = Settings.GAMEWIDTH,
         height = Settings.GAMEHEIGHT;
 
@@ -24,6 +25,14 @@ public class HUD {
     public static void setOccupationSprite(BufferedImage newOccupationSprite) {
         occupationSprite = newOccupationSprite;
     } // end setOccupationSprite
+
+    public static void setStatusCombat() {
+        statusColor = new Color(255, 2, 30, 200);
+    } // end setStatusCombat
+
+    public static void setStatusRegular() {
+        statusColor = new Color(5, 255, 78, 200);
+    } // end setStatusCombat
 
     public void updateHUD(Graphics g) {
         double healthRatio = avatar.getHealth()*1.0 / avatar.getBaseHealth()*1.0;
@@ -67,10 +76,10 @@ public class HUD {
         g2d.drawString(xpMessage, (168+(310/2) - fm.stringWidth(xpMessage)/2), 116);
         g2d.drawString(nextLevel, 505-fm.stringWidth(nextLevel)/2-25, 116);
 
-        g2d.setColor(new Color(5, 255, 78, 200));
+        g2d.setColor(statusColor);
         g2d.fillOval(2,2,163,163);
         g2d.drawImage(ImageAssets.hud, 0, 0, 520, 180, null);
-        g2d.drawImage(occupationSprite, 55, 55, 64, 64, null);
+        g2d.drawImage(occupationSprite, 55, 45, 64, 84, null);
 
         renderGameMessages(g2d);
 
@@ -78,14 +87,14 @@ public class HUD {
     } // end updateHUD
 
     public void renderGameMessages(Graphics2D g2d) {
-        int messageBoxW = 600, messageBoxH = 140;
-        g2d.drawImage(ImageAssets.messageBox, 0, height-messageBoxH, messageBoxW, messageBoxH, null);
+        int messageBoxW = 480, messageBoxH = 130;
+        g2d.drawImage(ImageAssets.messageBox, width-messageBoxW, 0, messageBoxW, messageBoxH, null);
 
         g2d.setColor(Color.WHITE);
         g2d.setFont(new Font("Arial", Font.PLAIN, 22));
 
         for(int i = 0; i < GameMessageQueue.queue.size(); i++) {
-            g2d.drawString(GameMessageQueue.queue.get(i), 20, (height-20*(GameMessageQueue.queue.size()-i))-10);
+            g2d.drawString(GameMessageQueue.queue.get(i), width-messageBoxW+20, (22*(GameMessageQueue.queue.size()-i))+5);
         }
     } // end renderGameMessages
 } // end class HUD
