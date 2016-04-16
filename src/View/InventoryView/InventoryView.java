@@ -3,6 +3,7 @@ package View.InventoryView;
 import Model.Entity.Character.Avatar;
 import Model.Inventory.Inventory;
 import Model.Items.Item;
+import Model.Items.Takeable.TakeableItem;
 import Model.State.GameState.ActiveGameState;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
@@ -11,15 +12,12 @@ import Utilities.PersonFilter;
 import Utilities.Settings;
 import View.ItemView.ItemView;
 import View.ViewUtilities.Sprites.ImageAssets;
-import sun.plugin2.message.Message;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 
 /**
  * Created by sgl on 4/9/16.
@@ -29,7 +27,7 @@ import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 public class InventoryView extends JPanel implements Observer{
 
     private Inventory inventory; //handle to Avatar's inventory
-    ArrayList<Item> items; //handle to Avatar's ArrayList of Items
+    ArrayList<TakeableItem> items; //handle to Avatar's ArrayList of Items
     Image[] invImages = new Image[16]; //Local Array of Images of Inventory
     //private Armor equippedArmor;
     //private Weapon equippedWeapon;

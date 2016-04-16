@@ -1,6 +1,6 @@
 package Model.Items.ItemStrategy.InteractableStrategy;
 
-import Model.Inventory.Inventory;
+import Model.Entity.Character.Character;
 import Model.Items.Takeable.Quest;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
@@ -12,7 +12,7 @@ public class InteractableStrategy {
 
     protected Quest requiredItem;
 
-    public boolean onInteract(Inventory inventory) {
+    public boolean onInteract(Character character) {
         MessageHandler.println("You can't interact with this item.", ErrorLevel.ERROR);
         return false;
     } // end onInteract

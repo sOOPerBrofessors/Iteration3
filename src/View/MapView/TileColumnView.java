@@ -7,8 +7,6 @@ import View.AreaViewport.FogOfWar.ShroudedState;
 import View.AreaViewport.FogOfWar.TileViewState;
 import View.AreaViewport.FogOfWar.VisibleState;
 import View.ItemView.ItemView;
-import View.TerrainView.*;
-
 
 
 import javax.swing.*;

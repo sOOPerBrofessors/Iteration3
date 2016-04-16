@@ -1,13 +1,8 @@
 package View.ItemView;
 
-import Model.Map.Location;
-import Utilities.ErrorLevel;
-import Utilities.MessageHandler;
-import Utilities.PersonFilter;
 import Utilities.Settings;
 import View.MapView.MapObjectView;
 
-import javax.swing.*;
 import java.awt.*;
 
 /**

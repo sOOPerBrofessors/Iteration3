@@ -1,7 +1,6 @@
 package View.EntityView;
 
 import Model.Map.Orientation;
-import com.sun.org.apache.xpath.internal.operations.Or;
 
 import java.awt.*;
 import java.util.HashMap;

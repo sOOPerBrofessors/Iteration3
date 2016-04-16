@@ -45,6 +45,9 @@ public class Settings {
     public static int TWO = 0x32;
     public static int THREE = 0x33;
     public static int FOUR = 0x34;
+    public static int FIVE = 0x35;
+    public static int SIX = 0x36;
+    public static int SEVEN = 0x37;
     public static int DROP = 0x44;
     public static int MAP = 0x4D;
     public static int INTERACT = KeyEvent.VK_ENTER; //This was overwriting the "Q" key which is used for movement.
@@ -72,6 +75,6 @@ public class Settings {
     public static final int MAX_INVENTORY_SIZE = 16;
 
     // int to limit character count in game window
-    public static final int CHAR_LIMIT = 36;
+    public static final int CHAR_LIMIT = 63;
 
 }

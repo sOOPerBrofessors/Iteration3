@@ -11,12 +11,12 @@ public class Money extends TakeableItem {
     private int quantity;
 
     private Money() {
-        super();
+        super("Money", "Lovely money!");
         this.quantity = 0;
     } // end default constructor
 
     private Money(int quantity) {
-        super();
+        super("Money", "Lovely money!");
         this.quantity = quantity;
     }
 

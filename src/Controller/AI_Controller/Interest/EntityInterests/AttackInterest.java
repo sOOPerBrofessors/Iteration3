@@ -3,7 +3,6 @@ package Controller.AI_Controller.Interest.EntityInterests;
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
 import Model.Map.Location;
-import Model.Map.Orientation;
 
 /**
  * Created by aseber on 4/8/16.

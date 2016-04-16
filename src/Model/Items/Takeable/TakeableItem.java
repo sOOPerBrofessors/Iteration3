@@ -10,6 +10,13 @@ import Utilities.Visitor.ItemVisitor;
  * Abstract class for items which may be picked up from the map by a character.
  */
 public abstract class TakeableItem extends Item {
+    private String name;
+    private String description;
+
+    public TakeableItem(String name, String description) {
+        this.name = name;
+        this.description = description;
+    } // end constructor
 
     private int value;
 
@@ -20,8 +27,13 @@ public abstract class TakeableItem extends Item {
 
     protected abstract void utilize(Character character); // either apply item's effect or equip
 
+
     @Override
     public void acceptItemVisitor(ItemVisitor itemVisitor) {
         itemVisitor.visitTakeableItem();
     }
+
+    public String getName() { return name; }
+    public String getDescription() { return description; }
+
 }

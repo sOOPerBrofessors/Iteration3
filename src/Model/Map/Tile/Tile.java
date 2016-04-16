@@ -132,5 +132,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         return terrain;
     }
 
+    public Character getCharacter() {return character;}
+
 }
 

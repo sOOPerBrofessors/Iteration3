@@ -91,7 +91,7 @@ public class SaveVisitor implements TileVisitor, EntityObserver, AOEVisitor, Cha
 
     @Override
     public void visitHealAOE() {
-        
+
     }
 
     @Override

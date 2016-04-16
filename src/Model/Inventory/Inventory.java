@@ -1,11 +1,9 @@
 package Model.Inventory;
 
-import Model.Items.Item;
 import Model.Items.Takeable.Equippable.Armor;
-import Model.Items.Takeable.Equippable.Weapon;
-import Utilities.ErrorLevel;
+import Model.Items.Takeable.Equippable.Weapon.Weapon;
+import Model.Items.Takeable.TakeableItem;
 import Utilities.GameMessageQueue;
-import Utilities.MessageHandler;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
 
@@ -42,7 +40,7 @@ public class Inventory implements Observer, Subject{
         if(pack.hasRoom()) {
             pack.add(equipment.unequipWeapon());        // add equipped weapon to pack if room exists
         } else {
-            GameMessageQueue.push("Inventory full, can't remove weapon.");
+            GameMessageQueue.push("Your inventory is full, can't remove weapon.");
         }
     } // end unequipWeapon
 
@@ -91,9 +89,8 @@ public class Inventory implements Observer, Subject{
 
     } // end remove
 
-    public void pickUpItem(Item item){
+    public void pickUpItem(TakeableItem item){
         pack.add(item);
-        System.out.println("item added to pack, size is " + pack.size());
     }
 
 

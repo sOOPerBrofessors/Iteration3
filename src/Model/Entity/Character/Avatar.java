@@ -6,23 +6,32 @@ import Model.Entity.Character.Occupation.Sneak;
 import Model.Entity.Character.Occupation.Summoner;
 import Model.Inventory.Inventory;
 import Model.Map.Location;
+import Model.Skills.BindWounds;
+import Model.Skills.RangedSkills.Observation;
+import Model.Skills.Skill;
 import Model.Map.Map;
-import Model.Map.Orientation;
 import Utilities.Visitor.AvatarVisitable;
 import Utilities.Visitor.AvatarVisitor;
+
 import Utilities.Visitor.CharacterVisitor;
-import com.sun.org.apache.xpath.internal.operations.Or;
-
-
 /**
  * Created by broskj on 4/6/16.
  *
  * Class to be operated by the player.
  */
 public class Avatar extends Character implements AvatarVisitable {
+
+    private Skill[] skills;
+
     private Avatar(Occupation o, Location location) {
-        //I'm not sure how this is going to work but we need something here to define the initial location of an avatar
+        //TODO:I'm not sure how this is going to work but we need something here to define the initial location of an avatar
         super(o, location);
+        //skill initialize
+        skills = new Skill[] {
+                new BindWounds(this),
+                new Observation(this)
+        };
+
         //Temporary
     } // end constructor
 
@@ -49,6 +58,14 @@ public class Avatar extends Character implements AvatarVisitable {
     public static Avatar makeSummoner() {
         return new Avatar(new Summoner(), new Location(5,5,0));
     } // end factory method makeSneak
+
+    public Inventory getInventory(){ //needed for InventoryView - Sam
+        return inventory;
+    }
+
+    public Skill getSkill (int index) {
+        return skills[index];
+    }
 
     @Override
     public void update() {
@@ -85,3 +102,4 @@ public class Avatar extends Character implements AvatarVisitable {
         avatarVisitor.visitInventory(inventory);
     }
 }
+

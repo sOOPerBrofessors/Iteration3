@@ -3,7 +3,6 @@ package Controller.AI_Controller.FrontalLobe;
 import Controller.AI_Controller.Decision.Decision;
 import Controller.AI_Controller.Interest.Interest;
 import Controller.AI_Controller.Memory.Memory;
-import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.Personality.Personality;
 import Controller.AI_Controller.VisualCortex.VisualInformation.EntityRelationshipVisitor;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
@@ -13,7 +12,6 @@ import Utilities.AIStuff.RelationshipList;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Predicate;
 
 /**
  * Created by aseber on 4/6/16.

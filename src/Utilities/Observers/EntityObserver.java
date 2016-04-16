@@ -1,7 +1,5 @@
 package Utilities.Observers;
 
-import Model.Map.Location;
-
 /**
  * Created by dyeung on 4/6/16.
  */

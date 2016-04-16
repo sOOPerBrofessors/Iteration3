@@ -1,11 +1,8 @@
 package Controller.Controllers;
 
-import Model.Inventory.Inventory;
-import Model.State.GameState.ActiveGameState;
 import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
-import Model.State.GameState.PausedGameState;
 import Utilities.Settings;
 import View.InventoryView.InventoryView;
 import View.ViewManager;

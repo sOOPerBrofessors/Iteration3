@@ -2,7 +2,7 @@ package Model.Entity.Character.Occupation;
 
 import Model.Entity.Character.Character;
 import Model.Items.Takeable.Equippable.Armor;
-import Model.Items.Takeable.Equippable.Weapon;
+import Model.Items.Takeable.Equippable.Weapon.Weapon;
 import Model.Stats.CharacterStats;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;

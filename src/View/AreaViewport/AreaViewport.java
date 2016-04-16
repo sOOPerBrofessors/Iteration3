@@ -1,17 +1,15 @@
 package View.AreaViewport;
 
 import Model.Entity.Character.Avatar;
-import Model.Items.Item;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.State.GameState.GameState;
-import Utilities.ItemStuff.ItemManager;
 import View.AreaViewport.FogOfWar.FogOfWar;
 import View.AreaViewport.HUDView.HUD;
+import View.SkillView.ObservedNPC;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashMap;
 
 
 /**
@@ -28,16 +26,18 @@ public class AreaViewport extends JPanel{
     private CameraView cameraView;
     private FogOfWar fogOfWar;
     private HUD hud;
+    private ObservedNPC observedNPC;
 
     public AreaViewport(GameState gameState){
         //This needs to be initialized later on or grabbed from the inventory
-        this.setBackground(Color.GRAY);
+        this.setBackground(Color.BLACK);
         setPreferredSize(new Dimension(WIDTH,HEIGHT));
 
         Avatar avatar = gameState.getAvatar();
         cameraView = new CameraView(avatar);
         fogOfWar = new FogOfWar(avatar);
         hud = new HUD(avatar);
+        observedNPC = new ObservedNPC();
         map = gameState.getMap();
         MapViewFactory mapViewFactory = new MapViewFactory();
         mapView = mapViewFactory.createMapViewObjects(map);
@@ -76,5 +76,6 @@ public class AreaViewport extends JPanel{
         //This is always called
         renderTiles(g);
         hud.updateHUD(g);
+        observedNPC.updateObservation(g);
     }
 }

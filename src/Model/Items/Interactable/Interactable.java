@@ -11,6 +11,8 @@ public abstract class Interactable extends Item {
 
     InteractableStrategy s;
 
+    protected boolean success;
+
     protected Interactable(InteractableStrategy s) {
         super();
         this.s = s;
@@ -19,5 +21,8 @@ public abstract class Interactable extends Item {
     @Override
     public void acceptItemVisitor(ItemVisitor itemVisitor) {
         itemVisitor.visitInteractive();
+    }
+    public boolean isSuccess() {
+        return success;
     }
 } // end abstract class Interactable
