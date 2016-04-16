@@ -44,6 +44,8 @@ public abstract class ItemView  extends MapObjectView {
     @Override
     protected abstract void adjustHeight();
 
+    public Image getImage() { return image;}
+
     public int getY() {
         return y;
     }

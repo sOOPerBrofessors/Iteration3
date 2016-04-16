@@ -1,5 +1,6 @@
 package Utilities;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /**
@@ -13,8 +14,7 @@ public class Settings {
     public static int GAMEHEIGHT = 720;
     public static int SCALEFACTOR = 1;
     public static boolean debug = false;
-    public static ErrorLevel errorLevel = ErrorLevel.NONE;
-    public static PersonFilter personFilter = PersonFilter.UNSPECIFIED;
+
 
     // Key Presses
     public static int UP_ARROW = KeyEvent.VK_UP;
@@ -45,6 +45,9 @@ public class Settings {
     public static int TWO = 0x32;
     public static int THREE = 0x33;
     public static int FOUR = 0x34;
+    public static int FIVE = 0x35;
+    public static int SIX = 0x36;
+    public static int SEVEN = 0x37;
     public static int DROP = 0x44;
     public static int MAP = 0x4D;
     public static int INTERACT = KeyEvent.VK_ENTER; //This was overwriting the "Q" key which is used for movement.

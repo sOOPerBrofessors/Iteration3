@@ -5,6 +5,9 @@ import Model.Entity.Character.NPC.NPC;
 import Model.Map.Map;
 
 import Model.Map.Orientation;
+import Model.Skills.RangedSkills.Observation;
+import Model.Skills.RangedSkills.ObservationInfo;
+import Model.Skills.Skill;
 import Utilities.ItemStuff.ItemManager;
 
 import java.util.ArrayList;
@@ -23,7 +26,7 @@ public class ActiveGameState extends GameState {
     @Override
     public void tick(){
         for(int i = 0; i < entities.size(); i++){
-            entities.get(i).tick();
+            //entities.get(i).tick();
         }
     }
 
@@ -60,13 +63,24 @@ public class ActiveGameState extends GameState {
 
     public void playerAttack(){}
 
+
+    public void playerExecuteSkill(int index){
+        avatar.getSkill(index).execute();
+    }
+
     public void playerFirstSkill(){}
 
     public void startCombatTimer() { avatar.startCombatTimer(); }
 
-    public void playerSecondSkill(){}
+    public void playerSecondSkill(){
+        Observation skill = (Observation) avatar.getSkill(1);
+        skill.execute(map, avatar.getOrientation());
+    }
 
-    public void playerInteract(){}
+    public void playerInteract(){
+        avatar.checkInteract(map);
+        itemManager.interact(avatar);
+    }
 
     public void setPlayer(Avatar player) {
         this.player = player;

@@ -7,8 +7,6 @@ import Model.Map.Tile.Tile;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.EntityObservable;
 import Utilities.Observers.EntityObserver;
-import Utilities.Visitor.EntityVisitable;
-
 
 /**
  * Created by dyeung on 4/6/16.
@@ -17,7 +15,7 @@ import Utilities.Visitor.EntityVisitable;
 
 //All entities are able now Observables for a specific model view
 
-public abstract class Entity implements EntityObservable, MapObject, EntityVisitable{
+public abstract class Entity implements EntityObservable, MapObject {
     protected Location location;
     protected Navigation navigation;
     protected Orientation orientation;

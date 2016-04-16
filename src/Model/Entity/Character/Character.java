@@ -17,6 +17,7 @@ import Utilities.GameMessageQueue;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
+import Utilities.Visitor.CharacterVisitable;
 
 import java.util.ArrayList;
 
@@ -26,7 +27,7 @@ import java.util.ArrayList;
  *
  * Abstract class to act as the superclass to the player (Avatar) and NPCs.
  */
-public abstract class Character extends Entity implements Observer, Subject {
+public abstract class Character extends Entity implements Observer, Subject, CharacterVisitable {
     private ArrayList<Observer> observers;
 
     private Occupation o;
@@ -103,6 +104,11 @@ public abstract class Character extends Entity implements Observer, Subject {
         stats.livesEffect(amount);
         alert();
     } // end livesEffect
+
+    public void levelEffect(int amount) {
+        stats.levelEffect(amount);
+        alert();
+    } // end levelsEffect
 
     public void manaEffect(int amount) {
         stats.manaEffect(amount);
@@ -300,8 +306,15 @@ public abstract class Character extends Entity implements Observer, Subject {
 
     public void pickUpItem(TakeableItem item){
         inventory.pickUpItem(item);
+        alert();
     }
 
     public CharacterStats getCharacterStats() {return stats;}
+
+    public abstract void onInteract();
+    public Inventory getInventory(){ //needed for InventoryView - Sam
+        return inventory;
+    }
+
 
 } // end abstract class Character

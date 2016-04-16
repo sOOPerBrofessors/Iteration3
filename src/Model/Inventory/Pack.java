@@ -41,6 +41,7 @@ public class Pack {
     public int size() {
         return items.size();
     } // end size
+
     public boolean hasRoom() { return size() < cap; }
 
     public ArrayList<TakeableItem> getItems(){return items;}

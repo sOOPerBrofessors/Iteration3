@@ -2,7 +2,6 @@ package Utilities.ItemStuff.ItemFactory;
 
 import Model.Items.Takeable.Equippable.Weapon.OneHandedWeapon;
 import Model.Items.Takeable.Equippable.Weapon.TwoHandedWeapon;
-import Model.Items.Takeable.Equippable.Weapon.Weapon;
 
 /**
  * Created by broskj on 4/16/16.

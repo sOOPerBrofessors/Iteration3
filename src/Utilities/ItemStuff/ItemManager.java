@@ -7,7 +7,9 @@ import Model.Items.Takeable.TakeableItem;
 import Model.Map.Location;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
+import View.ItemView.InteractableView;
 import View.ItemView.ItemView;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.util.HashMap;
 
@@ -23,10 +25,10 @@ public class ItemManager implements Subject{
     private HashMap<Location, Interactable> interactableItems;
     private Observer observer;
 
-    public ItemManager(HashMap<Location, TakeableItem> takableItems, HashMap<Location, Interactable> interactableItems, HashMap<Item, ItemView> itemViews){
+    public ItemManager(HashMap<Location, TakeableItem> takableItems, HashMap<Location, Interactable> interactableItems, HashMap<Item, ItemView> allItemViews, HashMap<Item, ItemView> mapItemViews){
         this.takableItems = takableItems;
-        mapItemViews = itemViews;
-        allItemViews = itemViews;
+        this.mapItemViews = mapItemViews;
+        this.allItemViews = allItemViews;
         this.interactableItems = interactableItems;
     }
 
@@ -35,13 +37,17 @@ public class ItemManager implements Subject{
     }
 
     public void contact(Character character){
+        Location temp = null;
         for(Location key : takableItems.keySet()) {
             if (key.equals(character.getLocation())) {
                 takableItems.get(key).onInteract(character);
                 mapItemViews.remove(takableItems.get(key));
-                takableItems.remove(character.getLocation());
+                temp = key;
                 alert();
             }
+        }
+        if(temp != null){
+            takableItems.remove(temp);
         }
     }
 
@@ -50,6 +56,13 @@ public class ItemManager implements Subject{
         for(Location key : interactableItems.keySet()){
             if(key.equals(adjacent)){
                 interactableItems.get(key).onInteract(character);
+                if(interactableItems.get(key).isSuccess()){
+                    ItemView temp = new InteractableView(ImageAssets.openChest);
+                    temp.setLocation(key.getX(), key.getY());
+                    mapItemViews.remove(key);
+                    mapItemViews.put(interactableItems.get(key), temp);
+                    alert();
+                }
             }
         }
     }
@@ -66,6 +79,10 @@ public class ItemManager implements Subject{
 
     public void removeItem(Item item){
         allItemViews.remove(item);
+    }
+
+    public void addItem(Item item, Location location){
+        //takableItems
     }
 
     @Override

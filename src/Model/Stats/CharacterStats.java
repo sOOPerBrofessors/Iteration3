@@ -223,6 +223,9 @@ public class CharacterStats extends EntityStats implements Subject {
         } else if (health > baseHealth) {
             health = baseHealth;
         }
+        else if (health > baseHealth) {
+            health = baseHealth;
+        }
         alert();
     }
     public void manaEffect(int effect){
@@ -230,6 +233,9 @@ public class CharacterStats extends EntityStats implements Subject {
         if (mana < 0){
             mana = 0;
         } else if (mana > baseMana) {
+            mana = baseMana;
+        }
+        else if (mana > baseMana) {
             mana = baseMana;
         }
         alert();

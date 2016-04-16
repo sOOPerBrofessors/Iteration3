@@ -1,9 +1,12 @@
 package Model.Map.Tile;
 
+import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Map.AreaEffect.AreaOfEffect;
+import Model.Map.Location;
 import Model.Map.Tile.Terrain.Terrain;
+import Model.Projectile.Projectile;
 import Utilities.Observers.TileObservable;
 import Utilities.Observers.TileObserver;
 import Utilities.Visitor.*;
@@ -15,21 +18,30 @@ import java.util.ArrayList;
  */
 public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
     private ArrayList<TileObserver> observers;
-    protected Terrain terrain;
-    protected Entity entity;
-    protected AreaOfEffect areaOfEffect;
+    private Terrain terrain;
+    private Character character;
+    private Projectile projectile;
+    private AreaOfEffect areaOfEffect;
 
     public Tile(Terrain terrain){
         this.terrain = terrain;
         observers = new ArrayList<>();
     }
-
+    //All movement detection is done here
     public boolean moveCharacter(Character character){
-        if(character.checkStrategy(terrain)){
-            doInteractions(character);
+        if(character.checkStrategy(terrain) && checkMovement()){
+            addCharacter(character);
             return true;
         }else{
             return false;
+        }
+    }
+    //Might be increased later for items
+    private boolean checkMovement(){
+        if (hasCharacter()) {
+            return false;
+        }else{
+            return true;
         }
     }
 
@@ -46,21 +58,17 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
     }
     public void moveProjectile(Entity entity){
         //if Tile isn't null apply projectile effect on entity currently occupying the Tile
-        if (hasEntity()){
+        if (hasCharacter()){
             //entity.applyEffect(super.entity);
         }
         else {
-            this.entity = entity;
+            //this.entity = entity;
             //return true;
         }
     }
 
-    public Entity getEntity(){
-        return entity;
-    }
-
-    public boolean hasEntity(){
-        if (entity != null) {
+    public boolean hasCharacter(){
+        if (character != null) {
             return true;
         }else {
             return false;
@@ -73,13 +81,13 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
             return false;
         }
     }
-    public void addEntity(Entity entity) {
-        this.entity = entity;
+    public void addCharacter(Character character) {
+        this.character = character;
         notifyObservers();
     }
 
-    public void removeEntity() {
-        this.entity = null;
+    public void removeCharacter() {
+        this.character = null;
         notifyObservers();
     }
 
@@ -88,15 +96,21 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         notifyObservers();
     }
 
-    //ADD ALL INTERACTIONS TO ENTITY ON THAT TILE
-    protected void doInteractions(Character character) {
-        addEntity(character);
-        effectArea(character);
+    /*The character being passed in the function is the character doing the interacting
+    Tile contains the character being interacted on
+    */
+    public void doInteractionsNPC(Character initCharacter){
+        if (hasCharacter()) {
+            this.character.onInteract();
+        }
+    }
+    public void doTileEffects(Character character) {
+        doEffectAOE(character);
         //Effect item
         //Effect
     }
 
-    private void effectArea(Character character){
+    private void doEffectAOE(Character character){
         if (hasAOE()){
             areaOfEffect.onInteract(character);
         }
@@ -104,7 +118,9 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
     //Tiles need to do the checking for entites and stuff
     @Override
     public void acceptTileVisitor(TileVisitor tv) {
-        //tv.accept()
+        tv.visitTileHasAOE(areaOfEffect);
+        tv.visitTileHasCharacter(character);
+        tv.visitTileTerrain(terrain);
     }
 
     @Override
@@ -115,6 +131,8 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
     public Terrain getTerrain(){
         return terrain;
     }
+
+    public Character getCharacter() {return character;}
 
 }
 

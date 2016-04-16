@@ -92,4 +92,5 @@ public class Inventory implements Observer, Subject{
     public void pickUpItem(TakeableItem item){
         pack.add(item);
     }
+
 } // end class Inventory

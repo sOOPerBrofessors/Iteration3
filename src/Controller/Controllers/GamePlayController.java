@@ -2,6 +2,7 @@ package Controller.Controllers;
 
 import Controller.Controller;
 import Controller.ControllerManager;
+import Controller.ControllerUtility.Command;
 import Model.State.GameState.ActiveGameState;
 import Utilities.Settings;
 import View.ViewUtilities.Panels.GamePanel;
@@ -63,7 +64,12 @@ public class GamePlayController extends Controller{
         commands.put(Settings.INTERACT, () -> state.playerInteract());
 
         // skill one key press
-        commands.put(Settings.ONE, () -> state.playerFirstSkill());
+        commands.put(Settings.ONE, new Command() {
+            @Override
+            public void execute() {
+                state.playerExecuteSkill(0);
+            }
+        });
 
         // skill two key press
         commands.put(Settings.TWO, () -> state.playerSecondSkill());

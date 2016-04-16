@@ -17,6 +17,8 @@ public abstract class TakeableItem extends Item {
         this.description = description;
     } // end constructor
 
+    private int value;
+
     // if character interacts with item on map
     public void onInteract(Character character) {
         character.pickUpItem(this);

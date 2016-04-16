@@ -13,6 +13,7 @@ import Utilities.MessageHandler;
  *  overridden with more specific implementations
  */
 public class EquippableStrategy implements ItemStrategy {
+
     @Override
     public void onInteract(Item item, Character character) {
         MessageHandler.println("You cannot equip this item.", ErrorLevel.ERROR);

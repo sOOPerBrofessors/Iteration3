@@ -4,7 +4,7 @@ import Controller.ControllerManager;
 import Controller.Controllers.InventoryController;
 import Model.Entity.Character.Avatar;
 import Model.State.StateManager;
-import Utilities.GameLoader;
+import Utilities.GameLoaderSaver.GameLoader;
 import Utilities.Observers.Subject;
 import Utilities.Observers.Observer;
 import View.ViewUtilities.Panels.CharacterCreationPanel;
