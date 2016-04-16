@@ -75,6 +75,9 @@ public class GamePlayController extends Controller{
         // skill two key press
         commands.put(Settings.TWO, () -> new ObservationTimer(state.playerSecondSkill()).start());
 
+        // skill three key pree
+        commands.put(Settings.THREE, () -> state.playerThirdSkill());
+
         // inventory key press
         commands.put(Settings.INVENTORY, () -> controllerManager.setInventoryState());
 
@@ -110,6 +113,7 @@ public class GamePlayController extends Controller{
                     state.getAvatar().manaEffect(-1*((int)(Math.random()*3)+1));
                     break;
             }
+            state.getAvatar().manaEffect(100);
         });
     }
 

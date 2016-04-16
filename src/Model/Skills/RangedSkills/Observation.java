@@ -31,6 +31,8 @@ public class Observation extends RangedSkill{
     public Observation (Avatar avatar){
         super(avatar);
         name = "Observation";
+        //TODO:level = 10 for testing
+        level = 10;
         manaCost = 1;
         coolDownTime = 5;
     }
@@ -45,7 +47,7 @@ public class Observation extends RangedSkill{
         else {
             MessageHandler.println(name + "Failed for some reason", ErrorLevel.NOTICE, PersonFilter.ANDY);
             observedMsg = new ArrayList<>();
-            observedMsg.add("Observation Failed");
+            observedMsg.add("Failed");
             observationInfo = new ObservationInfo(observedMsg);
             return observationInfo;
         }

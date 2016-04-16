@@ -5,6 +5,7 @@ import Model.Entity.Character.NPC.NPC;
 import Model.Map.Map;
 
 import Model.Map.Orientation;
+import Model.Skills.CombatSkills.BrawlingSkill;
 import Model.Skills.RangedSkills.Observation;
 import Model.Skills.RangedSkills.ObservationInfo;
 import Model.Skills.Skill;
@@ -65,11 +66,15 @@ public class ActiveGameState extends GameState {
 
 
     public void playerExecuteSkill(int index){
-        avatar.getSkill(index).execute();
+        avatar.getSkill(index).execute(map);
     }
 
     public void playerFirstSkill(){}
 
+    public void playerThirdSkill() {
+        Skill skill = (BrawlingSkill) avatar.getSkill(2);
+        skill.execute(map);
+    }
     public void startCombatTimer() { avatar.startCombatTimer(); }
 
     public ObservationInfo playerSecondSkill(){
