@@ -48,10 +48,6 @@ public class Avatar extends Character {
         return new Avatar(new Summoner(), new Location(5,5,0));
     } // end factory method makeSneak
 
-    public Inventory getInventory(){ //needed for InventoryView - Sam
-        return inventory;
-    }
-
     @Override
     public void update() {
         stats.setEquippedArmor(inventory.getArmorValue());

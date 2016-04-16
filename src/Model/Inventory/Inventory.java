@@ -95,4 +95,5 @@ public class Inventory implements Observer, Subject{
         pack.add(item);
         System.out.println("item added to pack, size is " + pack.size());
     }
+
 } // end class Inventory
