@@ -3,6 +3,7 @@ package Controller.Controllers;
 import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
+import Model.Items.Takeable.Useable.Potion;
 import Model.Map.Location;
 import Model.State.GameState.ActiveGameState;
 import Utilities.Settings;
@@ -178,7 +179,23 @@ public class GamePlayController extends Controller{
         commands.put(Settings.TEST_KEY, new Command() {
             @Override
             public void execute() {
-                state.getAvatar().experienceEffect(3);
+                switch((int)(Math.random()*5)+1){
+                    case 1:
+                        state.getAvatar().experienceEffect((int)(Math.random()*5)+1);
+                        break;
+                    case 2:
+                        state.getAvatar().healthEffect((int)(Math.random()*3)+1);
+                        break;
+                    case 3:
+                        state.getAvatar().manaEffect((int)(Math.random()*3)+1);
+                        break;
+                    case 4:
+                        state.getAvatar().healthEffect(-1*((int)(Math.random()*3)+1));
+                        break;
+                    case 5:
+                        state.getAvatar().manaEffect(-1*((int)(Math.random()*3)+1));
+                        break;
+                }
             }
         });
     }
