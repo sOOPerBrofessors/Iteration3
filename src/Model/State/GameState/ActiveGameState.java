@@ -2,6 +2,8 @@ package Model.State.GameState;
 
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.NPC.NPC;
+import Model.Entity.Projectile.Projectile;
+import Model.Map.Location;
 import Model.Map.Map;
 
 import Model.Map.Orientation;
@@ -22,11 +24,15 @@ public class ActiveGameState extends GameState {
         super(map,avatar, entities, itemManager);
     }
 
-
     @Override
     public void tick(){
         for(int i = 0; i < entities.size(); i++){
             //entities.get(i).tick();
+        }
+        if(projectiles != null){
+            for(int i = 0; i < projectiles.size(); i++){
+                projectiles.get(i).tick();
+            }
         }
     }
 
@@ -68,7 +74,11 @@ public class ActiveGameState extends GameState {
         avatar.getSkill(index).execute();
     }
 
-    public void playerFirstSkill(){}
+    public void playerFirstSkill(){
+        Projectile temp = Projectile.makeFireBall(new Location(8,8,0));
+        projectiles.add(temp);
+        map.addProjectile(temp);
+    }
 
     public void startCombatTimer() { avatar.startCombatTimer(); }
 

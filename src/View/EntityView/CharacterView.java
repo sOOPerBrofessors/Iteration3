@@ -35,10 +35,6 @@ public class CharacterView extends EntityView implements OccupationVisitor, Char
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 
         g2d.drawImage(image,xPixel* Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,viewWidth*Settings.SCALEFACTOR,viewHeight* Settings.SCALEFACTOR,null);
-//        g2d.drawImage(image, xPixel, yPixel, viewWidth, viewHeight, null);
-//        g2d.setColor(Color.green);
-//        g2d.drawString(x +"," + y, xPixel, yPixel);
-//        g2d.drawRect(xPixel, yPixel, 100, 100);
 
         if(character.isInCombat())
             drawHealthBar(g2d);

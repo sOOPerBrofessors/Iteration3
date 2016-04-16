@@ -1,18 +1,17 @@
 package View.MapView;
 
 import Model.Entity.Character.Character;
-import Model.Items.Item;
 import Model.Map.AreaEffect.AreaOfEffect;
 import Model.Map.Location;
 import Model.Map.Tile.Terrain.Terrain;
 import Model.Map.Tile.Tile;
-import Model.Projectile.Projectile;
+import Model.Entity.Projectile.Projectile;
 import Utilities.Observers.TileObserver;
 import Utilities.Settings;
 import Utilities.Visitor.TileVisitor;
 import View.EntityView.CharacterView;
 import View.MapView.AOEView.AreaOfEffectView;
-import View.MapView.ProjectileView.ProjectileView;
+import View.EntityView.ProjectileView;
 import View.TerrainView.*;
 import View.ItemView.ItemView;
 
@@ -143,6 +142,13 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
         }
     }
 
+    private void removeProjectileView(){
+        if(projectileView != null) {
+            projectileView.removeObservable();
+            projectileView = null;
+        }
+    }
+
     public void addItemView(ItemView itemView){
         this.itemView = itemView;
 
@@ -182,5 +188,4 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
             projectileView = new ProjectileView(projectile);
         }
     }
-
 }

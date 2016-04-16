@@ -66,8 +66,6 @@ public class GameLoader {
     }
 
     private void initNPC() {
-
-
         entities = NPCFactory.init();
 
         AI_Controller controller = new AI_Controller();
@@ -76,7 +74,6 @@ public class GameLoader {
             entities.get(i).setController(controller);
             map.addCharacter(entities.get(i));
         }
-
         controller.setMap(map);
     }
 
@@ -93,6 +90,4 @@ public class GameLoader {
     public PausedGameState getPausedGameState() {
         return pausedGameState;
     }
-
-
 }

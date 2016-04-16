@@ -72,7 +72,7 @@ public class GamePlayController extends Controller{
         });
 
         // skill two key press
-        commands.put(Settings.TWO, () -> state.playerSecondSkill());
+        commands.put(Settings.TWO, () -> state.playerFirstSkill());
 
         // inventory key press
         commands.put(Settings.INVENTORY, () -> controllerManager.setInventoryState());

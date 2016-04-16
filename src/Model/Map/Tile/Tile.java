@@ -1,12 +1,10 @@
 package Model.Map.Tile;
 
-import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Map.AreaEffect.AreaOfEffect;
-import Model.Map.Location;
 import Model.Map.Tile.Terrain.Terrain;
-import Model.Projectile.Projectile;
+import Model.Entity.Projectile.Projectile;
 import Utilities.Observers.TileObservable;
 import Utilities.Observers.TileObserver;
 import Utilities.Visitor.*;
@@ -27,6 +25,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         this.terrain = terrain;
         observers = new ArrayList<>();
     }
+
     //All movement detection is done here
     public boolean moveCharacter(Character character){
         if(character.checkStrategy(terrain) && checkMovement()){
@@ -36,6 +35,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
             return false;
         }
     }
+
     //Might be increased later for items
     private boolean checkMovement(){
         if (hasCharacter()) {
@@ -74,6 +74,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
             return false;
         }
     }
+
     private boolean hasAOE(){
         if (areaOfEffect != null) {
             return true;
@@ -81,6 +82,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
             return false;
         }
     }
+
     public void addCharacter(Character character) {
         this.character = character;
         notifyObservers();
@@ -88,6 +90,17 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
 
     public void removeCharacter() {
         this.character = null;
+        notifyObservers();
+    }
+
+    // projectiles.. So cool bro
+    public void addProjectile(Projectile projectile) {
+        this.projectile = projectile;
+        notifyObservers();
+    }
+
+    public void removeProjectile() {
+        this.projectile = null;
         notifyObservers();
     }
 
@@ -104,6 +117,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
             this.character.onInteract();
         }
     }
+
     public void doTileEffects(Character character) {
         doEffectAOE(character);
         //Effect item
@@ -115,6 +129,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
             areaOfEffect.onInteract(character);
         }
     }
+
     //Tiles need to do the checking for entites and stuff
     @Override
     public void acceptTileVisitor(TileVisitor tv) {
@@ -135,4 +150,3 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
     public Character getCharacter() {return character;}
 
 }
-
