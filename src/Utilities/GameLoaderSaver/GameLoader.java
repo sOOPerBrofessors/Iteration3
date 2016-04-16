@@ -1,20 +1,19 @@
-package Utilities;
+package Utilities.GameLoaderSaver;
 
 import Controller.AI_Controller.AI_Controller;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.NPC.NPC;
-import Model.Map.AreaEffect.HealDamageAOE;
-import Model.Map.AreaEffect.LevelUpAOE;
-import Model.Map.AreaEffect.TakeDamageAOE;
 import Model.Map.AreaEffect.TeleportAOE;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.State.GameState.ActiveGameState;
 import Model.State.GameState.PausedGameState;
 import Utilities.AIStuff.NPCFactory;
+import Utilities.ErrorLevel;
 import Utilities.GameFactory.MapFactory;
 import Utilities.ItemStuff.ItemFactory;
 import Utilities.ItemStuff.ItemManager;
+import Utilities.MessageHandler;
 import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.util.ArrayList;
@@ -37,7 +36,7 @@ public class GameLoader {
         entities = new ArrayList<>();
         avatar = player;
         initMap();
-        //initNPC();
+        initNPC();
         initPlayer();
         initItems();
         itemManager = new ItemManager(ItemFactory.getTakableItems(), ItemFactory.getInteractableItems(), ItemFactory.getItemViews());

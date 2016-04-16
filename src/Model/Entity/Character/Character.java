@@ -310,4 +310,6 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
 
     public CharacterStats getCharacterStats() {return stats;}
 
+    public abstract void onInteract();
+
 } // end abstract class Character

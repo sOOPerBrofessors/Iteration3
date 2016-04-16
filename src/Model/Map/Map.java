@@ -1,10 +1,12 @@
 package Model.Map;
 
+import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Map.AreaEffect.AreaOfEffect;
 import Model.Map.Tile.Tile;
 import Model.Projectile.Projectile;
+import com.sun.org.apache.xpath.internal.operations.Or;
 
 /**
  * Created by sgl on 4/5/16.
@@ -32,11 +34,12 @@ public class Map {
         int newY = newLocation.getY();
         int newZ = getTopTilePosition(newX, newY);
         Tile newTile = getTopTile(newX,newY);
+        Location location = character.getLocation();
         //Needs to move the character before the tile does interaction because of "teleport" effect
-        if (checkBounds(newX, newY) && checkHeightDifference(currentZ, newZ) && newTile.moveCharacter(character)){
+        if (checkCanInteractWithTile(location, newLocation) && newTile.moveCharacter(character)){
             getTileAt(currentX, currentY, currentZ).removeCharacter();
             character.updateLocation(new Location(newX,newY,newZ));
-            newTile.doInteractions(character); //does the interaction
+            newTile.doTileEffects(character); //does the interaction
             return true;
         }else{
             return false;
@@ -45,6 +48,26 @@ public class Map {
     }
     private boolean checkHeightDifference(int current, int target){
         if ((target - current) <= 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public void checkTileInteraction(Character character, Location currentLocation, Location newLocation){
+        if (checkCanInteractWithTile(currentLocation, newLocation)){
+            getTopTile(newLocation.getX(), newLocation.getY()).doInteractionsNPC(character);
+        }
+    }
+    //This function basically checks if the tile is applicable for interactions (IE only 1 tile away and above you)
+    //New Location only needs an x and a y no Z is necessary
+    private boolean checkCanInteractWithTile(Location currentLocation, Location newLocation){
+        int currentZ = currentLocation.getZ();
+        int newX = newLocation.getX();
+        int newY = newLocation.getY();
+        int newZ = getTopTilePosition(newX, newY);
+
+        if (checkBounds(newX, newY) && checkHeightDifference(currentZ, newZ)){
             return true;
         }else{
             return false;

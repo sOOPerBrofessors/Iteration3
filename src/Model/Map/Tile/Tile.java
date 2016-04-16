@@ -1,5 +1,6 @@
 package Model.Map.Tile;
 
+import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Map.AreaEffect.AreaOfEffect;
@@ -26,15 +27,23 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         this.terrain = terrain;
         observers = new ArrayList<>();
     }
+    //All movement detection is done here
     public boolean moveCharacter(Character character){
-        if(character.checkStrategy(terrain)){
+        if(character.checkStrategy(terrain) && checkMovement()){
             addCharacter(character);
             return true;
         }else{
             return false;
         }
     }
-
+    //Might be increased later for items
+    private boolean checkMovement(){
+        if (hasCharacter()) {
+            return false;
+        }else{
+            return true;
+        }
+    }
 
     @Override
     public void notifyObservers() {
@@ -87,14 +96,21 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         notifyObservers();
     }
 
-    //ADD ALL INTERACTIONS TO ENTITY ON THAT TILE
-    public void doInteractions(Character character) {
-        effectArea(character);
+    /*The character being passed in the function is the character doing the interacting
+    Tile contains the character being interacted on
+    */
+    public void doInteractionsNPC(Character initCharacter){
+        if (hasCharacter()) {
+            this.character.onInteract();
+        }
+    }
+    public void doTileEffects(Character character) {
+        doEffectAOE(character);
         //Effect item
         //Effect
     }
 
-    private void effectArea(Character character){
+    private void doEffectAOE(Character character){
         if (hasAOE()){
             areaOfEffect.onInteract(character);
         }

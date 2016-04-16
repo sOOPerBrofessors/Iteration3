@@ -65,4 +65,10 @@ public class NPC extends Character implements Tickable{
     public void acceptCharacterVisitor(CharacterVisitor characterVisitor) {
         characterVisitor.visitNPC(this);
     }
+
+    @Override
+    public void onInteract() {
+        System.out.println("NPC: I am being interacted on");
+        //Do stuff when interacted on
+    }
 }
