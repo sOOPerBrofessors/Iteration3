@@ -2,7 +2,6 @@ package Utilities.Visitor;
 
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.NPC.NPC;
-import View.EntityView.EntityView;
 
 /**
  * Created by dyeung on 4/9/16.

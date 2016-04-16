@@ -5,7 +5,6 @@ import Model.Map.Tile.Tile;
 import Model.Map.TileColumn;
 import Model.Map.Tile.Terrain.AirTerrain;
 import Model.Map.Tile.Terrain.GrassTerrain;
-import Model.Map.Tile.Terrain.RiverTerrain;
 import Model.Map.Tile.Terrain.WaterTerrain;
 
 /**

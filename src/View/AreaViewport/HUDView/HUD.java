@@ -20,7 +20,7 @@ import View.ViewUtilities.Sprites.ImageAssets;
 public class HUD {
     private Avatar avatar;
     private static BufferedImage occupationSprite;
-    private static Color statusColor = new Color(5, 255, 78, 200);
+    private static Color statusColor = new Color(5, 255, 78, 120);
     private int width = Settings.GAMEWIDTH,
         height = Settings.GAMEHEIGHT;
 
@@ -33,11 +33,11 @@ public class HUD {
     } // end setOccupationSprite
 
     public static void setStatusCombat() {
-        statusColor = new Color(255, 2, 30, 200);
+        statusColor = new Color(255, 2, 30, 120);
     } // end setStatusCombat
 
     public static void setStatusRegular() {
-        statusColor = new Color(5, 255, 78, 200);
+        statusColor = new Color(5, 255, 78, 120);
     } // end setStatusCombat
 
     public void updateHUD(Graphics g) {
@@ -100,10 +100,10 @@ public class HUD {
         if(healthRatio <= 0.4)
             pulseOrb(g2d, healthRatio);
         else if(!avatar.isInCombat())
-            statusColor = new Color(5, 255, 78, 200);
+            statusColor = new Color(5, 255, 78, 120);
         g2d.setColor(statusColor);
 
-        g2d.fillOval(2,2,163,163);
+        g2d.fillOval(2,4,163,165);
         g2d.drawImage(ImageAssets.hud, 0, 0, 520, 180, null);
         g2d.drawImage(occupationSprite, 55, 45, 64, 84, null);
 
@@ -113,11 +113,13 @@ public class HUD {
     } // end updateHUD
 
     public void renderGameMessages(Graphics2D g2d) {
-        int messageBoxW = 13*Settings.CHAR_LIMIT, messageBoxH = 130;
+        int messageBoxW = 480, messageBoxH = 130;
+        g2d.setColor(new Color(255,255,255,50));
+        g2d.fillRect(width-messageBoxW, 0, messageBoxW, messageBoxH);
         g2d.drawImage(ImageAssets.messageBox, width-messageBoxW, 0, messageBoxW, messageBoxH, null);
 
         g2d.setColor(Color.WHITE);
-        g2d.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 20));
+        g2d.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
 
         for(int i = 0; i < GameMessageQueue.queue.size(); i++) {
             g2d.drawString(GameMessageQueue.queue.get(i), width-messageBoxW+20, (22*(GameMessageQueue.queue.size()-i))+5);
@@ -127,11 +129,11 @@ public class HUD {
     public void pulseOrb(Graphics2D g2d, double ratio) {
         //int a = statusColor.getAlpha();
         if (ratio == 0) {
-            statusColor = new Color(255,2,30,200);
+            statusColor = new Color(255,2,30,120);
             g2d.setColor(statusColor);
         } else {
             double modifier = Math.cos(Math.PI * System.currentTimeMillis() / (ratio * 1440));
-            int a = Math.abs((int) (200 * Math.pow(modifier,2)));
+            int a = Math.abs((int) (120 * Math.pow(modifier,2)));
 
             statusColor = new Color(255, 2, 30, a);
             g2d.setColor(statusColor);

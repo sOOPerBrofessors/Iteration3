@@ -8,7 +8,6 @@ import Controller.AI_Controller.VisualCortex.VisualCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Entity;
-import Model.Map.Orientation;
 import Utilities.AIStuff.RelationshipList;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;

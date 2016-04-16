@@ -7,8 +7,6 @@ import Model.Map.Tile.Tile;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.EntityObservable;
 import Utilities.Observers.EntityObserver;
-import Utilities.Visitor.CharacterVisitable;
-
 
 /**
  * Created by dyeung on 4/6/16.

@@ -29,97 +29,39 @@ public class GamePlayController extends Controller{
     private void initCommands(){
 
         // up key press
-        commands.put(Settings.UP, new Command() {
-            @Override
-            public void execute() {
-                state.movePlayerN();
-            }
-        });
+        commands.put(Settings.UP, () -> state.movePlayerN());
 
-        commands.put(Settings.UP_ARROW, new Command() {
-            @Override
-            public void execute() {
-                state.movePlayerN();
-            }
-        });
+        commands.put(Settings.UP_ARROW, () -> state.movePlayerN());
 
         // up right key press
-        commands.put(Settings.UP_RIGHT, new Command() {
-            @Override
-            public void execute() {
-                state.movePlayerNE();
-            }
-        });
+        commands.put(Settings.UP_RIGHT, () -> state.movePlayerNE());
 
-        commands.put(Settings.RIGHT_ARROW, new Command() {
-            @Override
-            public void execute() {
-                state.movePlayerNE();
-            }
-        });
+        commands.put(Settings.RIGHT_ARROW, () -> state.movePlayerNE());
 
         // down right key press
-        commands.put(Settings.DOWN_RIGHT, new Command() {
-            @Override
-            public void execute() {
-                state.movePlayerSE();
-            }
-        });
+        commands.put(Settings.DOWN_RIGHT, () -> state.movePlayerSE());
 
         // down key press
-        commands.put(Settings.DOWN, new Command() {
-            @Override
-            public void execute() {
-                state.movePlayerS();
-            }
-        });
+        commands.put(Settings.DOWN, () -> state.movePlayerS());
 
-        commands.put(Settings.DOWN_ARROW, new Command() {
-            @Override
-            public void execute() {
-                state.movePlayerS();
-            }
-        });
+        commands.put(Settings.DOWN_ARROW, () -> state.movePlayerS());
 
         // down left key press
-        commands.put(Settings.DOWN_LEFT, new Command() {
-            @Override
-            public void execute() {
-                state.movePlayerSW();
-            }
-        });
+        commands.put(Settings.DOWN_LEFT, () -> state.movePlayerSW());
 
         // up left key press
-        commands.put(Settings.UP_LEFT, new Command() {
-            @Override
-            public void execute() {
-                state.movePlayerNW();
-            }
-        });
+        commands.put(Settings.UP_LEFT, () -> state.movePlayerNW());
 
-        commands.put(Settings.LEFT_ARROW, new Command() {
-            @Override
-            public void execute() {
-                state.movePlayerNW();
-            }
-        });
+        commands.put(Settings.LEFT_ARROW, () -> state.movePlayerNW());
 
         // attack key press
-        commands.put(Settings.ATTACK, new Command() {
-            @Override
-            public void execute() {
-                state.playerAttack();
-                state.startCombatTimer();
-            }
+        commands.put(Settings.ATTACK, () -> {
+            state.playerAttack();
+            state.startCombatTimer();
         });
 
         // interact key press
-        commands.put(Settings.INTERACT, new Command() {
-            @Override
-            public void execute() {
-                state.playerInteract();
-            }
-        });
+        commands.put(Settings.INTERACT, () -> state.playerInteract());
 
         // skill one key press
         commands.put(Settings.ONE, new Command() {
@@ -130,73 +72,42 @@ public class GamePlayController extends Controller{
         });
 
         // skill two key press
-        commands.put(Settings.TWO, new Command() {
-            @Override
-            public void execute() {
-                state.playerSecondSkill();
-            }
-        });
+        commands.put(Settings.TWO, () -> state.playerSecondSkill());
 
         // inventory key press
-        commands.put(Settings.INVENTORY, new Command() {
-            @Override
-            public void execute() {
-                controllerManager.setInventoryState();
-            }
-        });
+        commands.put(Settings.INVENTORY, () -> controllerManager.setInventoryState());
 
         // Stats key press
-        commands.put(Settings.STATS, new Command() {
-            @Override
-            public void execute() {
-                controllerManager.setStatsState();
-            }
-        });
+        commands.put(Settings.STATS, () -> controllerManager.setStatsState());
 
         // equipment key press
-        commands.put(Settings.EQUIP, new Command() {
-            @Override
-            public void execute() {
+        commands.put(Settings.EQUIP, () -> {
 
-            }
         });
 
         // pause game key press
-        commands.put(Settings.ESC, new Command() {
-            @Override
-            public void execute() {
-                controllerManager.setPauseState();
-            }
-        });
+        commands.put(Settings.ESC, () -> controllerManager.setPauseState());
 
         // skills key press
-        commands.put(Settings.SKILLS, new Command() {
-            @Override
-            public void execute() {
-                controllerManager.setSkillsState();
-            }
-        });
+        commands.put(Settings.SKILLS, () -> controllerManager.setSkillsState());
 
-        commands.put(Settings.TEST_KEY, new Command() {
-            @Override
-            public void execute() {
-                switch((int)(Math.random()*5)+1){
-                    case 1:
-                        state.getAvatar().experienceEffect((int)(Math.random()*5)+1);
-                        break;
-                    case 2:
-                        state.getAvatar().healthEffect((int)(Math.random()*3)+1);
-                        break;
-                    case 3:
-                        state.getAvatar().manaEffect((int)(Math.random()*3)+1);
-                        break;
-                    case 4:
-                        state.getAvatar().healthEffect(-1*((int)(Math.random()*3)+1));
-                        break;
-                    case 5:
-                        state.getAvatar().manaEffect(-1*((int)(Math.random()*3)+1));
-                        break;
-                }
+        commands.put(Settings.TEST_KEY, () -> {
+            switch((int)(Math.random()*5)+1){
+                case 1:
+                    state.getAvatar().experienceEffect((int)(Math.random()*5)+1);
+                    break;
+                case 2:
+                    state.getAvatar().healthEffect((int)(Math.random()*3)+1);
+                    break;
+                case 3:
+                    state.getAvatar().manaEffect((int)(Math.random()*3)+1);
+                    break;
+                case 4:
+                    state.getAvatar().healthEffect(-1*((int)(Math.random()*3)+1));
+                    break;
+                case 5:
+                    state.getAvatar().manaEffect(-1*((int)(Math.random()*3)+1));
+                    break;
             }
         });
     }

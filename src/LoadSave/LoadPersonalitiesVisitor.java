@@ -1,7 +1,5 @@
 package LoadSave;
 
-import Controller.AI_Controller.Interest.Interest;
-import Controller.AI_Controller.Interest.InterestFactory;
 import Controller.AI_Controller.Personality.Personality;
 import Controller.AI_Controller.Personality.PersonalityFactory;
 import Visitors.LoadVisitor;

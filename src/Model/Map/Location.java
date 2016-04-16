@@ -1,9 +1,5 @@
 package Model.Map;
 
-import Utilities.ErrorLevel;
-import Utilities.MessageHandler;
-import Utilities.PersonFilter;
-
 /**
  * Created by sgl on 4/5/16.
  */
