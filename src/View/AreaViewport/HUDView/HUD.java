@@ -81,6 +81,7 @@ public class HUD {
 
         // draw text onto bars
         g2d.setColor(new Color(247, 255, 204));
+        g2d.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
 
         // draw health text
         String hpMessage = health + " / " + baseHealth;
@@ -112,11 +113,11 @@ public class HUD {
     } // end updateHUD
 
     public void renderGameMessages(Graphics2D g2d) {
-        int messageBoxW = 480, messageBoxH = 130;
+        int messageBoxW = 13*Settings.CHAR_LIMIT, messageBoxH = 130;
         g2d.drawImage(ImageAssets.messageBox, width-messageBoxW, 0, messageBoxW, messageBoxH, null);
 
         g2d.setColor(Color.WHITE);
-        g2d.setFont(new Font("Arial", Font.PLAIN, 22));
+        g2d.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 20));
 
         for(int i = 0; i < GameMessageQueue.queue.size(); i++) {
             g2d.drawString(GameMessageQueue.queue.get(i), width-messageBoxW+20, (22*(GameMessageQueue.queue.size()-i))+5);
@@ -130,7 +131,7 @@ public class HUD {
             g2d.setColor(statusColor);
         } else {
             double modifier = Math.cos(Math.PI * System.currentTimeMillis() / (ratio * 1440));
-            int a = Math.abs((int) (200 * modifier));
+            int a = Math.abs((int) (200 * Math.pow(modifier,2)));
 
             statusColor = new Color(255, 2, 30, a);
             g2d.setColor(statusColor);
