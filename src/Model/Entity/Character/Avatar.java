@@ -9,15 +9,8 @@ import Model.Map.Location;
 import Model.Skills.BindWounds;
 import Model.Skills.RangedSkills.Observation;
 import Model.Skills.Skill;
-import Utilities.Observers.Observer;
-import View.EntityView.CharacterView;
 import Model.Map.Map;
-import Model.Map.Orientation;
 import Utilities.Visitor.CharacterVisitor;
-import com.sun.org.apache.xpath.internal.operations.Or;
-
-
-
 /**
  * Created by broskj on 4/6/16.
  *
