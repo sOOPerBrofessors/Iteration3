@@ -91,9 +91,9 @@ public abstract class Character extends Entity implements Observer, Subject {
     public void healthEffect(int amount) {
         stats.healthEffect(amount);
         if(amount >= 0)
-            GameMessageQueue.push("Gained " + amount + " health.");
+            GameMessageQueue.push("You gained " + amount + " health.");
         else {
-            GameMessageQueue.push("Took " + -1 * amount + " damage.");
+            GameMessageQueue.push("You took " + -1 * amount + " damage.");
             startCombatTimer();
         }
         alert();
@@ -107,7 +107,7 @@ public abstract class Character extends Entity implements Observer, Subject {
     public void manaEffect(int amount) {
         stats.manaEffect(amount);
         if(amount >= 0)
-            GameMessageQueue.push("Gained " + amount + " mana.");
+            GameMessageQueue.push("You gained " + amount + " mana.");
         else
             GameMessageQueue.push("Lost " + -1*amount + " mana.");
         alert();
@@ -126,7 +126,7 @@ public abstract class Character extends Entity implements Observer, Subject {
     public void experienceEffect(int amount) {
         stats.experienceEffect(amount);
         if(amount >= 0)
-            GameMessageQueue.push("Gained " + amount + " experience.");
+            GameMessageQueue.push("You gained " + amount + " experience.");
         else
             GameMessageQueue.push("Lost " + -1*amount + " experience.");
         alert();
