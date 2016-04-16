@@ -21,6 +21,8 @@ public class PauseView extends ViewPanel implements Observer {
 
     @Override
     public void paintComponent(Graphics g){
-
+        Graphics2D g2d = (Graphics2D) g.create();
+        drawBackground(g2d);
+        g2d.dispose();
     }
 }
