@@ -2,7 +2,6 @@ package Model.State.GameState;
 
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.NPC.NPC;
-import Model.Entity.Entity;
 import Model.Map.Map;
 import Utilities.ItemStuff.ItemManager;
 

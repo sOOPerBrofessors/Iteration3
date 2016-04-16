@@ -13,8 +13,8 @@ public abstract class EquippableItem extends TakeableItem {
 
     protected EquippableStrategy s;
 
-    protected EquippableItem(EquippableStrategy s) {
-        super();
+    protected EquippableItem(String name, String description, EquippableStrategy s) {
+        super(name,description);
         this.s = s;
     } // end protected constructor
 

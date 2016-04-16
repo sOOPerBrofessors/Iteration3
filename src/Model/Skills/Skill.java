@@ -1,12 +1,9 @@
 package Model.Skills;
 
 import Model.Entity.Character.Avatar;
-import Model.Map.Map;
-import Model.Map.Orientation;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
 import Utilities.PersonFilter;
-import com.sun.org.glassfish.external.statistics.Stats;
 
 import java.util.Random;
 

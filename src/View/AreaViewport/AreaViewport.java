@@ -1,18 +1,15 @@
 package View.AreaViewport;
 
 import Model.Entity.Character.Avatar;
-import Model.Items.Item;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.State.GameState.GameState;
-import Utilities.ItemStuff.ItemManager;
 import View.AreaViewport.FogOfWar.FogOfWar;
 import View.AreaViewport.HUDView.HUD;
 import View.SkillView.ObservedNPC;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashMap;
 
 
 /**
@@ -33,7 +30,7 @@ public class AreaViewport extends JPanel{
 
     public AreaViewport(GameState gameState){
         //This needs to be initialized later on or grabbed from the inventory
-        this.setBackground(Color.GRAY);
+        this.setBackground(Color.BLACK);
         setPreferredSize(new Dimension(WIDTH,HEIGHT));
 
         Avatar avatar = gameState.getAvatar();

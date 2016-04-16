@@ -1,6 +1,5 @@
 package Model.Map.Tile.Terrain;
 
-import Model.Entity.Entity;
 import Utilities.Visitor.TerrainVisitable;
 
 /**

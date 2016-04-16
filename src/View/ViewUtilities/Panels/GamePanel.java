@@ -1,7 +1,6 @@
 package View.ViewUtilities.Panels;
 
 import Controller.Controllers.GamePlayController;
-import Model.Inventory.Inventory;
 import Model.State.GameState.ActiveGameState;
 import Utilities.Observers.Observer;
 import View.AreaViewport.AreaViewport;

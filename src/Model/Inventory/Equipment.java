@@ -1,7 +1,7 @@
 package Model.Inventory;
 
 import Model.Items.Takeable.Equippable.Armor;
-import Model.Items.Takeable.Equippable.Weapon;
+import Model.Items.Takeable.Equippable.Weapon.Weapon;
 import Utilities.GameMessageQueue;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
@@ -29,7 +29,7 @@ public class Equipment implements Subject{
     public Weapon equipWeapon(Weapon weapon) {
         Weapon currentWeapon = this.weapon;
         this.weapon = weapon;
-        GameMessageQueue.push("You equipped a weapon.");
+        GameMessageQueue.push("You equipped a " + weapon.getName());
         alert();
         return currentWeapon;
     } // end equipWeapon
@@ -37,7 +37,7 @@ public class Equipment implements Subject{
     public Armor equipArmor(Armor armor) {
         Armor currentArmor = this.armor;
         this.armor = armor;
-        GameMessageQueue.push("You equipped some armor.");
+        GameMessageQueue.push("You equipped " + armor.getName());
         alert();
         return currentArmor;
     } // end equipArmor

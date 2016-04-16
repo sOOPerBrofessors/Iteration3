@@ -2,8 +2,6 @@ package Model;
 
 import Model.State.StateManager;
 
-import java.util.HashMap;
-
 /**
  * Created by Wimberley on 3/23/16.
  */
