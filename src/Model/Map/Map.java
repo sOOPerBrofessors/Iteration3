@@ -25,14 +25,18 @@ public class Map {
     //MAP movement for character (This will only walk on the top of the characters, will most likely
     //need a separate move for fishes that swim below or birds that go above
     public boolean moveCharacter(Character character, Location newLocation){
+        int currentX = character.getX();
+        int currentY = character.getY();
         int currentZ = character.getZ();
         int newX = newLocation.getX();
         int newY = newLocation.getY();
         int newZ = getTopTilePosition(newX, newY);
-        if (checkBounds(newX, newY) && checkHeightDifference(currentZ, newZ) && getTopTile(newX,newY).moveCharacter(character)) {
-            //Map needs to handle removement of the current entity on that tile.
-            getTileAt(character.getX(), character.getY(), character.getZ()).removeCharacter();
-            character.updateLocation(new Location(newX, newY, newZ));
+        Tile newTile = getTopTile(newX,newY);
+        //Needs to move the character before the tile does interaction because of "teleport" effect
+        if (checkBounds(newX, newY) && checkHeightDifference(currentZ, newZ) && newTile.moveCharacter(character)){
+            getTileAt(currentX, currentY, currentZ).removeCharacter();
+            character.updateLocation(new Location(newX,newY,newZ));
+            newTile.doInteractions(character); //does the interaction
             return true;
         }else{
             return false;

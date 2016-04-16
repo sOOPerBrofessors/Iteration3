@@ -7,8 +7,8 @@ import Model.Map.AreaEffect.AreaOfEffect;
  */
 public interface AOEVisitor {
     void visitHealAOE();
-//    void visitDamageAoe();
-//    void visitTeleportAoe();
-//    void visitLevelUpAoe();
-//    void visitInstantDeath();
+    void visitTakeDamageAoe();
+    void visitTeleportAoe();
+    void visitLevelUpAoe();
+    void visitInstantDeath();
 }

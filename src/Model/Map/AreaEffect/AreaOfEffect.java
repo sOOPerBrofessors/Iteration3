@@ -15,8 +15,4 @@ public abstract class AreaOfEffect implements AOEVisitable{
     }
     public abstract void onInteract(Character character);
 
-    @Override
-    public void acceptAOEVisitor(AOEVisitor aoeVisitor) {
-
-    }
 }

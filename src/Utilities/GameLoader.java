@@ -82,9 +82,9 @@ public class GameLoader {
     }
 
     private void initAreaEffect(){
-        map.addAOE(new HealDamageAOE(5), new Location(1,1,0));
-        map.addAOE(new LevelUpAOE(1), new Location(3,1,0));
-        map.addAOE(new TeleportAOE(0, new Location(10,10,1)), new Location(3,1,0));
+        //map.addAOE(new HealDamageAOE(5), new Location(1,1,0));
+        //map.addAOE(new LevelUpAOE(1), new Location(3,1,0));
+        map.addAOE(new TeleportAOE(0, new Location(10,10,1), map), new Location(3,1,0));
     }
 
     public ActiveGameState getActiveGameState() {

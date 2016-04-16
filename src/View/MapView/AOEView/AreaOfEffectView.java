@@ -47,4 +47,24 @@ public class AreaOfEffectView extends MapObjectView implements AOEVisitor{
         //needs to change heal effect image
         image = null;//new AreaOfEffectView();
     }
+
+    @Override
+    public void visitTakeDamageAoe() {
+        image = null;
+    }
+
+    @Override
+    public void visitTeleportAoe() {
+        image = null;
+    }
+
+    @Override
+    public void visitLevelUpAoe() {
+        image = null;
+    }
+
+    @Override
+    public void visitInstantDeath() {
+        image = null;
+    }
 }

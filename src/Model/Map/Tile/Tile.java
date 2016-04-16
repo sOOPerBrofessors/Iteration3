@@ -3,6 +3,7 @@ package Model.Map.Tile;
 import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Map.AreaEffect.AreaOfEffect;
+import Model.Map.Location;
 import Model.Map.Tile.Terrain.Terrain;
 import Model.Projectile.Projectile;
 import Utilities.Observers.TileObservable;
@@ -25,15 +26,15 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         this.terrain = terrain;
         observers = new ArrayList<>();
     }
-
     public boolean moveCharacter(Character character){
         if(character.checkStrategy(terrain)){
-            doInteractions(character);
+            addCharacter(character);
             return true;
         }else{
             return false;
         }
     }
+
 
     @Override
     public void notifyObservers() {
@@ -87,8 +88,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
     }
 
     //ADD ALL INTERACTIONS TO ENTITY ON THAT TILE
-    protected void doInteractions(Character character) {
-        addCharacter(character);
+    public void doInteractions(Character character) {
         effectArea(character);
         //Effect item
         //Effect
