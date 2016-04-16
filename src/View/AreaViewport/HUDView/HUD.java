@@ -1,20 +1,29 @@
 package View.AreaViewport.HUDView;
 
 import Model.Entity.Character.Avatar;
+import Utilities.GameMessageQueue;
 import Utilities.Settings;
 import View.ViewUtilities.ImageAssets;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by broskj on 4/14/16.
  */
 public class HUD {
     private Avatar avatar;
+    private static BufferedImage occupationSprite;
+    private int width = Settings.GAMEWIDTH,
+        height = Settings.GAMEHEIGHT;
 
     public HUD(Avatar avatar) {
         this.avatar = avatar;
     } // end constructor
+
+    public static void setOccupationSprite(BufferedImage newOccupationSprite) {
+        occupationSprite = newOccupationSprite;
+    } // end setOccupationSprite
 
     public void updateHUD(Graphics g) {
         double healthRatio = avatar.getHealth()*1.0 / avatar.getBaseHealth()*1.0;
@@ -61,8 +70,22 @@ public class HUD {
         g2d.setColor(new Color(5, 255, 78, 200));
         g2d.fillOval(2,2,163,163);
         g2d.drawImage(ImageAssets.hud, 0, 0, 520, 180, null);
-        g2d.drawImage(ImageAssets.sneakS, 55, 55, 64, 64, null);
+        g2d.drawImage(occupationSprite, 55, 55, 64, 64, null);
+
+        renderGameMessages(g2d);
 
         g2d.dispose();
     } // end updateHUD
+
+    public void renderGameMessages(Graphics2D g2d) {
+        int messageBoxW = 600, messageBoxH = 140;
+        g2d.drawImage(ImageAssets.messageBox, 0, height-messageBoxH, messageBoxW, messageBoxH, null);
+
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 22));
+
+        for(int i = 0; i < GameMessageQueue.queue.size(); i++) {
+            g2d.drawString(GameMessageQueue.queue.get(i), 20, (height-20*(GameMessageQueue.queue.size()-i))-10);
+        }
+    } // end renderGameMessages
 } // end class HUD
