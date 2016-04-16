@@ -9,9 +9,6 @@ import Utilities.Observers.EntityObservable;
 import Utilities.Observers.EntityObserver;
 import Utilities.Visitor.EntityVisitable;
 
-import Utilities.Tickable;
-import com.sun.org.apache.xpath.internal.operations.Or;
-
 
 /**
  * Created by dyeung on 4/6/16.

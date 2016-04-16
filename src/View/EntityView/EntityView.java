@@ -1,17 +1,9 @@
 package View.EntityView;
 
-import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Map.Orientation;
-import Utilities.ErrorLevel;
-import Utilities.MessageHandler;
 import Utilities.Observers.EntityObserver;
-import Model.Map.Location;
-import Utilities.PersonFilter;
-import Utilities.Settings;
 import View.MapView.MapObjectView;
-
-import java.awt.*;
 
 /**
  * Created by dyeung on 4/6/16.

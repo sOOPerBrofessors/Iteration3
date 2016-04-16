@@ -3,9 +3,7 @@ package Model.Inventory;
 import Model.Items.Item;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon;
-import Utilities.ErrorLevel;
 import Utilities.GameMessageQueue;
-import Utilities.MessageHandler;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
 

@@ -1,7 +1,5 @@
 package Model.Map;
 
-import View.MapView.MapObjectView;
-
 /**
  * Created by dyeung on 4/9/16.
  */

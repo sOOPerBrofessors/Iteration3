@@ -2,8 +2,6 @@ package Model.Items;
 
 import Model.Entity.Character.Character;
 import Model.Map.MapObject;
-import Model.Model;
-import View.MapView.MapObjectView;
 
 /**
  * Created by broskj on 4/6/16.

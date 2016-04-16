@@ -1,17 +1,14 @@
 package View.AreaViewport;
 
 import Model.Entity.Character.Avatar;
-import Model.Items.Item;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.State.GameState.GameState;
-import Utilities.ItemStuff.ItemManager;
 import View.AreaViewport.FogOfWar.FogOfWar;
 import View.AreaViewport.HUDView.HUD;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashMap;
 
 
 /**

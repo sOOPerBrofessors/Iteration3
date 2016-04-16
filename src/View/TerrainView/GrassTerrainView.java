@@ -1,12 +1,9 @@
 package View.TerrainView;
 
-import Model.Map.Tile.Tile;
 import Utilities.Settings;
-import View.ItemView.ItemView;
 import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * Created by dyeung on 4/5/16.

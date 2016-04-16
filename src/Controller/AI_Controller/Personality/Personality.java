@@ -1,11 +1,8 @@
 package Controller.AI_Controller.Personality;
 
-import Controller.AI_Controller.Decision.Decision;
 import Controller.AI_Controller.Interest.Interest;
 import Controller.AI_Controller.Interest.InterestFactory;
 
-import java.util.ArrayList;
-import java.util.DoubleSummaryStatistics;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -7,7 +7,6 @@ import Utilities.Visitor.OccupationVisitor;
 import View.EntityView.AvatarViewFactory.OccupationViewFactory;
 
 import java.awt.*;
-import java.util.Set;
 
 /**
  * Created by dyeung on 4/6/16.
