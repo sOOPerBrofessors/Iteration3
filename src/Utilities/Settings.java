@@ -68,4 +68,7 @@ public class Settings {
 
     public static final int MAX_INVENTORY_SIZE = 16;
 
+    // int to limit character count in game window
+    public static final int CHAR_LIMIT = 36;
+
 }
