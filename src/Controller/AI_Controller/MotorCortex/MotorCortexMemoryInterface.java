@@ -11,7 +11,7 @@ public interface MotorCortexMemoryInterface {
 
     // The decision getter
     NPC getNPC();
-    Orientation getOrientationToMove();
+    void moveNPC();
     Decision getCurrentDecision();
 
 }

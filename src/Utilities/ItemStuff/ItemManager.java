@@ -15,8 +15,8 @@ public class ItemManager{
     private static HashMap<Location, Item> items;
     private static HashMap<Item, ItemView> itemViews;
 
-    public static void setItems(HashMap<Location, Item> items) {
-        items = items;
+    public static void setItems(HashMap<Location, Item> newItems) {
+        items = newItems;
     }
 
     public static HashMap<Location, Item> getItems(){
@@ -29,7 +29,7 @@ public class ItemManager{
         }
     }
 
-    public static void setItemViews(HashMap<Item, ItemView> itemViews) {
-        ItemManager.itemViews = itemViews;
+    public static void setItemViews(HashMap<Item, ItemView> views) {
+        itemViews = views;
     }
 }
