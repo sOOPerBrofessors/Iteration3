@@ -69,6 +69,7 @@ public class TileView extends JComponent implements EntityViewVisitor, TileObser
 
         renderTerrain(g2d);
         renderEntity(g2d);
+        renderItem(g2d);
         g2d.dispose();
     }
 
