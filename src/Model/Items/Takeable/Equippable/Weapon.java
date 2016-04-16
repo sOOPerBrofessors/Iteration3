@@ -36,9 +36,5 @@ public class Weapon extends EquippableItem {
         return new Weapon(new SummonerWeaponStrategy(), value);
     } // end factory method makeSummonerWeapon
 
-    public void onInteract(Character character) {
-        s.onInteract(this, character);
-    } // end onInteract
-
     public int getWeaponValue() { return this.weaponValue; }
 } // end class Weapon

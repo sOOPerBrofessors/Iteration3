@@ -66,7 +66,7 @@ public class MapView implements Observer{
         clearItemViews();
 
         // updates item views
-        itemViews = itemManager.getItemViews();
+        itemViews = itemManager.getMapItemViews();
         for(ItemView view: itemViews){
             tileColumnView[view.getX()][view.getY()].setItemView(view);
         }

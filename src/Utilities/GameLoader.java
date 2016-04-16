@@ -38,8 +38,8 @@ public class GameLoader {
         //initNPC();
         initPlayer();
         initItems();
+        itemManager = new ItemManager(ItemFactory.getTakableItems(), ItemFactory.getInteractableItems(), ItemFactory.getItemViews());
         initAreaEffect();
-        itemManager = new ItemManager(ItemFactory.getItems(), ItemFactory.getItemViews());
         activeGameState = new ActiveGameState(map, player, entities, itemManager);
         pausedGameState = new PausedGameState(map, player, entities, itemManager);
     }

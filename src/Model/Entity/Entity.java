@@ -59,9 +59,14 @@ public abstract class Entity implements EntityObservable, MapObject, EntityVisit
         return map.getTopTile(newX,newY);
     }
 
+    private TileColumn getNextTileColumn(Map map, Orientation orientation){
+        int newX = location.getX() + orientation.x;
+        int newY = location.getY() + orientation.y;
+        return map.getTileColumn(newX,newY);
+    }
+
     //Because the movement for projectiles is very different from Character, I decided to switch this here
     public abstract boolean move(Map map, Orientation orientation);
-
 
     public boolean canMove(Map map, Orientation orientation) {
 

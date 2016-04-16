@@ -13,31 +13,28 @@ import Model.Items.ItemStrategy.EquippableStrategy.SummonerArmorStrategy;
  *  likely need a decorator.
  */
 public class Armor extends EquippableItem {
+
     private int armorValue;
 
-    private Armor(EquippableStrategy s) {
+    private Armor(EquippableStrategy s, int armorValue) {
         super(s);
-        this.armorValue = 0;
+        this.armorValue = armorValue;
         /*
         todo: change constructor to take in weapon value
         */
     } // end private constructor
 
-    public Armor makeSmasherArmor() {
-        return new Armor(new SmasherArmorStrategy());
+    public static Armor makeSmasherArmor(int armorValue) {
+        return new Armor(new SmasherArmorStrategy(), armorValue);
     } // end factory method makeSmasherArmor
 
-    public Armor makeSneakArmor() {
-        return new Armor(new SneakArmorStrategy());
+    public static Armor makeSneakArmor(int armorValue) {
+        return new Armor(new SneakArmorStrategy(), armorValue);
     } // end factory method makeSneakArmor
 
-    public Armor makeSummonerArmor() {
-        return new Armor(new SummonerArmorStrategy());
+    public static Armor makeSummonerArmor(int armorValue) {
+        return new Armor(new SummonerArmorStrategy(), armorValue);
     } // end factory method makeSummonerArmor
-
-    public void onInteract(Character character) {
-        s.onInteract(this, character);
-    } // end onInteract
 
     public int getArmorValue() { return this.armorValue; }
 } // end class Armor
