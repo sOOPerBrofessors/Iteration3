@@ -53,9 +53,9 @@ public class ActiveGameState extends GameState {
 
     public void playerAttack(){}
 
-    public void playerFirstSkill(){
+    public void playerFirstSkill(){}
 
-    }
+    public void startCombatTimer() { avatar.startCombatTimer(); }
 
     public void playerSecondSkill(){}
 
