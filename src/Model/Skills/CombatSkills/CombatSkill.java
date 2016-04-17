@@ -6,6 +6,7 @@ import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Tile.Tile;
 import Model.Skills.Skill;
+import Utilities.GameMessageQueue;
 import Utilities.InfluenceAreas.Linear.LinearEffect;
 
 import java.util.ArrayList;
@@ -41,12 +42,10 @@ public abstract class CombatSkill extends Skill {
             curTile = map.getTopTile(x, y);
             if (curTile.hasCharacter()) {
                 enemy = curTile.getCharacter();
-                System.out.println("Enemy health before: " + enemy.getHealth());
-                System.out.println("Total damage: " + damage);
                 enemy.healthEffect(-damage);
-                System.out.println("Enemy health after: " + enemy.getHealth());
                 return;
             }
         }
+        GameMessageQueue.push(name + ": No enemy found!");
     }
 }

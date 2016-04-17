@@ -7,6 +7,7 @@ import Model.Map.Map;
 import Model.Map.Orientation;
 import Model.Map.Tile.Tile;
 import Utilities.ErrorLevel;
+import Utilities.GameMessageQueue;
 import Utilities.InfluenceAreas.Linear.LinearEffect;
 import Utilities.MessageHandler;
 import Utilities.PersonFilter;
@@ -41,11 +42,10 @@ public class Observation extends RangedSkill{
         if (checkAll()) {
             enforceManaCost();
             setTimePerformed();
-            MessageHandler.println(name + "success! remaining CD:" + getRemainingCoolDownTime(), ErrorLevel.NOTICE, PersonFilter.ANDY);
+            GameMessageQueue.push(name + " Success!");
             return performObservation(map, orientation);
         }
         else {
-            MessageHandler.println(name + "Failed for some reason", ErrorLevel.NOTICE, PersonFilter.ANDY);
             observedMsg = new ArrayList<>();
             observedMsg.add("Failed");
             observationInfo = new ObservationInfo(observedMsg);

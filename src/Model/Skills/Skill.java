@@ -3,6 +3,7 @@ package Model.Skills;
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
 import Utilities.ErrorLevel;
+import Utilities.GameMessageQueue;
 import Utilities.MessageHandler;
 import Utilities.PersonFilter;
 
@@ -78,27 +79,22 @@ public abstract class Skill { //TODO: skills should also be ticked if we want to
 
     protected boolean checkAll() {
         if (!checkCD()) {
-            MessageHandler.println(name + "Not cooled down, remaining CD: " + getRemainingCoolDownTime(), ErrorLevel.NOTICE, PersonFilter.ANDY);
+            GameMessageQueue.push(name + " failed. Not cooled down");
             return false;
         }
         else if (!checkMana()) {
-            MessageHandler.println(name + "Not enough mana", ErrorLevel.NOTICE, PersonFilter.ANDY);
+            GameMessageQueue.push(name + " failed. Not enough mana");
             return false;
         }
         else if (!checkPerformanceSuccess()) {
             enforceManaCost();
             setTimePerformed();
-            MessageHandler.println(name + "Fail" + getRemainingCoolDownTime(), ErrorLevel.NOTICE, PersonFilter.ANDY);
+            GameMessageQueue.push(name + " failed. Bad luck!");
             return false;
         }
         else {
             return true;
         }
-    }
-
-    //set avatar, only used for initialization
-    public void setAvatar (Avatar avatar) {
-        this.avatar = avatar;
     }
 
     // accessors
