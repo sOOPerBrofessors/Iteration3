@@ -16,7 +16,7 @@ public class Quest extends TakeableItem {
     }
     // probably the most useless class ever
     @Override
-    protected void utilize(Character character) {
+    public void utilize(Character character) {
         //character.removeItem(this);
     }
 }

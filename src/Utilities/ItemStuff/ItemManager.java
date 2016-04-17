@@ -84,7 +84,7 @@ public class ItemManager implements Subject{
     }
 
     public void addItem(TakeableItem item, Character character){
-        Location temp = character.getLocation();
+        Location temp = character.getLocation().getAdjacent(character.getOrientation());
         takableItems.put(temp, item);
         mapItemViews.put(item, allItemViews.get(item));
         mapItemViews.get(item).setLocation(temp.getX(), temp.getY());
