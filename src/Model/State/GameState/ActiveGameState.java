@@ -12,6 +12,7 @@ import Model.Skills.CombatSkills.BrawlingSkill;
 import Model.Skills.RangedSkills.Observation;
 import Model.Skills.RangedSkills.ObservationInfo;
 import Model.Skills.Skill;
+import Utilities.GameMessageQueue;
 import Utilities.ItemStuff.ItemManager;
 import Utilities.Timer.TimedEvent;
 
@@ -76,20 +77,18 @@ public class ActiveGameState extends GameState {
         map.addProjectile(temp);
     }
 
-    public void playerExecuteSkill(int index){
-        avatar.getSkill(index).execute(map);
-    }
-
-    public void playerFirstSkill(){}
-
-    public void playerThirdSkill() {
-        Skill skill = avatar.getSkill(2);
-        skill.execute(map);
+    public void playerExecuteSkill(int index) {
+        if (avatar.getSKillList().size() > index) {
+            avatar.getSkill(index).execute(map);
+        }
+        else {
+            GameMessageQueue.push("You don't have skill at this position");
+        }
     }
 
     public void startCombatTimer() { avatar.startCombatTimer(); }
 
-    public ObservationInfo playerSecondSkill(){
+    public ObservationInfo playerObservationSkill(){
         Observation skill = (Observation) avatar.getSkill(1);
         return skill.execute(map, avatar.getOrientation());
     }
