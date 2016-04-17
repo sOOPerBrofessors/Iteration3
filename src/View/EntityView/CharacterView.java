@@ -1,15 +1,13 @@
 package View.EntityView;
 
-import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
-import Model.Entity.Character.NPC.NPC;
 import Model.Map.Orientation;
 import Utilities.Settings;
-import Utilities.Visitor.CharacterVisitor;
 import Utilities.Visitor.OccupationVisitor;
 import View.EntityView.AvatarViewFactory.OccupationViewFactory;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by dyeung on 4/6/16.
@@ -21,6 +19,7 @@ public class CharacterView extends EntityView implements OccupationVisitor {
     private Character character;
     protected int viewHeight = Settings.ENTITYHEIGHT;
     protected int viewWidth = Settings.ENTITYWIDTH;
+
     public CharacterView(Character character){
         super(character);
         this.character = character;

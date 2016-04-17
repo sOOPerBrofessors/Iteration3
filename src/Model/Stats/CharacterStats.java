@@ -2,6 +2,8 @@ package Model.Stats;
 
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
+import Utilities.Visitor.CharacterVisitable;
+import View.EntityView.CharacterView;
 
 import java.util.ArrayList;
 
