@@ -309,12 +309,16 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     public void pickUpItem(TakeableItem item){
         inventory.pickUpItem(item);
         alert();
-    }
+    } // end pickUpItem
 
     public void pickUpMoney(Money money) {
         inventory.pickUpMoney(money);
         alert();
-    }
+    } // end pickUpMoney
+
+    public boolean removeItem(TakeableItem item) {
+        return inventory.removeItem(item);
+    } // end removeItem
 
     public CharacterStats getCharacterStats() {return stats;}
 

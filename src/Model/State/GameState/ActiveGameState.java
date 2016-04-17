@@ -21,6 +21,7 @@ public class ActiveGameState extends GameState {
 
     public ActiveGameState(Map map, Avatar avatar, ArrayList<NPC> entities, ItemManager itemManager){
         super(map,avatar, entities, itemManager);
+        map.addItemManager(itemManager);
     }
 
 
