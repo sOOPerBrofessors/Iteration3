@@ -80,15 +80,15 @@ public class GameLoader {
 
         controller.setMap(map);
 
-        ArrayList<Orientation> ba = controller.findPath(entities.get(0), new Location(7, 3, 0));
+//        ArrayList<Orientation> ba = controller.findPath(entities.get(0), new Location(7, 3, 0));
 
-        System.out.println("\nBEGIN PATHING RESULT size: " + ba.size());
-        for (Orientation orientation : ba) {
-
-            System.out.println("\t" + orientation + "\n");
-
-        }
-        System.out.println("\nEND PATHING RESULT");
+//        System.out.println("\nBEGIN PATHING RESULT size: " + ba.size());
+//        for (Orientation orientation : ba) {
+//
+//            System.out.println("\t" + orientation + "\n");
+//
+//        }
+//        System.out.println("\nEND PATHING RESULT");
 
     }
 
