@@ -92,7 +92,7 @@ public class InventoryView extends AllDirPanel implements Observer{
     public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();
         drawBackground(g2d);
-        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .7f)); //make pictures opaque
+        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); //make pictures opaque
         for(int y=0;y<yMax;y++){ //draw all squares
             for (int x=0; x<xMax; x++){
                 g2d.drawImage(ImageAssets.invSlot, xBorderOffset+50+x*squareSize,yBorderOffset+75+y*squareSize, squareSize,squareSize, null); //draw InvSlot
@@ -100,25 +100,31 @@ public class InventoryView extends AllDirPanel implements Observer{
                 if (currentSlot< items.size()) {//for performance (Don't actually know if would increase performance)
                     g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); //make pictures solid
                     g2d.drawImage(invImages[currentSlot], xBorderOffset + 75 + x * squareSize, yBorderOffset + 100 + y * squareSize, squareSize/2, squareSize/2, null);
-                    g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .7f)); //make pictures opaque
+                    g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); //make pictures opaque
                 }
             }
         }
         //draw armor and weapon slot
-        g2d.drawImage(ImageAssets.eqSlot, xBorderOffset +xSize/2 + squareSize, Settings.GAMEHEIGHT/2-2*squareSize,squareSize*2,squareSize*2, null);
-        g2d.drawImage(ImageAssets.eqSlot, xBorderOffset +xSize/2 + squareSize, Settings.GAMEHEIGHT/2, squareSize*2,squareSize*2, null);
+        g2d.drawImage(ImageAssets.eqSlot, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2-2*squareSize,squareSize*2,squareSize*2, null);
+        g2d.drawImage(ImageAssets.eqSlot, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2, squareSize*2,squareSize*2, null);
 
         //get rid of opaqueness
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         g2d.setColor(new Color(166, 0, 4, 255));
-        g2d.setFont(new Font("Courier New", 1, 36));
-        g2d.drawString("Inventory        Equipment", xBorderOffset+squareSize*2, yBorderOffset+50);
+        g2d.setFont(new Font(Font.MONOSPACED, 1, 36));
+        String invyString = "Inventory",
+                equipString = "Equipment";
+        int invyWidth = g2d.getFontMetrics().stringWidth(invyString);
+        int equipWidth = g2d.getFontMetrics().stringWidth(equipString);
+        g2d.drawString(invyString, xBorderOffset+(squareSize+25)*2 - invyWidth/2, yBorderOffset+70);
+        g2d.drawString(equipString, Settings.GAMEWIDTH - xBorderOffset - squareSize+5 - equipWidth, yBorderOffset+70);
+        //g2d.drawString("Inventory       Equipment", xBorderOffset+squareSize*2-25, yBorderOffset+70);
 
         //highlight selection
         if (armorSel){
-            g2d.drawImage(ImageAssets.select, xBorderOffset +xSize/2 + squareSize, Settings.GAMEHEIGHT/2-2*squareSize,squareSize*2,squareSize*2, null);
+            g2d.drawImage(ImageAssets.select, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2-2*squareSize,squareSize*2,squareSize*2, null);
         } else if(weaponSel){
-            g2d.drawImage(ImageAssets.select, xBorderOffset +xSize/2 + squareSize, Settings.GAMEHEIGHT/2, squareSize*2,squareSize*2, null);
+            g2d.drawImage(ImageAssets.select, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2, squareSize*2,squareSize*2, null);
         } else g2d.drawImage(ImageAssets.select, xBorderOffset+50+xSel*squareSize, yBorderOffset+75+ySel*squareSize,squareSize,squareSize,null);
 
         g2d.dispose();
