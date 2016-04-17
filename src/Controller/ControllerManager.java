@@ -59,13 +59,6 @@ public class ControllerManager implements KeyListener {
         MessageHandler.println("ControllerManager.setInventoryState called" , ErrorLevel.NOTICE, PersonFilter.SAM);
     }
 
-    //InventoryStats shows Equipment as well
-//    public void setEquipmentState(){
-//        //viewManager.displayEquipment();
-//        stateManager.pauseGame();
-//        //activeController = equipmentController;
-//    }
-
     public void setStatsState(){
         activeController = statsController;
         stateManager.pauseGame(); // switches to pausedGameState
@@ -79,9 +72,15 @@ public class ControllerManager implements KeyListener {
     }
 
     public void setSkillsState(){
-        //viewManager.displaySkills();
+        activeController = skillsController;
         stateManager.pauseGame();
-        //activeController = skillsController
+        viewManager.displaySkills();
+    }
+
+    public void setSettingsState(){
+        activeController = settingsController;
+        stateManager.pauseGame();
+        viewManager.displaySettings();
     }
 
     @Override
@@ -102,7 +101,6 @@ public class ControllerManager implements KeyListener {
     public void switchGamePlay(){
         activeController = gamePlayController;
         stateManager.activeGame(); // makes Game state Active
-        //viewManager.closeInventory();
         viewManager.closeAll();
     }
 

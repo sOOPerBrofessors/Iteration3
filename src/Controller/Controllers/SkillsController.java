@@ -70,7 +70,7 @@ public class SkillsController extends Controller { //NOT VERY OOPY
         });
 
         // Exit InventoryView
-        commands.put(Settings.STATS, new Command() {
+        commands.put(Settings.SKILLS, new Command() {
             @Override
             public void execute() {
                 controllerManager.switchGamePlay();
