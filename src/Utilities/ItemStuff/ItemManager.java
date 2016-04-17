@@ -5,6 +5,7 @@ import Model.Items.Interactable.Interactable;
 import Model.Items.Item;
 import Model.Items.Takeable.TakeableItem;
 import Model.Map.Location;
+import Model.Map.Orientation;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
 import View.ItemView.InteractableView;
@@ -82,8 +83,11 @@ public class ItemManager implements Subject{
         allItemViews.remove(item);
     }
 
-    public void addItem(Item item, Location location){
-        //takableItems
+    public void addItem(TakeableItem item, Location location){
+        Location temp = location.getAdjacent(Orientation.NORTH);
+        takableItems.put(temp, item);
+        mapItemViews.put(item, allItemViews.get(item));
+        alert();
     }
 
     public boolean tileContainsObstacle(Location targetLocation) {

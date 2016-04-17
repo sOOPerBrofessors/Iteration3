@@ -41,7 +41,6 @@ public class ProjectileView extends MapObjectView implements Observer{
 
     @Override
     public void update() {
-        setPixels(projectile.getX(), projectile.getY());
     }
 
     @Override
@@ -66,8 +65,8 @@ public class ProjectileView extends MapObjectView implements Observer{
 
     @Override
     public void setPixels(int x, int y) {
-        xPixelStart = ViewCalculations.getXPixel(projectile.getOrientation(), projectile.getX());
-        yPixelStart = ViewCalculations.getYPixel(projectile.getOrientation(), projectile.getY());
+        xPixelStart = ViewCalculations.startXPixel(projectile.getOrientation(), x + 10);
+        yPixelStart = ViewCalculations.startYPixel(projectile.getOrientation(), y - 12);
     }
 
     @Override

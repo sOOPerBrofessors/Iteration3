@@ -124,7 +124,7 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
     //TODO: change this so it just renders map object views
     private void renderEntity(Graphics2D g2d, int centeredX, int centeredY){
         if (hasCharacter()){
-            characterView.setPixels(centeredX, centeredY);
+            characterView.setPixels(centeredX + 3, centeredY +12);
             characterView.paintComponent(g2d);
         }
     }
