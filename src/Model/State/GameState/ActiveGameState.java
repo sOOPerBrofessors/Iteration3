@@ -12,6 +12,7 @@ import Model.Skills.RangedSkills.Observation;
 import Model.Skills.RangedSkills.ObservationInfo;
 import Model.Skills.Skill;
 import Utilities.ItemStuff.ItemManager;
+import Utilities.Timer.TimedEvent;
 
 import java.util.ArrayList;
 
@@ -21,8 +22,8 @@ import java.util.ArrayList;
 
 public class ActiveGameState extends GameState {
 
-    public ActiveGameState(Map map, Avatar avatar, ArrayList<NPC> entities, ItemManager itemManager){
-        super(map,avatar, entities, itemManager);
+    public ActiveGameState(Map map, Avatar avatar, ArrayList<NPC> entities, ItemManager itemManager) {
+        super(map, avatar, entities, itemManager);
         map.addItemManager(itemManager);
     }
 
@@ -100,5 +101,9 @@ public class ActiveGameState extends GameState {
 
     public void setPlayer(Avatar player) {
         this.player = player;
+    }
+
+    public int getAvatarMovement() {
+        return player.getMovement();
     }
 }

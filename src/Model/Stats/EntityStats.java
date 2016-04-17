@@ -9,15 +9,19 @@ package Model.Stats;
     //
 public class EntityStats {
 
-    private int health = 0;
-    private int movement = 0;
+    protected int health;
+    protected int baseHealth;
+    protected int movement;
+    protected int baseMovement;
 
     public EntityStats(int health, int movement){
-        healthEffect(health); //for rings of operation
-        movementEffect(movement);
+        this.health = baseHealth = health;
+        this.movement = baseMovement = movement;
     }
 
     public EntityStats(){
+        health = baseHealth = 0;
+        movement = baseMovement = 0;
     }
 
     public void healthEffect(int effect){
@@ -33,4 +37,7 @@ public class EntityStats {
             movement = 0;
         }
     }
+
+    public int getHealth() { return health; }
+    public int getMovement() { return movement; }
 }
