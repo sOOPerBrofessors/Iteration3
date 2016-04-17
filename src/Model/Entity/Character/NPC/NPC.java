@@ -9,6 +9,7 @@ import Model.Entity.Character.Occupation.Occupation;
 import Model.Faction.Faction;
 import Model.Map.Location;
 import Utilities.Tickable;
+import Utilities.Visitor.CharacterTypeVisitor;
 import Utilities.Visitor.CharacterVisitor;
 
 /**
@@ -66,7 +67,15 @@ public class NPC extends Character implements Tickable{
 
     @Override
     public void acceptCharacterVisitor(CharacterVisitor characterVisitor) {
-        characterVisitor.visitNPC(this);
+        characterVisitor.visitInventory(inventory);
+        characterVisitor.visitOccupation(o);
+        characterVisitor.visitSkills(skills);
+        characterVisitor.visitStats(stats);
+    }
+
+    @Override
+    public void acceptCharacterTypeVisitor(CharacterTypeVisitor characterTypeVisitor) {
+        characterTypeVisitor.visitNPC(this);
     }
 
     @Override

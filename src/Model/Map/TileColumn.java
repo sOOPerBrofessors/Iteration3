@@ -2,6 +2,7 @@ package Model.Map;
 
 import Model.Entity.Character.Character;
 import Model.Entity.Entity;
+import Model.Entity.Projectile.Projectile;
 import Model.Map.Tile.*;
 import Utilities.Visitor.*;
 
@@ -69,9 +70,22 @@ public class TileColumn implements TileVisitable, TerrainVisitable{
         tileList.get(z).addCharacter(character);
 
     }
+
     public void removeCharacter(Character character){
         int z = character.getZ();
         tileList.get(z).removeCharacter();
+    }
+
+    // all about them projectiles bro
+    public void addProjectile(Projectile projectile){
+        int z = projectile.getLocation().getZ();
+        tileList.get(z).addProjectile(projectile);
+
+    }
+
+    public void removeProjectile(Projectile projectile){
+        int z = projectile.getZ();
+        tileList.get(z).removeProjectile();
     }
 
     @Override

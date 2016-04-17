@@ -3,6 +3,7 @@ package View.ViewUtilities.Sprites;
 import Utilities.Settings;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  * Created by sgl on 4/6/16.
@@ -30,6 +31,7 @@ public class ImageAssets {
     public static BufferedImage grass, grass2, dirt, water;
     public static BufferedImage invSlot, eqSlot, select;
     public static BufferedImage hud, messageBox, interfaceBorder;
+    public static ArrayList<BufferedImage> fireballs = new ArrayList<>();
 
     // items
     public static BufferedImage healthPotion;
@@ -61,6 +63,12 @@ public class ImageAssets {
         SpriteSheet messageBoxSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/messagebox.png"));
         SpriteSheet crabSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/crab.png"));
         SpriteSheet borderSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/interfaceborder.png"));
+
+        // fireballs!
+        SpriteSheet fireballSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall.png"));
+        SpriteSheet fireball90Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall90.png"));
+        SpriteSheet fireball180Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall180.png"));
+        SpriteSheet fireball270Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall270.png"));
 
         smasherSW = smasherSheet.cropSheet(0,0, smasherWidth, smasherHeight);
         smasherNW = smasherSheet.cropSheet(smasherWidth*1, 0, smasherWidth, smasherHeight);
@@ -116,5 +124,11 @@ public class ImageAssets {
         closedChest = closedChestSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
         money = moneySheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
         chestKey = chestKeySheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
+
+        // fireBall!
+        fireballs.add(fireballSheet.cropSheet(0,0,Settings.PROJECTILEWIDTH,Settings.PROJECTILEHEIGHT));
+        fireballs.add(fireball90Sheet.cropSheet(0,0,Settings.PROJECTILEWIDTH,Settings.PROJECTILEHEIGHT));
+        fireballs.add(fireball180Sheet.cropSheet(0,0,Settings.PROJECTILEWIDTH,Settings.PROJECTILEHEIGHT));
+        fireballs.add(fireball270Sheet.cropSheet(0,0,Settings.PROJECTILEWIDTH,Settings.PROJECTILEHEIGHT));
     }
 }
