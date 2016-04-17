@@ -17,11 +17,11 @@ import java.util.ArrayList;
 /**
  * Created by dyeung on 4/16/16.
  */
-public class InventorySaveVisitor implements ItemVisitor {
+public class InventorySaver implements ItemVisitor {
     Document doc;
     ArrayList<Element> list;
     Inventory inventory;
-    public InventorySaveVisitor(Document doc, Inventory inventory) {
+    public InventorySaver(Document doc, Inventory inventory) {
         this.doc = doc;
         list = new ArrayList<>();
         this.inventory = inventory;
@@ -36,19 +36,22 @@ public class InventorySaveVisitor implements ItemVisitor {
     }
     public ArrayList<Element> getEquipped(){
         list.clear();
-        Equipment pack = inventory.getEquipment();
-        pack.getArmor().acceptItemVisitor(this);
-        pack.getWeapon().acceptItemVisitor(this);
+        Equipment equip = inventory.getEquipment();
+        Armor a = equip.getArmor();
+        if (a != null) {
+            a.acceptItemVisitor(this);
+        }
+        Weapon weapon = equip.getWeapon();
+        if (weapon != null) {
+            weapon.acceptItemVisitor(this);
+        }
         return list;
     }
 
     @Override
     public void visitTakeableItem(TakeableItem item) {
         Element element = doc.createElement("Takeable-Item");
-        Attr name = doc.createAttribute("name");
-        Attr descr = doc.createAttribute("description");
-        name.setValue(item.getName());
-        descr.setValue(item.getDescription());
+        element.setAttributeNode(SaverUtility.getAttrWithSS(doc,"name",item.getName()));
         list.add(element);
     }
 

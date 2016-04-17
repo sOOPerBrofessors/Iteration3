@@ -170,11 +170,13 @@ public class ViewManager implements Subject {
     // initialize game once players selection is confirmed
     private void initGame(Avatar player){
         GameLoader gameLoader = new GameLoader(player); // initializes player and attributes of GameState
+        GamePlayController gamePlayController = controllerManager.getGamePlayController();
+        gamePanel = new GamePanel(this);
+        gamePanel.init(gameLoader.getActiveGameState(), gamePlayController); // initializes the game view
+
         activePanel = gamePanel;
         stateManager.setActiveGameState(gameLoader.getActiveGameState());
         stateManager.setPausedGameState(gameLoader.getPausedGameState());
-        if (!alreadystarted)
-            gamePanel.init(gameLoader.getActiveGameState()); // initializes the game view
         controllerManager.switchGamePlay(); // switch to gameplay controller
         InventoryController.setInventoryView(gamePanel);
         PauseController.setPauseView(gamePanel);

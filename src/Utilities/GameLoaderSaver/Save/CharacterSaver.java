@@ -14,10 +14,10 @@ import java.util.ArrayList;
 /**
  * Created by dyeung on 4/16/16.
  */
-public class CharacterSaveVisitor implements CharacterVisitor {
+public class CharacterSaver implements CharacterVisitor {
     private Document doc;
     private ArrayList<Element> characterList;
-    CharacterSaveVisitor(Document document){
+    CharacterSaver(Document document){
         characterList = new ArrayList<>();
         this.doc = document;
     }
@@ -29,7 +29,7 @@ public class CharacterSaveVisitor implements CharacterVisitor {
     }
     @Override
     public void visitInventory(Inventory inventory) {
-        InventorySaveVisitor invSave = new InventorySaveVisitor(doc, inventory);
+        InventorySaver invSave = new InventorySaver(doc, inventory);
         Element inv = doc.createElement("Inventory");
 
         Element pack = doc.createElement("Pack");

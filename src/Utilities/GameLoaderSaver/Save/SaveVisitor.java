@@ -3,11 +3,14 @@ package Utilities.GameLoaderSaver.Save;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Entity.Character.NPC.NPC;
+import Model.Items.Takeable.TakeableItem;
 import Model.Map.AreaEffect.*;
+import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Tile.Terrain.Terrain;
 import Model.Projectile.Projectile;
 import Model.State.GameState.GameState;
+import Utilities.ItemStuff.ItemManager;
 import Utilities.Observers.EntityObserver;
 import Utilities.Visitor.*;
 import org.w3c.dom.Document;
@@ -20,11 +23,13 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Created by dyeung on 4/16/16.
  */
-public class SaveVisitor implements TileVisitor, EntityObserver, CharacterTypeVisitor {
+public class SaveVisitor implements TileVisitor, CharacterTypeVisitor {
     private String fileNamePath;
     private GameState gameState;
     private  ArrayList<Element> list;
@@ -38,8 +43,9 @@ public class SaveVisitor implements TileVisitor, EntityObserver, CharacterTypeVi
         this.map = gameState.getMap();
         this.avatar = gameState.getAvatar();
         list = new ArrayList<>();
+        init();
     }
-    public void save(){
+    private void init(){
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -48,33 +54,50 @@ public class SaveVisitor implements TileVisitor, EntityObserver, CharacterTypeVi
             mainRootElement = doc.createElementNS(fileNamePath, "Save_File");
             doc.appendChild(mainRootElement);
 
-            ArrayList<Element> listOfElements = saveAvatarElements();
-
-            for(Element element : listOfElements){
-                mainRootElement.appendChild(element);
-            }
-
-            //Originally was done so that each entity will be a list (no longer the case but possibly a better change)
-            //mainRootElement.appendChild(saveEntities(doc, avatar));
-
-            //Write to XML
-            writeToXml(doc, fileNamePath);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    public void save(){
+        list.clear();
+//        Element element = saveCharacters();
+//        mainRootElement.appendChild(element);
+        saveCharacters();
+        saveItems();
 
-    private ArrayList<Element> saveAvatarElements() {
-//        Avatar avatar = gameState.getAvatar();
-//        avatar.acceptCharacterVisitor(this);
 
-        return list;
+        //Write to XML
+        writeToXml(doc, fileNamePath);
+    }
+    public Element saveCharacters() {
+        Element e = doc.createElement("Characters");
+
+        for(int i = 0; i < map.getMaxRow(); i++){
+            for(int j = 0; j < map.getMaxColumn(); j++){
+                for (int k = 0; k < 10; k++){
+                    map.getTileAt(i,j,k).acceptTileVisitor(this);
+                }
+            }
+        }
+
+        return e;
+    }
+    public Element saveItems(){
+        Element e = doc.createElement("Items");
+        ItemManager itemManager = gameState.getItemManager();
+
+        HashMap<Location, TakeableItem> tmp = itemManager.getMapTakableItems();
+        Iterator it = tmp.entrySet().iterator();
+        //Test to see
+        while (it.hasNext()) {
+            HashMap.Entry pair = (HashMap.Entry)it.next();
+            System.out.println(pair.getKey() + " = " + pair.getValue());
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+
+        return e;
     }
 
-    @Override
-    public void updateMove() {
-
-    }
 
     @Override
     public void visitTileTerrain(Terrain terrain) {
@@ -131,8 +154,8 @@ public class SaveVisitor implements TileVisitor, EntityObserver, CharacterTypeVi
 
     @Override
     public void visitAvatar(Avatar avatar) {
-        CharacterSaveVisitor characterSaveVisitor = new CharacterSaveVisitor(doc);
-        ArrayList<Element> tmp = characterSaveVisitor.getElementsList(avatar);
+        CharacterSaver characterSaver = new CharacterSaver(doc);
+        ArrayList<Element> tmp = characterSaver.getElementsList(avatar);
         Element element = doc.createElement("Avatar");
         for(Element elm : tmp){
             element.appendChild(elm);
@@ -142,8 +165,8 @@ public class SaveVisitor implements TileVisitor, EntityObserver, CharacterTypeVi
 
     @Override
     public void visitNPC(NPC npc) {
-        CharacterSaveVisitor characterSaveVisitor = new CharacterSaveVisitor(doc);
-        ArrayList<Element> tmp = characterSaveVisitor.getElementsList(npc);
+        CharacterSaver characterSaver = new CharacterSaver(doc);
+        ArrayList<Element> tmp = characterSaver.getElementsList(npc);
         Element element = doc.createElement("NPC");
         for(Element elm : tmp){
             element.appendChild(elm);
