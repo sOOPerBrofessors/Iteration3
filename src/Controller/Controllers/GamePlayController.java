@@ -76,10 +76,10 @@ public class GamePlayController extends Controller{
         });
 
         // skill two key press
-        commands.put(Settings.TWO, () -> new ObservationTimer(state.playerSecondSkill()).start());
+        commands.put(Settings.TWO, () -> new ObservationTimer(state.playerObservationSkill()).start());
 
         // skill three key pree
-        commands.put(Settings.THREE, () -> state.playerThirdSkill());
+        commands.put(Settings.THREE, () -> state.playerExecuteSkill(2));
 
         // inventory key press
         commands.put(Settings.INVENTORY, () -> controllerManager.setInventoryState());

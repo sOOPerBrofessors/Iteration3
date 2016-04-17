@@ -80,16 +80,9 @@ public class ActiveGameState extends GameState {
         avatar.getSkill(index).execute(map);
     }
 
-    public void playerFirstSkill(){}
-
-    public void playerThirdSkill() {
-        Skill skill = avatar.getSkill(2);
-        skill.execute(map);
-    }
-
     public void startCombatTimer() { avatar.startCombatTimer(); }
 
-    public ObservationInfo playerSecondSkill(){
+    public ObservationInfo playerObservationSkill(){
         Observation skill = (Observation) avatar.getSkill(1);
         return skill.execute(map, avatar.getOrientation());
     }
