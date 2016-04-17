@@ -6,6 +6,7 @@ import Model.Items.Item;
 import Model.Items.Takeable.TakeableItem;
 import Model.State.GameState.ActiveGameState;
 import Utilities.ErrorLevel;
+import Utilities.ItemStuff.ItemManager;
 import Utilities.MessageHandler;
 import Utilities.Observers.Observer;
 import Utilities.PersonFilter;
@@ -25,11 +26,13 @@ import java.util.HashMap;
 //Displays Inventory in 4x4 matrix. x goes to the right, y goes down
 public class InventoryView extends AllDirPanel implements Observer{
 
+    private Avatar avatar;
     private Inventory inventory; //handle to Avatar's inventory
     ArrayList<TakeableItem> items; //handle to Avatar's ArrayList of Items
     Image[] invImages = new Image[16]; //Local Array of Images of Inventory
     //private Armor equippedArmor;
     //private Weapon equippedWeapon;
+    private ItemManager itemManager;
     private HashMap<Item, ItemView> itemViewHashMap;
 
     private int xSel, ySel, xMax, yMax;
@@ -42,10 +45,11 @@ public class InventoryView extends AllDirPanel implements Observer{
 
 
     public InventoryView(ActiveGameState gameState){
-        Avatar avatar = gameState.getAvatar(); //LOD
+        this.avatar = gameState.getAvatar(); //LOD
         inventory = avatar.getInventory();       //LOD
         items = inventory.getPack().getItems();
-        itemViewHashMap = gameState.getItemManager().getAllItemViews();  //LOD, add items with respective image to itemViewMap
+        itemManager = gameState.getItemManager();
+        itemViewHashMap = itemManager.getAllItemViews();  //LOD, add items with respective image to itemViewMap
         ySel = 0;
         xSel = 0;
         xMax = Settings.MAX_INVENTORY_SIZE/4;
@@ -96,7 +100,7 @@ public class InventoryView extends AllDirPanel implements Observer{
     }
     public void dropItem(){
         if (calcSel() < items.size())
-            inventory.dropItem(calcSel());
+            itemManager.addItem(inventory.dropItem(calcSel()),avatar.getLocation());
     }
 
 
