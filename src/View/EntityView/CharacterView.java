@@ -1,15 +1,15 @@
 package View.EntityView;
 
-import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
-import Model.Entity.Character.NPC.NPC;
 import Model.Map.Orientation;
+import Utilities.DamageObject;
+import Utilities.DamageQueue;
 import Utilities.Settings;
-import Utilities.Visitor.CharacterVisitor;
 import Utilities.Visitor.OccupationVisitor;
 import View.EntityView.AvatarViewFactory.OccupationViewFactory;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by dyeung on 4/6/16.
@@ -21,6 +21,7 @@ public class CharacterView extends EntityView implements OccupationVisitor {
     private Character character;
     protected int viewHeight = Settings.ENTITYHEIGHT;
     protected int viewWidth = Settings.ENTITYWIDTH;
+
     public CharacterView(Character character){
         super(character);
         this.character = character;
@@ -38,6 +39,19 @@ public class CharacterView extends EntityView implements OccupationVisitor {
 
         if(character.isInCombat())
             drawHealthBar(g2d);
+
+        g2d.setFont(new Font(Font.MONOSPACED, Font.ITALIC, 20));
+
+        for(DamageObject d : DamageQueue.getAll()) {
+            if(!d.isRunning())
+                d.start();
+            g2d.setColor(d.getColor());
+            g2d.drawString(Integer.toString(d.getDamage()),
+                    xPixel+Settings.ENTITYWIDTH/2+d.getxDelta()-10,
+                    yPixel+Settings.ENTITYHEIGHT/2+d.getyDelta()+10);
+            d.decrementyDelta();
+            d.decrementAlpha();
+        }
 
         g2d.dispose();
     }
