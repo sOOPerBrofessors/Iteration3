@@ -30,4 +30,22 @@ public class TileLocationTuple {
 
     }
 
+    public boolean equals(Object o) {
+
+        if (o instanceof TileLocationTuple) {
+
+            TileLocationTuple tuple = (TileLocationTuple) o;
+
+            if (this.location.equals(tuple.location)) {
+
+                return true;
+
+            }
+
+        }
+
+        return false;
+
+    }
+
 }

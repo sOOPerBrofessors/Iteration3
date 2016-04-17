@@ -61,7 +61,7 @@ public class GameLoader {
         ItemManager.setItems(ItemFactory.getItems());
         ItemManager.setItemViews(ItemFactory.getItemViews());
     }
-    private void initPlayer(){
+    private void initPlayer() {
         map.addCharacter(avatar); //(This doesn't have to worry about 3d things)
     }
     private void initNPC() {
@@ -71,13 +71,15 @@ public class GameLoader {
         AI_Controller controller = new AI_Controller();
 
         for (int i = 0; i < entities.size(); i++) {
+
             entities.get(i).setController(controller);
             map.addEntity(entities.get(i));
+
         }
 
         controller.setMap(map);
-
-        controller.findPath(entities.get(0), new Location(8, 2, 1));
+        System.out.println(entities.get(0).getLocation());
+        System.out.println(controller.findPath(entities.get(0), new Location(8, 2, 0)).size());
 
     }
 

@@ -47,11 +47,16 @@ public class TileNode extends Node { // Wrapper class for boxes that contains a 
     @Override
     public boolean equals(Object o) {
 
-        TileNode node = (TileNode) o;
+        if (o instanceof TileNode) {
 
-        if (this.box.equals(node.box)) {// && this.parentNode.box.equals(node.parentNode.box) && this.pathCost == node.pathCost) {
+            TileNode node = (TileNode) o;
 
-            return true;
+            if (this.box.equals(node.box)) {
+
+                System.out.println("baaa");
+                return true;
+
+            }
 
         }
 

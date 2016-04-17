@@ -39,6 +39,8 @@ public class RawAStarPathFinding extends Pathfind {
                 HashSet<TileNode> neighboringNodes = currentNode.findNeighboringNodes(currentNode.box.getLocation());
                 expandedCounter++;
 
+                System.out.println(open.size());
+
                 for (TileNode neighbor : neighboringNodes) {
 
                     if (!closed.contains(neighbor)) {
