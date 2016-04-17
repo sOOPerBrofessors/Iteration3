@@ -33,7 +33,7 @@ import java.util.ArrayList;
 public abstract class Character extends Entity implements Observer, Subject, CharacterVisitable {
     private ArrayList<Observer> observers;
 
-    protected Skill[] skills;
+    protected ArrayList<Skill> skills = new ArrayList<>();
     protected Occupation o;
     protected CharacterStats stats;
     protected Inventory inventory;
@@ -148,6 +148,11 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         stats.strengthEffect(amount);
         alert();
     } // end strengthEffect
+
+    public void skillPointEffect (int amount) {
+        stats.skillPointEffect(amount);
+        alert();
+    }
 
     public void experienceEffect(int amount) {
         stats.experienceEffect(amount);
@@ -297,6 +302,10 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
 
     public int getEquippedArmor() {
         return stats.getArmorRating();
+    }
+
+    public int getSkillPoint() {
+        return stats.getSkillPoint();
     }
 
     public int getExperienceThreshold() {

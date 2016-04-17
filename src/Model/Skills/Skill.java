@@ -30,9 +30,10 @@ public abstract class Skill { //TODO: skills should also be ticked if we want to
     }
 
     public void levelUp() {
-        if (level < 10) {// and avatar have enough skill point
+        if (level < 10 && avatar.getSkillPoint() >= 1) {// level < 10, and avatar have enough skill point
             level += 1;
             //TODO: also modify CD, manaCost, substact skillPoint, etc
+            avatar.skillPointEffect(-1);
         }
     }
 
@@ -94,6 +95,12 @@ public abstract class Skill { //TODO: skills should also be ticked if we want to
             return true;
         }
     }
+
+    //set avatar, only used for initialization
+    public void setAvatar (Avatar avatar) {
+        this.avatar = avatar;
+    }
+
     // accessors
     public int getLevel() {
         return level;
