@@ -114,6 +114,7 @@ public class GamePlayController extends Controller{
                     state.getAvatar().manaEffect(-1*((int)(Math.random()*3)+1));
                     break;
             }
+            //state.getAvatar().healthEffect((int)(Math.random()*3)+1);
         });
 
         commands.put(KeyEvent.VK_9, new Command() {
