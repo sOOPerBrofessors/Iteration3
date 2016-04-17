@@ -25,7 +25,7 @@ public class Money extends TakeableItem {
     }
 
     @Override
-    protected void utilize(Character character) {
+    public void utilize(Character character) {
         // use while in trade state
     }
 

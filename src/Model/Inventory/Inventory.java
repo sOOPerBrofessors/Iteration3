@@ -1,5 +1,6 @@
 package Model.Inventory;
 
+import Model.Entity.Character.Character;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
 import Model.Items.Takeable.TakeableItem;
@@ -29,6 +30,10 @@ public class Inventory implements Observer, Subject{
         TakeableItem temp = pack.remove(index);
         alert();
         return temp;
+    }
+
+    public void utilizeItem(int index, Character character){
+        pack.utilizeItem(index,character);
     }
 
     public void equipWeapon(Weapon weapon) {

@@ -25,8 +25,7 @@ public abstract class TakeableItem extends Item {
         character.pickUpItem(this);
     } // end onInteract
 
-    protected abstract void utilize(Character character); // either apply item's effect or equip
-
+    public abstract void utilize(Character character); // either apply item's effect or equip
 
     @Override
     public void acceptItemVisitor(ItemVisitor itemVisitor) {

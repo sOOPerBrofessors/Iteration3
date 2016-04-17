@@ -26,6 +26,7 @@ public class ImageAssets {
     public static BufferedImage smasherSW, smasherNW, smasherN, smasherNE, smasherSE, smasherS;
     public static BufferedImage sneakSW, sneakNW, sneakN, sneakNE, sneakSE, sneakS;
     public static BufferedImage summonerS,summonerSW, summonerNW, summonerN, summonerNE, summonerSE;
+    public static BufferedImage shopKeeperSW, shopKeeperNW, shopKeeperN, shopKeeperNE, shopKeeperSE, shopKeeperS;
     public static BufferedImage enemyS, enemySW, enemyNW, enemyN, enemyNE, enemySE;
     public static BufferedImage crabS, crabSW, crabNW, crabN, crabNE, crabSE;
     public static BufferedImage grass, grass2, dirt, water;
@@ -63,6 +64,7 @@ public class ImageAssets {
         SpriteSheet messageBoxSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/messagebox.png"));
         SpriteSheet crabSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/crab.png"));
         SpriteSheet borderSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/interfaceborder.png"));
+        SpriteSheet shopKeeperSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/ShopKeeper.png"));
 
         // fireballs!
         SpriteSheet fireballSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall.png"));
@@ -76,6 +78,13 @@ public class ImageAssets {
         smasherNE = smasherSheet.cropSheet(smasherWidth*3, 0, smasherWidth, smasherHeight);
         smasherSE = smasherSheet.cropSheet(smasherWidth*4, 0, smasherWidth, smasherHeight);
         smasherS = smasherSheet.cropSheet(smasherWidth*5, 0, smasherWidth, smasherHeight);
+
+        shopKeeperSW = shopKeeperSheet.cropSheet(0,0, smasherWidth, smasherHeight);
+        shopKeeperNW = shopKeeperSheet.cropSheet(smasherWidth*1, 0, smasherWidth, smasherHeight);
+        shopKeeperN = shopKeeperSheet.cropSheet(smasherWidth*2, 0, smasherWidth, smasherHeight);
+        shopKeeperNE = shopKeeperSheet.cropSheet(smasherWidth*3, 0, smasherWidth, smasherHeight);
+        shopKeeperSE = shopKeeperSheet.cropSheet(smasherWidth*4, 0, smasherWidth, smasherHeight);
+        shopKeeperS = shopKeeperSheet.cropSheet(smasherWidth*5, 0, smasherWidth, smasherHeight);
 
         sneakSW = sneakSheet.cropSheet(0,0, sneakWidth, sneakHeight);
         sneakNW = sneakSheet.cropSheet(sneakWidth*1, 0, sneakWidth, sneakHeight);
