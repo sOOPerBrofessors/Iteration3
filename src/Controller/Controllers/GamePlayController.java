@@ -4,9 +4,12 @@ import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Model.State.GameState.ActiveGameState;
+import Utilities.GameLoaderSaver.GameSaver;
 import Utilities.ObservationTimer;
 import Utilities.Settings;
 import View.ViewUtilities.Panels.GamePanel;
+
+import java.awt.event.KeyEvent;
 
 /**
  * Created by Wimberley on 4/6/16.
@@ -75,6 +78,9 @@ public class GamePlayController extends Controller{
         // skill two key press
         commands.put(Settings.TWO, () -> new ObservationTimer(state.playerSecondSkill()).start());
 
+        // skill three key pree
+        commands.put(Settings.THREE, () -> state.playerThirdSkill());
+
         // inventory key press
         commands.put(Settings.INVENTORY, () -> controllerManager.setInventoryState());
 
@@ -107,6 +113,15 @@ public class GamePlayController extends Controller{
                 case 5:
                     state.getAvatar().manaEffect(-1*((int)(Math.random()*3)+1));
                     break;
+            }
+            state.getAvatar().manaEffect(100);
+        });
+
+        commands.put(KeyEvent.VK_9, new Command() {
+            @Override
+            public void execute() {
+                GameSaver gameSaver = new GameSaver(state);
+                gameSaver.startSave(state);
             }
         });
     }

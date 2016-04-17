@@ -11,12 +11,12 @@ public class Money extends TakeableItem {
     private int quantity;
 
     private Money() {
-        super("Money", "Lovely money!");
+        super("Money", "Lovely money!", 1);
         this.quantity = 0;
     } // end default constructor
 
     private Money(int quantity) {
-        super("Money", "Lovely money!");
+        super("Money", "Lovely money!", 1);
         this.quantity = quantity;
     }
 
@@ -28,6 +28,11 @@ public class Money extends TakeableItem {
     protected void utilize(Character character) {
         // use while in trade state
     }
+
+    @Override
+    public void onInteract(Character character) {
+        character.pickUpMoney(this);
+    } // end onInteract
 
     public int getQuantity() {
         return quantity;

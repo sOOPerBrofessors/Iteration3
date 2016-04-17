@@ -1,6 +1,7 @@
 package Model.Skills;
 
 import Model.Entity.Character.Avatar;
+import Model.Map.Map;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
 import Utilities.PersonFilter;
@@ -20,7 +21,7 @@ public class BindWounds extends Skill{
     }
 
     @Override
-    public void execute() {
+    public void execute(Map map) {
         if (checkAll()) {
             performBindWounds();
 
