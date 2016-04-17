@@ -6,6 +6,9 @@ import Model.Entity.Character.Occupation.Sneak;
 import Model.Entity.Character.Occupation.Summoner;
 import Model.Inventory.Inventory;
 import Model.Map.Location;
+import Model.Skills.BindWounds;
+import Model.Skills.CombatSkills.BrawlingSkill;
+import Model.Skills.RangedSkills.Observation;
 import Model.Skills.Skill;
 import Model.Map.Map;
 import Utilities.Visitor.CharacterTypeVisitor;
@@ -24,15 +27,7 @@ public class Avatar extends Character {
     private Avatar(Occupation o, Location location) {
         //TODO:I'm not sure how this is going to work but we need something here to define the initial location of an avatar
         super(o, location);
-        this.skills.addAll(o.getSkillList(this));
-        //skill initialize
-//        skills = new Skill[] {
-//                new BindWounds(this),
-//                new Observation(this),
-//                new BrawlingSkill(this)
-//        };
-
-        //Temporary
+        this.skills.addAll(o.getSkillList(this)); //initialize skills
     } // end constructor
 
     public static Avatar makeSmasher(Location location) {

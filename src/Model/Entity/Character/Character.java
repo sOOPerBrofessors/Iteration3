@@ -353,6 +353,10 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         return inventory.removeItem(item);
     } // end removeItem
 
+    public void utilizeItem(int index){
+        inventory.utilizeItem(index,this);
+    }
+
     public CharacterStats getCharacterStats() {return stats;}
 
     public abstract void onInteract();
