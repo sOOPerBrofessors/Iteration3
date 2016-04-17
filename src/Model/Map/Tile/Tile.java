@@ -97,7 +97,6 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         this.projectile = projectile;
         if(hasCharacter()){
             projectile.execute(character, projectile.getEffect());
-            System.out.println("applying damage");
             this.projectile = null;
         }
         notifyObservers();
