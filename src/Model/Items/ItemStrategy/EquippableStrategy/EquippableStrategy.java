@@ -3,6 +3,7 @@ package Model.Items.ItemStrategy.EquippableStrategy;
 import Model.Entity.Character.Character;
 import Model.Items.Item;
 import Model.Items.ItemStrategy.ItemStrategy;
+import Model.Items.Takeable.TakeableItem;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
 
@@ -15,7 +16,7 @@ import Utilities.MessageHandler;
 public class EquippableStrategy implements ItemStrategy {
 
     @Override
-    public void onInteract(Item item, Character character) {
-        MessageHandler.println("You cannot equip this item.", ErrorLevel.ERROR);
+    public void onInteract(TakeableItem item, Character character) {
+        MessageHandler.println("You cannot equip this " + item.getName(), ErrorLevel.ERROR);
     } // end onInteract
 } // end class EquippableStrategy
