@@ -66,7 +66,7 @@ public class Map {
                 && newTile.moveProjectile(projectile)){
             getTileAt(currentX, currentY, currentZ).removeProjectile();
             projectile.updateLocation(new Location(newX,newY,newZ));
-            newTile.applyProjectileEffects(projectile); //does the interaction
+            addProjectile(projectile);
             return true;
         }else{
             return false;

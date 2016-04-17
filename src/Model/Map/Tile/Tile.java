@@ -58,7 +58,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
     }
 
     public boolean moveProjectile(Projectile projectile){
-        if(projectile.checkStrategy(terrain) && checkMovement()){
+        if(projectile.checkStrategy(terrain)){
             addProjectile(projectile);
             return true;
         }else{
@@ -95,6 +95,11 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
     // projectiles.. So cool bro
     public void addProjectile(Projectile projectile) {
         this.projectile = projectile;
+        if(hasCharacter()){
+            projectile.execute(character, projectile.getEffect());
+            System.out.println("applying damage");
+            this.projectile = null;
+        }
         notifyObservers();
     }
 
