@@ -84,13 +84,11 @@ public class GamePlayController extends Controller{
         // Stats key press
         commands.put(Settings.STATS, () -> controllerManager.setStatsState());
 
-        // equipment key press
-        commands.put(Settings.EQUIP, () -> {
-
-        });
-
-        // pause game key press
+        // PAUSE game key press
         commands.put(Settings.ESC, () -> controllerManager.setPauseState());
+
+        // Skills key Press
+        commands.put(Settings.SKILLS, () -> controllerManager.setSkillsState());
 
         // skills key press
         commands.put(Settings.SKILLS, () -> controllerManager.setSkillsState());

@@ -14,22 +14,15 @@ import java.awt.*;
 /**
  * Created by sgl on 4/15/16.
  */
-public class StatsView extends JPanel implements Observer {
+public class StatsView extends ViewPanel implements Observer {
 
     Avatar avatar;
-    private int xBorderOffset, yBorderOffset, xSize, ySize;
     String statsArray[]={"Agility", "Experience", "Hardiness", "Intellect", "Lives", "Strength", "Health", "Level", "Mana", "Offensive_Rating",
             "Defensive_Rating", "Armor_Rating", "Equipped_Weapon_Rating", "Equipped_Armor_Rating","Experience_Threshold" };
     int statsValArray[]= new int[15];
 
     public StatsView(GameState gameState){
         this.avatar = gameState.getAvatar();
-        MessageHandler.println(avatar.toString(), ErrorLevel.CRITICAL, PersonFilter.SAM);
-        MessageHandler.println(avatar.getCharacterStats().toString(), ErrorLevel.CRITICAL, PersonFilter.SAM);
-        xBorderOffset = Settings.GAMEWIDTH/8;
-        yBorderOffset = Settings.GAMEHEIGHT/8;
-        xSize = Settings.GAMEWIDTH*3/4;
-        ySize = Settings.GAMEHEIGHT*3/4;
         avatar.addObserver(this);
         update();
     }
@@ -58,16 +51,10 @@ public class StatsView extends JPanel implements Observer {
     public void remove() {}
 
     @Override
-    protected void paintComponent(Graphics g){
+    public void paintComponent(Graphics g){
         Graphics2D g2d = (Graphics2D) g.create();
-        Color myColour = new Color(49, 17, 7, 220);
-        float opacity = 0.95f; //make pictures opaque
-        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity)); //make pictures opaque
-        g2d.setColor(myColour);
-        g2d.fillRect(xBorderOffset,yBorderOffset,xSize, ySize);
+        drawBackground(g2d); //Draws background box
 
-        opacity = 1f;
-        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity)); //makes everything solid
         g2d.setColor(new Color(166, 0, 4, 255));
         g2d.setFont(new Font("Courier New", 1, 48));
         g2d.drawString("Stats", xBorderOffset*3+50, yBorderOffset+50);

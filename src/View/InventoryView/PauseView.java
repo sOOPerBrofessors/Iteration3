@@ -8,16 +8,9 @@ import java.awt.*;
 /**
  * Created by sgl on 4/16/16.
  */
-public class SettingsView extends VertPanel implements Observer {
-    @Override
-    public void update() {
+public class PauseView extends VertPanel {
 
-    }
-
-    @Override
-    public void remove() {
-
-    }
+    private int sel = 0;
 
     @Override
     public void selectUp() {
@@ -29,6 +22,10 @@ public class SettingsView extends VertPanel implements Observer {
 
     }
 
+    public void select(){
+
+    }
+
     @Override
     public void paintComponent(Graphics g){
         Graphics2D g2d = (Graphics2D) g.create();
@@ -36,7 +33,7 @@ public class SettingsView extends VertPanel implements Observer {
 
         g2d.setColor(new Color(166, 0, 4, 255));
         g2d.setFont(new Font("Courier New", 1, 48));
-        g2d.drawString("Settings Menu", xBorderOffset*3, yBorderOffset+50);
+        g2d.drawString("Pause Menu", xBorderOffset*3, yBorderOffset+50);
 
         g2d.dispose();
     }
