@@ -1,7 +1,7 @@
 package View;
 
 import Controller.ControllerManager;
-import Controller.Controllers.InventoryController;
+import Controller.Controllers.*;
 import Model.Entity.Character.Avatar;
 import Model.State.StateManager;
 import Utilities.GameLoaderSaver.GameLoader;
@@ -71,7 +71,7 @@ public class ViewManager implements Subject {
         closeInventory();
         closeStats();
         closePauseScreen();
-        closeStats();
+        closeSkills();
         closeSettings();
     }
 
@@ -111,7 +111,18 @@ public class ViewManager implements Subject {
     }
 
     public void closeSettings(){
-        gamePanel.closePauseView();
+        gamePanel.closeSettingsView();
+        stateManager.activeGame();
+    }
+
+    public void displaySkills(){
+        gamePanel.addSkillsView();
+        stateManager.pauseGame();
+    }
+
+    public void closeSkills(){
+        gamePanel.closeSkillsView();
+        stateManager.activeGame();
     }
 
     public void displayActiveGame(){
@@ -159,6 +170,10 @@ public class ViewManager implements Subject {
         gamePanel.init(gameLoader.getActiveGameState()); // initilaizes the game view
         controllerManager.switchGamePlay(); // switch to gameplay controller
         InventoryController.setInventoryView(gamePanel);
+        PauseController.setPauseView(gamePanel);
+        SkillsController.setSkillsView(gamePanel);
+        SettingsController.setSettingsView(gamePanel);
+        TradeController.setTradeView(gamePanel);
         View.startGameLoop(); // starts loop in Model class
         alert(); // notifies view of the updated panel
     }
