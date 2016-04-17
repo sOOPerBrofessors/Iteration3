@@ -113,5 +113,3 @@ public abstract class Entity implements EntityObservable, MapObject {
 
 
 }
-
-
