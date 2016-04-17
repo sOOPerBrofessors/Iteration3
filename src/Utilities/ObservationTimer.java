@@ -2,7 +2,7 @@ package Utilities;
 
 import Controller.ControllerUtility.Command;
 import Model.Skills.RangedSkills.ObservationInfo;
-import View.AreaViewport.HUDView.HUD;
+import Utilities.Timer.TimedEvent;
 import View.SkillView.ObservedNPC;
 
 import java.awt.event.ActionEvent;
