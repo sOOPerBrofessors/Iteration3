@@ -86,6 +86,8 @@ public class ItemManager implements Subject{
     public void addItem(TakeableItem item, Location location){
         Location temp = location.getAdjacent(Orientation.NORTH);
         takableItems.put(temp, item);
+        mapItemViews.put(item, allItemViews.get(item));
+        alert();
     }
 
     public boolean tileContainsObstacle(Location targetLocation) {
