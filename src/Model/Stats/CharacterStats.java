@@ -1,5 +1,7 @@
 package Model.Stats;
 
+import Utilities.DamageObject;
+import Utilities.DamageQueue;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
 import Utilities.Visitor.CharacterVisitable;
@@ -235,6 +237,7 @@ public class CharacterStats extends EntityStats implements Subject {
         else if (health > baseHealth) {
             health = baseHealth;
         }
+        DamageQueue.push(new DamageObject(effect));
         alert();
     }
     public void manaEffect(int effect){

@@ -2,6 +2,8 @@ package View.EntityView;
 
 import Model.Entity.Character.Character;
 import Model.Map.Orientation;
+import Utilities.DamageObject;
+import Utilities.DamageQueue;
 import Utilities.Settings;
 import Utilities.Visitor.OccupationVisitor;
 import View.EntityView.AvatarViewFactory.OccupationViewFactory;
@@ -37,6 +39,19 @@ public class CharacterView extends EntityView implements OccupationVisitor {
 
         if(character.isInCombat())
             drawHealthBar(g2d);
+
+        g2d.setFont(new Font(Font.MONOSPACED, Font.ITALIC, 20));
+
+        for(DamageObject d : DamageQueue.getAll()) {
+            if(!d.isRunning())
+                d.start();
+            g2d.setColor(d.getColor());
+            g2d.drawString(Integer.toString(d.getDamage()),
+                    xPixel+Settings.ENTITYWIDTH/2+d.getxDelta()-10,
+                    yPixel+Settings.ENTITYHEIGHT/2+d.getyDelta()+10);
+            d.decrementyDelta();
+            d.decrementAlpha();
+        }
 
         g2d.dispose();
     }
