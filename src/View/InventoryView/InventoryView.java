@@ -136,7 +136,7 @@ public class InventoryView extends JPanel implements Observer{
     @Override
     public void update() {
         items = inventory.getPack().getItems();
-        MessageHandler.println("Inventory size: " + Integer.toString(items.size()), ErrorLevel.NOTICE, PersonFilter.SAM);
+        //MessageHandler.println("Inventory size: " + Integer.toString(items.size()), ErrorLevel.NOTICE, PersonFilter.SAM);
         for (int i = 0; i<items.size(); i++){
                 MessageHandler.println("Adding Image to Inventory: " + Integer.toString(i), ErrorLevel.NOTICE, PersonFilter.SAM);
                 try {
