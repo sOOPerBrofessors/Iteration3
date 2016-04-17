@@ -49,7 +49,6 @@ public class ExperienceQueue {
             yDelta = 0;
             xDelta = (int)(Math.random()*32);
             xDelta *= Math.pow(-1,(int)(Math.random() * 2));
-            System.out.println(xDelta);
             timer = new DamageTimer(new Command() {
                 @Override
                 public void execute() {
