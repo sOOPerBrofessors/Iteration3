@@ -33,8 +33,6 @@ public class CharacterStats extends EntityStats implements Subject {
     private int strength;
 
     // derived stats
-    private int baseHealth;
-    private int health;
     private int level;
     private int baseMana;
     private int mana;
@@ -62,6 +60,7 @@ public class CharacterStats extends EntityStats implements Subject {
         intellect = baseIntellect = stats[3];
         lives = baseLives = stats[4];
         strength = baseStrength = stats[5];
+        movement = baseMovement = stats[6];
 
         equippedWeapon = equippedArmor = 0;
 
@@ -84,7 +83,8 @@ public class CharacterStats extends EntityStats implements Subject {
                 3,      // hardiness
                 3,      // intellect
                 3,      // lives
-                5);     // strength
+                5,      // strength
+                3);      // movement
     } // end factory method makeSmasherStats
 
     public static CharacterStats makeSneakStats() {
@@ -94,7 +94,8 @@ public class CharacterStats extends EntityStats implements Subject {
                 3,      // hardiness
                 3,      // intellect
                 3,      // lives
-                3);     // strength
+                3,      // strength
+                5);     // movement
     } // end factory method makeSneakStats
 
     public static CharacterStats makeSummonerStats() {
@@ -104,7 +105,8 @@ public class CharacterStats extends EntityStats implements Subject {
                 3,      // hardiness
                 5,      // intellect
                 3,      // lives
-                5);     // strength
+                3,      // strength
+                4);     // movement
     } // end factory method makeSummonerStats
 
     public CharacterStats makeNPC() {
@@ -131,15 +133,18 @@ public class CharacterStats extends EntityStats implements Subject {
 
         // modify base stats by a constant multiplier
         baseAgility *= levelMultiplier + 1;
-        hardiness *= levelMultiplier + 1;
-        intellect *= levelMultiplier + 1;
-        strength *= levelMultiplier + 1;
+        baseHardiness *= levelMultiplier + 1;
+        baseIntellect *= levelMultiplier + 1;
+        baseStrength *= levelMultiplier + 1;
+        baseMovement *= levelMultiplier + 1;
+
 
         // reflect new stats
         agility = baseAgility;
         hardiness = baseHardiness;
         intellect = baseIntellect;
         strength = baseStrength;
+        movement = baseMovement;
 
         // recompute derived stats
         recompute();
@@ -157,6 +162,7 @@ public class CharacterStats extends EntityStats implements Subject {
             hardiness = baseHardiness;
             intellect = baseIntellect;
             strength = baseStrength;
+            movement = baseMovement;
         }
 
         alert();
@@ -237,6 +243,14 @@ public class CharacterStats extends EntityStats implements Subject {
         }
         else if (mana > baseMana) {
             mana = baseMana;
+        }
+        alert();
+    }
+
+    public void movementEffect(int effect) {
+        movement += effect;
+        if(movement < 0) {
+            movement = 0;
         }
         alert();
     }

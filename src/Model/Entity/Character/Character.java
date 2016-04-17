@@ -1,5 +1,6 @@
 package Model.Entity.Character;
 
+import Controller.Controllers.GamePlayController;
 import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Entity;
@@ -48,6 +49,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         this.radiusVisibility = 3; //might need to change to some sort of default later
         observers = new ArrayList<>();
         combatTimer = new CombatTimer();
+        GamePlayController.setDelay(getMovement());
     } // end private constructor
 
     public boolean isInCombat() {
@@ -243,6 +245,10 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
 
     public int getMana() {
         return stats.getMana();
+    }
+
+    public int getMovement() {
+        return stats.getMovement();
     }
 
     public int getBaseOffensiveRating() {

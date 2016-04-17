@@ -91,4 +91,8 @@ public class ActiveGameState extends GameState {
     public void setPlayer(Avatar player) {
         this.player = player;
     }
+
+    public int getAvatarMovement() {
+        return player.getMovement();
+    }
 }
