@@ -3,6 +3,7 @@ package View.EntityView;
 import Model.Entity.Projectile.Projectile;
 import Utilities.MovementCalculations.ViewCalculations;
 import Utilities.Observers.Observer;
+import Utilities.Observers.Subject;
 import Utilities.Settings;
 import View.MapView.MapObjectView;
 
@@ -13,10 +14,11 @@ import java.util.ArrayList;
 /**
  * Created by dyeung on 4/16/16.
  */
-public class ProjectileView extends MapObjectView implements Observer{
+public class ProjectileView extends MapObjectView{
 
     private Projectile projectile;
     private ArrayList<BufferedImage> images;
+    private Observer observer;
 
     private int xPixel; // on the map
     private int yPixel; // on the map
@@ -30,7 +32,6 @@ public class ProjectileView extends MapObjectView implements Observer{
 
     public ProjectileView(Projectile projectile, ArrayList<BufferedImage> images){
         this.projectile = projectile;
-        projectile.addObserver(this);
         this.images = images;
         viewHeight = Settings.PROJECTILEHEIGHT;
         viewWidth = Settings.PROJECTILEWIDTH;
@@ -40,15 +41,7 @@ public class ProjectileView extends MapObjectView implements Observer{
     }
 
     @Override
-    public void update() {
-    }
-
-    @Override
-    public void remove() {
-
-    }
-
-    public void paintComponent(Graphics2D g2d, int centerX, int centerY) {
+    public void paintComponent(Graphics2D g2d) {
         adjustMovement();
 
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
@@ -56,11 +49,6 @@ public class ProjectileView extends MapObjectView implements Observer{
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 
         g2d.drawImage(images.get(imageIndex),xPixel*Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,viewWidth*Settings.SCALEFACTOR,viewHeight* Settings.SCALEFACTOR,null);
-    }
-
-    @Override
-    public void paintComponent(Graphics2D g) {
-
     }
 
     @Override
@@ -87,7 +75,7 @@ public class ProjectileView extends MapObjectView implements Observer{
             metYGoal = true;
         }
         if(metXGoal && metYGoal){
-            projectile.ViewDone(true);
+            projectile.ViewDone();
         }
     }
 
@@ -98,5 +86,9 @@ public class ProjectileView extends MapObjectView implements Observer{
         else{
             imageIndex++;
         }
+    }
+
+    public boolean ViewDone(){
+        return metXGoal&&metYGoal;
     }
 }
