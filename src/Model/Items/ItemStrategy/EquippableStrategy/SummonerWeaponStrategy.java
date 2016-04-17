@@ -2,7 +2,7 @@ package Model.Items.ItemStrategy.EquippableStrategy;
 
 import Model.Entity.Character.Character;
 import Model.Items.Item;
-import Model.Items.Takeable.Equippable.Weapon;
+import Model.Items.Takeable.Equippable.Weapon.Weapon;
 
 /**
  * Created by broskj on 4/6/16.

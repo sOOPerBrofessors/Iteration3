@@ -8,9 +8,6 @@ import View.MapView.TileColumnView;
 import View.MapView.TileView;
 
 
-import java.util.HashMap;
-
-
 import java.util.ArrayList;
 
 /**

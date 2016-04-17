@@ -67,9 +67,12 @@ public class ViewManager implements Subject {
         initGame(Avatar.makeSummoner());
     }
 
-    public void closeAll(){
+    public void closeAll(){ //Massive OCP violation
         closeInventory();
         closeStats();
+        closePauseScreen();
+        closeStats();
+        closeSettings();
     }
 
     public void displayInventory() {

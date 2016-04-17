@@ -1,7 +1,5 @@
 package View.MapView;
 
-import Model.Map.Location;
-
 import javax.swing.*;
 import java.awt.*;
 

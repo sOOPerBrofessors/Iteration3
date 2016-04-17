@@ -29,24 +29,18 @@ public class PauseController extends Controller { //NOT VERY OOPY
 
         commands.put(Settings.UP_ARROW, new Command() {
             @Override
-            public void execute() {
-              //  inventoryView.selectUp();
-            }
+            public void execute() { pauseView.selectUp(); }
         });
 
         commands.put(Settings.DOWN_ARROW, new Command() {
             @Override
-            public void execute() { //inventoryView.selectDown();
-                //
-            }
+            public void execute() { pauseView.selectDown(); }
         });
 
         // interact key press
         commands.put(Settings.ENTER, new Command() {
             @Override
-            public void execute() {
-               // inventoryView.interactWithItem();
-            }
+            public void execute() { pauseView.select(); }
         });
 
         // Exit PauseView

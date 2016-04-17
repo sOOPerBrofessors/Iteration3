@@ -2,11 +2,9 @@ package Model.State.GameState;
 
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.NPC.NPC;
-import Model.Entity.Entity;
 
 import java.util.ArrayList;
 
-import Model.Items.Item;
 import Model.Map.Map;
 import Model.State.State;
 import Utilities.ItemStuff.ItemManager;

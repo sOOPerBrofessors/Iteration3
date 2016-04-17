@@ -2,17 +2,10 @@ package LoadSave;
 
 import Model.Faction.Faction;
 import Model.Faction.FactionFactory;
-import Utilities.IOUtilities;
 import Visitors.LoadVisitor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 
 /**
  * Created by aseber on 4/7/16.

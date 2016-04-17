@@ -17,7 +17,7 @@ public abstract class ViewPanel extends JPanel{
     public abstract void paintComponent(Graphics g);
 
     protected void drawBackground(Graphics2D g2d){
-        Color myColour = new Color(49, 17, 7, 220);
+        Color myColour = new Color(88, 30, 13, 220);
         float opacity = 0.95f; //make pictures opaque
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity)); //make pictures opaque
         g2d.setColor(myColour);

@@ -1,9 +1,5 @@
 package View.AreaViewport;
 
-import Model.Entity.Entity;
-import Model.Map.Location;
-import Utilities.Settings;
-
 /**
  * Created by dyeung on 4/10/16.
  */
