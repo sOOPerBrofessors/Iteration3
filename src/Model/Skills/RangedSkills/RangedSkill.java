@@ -1,18 +1,25 @@
 package Model.Skills.RangedSkills;
 
 import Model.Entity.Character.Avatar;
+import Model.Entity.Character.Character;
 import Model.Map.Location;
 import Model.Map.Map;
-import Model.Map.Orientation;
+import Model.Map.Tile.Tile;
 import Model.Skills.Skill;
+import Utilities.GameMessageQueue;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * Created by AndyZhu on 5/4/2016.
  */
 public abstract class RangedSkill extends Skill {
+
+    int damage;
+    ArrayList<Location> affectedArea;
+    int radius;
+    Tile curTile;
+    Character enemy;
 
     public RangedSkill(Avatar avatar) {
         super(avatar);
@@ -21,6 +28,19 @@ public abstract class RangedSkill extends Skill {
     public void execute() {
 
     }
+
     public void execute(Map map) {}
 
+    protected void attackAreaSingleTarget(Map map) {
+        for (int i = 1; i < affectedArea.size(); i++) {
+            Location location = affectedArea.get(i);
+            curTile = map.getTopTile(location.getX(), location.getY());
+            if (curTile.hasCharacter()) {
+                enemy = curTile.getCharacter();
+                enemy.healthEffect(-damage);
+                return;
+            }
+        }
+        GameMessageQueue.push(name + ": No enemy found!");
+    }
 }
