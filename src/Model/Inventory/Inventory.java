@@ -5,9 +5,12 @@ import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
 import Model.Items.Takeable.TakeableItem;
 import Model.Items.Takeable.Useable.Money;
+import Utilities.ErrorLevel;
 import Utilities.GameMessageQueue;
+import Utilities.MessageHandler;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
+import Utilities.PersonFilter;
 
 import java.util.ArrayList;
 
@@ -37,15 +40,17 @@ public class Inventory implements Observer, Subject{
     }
 
     public void equipWeapon(Weapon weapon) {
-        if (pack.remove(weapon)) {
-            pack.add(equipment.equipWeapon(weapon));    // add currently equipped weapon to pack; remove from pack
-        }
+        MessageHandler.println("equip Weapon called from Inventory", ErrorLevel.NOTICE, PersonFilter.SAM);
+        pack.add(equipment.equipWeapon(weapon));    // add currently equipped weapon to pack; remove from pack
+        MessageHandler.println("Inventory: Weapon Equipped", ErrorLevel.NOTICE, PersonFilter.SAM);
     } // end equipWeapon
 
     public void equipArmor(Armor armor) {
-        if (pack.remove(armor)) {
+        MessageHandler.println("equip Armor called from Inventory", ErrorLevel.NOTICE, PersonFilter.SAM);
             pack.add(equipment.equipArmor(armor));      // add currently equipped armor to pack; remove from pack
-        }
+            MessageHandler.println("Inventory: Armor Equipped", ErrorLevel.NOTICE, PersonFilter.SAM);
+
+
     } // end equipArmor
 
     public void unequipWeapon() {
@@ -85,6 +90,10 @@ public class Inventory implements Observer, Subject{
     public Pack getPack() { return pack;}
 
     public Equipment getEquipment(){return equipment;}
+
+    public Armor getArmor(){return equipment.getArmor();}
+
+    public Weapon getWeapon() {return equipment.getWeapon();}
 
     @Override
     public void addObserver(Observer o) {

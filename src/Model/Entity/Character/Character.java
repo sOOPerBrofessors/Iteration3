@@ -355,6 +355,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
 
     public void utilizeItem(int index){
         inventory.utilizeItem(index,this);
+        alert();
     }
 
     public CharacterStats getCharacterStats() {return stats;}

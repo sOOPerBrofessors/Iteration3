@@ -15,7 +15,6 @@ import View.ItemView.ItemView;
 import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,6 +23,7 @@ import java.util.HashMap;
  */
 
 //Displays Inventory in 4x4 matrix. x goes to the right, y goes down
+    //armor on top of weapon for equipment view
 public class InventoryView extends AllDirPanel implements Observer{
 
     private Avatar avatar;
@@ -38,8 +38,8 @@ public class InventoryView extends AllDirPanel implements Observer{
     private int xSel, ySel, xMax, yMax;
     private boolean armorSel;
     private boolean weaponSel;
-    private BufferedImage weaponImage;
-    private BufferedImage armorImage;
+    private Image weaponImage;
+    private Image armorImage;
     private int squareSize;
     private final int yShift = 50;
 
@@ -130,6 +130,10 @@ public class InventoryView extends AllDirPanel implements Observer{
         //draw armor and weapon slot
         g2d.drawImage(ImageAssets.eqSlot, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2-2*squareSize+yShift*3/2,squareSize*2,squareSize*2, null);
         g2d.drawImage(ImageAssets.eqSlot, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2+yShift*3/2, squareSize*2,squareSize*2, null);
+        //draw armor and weapon
+        g2d.drawImage(armorImage, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2-2*squareSize+yShift*3/2,squareSize*2,squareSize*2, null);
+        g2d.drawImage(weaponImage, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2+yShift*3/2, squareSize*2,squareSize*2, null);
+
 
         //get rid of opaqueness
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
@@ -156,6 +160,7 @@ public class InventoryView extends AllDirPanel implements Observer{
 
     @Override
     public void update() {
+        MessageHandler.println("UPDATE called", ErrorLevel.NOTICE, PersonFilter.SAM);
         for (int i = 0; i<items.size(); i++){
                 //MessageHandler.println("Adding Image to Inventory: " + Integer.toString(i), ErrorLevel.NOTICE, PersonFilter.SAM);
                 try {
@@ -164,6 +169,16 @@ public class InventoryView extends AllDirPanel implements Observer{
                     e.printStackTrace();
                     //MessageHandler.println("Adding Image to Inventory ERROR: " + Integer.toString(i), ErrorLevel.CRITICAL, PersonFilter.SAM);
                 }
+        }
+        //weaponImage = itemViewHashMap.get(inventory.getWeapon()).getImage();
+        //armorImage =  itemViewHashMap.get(inventory.getArmor()).getImage();
+        if (inventory.getWeapon()!=null) {
+            weaponImage = itemViewHashMap.get(inventory.getWeapon()).getImage();
+            MessageHandler.println("WeaponUpdate: "+inventory.getWeapon().getName(),ErrorLevel.NOTICE,PersonFilter.SAM);
+        }
+        if (inventory.getArmor()!=null) {
+            armorImage = itemViewHashMap.get(inventory.getArmor()).getImage();
+            MessageHandler.println("ArmorUpdate: "+inventory.getArmor().getName(),ErrorLevel.NOTICE,PersonFilter.SAM);
         }
     }
 
