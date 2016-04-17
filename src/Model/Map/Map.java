@@ -51,6 +51,30 @@ public class Map {
         }
 
     }
+
+    public boolean moveProjectile(Projectile projectile, Location newLocation){
+        int currentX = projectile.getX();
+        int currentY = projectile.getY();
+        int currentZ = projectile.getZ();
+        int newX = newLocation.getX();
+        int newY = newLocation.getY();
+        int newZ = getTopTilePosition(newX, newY);
+        Tile newTile = getTopTile(newX,newY);
+        Location location = projectile.getLocation();
+        //Needs to move the character before the tile does interaction because of "teleport" effect
+        if (checkCanInteractWithTile(location, newLocation)
+                && !checkHasObstacle(newLocation)
+                && newTile.moveProjectile(projectile);){
+            getTileAt(currentX, currentY, currentZ).removeCharacter();
+            projectile.updateLocation(new Location(newX,newY,newZ));
+            newTile.doTileEffects(projectile); //does the interaction
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
     private boolean checkHeightDifference(int current, int target){
         if ((target - current) <= 1){
             return true;

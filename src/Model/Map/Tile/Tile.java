@@ -57,14 +57,12 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         observers.add(tileObserver);
     }
 
-    public void moveProjectile(Entity entity){
-        //if Tile isn't null apply projectile effect on entity currently occupying the Tile
-        if (hasCharacter()){
-            //entity.applyEffect(super.entity);
-        }
-        else {
-            //this.entity = entity;
-            //return true;
+    public boolean moveProjectile(Projectile projectile){
+        if(projectile.checkStrategy(terrain) && checkMovement()){
+            addProjectile(projectile);
+            return true;
+        }else{
+            return false;
         }
     }
 
