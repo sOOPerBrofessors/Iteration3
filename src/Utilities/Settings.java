@@ -31,6 +31,7 @@ public class Settings {
 
     public static int ATTACK = 32;
     public static int EQUIP = 10001; //This was overwritting VK_E which is used for movement
+    public static int DROP = KeyEvent.VK_D;
     public static int INVENTORY = KeyEvent.VK_I; // 'i'
     public static int STATS = KeyEvent.VK_O;
     public static int SKILLS = KeyEvent.VK_K; //"originally"0x53 " s"This is most likely overwritting the "S" key which is used for movement;
@@ -49,7 +50,7 @@ public class Settings {
     public static int FIVE = 0x35;
     public static int SIX = 0x36;
     public static int SEVEN = 0x37;
-    public static int DROP = 0x44;
+    //public static int DROP = 0x44;
     public static int MAP = 0x4D;
     public static int INTERACT = KeyEvent.VK_ENTER; //This was overwriting the "Q" key which is used for movement.
 

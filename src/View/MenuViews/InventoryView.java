@@ -87,11 +87,17 @@ public class InventoryView extends AllDirPanel implements Observer{
 
         } else if (weaponSel){
 
-        } else if (ySel*4+xSel < items.size()){
+        } else if (calcSel() < items.size()){
         }
-
+    }
+    public void dropItem(){
+        if (calcSel() < items.size())
+            inventory.dropItem(calcSel());
     }
 
+    private int calcSel(){
+        return ySel*4+xSel;
+    }
     @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();

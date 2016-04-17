@@ -57,6 +57,14 @@ public class InventoryController extends Controller { //NOT VERY OOPY
         });
 
         // interact key press
+        commands.put(Settings.DROP, new Command() {
+            @Override
+            public void execute() {
+                inventoryView.dropItem();
+            }
+        });
+
+        // interact key press
         commands.put(Settings.ENTER, new Command() {
             @Override
             public void execute() {
