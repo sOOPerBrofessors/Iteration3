@@ -30,7 +30,7 @@ public class ImageAssets {
     public static BufferedImage crabS, crabSW, crabNW, crabN, crabNE, crabSE;
     public static BufferedImage grass, grass2, dirt, water;
     public static BufferedImage invSlot, eqSlot, select;
-    public static BufferedImage hud, messageBox;
+    public static BufferedImage hud, messageBox, interfaceBorder;
     public static ArrayList<BufferedImage> fireballs = new ArrayList<>();
 
     // items
@@ -62,6 +62,7 @@ public class ImageAssets {
         SpriteSheet hudSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/hud.png"));
         SpriteSheet messageBoxSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/messagebox.png"));
         SpriteSheet crabSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/crab.png"));
+        SpriteSheet borderSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/interfaceborder.png"));
 
         // fireballs!
         SpriteSheet fireballSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall.png"));
@@ -112,6 +113,7 @@ public class ImageAssets {
 
         hud = hudSheet.cropSheet(0,0,960,320);
         messageBox = messageBoxSheet.cropSheet(0,0,640,400);
+        interfaceBorder = borderSheet.cropSheet(0,0,1080,720);
 
         //items
         healthPotion = healthPotionSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);

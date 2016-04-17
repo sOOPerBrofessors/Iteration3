@@ -17,9 +17,9 @@ import java.awt.*;
 public class StatsView extends ViewPanel implements Observer {
 
     Avatar avatar;
-    String statsArray[]={"Agility", "Experience", "Hardiness", "Intellect", "Lives", "Strength", "Health", "Level", "Mana", "Offensive_Rating",
-            "Defensive_Rating", "Armor_Rating", "Equipped_Weapon_Rating", "Equipped_Armor_Rating","Experience_Threshold" };
-    int statsValArray[]= new int[15];
+    String statsArray[]={"Level", "Experience", "Exp. to Level", "Lives Left", "Health", "Mana", "Movement", "Agility",
+            "Hardiness", "Intellect", "Strength", "Offensive Rating", "Defensive Rating", "Armor Rating"};
+    int statsValArray[]={};
 
     public StatsView(GameState gameState){
         this.avatar = gameState.getAvatar();
@@ -30,21 +30,22 @@ public class StatsView extends ViewPanel implements Observer {
 
     @Override
     public void update() {
-        statsValArray[0]=avatar.getAgility();
-        statsValArray[1]=avatar.getExperience();
-        statsValArray[2]=avatar.getHardiness();
-        statsValArray[3]=avatar.getIntellect();
-        statsValArray[4]=avatar.getLives();
-        statsValArray[5]=avatar.getStrength();
-        statsValArray[6]=avatar.getHealth();
-        statsValArray[7]=avatar.getLevel();
-        statsValArray[8]=avatar.getMana();
-        statsValArray[9]=avatar.getOffensiveRating();
-        statsValArray[10]=avatar.getDefensiveRating();
-        statsValArray[11]=avatar.getArmorRating();
-        statsValArray[12]=avatar.getEquippedWeapon();
-        statsValArray[13]=avatar.getEquippedArmor();
-        statsValArray[14]=avatar.getExperienceThreshold();
+        statsValArray = new int[]{
+                avatar.getLevel(),
+                avatar.getExperience(),
+                avatar.getExperienceThreshold(),
+                avatar.getLives(),
+                avatar.getHealth(),
+                avatar.getMana(),
+                avatar.getMovement(),
+                avatar.getAgility(),
+                avatar.getHardiness(),
+                avatar.getIntellect(),
+                avatar.getStrength(),
+                avatar.getOffensiveRating(),
+                avatar.getDefensiveRating(),
+                avatar.getArmorRating()
+    };
     }
 
     @Override
@@ -56,15 +57,15 @@ public class StatsView extends ViewPanel implements Observer {
         drawBackground(g2d); //Draws background box
 
         g2d.setColor(new Color(166, 0, 4, 255));
-        g2d.setFont(new Font("Courier New", 1, 48));
-        g2d.drawString("Stats", xBorderOffset*3+50, yBorderOffset+50);
+        g2d.setFont(new Font(Font.MONOSPACED, 1, 48));
+        g2d.drawString("Stats", xBorderOffset*3+50, yBorderOffset+70);
 
         g2d.setColor(Color.BLACK);
-        g2d.setFont(new Font("Courier New", 1, 22));
+        g2d.setFont(new Font(Font.MONOSPACED, 1, 22));
 
         for(int i = 0; i < statsArray.length; i++ ){
-            g2d.drawString(statsArray[i], xBorderOffset+50, yBorderOffset*7/4+30*i);
-            g2d.drawString(Integer.toString(statsValArray[i]),xBorderOffset*13/2, yBorderOffset*7/4+30*i);
+            g2d.drawString(statsArray[i], xBorderOffset+50, yBorderOffset*7/4+30*i+20);
+            g2d.drawString(Integer.toString(statsValArray[i]),xBorderOffset*13/2, yBorderOffset*7/4+30*i+20);
         }
         g2d.dispose();
     }
