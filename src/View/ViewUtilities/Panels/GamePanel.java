@@ -4,7 +4,7 @@ import Controller.Controllers.GamePlayController;
 import Model.State.GameState.ActiveGameState;
 import Utilities.Observers.Observer;
 import View.AreaViewport.AreaViewport;
-import View.InventoryView.*;
+import View.MenuViews.*;
 import View.ViewManager;
 
 import javax.swing.*;

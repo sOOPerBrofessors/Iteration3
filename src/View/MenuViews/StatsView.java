@@ -1,14 +1,9 @@
-package View.InventoryView;
+package View.MenuViews;
 
 import Model.Entity.Character.Avatar;
 import Model.State.GameState.GameState;
-import Utilities.ErrorLevel;
-import Utilities.MessageHandler;
 import Utilities.Observers.Observer;
-import Utilities.PersonFilter;
-import Utilities.Settings;
 
-import javax.swing.*;
 import java.awt.*;
 
 /**

@@ -1,4 +1,4 @@
-package View.InventoryView;
+package View.MenuViews;
 
 import Controller.ControllerUtility.Command;
 import Utilities.Settings;
@@ -23,7 +23,7 @@ public class PauseView extends VertPanel {
         this.viewManager = viewManager;
         commands = new HashMap<>();
         commands.put(0, () -> doNothing());
-        commands.put(1, () -> doNothing());
+        commands.put(1, () -> goToSettings());
         commands.put(2, () -> restart());
         commands.put(3, () -> System.exit(0));
     }
@@ -45,6 +45,11 @@ public class PauseView extends VertPanel {
     private void restart(){
         viewManager.stopThread();
         viewManager.displayIntro();
+    }
+
+    private void goToSettings(){
+        viewManager.closePauseScreen();
+        viewManager.displaySettings();
     }
     private void doNothing(){    }
 

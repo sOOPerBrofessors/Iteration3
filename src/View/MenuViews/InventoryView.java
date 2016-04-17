@@ -1,4 +1,4 @@
-package View.InventoryView;
+package View.MenuViews;
 
 import Model.Entity.Character.Avatar;
 import Model.Inventory.Inventory;
@@ -13,7 +13,6 @@ import Utilities.Settings;
 import View.ItemView.ItemView;
 import View.ViewUtilities.Sprites.ImageAssets;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

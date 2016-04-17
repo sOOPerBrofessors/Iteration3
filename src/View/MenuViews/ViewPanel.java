@@ -1,4 +1,4 @@
-package View.InventoryView;
+package View.MenuViews;
 
 import Utilities.Settings;
 

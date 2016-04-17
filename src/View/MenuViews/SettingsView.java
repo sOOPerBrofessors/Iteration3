@@ -1,8 +1,7 @@
-package View.InventoryView;
+package View.MenuViews;
 
 import Utilities.Observers.Observer;
 
-import javax.swing.*;
 import java.awt.*;
 
 /**
