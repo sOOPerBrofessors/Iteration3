@@ -1,4 +1,4 @@
-package View.InventoryView;
+package View.MenuViews;
 
 /**
  * Created by sgl on 4/16/16.

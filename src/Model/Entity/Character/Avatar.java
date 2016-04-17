@@ -68,6 +68,7 @@ public class Avatar extends Character {
         stats.setEquippedWeapon(inventory.getWeaponValue());
         stats.recompute();
         setDelay(getMovement());
+        alert();
     } // end update
 
     @Override

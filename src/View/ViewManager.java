@@ -114,6 +114,7 @@ public class ViewManager implements Subject {
     public void displaySettings(){
         gamePanel.addSettingsView();
         stateManager.pauseGame();
+        //controllerManager.setSettingsState(); //need to tell controllerManager to go to Settings state since get here from PauseMenu
     }
 
     public void closeSettings(){
