@@ -19,24 +19,15 @@ public class GamePlayController extends Controller{
 
     private ActiveGameState state;
     private GamePanel gamePanel;
-    private static int delay;                  // set the delay for input
-    private boolean userCanMakeInput;   // boolean that when true allows keypresses to be read
 
     public GamePlayController(ControllerManager controllerManager){
         super(controllerManager);
-        delay = 500;
-        userCanMakeInput = true;
     }
 
     @Override
     public void keyPress(Integer key){
-        if(commands.containsKey(key) && userCanMakeInput) {
+        if(commands.containsKey(key)) {
             commands.get(key).execute();
-            /*
-            starts a timer of duration 'delay'; the beginning of which toggles the userCanMakeInput
-             value to false, and after finishing execution toggles it back to true
-             */
-            new TimedEvent(delay, () -> userCanMakeInput = false, e -> userCanMakeInput = true).start();
         }
     } // end keyPress
 
@@ -143,12 +134,4 @@ public class GamePlayController extends Controller{
     public void setGamePanel(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
-
-    public static void setDelay(int amount) {
-        if (amount == 0) {
-            delay = 500;
-        } else {
-            delay = 500 / amount;
-        }
-    } // end setDelay
 }

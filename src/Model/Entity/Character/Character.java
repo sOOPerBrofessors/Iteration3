@@ -13,12 +13,14 @@ import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Orientation;
 import Model.Map.Tile.Terrain.Terrain;
+import Model.State.GameState.ActiveGameState;
 import Model.Stats.CharacterStats;
 import Utilities.Timer.CombatTimer;
 import Utilities.GameMessageQueue;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
+import Utilities.Timer.TimedEvent;
 import Utilities.Visitor.CharacterVisitable;
 import View.EntityView.CharacterView;
 
@@ -38,6 +40,8 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     protected Inventory inventory;
     private int radiusVisibility;
     private CombatTimer combatTimer;
+    private int delay;
+    private boolean canMove;
 
     protected Character(Occupation o, Location location) {
         super(Navigation.makeCharNav(), location);
@@ -49,8 +53,21 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         this.radiusVisibility = 3; //might need to change to some sort of default later
         observers = new ArrayList<>();
         combatTimer = new CombatTimer();
-        GamePlayController.setDelay(getMovement());
+        delay = 1500 / stats.getMovement();
+        canMove = true;
     } // end private constructor
+
+    public void delayMovement() {
+        /*
+        starts a timer of duration 'delay'; the beginning of which toggles the userCanMakeInput
+         value to false, and after finishing execution toggles it back to true
+         */
+        new TimedEvent(delay, () -> canMove = false, e -> canMove = true).start();
+    } // end delayMovement
+
+    public void setDelay(int amount) {
+        delay = 1500 / amount;
+    } // end setDelay
 
     public boolean isInCombat() {
         return combatTimer.isRunning();
@@ -297,11 +314,12 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
 
     @Override
     public boolean move(Map map, Orientation orientation) {
-        if (this.orientation.equals(orientation)) {
+        if (this.orientation.equals(orientation) && canMove) {
             int x = location.getX() + orientation.x;
             int y = location.getY() + orientation.y;
             //z is zero here. Since it is a character it will move based on the next possible height
             Location newLocation = new Location(x,y,0);
+            delayMovement();
             return map.moveCharacter(this, newLocation);
         }else {
             setOrientation(orientation);

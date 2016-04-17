@@ -73,7 +73,7 @@ public class CharacterStats extends EntityStats implements Subject {
 
         experienceThreshold = 10;
         experienceMultiplier = 1.5;
-        levelMultiplier = 1.2;
+        levelMultiplier = 1.1;
     } // end constructor
 
     public static CharacterStats makeSmasherStats() {
@@ -132,12 +132,11 @@ public class CharacterStats extends EntityStats implements Subject {
         experienceThreshold *= experienceMultiplier;
 
         // modify base stats by a constant multiplier
-        baseAgility *= levelMultiplier + 1;
-        baseHardiness *= levelMultiplier + 1;
-        baseIntellect *= levelMultiplier + 1;
-        baseStrength *= levelMultiplier + 1;
-        baseMovement *= levelMultiplier + 1;
-
+        baseAgility = (int)(baseAgility * levelMultiplier + 1);
+        baseHardiness = (int)(baseHardiness * levelMultiplier + 1);
+        baseIntellect = (int)(baseIntellect * levelMultiplier + 1);
+        baseStrength = (int)(baseStrength * levelMultiplier + 1);
+        baseMovement = (int)(baseMovement * levelMultiplier + 1);
 
         // reflect new stats
         agility = baseAgility;
@@ -152,6 +151,8 @@ public class CharacterStats extends EntityStats implements Subject {
         // reset health and mana
         health = baseHealth;
         mana = baseMana;
+
+
     } // end levelup
 
     public void kill() {
