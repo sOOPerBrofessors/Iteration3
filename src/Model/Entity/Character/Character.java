@@ -7,17 +7,19 @@ import Model.Inventory.Inventory;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
 import Model.Items.Takeable.TakeableItem;
+import Model.Items.Takeable.Useable.Money;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Orientation;
 import Model.Map.Tile.Terrain.Terrain;
 import Model.Stats.CharacterStats;
-import Utilities.CombatTimer;
+import Utilities.Timer.CombatTimer;
 import Utilities.GameMessageQueue;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
 import Utilities.Visitor.CharacterVisitable;
+import View.EntityView.CharacterView;
 
 import java.util.ArrayList;
 
@@ -307,7 +309,16 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     public void pickUpItem(TakeableItem item){
         inventory.pickUpItem(item);
         alert();
-    }
+    } // end pickUpItem
+
+    public void pickUpMoney(Money money) {
+        inventory.pickUpMoney(money);
+        alert();
+    } // end pickUpMoney
+
+    public boolean removeItem(TakeableItem item) {
+        return inventory.removeItem(item);
+    } // end removeItem
 
     public CharacterStats getCharacterStats() {return stats;}
 

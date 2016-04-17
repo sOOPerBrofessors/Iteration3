@@ -15,24 +15,24 @@ public class Armor extends EquippableItem {
 
     private int armorValue;
 
-    private Armor(String name, String description, EquippableStrategy s, int armorValue) {
-        super(name, description, s);
+    private Armor(String name, String description, EquippableStrategy s, int armorValue, int value) {
+        super(name, description, s, value);
         this.armorValue = armorValue;
         /*
         todo: change constructor to take in weapon value
         */
     } // end private constructor
 
-    public static Armor makeSmasherArmor(String name, String description, int armorValue) {
-        return new Armor(name, description, new SmasherArmorStrategy(), armorValue);
+    public static Armor makeSmasherArmor(String name, String description, int armorValue, int value) {
+        return new Armor(name, description, new SmasherArmorStrategy(), armorValue, value);
     } // end factory method makeSmasherArmor
 
-    public static Armor makeSneakArmor(String name, String description, int armorValue) {
-        return new Armor(name, description, new SneakArmorStrategy(), armorValue);
+    public static Armor makeSneakArmor(String name, String description, int armorValue, int value) {
+        return new Armor(name, description, new SneakArmorStrategy(), armorValue, value);
     } // end factory method makeSneakArmor
 
-    public static Armor makeSummonerArmor(String name, String description, int armorValue) {
-        return new Armor(name, description, new SummonerArmorStrategy(), armorValue);
+    public static Armor makeSummonerArmor(String name, String description, int armorValue, int value) {
+        return new Armor(name, description, new SummonerArmorStrategy(), armorValue, value);
     } // end factory method makeSummonerArmor
 
     public int getArmorValue() { return this.armorValue; }

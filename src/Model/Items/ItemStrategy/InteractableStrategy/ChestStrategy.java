@@ -5,6 +5,7 @@ import Model.Inventory.Inventory;
 import Model.Items.Item;
 import Model.Items.Takeable.Quest;
 import Model.Items.Takeable.TakeableItem;
+import Utilities.GameMessageQueue;
 
 /**
  * Created by broskj on 4/7/16.
@@ -20,13 +21,21 @@ public class ChestStrategy extends InteractableStrategy {
 
     public boolean onInteract(Character character) {
         // lod like crazy
-        for(Item item : character.getInventory().getPack().getItems()){
+        if (treasure == null) {
+            GameMessageQueue.push("The chest is empty.");
+            return false;
+        }
+        for(TakeableItem item : character.getInventory().getPack().getItems()){
             if(item == requiredItem){
-                character.pickUpItem(treasure);
+                GameMessageQueue.push("You unlock the chest...");
+                treasure.onInteract(character);
+                //character.pickUpItem(treasure);
                 treasure = null;
+                character.removeItem(item);
                 return true;
             }
         }
+        GameMessageQueue.push("You need a key to unlock this chest.");
         return false;
     } // end onInteract
 } // end class ChestStrategy

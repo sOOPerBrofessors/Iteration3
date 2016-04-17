@@ -4,6 +4,7 @@ import Model.Entity.Character.Character;
 import Model.Map.AreaEffect.AreaOfEffect;
 import Model.Map.Tile.Tile;
 import Model.Entity.Projectile.Projectile;
+import Utilities.ItemStuff.ItemManager;
 
 /**
  * Created by sgl on 4/5/16.
@@ -12,12 +13,17 @@ public class Map {
 
     private int maxRow;
     private int maxColumn;
+    private ItemManager itemManager;
 
     public Map(TileColumn[][] tiles){
         mapOfTiles = tiles;
         maxRow = tiles.length;
         maxColumn = tiles[0].length;
     }
+
+    public void addItemManager(ItemManager itemManager) {
+        this.itemManager = itemManager;
+    } // end addItemManager
 
     private TileColumn[][] mapOfTiles;
 
@@ -33,7 +39,9 @@ public class Map {
         Tile newTile = getTopTile(newX,newY);
         Location location = character.getLocation();
         //Needs to move the character before the tile does interaction because of "teleport" effect
-        if (checkCanInteractWithTile(location, newLocation) && newTile.moveCharacter(character)){
+        if (checkCanInteractWithTile(location, newLocation)
+                && !checkHasObstacle(newLocation)
+                && newTile.moveCharacter(character)){
             getTileAt(currentX, currentY, currentZ).removeCharacter();
             character.updateLocation(new Location(newX,newY,newZ));
             newTile.doTileEffects(character); //does the interaction
@@ -70,6 +78,10 @@ public class Map {
             return false;
         }
     }
+
+    private boolean checkHasObstacle(Location newLocation) {
+        return itemManager.tileContainsObstacle(newLocation);
+    } // end checkHasObstacle
 
 
 

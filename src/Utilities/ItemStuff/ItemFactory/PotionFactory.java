@@ -14,7 +14,8 @@ public class PotionFactory {
         return Potion.makeManaPotion(
                 grade + " Agility Potion",
                 "A " + grade.toLowerCase() + " agility potion (+" + amount + ")",
-                amount
+                amount,
+                7 * amount / 2
         );
     } // end factory method makeAgilityPotion
 
@@ -22,7 +23,8 @@ public class PotionFactory {
         return Potion.makeManaPotion(
                 grade + " Hardiness Potion",
                 "A " + grade.toLowerCase() + " hardiness potion (+" + amount + ")",
-                amount
+                amount,
+                7 * amount / 2
         );
     } // end factory method makeHardinessPotion
 
@@ -30,7 +32,8 @@ public class PotionFactory {
         return Potion.makeManaPotion(
                 grade + " Intellect Potion",
                 "A " + grade.toLowerCase() + " intellect potion (+" + amount + ")",
-                amount
+                amount,
+                7 * amount / 2
         );
     } // end factory method makeIntellectPotion
 
@@ -38,7 +41,8 @@ public class PotionFactory {
         return Potion.makeHealthPotion(
                 grade + " Health Potion",
                 "A " + grade.toLowerCase() + " health potion (+" + amount +")",
-                amount
+                amount,
+                7 * amount / 2
         );
     } // end factory method makeHealthPotion
 
@@ -46,7 +50,8 @@ public class PotionFactory {
         return Potion.makeManaPotion(
                 grade + " Life Potion",
                 "A " + grade.toLowerCase() + " Life potion (+" + amount + ")",
-                amount
+                amount,
+                7 * amount / 2
         );
     } // end factory method makeLifePotion
 
@@ -54,7 +59,8 @@ public class PotionFactory {
         return Potion.makeManaPotion(
                 grade + " Mana Potion",
                 "A " + grade.toLowerCase() + " health potion (+" + amount + ")",
-                amount
+                amount,
+                7 * amount / 2
         );
     } // end factory method makeManaPotion
 
@@ -62,7 +68,8 @@ public class PotionFactory {
         return Potion.makeManaPotion(
                 grade + " Movement Potion",
                 "A " + grade.toLowerCase() + " movement potion (+" + amount + ")",
-                amount
+                amount,
+                7 * amount / 2
         );
     } // end factory method makeMovementPotion
 
@@ -70,7 +77,8 @@ public class PotionFactory {
         return Potion.makeManaPotion(
                 grade + " Strength Potion",
                 "A " + grade.toLowerCase() + " strength potion (+" + amount + ")",
-                amount
+                amount,
+                7 * amount / 2
         );
     } // end factory method makeStrengthPotion
 } // end class PotionFactory

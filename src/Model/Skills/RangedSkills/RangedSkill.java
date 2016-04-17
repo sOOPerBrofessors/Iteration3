@@ -18,9 +18,9 @@ public abstract class RangedSkill extends Skill {
         super(avatar);
     }
 
-    @Override
     public void execute() {
 
     }
+    public void execute(Map map) {}
 
 }

@@ -8,13 +8,16 @@ import Model.Items.Takeable.Equippable.Weapon.TwoHandedWeapon;
  *
  * A weapon factory.  Given a string for the grade of the weapon and and integer modification value, a different name and
  *  description will be generated.
+ *
+ *  Money value amount is determined by 7 * value / 2
  */
 public class WeaponFactory {
     public static OneHandedWeapon makeOneHandedSmasherWeapon(String grade, int value) {
         return OneHandedWeapon.makeSmasherWeapon(
                 grade + " Sword",
                 "A " + grade.toLowerCase() + " sword for warriors (+" + value + ")",
-                value
+                value,
+                7 * value / 2
         );
     } // end makeSmasherWeapon
 
@@ -22,7 +25,8 @@ public class WeaponFactory {
         return TwoHandedWeapon.makeSmasherWeapon(
                 grade + " Greatsword",
                 "A " + grade.toLowerCase() + " greatsword for warriors (+" + value + ")",
-                value
+                value,
+                7 * value / 2
         );
     } // end makeSmasherWeapon
 
@@ -30,7 +34,8 @@ public class WeaponFactory {
         return OneHandedWeapon.makeSummonerWeapon(
                 grade + " Staff",
                 "A " + grade.toLowerCase() + " staff for spellcasters (+" + value + ")",
-                value
+                value,
+                7 * value / 2
         );
     } // end makeSummonerWeapon
 
@@ -38,7 +43,8 @@ public class WeaponFactory {
         return OneHandedWeapon.makeSneakWeapon(
                 grade + " Bow",
                 "A " + grade.toLowerCase() + " bow for sneaking types (+" + value + ")",
-                value
+                value,
+                7 * value / 2
         );
     } // end makeSneakWeapon
 } // end class WeaponFactory

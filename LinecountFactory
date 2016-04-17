@@ -1,0 +1,114 @@
+Your branch is up-to-date with 'origin/master'.
+Updating c95e158..ed30a97
+Fast-forward
+ .../AI_Controller/FrontalLobe/FrontalLobe.java     |   2 -
+ .../Interest/EntityInterests/AttackInterest.java   |   1 -
+ .../AI_Controller/Interest/Interest.java           |   1 -
+ src/Controller/AI_Controller/Memory/Memory.java    |   1 -
+ .../MotorCortex/MotorCortexMemoryInterface.java    |   1 -
+ .../AI_Controller/Personality/Personality.java     |   3 -
+ src/Controller/Controller.java                     |   1 -
+ src/Controller/Controllers/GamePlayController.java | 166 +++---------
+ .../Controllers/InventoryController.java           |   3 -
+ src/LoadSave/LoadFactionsVisitor.java              |   7 -
+ src/LoadSave/LoadPersonalitiesVisitor.java         |   2 -
+ src/Model/Entity/Character/Character.java          |   6 +-
+ src/Model/Entity/Character/Mount/BoatMount.java    |   1 -
+ .../Entity/Character/Occupation/Occupation.java    |   2 +-
+ src/Model/Entity/Character/Occupation/Smasher.java |   2 +-
+ src/Model/Entity/Character/Occupation/Sneak.java   |   2 +-
+ .../Entity/Character/Occupation/Summoner.java      |   2 +-
+ src/Model/Entity/Entity.java                       |   2 -
+ src/Model/Inventory/Equipment.java                 |   6 +-
+ src/Model/Inventory/Inventory.java                 |  11 +-
+ src/Model/Inventory/Pack.java                      |  11 +-
+ src/Model/Items/Item.java                          |   2 -
+ .../EquippableStrategy/SmasherWeaponStrategy.java  |   2 +-
+ .../EquippableStrategy/SneakWeaponStrategy.java    |   2 +-
+ .../EquippableStrategy/SummonerWeaponStrategy.java |   2 +-
+ src/Model/Items/Takeable/Equippable/Armor.java     |  17 +-
+ .../Items/Takeable/Equippable/EquippableItem.java  |   4 +-
+ src/Model/Items/Takeable/Equippable/Weapon.java    |  40 ---
+ .../Equippable/Weapon/OneHandedWeapon.java         |  28 ++
+ .../Equippable/Weapon/TwoHandedWeapon.java         |  18 ++
+ .../Items/Takeable/Equippable/Weapon/Weapon.java   |  24 ++
+ src/Model/Items/Takeable/Quest.java                |   6 +-
+ src/Model/Items/Takeable/TakeableItem.java         |  10 +
+ src/Model/Items/Takeable/Useable/Money.java        |   4 +-
+ src/Model/Items/Takeable/Useable/Potion.java       |  36 +--
+ src/Model/Items/Takeable/Useable/UseableItem.java  |   4 +-
+ src/Model/Map/Location.java                        |   4 -
+ src/Model/Map/MapObject.java                       |   2 -
+ src/Model/Map/Tile/Terrain/Terrain.java            |   1 -
+ src/Model/Model.java                               |   2 -
+ .../{Staff.java => BrawlingSkill.java}             |   2 +-
+ ...HandedWeapon.java => OneHandedWeaponSkill.java} |   2 +-
+ .../{Brawling.java => StaffSkill.java}             |   2 +-
+ ...HandedWeapon.java => TwoHandedWeaponSkill.java} |   2 +-
+ src/Model/Skills/RangedSkills/Observation.java     |  24 +-
+ src/Model/Skills/RangedSkills/ObservationInfo.java |  13 +-
+ src/Model/Skills/Skill.java                        |   3 -
+ src/Model/State/GameState/ActiveGameState.java     |   4 +-
+ src/Model/State/GameState/GameState.java           |   2 -
+ src/Model/State/GameState/PausedGameState.java     |   1 -
+ src/Utilities/AIStuff/NPCFactory.java              |   2 -
+ src/Utilities/GameFactory/MapFactory.java          |   1 -
+ src/Utilities/GameLoaderSaver/GameLoader.java      |   2 +-
+ src/Utilities/ItemStuff/ItemFactory.java           | 111 --------
+ .../ItemStuff/ItemFactory/ArmorFactory.java        |  36 +++
+ .../ItemStuff/ItemFactory/ItemFactory.java         | 295 +++++++++++++++++++++
+ .../ItemStuff/ItemFactory/PotionFactory.java       |  76 ++++++
+ .../ItemStuff/ItemFactory/WeaponFactory.java       |  44 +++
+ src/Utilities/ObservationTimer.java                |  28 ++
+ src/Utilities/Observers/EntityObservable.java      |   1 -
+ src/Utilities/Observers/EntityObserver.java        |   2 -
+ src/Utilities/Settings.java                        |   2 +-
+ src/Utilities/UniformPicker.java                   |   1 -
+ src/Utilities/Visitor/CharacterVisitor.java        |   1 -
+ src/View/AreaViewport/AreaViewport.java            |   9 +-
+ src/View/AreaViewport/HUDView/HUD.java             |  20 +-
+ src/View/AreaViewport/MapViewFactory.java          |   3 -
+ src/View/AreaViewport/OffsetFactory.java           |   4 -
+ src/View/EntityView/CharacterView.java             |   1 -
+ src/View/EntityView/EntityView.java                |   8 -
+ src/View/EntityView/OrientationView.java           |   1 -
+ src/View/InventoryView/InventoryView.java          |   6 +-
+ src/View/ItemView/ItemView.java                    |   5 -
+ src/View/MapView/MapObjectView.java                |   2 -
+ src/View/MapView/TileColumnView.java               |   2 -
+ src/View/SkillView/ObservedNPC.java                |  43 ++-
+ src/View/ViewUtilities/Panels/GamePanel.java       |   1 -
+ 77 files changed, 739 insertions(+), 464 deletions(-)
+ delete mode 100644 src/Model/Items/Takeable/Equippable/Weapon.java
+ create mode 100644 src/Model/Items/Takeable/Equippable/Weapon/OneHandedWeapon.java
+ create mode 100644 src/Model/Items/Takeable/Equippable/Weapon/TwoHandedWeapon.java
+ create mode 100644 src/Model/Items/Takeable/Equippable/Weapon/Weapon.java
+ rename src/Model/Skills/CombatSkills/{Staff.java => BrawlingSkill.java} (73%)
+ rename src/Model/Skills/CombatSkills/{TwoHandedWeapon.java => OneHandedWeaponSkill.java} (69%)
+ rename src/Model/Skills/CombatSkills/{Brawling.java => StaffSkill.java} (75%)
+ rename src/Model/Skills/CombatSkills/{OneHandedWeapon.java => TwoHandedWeaponSkill.java} (69%)
+ delete mode 100644 src/Utilities/ItemStuff/ItemFactory.java
+ create mode 100644 src/Utilities/ItemStuff/ItemFactory/ArmorFactory.java
+ create mode 100644 src/Utilities/ItemStuff/ItemFactory/ItemFactory.java
+ create mode 100644 src/Utilities/ItemStuff/ItemFactory/PotionFactory.java
+ create mode 100644 src/Utilities/ItemStuff/ItemFactory/WeaponFactory.java
+ create mode 100644 src/Utilities/ObservationTimer.java
+Updating 6a34a6a..ed30a97
+Fast-forward
+ src/Controller/Controllers/GamePlayController.java |  3 +-
+ .../{Staff.java => BrawlingSkill.java}             |  2 +-
+ ...HandedWeapon.java => OneHandedWeaponSkill.java} |  2 +-
+ .../{Brawling.java => StaffSkill.java}             |  2 +-
+ ...HandedWeapon.java => TwoHandedWeaponSkill.java} |  2 +-
+ src/Model/Skills/RangedSkills/Observation.java     | 24 +++++++-----
+ src/Model/Skills/RangedSkills/ObservationInfo.java | 13 +++++--
+ src/Model/State/GameState/ActiveGameState.java     |  4 +-
+ src/Utilities/ObservationTimer.java                | 28 ++++++++++++++
+ src/View/AreaViewport/AreaViewport.java            |  4 +-
+ src/View/SkillView/ObservedNPC.java                | 43 ++++++++++++++++------
+ 11 files changed, 95 insertions(+), 32 deletions(-)
+ rename src/Model/Skills/CombatSkills/{Staff.java => BrawlingSkill.java} (73%)
+ rename src/Model/Skills/CombatSkills/{OneHandedWeapon.java => OneHandedWeaponSkill.java} (69%)
+ rename src/Model/Skills/CombatSkills/{Brawling.java => StaffSkill.java} (75%)
+ rename src/Model/Skills/CombatSkills/{TwoHandedWeapon.java => TwoHandedWeaponSkill.java} (69%)
+ create mode 100644 src/Utilities/ObservationTimer.java

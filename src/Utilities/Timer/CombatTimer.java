@@ -1,4 +1,4 @@
-package Utilities;
+package Utilities.Timer;
 
 import Controller.ControllerUtility.Command;
 import View.AreaViewport.HUDView.HUD;
@@ -13,16 +13,6 @@ import java.awt.event.ActionListener;
  */
 public class CombatTimer extends TimedEvent {
     public CombatTimer() {
-        super(5000, new Command() {
-            @Override
-            public void execute() {
-                HUD.setStatusCombat();
-            }
-        }, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                HUD.setStatusRegular();
-            }
-        });
+        super(5000, HUD::setStatusCombat, e -> HUD.setStatusRegular());
     } // end constructor
 }

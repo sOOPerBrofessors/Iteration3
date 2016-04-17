@@ -44,7 +44,7 @@ public class GamePanel extends JPanel{
         areaViewport = new AreaViewport(gameState);
         inventoryView = new InventoryView(gameState);
         statsView = new StatsView(gameState);
-        pauseView = new PauseView();
+        pauseView = new PauseView(viewManager);
         settingsView = new SettingsView();
         skillsView = new SkillsView();
         tradeView = new TradeView();

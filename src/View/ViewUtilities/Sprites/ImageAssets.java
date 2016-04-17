@@ -27,6 +27,7 @@ public class ImageAssets {
     public static BufferedImage sneakSW, sneakNW, sneakN, sneakNE, sneakSE, sneakS;
     public static BufferedImage summonerS,summonerSW, summonerNW, summonerN, summonerNE, summonerSE;
     public static BufferedImage enemyS, enemySW, enemyNW, enemyN, enemyNE, enemySE;
+    public static BufferedImage crabS, crabSW, crabNW, crabN, crabNE, crabSE;
     public static BufferedImage grass, grass2, dirt, water;
     public static BufferedImage invSlot, eqSlot, select;
     public static BufferedImage hud, messageBox;
@@ -60,6 +61,7 @@ public class ImageAssets {
         SpriteSheet invButtonsSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Buttons/InventoryButtons.png"));
         SpriteSheet hudSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/hud.png"));
         SpriteSheet messageBoxSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/messagebox.png"));
+        SpriteSheet crabSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/crab.png"));
 
         // fireballs!
         SpriteSheet fireballSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall.png"));
@@ -95,6 +97,10 @@ public class ImageAssets {
         summonerNE = EnemySummonerSheet.cropSheet(summonerWidth*10, 0, summonerWidth, summonerHeight);
         summonerSE = EnemySummonerSheet.cropSheet(summonerWidth*11, 0, summonerWidth, summonerHeight);
 
+        crabS = crabSW = crabSheet.cropSheet(0,50,100,50);
+        crabSE = crabSheet.cropSheet(50,50,100,50);
+        crabN = crabNE = crabSheet.cropSheet(100,50,100,50);
+        crabNW = crabSheet.cropSheet(150,50,100,50);
         grass = terrainSheet.cropSheet(0,0,terrainWidth,terrainHeight);
         grass2 = terrainSheet.cropSheet(terrainWidth*2,0,terrainWidth,terrainHeight);
         dirt = terrainSheet.cropSheet(terrainWidth,0,terrainWidth,terrainHeight);
