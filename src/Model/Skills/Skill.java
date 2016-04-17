@@ -75,7 +75,7 @@ public abstract class Skill { //TODO: skills should also be ticked if we want to
         return compareNumber <= chanceOfSuccess;
     }
 
-    protected boolean checkAll() {
+    protected boolean allConditionChecked() {
         if (!checkCD()) {
             GameMessageQueue.push(name + " failed. Not cooled down");
             return false;

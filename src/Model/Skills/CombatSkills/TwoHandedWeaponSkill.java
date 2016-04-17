@@ -32,7 +32,7 @@ public class TwoHandedWeaponSkill extends CombatSkill{
 
     @Override
     public void execute(Map map) {
-        if (checkAll() && weaponCheck()) {
+        if (allConditionChecked() && weaponCheck()) {
             damage = calculateDamage();
             radius = level > 4 ? 4 : level;
             affectedArea = AngularEffect.getAngularArea(avatar.getLocation(), avatar.getOrientation(), radius);

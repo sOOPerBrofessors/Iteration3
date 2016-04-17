@@ -26,7 +26,7 @@ public class StaffSkill extends CombatSkill{
 
     @Override
     public void execute(Map map) {
-        if (checkAll() && weaponCheck()) {
+        if (allConditionChecked() && weaponCheck()) {
             damage = calculateDamage();
             radius = 1;
             affectedArea = LinearEffect.getLinearSameLevel(avatar.getLocation(), avatar.getOrientation(), radius);
