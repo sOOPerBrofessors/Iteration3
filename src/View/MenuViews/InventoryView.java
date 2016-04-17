@@ -99,7 +99,7 @@ public class InventoryView extends AllDirPanel implements Observer{
     }
     public void dropItem(){
         if (calcSel() < items.size())
-            itemManager.addItem(inventory.dropItem(calcSel()),avatar.getLocation());
+            itemManager.addItem(inventory.dropItem(calcSel()),avatar);
     }
 
 
