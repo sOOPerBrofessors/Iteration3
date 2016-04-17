@@ -7,6 +7,7 @@ import Model.State.GameState.ActiveGameState;
 import Utilities.GameLoaderSaver.GameSaver;
 import Utilities.ObservationTimer;
 import Utilities.Settings;
+import Utilities.Timer.TimedEvent;
 import View.ViewUtilities.Panels.GamePanel;
 
 import java.awt.event.KeyEvent;
@@ -28,7 +29,7 @@ public class GamePlayController extends Controller{
         if(commands.containsKey(key)) {
             commands.get(key).execute();
         }
-    }
+    } // end keyPress
 
     private void initCommands(){
 
@@ -114,7 +115,6 @@ public class GamePlayController extends Controller{
                     state.getAvatar().manaEffect(-1*((int)(Math.random()*3)+1));
                     break;
             }
-            state.getAvatar().manaEffect(100);
         });
 
         commands.put(KeyEvent.VK_9, new Command() {

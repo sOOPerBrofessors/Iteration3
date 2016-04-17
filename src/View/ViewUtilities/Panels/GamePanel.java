@@ -40,7 +40,7 @@ public class GamePanel extends JPanel{
     }
 
     //These views come built in with the GamePanel
-    public void init(ActiveGameState gameState){
+    public void init(ActiveGameState gameState, GamePlayController gamePlayController){
         areaViewport = new AreaViewport(gameState);
         inventoryView = new InventoryView(gameState);
         statsView = new StatsView(gameState);
@@ -48,6 +48,7 @@ public class GamePanel extends JPanel{
         settingsView = new SettingsView();
         skillsView = new SkillsView();
         tradeView = new TradeView();
+        controller = gamePlayController;
         addView(areaViewport);
         controller.setState(gameState);
     }

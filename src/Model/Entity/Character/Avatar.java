@@ -6,13 +6,9 @@ import Model.Entity.Character.Occupation.Sneak;
 import Model.Entity.Character.Occupation.Summoner;
 import Model.Inventory.Inventory;
 import Model.Map.Location;
-import Model.Skills.BindWounds;
-import Model.Skills.CombatSkills.BrawlingSkill;
-import Model.Skills.RangedSkills.Observation;
 import Model.Skills.Skill;
 import Model.Map.Map;
-import Utilities.Visitor.AvatarVisitable;
-import Utilities.Visitor.AvatarVisitor;
+import Utilities.Visitor.CharacterTypeVisitor;
 
 import Utilities.Visitor.CharacterVisitor;
 /**
@@ -20,19 +16,16 @@ import Utilities.Visitor.CharacterVisitor;
  *
  * Class to be operated by the player.
  */
-public class Avatar extends Character implements AvatarVisitable {
-
-    private Skill[] skills;
-
+public class Avatar extends Character {
     private Avatar(Occupation o, Location location) {
         //TODO:I'm not sure how this is going to work but we need something here to define the initial location of an avatar
         super(o, location);
         //skill initialize
-        skills = new Skill[] {
-                new BindWounds(this),
-                new Observation(this),
-                new BrawlingSkill(this)
-        };
+//        skills = new Skill[] {
+//                new BindWounds(this),
+//                new Observation(this),
+//                new BrawlingSkill(this)
+//        };
 
         //Temporary
     } // end constructor
@@ -74,6 +67,7 @@ public class Avatar extends Character implements AvatarVisitable {
         stats.setEquippedArmor(inventory.getArmorValue());
         stats.setEquippedWeapon(inventory.getWeaponValue());
         stats.recompute();
+        setDelay(getMovement());
         alert();
     } // end update
 
@@ -84,7 +78,14 @@ public class Avatar extends Character implements AvatarVisitable {
 
     @Override
     public void acceptCharacterVisitor(CharacterVisitor characterVisitor) {
-        characterVisitor.visitAvatar(this);
+        characterVisitor.visitInventory(inventory);
+        characterVisitor.visitOccupation(o);
+        characterVisitor.visitStats(stats);
+    }
+
+    @Override
+    public void acceptCharacterTypeVisitor(CharacterTypeVisitor characterTypeVisitor) {
+        characterTypeVisitor.visitAvatar(this);
     }
 
     //Player specific items
@@ -100,9 +101,4 @@ public class Avatar extends Character implements AvatarVisitable {
         //Do nothing on interact
     }
 
-    @Override
-    public void acceptAvatarVistor(AvatarVisitor avatarVisitor) {
-        avatarVisitor.visitInventory(inventory);
-    }
 }
-

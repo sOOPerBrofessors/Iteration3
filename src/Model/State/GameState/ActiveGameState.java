@@ -2,6 +2,8 @@ package Model.State.GameState;
 
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.NPC.NPC;
+import Model.Entity.Projectile.Projectile;
+import Model.Map.Location;
 import Model.Map.Map;
 
 import Model.Map.Orientation;
@@ -10,6 +12,7 @@ import Model.Skills.RangedSkills.Observation;
 import Model.Skills.RangedSkills.ObservationInfo;
 import Model.Skills.Skill;
 import Utilities.ItemStuff.ItemManager;
+import Utilities.Timer.TimedEvent;
 
 import java.util.ArrayList;
 
@@ -19,16 +22,20 @@ import java.util.ArrayList;
 
 public class ActiveGameState extends GameState {
 
-    public ActiveGameState(Map map, Avatar avatar, ArrayList<NPC> entities, ItemManager itemManager){
-        super(map,avatar, entities, itemManager);
+    public ActiveGameState(Map map, Avatar avatar, ArrayList<NPC> entities, ItemManager itemManager) {
+        super(map, avatar, entities, itemManager);
         map.addItemManager(itemManager);
     }
-
 
     @Override
     public void tick(){
         for(int i = 0; i < entities.size(); i++){
             //entities.get(i).tick();
+        }
+        if(projectiles != null){
+            for(int i = 0; i < projectiles.size(); i++){
+                projectiles.get(i).tick();
+            }
         }
     }
 
@@ -63,8 +70,11 @@ public class ActiveGameState extends GameState {
         itemManager.contact(avatar);
     }
 
-    public void playerAttack(){}
-
+    public void playerAttack(){
+        Projectile temp = Projectile.makeFireBall(new Location(6,5,0), avatar.getOrientation());
+        projectiles.add(temp);
+        map.addProjectile(temp);
+    }
 
     public void playerExecuteSkill(int index){
         avatar.getSkill(index).execute(map);
@@ -76,6 +86,7 @@ public class ActiveGameState extends GameState {
         Skill skill = (BrawlingSkill) avatar.getSkill(2);
         skill.execute(map);
     }
+
     public void startCombatTimer() { avatar.startCombatTimer(); }
 
     public ObservationInfo playerSecondSkill(){
@@ -90,5 +101,9 @@ public class ActiveGameState extends GameState {
 
     public void setPlayer(Avatar player) {
         this.player = player;
+    }
+
+    public int getAvatarMovement() {
+        return player.getMovement();
     }
 }

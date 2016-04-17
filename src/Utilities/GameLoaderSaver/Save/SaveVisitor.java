@@ -3,121 +3,100 @@ package Utilities.GameLoaderSaver.Save;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Entity.Character.NPC.NPC;
-import Model.Inventory.Inventory;
-import Model.Inventory.Pack;
+import Model.Entity.Projectile.Projectile;
 import Model.Map.AreaEffect.AreaOfEffect;
 import Model.Map.Map;
 import Model.Map.Tile.Terrain.Terrain;
-import Model.Projectile.Projectile;
-import Model.State.GameState.ActiveGameState;
+import Model.Items.Takeable.TakeableItem;
+import Model.Map.Location;
 import Model.State.GameState.GameState;
-import Utilities.Observers.EntityObserver;
+import Utilities.ItemStuff.ItemManager;
 import Utilities.Visitor.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import javax.print.Doc;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Created by dyeung on 4/16/16.
  */
-public class SaveVisitor implements TileVisitor, EntityObserver, AOEVisitor, CharacterVisitor {
+public class SaveVisitor implements TileVisitor, CharacterTypeVisitor {
     private String fileNamePath;
     private GameState gameState;
     private  ArrayList<Element> list;
     private Document doc;
     private Map map;
     private Avatar avatar;
+    private Element mainRootElement;
     public SaveVisitor(String fileName, GameState gameState){
         this.fileNamePath = fileName;
         this.gameState = gameState;
         this.map = gameState.getMap();
         this.avatar = gameState.getAvatar();
         list = new ArrayList<>();
+        init();
     }
-    public void save(){
+    private void init(){
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
             doc = docBuilder.newDocument();
 
-            Element mainRootElement = doc.createElementNS(fileNamePath, "Save_File");
+            mainRootElement = doc.createElementNS(fileNamePath, "Save_File");
             doc.appendChild(mainRootElement);
-            Element map = doc.createElement("map");
-            mainRootElement.appendChild(map);
 
-            ArrayList<Element> listOfElements = saveAvatarElements();
-
-            for(Element element : listOfElements){
-                mainRootElement.appendChild(element);
-            }
-
-            //Originally was done so that each entity will be a list (no longer the case but possibly a better change)
-            //mainRootElement.appendChild(saveEntities(doc, avatar));
-
-            //Write to XML
-            writeToXml(doc, fileNamePath);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    public void save(){
+        list.clear();
+//        Element element = saveCharacters();
+//        mainRootElement.appendChild(element);
+        saveCharacters();
+        saveItems();
 
-    private ArrayList<Element> saveAvatarElements(){
-//        Avatar avatar = gameState.getAvatar();
-//        avatar.acceptCharacterVisitor(this);
 
-        return list;
+        //Write to XML
+        writeToXml(doc, fileNamePath);
     }
+    public Element saveCharacters() {
+        Element e = doc.createElement("Characters");
 
-    private void saveAOE(){
-        for(int i = 0; i < map.getMaxColumn(); i++){
-            for(int j = 0 ; j < map.getMaxRow(); j++){
-                for(int k = 0; k < 10; k++){
+        for(int i = 0; i < map.getMaxRow(); i++){
+            for(int j = 0; j < map.getMaxColumn(); j++){
+                for (int k = 0; k < 10; k++){
                     map.getTileAt(i,j,k).acceptTileVisitor(this);
                 }
             }
         }
+
+        return e;
+    }
+    public Element saveItems(){
+        Element e = doc.createElement("Items");
+        ItemManager itemManager = gameState.getItemManager();
+
+        HashMap<Location, TakeableItem> tmp = itemManager.getMapTakableItems();
+        Iterator it = tmp.entrySet().iterator();
+        //Test to see
+        while (it.hasNext()) {
+            HashMap.Entry pair = (HashMap.Entry)it.next();
+            System.out.println(pair.getKey() + " = " + pair.getValue());
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+
+        return e;
     }
 
-
-    @Override
-    public void visitHealAOE() {
-
-    }
-
-    @Override
-    public void visitTakeDamageAoe() {
-
-    }
-
-    @Override
-    public void visitTeleportAoe() {
-
-    }
-
-    @Override
-    public void visitLevelUpAoe() {
-
-    }
-
-    @Override
-    public void visitInstantDeath() {
-
-    }
-
-    @Override
-    public void updateMove() {
-
-    }
 
     @Override
     public void visitTileTerrain(Terrain terrain) {
@@ -126,33 +105,23 @@ public class SaveVisitor implements TileVisitor, EntityObserver, AOEVisitor, Cha
 
     @Override
     public void visitTileHasCharacter(Character character) {
-
-    }
-
-    @Override
-    public void visitTileHasAOE(AreaOfEffect areaOfEffect) {
-        if (areaOfEffect != null){
-            areaOfEffect.acceptAOEVisitor(this);
-            //areaOfEffect.ac
+        if(character != null) {
+            character.acceptCharacterTypeVisitor(this);
         }
     }
 
+    //Might not need to do AOE since the map never changes its AOE
+    @Override
+    public void visitTileHasAOE(AreaOfEffect areaOfEffect) {
+
+    }
+
+
+    //Unnecessary for projectiles
     @Override
     public void visitTileHasProjectile(Projectile projectile) {
 
     }
-
-    @Override
-    public void visitAvatar(Avatar avatar) {
-        //Map doesn't do anything for avatar
-        //avatar.acceptAvatarVistor(this);
-    }
-
-    @Override
-    public void visitNPC(NPC npc) {
-
-    }
-
 
 
     //----------Function to transform saved (doc) into Xml and the Console -------
@@ -182,4 +151,25 @@ public class SaveVisitor implements TileVisitor, EntityObserver, AOEVisitor, Cha
         }
     }
 
+    @Override
+    public void visitAvatar(Avatar avatar) {
+        CharacterSaver characterSaver = new CharacterSaver(doc);
+        ArrayList<Element> tmp = characterSaver.getElementsList(avatar);
+        Element element = doc.createElement("Avatar");
+        for(Element elm : tmp){
+            element.appendChild(elm);
+        }
+        mainRootElement.appendChild(element);
+    }
+
+    @Override
+    public void visitNPC(NPC npc) {
+        CharacterSaver characterSaver = new CharacterSaver(doc);
+        ArrayList<Element> tmp = characterSaver.getElementsList(npc);
+        Element element = doc.createElement("NPC");
+        for(Element elm : tmp){
+            element.appendChild(elm);
+        }
+        mainRootElement.appendChild(element);
+    }
 }

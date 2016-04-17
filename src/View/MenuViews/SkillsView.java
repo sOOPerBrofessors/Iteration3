@@ -25,7 +25,7 @@ public class SkillsView extends ViewPanel implements Observer {
 
         g2d.setColor(new Color(166, 0, 4, 255));
         g2d.setFont(new Font("Courier New", 1, 48));
-        g2d.drawString("Skills", xBorderOffset*3, yBorderOffset+50);
+        g2d.drawString("Skills", xBorderOffset*3+60, yBorderOffset+70);
 
         g2d.dispose();
     }

@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Save_File xmlns="./res/SaveFile/HelloWorld">
-     <map/>
+     <NPC>
+          <Inventory>
+               <Pack/>
+               <Equip/>
+          </Inventory>
+     </NPC>
+     <Avatar>
+          <Inventory>
+               <Pack/>
+               <Equip/>
+          </Inventory>
+     </Avatar>
 </Save_File>
