@@ -104,7 +104,7 @@ public abstract class Pathfind implements Runnable { // Abstract class that all 
 
         if (pathFound) {
 
-            return endNode;
+            return endOfPath;
 
         }
 

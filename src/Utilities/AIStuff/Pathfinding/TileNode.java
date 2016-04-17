@@ -12,25 +12,27 @@ import java.util.HashSet;
 public class TileNode extends Node { // Wrapper class for boxes that contains a reference to a parent node, used to traverse backwards once the endBox has been located
 
     protected TileLocationTuple box;
-    protected TileNode parentNode;
+    public TileNode parentNode;
     protected Map map;
 
     public TileNode(TileLocationTuple current_Box, TileNode parent_Node, Map map) {
 
-        super(parent_Node);
         this.box = current_Box;
         this.map = map;
+        this.parentNode = parent_Node;
 
     }
 
-    public HashSet<TileNode> findNeighboringNodes(Location location) { // simply converts valid boxes to valid nodes
+    public HashSet<TileNode> findNeighboringNodes() {
 
-        HashSet<TileLocationTuple> neighboringBoxes = map.getTileNeighbors(location.getX(), location.getY(), location.getZ());
-        HashSet<TileNode> neighboringNodes = new HashSet<TileNode>();
+        Location currLocation = this.box.getLocation();
+        HashSet<TileLocationTuple> neighboringBoxes = map.getTileNeighbors(currLocation.getX(), currLocation.getY(), currLocation.getZ());
+        HashSet<TileNode> neighboringNodes = new HashSet<>();
 
         for (TileLocationTuple neighboringBox : neighboringBoxes) {
 
-            neighboringNodes.add(new TileNode(neighboringBox, this, this.map));
+            TileNode node = new TileNode(neighboringBox, this, this.map);
+            neighboringNodes.add(node);
 
         }
 
@@ -53,7 +55,6 @@ public class TileNode extends Node { // Wrapper class for boxes that contains a 
 
             if (this.box.equals(node.box)) {
 
-                System.out.println("baaa");
                 return true;
 
             }

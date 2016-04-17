@@ -6,14 +6,7 @@ package Utilities.AIStuff.Pathfinding;
 
 public abstract class Node { // Abstract class for RegionNode and BoxNode
 
-    protected Node parentNode;
     private double f, g;
-
-    public Node(Node parent_Node) {
-
-        this.parentNode = parent_Node;
-
-    }
 
     public final void setF(double f) {
 
@@ -36,12 +29,6 @@ public abstract class Node { // Abstract class for RegionNode and BoxNode
     public final double getG() {
 
         return this.g;
-
-    }
-
-    public void setParent(Node node) {
-
-        this.parentNode = node;
 
     }
 

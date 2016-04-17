@@ -23,11 +23,12 @@ public class AStarPathFind {
         TileLocationTuple startTuple = new TileLocationTuple(map.getTile(startLocation), startLocation);
         TileNode startNode = new TileNode(startTuple, null, map);
 
-        TileLocationTuple endTuple = new TileLocationTuple(map.getTile(endLocation), startLocation);
+        TileLocationTuple endTuple = new TileLocationTuple(map.getTile(endLocation), endLocation);
         TileNode endNode = new TileNode(endTuple, null, map);
 
         RawAStarPathFinding pathing = new RawAStarPathFinding(startNode, endNode);
-        pathing.searchForPath();
+        pathing.run();
+        pathing.waitForFinish();
 
         if (!pathing.pathFound) {
 
@@ -35,6 +36,7 @@ public class AStarPathFind {
 
         }
 
+        System.out.println("trying to find orientation list");
         return convertNodeToOrientation((TileNode) pathing.path(), startNode);
 
     }
@@ -50,13 +52,19 @@ public class AStarPathFind {
         ArrayList<Orientation> orientations = new ArrayList<>();
 
         TileNode lastNode;
-        TileNode currentNode = endPathNode;
+        TileNode currentNode;
 
         do {
 
-            System.out.println(currentNode);
-            lastNode = currentNode;
-            currentNode = currentNode.parentNode;
+            lastNode = endPathNode;
+            currentNode = endPathNode.parentNode;
+
+            if (currentNode == null) {
+
+                break;
+
+            }
+
             Orientation orientation = getTileOrientationRelationship(currentNode.box.getLocation(), lastNode.box.getLocation());
             orientations.add(0, orientation);
 

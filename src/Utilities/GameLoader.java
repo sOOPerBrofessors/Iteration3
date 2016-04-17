@@ -6,6 +6,7 @@ import Model.Entity.Character.NPC.NPC;
 import Model.Items.Item;
 import Model.Map.Location;
 import Model.Map.Map;
+import Model.Map.Orientation;
 import Model.Map.Tile.AirTile;
 import Model.Map.Tile.GrassTile;
 import Model.Map.Tile.WaterTile;
@@ -78,8 +79,16 @@ public class GameLoader {
         }
 
         controller.setMap(map);
-        System.out.println(entities.get(0).getLocation());
-        System.out.println(controller.findPath(entities.get(0), new Location(8, 2, 0)).size());
+
+        ArrayList<Orientation> ba = controller.findPath(entities.get(0), new Location(7, 3, 0));
+
+        System.out.println("\nBEGIN PATHING RESULT size: " + ba.size());
+        for (Orientation orientation : ba) {
+
+            System.out.println("\t" + orientation + "\n");
+
+        }
+        System.out.println("\nEND PATHING RESULT");
 
     }
 

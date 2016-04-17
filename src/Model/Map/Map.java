@@ -49,7 +49,13 @@ public class Map {
         }
     } // end getTile
 
-    public TileLocationTuple getTileNeighbor(int x, int y, int z, Orientation orientation) {
+    public Tile getTileNeighbor(int x, int y, int z, Orientation orientation) {
+
+        return getTileTupleNeighbor(x, y, z, orientation).getTile();
+
+    }
+
+    public TileLocationTuple getTileTupleNeighbor(int x, int y, int z, Orientation orientation) {
 
         int newX = x + orientation.x;
         int newY = y + orientation.y;
@@ -74,7 +80,7 @@ public class Map {
 
         for (Orientation orientation : Orientation.values()) {
 
-            neighbors.add(getTileNeighbor(x, y, z, orientation));
+            neighbors.add(getTileTupleNeighbor(x, y, z, orientation));
 
         }
 

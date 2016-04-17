@@ -20,12 +20,14 @@ public class RawAStarPathFinding extends Pathfind {
 
     public void searchForPath() {
 
-        running = true;
         TileNode currentNode;
 
         synchronized (this) {
 
+            System.out.println("pathing start");
+
             do {
+
 
                 currentNode = open.poll();
 
@@ -36,10 +38,9 @@ public class RawAStarPathFinding extends Pathfind {
                 }
 
                 addNodeToClosed(currentNode);
-                HashSet<TileNode> neighboringNodes = currentNode.findNeighboringNodes(currentNode.box.getLocation());
+                HashSet<TileNode> neighboringNodes = currentNode.findNeighboringNodes();
                 expandedCounter++;
-
-                System.out.println(open.size());
+                System.out.println("expanded: " + expandedCounter);
 
                 for (TileNode neighbor : neighboringNodes) {
 
