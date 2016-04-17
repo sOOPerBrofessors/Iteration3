@@ -3,6 +3,7 @@ package Model.Skills;
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
 import Utilities.ErrorLevel;
+import Utilities.GameMessageQueue;
 import Utilities.MessageHandler;
 import Utilities.PersonFilter;
 
@@ -28,11 +29,8 @@ public class BindWounds extends Skill{
             enforceManaCost();
             setTimePerformed();
 
-            MessageHandler.println(name + "success! remaining CD:" + getRemainingCoolDownTime(), ErrorLevel.NOTICE, PersonFilter.ANDY);
+            GameMessageQueue.push(name + " Success!");
 
-        }
-        else {
-            MessageHandler.println(name + "Failed for some reason", ErrorLevel.NOTICE, PersonFilter.ANDY);
         }
     }
 

@@ -3,6 +3,7 @@ package Model.Skills.CombatSkills;
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
 import Utilities.ErrorLevel;
+import Utilities.GameMessageQueue;
 import Utilities.InfluenceAreas.Linear.LinearEffect;
 import Utilities.MessageHandler;
 import Utilities.PersonFilter;
@@ -34,13 +35,9 @@ public class BrawlingSkill extends CombatSkill{
             radius = level > 3 ? 3 : level;
             affectedArea = LinearEffect.getLinearSameLevel(avatar.getLocation(), avatar.getOrientation(), radius);
             brawling(map);
-
+            GameMessageQueue.push(name + " Success!");
             enforceManaCost();
             setTimePerformed();
-        }
-        else {
-            System.out.println(name + "Failed");
-            MessageHandler.println(name + "failed", ErrorLevel.NOTICE, PersonFilter.ANDY);
         }
     }
 
