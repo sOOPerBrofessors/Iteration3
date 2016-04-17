@@ -11,13 +11,16 @@ import Model.Skills.CombatSkills.BrawlingSkill;
 import Model.Skills.RangedSkills.Observation;
 import Model.Skills.Skill;
 import Model.Map.Map;
+import Utilities.Visitor.AvatarVisitable;
+import Utilities.Visitor.AvatarVisitor;
+
 import Utilities.Visitor.CharacterVisitor;
 /**
  * Created by broskj on 4/6/16.
  *
  * Class to be operated by the player.
  */
-public class Avatar extends Character {
+public class Avatar extends Character implements AvatarVisitable {
 
     private Skill[] skills;
 
@@ -95,4 +98,10 @@ public class Avatar extends Character {
     public void onInteract() {
         //Do nothing on interact
     }
+
+    @Override
+    public void acceptAvatarVistor(AvatarVisitor avatarVisitor) {
+        avatarVisitor.visitInventory(inventory);
+    }
 }
+
