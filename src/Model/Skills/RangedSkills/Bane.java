@@ -20,10 +20,9 @@ public class Bane extends RangedSkill{
     @Override
     public void execute (Map map) {
         if (checkAll()) {
-            calculateDamage();
-            radius = level + 3 > 6 ? 6 : level + 3; //max radius is 6
-            affectedArea = LinearEffect.getLinearSameLevel(avatar.getLocation(), avatar.getOrientation(), radius);
-            attackAreaSingleTarget(map);
+            bane(map);
+            enforceManaCost();
+            setTimePerformed();
             GameMessageQueue.push(name + " success!");
         }
     }
@@ -32,5 +31,12 @@ public class Bane extends RangedSkill{
         int skillDamage;
         skillDamage = level * avatar.getIntellect();
         return skillDamage;
+    }
+
+    private void bane (Map map) {
+        damage = calculateDamage();
+        radius = level + 3 > 6 ? 6 : level + 3; //max radius is 6
+        affectedArea = LinearEffect.getLinearSameLevel(avatar.getLocation(), avatar.getOrientation(), radius);
+        attackAreaSingleTarget(map);
     }
 }
