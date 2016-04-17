@@ -73,7 +73,7 @@ public class SettingsController extends Controller { //NOT VERY OOPY
         });
 
         // Exit InventoryView
-        commands.put(Settings.STATS, new Command() {
+        commands.put(Settings.SETTINGS, new Command() {
             @Override
             public void execute() {
                 controllerManager.switchGamePlay();

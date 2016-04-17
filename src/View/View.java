@@ -78,6 +78,6 @@ public class View implements Runnable, Observer{
     }
 
     public static void startGameLoop(){
-        gameLoop.start();
+        gameLoop.restart();
     }
 }

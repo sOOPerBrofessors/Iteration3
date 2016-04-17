@@ -1,7 +1,7 @@
 package View;
 
 import Controller.ControllerManager;
-import Controller.Controllers.InventoryController;
+import Controller.Controllers.*;
 import Model.Entity.Character.Avatar;
 import Model.State.StateManager;
 import Utilities.GameLoaderSaver.GameLoader;
@@ -17,6 +17,8 @@ import javax.swing.JPanel;
  * Created by Wimberley on 3/23/16.
  */
 public class ViewManager implements Subject {
+
+    private  boolean alreadystarted;
 
     // controller manager used to issue commands to change current controller
     private ControllerManager controllerManager;
@@ -40,9 +42,13 @@ public class ViewManager implements Subject {
         introPanel = new IntroPanel(this).introPanel();
         createPanel = new CharacterCreationPanel(this).createPanel();
         gamePanel = new GamePanel(this);
-
         activePanel = introPanel;
         //inventoryView = new InventoryView()
+        alreadystarted = false;
+    }
+
+    public void stopThread(){
+        stateManager.stopThread();
     }
 
     public void displayIntro(){
@@ -71,7 +77,7 @@ public class ViewManager implements Subject {
         closeInventory();
         closeStats();
         closePauseScreen();
-        closeStats();
+        closeSkills();
         closeSettings();
     }
 
@@ -111,7 +117,18 @@ public class ViewManager implements Subject {
     }
 
     public void closeSettings(){
-        gamePanel.closePauseView();
+        gamePanel.closeSettingsView();
+        stateManager.activeGame();
+    }
+
+    public void displaySkills(){
+        gamePanel.addSkillsView();
+        stateManager.pauseGame();
+    }
+
+    public void closeSkills(){
+        gamePanel.closeSkillsView();
+        stateManager.activeGame();
     }
 
     public void displayActiveGame(){
@@ -156,10 +173,16 @@ public class ViewManager implements Subject {
         activePanel = gamePanel;
         stateManager.setActiveGameState(gameLoader.getActiveGameState());
         stateManager.setPausedGameState(gameLoader.getPausedGameState());
-        gamePanel.init(gameLoader.getActiveGameState()); // initilaizes the game view
+        if (!alreadystarted)
+            gamePanel.init(gameLoader.getActiveGameState()); // initializes the game view
         controllerManager.switchGamePlay(); // switch to gameplay controller
         InventoryController.setInventoryView(gamePanel);
+        PauseController.setPauseView(gamePanel);
+        SkillsController.setSkillsView(gamePanel);
+        SettingsController.setSettingsView(gamePanel);
+        TradeController.setTradeView(gamePanel);
         View.startGameLoop(); // starts loop in Model class
         alert(); // notifies view of the updated panel
+        alreadystarted = true;
     }
 }

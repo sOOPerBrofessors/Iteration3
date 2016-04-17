@@ -4,11 +4,14 @@ import Controller.ControllerManager;
 import Model.State.GameState.ActiveGameState;
 import Model.State.GameState.PausedGameState;
 import Utilities.Tickable;
+import Model.Model;
 
 /**
  * Created by Wimberley on 4/6/16.
  */
 public class StateManager implements Tickable {
+
+    private Model model;
 
     // controller manager used to issue commands when controller needs to be changed
     private ControllerManager controllerManager;
@@ -16,6 +19,14 @@ public class StateManager implements Tickable {
     private State activeState;
     private ActiveGameState activeGameState;
     private PausedGameState pausedGameState;
+
+    public StateManager(Model model){
+        this.model=model;
+    }
+
+    public void stopThread(){
+        model.terminate();
+    }
 
     public void pauseGame(){
         activeState = pausedGameState;
