@@ -19,7 +19,6 @@ import java.util.ArrayList;
 /**
  * Created by Wimberley on 4/6/16.
  */
-
 public class ActiveGameState extends GameState {
 
     public ActiveGameState(Map map, Avatar avatar, ArrayList<NPC> entities, ItemManager itemManager) {

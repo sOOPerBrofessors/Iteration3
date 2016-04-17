@@ -56,6 +56,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
     public void acceptTileObserver(TileObserver tileObserver) {
         observers.add(tileObserver);
     }
+
     public void moveProjectile(Entity entity){
         //if Tile isn't null apply projectile effect on entity currently occupying the Tile
         if (hasCharacter()){
@@ -149,5 +150,4 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
     }
 
     public Character getCharacter() {return character;}
-
 }
