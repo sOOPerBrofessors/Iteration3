@@ -10,19 +10,19 @@ import Model.Items.ItemStrategy.EquippableStrategy.SummonerWeaponStrategy;
  */
 public class OneHandedWeapon extends Weapon {
 
-    private OneHandedWeapon(String name, String description, EquippableStrategy s, int weaponValue) {
-        super(name, description, s, weaponValue);
+    private OneHandedWeapon(String name, String description, EquippableStrategy s, int weaponValue, int value) {
+        super(name, description, s, weaponValue, value);
     } // end private constructor
 
-    public static OneHandedWeapon makeSmasherWeapon(String name, String description, int value) {
-        return new OneHandedWeapon(name, description, new SmasherWeaponStrategy(), value);
+    public static OneHandedWeapon makeSmasherWeapon(String name, String description, int weaponValue, int value) {
+        return new OneHandedWeapon(name, description, new SmasherWeaponStrategy(), weaponValue, value);
     } // end factory method makeSmasherWeapon
 
-    public static OneHandedWeapon makeSneakWeapon(String name, String description, int value) {
-        return new OneHandedWeapon(name, description, new SneakWeaponStrategy(), value);
+    public static OneHandedWeapon makeSneakWeapon(String name, String description, int weaponValue, int value) {
+        return new OneHandedWeapon(name, description, new SneakWeaponStrategy(), weaponValue, value);
     } // end factory method makeSneakWeapon
 
-    public static OneHandedWeapon makeSummonerWeapon(String name, String description, int value) {
-        return new OneHandedWeapon(name, description, new SummonerWeaponStrategy(), value);
+    public static OneHandedWeapon makeSummonerWeapon(String name, String description, int weaponValue, int value) {
+        return new OneHandedWeapon(name, description, new SummonerWeaponStrategy(), weaponValue, value);
     } // end factory method makeSummonerWeapon
 } // end OneHandedWeapon
