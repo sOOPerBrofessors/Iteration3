@@ -122,7 +122,7 @@ public class HUD {
         g2d.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
 
         for(int i = 0; i < GameMessageQueue.queue.size(); i++) {
-            g2d.drawString(GameMessageQueue.queue.get(i), width-messageBoxW+20, (22*(GameMessageQueue.queue.size()-i))+5);
+            g2d.drawString(GameMessageQueue.queue.get(i), width-messageBoxW+20, messageBoxH - (22*(GameMessageQueue.queue.size() - i))+5);
         }
     } // end renderGameMessages
 
