@@ -83,8 +83,13 @@ public class InventoryView extends AllDirPanel implements Observer{
         if (ySel< yMax-1) ySel++; }
 
     public void interactWithItem(){ //MAKE SURE INVENTORY HANDLES ERROR CHECKING IF TRYING TO USE AN ITEMSLOT THAT ISN'T FILLED!!!
-        //y*4+x
-        //inventory.
+        if (armorSel){
+
+        } else if (weaponSel){
+
+        } else if (ySel*4+xSel < items.size()){
+        }
+
     }
 
     @Override
@@ -126,21 +131,13 @@ public class InventoryView extends AllDirPanel implements Observer{
 
     @Override
     public void update() {
-        items = inventory.getPack().getItems();
-        //MessageHandler.println("Inventory size: " + Integer.toString(items.size()), ErrorLevel.NOTICE, PersonFilter.SAM);
         for (int i = 0; i<items.size(); i++){
-                MessageHandler.println("Adding Image to Inventory: " + Integer.toString(i), ErrorLevel.NOTICE, PersonFilter.SAM);
                 try {
                     invImages[i] = itemViewHashMap.get(items.get(i)).getImage();
                 } catch (NullPointerException e){
                     e.printStackTrace();
-                    MessageHandler.println("Adding Image to Inventory ERROR: " + Integer.toString(i), ErrorLevel.CRITICAL, PersonFilter.SAM);
                 }
-
-
         }
-
-        MessageHandler.println("Inventory size: " + Integer.toString(items.size()), ErrorLevel.NOTICE, PersonFilter.SAM);
         for (int i = 0; i < items.size(); i++)
             invImages[i] = itemViewHashMap.get(items.get(i)).getImage();
     }
