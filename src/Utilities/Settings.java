@@ -72,10 +72,6 @@ public class Settings {
     public static int PROJECTILEHEIGHT = 32;
     public static int PROJECTILEWIDTH = 32;
 
-    //Grass flat
-//    public static int TILEWIDTH = 96;
-//    public static int TILEHEIGHT = 62;
-
     public static final int MAX_INVENTORY_SIZE = 16;
 
     // int to limit character count in game window

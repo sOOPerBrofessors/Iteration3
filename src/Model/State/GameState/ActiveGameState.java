@@ -67,17 +67,14 @@ public class ActiveGameState extends GameState {
         itemManager.contact(avatar);
     }
 
-    public void playerAttack(){}
-
+    public void playerAttack(){
+        Projectile temp = Projectile.makeFireBall(new Location(6,5,0), avatar.getOrientation());
+        projectiles.add(temp);
+        map.addProjectile(temp);
+    }
 
     public void playerExecuteSkill(int index){
         avatar.getSkill(index).execute();
-    }
-
-    public void playerFirstSkill(){
-        Projectile temp = Projectile.makeFireBall(new Location(8,8,0));
-        projectiles.add(temp);
-        map.addProjectile(temp);
     }
 
     public void startCombatTimer() { avatar.startCombatTimer(); }

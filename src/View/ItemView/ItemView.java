@@ -21,11 +21,6 @@ public abstract class ItemView  extends MapObjectView {
     @Override
     public void paintComponent(Graphics2D g2d){
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        //System.out.println(image.toString());
-        //g2d.drawImage(image, xPixel, yPixel, itemWidth, itemHeight, null);
-//        g2d.setColor(Color.blue);
-//        g2d.drawRect(xPixel, yPixel, 50, 50);
-//        g2d.drawString(x +"," + y, xPixel, yPixel);
         g2d.drawImage(image,xPixel*Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,itemWidth*Settings.SCALEFACTOR,itemHeight*Settings.SCALEFACTOR, null);
         g2d.dispose();
     }

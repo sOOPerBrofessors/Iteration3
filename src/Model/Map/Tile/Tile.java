@@ -136,6 +136,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         tv.visitTileHasAOE(areaOfEffect);
         tv.visitTileHasCharacter(character);
         tv.visitTileTerrain(terrain);
+        tv.visitTileHasProjectile(projectile);
     }
 
     @Override

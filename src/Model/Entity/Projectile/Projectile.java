@@ -1,5 +1,6 @@
 package Model.Entity.Projectile;
 
+import Model.Effect.Effect;
 import Model.Entity.Entity;
 import Model.Map.Location;
 import Model.Map.Map;
@@ -8,16 +9,21 @@ import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
 import Utilities.Tickable;
+import View.EntityView.ProjectileView;
 
 /**
  * Created by dyeung on 4/16/16.
  */
-public class Projectile extends Entity implements Tickable, Subject{
+public class Projectile extends Entity implements Tickable, Subject {
 
     private Observer observer;
 
-    private Projectile(Navigation navigation, Location location) {
+    private Effect effect;
+    private Orientation orientation;
+
+    private Projectile(Navigation navigation, Location location, Orientation orientation) {
         super(navigation, location);
+        this.orientation = orientation;
     }
 
     @Override
@@ -25,8 +31,8 @@ public class Projectile extends Entity implements Tickable, Subject{
         return false;
     }
 
-    public static Projectile makeFireBall(Location location){
-        return new Projectile(Navigation.makeProjectileNav(), location);
+    public static Projectile makeFireBall(Location location, Orientation orientation){
+        return new Projectile(Navigation.makeProjectileNav(), location, orientation);
     }
 
     @Override
@@ -47,5 +53,10 @@ public class Projectile extends Entity implements Tickable, Subject{
     @Override
     public void alert() {
         observer.update();
+    }
+
+    @Override
+    public Orientation getOrientation() {
+        return orientation;
     }
 }

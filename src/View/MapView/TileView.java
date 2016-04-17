@@ -14,6 +14,7 @@ import View.MapView.AOEView.AreaOfEffectView;
 import View.EntityView.ProjectileView;
 import View.TerrainView.*;
 import View.ItemView.ItemView;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 
 import javax.swing.*;
@@ -39,7 +40,6 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
 
     public TileView(Tile tile, Location location){
         this.location = location;
-
         this.tile = tile;
         init();
         tile.acceptTileObserver(this);
@@ -138,10 +138,9 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
         }
     }
 
-    private void renderProjectile(Graphics2D g2d, int centeredX, int centeredY){
+    private void renderProjectile(Graphics2D g2d, int centerX, int centerY){
         if (hasProjectile()){
-            projectileView.setPixels(centeredX, centeredY);
-            projectileView.paintComponent(g2d);
+            projectileView.paintComponent(g2d, centerX, centerY);
         }
     }
 
@@ -193,8 +192,9 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
 
     @Override
     public void visitTileHasProjectile(Projectile projectile) {
-        if(projectile != null) {
-            //projectileView = new ProjectileView(projectile);
+        if(projectile != null && !hasProjectile()) {
+            projectileView = new ProjectileView(projectile, ImageAssets.fireballs);
+            projectileView.setPixels(xPixel + Settings.TILEWIDTH/4, yPixel + Settings.TILEHEIGHT/2);
         }
     }
 }

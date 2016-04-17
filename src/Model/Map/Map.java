@@ -142,10 +142,6 @@ public class Map {
         mapOfTiles[projectile.getX()][projectile.getY()].addProjectile(projectile);
     }
 
-    public void removeProjectile(Projectile projectile){
-        mapOfTiles[projectile.getX()][projectile.getY()].removeProjectile(projectile);
-    }
-
     public void addAOE(AreaOfEffect areaOfEffect, Location location){
         int x = location.getX();
         int y = location.getY();

@@ -90,9 +90,6 @@ public class GamePlayController extends Controller{
         // Skills key Press
         commands.put(Settings.SKILLS, () -> controllerManager.setSkillsState());
 
-        // skills key press
-        commands.put(Settings.SKILLS, () -> controllerManager.setSkillsState());
-
         commands.put(Settings.TEST_KEY, () -> {
             switch((int)(Math.random()*5)+1){
                 case 1:

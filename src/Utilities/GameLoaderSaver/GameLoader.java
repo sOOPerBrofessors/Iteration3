@@ -14,6 +14,7 @@ import Utilities.GameFactory.MapFactory;
 import Utilities.ItemStuff.ItemFactory.ItemFactory;
 import Utilities.ItemStuff.ItemManager;
 import Utilities.MessageHandler;
+import Utilities.MovementCalculations.ViewCalculations;
 import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class GameLoader {
     //Needs a constructor in order to create what type of occupation it is
     public GameLoader(Avatar player) {
         ImageAssets.init();
+        ViewCalculations.initPixels();
         entities = new ArrayList<>();
         avatar = player;
         initMap();
