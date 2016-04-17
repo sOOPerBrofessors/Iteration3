@@ -1,13 +1,10 @@
 package Model.Map;
 
-import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
-import Model.Entity.Entity;
 import Model.Map.AreaEffect.AreaOfEffect;
 import Model.Map.Tile.Tile;
-import Model.Projectile.Projectile;
+import Model.Entity.Projectile.Projectile;
 import Utilities.ItemStuff.ItemManager;
-import com.sun.org.apache.xpath.internal.operations.Or;
 
 /**
  * Created by sgl on 4/5/16.
@@ -143,10 +140,6 @@ public class Map {
 
 
     //FOR LOADING IN MAP OBJECTS (ENTITY/ITEM)
-    //Entities include projectile things that could be anywhere on 3d axis
-    public void addProjectile(Projectile projectile){
-
-    }
     //Characters are essentially things that exist on the top of group types
     public void addCharacter(Character character){
         mapOfTiles[character.getX()][character.getY()].addCharacter(character);
@@ -154,6 +147,11 @@ public class Map {
 
     public void removeCharacter(Character character){
         mapOfTiles[character.getX()][character.getY()].removeCharacter(character);
+    }
+
+    // All about them projectiles bro
+    public void addProjectile(Projectile projectile){
+        mapOfTiles[projectile.getX()][projectile.getY()].addProjectile(projectile);
     }
 
     public void addAOE(AreaOfEffect areaOfEffect, Location location){

@@ -20,7 +20,7 @@ public abstract class Interactable extends Item {
 
     @Override
     public void acceptItemVisitor(ItemVisitor itemVisitor) {
-        itemVisitor.visitInteractive();
+        itemVisitor.visitInteractive(this);
     }
     public boolean isSuccess() {
         return success;

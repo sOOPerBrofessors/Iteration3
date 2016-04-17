@@ -15,7 +15,7 @@ import java.awt.*;
  * Created by dyeung on 4/6/16.
  */
 
-public class CharacterView extends EntityView implements OccupationVisitor, CharacterVisitor {
+public class CharacterView extends EntityView implements OccupationVisitor {
     //Width height scale formula is Height/Width * new width = new height
     private Image image;
     private Character character;
@@ -35,10 +35,6 @@ public class CharacterView extends EntityView implements OccupationVisitor, Char
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 
         g2d.drawImage(image,xPixel* Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,viewWidth*Settings.SCALEFACTOR,viewHeight* Settings.SCALEFACTOR,null);
-//        g2d.drawImage(image, xPixel, yPixel, viewWidth, viewHeight, null);
-//        g2d.setColor(Color.green);
-//        g2d.drawString(x +"," + y, xPixel, yPixel);
-//        g2d.drawRect(xPixel, yPixel, 100, 100);
 
         if(character.isInCombat())
             drawHealthBar(g2d);
@@ -88,14 +84,4 @@ public class CharacterView extends EntityView implements OccupationVisitor, Char
         orientationView = OccupationViewFactory.createSneakView(orientation);
     }
 
-    //For now these things don't do anything. Its actually just looking at orientation to create the views!!
-    @Override
-    public void visitAvatar(Avatar avatar) {
-
-    }
-
-    @Override
-    public void visitNPC(NPC npc) {
-
-    }
 }
