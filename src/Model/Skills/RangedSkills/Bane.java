@@ -19,7 +19,7 @@ public class Bane extends RangedSkill{
 
     @Override
     public void execute (Map map) {
-        if (checkAll()) {
+        if (allConditionChecked()) {
             bane(map);
             enforceManaCost();
             setTimePerformed();

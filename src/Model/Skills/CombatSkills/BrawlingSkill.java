@@ -27,7 +27,7 @@ public class BrawlingSkill extends CombatSkill{
 
     @Override
     public void execute(Map map) {
-        if (checkAll() && weaponCheck()) {
+        if (allConditionChecked() && weaponCheck()) {
             damage = calculateDamage();
             radius = level > 3 ? 3 : level;
             affectedArea = LinearEffect.getLinearSameLevel(avatar.getLocation(), avatar.getOrientation(), radius);

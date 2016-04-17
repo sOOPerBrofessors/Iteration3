@@ -41,6 +41,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     private CombatTimer combatTimer;
     private int delay;
     private boolean canMove;
+    private float alpha = 1f;
 
     protected Character(Occupation o, Location location) {
         super(Navigation.makeCharNav(), location);
@@ -364,5 +365,12 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         return inventory;
     }
 
+    public void setAlpha(float alpha) {
+        this.alpha = alpha;
+    }
+
+    public float getAlpha() {
+        return alpha;
+    }
 
 } // end abstract class Character
