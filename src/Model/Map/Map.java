@@ -49,7 +49,6 @@ public class Map {
         }else{
             return false;
         }
-
     }
 
     public boolean moveProjectile(Projectile projectile, Location newLocation){
@@ -64,10 +63,10 @@ public class Map {
         //Needs to move the character before the tile does interaction because of "teleport" effect
         if (checkCanInteractWithTile(location, newLocation)
                 && !checkHasObstacle(newLocation)
-                && newTile.moveProjectile(projectile);){
-            getTileAt(currentX, currentY, currentZ).removeCharacter();
+                && newTile.moveProjectile(projectile)){
+            getTileAt(currentX, currentY, currentZ).removeProjectile();
             projectile.updateLocation(new Location(newX,newY,newZ));
-            newTile.doTileEffects(projectile); //does the interaction
+            newTile.applyProjectileEffects(projectile); //does the interaction
             return true;
         }else{
             return false;

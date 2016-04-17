@@ -123,6 +123,10 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         //Effect
     }
 
+    public void applyProjectileEffects(Projectile projectile){
+
+    }
+
     private void doEffectAOE(Character character){
         if (hasAOE()){
             areaOfEffect.onInteract(character);
