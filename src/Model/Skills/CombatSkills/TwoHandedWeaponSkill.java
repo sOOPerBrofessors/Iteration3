@@ -5,6 +5,7 @@ import Model.Entity.Character.Character;
 import Model.Map.Location;
 import Model.Map.Map;
 import Utilities.ErrorLevel;
+import Utilities.GameMessageQueue;
 import Utilities.InfluenceAreas.Planer.AngularEffect;
 import Utilities.MessageHandler;
 import Utilities.PersonFilter;
@@ -39,12 +40,9 @@ public class TwoHandedWeaponSkill extends CombatSkill{
             radius = level > 4 ? 4 : level;
             affectedArea = AngularEffect.getAngularArea(avatar.getLocation(), avatar.getOrientation(), radius);
             twoHandedAttack(map);
-
+            GameMessageQueue.push(name + " Success!");
             enforceManaCost();
             setTimePerformed();
-        }
-        else {
-            MessageHandler.println(name + "failed", ErrorLevel.NOTICE, PersonFilter.ANDY);
         }
     }
 
@@ -64,11 +62,11 @@ public class TwoHandedWeaponSkill extends CombatSkill{
                 enemyList.add(enemy);
             }
         }
+        if (enemyList.isEmpty()) {
+            GameMessageQueue.push(name + ": No enemy found!");
+        }
         for (Character anEnemy : enemyList) {
-            System.out.println("Enemy health before: " + enemy.getHealth());
-            System.out.println("Total damage: " + damage);
             anEnemy.healthEffect(-damage);
-            System.out.println("Enemy health after: " + enemy.getHealth());
         }
     }
 }

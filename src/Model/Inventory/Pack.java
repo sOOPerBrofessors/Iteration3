@@ -1,5 +1,6 @@
 package Model.Inventory;
 
+import Model.Entity.Character.Character;
 import Model.Items.Item;
 import Model.Items.Takeable.TakeableItem;
 import Model.Items.Takeable.Useable.Money;
@@ -22,6 +23,10 @@ public class Pack {
         items = new ArrayList<>();
         money = 0;
     } // end default constructor
+
+    public void utilizeItem(int index, Character character){
+        items.remove(index).utilize(character);
+    }
 
     public void add(TakeableItem item) {
         if(item != null && size() < cap) {

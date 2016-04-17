@@ -6,28 +6,28 @@ import Model.Entity.Character.Occupation.Sneak;
 import Model.Entity.Character.Occupation.Summoner;
 import Model.Inventory.Inventory;
 import Model.Map.Location;
+import Model.Skills.BindWounds;
+import Model.Skills.CombatSkills.BrawlingSkill;
+import Model.Skills.RangedSkills.Observation;
 import Model.Skills.Skill;
 import Model.Map.Map;
 import Utilities.Visitor.CharacterTypeVisitor;
 
 import Utilities.Visitor.CharacterVisitor;
+
+import java.util.ArrayList;
+
 /**
  * Created by broskj on 4/6/16.
  *
  * Class to be operated by the player.
  */
 public class Avatar extends Character {
+
     private Avatar(Occupation o, Location location) {
         //TODO:I'm not sure how this is going to work but we need something here to define the initial location of an avatar
         super(o, location);
-        //skill initialize
-//        skills = new Skill[] {
-//                new BindWounds(this),
-//                new Observation(this),
-//                new BrawlingSkill(this)
-//        };
-
-        //Temporary
+        this.skills.addAll(o.getSkillList(this)); //initialize skills
     } // end constructor
 
     public static Avatar makeSmasher(Location location) {
@@ -59,7 +59,11 @@ public class Avatar extends Character {
     }
 
     public Skill getSkill (int index) {
-        return skills[index];
+        return skills.get(index);
+    }
+
+    public ArrayList<Skill> getSKillList () {
+        return skills;
     }
 
     @Override

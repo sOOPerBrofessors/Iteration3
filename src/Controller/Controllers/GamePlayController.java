@@ -5,9 +5,8 @@ import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Model.State.GameState.ActiveGameState;
 import Utilities.GameLoaderSaver.GameSaver;
-import Utilities.ObservationTimer;
+import Utilities.Timer.ObservationTimer;
 import Utilities.Settings;
-import Utilities.Timer.TimedEvent;
 import View.ViewUtilities.Panels.GamePanel;
 
 import java.awt.event.KeyEvent;
@@ -100,21 +99,22 @@ public class GamePlayController extends Controller{
         commands.put(Settings.TEST_KEY, () -> {
             switch((int)(Math.random()*5)+1){
                 case 1:
-                    state.getAvatar().experienceEffect((int)(Math.random()*5)+1);
+                    state.getAvatar().experienceEffect((int)(Math.random()*5));
                     break;
                 case 2:
-                    state.getAvatar().healthEffect((int)(Math.random()*3)+1);
+                    state.getAvatar().healthEffect((int)(Math.random()*3));
                     break;
                 case 3:
-                    state.getAvatar().manaEffect((int)(Math.random()*3)+1);
+                    state.getAvatar().manaEffect((int)(Math.random()*3));
                     break;
                 case 4:
-                    state.getAvatar().healthEffect(-1*((int)(Math.random()*3)+1));
+                    state.getAvatar().healthEffect(-1*((int)(Math.random()*3)));
                     break;
                 case 5:
-                    state.getAvatar().manaEffect(-1*((int)(Math.random()*3)+1));
+                    state.getAvatar().manaEffect(-1*((int)(Math.random()*3)));
                     break;
             }
+            //state.getAvatar().healthEffect((int)(Math.random()*3)+1);
         });
 
         commands.put(KeyEvent.VK_9, new Command() {

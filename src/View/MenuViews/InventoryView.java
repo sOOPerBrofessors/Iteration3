@@ -95,14 +95,13 @@ public class InventoryView extends AllDirPanel implements Observer{
         } else if (weaponSel){
 
         } else if (calcSel() < items.size()){
+            avatar.utilizeItem(calcSel());
         }
     }
     public void dropItem(){
         if (calcSel() < items.size())
             itemManager.addItem(inventory.dropItem(calcSel()),avatar);
     }
-
-
 
     private int calcSel(){
         return ySel*4+xSel;
