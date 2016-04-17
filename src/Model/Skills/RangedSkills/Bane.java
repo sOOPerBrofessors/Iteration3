@@ -1,7 +1,17 @@
 package Model.Skills.RangedSkills;
 
+import Model.Entity.Character.Avatar;
+
 /**
  * Created by AndyZhu on 13/4/2016.
  */
-public class Bane {
+public class Bane extends RangedSkill{
+    public Bane(Avatar avatar) {
+        super(avatar);
+        name = "Bane";
+        manaCost = 1;
+        coolDownTime = 1;
+    }
+
+
 }

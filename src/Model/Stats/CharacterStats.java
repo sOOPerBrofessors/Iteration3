@@ -1,7 +1,11 @@
 package Model.Stats;
 
+import Utilities.DamageObject;
+import Utilities.DamageQueue;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
+import Utilities.Visitor.CharacterVisitable;
+import View.EntityView.CharacterView;
 
 import java.util.ArrayList;
 
@@ -48,6 +52,7 @@ public class CharacterStats extends EntityStats implements Subject {
     private int equippedArmor;
 
     // miscellaneous
+    private int skillPoint;
     private int experienceThreshold;        // experience to next level
     private double experienceMultiplier;    // amount to multiply experienceThreshold by on level up
     private double levelMultiplier;         // amount to multiply primary stats by on level up
@@ -74,6 +79,7 @@ public class CharacterStats extends EntityStats implements Subject {
         experienceThreshold = 10;
         experienceMultiplier = 1.5;
         levelMultiplier = 1.1;
+        skillPoint = 1;
     } // end constructor
 
     public static CharacterStats makeSmasherStats() {
@@ -152,7 +158,7 @@ public class CharacterStats extends EntityStats implements Subject {
         health = baseHealth;
         mana = baseMana;
 
-
+        skillPoint += level;
     } // end levelup
 
     public void kill() {
@@ -233,6 +239,7 @@ public class CharacterStats extends EntityStats implements Subject {
         else if (health > baseHealth) {
             health = baseHealth;
         }
+        DamageQueue.push(new DamageObject(effect));
         alert();
     }
     public void manaEffect(int effect){
@@ -252,6 +259,14 @@ public class CharacterStats extends EntityStats implements Subject {
         movement += effect;
         if(movement < 0) {
             movement = 0;
+        }
+        alert();
+    }
+
+    public void skillPointEffect (int effect) {
+        skillPoint += effect;
+        if(skillPoint < 0) {
+            skillPoint = 0;
         }
         alert();
     }
@@ -384,6 +399,8 @@ public class CharacterStats extends EntityStats implements Subject {
     public int getEquippedArmor() {
         return equippedArmor;
     }
+
+    public int getSkillPoint() {return skillPoint;}
 
     public int getExperienceThreshold() {
         return experienceThreshold;

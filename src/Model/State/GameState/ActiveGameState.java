@@ -3,6 +3,7 @@ package Model.State.GameState;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Projectile.Projectile;
+import Model.Items.Takeable.Equippable.Weapon.OneHandedWeapon;
 import Model.Map.Location;
 import Model.Map.Map;
 
@@ -82,7 +83,7 @@ public class ActiveGameState extends GameState {
     public void playerFirstSkill(){}
 
     public void playerThirdSkill() {
-        Skill skill = (BrawlingSkill) avatar.getSkill(2);
+        Skill skill = avatar.getSkill(2);
         skill.execute(map);
     }
 
