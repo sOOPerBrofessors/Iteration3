@@ -35,7 +35,7 @@ public class ActiveGameState extends GameState {
         }
         if(projectiles != null){
             for(int i = 0; i < projectiles.size(); i++){
-                projectiles.get(i).tick();
+                projectiles.get(i).tick(map);
             }
         }
     }
@@ -72,9 +72,9 @@ public class ActiveGameState extends GameState {
     }
 
     public void playerAttack(){
-        Projectile temp = Projectile.makeFireBall(new Location(6,5,0), avatar.getOrientation());
+        Location tempLoc = new Location(avatar.getX(), avatar.getY(), avatar.getZ());
+        Projectile temp = Projectile.makeFireBall(tempLoc, avatar.getOrientation());
         projectiles.add(temp);
-        map.addProjectile(temp);
     }
 
     public void playerExecuteSkill(int index) {

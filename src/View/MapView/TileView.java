@@ -6,6 +6,7 @@ import Model.Map.Location;
 import Model.Map.Tile.Terrain.Terrain;
 import Model.Map.Tile.Tile;
 import Model.Entity.Projectile.Projectile;
+import Utilities.Observers.Observer;
 import Utilities.Observers.TileObserver;
 import Utilities.Settings;
 import Utilities.Visitor.TileVisitor;
@@ -23,7 +24,7 @@ import java.awt.*;
 /**
  * Created by dyeung on 4/7/16.
  */
-public class TileView extends JComponent implements TileObserver, TileVisitor {
+public class TileView extends JComponent implements TileObserver, TileVisitor, Observer{
 
     protected Location location;
     protected int tileWidth = Settings.TILEWIDTH;
@@ -60,10 +61,6 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
          yPixel = y;
     }
 
-    public void setLocation(int x, int y, int z){
-        location = new Location(x,y,z);
-    }
-
     public void paintComponent(Graphics g){
         Graphics2D g2d = (Graphics2D) g.create();
 
@@ -78,7 +75,7 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
         renderAOE(g2d, centeredX, centeredY);
         renderItem(g2d, centeredX, centeredY);
         renderEntity(g2d, centeredX, centeredY);
-        renderProjectile(g2d, centeredX, centeredY);
+        renderProjectile(g2d);
     }
     private void renderTerrain(Graphics g){
         terrainView.setXY(xPixel,yPixel);
@@ -131,22 +128,25 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
 
     private void renderItem(Graphics2D g2d, int centeredX, int centeredY){
         if(hasItem()) {
-//            System.out.println("TileView item:" + location.getX() + "," + location.getY() + "," + location.getZ());
-//            System.out.println("TileView item:" + centeredX + "," + centeredY);
             itemView.setPixels(centeredX, centeredY);
             itemView.paintComponent(g2d);
         }
     }
 
-    private void renderProjectile(Graphics2D g2d, int centerX, int centerY){
-        if (hasProjectile()){
-            projectileView.paintComponent(g2d, centerX, centerY);
+    private void renderProjectile(Graphics2D g2d){
+        if (hasProjectile() && !projectileView.ViewDone()){
+            projectileView.paintComponent(g2d);
         }
     }
 
     @Override //This function is called when a tile is updated (for an example when a tile has a new entity)
     public void update() {
         updateTileView();
+    }
+
+    @Override
+    public void remove() {
+
     }
 
     private void removeCharacterView(){
@@ -192,7 +192,7 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
 
     @Override
     public void visitTileHasProjectile(Projectile projectile) {
-        if(projectile != null && !hasProjectile()) {
+        if(projectile != null) {
             projectileView = new ProjectileView(projectile, ImageAssets.fireballs);
             projectileView.setPixels(xPixel + Settings.TILEWIDTH/4, yPixel + Settings.TILEHEIGHT/2);
         }

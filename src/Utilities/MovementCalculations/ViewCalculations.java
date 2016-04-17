@@ -69,19 +69,19 @@ public class ViewCalculations {
 
         // move x pixels based off orientation
         moveXPixel.put(Orientation.NORTH, 0);
-        moveXPixel.put(Orientation.NORTHEAST, 1);
-        moveXPixel.put(Orientation.NORTHWEST, -1);
-        moveXPixel.put(Orientation.SOUTHEAST, 1);
-        moveXPixel.put(Orientation.SOUTHWEST, -1);
+        moveXPixel.put(Orientation.NORTHEAST, 3);
+        moveXPixel.put(Orientation.NORTHWEST, -3);
+        moveXPixel.put(Orientation.SOUTHEAST, 3);
+        moveXPixel.put(Orientation.SOUTHWEST, -3);
         moveXPixel.put(Orientation.SOUTH, 0);
 
         // move y pixels based off orientation
-        moveYPixel.put(Orientation.NORTH, -2);
-        moveYPixel.put(Orientation.NORTHEAST, -1);
-        moveYPixel.put(Orientation.NORTHWEST, -1);
-        moveYPixel.put(Orientation.SOUTHEAST, 1);
-        moveYPixel.put(Orientation.SOUTHWEST, 1);
-        moveYPixel.put(Orientation.SOUTH, 2);
+        moveYPixel.put(Orientation.NORTH, -4);
+        moveYPixel.put(Orientation.NORTHEAST, -3);
+        moveYPixel.put(Orientation.NORTHWEST, -3);
+        moveYPixel.put(Orientation.SOUTHEAST, 3);
+        moveYPixel.put(Orientation.SOUTHWEST, 3);
+        moveYPixel.put(Orientation.SOUTH, 4);
 
         // goal x pixels based off orientation
         goalXPixel.put(Orientation.NORTH, 0);
