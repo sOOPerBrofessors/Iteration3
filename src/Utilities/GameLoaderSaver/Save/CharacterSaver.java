@@ -61,7 +61,7 @@ public class CharacterSaver implements CharacterVisitor {
     }
 
     @Override
-    public void visitSkills(Skill[] skills) {
+    public void visitSkills(ArrayList<Skill> skills) {
 
     }
 

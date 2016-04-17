@@ -71,7 +71,6 @@ public class Map {
         }else{
             return false;
         }
-
     }
 
     private boolean checkHeightDifference(int current, int target){

@@ -1,8 +1,7 @@
-package View.InventoryView;
+package View.MenuViews;
 
 import Utilities.Observers.Observer;
 
-import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -36,7 +35,7 @@ public class SettingsView extends VertPanel implements Observer {
 
         g2d.setColor(new Color(166, 0, 4, 255));
         g2d.setFont(new Font("Courier New", 1, 48));
-        g2d.drawString("Settings Menu", xBorderOffset*3, yBorderOffset+50);
+        g2d.drawString("Settings", xBorderOffset*3+35, yBorderOffset+70);
 
         g2d.dispose();
     }

@@ -3,7 +3,10 @@ package Model.Inventory;
 import Model.Items.Item;
 import Model.Items.Takeable.TakeableItem;
 import Model.Items.Takeable.Useable.Money;
+import Utilities.ErrorLevel;
 import Utilities.GameMessageQueue;
+import Utilities.MessageHandler;
+import Utilities.PersonFilter;
 
 import java.util.ArrayList;
 
@@ -43,8 +46,10 @@ public class Pack {
         return items.indexOf(item);
     } // end indexOf
 
-    public Item remove(int index) {
-        return items.remove(index);
+    public TakeableItem remove(int index) {
+        TakeableItem temp = items.remove(index);
+        //MessageHandler.println("Removed from pack: "+temp.getName(), ErrorLevel.NOTICE, PersonFilter.SAM);
+        return temp;
     } // end remove
 
     public boolean remove(TakeableItem item) {

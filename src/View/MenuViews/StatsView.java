@@ -1,14 +1,9 @@
-package View.InventoryView;
+package View.MenuViews;
 
 import Model.Entity.Character.Avatar;
 import Model.State.GameState.GameState;
-import Utilities.ErrorLevel;
-import Utilities.MessageHandler;
 import Utilities.Observers.Observer;
-import Utilities.PersonFilter;
-import Utilities.Settings;
 
-import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -64,8 +59,8 @@ public class StatsView extends ViewPanel implements Observer {
         g2d.setFont(new Font(Font.MONOSPACED, 1, 22));
 
         for(int i = 0; i < statsArray.length; i++ ){
-            g2d.drawString(statsArray[i], xBorderOffset+50, yBorderOffset*7/4+30*i+20);
-            g2d.drawString(Integer.toString(statsValArray[i]),xBorderOffset*13/2, yBorderOffset*7/4+30*i+20);
+            g2d.drawString(statsArray[i], xBorderOffset+50, yBorderOffset*7/4+30*i);
+            g2d.drawString(Integer.toString(statsValArray[i]),xBorderOffset*13/2, yBorderOffset*7/4+30*i);
         }
         g2d.dispose();
     }

@@ -1,4 +1,4 @@
-package View.InventoryView;
+package View.MenuViews;
 
 import Utilities.Settings;
 import View.ViewUtilities.Sprites.ImageAssets;
@@ -11,7 +11,7 @@ import java.awt.*;
  */
 public abstract class ViewPanel extends JPanel{
     protected int xBorderOffset = Settings.GAMEWIDTH/8;
-    protected int yBorderOffset = Settings.GAMEHEIGHT/8;
+    protected int yBorderOffset = Settings.GAMEHEIGHT/8+50;
     protected int xSize = Settings.GAMEWIDTH*3/4;
     protected int ySize = Settings.GAMEHEIGHT*3/4;
 
@@ -22,7 +22,7 @@ public abstract class ViewPanel extends JPanel{
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1)); //make pictures opaque
         g2d.setColor(new Color(123, 123, 123, 120));
         g2d.fillRect(xBorderOffset,yBorderOffset,xSize, ySize);
-        g2d.drawImage(ImageAssets.interfaceBorder, 0, 0, Settings.GAMEWIDTH, Settings.GAMEHEIGHT, null);
+        g2d.drawImage(ImageAssets.interfaceBorder, xBorderOffset, yBorderOffset, xSize, ySize, null);
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); //make pictures opaque
     }
 

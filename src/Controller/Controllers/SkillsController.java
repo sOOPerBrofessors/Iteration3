@@ -4,7 +4,7 @@ import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Utilities.Settings;
-import View.InventoryView.SkillsView;
+import View.MenuViews.SkillsView;
 import View.ViewUtilities.Panels.GamePanel;
 
 
