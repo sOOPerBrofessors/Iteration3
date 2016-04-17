@@ -1,6 +1,9 @@
 package Model;
 
 import Model.State.StateManager;
+import Utilities.ErrorLevel;
+import Utilities.MessageHandler;
+import Utilities.PersonFilter;
 
 /**
  * Created by Wimberley on 3/23/16.
@@ -11,17 +14,28 @@ public class Model implements Runnable{
 
     private final int TICK_RATE = 60 ;
     private final int TARGET_TIME = 1000 / TICK_RATE;
+    private volatile boolean running = true;
+
 
     public Model(){
-        stateManager = new StateManager();
+        stateManager = new StateManager(this);
     }
+
+    public void terminate() { running = false; }
+
+    public void restart() {running = true;}
 
     public synchronized void start(){
-        new Thread(this).start();
+        if (!running) {
+            running = true;
+            MessageHandler.println("THREAD ALREADY STARTED!", ErrorLevel.CRITICAL, PersonFilter.SAM);
+        }
+        else {
+            MessageHandler.println("new thread started", ErrorLevel.CRITICAL, PersonFilter.SAM);
+            new Thread(this).start();
+        }
     }
 
-
-    //feel free to overdo this Mike, just thought I'd put it in here for now
     @Override
     public void run() {
 
@@ -29,7 +43,7 @@ public class Model implements Runnable{
         long delta;
         long waitTime;
 
-        while (true) {
+        while (running) {
 
             lastTime = System.nanoTime();
 
@@ -47,8 +61,8 @@ public class Model implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
         }
+            //Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
     }
 
     public StateManager getStateManager() {

@@ -40,9 +40,12 @@ public class ViewManager implements Subject {
         introPanel = new IntroPanel(this).introPanel();
         createPanel = new CharacterCreationPanel(this).createPanel();
         gamePanel = new GamePanel(this);
-
         activePanel = introPanel;
         //inventoryView = new InventoryView()
+    }
+
+    public void stopThread(){
+        stateManager.stopThread();
     }
 
     public void displayIntro(){
