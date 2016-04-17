@@ -8,14 +8,8 @@
      </NPC>
      <Avatar>
           <Inventory>
-               <Pack>
-                    <Takeable-Item name="Basic-Health-Potion"/>
-                    <Takeable-Item name="Wooden-Sword"/>
-                    <Takeable-Item name="Light-Armor"/>
-                    <Takeable-Item name="Key"/>
-               </Pack>
+               <Pack/>
                <Equip/>
           </Inventory>
      </Avatar>
-     <Tmp/>
 </Save_File>

@@ -25,6 +25,12 @@ public class Inventory implements Observer, Subject{
         equipment.addObserver(this);
     } // end default constructor
 
+    public TakeableItem dropItem(int index){
+        TakeableItem temp = pack.remove(index);
+        alert();
+        return temp;
+    }
+
     public void equipWeapon(Weapon weapon) {
         if (pack.remove(weapon)) {
             pack.add(equipment.equipWeapon(weapon));    // add currently equipped weapon to pack; remove from pack
@@ -53,9 +59,15 @@ public class Inventory implements Observer, Subject{
         }
     } // end unequipArmor
 
-    public boolean removeItem(TakeableItem item) {
+    public boolean removeItem(TakeableItem item) { //NEEDS ALERT
         return pack.remove(item);
     } // end removeItem
+
+//    public TakeableItem removeItem(int index) { //NEEDS ALERT
+//        TakeableItem temp = pack.remove(index);
+//        alert();
+//        return temp;
+//    }
 
     public int getWeaponValue() {
         return equipment.getWeaponValue();

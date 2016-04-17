@@ -1,4 +1,4 @@
-package View.InventoryView;
+package View.MenuViews;
 
 import Controller.ControllerUtility.Command;
 import Utilities.Settings;
@@ -18,12 +18,13 @@ public class PauseView extends VertPanel {
     private final String[] menuArray = {"SAVE","SETTINGS","MAIN_MENU","QUIT"};
     private HashMap<Integer, Command> commands;
     private ViewManager viewManager;
+    private int yDist = 50;
 
     public PauseView(ViewManager viewManager){
         this.viewManager = viewManager;
         commands = new HashMap<>();
         commands.put(0, () -> doNothing());
-        commands.put(1, () -> doNothing());
+        commands.put(1, () -> goToSettings());
         commands.put(2, () -> restart());
         commands.put(3, () -> System.exit(0));
     }
@@ -46,6 +47,11 @@ public class PauseView extends VertPanel {
         viewManager.stopThread();
         viewManager.displayIntro();
     }
+
+    private void goToSettings(){
+        viewManager.closePauseScreen();
+        viewManager.displaySettings();
+    }
     private void doNothing(){    }
 
     @Override
@@ -55,14 +61,14 @@ public class PauseView extends VertPanel {
 
         g2d.setColor(new Color(166, 0, 4, 255));
         g2d.setFont(new Font("Courier New", 1, 48));
-        g2d.drawString("Pause_Menu", xBorderOffset*11/4, yBorderOffset+50);
+        g2d.drawString("Pause_Menu", xBorderOffset*11/4, yBorderOffset+75);
 
         g2d.setColor(new Color(23, 39, 166, 255));
         g2d.setFont(new Font("Courier New", 1, 40));
         for (int i =0; i <= selMax; i++){
-            g2d.drawString(menuArray[i], xBorderOffset*11/4, yBorderOffset*(3+i));
+            g2d.drawString(menuArray[i], xBorderOffset*11/4, yBorderOffset*2+yDist*(2*i));
         }
-        g2d.drawImage(ImageAssets.select,xBorderOffset*11/4-25*Settings.SCALEFACTOR,yBorderOffset*(2+sel)+50* Settings.SCALEFACTOR,325*Settings.SCALEFACTOR,50*Settings.SCALEFACTOR,null );
+        g2d.drawImage(ImageAssets.select,xBorderOffset*11/4-25*Settings.SCALEFACTOR,(yBorderOffset+yDist*(2+2*sel))* Settings.SCALEFACTOR,325*Settings.SCALEFACTOR,50*Settings.SCALEFACTOR,null );
         g2d.dispose();
     }
 }
