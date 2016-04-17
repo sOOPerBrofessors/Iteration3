@@ -1,5 +1,6 @@
 package Model.Entity.Character;
 
+import Controller.Controllers.GamePlayController;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Character.Occupation.Smasher;
 import Model.Entity.Character.Occupation.Sneak;
@@ -11,6 +12,7 @@ import Model.Skills.CombatSkills.BrawlingSkill;
 import Model.Skills.RangedSkills.Observation;
 import Model.Skills.Skill;
 import Model.Map.Map;
+import Model.State.GameState.ActiveGameState;
 import Utilities.Visitor.AvatarVisitable;
 import Utilities.Visitor.AvatarVisitor;
 
@@ -74,6 +76,7 @@ public class Avatar extends Character implements AvatarVisitable {
         stats.setEquippedArmor(inventory.getArmorValue());
         stats.setEquippedWeapon(inventory.getWeaponValue());
         stats.recompute();
+        setDelay(getMovement());
     } // end update
 
     @Override

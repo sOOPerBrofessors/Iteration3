@@ -48,7 +48,7 @@ public class NPC extends Character implements Tickable{
 
     @Override
     public void update() {
-
+        setDelay(getMovement());
     }
 
     @Override
