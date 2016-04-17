@@ -16,6 +16,7 @@ public class Potion extends UseableItem {
         super(name, description, value);
         this.e = e;
         this.amount = amount;
+        //Used for testing, all potions are the same, assuming a name will be given to potion
     } // end constructor
 
     public static Potion makeAgilityPotion(String name, String description, int amount, int value) {
@@ -49,4 +50,6 @@ public class Potion extends UseableItem {
     public static Potion makeStrengthPotion(String name, String description, int amount, int value) {
         return new Potion(name, description, Character::strengthEffect, amount, value);
     } // end factory method makeStrengthPotion
+
+
 } // end class Potion

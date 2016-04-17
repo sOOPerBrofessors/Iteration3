@@ -19,6 +19,6 @@ public abstract class RangedSkill extends Skill {
     }
 
     @Override
-    public void execute() {}
+    public void execute(Map map) {}
 
 }

@@ -2,6 +2,7 @@ package Model.Items.Takeable;
 
 import Model.Entity.Character.Character;
 import Model.Items.Item;
+import Utilities.Visitor.ItemVisitor;
 
 /**
  * Created by broskj on 4/6/16.
@@ -26,6 +27,13 @@ public abstract class TakeableItem extends Item {
 
     protected abstract void utilize(Character character); // either apply item's effect or equip
 
+
+    @Override
+    public void acceptItemVisitor(ItemVisitor itemVisitor) {
+        itemVisitor.visitTakeableItem();
+    }
+
     public String getName() { return name; }
     public String getDescription() { return description; }
+
 }

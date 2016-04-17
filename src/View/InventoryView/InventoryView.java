@@ -24,7 +24,7 @@ import java.util.HashMap;
  */
 
 //Displays Inventory in 4x4 matrix. x goes to the right, y goes down
-public class InventoryView extends JPanel implements Observer{
+public class InventoryView extends AllDirPanel implements Observer{
 
     private Inventory inventory; //handle to Avatar's inventory
     ArrayList<TakeableItem> items; //handle to Avatar's ArrayList of Items
@@ -36,11 +36,10 @@ public class InventoryView extends JPanel implements Observer{
     private int xSel, ySel, xMax, yMax;
     private boolean armorSel;
     private boolean weaponSel;
-    //private BufferedImage slotImage;
     private BufferedImage weaponImage;
     private BufferedImage armorImage;
 
-    private int xBorderOffset, yBorderOffset, squareSize, xSize, ySize;
+    private int squareSize;
 
 
     public InventoryView(ActiveGameState gameState){
@@ -52,11 +51,6 @@ public class InventoryView extends JPanel implements Observer{
         xSel = 0;
         xMax = Settings.MAX_INVENTORY_SIZE/4;
         yMax = Settings.MAX_INVENTORY_SIZE/4;
-        MessageHandler.println("InventoryView initialized", ErrorLevel.NOTICE, PersonFilter.SAM);
-        xBorderOffset = Settings.GAMEWIDTH/8;
-        yBorderOffset = Settings.GAMEHEIGHT/8;
-        xSize = Settings.GAMEWIDTH*3/4;
-        ySize = Settings.GAMEHEIGHT*3/4;
         squareSize = 100;
         avatar.addObserver(this);
         update();
@@ -95,21 +89,19 @@ public class InventoryView extends JPanel implements Observer{
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();
-
-        Color myColour = new Color(49, 17, 7, 220);
-        g2d.setColor(myColour);
-
-        g2d.fillRect(xBorderOffset,yBorderOffset,xSize, ySize);
-        float opacity = 0.7f; //make pictures opaque
-        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity)); //make pictures opaque
+        drawBackground(g2d);
+        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .7f)); //make pictures opaque
         for(int y=0;y<yMax;y++){ //draw all squares
             for (int x=0; x<xMax; x++){
                 g2d.drawImage(ImageAssets.invSlot, xBorderOffset+50+x*squareSize,yBorderOffset+75+y*squareSize, squareSize,squareSize, null); //draw InvSlot
                 int currentSlot = y*4+x;
-                if (currentSlot< items.size()) //for performance (Don't actually know if would increase performance)
-                    g2d.drawImage(invImages[currentSlot],xBorderOffset+50+x*squareSize,yBorderOffset+75+y*squareSize, squareSize,squareSize, null);
+                if (currentSlot< items.size()) {//for performance (Don't actually know if would increase performance)
+                    g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); //make pictures solid
+                    g2d.drawImage(invImages[currentSlot], xBorderOffset + 75 + x * squareSize, yBorderOffset + 100 + y * squareSize, squareSize/2, squareSize/2, null);
+                    g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .7f)); //make pictures opaque
+                }
             }
         }
         //draw armor and weapon slot
@@ -119,8 +111,8 @@ public class InventoryView extends JPanel implements Observer{
         //get rid of opaqueness
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         g2d.setColor(new Color(166, 0, 4, 255));
-        g2d.setFont(new Font("Courier New", 1, 48));
-        g2d.drawString("Inventory "+xSel+","+ySel +" Equipment", xBorderOffset+squareSize, yBorderOffset+50);
+        g2d.setFont(new Font("Courier New", 1, 36));
+        g2d.drawString("Inventory        Equipment", xBorderOffset+squareSize*2, yBorderOffset+50);
 
         //highlight selection
         if (armorSel){
@@ -149,10 +141,11 @@ public class InventoryView extends JPanel implements Observer{
 
         }
 
+        MessageHandler.println("Inventory size: " + Integer.toString(items.size()), ErrorLevel.NOTICE, PersonFilter.SAM);
+        for (int i = 0; i < items.size(); i++)
+            invImages[i] = itemViewHashMap.get(items.get(i)).getImage();
     }
 
     @Override
-    public void remove() {
-
-    }
+    public void remove() {}
 }
