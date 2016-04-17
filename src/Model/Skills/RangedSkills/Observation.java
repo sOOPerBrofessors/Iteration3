@@ -6,11 +6,8 @@ import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Orientation;
 import Model.Map.Tile.Tile;
-import Utilities.ErrorLevel;
 import Utilities.GameMessageQueue;
 import Utilities.InfluenceAreas.Linear.LinearEffect;
-import Utilities.MessageHandler;
-import Utilities.PersonFilter;
 
 import java.util.ArrayList;
 import java.util.Random;
