@@ -5,4 +5,6 @@ package Utilities.Visitor;
  */
 public interface CharacterVisitable {
     void acceptCharacterVisitor(CharacterVisitor characterVisitor);
+    void acceptCharacterTypeVisitor(CharacterTypeVisitor characterTypeVisitor);
+
 }

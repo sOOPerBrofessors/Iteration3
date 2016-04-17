@@ -30,7 +30,7 @@ public abstract class TakeableItem extends Item {
 
     @Override
     public void acceptItemVisitor(ItemVisitor itemVisitor) {
-        itemVisitor.visitTakeableItem();
+        itemVisitor.visitTakeableItem(this);
     }
 
     public String getName() { return name; }
