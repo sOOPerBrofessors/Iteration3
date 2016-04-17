@@ -11,15 +11,20 @@ import Model.Map.Map;
 import Utilities.Visitor.CharacterTypeVisitor;
 
 import Utilities.Visitor.CharacterVisitor;
+
+import java.util.ArrayList;
+
 /**
  * Created by broskj on 4/6/16.
  *
  * Class to be operated by the player.
  */
 public class Avatar extends Character {
+
     private Avatar(Occupation o, Location location) {
         //TODO:I'm not sure how this is going to work but we need something here to define the initial location of an avatar
         super(o, location);
+        this.skills.addAll(o.getSkillList(this));
         //skill initialize
 //        skills = new Skill[] {
 //                new BindWounds(this),
@@ -59,7 +64,11 @@ public class Avatar extends Character {
     }
 
     public Skill getSkill (int index) {
-        return skills[index];
+        return skills.get(index);
+    }
+
+    public ArrayList<Skill> getSKillList () {
+        return skills;
     }
 
     @Override

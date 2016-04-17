@@ -5,9 +5,8 @@ import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Model.State.GameState.ActiveGameState;
 import Utilities.GameLoaderSaver.GameSaver;
-import Utilities.ObservationTimer;
+import Utilities.Timer.ObservationTimer;
 import Utilities.Settings;
-import Utilities.Timer.TimedEvent;
 import View.ViewUtilities.Panels.GamePanel;
 
 import java.awt.event.KeyEvent;

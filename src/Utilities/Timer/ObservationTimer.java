@@ -1,4 +1,4 @@
-package Utilities;
+package Utilities.Timer;
 
 import Controller.ControllerUtility.Command;
 import Model.Skills.RangedSkills.ObservationInfo;
