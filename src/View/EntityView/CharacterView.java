@@ -2,14 +2,13 @@ package View.EntityView;
 
 import Model.Entity.Character.Character;
 import Model.Map.Orientation;
-import Utilities.DamageObject;
-import Utilities.DamageQueue;
+import Utilities.Splats.DamageQueue;
 import Utilities.Settings;
+import Utilities.Splats.ExperienceQueue;
 import Utilities.Visitor.OccupationVisitor;
 import View.EntityView.AvatarViewFactory.OccupationViewFactory;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * Created by dyeung on 4/6/16.
@@ -37,12 +36,19 @@ public class CharacterView extends EntityView implements OccupationVisitor {
 
         g2d.drawImage(image,xPixel* Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,viewWidth*Settings.SCALEFACTOR,viewHeight* Settings.SCALEFACTOR,null);
 
-        if(character.isInCombat())
+        if(character.isInCombat()) {
             drawHealthBar(g2d);
+            renderDamageSplats(g2d);
+            renderExperienceSplats(g2d);
+        }
 
+
+        g2d.dispose();
+    }
+
+    public void renderDamageSplats(Graphics2D g2d) {
         g2d.setFont(new Font(Font.MONOSPACED, Font.ITALIC, 20));
-
-        for(DamageObject d : DamageQueue.getAll()) {
+        for(DamageQueue.DamageSplat d : DamageQueue.getAll()) {
             if(!d.isRunning())
                 d.start();
             g2d.setColor(d.getColor());
@@ -52,8 +58,20 @@ public class CharacterView extends EntityView implements OccupationVisitor {
             d.decrementyDelta();
             d.decrementAlpha();
         }
+    } // end renderDamageSplate
 
-        g2d.dispose();
+    public void renderExperienceSplats(Graphics2D g2d) {
+        g2d.setFont(new Font(Font.MONOSPACED, Font.ITALIC, 20));
+        for(ExperienceQueue.ExperienceSplat e : ExperienceQueue.getAll()) {
+            if(!e.isRunning())
+                e.start();
+            g2d.setColor(e.getColor());
+            g2d.drawString("+" + Integer.toString(e.getExperience()),
+                    xPixel+Settings.ENTITYWIDTH/2+e.getxDelta()-10,
+                    yPixel+Settings.ENTITYHEIGHT/2+e.getyDelta()+10);
+            e.decrementyDelta();
+            e.decrementAlpha();
+        }
     }
 
     @Override
