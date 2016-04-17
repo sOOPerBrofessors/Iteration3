@@ -12,6 +12,9 @@ import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Orientation;
 import Model.Map.Tile.Terrain.Terrain;
+import Model.Skills.BindWounds;
+import Model.Skills.RangedSkills.Observation;
+import Model.Skills.Skill;
 import Model.Stats.CharacterStats;
 import Utilities.Timer.CombatTimer;
 import Utilities.GameMessageQueue;
@@ -32,7 +35,8 @@ import java.util.ArrayList;
 public abstract class Character extends Entity implements Observer, Subject, CharacterVisitable {
     private ArrayList<Observer> observers;
 
-    private Occupation o;
+    protected Skill[] skills;
+    protected Occupation o;
     protected CharacterStats stats;
     protected Inventory inventory;
     private int radiusVisibility;
@@ -48,6 +52,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         this.radiusVisibility = 3; //might need to change to some sort of default later
         observers = new ArrayList<>();
         combatTimer = new CombatTimer();
+
     } // end private constructor
 
     public boolean isInCombat() {

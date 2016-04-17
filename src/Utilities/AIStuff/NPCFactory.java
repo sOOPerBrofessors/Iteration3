@@ -22,7 +22,7 @@ public class NPCFactory {
         Personality personality = PersonalityFactory.getPersonality("enemy");
         Faction faction = FactionFactory.getFaction("red");
         //This should be a factory, testing for now
-        NPCStrategy strategy = new TalkNPCStrategy("Hello world", "I am awesome");
+        NPCStrategy strategy = new TalkNPCStrategy("Ganondorf: Hi minion", "Ganondorf: I am awesome", "Ganondorf: What do you want?");
         NPC gandorf = new NPC(new Smasher(), new Location(1,1,0), personality, faction, strategy);
         Brain brain = new Brain(gandorf);
         gandorf.setBrain(brain);
