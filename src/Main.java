@@ -48,7 +48,8 @@ public class Main {
         // set necessary things for views
         viewManager.setControllerManager(controller);
         viewManager.setStateManager(stateManager);
-        gamePanel.setGamePlayController(gamePlayController);
+
+        //gamePanel.setGamePlayController(gamePlayController);
 
         // set necessary things for states
         stateManager.setControllerManager(controller);

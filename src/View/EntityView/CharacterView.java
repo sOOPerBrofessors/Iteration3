@@ -15,7 +15,7 @@ import java.awt.*;
  * Created by dyeung on 4/6/16.
  */
 
-public class CharacterView extends EntityView implements OccupationVisitor, CharacterVisitor {
+public class CharacterView extends EntityView implements OccupationVisitor {
     //Width height scale formula is Height/Width * new width = new height
     private Image image;
     private Character character;
@@ -84,14 +84,4 @@ public class CharacterView extends EntityView implements OccupationVisitor, Char
         orientationView = OccupationViewFactory.createSneakView(orientation);
     }
 
-    //For now these things don't do anything. Its actually just looking at orientation to create the views!!
-    @Override
-    public void visitAvatar(Avatar avatar) {
-
-    }
-
-    @Override
-    public void visitNPC(NPC npc) {
-
-    }
 }

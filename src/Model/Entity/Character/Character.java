@@ -1,6 +1,5 @@
 package Model.Entity.Character;
 
-import Controller.Controllers.GamePlayController;
 import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Entity;
@@ -13,7 +12,7 @@ import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Orientation;
 import Model.Map.Tile.Terrain.Terrain;
-import Model.State.GameState.ActiveGameState;
+import Model.Skills.Skill;
 import Model.Stats.CharacterStats;
 import Utilities.Timer.CombatTimer;
 import Utilities.GameMessageQueue;
@@ -22,7 +21,6 @@ import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
 import Utilities.Timer.TimedEvent;
 import Utilities.Visitor.CharacterVisitable;
-import View.EntityView.CharacterView;
 
 import java.util.ArrayList;
 
@@ -35,7 +33,8 @@ import java.util.ArrayList;
 public abstract class Character extends Entity implements Observer, Subject, CharacterVisitable {
     private ArrayList<Observer> observers;
 
-    private Occupation o;
+    protected Skill[] skills;
+    protected Occupation o;
     protected CharacterStats stats;
     protected Inventory inventory;
     private int radiusVisibility;
