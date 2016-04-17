@@ -36,6 +36,7 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
     private AreaOfEffectView areaOfEffectView;
     private TerrainView terrainView;
     private ProjectileView projectileView;
+
     public TileView(Tile tile, Location location){
         this.location = location;
 
