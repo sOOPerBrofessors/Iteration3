@@ -74,6 +74,7 @@ public class Avatar extends Character implements AvatarVisitable {
         stats.setEquippedArmor(inventory.getArmorValue());
         stats.setEquippedWeapon(inventory.getWeaponValue());
         stats.recompute();
+        alert();
     } // end update
 
     @Override

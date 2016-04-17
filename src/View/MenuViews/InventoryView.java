@@ -66,21 +66,25 @@ public class InventoryView extends AllDirPanel implements Observer{
             weaponSel = false;
             armorSel = false;
         }
-        else if (xSel>0) xSel--; }
+        else if (xSel>0) xSel--;
+    }
 
     public void selectUp(){
         if (weaponSel) {
             weaponSel = false;
             armorSel = true;
         }
-        else if (ySel>0) ySel--; }
+        else if (ySel>0) ySel--;
+    }
 
     public void selectDown(){
         if (armorSel) {
             armorSel = false;
             weaponSel = true;
         }
-        if (ySel< yMax-1) ySel++; }
+        if (ySel< yMax-1) ySel++;
+        debug("SelectDown"+items.get(calcSel()).getName());
+    }
 
     public void interactWithItem(){ //MAKE SURE INVENTORY HANDLES ERROR CHECKING IF TRYING TO USE AN ITEMSLOT THAT ISN'T FILLED!!!
         if (armorSel){
@@ -95,9 +99,16 @@ public class InventoryView extends AllDirPanel implements Observer{
             inventory.dropItem(calcSel());
     }
 
+
+
     private int calcSel(){
         return ySel*4+xSel;
     }
+
+    private void debug(String string){
+        MessageHandler.println(string,ErrorLevel.NOTICE, PersonFilter.SAM);
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();
@@ -122,7 +133,7 @@ public class InventoryView extends AllDirPanel implements Observer{
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         g2d.setColor(new Color(166, 0, 4, 255));
         g2d.setFont(new Font("Courier New", 1, 36));
-        g2d.drawString("Inventory        Equipment", xBorderOffset+squareSize*2, yBorderOffset+50);
+        g2d.drawString("Inventory " + xSel + "," +ySel+ "::" + calcSel() + " Equipment", xBorderOffset+squareSize*2, yBorderOffset+50);
 
         //highlight selection
         if (armorSel){
@@ -144,8 +155,6 @@ public class InventoryView extends AllDirPanel implements Observer{
                     e.printStackTrace();
                 }
         }
-        for (int i = 0; i < items.size(); i++)
-            invImages[i] = itemViewHashMap.get(items.get(i)).getImage();
     }
 
     @Override

@@ -317,6 +317,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     } // end pickUpMoney
 
     public boolean removeItem(TakeableItem item) {
+        alert();
         return inventory.removeItem(item);
     } // end removeItem
 
