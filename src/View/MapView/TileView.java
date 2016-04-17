@@ -50,7 +50,7 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
     }
 
     //TODO: make it so it just records the tile...this should not have to have
-    protected void updateTileView(){
+    private void updateTileView(){
        tile.acceptTileVisitor(this);
     }
 
@@ -77,6 +77,7 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
         renderAOE(g2d, centeredX, centeredY);
         renderItem(g2d, centeredX, centeredY);
         renderEntity(g2d, centeredX, centeredY);
+        renderProjectile(g2d, centeredX, centeredY);
     }
     private void renderTerrain(Graphics g){
         terrainView.setXY(xPixel,yPixel);
@@ -89,21 +90,29 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
             areaOfEffectView.paintComponent(g2d);
         }
     }
-    protected boolean hasCharacter(){
+    private boolean hasCharacter(){
         if (characterView == null) {
             return false;
         }else {
             return true;
         }
     }
-    protected boolean hasItem(){
+    private boolean hasItem(){
         if (itemView == null) {
             return false;
         }else {
             return true;
         }
     }
-    protected boolean hasAOE(){
+
+    private boolean hasProjectile(){
+        if (projectileView == null) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+    private boolean hasAOE(){
         if (areaOfEffectView == null) {
             return false;
         }else {
@@ -128,7 +137,12 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
         }
     }
 
-
+    private void renderProjectile(Graphics2D g2d, int centeredX, int centeredY){
+        if (hasProjectile()){
+            projectileView.setPixels(centeredX, centeredY);
+            projectileView.paintComponent(g2d);
+        }
+    }
 
     @Override //This function is called when a tile is updated (for an example when a tile has a new entity)
     public void update() {
@@ -144,7 +158,7 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
 
     private void removeProjectileView(){
         if(projectileView != null) {
-            projectileView.removeObservable();
+            //projectileView.removeObservable();
             projectileView = null;
         }
     }
@@ -158,7 +172,6 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
         itemView = null;
     }
 
-
     @Override
     public void visitTileTerrain(Terrain terrain) {
         terrainView = new TerrainView(terrain);
@@ -170,11 +183,6 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
         if (character != null) characterView = new CharacterView(character);
     }
 
-//    @Override
-//    public void visitTileHasItem(Item item) {
-//        //do nothing
-//    }
-
     @Override
     public void visitTileHasAOE(AreaOfEffect areaOfEffect) {
         if(areaOfEffect != null) {
@@ -185,7 +193,7 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
     @Override
     public void visitTileHasProjectile(Projectile projectile) {
         if(projectile != null) {
-            projectileView = new ProjectileView(projectile);
+            //projectileView = new ProjectileView(projectile);
         }
     }
 }

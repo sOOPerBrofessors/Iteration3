@@ -68,6 +68,10 @@ public class Settings {
 
     public static int INTERACTABLEWIDTH = 48;
     public static int INTERACTABLEHEIGHT = 48;
+
+    public static int PROJECTILEHEIGHT = 32;
+    public static int PROJECTILEWIDTH = 32;
+
     //Grass flat
 //    public static int TILEWIDTH = 96;
 //    public static int TILEHEIGHT = 62;

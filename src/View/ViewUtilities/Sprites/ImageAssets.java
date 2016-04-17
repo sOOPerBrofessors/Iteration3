@@ -29,6 +29,7 @@ public class ImageAssets {
     public static BufferedImage grass, grass2, dirt, water;
     public static BufferedImage invSlot, eqSlot, select;
     public static BufferedImage hud, messageBox;
+    public static BufferedImage fireball;
 
     // items
     public static BufferedImage healthPotion;
@@ -43,6 +44,7 @@ public class ImageAssets {
     //needs to be called once
     public static void init(){
         SpriteSheet healthPotionSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/HealthPotion.png"));
+        SpriteSheet fireballSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/HealthPotion.png"));
         SpriteSheet chestKeySheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/key.png"));
         SpriteSheet moneySheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/Money.png"));
         SpriteSheet chestPlateSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/ChestPlate.png"));
