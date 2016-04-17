@@ -71,7 +71,7 @@ public class ItemFactory {
         mapItemViews.put(chestKey, chestKeyView);
 
         // create money in chest
-        TakeableItem treasure = Money.makeMoney(100);
+        Money treasure = Money.makeMoney(100);
         ItemView treasureView = new UsableView(ImageAssets.money);
         allItemViews.put(treasure, treasureView);
 

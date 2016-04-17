@@ -78,22 +78,23 @@ public class GamePlayController extends Controller{
         // skill two key press
         commands.put(Settings.TWO, () -> new ObservationTimer(state.playerSecondSkill()).start());
 
+        // skill three key pree
+        commands.put(Settings.THREE, () -> state.playerThirdSkill());
+
         // inventory key press
         commands.put(Settings.INVENTORY, () -> controllerManager.setInventoryState());
 
         // Stats key press
         commands.put(Settings.STATS, () -> controllerManager.setStatsState());
 
-        // equipment key press
-        commands.put(Settings.EQUIP, () -> {
-
-        });
-
-        // pause game key press
+        // PAUSE game key press
         commands.put(Settings.ESC, () -> controllerManager.setPauseState());
 
-        // skills key press
+        // Skills key Press
         commands.put(Settings.SKILLS, () -> controllerManager.setSkillsState());
+
+        // settings key press
+        commands.put(Settings.SETTINGS, () -> controllerManager.setSettingsState());
 
         commands.put(Settings.TEST_KEY, () -> {
             switch((int)(Math.random()*5)+1){
@@ -113,6 +114,7 @@ public class GamePlayController extends Controller{
                     state.getAvatar().manaEffect(-1*((int)(Math.random()*3)+1));
                     break;
             }
+            state.getAvatar().manaEffect(100);
         });
 
         commands.put(KeyEvent.VK_9, new Command() {

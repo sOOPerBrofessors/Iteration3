@@ -13,7 +13,8 @@ public class ArmorFactory {
         return Armor.makeSmasherArmor(
                 grade + " Armor",
                 "A " + grade.toLowerCase() + " armor set for warriors.",
-                value
+                value,
+                7 * value / 2
         );
     } // end factory method makeSmasherArmor
 
@@ -21,7 +22,8 @@ public class ArmorFactory {
         return Armor.makeSummonerArmor(
                 grade + " Robes",
                 "Some " + grade.toLowerCase() + " robes for spellcasters.",
-                value
+                value,
+                7 * value / 2
         );
     } // end factory method makeSummonerArmor
 
@@ -29,7 +31,8 @@ public class ArmorFactory {
         return Armor.makeSneakArmor(
                 grade + " Leather Gear",
                 "Some " + grade.toLowerCase() + " leather gear for sneaky types.",
-                value
+                value,
+                7 * value / 2
         );
     } // end factory method makeSummonerArmor
 

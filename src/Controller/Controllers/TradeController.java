@@ -4,11 +4,15 @@ import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Utilities.Settings;
+import View.InventoryView.TradeView;
+import View.ViewUtilities.Panels.GamePanel;
 
-//StatsController just lets you exit Stats
-public class StatsController extends Controller { //NOT VERY OOPY
 
-    public StatsController(ControllerManager controllerManager){
+public class TradeController extends Controller { //NOT VERY OOPY
+
+    private static TradeView tradeView;
+
+    public TradeController(ControllerManager controllerManager){
         super(controllerManager);
         initCommands();
     }
@@ -19,25 +23,16 @@ public class StatsController extends Controller { //NOT VERY OOPY
             commands.get(key).execute();
         }
     }
+    public static void setTradeView(GamePanel gamePanel){ tradeView = gamePanel.getTradeView(); }
 
     private void initCommands(){
 
-        // Exit InventoryView
+        // Exit TradeView
         commands.put(Settings.ESC, new Command() {
             @Override
             public void execute() {
                 controllerManager.switchGamePlay();
             }
         });
-
-        // Exit InventoryView
-        commands.put(Settings.STATS, new Command() {
-            @Override
-            public void execute() {
-                controllerManager.switchGamePlay();
-            }
-        });
     }
-
 }
-

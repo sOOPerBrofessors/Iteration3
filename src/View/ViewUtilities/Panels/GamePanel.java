@@ -4,8 +4,7 @@ import Controller.Controllers.GamePlayController;
 import Model.State.GameState.ActiveGameState;
 import Utilities.Observers.Observer;
 import View.AreaViewport.AreaViewport;
-import View.InventoryView.InventoryView;
-import View.InventoryView.StatsView;
+import View.InventoryView.*;
 import View.ViewManager;
 
 import javax.swing.*;
@@ -22,6 +21,10 @@ public class GamePanel extends JPanel{
 
     private InventoryView inventoryView;
     private StatsView statsView;
+    private PauseView pauseView;
+    private SettingsView settingsView;
+    private SkillsView skillsView;
+    private TradeView tradeView;
 
     //
     private int paintOrder;
@@ -41,6 +44,10 @@ public class GamePanel extends JPanel{
         areaViewport = new AreaViewport(gameState);
         inventoryView = new InventoryView(gameState);
         statsView = new StatsView(gameState);
+        pauseView = new PauseView(viewManager);
+        settingsView = new SettingsView();
+        skillsView = new SkillsView();
+        tradeView = new TradeView();
         addView(areaViewport);
         controller.setState(gameState);
     }
@@ -55,56 +62,38 @@ public class GamePanel extends JPanel{
     }
 
     public void addStatsView() {addView(statsView); }
-//
+
     public void closeStatsView() {closeView(statsView);}
 
-    //currently part of InventoryView
-//    public void addEquipmentView(){}
-//    public void closeEquipmentView(){}
+    public void addPauseView(){addView(pauseView); }
 
-    public void addStatusView(){
-        //TODO:
-    }
+    public void closePauseView(){ closeView(pauseView); }
 
-    public void closeStatusView(){
-        //TODO:
-    }
+    public void addSettingsView(){ addView(settingsView); }
 
-    public void addSkillsView(){
-        //TODO:
-    }
+    public void closeSettingsView(){ closeView(settingsView); }
 
-    public void closeSkillsview(){
-        //TODO:
-    }
+    public void addSkillsView(){ addView(skillsView); }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        //This doesn't get called anymore
-        System.out.println("GamePanel: Paint Game View!");
-        super.paintComponent(g);
-    }
+    public void closeSkillsView(){ closeView(skillsView); }
 
-    public void addView(JComponent view){
-        add(view, BorderLayout.CENTER);
-        for(int i = 0; i < getComponentCount() - 1; i++){
-            setComponentZOrder(getComponent(i), getComponentCount() - 1 - i);
-        }
-        this.revalidate();
-        this.repaint();
-    }
+    public void addTradeView() { addView(tradeView); }
 
-    public void closeView(JComponent view){
-        this.remove(view);
-        this.revalidate();
-        this.repaint();
-    }
+    public void closeTradeView() { closeView(tradeView);}
 
     public GamePanel getGamePanel(){
         return this;
     }
 
     public InventoryView getInventoryView() {return inventoryView;}
+
+    public PauseView getPauseView() {return pauseView; }
+
+    public SettingsView getSettingsView() {return settingsView; }
+
+    public SkillsView getSkillsView() {return skillsView; }
+
+    public TradeView getTradeView() { return tradeView; }
 
     public StatsView getStatsView(){return statsView;}
 
@@ -123,5 +112,27 @@ public class GamePanel extends JPanel{
         remove((JComponent)temp);
         add(view, BorderLayout.CENTER);
         add(temp, BorderLayout.CENTER);
+    }
+
+    private void addView(JComponent view){
+        add(view, BorderLayout.CENTER);
+        for(int i = 0; i < getComponentCount() - 1; i++){
+            setComponentZOrder(getComponent(i), getComponentCount() - 1 - i);
+        }
+        this.revalidate();
+        this.repaint();
+    }
+
+    private void closeView(JComponent view){
+        this.remove(view);
+        this.revalidate();
+        this.repaint();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        //This doesn't get called anymore
+        System.out.println("GamePanel: Paint Game View!");
+        super.paintComponent(g);
     }
 }

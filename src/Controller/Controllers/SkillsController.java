@@ -4,24 +4,19 @@ import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Utilities.Settings;
-import View.InventoryView.InventoryView;
+import View.InventoryView.SkillsView;
 import View.ViewUtilities.Panels.GamePanel;
 
-/**
- * Created by sgl on 4/9/16. //Essentially copying Mike's GameplayController
- */
-public class InventoryController extends Controller { //NOT VERY OOPY
 
-    private static InventoryView inventoryView; //Needs handle to inventoryView
+public class SkillsController extends Controller { //NOT VERY OOPY
 
-    public InventoryController(ControllerManager controllerManager){
+    private static SkillsView skillsView;
+
+    public SkillsController(ControllerManager controllerManager){
         super(controllerManager);
         initCommands();
     }
-
-    public static void setInventoryView(GamePanel gamePanel){
-        inventoryView = gamePanel.getInventoryView();
-    }
+    public static void setSkillsView(GamePanel gamePanel){ skillsView = gamePanel.getSkillsView(); }
 
     @Override
     public void keyPress(Integer key){
@@ -35,32 +30,34 @@ public class InventoryController extends Controller { //NOT VERY OOPY
         commands.put(Settings.UP_ARROW, new Command() {
             @Override
             public void execute() {
-                inventoryView.selectUp();
+                //inventoryView.selectUp();
             }
         });
 
         commands.put(Settings.RIGHT_ARROW, new Command() {
             @Override
             public void execute() {
-                inventoryView.selectRight();
+                //inventoryView.selectRight();
             }
         });
 
         commands.put(Settings.DOWN_ARROW, new Command() {
             @Override
-            public void execute() { inventoryView.selectDown(); }
+            public void execute() { //inventoryView.selectDown();
+            }
         });
 
         commands.put(Settings.LEFT_ARROW, new Command() {
             @Override
-            public void execute() { inventoryView.selectLeft();}
+            public void execute() { //inventoryView.selectLeft();
+                 }
         });
 
         // interact key press
         commands.put(Settings.ENTER, new Command() {
             @Override
             public void execute() {
-                inventoryView.interactWithItem();
+                //inventoryView.interactWithItem();
             }
         });
 
@@ -73,7 +70,7 @@ public class InventoryController extends Controller { //NOT VERY OOPY
         });
 
         // Exit InventoryView
-        commands.put(Settings.INVENTORY, new Command() {
+        commands.put(Settings.SKILLS, new Command() {
             @Override
             public void execute() {
                 controllerManager.switchGamePlay();

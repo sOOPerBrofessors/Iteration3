@@ -33,7 +33,8 @@ public class Settings {
     public static int EQUIP = 10001; //This was overwritting VK_E which is used for movement
     public static int INVENTORY = KeyEvent.VK_I; // 'i'
     public static int STATS = KeyEvent.VK_O;
-
+    public static int SKILLS = KeyEvent.VK_K; //"originally"0x53 " s"This is most likely overwritting the "S" key which is used for movement;
+    public static int SETTINGS = KeyEvent.VK_L;
     // end adjustable keys
 
     public static int TAB = 0x09;
@@ -51,7 +52,6 @@ public class Settings {
     public static int DROP = 0x44;
     public static int MAP = 0x4D;
     public static int INTERACT = KeyEvent.VK_ENTER; //This was overwriting the "Q" key which is used for movement.
-    public static int SKILLS = 10001; //"originally"0x53 " s"This is most likely overwritting the "S" key which is used for movement;
 
 
     // End Key Presses

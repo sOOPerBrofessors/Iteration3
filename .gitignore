@@ -6,6 +6,7 @@ out
 _mac
 out/
 *.iml
+src/Utilities/PersonalSettings.java
 debugger.renderers.xml
 debugger.xml
 diff.xml

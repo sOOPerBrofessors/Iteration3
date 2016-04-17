@@ -7,6 +7,7 @@ import Model.Inventory.Inventory;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
 import Model.Items.Takeable.TakeableItem;
+import Model.Items.Takeable.Useable.Money;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Orientation;
@@ -15,12 +16,13 @@ import Model.Skills.BindWounds;
 import Model.Skills.RangedSkills.Observation;
 import Model.Skills.Skill;
 import Model.Stats.CharacterStats;
-import Utilities.CombatTimer;
+import Utilities.Timer.CombatTimer;
 import Utilities.GameMessageQueue;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
 import Utilities.Visitor.CharacterVisitable;
+import View.EntityView.CharacterView;
 
 import java.util.ArrayList;
 
@@ -311,6 +313,11 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
 
     public void pickUpItem(TakeableItem item){
         inventory.pickUpItem(item);
+        alert();
+    }
+
+    public void pickUpMoney(Money money) {
+        inventory.pickUpMoney(money);
         alert();
     }
 
