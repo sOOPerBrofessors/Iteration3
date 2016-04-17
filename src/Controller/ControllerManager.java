@@ -1,12 +1,11 @@
 package Controller;
 
-import Controller.Controllers.GamePlayController;
-import Controller.Controllers.InventoryController;
-import Controller.Controllers.StatsController;
+import Controller.Controllers.*;
 import Model.State.StateManager;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
 import Utilities.PersonFilter;
+import Utilities.Settings;
 import View.ViewManager;
 
 import java.awt.event.KeyEvent;
@@ -26,11 +25,19 @@ public class ControllerManager implements KeyListener {
     private GamePlayController gamePlayController;
     private InventoryController inventoryController;
     private StatsController statsController;
+    private PauseController pauseController;
+    private SkillsController skillsController;
+    private SettingsController settingsController;
+    private TradeController tradeController;
 
     public ControllerManager(){
         gamePlayController = new GamePlayController(this);
-        inventoryController = new InventoryController(this);
+        inventoryController = new InventoryController(this); //So not OCP
         statsController = new StatsController(this);
+        pauseController = new PauseController(this);
+        skillsController = new SkillsController(this);
+        settingsController = new SettingsController(this);
+        tradeController = new TradeController(this);
     }
 
     public void setActiveController(Controller gs){
@@ -63,12 +70,12 @@ public class ControllerManager implements KeyListener {
         activeController = statsController;
         stateManager.pauseGame(); // switches to pausedGameState
         viewManager.displayStats();
-        MessageHandler.println("ControllerManager.setStatsState called" , ErrorLevel.NOTICE, PersonFilter.SAM);
     }
 
     public void setPauseState(){
+        activeController = pauseController;
         stateManager.pauseGame();
-        //activeController = pauseController
+        viewManager.displayPauseScreen();
     }
 
     public void setSkillsState(){
