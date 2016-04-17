@@ -113,7 +113,7 @@ public class ImageAssets {
 
         hud = hudSheet.cropSheet(0,0,960,320);
         messageBox = messageBoxSheet.cropSheet(0,0,640,400);
-        interfaceBorder = borderSheet.cropSheet(0,0,1080,720);
+        interfaceBorder = borderSheet.cropSheet(0,0,810,540);
 
         //items
         healthPotion = healthPotionSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);

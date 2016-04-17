@@ -4,7 +4,7 @@ import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Utilities.Settings;
-import View.InventoryView.InventoryView;
+import View.MenuViews.InventoryView;
 import View.ViewUtilities.Panels.GamePanel;
 
 /**
@@ -54,6 +54,14 @@ public class InventoryController extends Controller { //NOT VERY OOPY
         commands.put(Settings.LEFT_ARROW, new Command() {
             @Override
             public void execute() { inventoryView.selectLeft();}
+        });
+
+        // interact key press
+        commands.put(Settings.DROP, new Command() {
+            @Override
+            public void execute() {
+                inventoryView.dropItem();
+            }
         });
 
         // interact key press

@@ -4,7 +4,7 @@ import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Utilities.Settings;
-import View.InventoryView.TradeView;
+import View.MenuViews.TradeView;
 import View.ViewUtilities.Panels.GamePanel;
 
 
