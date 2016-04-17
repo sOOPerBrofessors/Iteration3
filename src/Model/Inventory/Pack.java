@@ -47,7 +47,7 @@ public class Pack {
         return items.remove(index);
     } // end remove
 
-    public boolean remove(Item item) {
+    public boolean remove(TakeableItem item) {
         return items.remove(item);
     } // end remove
 

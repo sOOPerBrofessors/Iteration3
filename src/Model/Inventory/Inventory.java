@@ -53,6 +53,10 @@ public class Inventory implements Observer, Subject{
         }
     } // end unequipArmor
 
+    public boolean removeItem(TakeableItem item) {
+        return pack.remove(item);
+    } // end removeItem
+
     public int getWeaponValue() {
         return equipment.getWeaponValue();
     } // end getWeaponValue
