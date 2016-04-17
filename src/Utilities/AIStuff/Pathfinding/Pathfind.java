@@ -1,9 +1,6 @@
 package Utilities.AIStuff.Pathfinding;
 
-import Model.Map.Tile.Tile;
-
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.PriorityQueue;
 
 /**
@@ -14,15 +11,13 @@ public abstract class Pathfind implements Runnable { // Abstract class that all 
 
     protected TileNode startNode;
     protected TileNode endNode;
-    protected double expandedCounter;
-    protected final double EXPANDED_COUNTER_HARD_CAP = 100000;
+    protected int expandedCounter;
+    protected final double EXPANDED_COUNTER_HARD_CAP = 1000;
     protected boolean running = false;
-    protected boolean pause = false;
     protected boolean pathFound = false;
-    protected HashSet<Tile> allowedBoxes;
     protected BestPathComparator comparator = new BestPathComparator();
-    protected PriorityQueue<TileNode> open = new PriorityQueue<TileNode>(10, comparator);
-    protected PriorityQueue<TileNode> closed = new PriorityQueue<TileNode>(10, comparator);
+    protected PriorityQueue<TileNode> open = new PriorityQueue<>(10, comparator);
+    protected PriorityQueue<TileNode> closed = new PriorityQueue<>(10, comparator);
     protected TileNode endOfPath = null;
 
     public Pathfind(TileNode startNode, TileNode endNode, double f) {

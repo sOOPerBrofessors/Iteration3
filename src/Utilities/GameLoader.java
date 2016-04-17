@@ -77,7 +77,7 @@ public class GameLoader {
 
         controller.setMap(map);
 
-        controller.findPath(entities.get(0), new Location(1, 0, 1));
+        controller.findPath(entities.get(0), new Location(8, 2, 1));
 
     }
 

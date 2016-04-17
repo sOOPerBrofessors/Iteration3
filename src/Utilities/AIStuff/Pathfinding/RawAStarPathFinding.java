@@ -20,6 +20,7 @@ public class RawAStarPathFinding extends Pathfind {
 
     public void searchForPath() {
 
+        running = true;
         TileNode currentNode;
 
         synchronized (this) {
