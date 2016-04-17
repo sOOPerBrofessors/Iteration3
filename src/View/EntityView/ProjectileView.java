@@ -18,15 +18,15 @@ public class ProjectileView extends MapObjectView implements Observer{
     private Projectile projectile;
     private ArrayList<BufferedImage> images;
 
-    private int xPixelStart;
-    private int yPixelStart;
-    private double adjustedXPixel; // used to move across screen
-    private double adjustedYPixel; // used to move across screen
     private int xPixel; // on the map
     private int yPixel; // on the map
+    private int pixelXGoal;
+    private int pixelYGoal;
     private int viewWidth;
     private int viewHeight;
     private int imageIndex;
+    private boolean metXGoal;
+    private boolean metYGoal;
 
     public ProjectileView(Projectile projectile, ArrayList<BufferedImage> images){
         this.projectile = projectile;
@@ -35,8 +35,8 @@ public class ProjectileView extends MapObjectView implements Observer{
         viewHeight = Settings.PROJECTILEHEIGHT;
         viewWidth = Settings.PROJECTILEWIDTH;
         imageIndex = 0;
-        adjustedXPixel = 0;
-        adjustedYPixel = 0;
+        metXGoal = false;
+        metYGoal = false;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ProjectileView extends MapObjectView implements Observer{
     }
 
     public void paintComponent(Graphics2D g2d, int centerX, int centerY) {
-        adjustMovement(centerX, centerY);
+        adjustMovement();
 
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
@@ -65,8 +65,10 @@ public class ProjectileView extends MapObjectView implements Observer{
 
     @Override
     public void setPixels(int x, int y) {
-        xPixelStart = ViewCalculations.startXPixel(projectile.getOrientation(), x + 10);
-        yPixelStart = ViewCalculations.startYPixel(projectile.getOrientation(), y - 12);
+        xPixel = ViewCalculations.startXPixel(projectile.getOrientation(), x + 10);
+        yPixel = ViewCalculations.startYPixel(projectile.getOrientation(), y - 12);
+        pixelXGoal = ViewCalculations.goalXPixel(projectile.getOrientation(), xPixel);
+        pixelYGoal = ViewCalculations.goalYPixel(projectile.getOrientation(), yPixel);
     }
 
     @Override
@@ -74,8 +76,27 @@ public class ProjectileView extends MapObjectView implements Observer{
 
     }
 
-    private void adjustMovement(int centerX, int centerY){
-        xPixel = xPixelStart + (int)(centerX*adjustedXPixel);
-        yPixel = yPixelStart + (int)(centerY*adjustedYPixel);
+    private void adjustMovement(){
+        xPixel = ViewCalculations.moveXPixel(projectile.getOrientation(), xPixel);
+        yPixel = ViewCalculations.moveYpixel(projectile.getOrientation(), yPixel);
+        incrementImageIndex();
+        if(Math.abs(xPixel - pixelXGoal) <= 1){
+            metXGoal = true;
+        }
+        if(Math.abs(yPixel - pixelYGoal) <= 1){
+            metYGoal = true;
+        }
+        if(metXGoal && metYGoal){
+            projectile.ViewDone(true);
+        }
+    }
+
+    private void incrementImageIndex(){
+        if(imageIndex == 3){
+            imageIndex = 0;
+        }
+        else{
+            imageIndex++;
+        }
     }
 }
