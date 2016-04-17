@@ -3,6 +3,7 @@ package Model.Map.AreaEffect;
 import Model.Entity.Character.Character;
 import Model.Map.Location;
 import Model.Map.Map;
+import Utilities.GameMessageQueue;
 import Utilities.Visitor.AOEVisitor;
 
 /**
@@ -21,6 +22,7 @@ public class TeleportAOE extends AreaOfEffect {
     @Override
     public void onInteract(Character character) {
         map.moveCharacter(character,targetLocation);
+        GameMessageQueue.push("You've been teleported!");
     }
 
     @Override

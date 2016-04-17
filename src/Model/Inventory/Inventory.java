@@ -3,6 +3,7 @@ package Model.Inventory;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
 import Model.Items.Takeable.TakeableItem;
+import Model.Items.Takeable.Useable.Money;
 import Utilities.GameMessageQueue;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
@@ -91,6 +92,10 @@ public class Inventory implements Observer, Subject{
 
     public void pickUpItem(TakeableItem item){
         pack.add(item);
+    }
+
+    public void pickUpMoney(Money money) {
+        pack.addMoney(money);
     }
 
 } // end class Inventory

@@ -1,6 +1,7 @@
 package Model.Skills;
 
 import Model.Entity.Character.Avatar;
+import Model.Map.Map;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
 import Utilities.PersonFilter;
@@ -35,8 +36,9 @@ public abstract class Skill { //TODO: skills should also be ticked if we want to
         }
     }
 
-    //subclass need to override either of the two
-    public abstract void execute();
+    public void execute(Map map){
+        System.out.println("Wrong place");
+    }
 
     public void enforceManaCost() {
         avatar.manaEffect( -manaCost );

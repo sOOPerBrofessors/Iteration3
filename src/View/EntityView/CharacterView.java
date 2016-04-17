@@ -88,6 +88,7 @@ public class CharacterView extends EntityView implements OccupationVisitor, Char
         orientationView = OccupationViewFactory.createSneakView(orientation);
     }
 
+    //For now these things don't do anything. Its actually just looking at orientation to create the views!!
     @Override
     public void visitAvatar(Avatar avatar) {
 
