@@ -23,17 +23,19 @@ public class Model implements Runnable{
 
     public void terminate() { running = false; }
 
-    public void restart() {running = true;}
-
-    public synchronized void start(){
+    public void restart() {
         if (!running) {
             running = true;
             MessageHandler.println("THREAD ALREADY STARTED!", ErrorLevel.CRITICAL, PersonFilter.SAM);
         }
         else {
             MessageHandler.println("new thread started", ErrorLevel.CRITICAL, PersonFilter.SAM);
-            new Thread(this).start();
+            start();
         }
+    }
+
+    public synchronized void start(){
+        new Thread(this).start();
     }
 
     @Override

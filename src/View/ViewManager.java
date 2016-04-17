@@ -18,6 +18,8 @@ import javax.swing.JPanel;
  */
 public class ViewManager implements Subject {
 
+    private  boolean alreadystarted;
+
     // controller manager used to issue commands to change current controller
     private ControllerManager controllerManager;
 
@@ -42,6 +44,7 @@ public class ViewManager implements Subject {
         gamePanel = new GamePanel(this);
         activePanel = introPanel;
         //inventoryView = new InventoryView()
+        alreadystarted = false;
     }
 
     public void stopThread(){
@@ -170,7 +173,8 @@ public class ViewManager implements Subject {
         activePanel = gamePanel;
         stateManager.setActiveGameState(gameLoader.getActiveGameState());
         stateManager.setPausedGameState(gameLoader.getPausedGameState());
-        gamePanel.init(gameLoader.getActiveGameState()); // initilaizes the game view
+        if (!alreadystarted)
+            gamePanel.init(gameLoader.getActiveGameState()); // initializes the game view
         controllerManager.switchGamePlay(); // switch to gameplay controller
         InventoryController.setInventoryView(gamePanel);
         PauseController.setPauseView(gamePanel);
@@ -179,5 +183,6 @@ public class ViewManager implements Subject {
         TradeController.setTradeView(gamePanel);
         View.startGameLoop(); // starts loop in Model class
         alert(); // notifies view of the updated panel
+        alreadystarted = true;
     }
 }
