@@ -77,7 +77,7 @@ public class DamageQueue {
         public Color getColor() { return new Color(r,g,b,a); }
         public boolean isRunning() { return timer.isRunning(); }
         public void decrementyDelta() { --yDelta; }
-        public void decrementAlpha() { a-=8; }
+        public void decrementAlpha() { if(a-8 >= 0) a-=8; }
 
     } // end class DamageSplat
 } // end class DamageQueue

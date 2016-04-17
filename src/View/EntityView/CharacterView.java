@@ -36,12 +36,11 @@ public class CharacterView extends EntityView implements OccupationVisitor {
 
         g2d.drawImage(image,xPixel* Settings.SCALEFACTOR,yPixel*Settings.SCALEFACTOR,viewWidth*Settings.SCALEFACTOR,viewHeight* Settings.SCALEFACTOR,null);
 
-        if(character.isInCombat())
+        if(character.isInCombat()) {
             drawHealthBar(g2d);
-
-        renderDamageSplats(g2d);
-        renderExperienceSplats(g2d);
-
+            renderDamageSplats(g2d);
+            renderExperienceSplats(g2d);
+        }
 
 
         g2d.dispose();
