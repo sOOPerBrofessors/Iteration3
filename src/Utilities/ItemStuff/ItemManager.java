@@ -23,6 +23,7 @@ public class ItemManager implements Subject{
     private HashMap<Item, ItemView> mapItemViews;
     private HashMap<Item, ItemView> allItemViews;
     private HashMap<Location, Interactable> interactableItems;
+    //private HashMap<Location, Obstacle>
     private Observer observer;
 
     public ItemManager(HashMap<Location, TakeableItem> takableItems, HashMap<Location, Interactable> interactableItems, HashMap<Item, ItemView> allItemViews, HashMap<Item, ItemView> mapItemViews){
@@ -84,6 +85,13 @@ public class ItemManager implements Subject{
     public void addItem(Item item, Location location){
         //takableItems
     }
+
+    public boolean tileContainsObstacle(Location targetLocation) {
+        for(Location l : interactableItems.keySet())
+            if (targetLocation.equals(l))
+                return true;
+        return false;
+    } // end tileContainsObstacle
 
     @Override
     public void addObserver(Observer o) {
