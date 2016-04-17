@@ -1,7 +1,6 @@
 package Utilities.MovementCalculations;
 
 import Model.Map.Orientation;
-import Utilities.Settings;
 
 import java.util.HashMap;
 
@@ -10,35 +9,64 @@ import java.util.HashMap;
  */
 public class ViewCalculations {
 
-    private static HashMap<Orientation, Integer> xPixel;
-    private static HashMap<Orientation, Integer> yPixel;
+    private static HashMap<Orientation, Integer> startXPixel;
+    private static HashMap<Orientation, Integer> startYPixel;
 
-    public static int getXPixel(Orientation orientation, int x){
-        return xPixel.get(orientation) + x*Settings.TILEWIDTH - (x*(Settings.TILEWIDTH))/4;
+    private static HashMap<Orientation, Integer> moveXPixel;
+    private static HashMap<Orientation, Integer> moveYPixel;
+
+    public static int startXPixel(Orientation orientation, int x){
+        return  x + startXPixel.get(orientation);
     }
 
-    public static int getYPixel(Orientation orientation, int y){
-        return yPixel.get(orientation) + y*(Settings.TILEHEIGHT - 5) + ((Settings.TILEHEIGHT-7)*y)/2;
+    public static int startYPixel(Orientation orientation, int y){
+        return  y + startYPixel.get(orientation);
+    }
+
+    public static int moveXPixel(Orientation orientation, int x){
+        return x + moveXPixel.get(orientation);
+    }
+
+    public static int moveYpixel(Orientation orientation, int y){
+        return y + moveYPixel.get(orientation);
     }
 
     public static void initPixels(){
-        xPixel = new HashMap<>();
-        yPixel = new HashMap<>();
+        startXPixel = new HashMap<>();
+        startYPixel = new HashMap<>();
+        moveXPixel = new HashMap<>();
+        moveYPixel = new HashMap<>();
 
-        // x pixels based off orientation
-        xPixel.put(Orientation.NORTH, 0);
-        xPixel.put(Orientation.NORTHEAST, Settings.TILEWIDTH/2);
-        xPixel.put(Orientation.NORTHWEST, -Settings.TILEWIDTH/2);
-        xPixel.put(Orientation.SOUTHEAST, Settings.TILEWIDTH/2);
-        xPixel.put(Orientation.SOUTHWEST, -Settings.TILEWIDTH/2);
-        xPixel.put(Orientation.SOUTH, 0);
+        // start x pixels based off orientation
+        startXPixel.put(Orientation.NORTH, 0);
+        startXPixel.put(Orientation.NORTHEAST, -22);
+        startXPixel.put(Orientation.NORTHWEST, 22);
+        startXPixel.put(Orientation.SOUTHEAST, -22);
+        startXPixel.put(Orientation.SOUTHWEST, 22);
+        startXPixel.put(Orientation.SOUTH, 0);
 
-        // y pixels based off orientation
-        yPixel.put(Orientation.NORTH, -Settings.TILEHEIGHT);
-        yPixel.put(Orientation.NORTHEAST, 0);
-        yPixel.put(Orientation.NORTHWEST, 0);
-        yPixel.put(Orientation.SOUTHEAST, 0);
-        yPixel.put(Orientation.SOUTHWEST, 0);
-        yPixel.put(Orientation.SOUTH, Settings.TILEHEIGHT);
+        // start y pixels based off orientation
+        startYPixel.put(Orientation.NORTH, 10);
+        startYPixel.put(Orientation.NORTHEAST, 12);
+        startYPixel.put(Orientation.NORTHWEST, 12);
+        startYPixel.put(Orientation.SOUTHEAST, -10);
+        startYPixel.put(Orientation.SOUTHWEST, -10);
+        startYPixel.put(Orientation.SOUTH, -20);
+
+        // move x pixels based off orientation
+        startXPixel.put(Orientation.NORTH, 0);
+        startXPixel.put(Orientation.NORTHEAST, -1);
+        startXPixel.put(Orientation.NORTHWEST, 1);
+        startXPixel.put(Orientation.SOUTHEAST, -1);
+        startXPixel.put(Orientation.SOUTHWEST, 1);
+        startXPixel.put(Orientation.SOUTH, 0);
+
+        // move y pixels based off orientation
+        startYPixel.put(Orientation.NORTH, -2);
+        startYPixel.put(Orientation.NORTHEAST, -1);
+        startYPixel.put(Orientation.NORTHWEST, -1);
+        startYPixel.put(Orientation.SOUTHEAST, 1);
+        startYPixel.put(Orientation.SOUTHWEST, 1);
+        startYPixel.put(Orientation.SOUTH, 2);
     }
 }
