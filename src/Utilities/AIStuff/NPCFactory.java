@@ -3,6 +3,8 @@ package Utilities.AIStuff;
 import Controller.AI_Controller.Brain;
 import Controller.AI_Controller.Personality.Personality;
 import Controller.AI_Controller.Personality.PersonalityFactory;
+import Model.Entity.Character.Mount.Mount;
+import Model.Entity.Character.Mount.TheRealMount;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Character.NPC.NPCStrategy.NPCStrategy;
 import Model.Entity.Character.NPC.NPCStrategy.TalkNPCStrategy;
@@ -14,6 +16,8 @@ import Model.Faction.FactionFactory;
 import Model.Inventory.Inventory;
 import Model.Items.Takeable.Useable.Money;
 import Model.Map.Location;
+import Model.Map.Map;
+import Utilities.Navigation.Navigation;
 
 import java.util.ArrayList;
 
@@ -21,6 +25,9 @@ import java.util.ArrayList;
  * Created by Wimberley on 4/9/16.
  */
 public class NPCFactory {
+
+    private static ArrayList<Mount> mounts;
+    private static ArrayList<NPC> npcs;
 
     public static NPC makeGuard(Location location) {
         Personality personality = PersonalityFactory.getPersonality("enemy");
@@ -33,16 +40,30 @@ public class NPCFactory {
         return gandorf;
     }
 
-    public static NPC makeGanondorf(Location location) {
+    public static NPC makeGanondorf(Map map) {
         Personality personality = PersonalityFactory.getPersonality("enemy");
         Faction faction = FactionFactory.getFaction("red");
-        //This should be a factory, testing for now
         NPCStrategy strategy = new TalkNPCStrategy("Ganondorf: Hi minion", "Ganondorf: I am awesome", "Ganondorf: What do you want?");
-       // NPC gandorf = new NPC(new Smasher(), new Location(9,2,3), personality, faction, new Inventory(), strategy);
-        NPC gandorf = new NPC(new Smasher(), location, personality, faction, new Inventory(), strategy);
+        NPC gandorf = new NPC(new Smasher(), new Location(10,10,map.getTopTilePosition(10,10)), personality, faction, new Inventory(), strategy);
         Brain brain = new Brain(gandorf);
         gandorf.setBrain(brain);
         return gandorf;
+    }
+
+    public static Mount theRealMount(Map map){
+        return new TheRealMount(Navigation.makeVehicleNav(), new Location(6,2,map.getTopTilePosition(7,4)));
+    }
+
+    public static void init(Map map){
+        mounts = new ArrayList<>();
+        npcs = new ArrayList<>();
+
+        npcs.add(makeGanondorf(map));
+        mounts.add(theRealMount(map));
+    }
+
+    public static ArrayList<NPC> getNPCS(){
+        return npcs;
     }
 
     public static NPC makeHellCat(){
@@ -69,14 +90,7 @@ public class NPCFactory {
         return shopkeeper;
     }
 
-    public static ArrayList<NPC> init(){
-        ArrayList<NPC> entities = new ArrayList<>();
-
-        entities.add(makeGanondorf(new Location(10,13,0)));
-        entities.add(makeGuard(new Location(11,12,0)));
-
-        entities.add(makeHellCat());
-
-        return entities;
+    public static ArrayList<Mount> getMounts(){
+        return mounts;
     }
 }

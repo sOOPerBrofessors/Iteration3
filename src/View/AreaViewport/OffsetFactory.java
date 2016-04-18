@@ -4,7 +4,7 @@ package View.AreaViewport;
  * Created by dyeung on 4/10/16.
  */
 
-//Purpose of this class is for creating a generic offset to center the entities on the tile and place tiles next to each other
+//Purpose of this class is for creating a generic offset to center the npcs on the tile and place tiles next to each other
 public class OffsetFactory {/*
     public static int tileWidth = Settings.TILEWIDTH;
     public static int tileHeight = Settings.TILEHEIGHT;

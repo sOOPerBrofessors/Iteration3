@@ -32,6 +32,7 @@ public class ImageAssets {
     public static BufferedImage grass, grass2, dirt, water;
     public static BufferedImage invSlot, eqSlot, select;
     public static BufferedImage hud, messageBox, interfaceBorder;
+    public static BufferedImage mount;
     public static ArrayList<BufferedImage> fireballs = new ArrayList<>();
 
     //skill things
@@ -87,6 +88,7 @@ public class ImageAssets {
         SpriteSheet crabSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/crab.png"));
         SpriteSheet borderSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/interfaceborder.png"));
         SpriteSheet shopKeeperSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/ShopKeeper.png"));
+        SpriteSheet mountSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Mount.png"));
 
         // Cracked earth
         SpriteSheet crackedEarthSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/crackedGrass.png"));
@@ -166,6 +168,8 @@ public class ImageAssets {
         hud = hudSheet.cropSheet(0,0,960,320);
         messageBox = messageBoxSheet.cropSheet(0,0,640,400);
         interfaceBorder = borderSheet.cropSheet(0,0,810,540);
+
+        mount = mountSheet.cropSheet(0,0,48,48);
 
         //items
         healthPotion = healthPotionSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);

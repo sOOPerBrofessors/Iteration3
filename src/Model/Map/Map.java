@@ -1,6 +1,7 @@
 package Model.Map;
 
 import Model.Entity.Character.Character;
+import Model.Entity.Character.Mount.Mount;
 import Model.Map.AreaEffect.AreaOfEffect;
 import Model.Map.Tile.Tile;
 import Model.Entity.Projectile.Projectile;
@@ -60,6 +61,27 @@ public class Map {
         }
     }
 
+    public boolean moveMount(Mount mount, Location newLocation){
+        int currentX = mount.getX();
+        int currentY = mount.getY();
+        int currentZ = mount.getZ();
+        int newX = newLocation.getX();
+        int newY = newLocation.getY();
+        int newZ = getTopTilePosition(newX, newY);
+        Tile newTile = getTopTile(newX,newY);
+        Location location = mount.getLocation();
+        //Needs to move the character before the tile does interaction because of "teleport" effect
+        if (checkCanInteractWithTile(location, newLocation)
+                && !checkHasObstacle(newLocation)
+                && newTile.moveMount(mount)){
+            getTileAt(currentX, currentY, currentZ).removeMount();
+            mount.updateLocation(new Location(newX,newY,newZ));
+            //newTile.doTileEffects(mount); //does the interaction
+            return true;
+        }else{
+            return false;
+        }
+    }
     public boolean teleportCharacter(Character character, Location targetLocation) {
         if(moveCharacter(character, targetLocation)) {
             character.notifyOfTeleport();
@@ -244,9 +266,8 @@ public class Map {
         mapOfTiles[character.getX()][character.getY()].removeCharacter(character);
     }
 
-    // All about them projectiles bro
-    public void addProjectile(Projectile projectile){
-        mapOfTiles[projectile.getX()][projectile.getY()].addProjectile(projectile);
+    public void addMount(Mount mount){
+        mapOfTiles[mount.getX()][mount.getY()].addMount(mount);
     }
 
     public void addAOE(AreaOfEffect areaOfEffect, Location location){

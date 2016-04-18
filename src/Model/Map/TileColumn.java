@@ -1,6 +1,7 @@
 package Model.Map;
 
 import Model.Entity.Character.Character;
+import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Entity;
 import Model.Entity.Projectile.Projectile;
 import Model.Map.Tile.*;
@@ -78,7 +79,11 @@ public class TileColumn implements TileVisitable, TerrainVisitable{
     public void addCharacter(Character character){
         int z = character.getLocation().getZ();
         tileList.get(z).addCharacter(character);
+    }
 
+    public void addMount(Mount mount){
+        int z = mount.getZ();
+        tileList.get(z).addMount(mount);
     }
 
     public void removeCharacter(Character character){
@@ -91,11 +96,6 @@ public class TileColumn implements TileVisitable, TerrainVisitable{
         int z = projectile.getLocation().getZ();
         tileList.get(z).addProjectile(projectile);
 
-    }
-
-    public void removeProjectile(Projectile projectile){
-        int z = projectile.getZ();
-        tileList.get(z).removeProjectile();
     }
 
     @Override

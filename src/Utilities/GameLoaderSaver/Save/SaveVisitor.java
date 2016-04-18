@@ -2,6 +2,7 @@ package Utilities.GameLoaderSaver.Save;
 
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
+import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.NPC.NPC;
 import Model.Items.Item;
 import Model.Items.Takeable.TakeableItem;
@@ -100,6 +101,11 @@ public class SaveVisitor implements TileVisitor, CharacterTypeVisitor {
         return e;
     }
 
+
+    @Override
+    public void visitTileHasMount(Mount mount) {
+
+    }
 
     @Override
     public void visitTileTerrain(Terrain terrain) {

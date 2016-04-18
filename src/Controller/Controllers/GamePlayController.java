@@ -151,6 +151,10 @@ public class GamePlayController extends Controller{
         initCommands();
     }
 
+    public void switchMount(){
+        controllerManager.setMountState();
+    }
+
     public void setGamePanel(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }

@@ -2,6 +2,7 @@ package Utilities.GameLoaderSaver;
 
 import Controller.AI_Controller.AI_Controller;
 import Model.Entity.Character.Avatar;
+import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.NPC.NPC;
 import Model.Map.AreaEffect.*;
 
@@ -12,6 +13,7 @@ import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Orientation;
 import Model.State.GameState.ActiveGameState;
+import Model.State.GameState.MountGameState;
 import Model.State.GameState.PausedGameState;
 import Model.State.StateManager;
 import Utilities.AIStuff.NPCFactory;
@@ -36,8 +38,11 @@ public class GameLoader {
     private Avatar avatar;
     private ActiveGameState activeGameState;
     private PausedGameState pausedGameState;
+    private MountGameState mountGameState;
     private ArrayList<NPC> entities;
     private ItemManager itemManager;
+    private ArrayList<Mount> mounts;
+
     //Needs a constructor in order to create what type of occupation it is
     public GameLoader(Avatar player, StateManager stateManager) {
         ImageAssets.init();
@@ -48,10 +53,13 @@ public class GameLoader {
         ItemFactory.initHashMaps();
         initNPC();
         itemManager = new ItemManager(ItemFactory.getTakableItems(), ItemFactory.getInteractableItems(), ItemFactory.getAllItemViews(), ItemFactory.getMapItemViews());
-        activeGameState = new ActiveGameState(map, player, entities, itemManager);
-        pausedGameState = new PausedGameState(map, player, entities, itemManager);
+        initAreaEffect();
+        activeGameState = new ActiveGameState(map, player, entities, mounts, itemManager);
+        pausedGameState = new PausedGameState(map, player, entities, mounts, itemManager);
+        mountGameState = new MountGameState(map, player, entities, mounts, itemManager);
         stateManager.setActiveGameState(activeGameState);
         stateManager.setPausedGameState(pausedGameState);
+        stateManager.setMountGameState(mountGameState);
     }
     public void loadGame(){
         addPlayerToMap(); //load game is done earlier
@@ -91,8 +99,10 @@ public class GameLoader {
     }
 
     private void initNPC() {
+        NPCFactory.init(map);
 
-        entities = NPCFactory.init();
+        entities = NPCFactory.getNPCS();
+        mounts = NPCFactory.getMounts();
 
         AI_Controller controller = new AI_Controller();
 
@@ -101,10 +111,8 @@ public class GameLoader {
             entities.get(i).setController(controller);
 
             map.addCharacter(entities.get(i));
-
         }
         controller.setMap(map);
-
     }
 
     private void initAreaEffect(){
@@ -124,5 +132,9 @@ public class GameLoader {
 
     public PausedGameState getPausedGameState() {
         return pausedGameState;
+    }
+
+    public MountGameState getMountGameState() {
+        return mountGameState;
     }
 }
