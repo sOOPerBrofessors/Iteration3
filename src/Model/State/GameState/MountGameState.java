@@ -10,6 +10,7 @@ import Model.Map.Map;
 import Model.Map.Orientation;
 import Utilities.GameMessageQueue;
 import Utilities.ItemStuff.ItemManager;
+import Utilities.Settings;
 
 import java.util.ArrayList;
 
@@ -28,6 +29,20 @@ public class MountGameState extends GameState {
     @Override
     public void tick() {
         for(int i = 0; i < npcs.size(); i++){
+            if(avatar.isDead()) {                    // indicates dead avatar
+                if(avatar.getLives() == 0) {
+                    // TODO: death state
+                } else {
+                    avatar.dropItems(itemManager);
+                    map.moveCharacter(avatar, new Location(Settings.SPAWN_X, Settings.SPAWN_Y, Settings.SPAWN_Z));
+                    avatar.setDead(false);
+                }
+            } else if(npcs.get(i).getLives() == 0) {           // indicated dead entity
+                npcs.get(i).dropItems(itemManager);
+                map.removeCharacter(npcs.get(i));
+                npcs.remove(i);
+                continue;
+            }
             npcs.get(i).tick();
         }
         if(projectiles != null){
