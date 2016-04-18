@@ -19,12 +19,23 @@ import java.util.ArrayList;
  */
 public class NPCFactory {
 
-    public static NPC makeGanondorf(){
+    public static NPC makeGuard(Location location) {
+        Personality personality = PersonalityFactory.getPersonality("enemy");
+        Faction faction = FactionFactory.getFaction("blue");
+        //This should be a factory, testing for now
+        NPCStrategy strategy = new TalkNPCStrategy("Ganondorf: Hi minion", "Ganondorf: I am awesome", "Ganondorf: What do you want?");
+        NPC gandorf = new NPC(new Smasher(), location, personality, faction, strategy);
+        Brain brain = new Brain(gandorf);
+        gandorf.setBrain(brain);
+        return gandorf;
+    }
+
+    public static NPC makeGanondorf(Location location) {
         Personality personality = PersonalityFactory.getPersonality("enemy");
         Faction faction = FactionFactory.getFaction("red");
         //This should be a factory, testing for now
         NPCStrategy strategy = new TalkNPCStrategy("Ganondorf: Hi minion", "Ganondorf: I am awesome", "Ganondorf: What do you want?");
-        NPC gandorf = new NPC(new Smasher(), new Location(1,1,0), personality, faction, strategy);
+        NPC gandorf = new NPC(new Smasher(), location, personality, faction, strategy);
         Brain brain = new Brain(gandorf);
         gandorf.setBrain(brain);
         return gandorf;
@@ -45,7 +56,16 @@ public class NPCFactory {
     public static ArrayList<NPC> init(){
         ArrayList<NPC> entities = new ArrayList<>();
 
-        entities.add(makeGanondorf());
+        entities.add(makeGanondorf(new Location(8,10,0)));
+        entities.add(makeGanondorf(new Location(8,11,0)));
+        entities.add(makeGanondorf(new Location(8,12,0)));
+        entities.add(makeGanondorf(new Location(8,13,0)));
+        entities.add(makeGanondorf(new Location(8,14,0)));
+        entities.add(makeGuard(new Location(10,11,0)));
+        entities.add(makeGuard(new Location(10,12,0)));
+        entities.add(makeGuard(new Location(10,13,0)));
+        entities.add(makeGuard(new Location(10,14,0)));
+
         entities.add(makeHellCat());
 
         return entities;
