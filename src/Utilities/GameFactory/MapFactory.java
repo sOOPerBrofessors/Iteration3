@@ -1,6 +1,8 @@
 package Utilities.GameFactory;
 
 import Model.Map.Map;
+import Model.Map.Orientation;
+import Model.Map.Tile.Terrain.RiverTerrain;
 import Model.Map.Tile.Tile;
 import Model.Map.TileColumn;
 import Model.Map.Tile.Terrain.AirTerrain;
@@ -51,8 +53,10 @@ public class MapFactory {
                 for (int k = 0; k < 10; k++) {
                     TileColumn tC = tmpList[i][j];
                     if (k < 1) {
-                        if ((i == 2 || i == 1) && (j > 2 && j < 8)) {
-                            tC.addWaterTile(new Tile(new WaterTerrain()));
+                        if ((i == 2 ) && (j > 2 && j < 8)) {
+                            tC.addRiverTile(new Tile(new RiverTerrain(Orientation.SOUTH)));
+                        }else if ((i == 1) && (j > 2 && j < 8)) {
+                            tC.addRiverTile(new Tile(new RiverTerrain(Orientation.NORTH)));
                         } else {
                             tC.addGrassTile(new Tile(new GrassTerrain()));
                         }
