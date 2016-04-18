@@ -10,6 +10,8 @@ import Model.Items.Takeable.Equippable.EquippableItem;
  *  likely need a decorator.
  */
 public abstract class Weapon extends EquippableItem {
+    protected double attackInterval;
+
     private final int weaponValue;
 
     Weapon(String name, String description, EquippableStrategy s, int weaponValue, int value) {
@@ -18,4 +20,6 @@ public abstract class Weapon extends EquippableItem {
     }
 
     public int getWeaponValue() { return this.weaponValue; }
+
+    public double getAttackInterval() { return this.attackInterval; }
 } // end class Weapon

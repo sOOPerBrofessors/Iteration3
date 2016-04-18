@@ -26,22 +26,29 @@ public class TwoHandedWeaponSkill extends CombatSkill{
 
     @Override
     public boolean weaponCheck() {
-        boolean properWeapon = true;
-
+        boolean properWeapon = false;
+        if (avatar.getAttackInterval() == 2) {
+            properWeapon = true;
+        }
         return properWeapon;
     }
 
     @Override
     public void execute(ActiveGameState activeGameState) {
         Map map = activeGameState.getMap();
-        if (allConditionChecked() && weaponCheck()) {
-            damage = calculateDamage();
-            radius = level > 4 ? 4 : level;
-            affectedArea = AngularEffect.getAngularArea(avatar.getLocation(), avatar.getOrientation(), radius);
-            twoHandedAttack(map);
-            GameMessageQueue.push(name + " Success!");
-            enforceManaCost();
-            setTimePerformed();
+        if (weaponCheck()) {
+            if (allConditionChecked()) {
+                damage = calculateDamage();
+                radius = level > 4 ? 4 : level;
+                affectedArea = AngularEffect.getAngularArea(avatar.getLocation(), avatar.getOrientation(), radius);
+                twoHandedAttack(map);
+                GameMessageQueue.push(name + " Success!");
+                enforceManaCost();
+                setTimePerformed();
+            }
+        }
+        else {
+            GameMessageQueue.push("Improper weapon, you should equip a THW");
         }
     }
 
