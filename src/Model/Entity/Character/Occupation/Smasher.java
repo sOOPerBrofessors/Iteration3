@@ -25,13 +25,15 @@ import java.util.ArrayList;
 public class Smasher extends Occupation {
 
     @Override
-    public void equipSmasherWeapon(Weapon weapon, Character character) {
+    public boolean equipSmasherWeapon(Weapon weapon, Character character) {
         character.equipWeapon(weapon);
+        return true;
     } // end equipSmasherWeapon
 
     @Override
-    public void equipSmasherArmor(Armor armor, Character character) {
+    public boolean equipSmasherArmor(Armor armor, Character character) {
         character.equipArmor(armor);
+        return true;
     } // end equipSmasherArmor
 
     @Override

@@ -14,6 +14,8 @@ import Model.Map.Location;
 import Model.Skills.Skill;
 import Model.Map.Map;
 import Utilities.GameMessageQueue;
+import Utilities.ItemStuff.ItemManager;
+import Utilities.Settings;
 import Utilities.Visitor.CharacterTypeVisitor;
 
 import Utilities.Visitor.CharacterVisitor;
@@ -32,7 +34,7 @@ public class Avatar extends Character {
 
     private Avatar(Occupation o, Location location) {
         //TODO:I'm not sure how this is going to work but we need something here to define the initial location of an avatar
-        super(o, location, FactionFactory.getFaction("blue"));
+        super(o, location, FactionFactory.getFaction("blue"), new Inventory());
         this.skills.addAll(o.getSkillList(this)); //initialize skills
     } // end constructor
 
@@ -53,18 +55,18 @@ public class Avatar extends Character {
 
     public static Avatar makeSmasher() {
         HUD.setOccupationSprite(ImageAssets.smasherS);
-        return new Avatar(new Smasher(), new Location(5,5,0));
+        return new Avatar(new Smasher(), new Location(Settings.SPAWN_X, Settings.SPAWN_Y, Settings.SPAWN_Z));
     } // end factory method makeSmasher
 
     public static Avatar makeSneak() {
         HUD.setOccupationSprite(ImageAssets.sneakS);
-        return new Avatar(new Sneak(),new Location(5,5,0));
+        return new Avatar(new Sneak(),new Location(Settings.SPAWN_X, Settings.SPAWN_Y, Settings.SPAWN_Z));
     } // end factory method makeSneak
 
     public static Avatar makeSummoner() {
         HUD.setOccupationSprite(ImageAssets.summonerS);
-        return new Avatar(new Summoner(), new Location(5,5,0));
-    } // end factory method makeSneak
+        return new Avatar(new Summoner(), new Location(Settings.SPAWN_X, Settings.SPAWN_Y, Settings.SPAWN_Z));
+    } // end factory method makeSmasher
 
     public Inventory getInventory(){ //needed for InventoryView - Sam
         return inventory;
@@ -78,6 +80,10 @@ public class Avatar extends Character {
         return skills;
     }
 
+    public void dropItems(ItemManager itemManager) {
+        inventory.dump(itemManager, this);
+    }
+
     @Override
     public void update() {
         stats.setEquippedArmor(inventory.getArmorValue());
@@ -88,6 +94,7 @@ public class Avatar extends Character {
         }
         if(getHealth() <= 0) {
             stats.kill();
+            setDead(true);
 
             if(getLives() == 0) {
                 GameMessageQueue.push("Game over!");
@@ -109,8 +116,8 @@ public class Avatar extends Character {
 
     @Override
     public void applyFallDamage(int amount) {
-        super.applyFallDamage(amount);
         GameMessageQueue.push("You hurt yourself from the fall!");
+        super.applyFallDamage(amount);
     }
 
     @Override

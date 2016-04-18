@@ -1,12 +1,15 @@
 package Model.Inventory;
 
+import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Items.Takeable.Equippable.Armor;
+import Model.Items.Takeable.Equippable.EquippableItem;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
 import Model.Items.Takeable.TakeableItem;
 import Model.Items.Takeable.Useable.Money;
 import Utilities.ErrorLevel;
 import Utilities.GameMessageQueue;
+import Utilities.ItemStuff.ItemManager;
 import Utilities.MessageHandler;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
@@ -29,11 +32,30 @@ public class Inventory implements Observer, Subject{
         equipment.addObserver(this);
     } // end default constructor
 
+    public Inventory(Weapon weapon, Armor armor, TakeableItem... items) {
+        observers = new ArrayList<>();
+        this.pack = new Pack();
+        this.equipment = new Equipment();
+        equipment.addObserver(this);
+
+        if(weapon != null)
+            equipWeapon(weapon);
+        if(armor != null)
+            equipArmor(armor);
+        for(TakeableItem i : items) {
+            add(i);
+        }
+    } // end constructor
+
     public TakeableItem dropItem(int index){
         TakeableItem temp = pack.remove(index);
         alert();
         return temp;
     }
+
+    public void dump(ItemManager itemManager, Character character) {
+        pack.dump(itemManager, character);
+    } // end dump
 
     public void add(TakeableItem item) {
         pack.add(item);
@@ -44,16 +66,10 @@ public class Inventory implements Observer, Subject{
     }
 
     public Weapon equipWeapon(Weapon weapon) {
-        MessageHandler.println("equip Weapon called from Inventory", ErrorLevel.NOTICE, PersonFilter.SAM);
-        //pack.add(equipment.equipWeapon(weapon));    // add currently equipped weapon to pack; remove from pack
-        MessageHandler.println("Inventory: Weapon Equipped", ErrorLevel.NOTICE, PersonFilter.SAM);
         return equipment.equipWeapon(weapon);
     } // end equipWeapon
 
     public Armor equipArmor(Armor armor) {
-        MessageHandler.println("equip Armor called from Inventory", ErrorLevel.NOTICE, PersonFilter.SAM);
-        //pack.add(equipment.equipArmor(armor));      // add currently equipped armor to pack; remove from pack
-        MessageHandler.println("Inventory: Armor Equipped", ErrorLevel.NOTICE, PersonFilter.SAM);
         return equipment.equipArmor(armor);
     } // end equipArmor
 

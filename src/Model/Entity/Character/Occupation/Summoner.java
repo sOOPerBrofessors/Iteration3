@@ -24,13 +24,15 @@ import java.util.ArrayList;
 public class Summoner extends Occupation {
 
     @Override
-    public void equipSummonerWeapon(Weapon weapon, Character character) {
+    public boolean equipSummonerWeapon(Weapon weapon, Character character) {
         character.equipWeapon(weapon);
+        return true;
     } // end equipSummonerWeapon
 
     @Override
-    public void equipSummonerArmor(Armor armor, Character character) {
+    public boolean equipSummonerArmor(Armor armor, Character character) {
         character.equipArmor(armor);
+        return true;
     } // end equipSummonerArmor
 
     @Override
