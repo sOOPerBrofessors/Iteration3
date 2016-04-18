@@ -76,13 +76,8 @@ public class MountGameState extends GameState {
 
     public void playerAttack(){
         Location tempLoc = new Location(avatar.getX(), avatar.getY(), avatar.getZ());
-        Projectile temp = Projectile.makeFireBall(tempLoc, avatar.getOrientation());
+        Projectile temp = Projectile.makeFireBall(tempLoc, activeMount.getOrientation());
         projectiles.add(temp);
-    }
-
-    public void playerInteract(){
-        map.checkTileInteraction(avatar,avatar.getLocation(), avatar.getLocation().getAdjacent(avatar.getOrientation()));
-        itemManager.interact(avatar);
     }
 
     public void startCombatTimer() { avatar.startCombatTimer(); }
