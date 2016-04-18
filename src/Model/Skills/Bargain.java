@@ -8,7 +8,7 @@ import Model.Entity.Character.Avatar;
  * Player can choose whether to use bargain when starting trading with NPC
  * You will get a double by executing this skill
  */
-public class Bargain extends Skill{
+class Bargain extends Skill{
     public Bargain(Avatar avatar) {
         super(avatar);
         name = "Bargain";

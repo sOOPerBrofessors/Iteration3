@@ -3,7 +3,6 @@ package Utilities.GameLoaderSaver.Save;
 import Model.Entity.Character.Character;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Inventory.Inventory;
-import Model.Skills.Skill;
 import Model.Stats.CharacterStats;
 import Utilities.Visitor.CharacterVisitor;
 import org.w3c.dom.Attr;
@@ -16,8 +15,8 @@ import java.util.ArrayList;
  * Created by dyeung on 4/16/16.
  */
 public class CharacterSaver implements CharacterVisitor {
-    private Document doc;
-    private ArrayList<Element> characterList;
+    private final Document doc;
+    private final ArrayList<Element> characterList;
     CharacterSaver(Document document){
         characterList = new ArrayList<>();
         this.doc = document;

@@ -14,12 +14,11 @@ public enum PersonFilter {
     AUSTIN(64, "Austin"),
     MICHAEL(128, "Michael");
 
-    private int value;
-    private String name;
+    private final String name;
 
     PersonFilter(int value, String name) {
 
-        this.value = value;
+        int value1 = value;
         this.name = name;
 
     }

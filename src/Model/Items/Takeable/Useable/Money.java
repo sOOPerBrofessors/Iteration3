@@ -20,8 +20,8 @@ public class Money extends TakeableItem {
         this.quantity = quantity;
     }
 
-    public static Money makeMoney(int quantity){
-        return new Money(quantity);
+    public static Money makeMoney(){
+        return new Money(100);
     }
 
     @Override

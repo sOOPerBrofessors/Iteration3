@@ -3,7 +3,6 @@ package View.SkillView;
 import Model.Entity.Character.Character;
 import Model.Map.Location;
 import Model.Skills.RangedSkills.ObservationInfo;
-import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.awt.*;
 import java.util.ArrayList;

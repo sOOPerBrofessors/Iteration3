@@ -5,7 +5,6 @@ import Model.Map.Orientation;
 import Model.Skills.BindWounds;
 import Model.Skills.RangedSkills.*;
 import Model.Skills.Skill;
-import Model.Skills.SkillsWithDuration.Creep;
 import Model.Stats.CharacterStats;
 import Utilities.Visitor.OccupationVisitor;
 

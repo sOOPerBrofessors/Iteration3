@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 //static class used to load in sprites, should only be used in ImageAssets class
-public class SpriteLoader {
+class SpriteLoader {
     public static BufferedImage loadImage(String path){
         try {
             //Changed the path to match res

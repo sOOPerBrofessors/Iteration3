@@ -7,9 +7,9 @@ import Model.Map.Location;
  */
 public class MathUtilities {
 
-    public static final double putInRange(double min, double value, double max) {
+    public static final double putInRange(double min, double value) {
 
-        return Math.min(max, Math.max(value, min));
+        return Math.min(1.0, Math.max(value, min));
 
     }
 

@@ -3,7 +3,6 @@ package Controller.AI_Controller.FrontalLobe;
 import Controller.AI_Controller.Decision.Decision;
 import Controller.AI_Controller.Interest.EntityInterests.EntityInterest;
 import Controller.AI_Controller.Interest.Interest;
-import Controller.AI_Controller.Interest.PointInterests.ExploreInterest;
 import Controller.AI_Controller.Memory.Memory;
 import Controller.AI_Controller.Personality.Personality;
 import Controller.AI_Controller.VisualCortex.VisualInformation.EntityRelationshipVisitor;
@@ -13,7 +12,6 @@ import Model.Entity.Entity;
 import Utilities.*;
 import Utilities.AIStuff.RelationshipList;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +20,7 @@ import java.util.Map;
  */
 public class FrontalLobe implements Tickable {
 
-    private FrontalLobeMemoryInterface memory;
+    private final FrontalLobeMemoryInterface memory;
 
     public FrontalLobe(FrontalLobeMemoryInterface memory) {
 

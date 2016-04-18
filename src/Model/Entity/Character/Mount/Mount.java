@@ -4,13 +4,10 @@ import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Map.Location;
 import Model.Map.Tile.Terrain.Terrain;
-import Model.State.GameState.ActiveGameState;
 import Model.Stats.EntityStats;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
-import Utilities.Tickable;
-import Utilities.Visitor.CharacterVisitor;
 
 /**
  * Created by Wimberley on 4/6/16.
@@ -19,15 +16,15 @@ import Utilities.Visitor.CharacterVisitor;
 //For now this will only contain this stuff (might implement more later)
 public abstract class Mount extends Entity implements Subject{
 
-    protected Character passenger;
-    protected int delay;
-    protected boolean canMove;
-    protected EntityStats stats;
-    protected Observer observer;
+    private Character passenger;
+    final int delay;
+    boolean canMove;
+    private final EntityStats stats;
+    private Observer observer;
 
-    protected Mount(Navigation navigation, Location location){
+    Mount(Navigation navigation, Location location){
         super(navigation, location);
-        stats = new EntityStats(30,20);
+        stats = new EntityStats(30);
         delay = 1500 / stats.getMovement();
         canMove = true;
     }

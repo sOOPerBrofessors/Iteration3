@@ -2,18 +2,16 @@ package Model.Map.AreaEffect;
 
 import Model.Entity.Character.Character;
 import Utilities.Visitor.AOEVisitable;
-import Utilities.Visitor.AOEVisitor;
-import View.MapView.AOEView.AreaOfEffectView;
 
 /**
  * Created by dyeung on 4/14/16.
  */
 public abstract class AreaOfEffect implements AOEVisitable{
-    protected int value;
-    protected boolean detected = false;
-    protected float alpha = 1f;
-    protected boolean active = true;
-    public AreaOfEffect(int value){
+    final int value;
+    private boolean detected = false;
+    float alpha = 1f;
+    boolean active = true;
+    AreaOfEffect(int value){
         this.value = value;
     }
     public abstract void onInteract(Character character);
@@ -22,8 +20,8 @@ public abstract class AreaOfEffect implements AOEVisitable{
         this.alpha = alpha;
     }
 
-    public void setActive(boolean bool) {
-        active = bool;
+    public void setActive() {
+        active = false;
     }
 
     public boolean getActive() {

@@ -20,15 +20,15 @@ import java.util.ArrayList;
     // The observing might not be necessary as everything else is observing the other mapobjects
 public class TileColumnView extends JComponent {
 
-    ArrayList<TileView> listOfTiles;
-    private int x;
-    private int y;
+    private final ArrayList<TileView> listOfTiles;
+    private final int x;
+    private final int y;
     private int xPixel;
     private int yPixel;
     private int xCameraOffset;
     private int yCameraOffset;
-    private int tileWidth = Settings.TILEWIDTH;
-    private int tileHeight = Settings.TILEHEIGHT;
+    private final int tileWidth = Settings.TILEWIDTH;
+    private final int tileHeight = Settings.TILEHEIGHT;
     private int xCenter = tileWidth/2;
     private int yCenter = tileHeight/2;
     private TileViewState tileViewState;

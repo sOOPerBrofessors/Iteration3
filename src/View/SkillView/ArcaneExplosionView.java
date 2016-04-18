@@ -1,10 +1,8 @@
 package View.SkillView;
 
-import Model.Map.Location;
 import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * Created by AndyZhu on 18/4/2016.

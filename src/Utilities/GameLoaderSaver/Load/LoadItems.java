@@ -1,31 +1,27 @@
 package Utilities.GameLoaderSaver.Load;
 
-import Model.Items.Item;
 import Model.Items.Takeable.Quest;
-import Model.Items.Takeable.Useable.Money;
 import Model.Map.Location;
 import Utilities.ItemStuff.ItemFactory.ItemFactory;
-import View.ItemView.ItemView;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by dyeung on 4/17/16.
  */
-public class LoadItems {
-    HashMap<String, Runnable> itemCreateCommand;
+class LoadItems {
+    private final HashMap<String, Runnable> itemCreateCommand;
     public LoadItems(){
         itemCreateCommand = new HashMap<>();
         init();
     }
     private void init(){
-        itemCreateCommand.put("Basic-Health-Potion", () -> ItemFactory.makeBasicHealthPotion());
-        itemCreateCommand.put("Wooden-Sword", () -> ItemFactory.makeWoodenSword());
-        itemCreateCommand.put("Light-Armor", () -> ItemFactory.makeLightArmor());
-        itemCreateCommand.put("Key", () -> Quest.makeKey());
+        itemCreateCommand.put("Basic-Health-Potion", ItemFactory::makeBasicHealthPotion);
+        itemCreateCommand.put("Wooden-Sword", ItemFactory::makeWoodenSword);
+        itemCreateCommand.put("Light-Armor", ItemFactory::makeLightArmor);
+        itemCreateCommand.put("Key", Quest::makeKey);
 
     }
     public void loadTakeableItem(NodeList itemList){

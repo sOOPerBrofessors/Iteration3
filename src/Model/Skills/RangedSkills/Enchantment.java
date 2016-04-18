@@ -18,10 +18,6 @@ import java.util.ArrayList;
 public class Enchantment extends RangedSkill{
 
     private int durationMillis = 1000;
-    private int modifier;
-    private Character enemy;
-    private ArrayList<Location> affectedArea;
-    private Tile curTile;
 
     public Enchantment (Avatar avatar) {
         super(avatar);
@@ -45,13 +41,13 @@ public class Enchantment extends RangedSkill{
     private void enchantment (Map map) {
         calculateDuration();
         calculateModifier();
-        affectedArea = RadialEffect.getRadialArea(avatar.getLocation(), level);
+        ArrayList<Location> affectedArea = RadialEffect.getRadialArea(avatar.getLocation(), level);
         for (int i = 1; i < affectedArea.size(); i++) {
             curLocation = affectedArea.get(i);
-            curTile = map.getTopTile(curLocation.getX(),curLocation.getY());
+            Tile curTile = map.getTopTile(curLocation.getX(), curLocation.getY());
             if (curTile.hasCharacter()) {
-                enemy = curTile.getCharacter();
-                new EnchantmentTimer(durationMillis, enemy, 10).start();
+                Character enemy = curTile.getCharacter();
+                new EnchantmentTimer(durationMillis, enemy).start();
                 GameMessageQueue.push("Enemy at (" + curLocation.getX() + ", " + curLocation.getY() + ") is slowed down");
             }
         }
@@ -62,6 +58,6 @@ public class Enchantment extends RangedSkill{
     }
 
     private void calculateModifier() {
-        modifier = level;
+        int modifier = level;
     }
 }

@@ -1,10 +1,6 @@
 package Utilities.Timer;
 
-import Controller.ControllerUtility.Command;
 import View.AreaViewport.HUDView.HUD;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by broskj on 4/16/16.

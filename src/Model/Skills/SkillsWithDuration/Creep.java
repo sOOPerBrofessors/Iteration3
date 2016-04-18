@@ -20,8 +20,6 @@ public class Creep extends SkillWithDuration {
 
     private boolean creeping = false;
     private int damage;
-    private Character enemy;
-    private ArrayList<Location> attackArea;
 
     public Creep (Avatar avatar) {
         super(avatar);
@@ -48,10 +46,10 @@ public class Creep extends SkillWithDuration {
     }
 
     private void backStab(Map map) {
-        attackArea = LinearEffect.getLinearSameLevel(avatar.getLocation(), avatar.getOrientation(), 1);
+        ArrayList<Location> attackArea = LinearEffect.getLinearSameLevel(avatar.getLocation(), avatar.getOrientation(), 1);
         Location targetLocation = attackArea.get(1);
         if (map.getTopTile(targetLocation.getX(),targetLocation.getY()).hasCharacter()) {
-            enemy = map.getTopTile(targetLocation.getX(),targetLocation.getY()).getCharacter();
+            Character enemy = map.getTopTile(targetLocation.getX(), targetLocation.getY()).getCharacter();
             if (enemy.getOrientation() == avatar.getOrientation()) {
                 enemy.healthEffect(-damage);
                 GameMessageQueue.push("Back stab success!");

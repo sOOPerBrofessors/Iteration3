@@ -61,7 +61,7 @@ public class PrismEffect extends InfluenceArea {
      * @param radius : int
      * @return an ArrayList of ArrayList of Locations with all tiles in the prism volume with same radius
      */
-    public static ArrayList<ArrayList<Location>> getPrismVolumeFullHeightWithRadius (Location location, int radius) {
+    private static ArrayList<ArrayList<Location>> getPrismVolumeFullHeightWithRadius(Location location, int radius) {
         ArrayList<ArrayList<Location>> list = new ArrayList<>();
         ArrayList<Location> innerList;
         ArrayList<ArrayList<Location>> planerAreaList = RadialEffect.getAreaWithRadius(location, radius);

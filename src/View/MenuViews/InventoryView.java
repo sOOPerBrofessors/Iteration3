@@ -26,22 +26,24 @@ import java.util.HashMap;
     //armor on top of weapon for equipment view
 public class InventoryView extends AllDirPanel implements Observer{
 
-    private Avatar avatar;
-    private Inventory inventory; //handle to Avatar's inventory
-    ArrayList<TakeableItem> items; //handle to Avatar's ArrayList of Items
-    Image[] invImages = new Image[16]; //Local Array of Images of Inventory
+    private final Avatar avatar;
+    private final Inventory inventory; //handle to Avatar's inventory
+    private final ArrayList<TakeableItem> items; //handle to Avatar's ArrayList of Items
+    private final Image[] invImages = new Image[16]; //Local Array of Images of Inventory
     //private Armor equippedArmor;
     //private Weapon equippedWeapon;
-    private ItemManager itemManager;
-    private HashMap<Item, ItemView> itemViewHashMap;
+    private final ItemManager itemManager;
+    private final HashMap<Item, ItemView> itemViewHashMap;
 
-    private int xSel, ySel, xMax, yMax;
+    private int xSel;
+    private int ySel;
+    private final int xMax;
+    private final int yMax;
     private boolean armorSel;
     private boolean weaponSel;
     private Image weaponImage;
     private Image armorImage;
-    private int squareSize;
-    private final int yShift = 50;
+    private final int squareSize;
 
 
     public InventoryView(ActiveGameState gameState){
@@ -116,23 +118,24 @@ public class InventoryView extends AllDirPanel implements Observer{
         Graphics2D g2d = (Graphics2D) g.create();
         drawBackground(g2d);
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); //make pictures opaque
-        for(int y=0;y<yMax;y++){ //draw all squares
+        int yShift = 50;
+        for(int y = 0; y<yMax; y++){ //draw all squares
             for (int x=0; x<xMax; x++){
-                g2d.drawImage(ImageAssets.invSlot, xBorderOffset+50+x*squareSize,yBorderOffset+75+y*squareSize+yShift/2, squareSize,squareSize, null); //draw InvSlot
+                g2d.drawImage(ImageAssets.invSlot, xBorderOffset+50+x*squareSize,yBorderOffset+75+y*squareSize+ yShift /2, squareSize,squareSize, null); //draw InvSlot
                 int currentSlot = y*4+x;
                 if (currentSlot< items.size()) {//for performance (Don't actually know if would increase performance)
                     g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); //make pictures solid
-                    g2d.drawImage(invImages[currentSlot], xBorderOffset + 75 + x * squareSize, yBorderOffset + 100 + y * squareSize+yShift/2, squareSize/2, squareSize/2, null);
+                    g2d.drawImage(invImages[currentSlot], xBorderOffset + 75 + x * squareSize, yBorderOffset + 100 + y * squareSize+ yShift /2, squareSize/2, squareSize/2, null);
                     g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); //make pictures opaque
                 }
             }
         }
         //draw armor and weapon slot
-        g2d.drawImage(ImageAssets.eqSlot, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2-2*squareSize+yShift*3/2,squareSize*2,squareSize*2, null);
-        g2d.drawImage(ImageAssets.eqSlot, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2+yShift*3/2, squareSize*2,squareSize*2, null);
+        g2d.drawImage(ImageAssets.eqSlot, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2-2*squareSize+ yShift *3/2,squareSize*2,squareSize*2, null);
+        g2d.drawImage(ImageAssets.eqSlot, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2+ yShift *3/2, squareSize*2,squareSize*2, null);
         //draw armor and weapon
-        g2d.drawImage(armorImage, (xBorderOffset +xSize/2 + squareSize*3/2+10)*Settings.SCALEFACTOR, (Settings.GAMEHEIGHT/2-2*squareSize+yShift*5/2)*Settings.SCALEFACTOR,squareSize,squareSize, null);
-        g2d.drawImage(weaponImage, (xBorderOffset +xSize/2 + squareSize*3/2+10)*Settings.SCALEFACTOR, (Settings.GAMEHEIGHT/2+yShift*5/2)*Settings.SCALEFACTOR, squareSize,squareSize, null);
+        g2d.drawImage(armorImage, (xBorderOffset +xSize/2 + squareSize*3/2+10)*Settings.SCALEFACTOR, (Settings.GAMEHEIGHT/2-2*squareSize+ yShift *5/2)*Settings.SCALEFACTOR,squareSize,squareSize, null);
+        g2d.drawImage(weaponImage, (xBorderOffset +xSize/2 + squareSize*3/2+10)*Settings.SCALEFACTOR, (Settings.GAMEHEIGHT/2+ yShift *5/2)*Settings.SCALEFACTOR, squareSize,squareSize, null);
 
 
         //get rid of opaqueness
@@ -149,10 +152,10 @@ public class InventoryView extends AllDirPanel implements Observer{
 
         //highlight selection
         if (armorSel){
-            g2d.drawImage(ImageAssets.select, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2-2*squareSize+yShift*3/2,squareSize*2,squareSize*2, null);
+            g2d.drawImage(ImageAssets.select, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2-2*squareSize+ yShift *3/2,squareSize*2,squareSize*2, null);
         } else if(weaponSel){
-            g2d.drawImage(ImageAssets.select, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2+yShift*3/2, squareSize*2,squareSize*2, null);
-        } else g2d.drawImage(ImageAssets.select, xBorderOffset+50+xSel*squareSize, yBorderOffset+75+ySel*squareSize+yShift/2,squareSize,squareSize,null);
+            g2d.drawImage(ImageAssets.select, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2+ yShift *3/2, squareSize*2,squareSize*2, null);
+        } else g2d.drawImage(ImageAssets.select, xBorderOffset+50+xSel*squareSize, yBorderOffset+75+ySel*squareSize+ yShift /2,squareSize,squareSize,null);
 
         g2d.dispose();
     }

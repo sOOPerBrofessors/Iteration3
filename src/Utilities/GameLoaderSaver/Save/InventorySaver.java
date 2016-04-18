@@ -8,7 +8,6 @@ import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
 import Model.Items.Takeable.TakeableItem;
 import Utilities.Visitor.ItemVisitor;
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -18,9 +17,9 @@ import java.util.ArrayList;
  * Created by dyeung on 4/16/16.
  */
 public class InventorySaver implements ItemVisitor {
-    Document doc;
-    ArrayList<Element> list;
-    Inventory inventory;
+    private final Document doc;
+    private final ArrayList<Element> list;
+    private final Inventory inventory;
     public InventorySaver(Document doc, Inventory inventory) {
         this.doc = doc;
         list = new ArrayList<>();
@@ -51,7 +50,7 @@ public class InventorySaver implements ItemVisitor {
     @Override
     public void visitTakeableItem(TakeableItem item) {
         Element element = doc.createElement("Takeable-Item");
-        element.setAttributeNode(SaverUtility.getAttrWithSS(doc,"name",item.getName()));
+        element.setAttributeNode(SaverUtility.getAttrWithSS(doc, item.getName()));
         list.add(element);
     }
 

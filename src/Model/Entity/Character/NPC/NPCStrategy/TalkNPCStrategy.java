@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by dyeung on 4/16/16.
  */
 public class TalkNPCStrategy extends NPCStrategy {
-    ArrayList<String> dialogue;
+    private final ArrayList<String> dialogue;
     private int textPosition;
     public TalkNPCStrategy(String ... text){
         dialogue = new ArrayList<>();

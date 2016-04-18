@@ -10,7 +10,7 @@ import Utilities.MessageHandler;
  */
 public class InteractableStrategy {
 
-    protected Quest requiredItem;
+    Quest requiredItem;
 
     public boolean onInteract(Character character) {
         MessageHandler.println("You can't interact with this item.", ErrorLevel.ERROR);

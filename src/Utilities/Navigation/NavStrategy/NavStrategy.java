@@ -13,7 +13,7 @@ import Utilities.Visitor.TerrainVisitor;
  *  call, which handle tile movement different for certain entity types.
  */
 public abstract class NavStrategy implements TerrainVisitor {
-    protected boolean canMoveFlag;
+    boolean canMoveFlag;
     public boolean canMove(Terrain terrain){
         terrain.acceptTerrainVisitor(this);
         return canMoveFlag;

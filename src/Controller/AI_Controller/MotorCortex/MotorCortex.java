@@ -7,9 +7,9 @@ import Utilities.Tickable;
  */
 public class MotorCortex implements Tickable {
 
-    int randomMovement;
+    private int randomMovement;
 
-    private MotorCortexMemoryInterface memory;
+    private final MotorCortexMemoryInterface memory;
 
     public MotorCortex(MotorCortexMemoryInterface memory) {
 

@@ -7,7 +7,7 @@ import java.util.HashMap;
  */
 public class FactionFactory {
 
-    private static HashMap<String, Faction> personalities = new HashMap<>();
+    private static final HashMap<String, Faction> personalities = new HashMap<>();
 
     public static void addFaction(String factionName, Faction faction) {
 

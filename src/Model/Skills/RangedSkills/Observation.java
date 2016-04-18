@@ -20,11 +20,11 @@ import java.util.Random;
  */
 public class Observation extends RangedSkill{
 
-    ArrayList<Location> affectedArea;
-    Tile curTile;
-    Character enemy;
-    ArrayList<String> observedMsg;
-    ObservationInfo observationInfo;
+    private ArrayList<Location> affectedArea;
+    private Tile curTile;
+    private Character enemy;
+    private ArrayList<String> observedMsg;
+    private ObservationInfo observationInfo;
 
     public Observation (Avatar avatar){
         super(avatar);

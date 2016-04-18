@@ -18,11 +18,11 @@ import View.ViewUtilities.Sprites.ImageAssets;
  *
  */
 public class HUD {
-    private Avatar avatar;
+    private final Avatar avatar;
     private static BufferedImage occupationSprite;
     private static Color statusColor = new Color(5, 255, 78, 120);
-    private int width = Settings.GAMEWIDTH,
-        height = Settings.GAMEHEIGHT;
+    private final int width = Settings.GAMEWIDTH;
+    private int height = Settings.GAMEHEIGHT;
 
     public HUD(Avatar avatar) {
         this.avatar = avatar;
@@ -112,7 +112,7 @@ public class HUD {
         g2d.dispose();
     } // end updateHUD
 
-    public void renderGameMessages(Graphics2D g2d) {
+    private void renderGameMessages(Graphics2D g2d) {
         int messageBoxW = 480, messageBoxH = 130;
         g2d.setColor(new Color(255,255,255,50));
         g2d.fillRect(width-messageBoxW, 0, messageBoxW, messageBoxH);
@@ -126,7 +126,7 @@ public class HUD {
         }
     } // end renderGameMessages
 
-    public void pulseOrb(Graphics2D g2d, double ratio) {
+    private void pulseOrb(Graphics2D g2d, double ratio) {
         //int a = statusColor.getAlpha();
         if (ratio == 0) {
             statusColor = new Color(255,2,30,120);

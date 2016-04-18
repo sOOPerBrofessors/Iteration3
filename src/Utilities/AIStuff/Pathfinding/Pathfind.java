@@ -9,18 +9,18 @@ import java.util.PriorityQueue;
 
 public abstract class Pathfind implements Runnable { // Abstract class that all of the pathfinding algorithms are based on
 
-    protected TileNode startNode;
-    protected TileNode endNode;
-    protected int expandedCounter;
-    protected final double EXPANDED_COUNTER_HARD_CAP = 1000;
-    protected boolean running = false;
-    protected boolean pathFound = false;
-    protected BestPathComparator comparator = new BestPathComparator();
-    protected PriorityQueue<TileNode> open = new PriorityQueue<>(10, comparator);
-    protected PriorityQueue<TileNode> closed = new PriorityQueue<>(10, comparator);
-    protected TileNode endOfPath = null;
+    private final TileNode startNode;
+    final TileNode endNode;
+    int expandedCounter;
+    private final double EXPANDED_COUNTER_HARD_CAP = 1000;
+    boolean running = false;
+    boolean pathFound = false;
+    private final BestPathComparator comparator = new BestPathComparator();
+    final PriorityQueue<TileNode> open = new PriorityQueue<>(10, comparator);
+    final PriorityQueue<TileNode> closed = new PriorityQueue<>(10, comparator);
+    TileNode endOfPath = null;
 
-    public Pathfind(TileNode startNode, TileNode endNode, double f) {
+    Pathfind(TileNode startNode, TileNode endNode, double f) {
 
         this.startNode = startNode;
         this.endNode = endNode;
@@ -47,7 +47,7 @@ public abstract class Pathfind implements Runnable { // Abstract class that all 
 
     }
 
-    public abstract void searchForPath();
+    protected abstract void searchForPath();
 
     protected final boolean isRunning() {
 
@@ -61,14 +61,14 @@ public abstract class Pathfind implements Runnable { // Abstract class that all 
 
     }
 
-    protected final void addNodeToOpen(TileNode node, double f) {
+    final void addNodeToOpen(TileNode node, double f) {
 
         node.setF(f);
         open.add(node);
 
     }
 
-    protected final void addNodeToClosed(TileNode node) {
+    final void addNodeToClosed(TileNode node) {
 
         closed.add(node);
 
@@ -88,7 +88,7 @@ public abstract class Pathfind implements Runnable { // Abstract class that all 
 
     }
 
-    protected synchronized final boolean isPathFound() {
+    private synchronized boolean isPathFound() {
 
         try {
 
@@ -126,13 +126,13 @@ public abstract class Pathfind implements Runnable { // Abstract class that all 
 
     }
 
-    protected final double getExpandedCounter() {
+    private double getExpandedCounter() {
 
         return expandedCounter;
 
     }
 
-    protected final boolean isExpandedCounterExceeded() {
+    final boolean isExpandedCounterExceeded() {
 
         return getExpandedCounter() > EXPANDED_COUNTER_HARD_CAP;
 
