@@ -20,10 +20,11 @@ public class SkillsView extends VertPanel{
 
     public SkillsView(Avatar avatar) {
         ySel = 0;
-        yMax = 17;
+
         this.avatar = avatar;
         selected = false;
         skills = avatar.getSKillList();
+        yMax = skills.size() - 1;
     }
 
     @Override
