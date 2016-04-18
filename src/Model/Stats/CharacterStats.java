@@ -131,6 +131,8 @@ public class CharacterStats extends EntityStats implements Subject {
     public void levelUp() {
         // increase level by one; reset lives
         level++;
+        GameMessageQueue.push("Level up!");
+
         lives = baseLives;
 
         // modify current xp and xp to next level

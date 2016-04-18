@@ -120,11 +120,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
 
     public void healthEffect(int amount) {
         if(amount >= 0)
-            GameMessageQueue.push("You gained " + amount + " health.");
-        else {
-            GameMessageQueue.push("You took " + -1 * amount + " damage.");
             startCombatTimer();
-        }
         damageQueue.push(new DamageSplat(amount));
         stats.healthEffect(amount);
         alert();
@@ -141,10 +137,6 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     } // end levelsEffect
 
     public void manaEffect(int amount) {
-        if(amount >= 0)
-            GameMessageQueue.push("You gained " + amount + " mana.");
-        else
-            GameMessageQueue.push("Lost " + -1*amount + " mana.");
         stats.manaEffect(amount);
         alert();
     } // end manaEffect
