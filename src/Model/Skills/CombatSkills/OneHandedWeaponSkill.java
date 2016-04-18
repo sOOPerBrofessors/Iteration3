@@ -12,7 +12,7 @@ import Utilities.InfluenceAreas.Linear.LinearEffect;
 public class OneHandedWeaponSkill extends CombatSkill{
     public OneHandedWeaponSkill (Avatar avatar) {
         super(avatar);
-        name = "One Handed Weapon Attack";
+        name = "OHW Attack";
         manaCost = 1;
         coolDownTime = 1;
         damageFactor = 2;
