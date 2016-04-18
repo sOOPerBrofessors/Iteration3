@@ -94,6 +94,12 @@ public class Avatar extends Character {
     } // end notifyOfTeleport
 
     @Override
+    public void applyFallDamage(int amount) {
+        super.applyFallDamage(amount);
+        GameMessageQueue.push("You hurt yourself from the fall!");
+    }
+
+    @Override
     public void healthEffect(int amount) {
         super.healthEffect(amount);
         if(amount > 0)
@@ -105,11 +111,21 @@ public class Avatar extends Character {
 
     @Override
     public void manaEffect(int amount) {
+        super.manaEffect(amount);
         if(amount >= 0)
             GameMessageQueue.push("You gained " + amount + " mana.");
         else
             GameMessageQueue.push("Lost " + -1*amount + " mana.");
     } // end manaEffect
+
+    @Override
+    public void experienceEffect(int amount) {
+        super.experienceEffect(amount);
+        if(amount >= 0)
+            GameMessageQueue.push("You gained " + amount + " experience.");
+        else
+            GameMessageQueue.push("Lost " + -1*amount + " experience.");
+    } // end experienceEffect
 
     @Override
     public void remove() {

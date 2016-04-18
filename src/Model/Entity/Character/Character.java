@@ -73,6 +73,10 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         new TimedEvent(delay, () -> canMove = false, e -> canMove = true).start();
     } // end delayMovement
 
+    public void applyFallDamage(int amount) {
+        healthEffect(amount);
+    } // end applyFallDamage()
+
     public void setDelay(int amount) {
         delay = 1500 / amount;
     } // end setDelay
@@ -163,10 +167,6 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
 
 
     public void experienceEffect(int amount) {
-        if(amount >= 0)
-            GameMessageQueue.push("You gained " + amount + " experience.");
-        else
-            GameMessageQueue.push("Lost " + -1*amount + " experience.");
         experienceQueue.push(new ExperienceSplat(amount));
         stats.experienceEffect(amount);
         alert();
