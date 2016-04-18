@@ -1,6 +1,7 @@
 package Utilities.GameFactory;
 
 import Model.Map.Map;
+import Model.Map.Tile.Terrain.RiverTerrain;
 import Model.Map.Tile.Tile;
 import Model.Map.TileColumn;
 import Model.Map.Tile.Terrain.AirTerrain;
@@ -52,7 +53,7 @@ public class MapFactory {
                     TileColumn tC = tmpList[i][j];
                     if (k < 1) {
                         if ((i == 2 || i == 1) && (j > 2 && j < 8)) {
-                            tC.addWaterTile(new Tile(new WaterTerrain()));
+                            tC.addWaterTile(new Tile(new RiverTerrain()));
                         } else {
                             tC.addGrassTile(new Tile(new GrassTerrain()));
                         }

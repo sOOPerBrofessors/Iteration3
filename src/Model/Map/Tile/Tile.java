@@ -3,6 +3,7 @@ package Model.Map.Tile;
 import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Map.AreaEffect.AreaOfEffect;
+import Model.Map.Map;
 import Model.Map.Tile.Terrain.Terrain;
 import Model.Entity.Projectile.Projectile;
 import Utilities.Observers.TileObservable;
@@ -125,6 +126,10 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         doEffectAOE(character);
         //Effect item
         //Effect
+    }
+
+    public void doRiverEffect(Map map, Character character) {
+        terrain.onInteract(map, character);
     }
 
     public void applyProjectileEffects(Projectile projectile){

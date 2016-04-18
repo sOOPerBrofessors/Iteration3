@@ -40,6 +40,7 @@ public class Map {
         int newY = newLocation.getY();
         int newZ = getTopTilePosition(newX, newY);
         Tile newTile = getTopTile(newX,newY);
+        newTile.doRiverEffect(this, character);
         Location location = character.getLocation();
         //Needs to move the character before the tile does interaction because of "teleport" effect
         if (checkCanInteractWithTile(location, newLocation)
