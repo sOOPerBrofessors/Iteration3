@@ -114,6 +114,35 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         notifyObservers();
     }
 
+    public boolean hasTrap() {
+        if (areaOfEffect != null) {
+            if (areaOfEffect.getAlpha() == 0f && areaOfEffect.getActive()) {
+                return true;
+            }
+            return false;
+        }else {
+            return false;
+        }
+    }
+
+    public void detectTrap() {
+        this.areaOfEffect.setAlpha(1f);
+        this.areaOfEffect.setDetected();
+    }
+
+    public boolean hasDetectedTrap() {
+        if (this.hasAOE()) {
+            return this.areaOfEffect.getDetected();
+        }
+        else {
+            return false;
+        }
+    }
+
+    public void removeTrap() {
+        this.areaOfEffect.setActive(false);
+        this.areaOfEffect.setAlpha(0f);
+    }
     /*The character being passed in the function is the character doing the interacting
     Tile contains the character being interacted on
     */
