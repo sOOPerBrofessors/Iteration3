@@ -168,11 +168,14 @@ public class ViewManager implements Subject {
         this.stateManager = stateManager;
     }
 
-    private void loadGame(){
+    public void loadGame(){
+        System.out.println("ViewManager start load game:");
         //No input needed to avatar
         LoadParser loadParser = new LoadParser();
-        GameLoader gameLoader = new GameLoader(null, stateManager); // initializes player and attributes of GameState
-
+        Avatar avatar = loadParser.loadAvatar();
+        GameLoader gameLoader = new GameLoader(avatar, stateManager); // initializes player and attributes of GameState
+        gameLoader.loadGame();
+        initGame(gameLoader);
     }
     // initialize game once players selection is confirmed
     private void newGame(Avatar player){

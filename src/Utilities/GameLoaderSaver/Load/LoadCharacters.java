@@ -25,7 +25,7 @@ public class LoadCharacters {
     private Occupation occupation;
     private Location location;
     private Avatar avatar;
-    private Character character;
+    private NPC npc;
     public LoadCharacters(){
         occupationCommands = new HashMap<>();
         orientationCommands = new HashMap<>();
@@ -33,7 +33,7 @@ public class LoadCharacters {
         occupationCommands.put("summoner", () -> makeSummoner());
         occupationCommands.put("sneak", () -> makeSneak());
 
-        occupationCommands.put("south", () -> setSouth());
+        orientationCommands.put("south", () -> setSouth());
         orientationCommands.put("southWest", () -> setSouthWest());
         orientationCommands.put("southEast", () -> setSouthEast());
         orientationCommands.put("north", () -> setNorth());
@@ -42,14 +42,7 @@ public class LoadCharacters {
     }
     public Avatar convertToAvatar(Element characterElement){
         //Idea is that I make it call all these functions and set it later and then reset to redo
-        String loc = characterElement.getAttribute("location");
-        String delims = ",";
-        String[] tokens = loc.split(delims);
-        int x = Integer.parseInt(tokens[0]);
-        int y = Integer.parseInt(tokens[1]);
-        int z = Integer.parseInt(tokens[2]);
-        location = new Location(x,y,z);
-
+        setLocation(characterElement);
         //Terrible design
         String occ = characterElement.getAttribute("occupation");
         occupationCommands.get(occ).run();
@@ -58,9 +51,24 @@ public class LoadCharacters {
 
         return avatar;
     }
-    public Character convertToCharacter(Element characterElement){
+    public NPC convertToCharacter(Element characterElement){
+        setLocation(characterElement);
+        String occ = characterElement.getAttribute("occupation");
+        occupationCommands.get(occ).run();
+        String ori = characterElement.getAttribute("orientation");
+        orientationCommands.get(ori).run();
 
-        return character;
+        return npc;
+    }
+
+    private void setLocation(Element characterElement){
+        String loc = characterElement.getAttribute("location");
+        String delims = ",";
+        String[] tokens = loc.split(delims);
+        int x = Integer.parseInt(tokens[0]);
+        int y = Integer.parseInt(tokens[1]);
+        int z = Integer.parseInt(tokens[2]);
+        location = new Location(x,y,z);
     }
 
     private void makeSmasher(){

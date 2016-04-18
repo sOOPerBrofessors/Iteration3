@@ -1,11 +1,17 @@
 package Utilities.GameLoaderSaver.Load;
 
 import Model.Entity.Character.Avatar;
+import Model.Entity.Character.Character;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Character.Occupation.Occupation;
+import Model.Items.Item;
+import Model.Items.Takeable.TakeableItem;
+import Model.Map.Location;
+import Model.Map.Map;
 import Utilities.IOUtilities;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -21,10 +27,11 @@ import java.util.HashMap;
 public class LoadParser {
     private Document doc;
     //For better usage I might need a file name to handle this
-    public static void main(String[] args) {
-        LoadParser lp = new LoadParser();
-        lp.loadAvatar();
-    }
+//    public static void main(String[] args) {
+//        LoadParser lp = new LoadParser();
+//        lp.loadAvatar();
+//        lp.loadItemMap();
+//    }
     public LoadParser(){
         String updateFile = "./res/SaveFile/HelloWorld" ;
         String filePath = IOUtilities.getFileSystemDependentPath(updateFile);
@@ -44,18 +51,38 @@ public class LoadParser {
             e.printStackTrace();
         }
     }
+    public ArrayList<Item> loadItems(){
+        ArrayList<Item> tmp = new ArrayList<>();
+
+        NodeList itemList = doc.getElementsByTagName("Takeable-Item");
+        LoadItems loadItems = new LoadItems();
+        loadItems.loadTakeableItem(itemList);
+
+        return tmp;
+    }
     public Avatar loadAvatar(){
         NodeList avatarList = doc.getElementsByTagName("Avatar");
         Element avatarElm = (Element) avatarList.item(0);
-        String occupationType = avatarElm.getAttribute("occupation");
         LoadCharacters loadCharacters = new LoadCharacters();
 
         Avatar avatar = loadCharacters.convertToAvatar(avatarElm);
 
         return avatar;
     }
+    //Doesnt work now
     public ArrayList<NPC> loadNPC(){
         ArrayList<NPC> npcList = new ArrayList<>();
+
+        NodeList npcNodeList = doc.getElementsByTagName("NPC");
+        LoadCharacters loadCharacters = new LoadCharacters();
+
+        for (int i = 0; i < npcNodeList.getLength(); i++) {
+            Element npcElm = (Element) npcNodeList.item(i);
+            NPC npc = loadCharacters.convertToCharacter(npcElm);
+            npcList.add(npc);
+        }
         return npcList;
     }
+
+
 }

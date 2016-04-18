@@ -12,12 +12,14 @@ import Model.State.StateManager;
 import Utilities.AIStuff.NPCFactory;
 import Utilities.ErrorLevel;
 import Utilities.GameFactory.MapFactory;
+import Utilities.GameLoaderSaver.Load.LoadParser;
 import Utilities.ItemStuff.ItemFactory.ItemFactory;
 import Utilities.ItemStuff.ItemManager;
 import Utilities.MessageHandler;
 import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by dyeung on 4/6/16.
@@ -44,7 +46,11 @@ public class GameLoader {
         stateManager.setPausedGameState(pausedGameState);
     }
     public void loadGame(){
-
+        initNPC();
+        addPlayerToMap(); //load game is done earlier
+        //loadItems();
+        initItems();
+        initAreaEffect();
     }
     public void createNewGame(){
         initNPC();
@@ -53,6 +59,10 @@ public class GameLoader {
         initAreaEffect();
     }
 
+    private void loadItems(){
+        LoadParser loadParser = new LoadParser();
+        loadParser.loadItems();
+    }
     //Map has to contain an avatar (might be unnecessary in the constructor though)
     private void initMap() {
         MessageHandler.println("GameLoader: Loading Map and Avatar and ActiveGameState", ErrorLevel.NOTICE);
