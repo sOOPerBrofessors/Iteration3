@@ -2,6 +2,7 @@ package Utilities.GameLoaderSaver;
 
 import Controller.AI_Controller.AI_Controller;
 import Model.Entity.Character.Avatar;
+import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.NPC.NPC;
 import Model.Map.AreaEffect.TeleportAOE;
 import Model.Map.Location;
@@ -30,6 +31,7 @@ public class GameLoader {
     private PausedGameState pausedGameState;
     private ArrayList<NPC> entities;
     private ItemManager itemManager;
+    private ArrayList<Mount> mounts;
 
     //Needs a constructor in order to create what type of occupation it is
     public GameLoader(Avatar player) {
@@ -43,8 +45,8 @@ public class GameLoader {
         initItems();
         itemManager = new ItemManager(ItemFactory.getTakableItems(), ItemFactory.getInteractableItems(), ItemFactory.getAllItemViews(), ItemFactory.getMapItemViews());
         initAreaEffect();
-        activeGameState = new ActiveGameState(map, player, entities, itemManager);
-        pausedGameState = new PausedGameState(map, player, entities, itemManager);
+        activeGameState = new ActiveGameState(map, player, entities, mounts, itemManager);
+        pausedGameState = new PausedGameState(map, player, entities, mounts, itemManager);
     }
 
     //Map has to contain an avatar (might be unnecessary in the constructor though)
@@ -68,8 +70,10 @@ public class GameLoader {
     }
 
     private void initNPC() {
+        NPCFactory.init(map);
 
-        entities = NPCFactory.init();
+        entities = NPCFactory.getNPCS();
+        mounts = NPCFactory.getMounts();
 
         AI_Controller controller = new AI_Controller();
 
@@ -77,20 +81,8 @@ public class GameLoader {
 
             entities.get(i).setController(controller);
             map.addCharacter(entities.get(i));
-
         }
         controller.setMap(map);
-
-//        ArrayList<Orientation> ba = controller.findPath(entities.get(0), new Location(7, 3, 0));
-
-//        System.out.println("\nBEGIN PATHING RESULT size: " + ba.size());
-//        for (Orientation orientation : ba) {
-//
-//            System.out.println("\t" + orientation + "\n");
-//
-//        }
-//        System.out.println("\nEND PATHING RESULT");
-
     }
 
     private void initAreaEffect(){

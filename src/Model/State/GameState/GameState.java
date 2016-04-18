@@ -1,10 +1,10 @@
 package Model.State.GameState;
 
 import Model.Entity.Character.Avatar;
+import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.NPC.NPC;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import Model.Entity.Projectile.Projectile;
 import Model.Map.Map;
@@ -16,18 +16,20 @@ import Utilities.ItemStuff.ItemManager;
  */
 public abstract class GameState extends State {
 
-    protected ArrayList<NPC> entities;
+    protected ArrayList<NPC> npcs;
     protected Map map;
     protected Avatar avatar;
     protected ItemManager itemManager;
     protected ArrayList<Projectile> projectiles;
+    protected ArrayList<Mount> mounts;
 
-    public GameState(Map map, Avatar avatar, ArrayList<NPC> entities, ItemManager itemManager){
+    public GameState(Map map, Avatar avatar, ArrayList<NPC> entities, ArrayList<Mount> mounts, ItemManager itemManager){
         //This will be done in the gameLoader
         this.map = map;
         this.avatar = avatar;
-        this.entities = entities;
+        this.npcs = entities;
         this.itemManager = itemManager;
+        this.mounts = mounts;
         projectiles = new ArrayList<>();
     }
 

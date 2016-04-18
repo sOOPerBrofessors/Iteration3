@@ -112,7 +112,12 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
     }
 
     public void removeCharacter() {
-        this.character = null;
+        character = null;
+        notifyObservers();
+    }
+
+    public void removeMount() {
+        this.mount = null;
         notifyObservers();
     }
 
@@ -143,6 +148,9 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         if (hasCharacter()) {
             this.character.onInteract();
         }
+        if(hasMount()){
+            mount.addPassenger(initCharacter);
+        }
     }
 
     public void doTileEffects(Character character) {
@@ -164,6 +172,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         tv.visitTileHasCharacter(character);
         tv.visitTileTerrain(terrain);
         tv.visitTileHasProjectile(projectile);
+        tv.visitTileHasMount(mount);
     }
 
     @Override

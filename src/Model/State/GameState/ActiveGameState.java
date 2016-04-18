@@ -1,37 +1,36 @@
 package Model.State.GameState;
 
 import Model.Entity.Character.Avatar;
+import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Projectile.Projectile;
-import Model.Items.Takeable.Equippable.Weapon.OneHandedWeapon;
 import Model.Map.Location;
 import Model.Map.Map;
 
 import Model.Map.Orientation;
-import Model.Skills.CombatSkills.BrawlingSkill;
 import Model.Skills.RangedSkills.Observation;
 import Model.Skills.RangedSkills.ObservationInfo;
-import Model.Skills.Skill;
 import Utilities.GameMessageQueue;
 import Utilities.ItemStuff.ItemManager;
-import Utilities.Timer.TimedEvent;
+import Utilities.Observers.Observer;
 
 import java.util.ArrayList;
 
 /**
  * Created by Wimberley on 4/6/16.
  */
-public class ActiveGameState extends GameState {
+public class ActiveGameState extends GameState implements Observer{
 
-    public ActiveGameState(Map map, Avatar avatar, ArrayList<NPC> entities, ItemManager itemManager) {
-        super(map, avatar, entities, itemManager);
+    public ActiveGameState(Map map, Avatar avatar, ArrayList<NPC> npcs, ArrayList<Mount> mounts, ItemManager itemManager) {
+        super(map, avatar, npcs, mounts, itemManager);
+        observerMount();
         map.addItemManager(itemManager);
     }
 
     @Override
     public void tick(){
-        for(int i = 0; i < entities.size(); i++){
-            entities.get(i).tick();
+        for(int i = 0; i < npcs.size(); i++){
+            npcs.get(i).tick();
         }
         if(projectiles != null){
             for(int i = 0; i < projectiles.size(); i++){
@@ -94,7 +93,7 @@ public class ActiveGameState extends GameState {
     }
 
     public void playerInteract(){
-        avatar.checkInteract(map);
+        map.checkTileInteraction(avatar,avatar.getLocation(), avatar.getLocation().getAdjacent(avatar.getOrientation()));
         itemManager.interact(avatar);
     }
 
@@ -102,7 +101,27 @@ public class ActiveGameState extends GameState {
         this.player = player;
     }
 
-    public int getAvatarMovement() {
-        return player.getMovement();
+    @Override
+    public void update() {
+        for(Mount mount : mounts){
+            if(mount.getPassenger() != null){
+                map.removeCharacter(avatar);
+            }
+            else if(mount.dismounting()){
+                map.addCharacter(avatar);
+            }
+        }
+    }
+
+    @Override
+    public void remove() {
+
+    }
+
+    private void observerMount(){
+        for (int i = 0; i < mounts.size(); i++) {
+            map.addMount(mounts.get(i));
+            mounts.get(i).addObserver(this);
+        }
     }
 }

@@ -1,6 +1,7 @@
 package View.MapView;
 
 import Model.Entity.Character.Character;
+import Model.Entity.Character.Mount.Mount;
 import Model.Map.AreaEffect.AreaOfEffect;
 import Model.Map.Location;
 import Model.Map.Tile.Terrain.Terrain;
@@ -12,6 +13,7 @@ import Utilities.Settings;
 import Utilities.Visitor.TileVisitor;
 import View.EntityView.CharacterView;
 import View.EntityView.MountView;
+import View.ItemView.UsableView;
 import View.MapView.AOEView.AreaOfEffectView;
 import View.EntityView.ProjectileView;
 import View.TerrainView.*;
@@ -141,7 +143,7 @@ public class TileView extends JComponent implements TileObserver, TileVisitor, O
 
     private void renderMount(Graphics2D g2d, int centeredX, int centeredY){
         if (hasMount()){
-            mountView.setPixels(centeredX + 3, centeredY +12);
+            mountView.setPixels(centeredX + 3, centeredY-25);
             mountView.paintComponent(g2d);
         }
     }
@@ -183,8 +185,12 @@ public class TileView extends JComponent implements TileObserver, TileVisitor, O
     }
 
     public void addItemView(ItemView itemView){
-        this.itemView = itemView;
-
+        if(this.itemView != null){
+            this.itemView = new UsableView(ImageAssets.itemBag);
+        }
+        else {
+            this.itemView = itemView;
+        }
     }
 
     public void removeItemView(){
@@ -192,8 +198,11 @@ public class TileView extends JComponent implements TileObserver, TileVisitor, O
     }
 
     @Override
-    public void visitTileHasMount() {
-
+    public void visitTileHasMount(Mount mount) {
+        removeMountView();
+        if(mount != null){
+            mountView = new MountView(mount, ImageAssets.mount);
+        }
     }
 
     @Override

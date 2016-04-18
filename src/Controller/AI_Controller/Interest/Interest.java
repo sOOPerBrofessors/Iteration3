@@ -90,7 +90,7 @@ public abstract class Interest {
     // decision will be picked from a uniform picker.
     abstract public double getValue();
 
-    // Gets the individual interest type, this allows me to group them according to if they deal with entities, items, or points
+    // Gets the individual interest type, this allows me to group them according to if they deal with npcs, items, or points
     abstract public InterestType getType();
 
     public final String toString() {

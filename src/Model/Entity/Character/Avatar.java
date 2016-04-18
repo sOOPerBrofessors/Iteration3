@@ -93,14 +93,6 @@ public class Avatar extends Character {
         characterTypeVisitor.visitAvatar(this);
     }
 
-    //Player specific items
-    public void checkInteract(Map map){
-        int newX = getX() + orientation.x;
-        int newY = getY() + orientation.y;
-        //the new location doesn't matter what z position it is, it will check for the the highest tile at a point
-        map.checkTileInteraction(this, location, new Location(newX,newY,0));
-    }
-
     @Override
     public void onInteract() {
         //Do nothing on interact

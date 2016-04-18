@@ -241,9 +241,8 @@ public class Map {
         mapOfTiles[character.getX()][character.getY()].removeCharacter(character);
     }
 
-    // All about them projectiles bro
-    public void addProjectile(Projectile projectile){
-        mapOfTiles[projectile.getX()][projectile.getY()].addProjectile(projectile);
+    public void addMount(Mount mount){
+        mapOfTiles[mount.getX()][mount.getY()].addMount(mount);
     }
 
     public void addAOE(AreaOfEffect areaOfEffect, Location location){

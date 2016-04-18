@@ -15,7 +15,7 @@ public class ExploreInterest extends PointInterest {
     public void initialize(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         // TODO: Use visitor?
-        // TODO: Need a way to get the rim of this entities known tiles, so we can explore new regions!
+        // TODO: Need a way to get the rim of this npcs known tiles, so we can explore new regions!
         UniformPicker<Orientation> orientations = new UniformPicker<>();
         ArrayList<Orientation> validOrientations = memoryInterface.getNPC().getController().moveableOrientations(memoryInterface.getNPC());
 

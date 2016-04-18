@@ -63,6 +63,4 @@ public class OrientationView {
     private void setSouthEast(){
         currentDirectionImage = southEast;
     }
-
-
 }
