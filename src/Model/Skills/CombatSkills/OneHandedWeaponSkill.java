@@ -42,7 +42,7 @@ public class OneHandedWeaponSkill extends CombatSkill{
             }
         }
         else {
-            GameMessageQueue.push("Improper weapon, you should equip an THW");
+            GameMessageQueue.push("Improper weapon, you should equip an OHW");
         }
     }
 
