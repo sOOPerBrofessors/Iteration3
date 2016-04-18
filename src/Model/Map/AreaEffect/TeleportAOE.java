@@ -3,7 +3,6 @@ package Model.Map.AreaEffect;
 import Model.Entity.Character.Character;
 import Model.Map.Location;
 import Model.Map.Map;
-import Utilities.GameMessageQueue;
 import Utilities.Visitor.AOEVisitor;
 
 /**

@@ -2,9 +2,7 @@ package Model.Items;
 
 import Model.Entity.Character.Character;
 import Model.Map.MapObject;
-import Model.Model;
 import Utilities.Visitor.ItemVisitable;
-import View.MapView.MapObjectView;
 
 
 /**

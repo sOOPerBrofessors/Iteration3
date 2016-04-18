@@ -4,12 +4,9 @@ import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Model.State.GameState.ActiveGameState;
-import Utilities.GameLoaderSaver.GameSaver;
 import Utilities.Timer.ObservationTimer;
 import Utilities.Settings;
 import View.ViewUtilities.Panels.GamePanel;
-
-import java.awt.event.KeyEvent;
 
 /**
  * Created by Wimberley on 4/6/16.
@@ -17,7 +14,6 @@ import java.awt.event.KeyEvent;
 public class GamePlayController extends Controller{
 
     private ActiveGameState state;
-    private GamePanel gamePanel;
 
     public GamePlayController(ControllerManager controllerManager){
         super(controllerManager);
@@ -156,6 +152,6 @@ public class GamePlayController extends Controller{
     }
 
     public void setGamePanel(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
+        GamePanel gamePanel1 = gamePanel;
     }
 }

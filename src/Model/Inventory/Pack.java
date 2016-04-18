@@ -4,11 +4,7 @@ import Model.Entity.Character.Character;
 import Model.Items.Item;
 import Model.Items.Takeable.TakeableItem;
 import Model.Items.Takeable.Useable.Money;
-import Utilities.ErrorLevel;
-import Utilities.GameMessageQueue;
 import Utilities.ItemStuff.ItemManager;
-import Utilities.MessageHandler;
-import Utilities.PersonFilter;
 
 import java.util.ArrayList;
 

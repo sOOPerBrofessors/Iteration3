@@ -4,17 +4,11 @@ import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.NPC.NPC;
-import Model.Items.Item;
-import Model.Items.Takeable.TakeableItem;
 import Model.Map.AreaEffect.*;
-import Model.Map.Location;
 import Model.Entity.Projectile.Projectile;
-import Model.Map.AreaEffect.AreaOfEffect;
 
 import Model.Map.Map;
 import Model.Map.Tile.Terrain.Terrain;
-import Model.Items.Takeable.TakeableItem;
-import Model.Map.Location;
 import Model.State.GameState.GameState;
 import Utilities.ItemStuff.ItemManager;
 import Utilities.Visitor.*;
@@ -29,8 +23,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 
 /**
  * Created by dyeung on 4/16/16.
@@ -41,13 +33,12 @@ public class SaveVisitor implements TileVisitor, CharacterTypeVisitor {
     private  ArrayList<Element> list;
     private Document doc;
     private Map map;
-    private Avatar avatar;
     private Element mainRootElement;
     public SaveVisitor(String fileName, GameState gameState){
         this.fileNamePath = fileName;
         this.gameState = gameState;
         this.map = gameState.getMap();
-        this.avatar = gameState.getAvatar();
+        Avatar avatar = gameState.getAvatar();
         list = new ArrayList<>();
         init();
     }

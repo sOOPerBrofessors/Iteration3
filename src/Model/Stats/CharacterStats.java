@@ -1,11 +1,7 @@
 package Model.Stats;
 
-import Model.State.State;
-import Utilities.GameMessageQueue;
-import Utilities.Splats.DamageQueue;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
-import Utilities.Splats.ExperienceQueue;
 
 import java.util.ArrayList;
 

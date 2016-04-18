@@ -20,8 +20,6 @@ import javax.swing.JPanel;
  */
 public class ViewManager implements Subject {
 
-    private  boolean alreadystarted;
-
     // controller manager used to issue commands to change current controller
     private ControllerManager controllerManager;
 
@@ -46,7 +44,7 @@ public class ViewManager implements Subject {
         gamePanel = new GamePanel(this);
         activePanel = introPanel;
         //inventoryView = new InventoryView()
-        alreadystarted = false;
+        boolean alreadystarted = false;
     }
 
     public void stopThread(){

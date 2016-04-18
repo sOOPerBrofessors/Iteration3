@@ -2,7 +2,6 @@ package Model.Inventory;
 
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
-import Utilities.GameMessageQueue;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
 

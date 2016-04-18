@@ -1,7 +1,6 @@
 package Model.Entity.Character;
 
 import Model.Actions.Attack;
-import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Entity;
 import Model.Faction.Faction;
@@ -22,7 +21,6 @@ import Utilities.Splats.DamageSplat;
 import Utilities.Splats.ExperienceQueue;
 import Utilities.Splats.ExperienceSplat;
 import Utilities.Timer.CombatTimer;
-import Utilities.GameMessageQueue;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;

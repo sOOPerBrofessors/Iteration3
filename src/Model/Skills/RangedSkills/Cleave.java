@@ -4,15 +4,11 @@ import Model.Entity.Character.Avatar;
 import Model.Map.Map;
 import Model.State.GameState.ActiveGameState;
 import Utilities.InfluenceAreas.Planer.AngularEffect;
-import Utilities.InfluenceAreas.Planer.RadialEffect;
-import Utilities.Timer.EarthShakeTimer;
-import View.SkillView.EarthShakeView;
 
 /**
  * Created by AndyZhu on 18/4/2016.
  */
 public class Cleave extends RangedSkill {
-    private int radius;
     public Cleave(Avatar avatar) {
         super(avatar);
         name = "Cleave";
@@ -32,7 +28,7 @@ public class Cleave extends RangedSkill {
 
     public void cleave(Map map) {
         calculateDamage();
-        radius = level + 2 > 5 ? 5 : level + 2;
+        int radius = level + 2 > 5 ? 5 : level + 2;
         affectedArea = AngularEffect.getAngularArea(avatar.getLocation(), avatar.getOrientation(), radius);
         for (int i = 1; i < affectedArea.size(); i++) {
             curLocation = affectedArea.get(i);

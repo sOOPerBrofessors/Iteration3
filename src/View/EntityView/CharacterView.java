@@ -2,10 +2,8 @@ package View.EntityView;
 
 import Model.Entity.Character.Character;
 import Model.Map.Orientation;
-import Utilities.Splats.DamageQueue;
 import Utilities.Settings;
 import Utilities.Splats.DamageSplat;
-import Utilities.Splats.ExperienceQueue;
 import Utilities.Splats.ExperienceSplat;
 import Utilities.Visitor.OccupationVisitor;
 import View.EntityView.AvatarViewFactory.OccupationViewFactory;

@@ -1,9 +1,6 @@
 package Utilities.Timer;
 
-import Model.Entity.Character.Avatar;
-import Model.Skills.RangedSkills.ObservationInfo;
 import Model.Skills.SkillsWithDuration.Creep;
-import View.SkillView.ObservedNPC;
 
 /**
  * Created by AndyZhu on 17/4/2016.

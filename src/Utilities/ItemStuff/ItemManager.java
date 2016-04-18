@@ -5,7 +5,6 @@ import Model.Items.Interactable.Interactable;
 import Model.Items.Item;
 import Model.Items.Takeable.TakeableItem;
 import Model.Map.Location;
-import Model.Map.Orientation;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
 import View.ItemView.InteractableView;

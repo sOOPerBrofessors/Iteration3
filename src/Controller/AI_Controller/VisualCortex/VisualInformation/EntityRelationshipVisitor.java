@@ -5,9 +5,7 @@ import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Utilities.AIStuff.Relationship;
 import Utilities.AIStuff.RelationshipList;
-import Utilities.ErrorLevel;
 import Utilities.MathUtilities;
-import Utilities.MessageHandler;
 import Visitors.VisualInformationVisitor;
 
 import java.util.Random;

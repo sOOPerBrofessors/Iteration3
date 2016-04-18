@@ -1,12 +1,8 @@
 package Utilities.GameLoaderSaver.Load;
 
 import Model.Entity.Character.Avatar;
-import Model.Entity.Character.Character;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Character.Occupation.Occupation;
-import Model.Entity.Character.Occupation.Smasher;
-import Model.Entity.Character.Occupation.Sneak;
-import Model.Entity.Character.Occupation.Summoner;
 import Model.Map.Location;
 import Model.Map.Orientation;
 import org.w3c.dom.Element;

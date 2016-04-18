@@ -6,12 +6,8 @@ import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.NPC.NPC;
 import Model.Map.AreaEffect.*;
 
-import Model.Map.AreaEffect.TeleportAOE;
-import Model.Map.AreaEffect.Trap;
-
 import Model.Map.Location;
 import Model.Map.Map;
-import Model.Map.Orientation;
 import Model.State.GameState.ActiveGameState;
 import Model.State.GameState.MountGameState;
 import Model.State.GameState.PausedGameState;
@@ -27,7 +23,6 @@ import Utilities.MovementCalculations.ViewCalculations;
 import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by dyeung on 4/6/16.
@@ -40,7 +35,6 @@ public class GameLoader {
     private PausedGameState pausedGameState;
     private MountGameState mountGameState;
     private ArrayList<NPC> entities;
-    private ItemManager itemManager;
     private ArrayList<Mount> mounts;
 
     //Needs a constructor in order to create what type of occupation it is
@@ -52,7 +46,7 @@ public class GameLoader {
         initMap();
         ItemFactory.initHashMaps();
         initNPC();
-        itemManager = new ItemManager(ItemFactory.getTakableItems(), ItemFactory.getInteractableItems(), ItemFactory.getAllItemViews(), ItemFactory.getMapItemViews());
+        ItemManager itemManager = new ItemManager(ItemFactory.getTakableItems(), ItemFactory.getInteractableItems(), ItemFactory.getAllItemViews(), ItemFactory.getMapItemViews());
         initAreaEffect();
         activeGameState = new ActiveGameState(map, player, entities, mounts, itemManager);
         pausedGameState = new PausedGameState(map, player, entities, mounts, itemManager);

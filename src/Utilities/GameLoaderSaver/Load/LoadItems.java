@@ -1,15 +1,11 @@
 package Utilities.GameLoaderSaver.Load;
 
-import Model.Items.Item;
 import Model.Items.Takeable.Quest;
-import Model.Items.Takeable.Useable.Money;
 import Model.Map.Location;
 import Utilities.ItemStuff.ItemFactory.ItemFactory;
-import View.ItemView.ItemView;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**

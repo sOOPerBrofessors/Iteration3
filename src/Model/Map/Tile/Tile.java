@@ -2,7 +2,6 @@ package Model.Map.Tile;
 
 import Model.Entity.Character.Character;
 import Model.Entity.Character.Mount.Mount;
-import Model.Entity.Entity;
 import Model.Map.AreaEffect.AreaOfEffect;
 import Model.Map.Map;
 import Model.Map.Tile.Terrain.Terrain;

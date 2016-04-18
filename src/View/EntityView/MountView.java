@@ -1,7 +1,6 @@
 package View.EntityView;
 
 import Model.Entity.Character.Mount.Mount;
-import Utilities.Observers.EntityObserver;
 import Utilities.Settings;
 import View.MapView.MapObjectView;
 
@@ -12,7 +11,6 @@ import java.awt.*;
  */
 public class MountView extends MapObjectView{
 
-    private Mount mount;
     private Image image;
     private int viewWidth;
     private int viewHeight;
@@ -21,7 +19,7 @@ public class MountView extends MapObjectView{
 
     public MountView(Mount mount, Image image){
         this.image = image;
-        this.mount = mount;
+        Mount mount1 = mount;
         viewHeight = Settings.MOUNTHEIGHT;
         viewWidth = Settings.MOUNTWIDTH;
     }

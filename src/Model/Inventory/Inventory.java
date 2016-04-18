@@ -1,19 +1,13 @@
 package Model.Inventory;
 
-import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Items.Takeable.Equippable.Armor;
-import Model.Items.Takeable.Equippable.EquippableItem;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
 import Model.Items.Takeable.TakeableItem;
 import Model.Items.Takeable.Useable.Money;
-import Utilities.ErrorLevel;
-import Utilities.GameMessageQueue;
 import Utilities.ItemStuff.ItemManager;
-import Utilities.MessageHandler;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
-import Utilities.PersonFilter;
 
 import java.util.ArrayList;
 

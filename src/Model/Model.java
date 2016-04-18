@@ -13,7 +13,6 @@ public class Model implements Runnable{
     private StateManager stateManager;
 
     private final int TICK_RATE = 60 ;
-    private final int TARGET_TIME = 1000 / TICK_RATE;
     private volatile boolean running = true;
 
 
@@ -53,6 +52,7 @@ public class Model implements Runnable{
 
             delta = System.nanoTime() - lastTime;
 
+            int TARGET_TIME = 1000 / TICK_RATE;
             waitTime = TARGET_TIME - delta / 1000000;
 
             if (waitTime < TARGET_TIME) {

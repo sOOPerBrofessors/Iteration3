@@ -1,9 +1,6 @@
 package Model.Items.Takeable.Equippable.Weapon;
 
 import Model.Items.ItemStrategy.EquippableStrategy.EquippableStrategy;
-import Model.Items.ItemStrategy.EquippableStrategy.SmasherWeaponStrategy;
-import Model.Items.ItemStrategy.EquippableStrategy.SneakWeaponStrategy;
-import Model.Items.ItemStrategy.EquippableStrategy.SummonerWeaponStrategy;
 import Model.Items.Takeable.Equippable.EquippableItem;
 
 /**

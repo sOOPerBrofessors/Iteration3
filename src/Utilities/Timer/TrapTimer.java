@@ -1,9 +1,6 @@
 package Utilities.Timer;
 
 import Model.Entity.Character.Character;
-import Model.Skills.RangedSkills.ObservationInfo;
-import Utilities.GameMessageQueue;
-import View.SkillView.ObservedNPC;
 
 /**
  * Created by AndyZhu on 17/4/2016.

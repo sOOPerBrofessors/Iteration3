@@ -1,7 +1,6 @@
 package Utilities.Timer;
 
 import Model.Entity.Character.Character;
-import Model.Skills.SkillsWithDuration.Boon;
 import Utilities.GameMessageQueue;
 
 /**

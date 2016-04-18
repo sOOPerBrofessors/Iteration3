@@ -2,8 +2,6 @@ package Model.Map.AreaEffect;
 
 import Model.Entity.Character.Character;
 import Utilities.Visitor.AOEVisitable;
-import Utilities.Visitor.AOEVisitor;
-import View.MapView.AOEView.AreaOfEffectView;
 
 /**
  * Created by dyeung on 4/14/16.

@@ -2,7 +2,6 @@ package Model.Map;
 
 import Model.Entity.Character.Character;
 import Model.Entity.Character.Mount.Mount;
-import Model.Entity.Entity;
 import Model.Entity.Projectile.Projectile;
 import Model.Map.Tile.*;
 import Utilities.Visitor.*;

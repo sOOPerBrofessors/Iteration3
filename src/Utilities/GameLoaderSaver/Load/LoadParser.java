@@ -1,25 +1,17 @@
 package Utilities.GameLoaderSaver.Load;
 
 import Model.Entity.Character.Avatar;
-import Model.Entity.Character.Character;
 import Model.Entity.Character.NPC.NPC;
-import Model.Entity.Character.Occupation.Occupation;
 import Model.Items.Item;
-import Model.Items.Takeable.TakeableItem;
-import Model.Map.Location;
-import Model.Map.Map;
 import Utilities.IOUtilities;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by dyeung on 4/17/16.

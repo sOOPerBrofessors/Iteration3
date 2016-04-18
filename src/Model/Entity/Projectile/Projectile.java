@@ -10,8 +10,6 @@ import Model.Map.Tile.Terrain.Terrain;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
-import Utilities.Tickable;
-import View.EntityView.ProjectileView;
 
 /**
  * Created by dyeung on 4/16/16.

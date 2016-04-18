@@ -9,8 +9,6 @@ import View.ViewUtilities.Panels.GamePanel;
 
 public class TradeController extends Controller { //NOT VERY OOPY
 
-    private static TradeView tradeView;
-
     public TradeController(ControllerManager controllerManager){
         super(controllerManager);
         initCommands();
@@ -22,7 +20,9 @@ public class TradeController extends Controller { //NOT VERY OOPY
             commands.get(key).execute();
         }
     }
-    public static void setTradeView(GamePanel gamePanel){ tradeView = gamePanel.getTradeView(); }
+    public static void setTradeView(GamePanel gamePanel){
+        TradeView tradeView = gamePanel.getTradeView();
+    }
 
     private void initCommands(){
 

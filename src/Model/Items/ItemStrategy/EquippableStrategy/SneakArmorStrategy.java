@@ -1,7 +1,6 @@
 package Model.Items.ItemStrategy.EquippableStrategy;
 
 import Model.Entity.Character.Character;
-import Model.Items.Item;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.TakeableItem;
 

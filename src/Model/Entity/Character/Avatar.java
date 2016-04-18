@@ -12,7 +12,6 @@ import Model.Items.Takeable.TakeableItem;
 import Model.Items.Takeable.Useable.Money;
 import Model.Map.Location;
 import Model.Skills.Skill;
-import Model.Map.Map;
 import Utilities.GameMessageQueue;
 import Utilities.ItemStuff.ItemManager;
 import Utilities.Settings;

@@ -1,8 +1,6 @@
 package Model.Items.ItemStrategy;
 
-import Model.Entity.Character.Character;
 import Model.Inventory.Inventory;
-import Model.Items.Item;
 
 /**
  * Created by broskj on 4/6/16.

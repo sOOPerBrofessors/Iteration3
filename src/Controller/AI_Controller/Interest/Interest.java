@@ -3,7 +3,6 @@ package Controller.AI_Controller.Interest;
 import Controller.AI_Controller.FrontalLobe.FrontalLobeMemoryInterface;
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
-import Model.Entity.Entity;
 import Model.Map.Orientation;
 
 import java.util.ArrayList;

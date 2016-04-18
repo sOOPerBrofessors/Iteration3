@@ -1,15 +1,12 @@
 package View.MenuViews;
 
 import Controller.ControllerUtility.Command;
-import Model.Entity.Character.Character;
-import Utilities.Observers.Observer;
 import Utilities.Settings;
 import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
-import java.util.Set;
 
 /**
  * Created by sgl on 4/16/16.

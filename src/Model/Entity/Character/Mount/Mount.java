@@ -4,13 +4,10 @@ import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Map.Location;
 import Model.Map.Tile.Terrain.Terrain;
-import Model.State.GameState.ActiveGameState;
 import Model.Stats.EntityStats;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
-import Utilities.Tickable;
-import Utilities.Visitor.CharacterVisitor;
 
 /**
  * Created by Wimberley on 4/6/16.

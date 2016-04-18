@@ -2,7 +2,6 @@ package Controller.AI_Controller.Interest.ItemInterests;
 
 import Controller.AI_Controller.Interest.Interest;
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
-import Model.Entity.Entity;
 import Model.Items.Item;
 
 /**

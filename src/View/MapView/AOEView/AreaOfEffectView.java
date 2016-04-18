@@ -15,7 +15,6 @@ public class AreaOfEffectView extends MapObjectView implements AOEVisitor{
     private Image image;
     private int xPixels;
     private int yPixels;
-    private final int viewWidth = 30;
     private final int viewHeight = 30;
     private AreaOfEffect areaOfEffect;
     public AreaOfEffectView(AreaOfEffect areaOfEffect){
@@ -30,7 +29,8 @@ public class AreaOfEffectView extends MapObjectView implements AOEVisitor{
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         //for now paint a graphics 2d
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, areaOfEffect.getAlpha()));
-        g2d.drawImage(image,xPixels*Settings.SCALEFACTOR,yPixels*Settings.SCALEFACTOR,viewWidth*Settings.SCALEFACTOR,viewHeight* Settings.SCALEFACTOR,null);
+        int viewWidth = 30;
+        g2d.drawImage(image,xPixels*Settings.SCALEFACTOR,yPixels*Settings.SCALEFACTOR, viewWidth *Settings.SCALEFACTOR,viewHeight* Settings.SCALEFACTOR,null);
 
     }
 

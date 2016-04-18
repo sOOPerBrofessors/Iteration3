@@ -14,7 +14,6 @@ import Model.Entity.Character.Occupation.Smasher;
 import Model.Faction.Faction;
 import Model.Faction.FactionFactory;
 import Model.Inventory.Inventory;
-import Model.Items.Takeable.Useable.Money;
 import Model.Map.Location;
 import Model.Map.Map;
 import Utilities.Navigation.Navigation;

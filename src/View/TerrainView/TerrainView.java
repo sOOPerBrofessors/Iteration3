@@ -16,9 +16,9 @@ public class TerrainView implements TerrainVisitor{
     protected int yPixel;
     protected int tileWidth = Settings.TILEWIDTH;
     protected int tileHeight = Settings.TILEHEIGHT;
-    private Terrain terrain;
+
     public TerrainView(Terrain terrain){
-        this.terrain = terrain;
+        Terrain terrain1 = terrain;
         //
         terrain.acceptTerrainVisitor(this);
 

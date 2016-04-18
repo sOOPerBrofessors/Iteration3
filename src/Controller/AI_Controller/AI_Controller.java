@@ -1,8 +1,6 @@
 package Controller.AI_Controller;
 
-import Controller.AI_Controller.VisualCortex.VisualCortex;
 import Controller.AI_Controller.VisualCortex.VisualCortexMemoryInterface;
-import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Entity;
 import Model.Map.Location;
@@ -16,14 +14,13 @@ import Utilities.MessageHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  * Created by aseber on 4/9/16.
  */
 public class AI_Controller {
 
-    Map map;
+    private Map map;
 
     public void setMap(Map map) {
 
@@ -50,7 +47,7 @@ public class AI_Controller {
 
     }
 
-    public boolean canMove(Entity entity, Orientation orientation) {
+    private boolean canMove(Entity entity, Orientation orientation) {
 
         return entity.canMove(map, orientation);
 

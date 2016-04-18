@@ -2,12 +2,10 @@ package View.MenuViews;
 
 import Model.Entity.Character.Avatar;
 import Model.Skills.Skill;
-import Utilities.Observers.Observer;
 import Utilities.Settings;
 import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 /**

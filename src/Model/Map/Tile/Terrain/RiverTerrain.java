@@ -7,7 +7,6 @@ import Model.Map.Map;
 import Model.Map.Orientation;
 import Utilities.Timer.TimedEvent;
 import Utilities.Visitor.TerrainVisitor;
-import com.sun.org.apache.xpath.internal.operations.Or;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,14 +17,12 @@ import java.awt.event.ActionListener;
 public class RiverTerrain extends WaterTerrain {
     private int flowRate;
     private Orientation direction;
-    private int delay;
-    private boolean canMove;
 
     public RiverTerrain(Orientation orientation){
         flowRate = 1000;
         this.direction = orientation;
-        delay = 1000;
-        canMove = false;
+        int delay = 1000;
+        boolean canMove = false;
     }
 
     private boolean movePlayer(Map map, Character character){

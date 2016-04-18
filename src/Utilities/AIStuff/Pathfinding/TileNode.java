@@ -2,7 +2,6 @@ package Utilities.AIStuff.Pathfinding;
 
 import Model.Map.Location;
 import Model.Map.Map;
-import Model.Map.Tile.Tile;
 
 import java.util.HashSet;
 

@@ -5,9 +5,7 @@ import Controller.AI_Controller.Interest.Interest;
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
 import Model.Entity.Character.NPC.NPC;
-import Model.Map.Location;
 import Model.Map.Orientation;
-import Utilities.MathUtilities;
 
 /**
  * Created by aseber on 4/6/16.

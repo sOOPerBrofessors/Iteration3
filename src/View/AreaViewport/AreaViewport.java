@@ -22,7 +22,6 @@ public class AreaViewport extends JPanel{
     //TODO: Change this to map
     //View objects
     private MapView mapView;
-    private Map map;
 
     //private CharacterView avatarView;
     private CameraView cameraView;
@@ -44,7 +43,7 @@ public class AreaViewport extends JPanel{
         observedNPC = new ObservedNPC();
         earthShakeView = new EarthShakeView();
         arcaneExplosionView = new ArcaneExplosionView();
-        map = gameState.getMap();
+        Map map = gameState.getMap();
         MapViewFactory mapViewFactory = new MapViewFactory();
         mapView = mapViewFactory.createMapViewObjects(map);
         mapView.setItemManager(gameState.getItemManager());

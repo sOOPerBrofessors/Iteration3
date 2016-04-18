@@ -4,7 +4,6 @@ import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Visitors.VisualInformationVisitor;
 
-import java.awt.*;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
