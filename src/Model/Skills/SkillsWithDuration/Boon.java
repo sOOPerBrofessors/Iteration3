@@ -28,6 +28,8 @@ public class Boon extends SkillWithDuration{
         if (allConditionChecked()) {
             if (!booning) {
                 boon();
+                enforceManaCost();
+                setTimePerformed();
             }
         }
     }
