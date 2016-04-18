@@ -5,6 +5,8 @@ package View.MenuViews;
  */
 public abstract class VertPanel extends ViewPanel {
 
+    protected int ySel,yMax;
     public abstract void selectUp();
     public abstract void selectDown();
+    public abstract void select();
 }
