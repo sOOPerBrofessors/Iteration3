@@ -8,6 +8,7 @@ import Controller.AI_Controller.Memory.Memory;
 import Controller.AI_Controller.Personality.Personality;
 import Controller.AI_Controller.VisualCortex.VisualInformation.EntityRelationshipVisitor;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
+import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Utilities.*;
 import Utilities.AIStuff.RelationshipList;
@@ -46,7 +47,7 @@ public class FrontalLobe implements Tickable {
         VisualInformation visualInformation = memory.getVisualInformation();
 
         RelationshipList<Entity> relationshipList = memory.getRelationships();
-        EntityRelationshipVisitor visitor = new EntityRelationshipVisitor(relationshipList);
+        EntityRelationshipVisitor visitor = new EntityRelationshipVisitor(relationshipList, memory);
         visualInformation.accept(visitor);
 
         relationshipList = visitor.getRelationshipList();
@@ -91,7 +92,7 @@ public class FrontalLobe implements Tickable {
 
         for (Map.Entry<Interest, Double> entry : entityInterests.entrySet()) {
 
-            for (Map.Entry<Entity, Double> entry2 : memory.getVisualInformation().getEntityInformation().entrySet()) {
+            for (Map.Entry<Character, Double> entry2 : memory.getVisualInformation().getEntityInformation().entrySet()) {
 
                 EntityInterest interest = (EntityInterest) entry.getKey();
                 interest.setTarget(entry2.getKey());

@@ -2,6 +2,7 @@ package Controller.AI_Controller.Interest.EntityInterests;
 
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
+import Model.Entity.Entity;
 import Model.Map.Location;
 
 /**
@@ -13,7 +14,7 @@ public class AttackInterest extends EntityInterest {
 
     public void initialize(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
-        update(visualInformation, memoryInterface);
+        addToMovementQueue(computePathToTarget(memoryInterface));
 
     }
 
@@ -42,7 +43,8 @@ public class AttackInterest extends EntityInterest {
             // TODO: Rebuild the navigation queue when the old locaiton does not equal the new location
             if (!locationOfEnemy.equals(newLocation)) {
 
-
+                resetMovementQueue();
+                addToMovementQueue(computePathToTarget(memoryInterface));
 
             }
 
@@ -61,6 +63,12 @@ public class AttackInterest extends EntityInterest {
     public double getValue() {
 
         return 100;
+
+    }
+
+    public void onEntityTouch(MotorCortexMemoryInterface memoryInterface) {
+
+        memoryInterface.getNPC().getController().attack(memoryInterface.getNPC());
 
     }
 
