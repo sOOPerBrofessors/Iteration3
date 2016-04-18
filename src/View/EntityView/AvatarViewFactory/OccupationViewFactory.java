@@ -22,7 +22,7 @@ public class OccupationViewFactory {
         return new OrientationView(orientation, ImageAssets.sneakN, ImageAssets.sneakNW, ImageAssets.sneakNE,ImageAssets.sneakS,ImageAssets.sneakSE,ImageAssets.sneakSW);
     }
     public static OrientationView createPetView(Orientation orientation){
-        return new OrientationView(orientation, ImageAssets.sneakN, ImageAssets.sneakNW, ImageAssets.sneakNE,ImageAssets.sneakS,ImageAssets.sneakSE,ImageAssets.sneakSW);
+        return new OrientationView(orientation, ImageAssets.hellCatN, ImageAssets.hellCatNW, ImageAssets.hellCatNE,ImageAssets.hellCatS,ImageAssets.hellCatSE,ImageAssets.hellCatSW);
     }
 
 

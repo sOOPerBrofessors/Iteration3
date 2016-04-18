@@ -20,6 +20,8 @@ public class ImageAssets {
     private static final int summonerHeight = Settings.ENTITYHEIGHT;
     private static final int enemyWidth = 44;
     private static final int enemyHeight = Settings.ENTITYHEIGHT;
+    private static final int catWidth = 328;
+    private static final int catHeight = 350;
     private static final int terrainWidth = 96;
     private static final int terrainHeight = 72;
 
@@ -29,12 +31,11 @@ public class ImageAssets {
     public static BufferedImage shopKeeperSW, shopKeeperNW, shopKeeperN, shopKeeperNE, shopKeeperSE, shopKeeperS;
     public static BufferedImage enemyS, enemySW, enemyNW, enemyN, enemyNE, enemySE;
     public static BufferedImage crabS, crabSW, crabNW, crabN, crabNE, crabSE;
-    public static BufferedImage catS, catSW, catNW, catN, catNE, catSE;
+    public static BufferedImage hellCatN, hellCatNW, hellCatSW, hellCatS, hellCatSE, hellCatNE;
     public static BufferedImage grass, grass2, dirt, water;
     public static BufferedImage invSlot, eqSlot, select;
     public static BufferedImage hud, messageBox, interfaceBorder;
     public static ArrayList<BufferedImage> fireballs = new ArrayList<>();
-    public static BufferedImage hellcatN, hellcatNW, hellcatSW, hellcatS, hellcatSE, hellcatNE;
 
     // items
     public static BufferedImage healthPotion;
@@ -74,14 +75,6 @@ public class ImageAssets {
         SpriteSheet fireball90Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall90.png"));
         SpriteSheet fireball180Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall180.png"));
         SpriteSheet fireball270Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall270.png"));
-
-        // hellcat!
-        SpriteSheet hellcatNsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatN.png"));
-        SpriteSheet hellcatNWsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatNW.png"));
-        SpriteSheet hellcatSWsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatSW.png"));
-        SpriteSheet hellcatSsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatS.png"));
-        SpriteSheet hellcatSEsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatSE.png"));
-        SpriteSheet hellcatNEsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatNE.png"));
 
         smasherSW = smasherSheet.cropSheet(0,0, smasherWidth, smasherHeight);
         smasherNW = smasherSheet.cropSheet(smasherWidth*1, 0, smasherWidth, smasherHeight);
@@ -127,7 +120,12 @@ public class ImageAssets {
         dirt = terrainSheet.cropSheet(terrainWidth,0,terrainWidth,terrainHeight);
         water = waterSheet.cropSheet(0,0,terrainWidth,terrainHeight);
 
-
+        hellCatNW = hellCatSheet.cropSheet(catWidth*0, 0, catWidth, catHeight);
+        hellCatNE = hellCatSheet.cropSheet(catWidth*1, 0, catWidth, catHeight);
+        hellCatN = hellCatSheet.cropSheet(catWidth*2, 0, catWidth, catHeight);
+        hellCatS = hellCatSheet.cropSheet(catWidth*3, 0, catWidth, catHeight);
+        hellCatSE = hellCatSheet.cropSheet(catWidth*4, 0, catWidth, catHeight);
+        hellCatSW = hellCatSheet.cropSheet(catWidth*5, 0, catWidth, catHeight);
 
         invSlot = invButtonsSheet.cropSheet(0,0,60,60);
         eqSlot = invButtonsSheet.cropSheet(60,0,60,60);
@@ -153,11 +151,5 @@ public class ImageAssets {
         fireballs.add(fireball180Sheet.cropSheet(0,0,Settings.PROJECTILEWIDTH,Settings.PROJECTILEHEIGHT));
         fireballs.add(fireball270Sheet.cropSheet(0,0,Settings.PROJECTILEWIDTH,Settings.PROJECTILEHEIGHT));
 
-        hellcatN = hellcatNsheet.cropSheet(0,0,328,350);
-        hellcatNW = hellcatNWsheet.cropSheet(0,0,462,428);
-        hellcatSW = hellcatSWsheet.cropSheet(0,0,579,446);
-        hellcatS = hellcatSsheet.cropSheet(0,0,350,437);
-        hellcatSE = hellcatSEsheet.cropSheet(0,0,478,355);
-        hellcatNE = hellcatNEsheet.cropSheet(0,0,351,447);
     }
 }
