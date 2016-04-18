@@ -2,6 +2,7 @@ package Model.State;
 
 import Controller.ControllerManager;
 import Model.State.GameState.ActiveGameState;
+import Model.State.GameState.GameState;
 import Model.State.GameState.PausedGameState;
 import Utilities.Tickable;
 import Model.Model;
@@ -53,5 +54,9 @@ public class StateManager implements Tickable {
     @Override
     public void tick() {
         activeState.tick();
+    }
+
+    public GameState getGameState(){
+        return activeGameState;
     }
 }

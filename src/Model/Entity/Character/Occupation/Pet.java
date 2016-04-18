@@ -21,6 +21,11 @@ public class Pet extends Occupation {
         return CharacterStats.makePetStats();
     } // end initStats
 
+    @Override
+    public String toString() {
+        return "Pet";
+    }
+
     public ArrayList<Skill> getSkillList(Avatar avatar) {
         skillList.add(new BindWounds(avatar));
         skillList.add(new Observation(avatar));

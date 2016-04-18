@@ -44,6 +44,11 @@ public class Smasher extends Occupation {
         occupationViewVisitor.visitSmasher(orientation);
     }
 
+    @Override
+    public String toString() {
+        return "smasher";
+    }
+
     public ArrayList<Skill> getSkillList(Avatar avatar) {
         skillList.add(new BindWounds(avatar));
         skillList.add(new Observation(avatar));

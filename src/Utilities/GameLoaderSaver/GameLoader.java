@@ -9,9 +9,11 @@ import Model.Map.Map;
 import Model.Map.Orientation;
 import Model.State.GameState.ActiveGameState;
 import Model.State.GameState.PausedGameState;
+import Model.State.StateManager;
 import Utilities.AIStuff.NPCFactory;
 import Utilities.ErrorLevel;
 import Utilities.GameFactory.MapFactory;
+import Utilities.GameLoaderSaver.Load.LoadParser;
 import Utilities.ItemStuff.ItemFactory.ItemFactory;
 import Utilities.ItemStuff.ItemManager;
 import Utilities.MessageHandler;
@@ -19,6 +21,7 @@ import Utilities.MovementCalculations.ViewCalculations;
 import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by dyeung on 4/6/16.
@@ -31,25 +34,39 @@ public class GameLoader {
     private PausedGameState pausedGameState;
     private ArrayList<NPC> entities;
     private ItemManager itemManager;
-
     //Needs a constructor in order to create what type of occupation it is
-    public GameLoader(Avatar player) {
+    public GameLoader(Avatar player, StateManager stateManager) {
         ImageAssets.init();
         ViewCalculations.initPixels();
         entities = new ArrayList<>();
         avatar = player;
         initMap();
-        initPlayer();
-        initItems();
+        ItemFactory.initHashMaps();
         initNPC();
         itemManager = new ItemManager(ItemFactory.getTakableItems(), ItemFactory.getInteractableItems(), ItemFactory.getAllItemViews(), ItemFactory.getMapItemViews());
-        initAreaEffect();
         activeGameState = new ActiveGameState(map, player, entities, itemManager);
         pausedGameState = new PausedGameState(map, player, entities, itemManager);
+        stateManager.setActiveGameState(activeGameState);
+        stateManager.setPausedGameState(pausedGameState);
+    }
+    public void loadGame(){
+        addPlayerToMap(); //load game is done earlier
+        //loadItems();
+        initItems();
+        initAreaEffect();
+    }
+    public void createNewGame(){
+        addPlayerToMap();
+        initItems();
+        initAreaEffect();
     }
 
+    private void loadItems(){
+        LoadParser loadParser = new LoadParser();
+        loadParser.loadItems();
+    }
     //Map has to contain an avatar (might be unnecessary in the constructor though)
-    public void initMap() {
+    private void initMap() {
         MessageHandler.println("GameLoader: Loading Map and Avatar and ActiveGameState", ErrorLevel.NOTICE);
         int maxRow = 15;
         int maxCol = 15;
@@ -64,7 +81,7 @@ public class GameLoader {
         ItemFactory.init(map);
     }
 
-    private void initPlayer() {
+    private void addPlayerToMap() {
         map.addCharacter(avatar); //(This doesn't have to worry about 3d things)
     }
 

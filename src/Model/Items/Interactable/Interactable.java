@@ -13,8 +13,8 @@ public abstract class Interactable extends Item {
 
     protected boolean success;
 
-    protected Interactable(InteractableStrategy s) {
-        super();
+    protected Interactable(InteractableStrategy s, String name) {
+        super(name);
         this.s = s;
     } // end protected constructor
 
