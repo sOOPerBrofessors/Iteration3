@@ -5,11 +5,12 @@ package Utilities;
  */
 public enum ErrorLevel {
 
-    NOTICE(1, "Notice"), // Trivial things to print out, e.g. just letting us know something was loaded
-    WARNING(2, "Warning"), // A possible small error
-    ERROR(4, "Error"), // A large game error, however not game breaking
-    CRITICAL(8, "Critical Error"), // A critical error that usually results in a crash
-    NONE(16, "None"); // Not recommended to use unless you want no messages to show up
+    DEV(1, "Dev"),
+    NOTICE(2, "Notice"), // Trivial things to print out, e.g. just letting us know something was loaded
+    WARNING(4, "Warning"), // A possible small error
+    ERROR(8, "Error"), // A large game error, however not game breaking
+    CRITICAL(16, "Critical Error"), // A critical error that usually results in a crash
+    NONE(32, "None"); // Not recommended to use unless you want no messages to show up
 
     private int level;
     private String name;

@@ -7,7 +7,7 @@ import Model.Map.Map;
 import Model.Map.Orientation;
 import Model.Map.Tile.Tile;
 import Utilities.GameMessageQueue;
-import Utilities.InfluenceAreas.Linear.LinearEffect;
+import Utilities.InfluenceAreas.Volumetric.PrismEffect;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -36,7 +36,7 @@ public class Observation extends RangedSkill{
     }
 
     public ObservationInfo execute(Map map, Orientation orientation) {
-        if (checkAll()) {
+        if (allConditionChecked()) {
             enforceManaCost();
             setTimePerformed();
             GameMessageQueue.push(name + " Success!");
@@ -51,7 +51,7 @@ public class Observation extends RangedSkill{
     }
 
     private ObservationInfo performObservation(Map map, Orientation orientation) {
-        affectedArea = LinearEffect.getLinearSameLevel(avatar.getLocation(), orientation, level);
+        affectedArea = PrismEffect.getPrismVolumeFullHeight(avatar.getLocation(), level);
 
         for (int i = 1; i < affectedArea.size(); i++) {
             Location location = affectedArea.get(i);

@@ -31,7 +31,7 @@ public class ActiveGameState extends GameState {
     @Override
     public void tick(){
         for(int i = 0; i < entities.size(); i++){
-            //entities.get(i).tick();
+            entities.get(i).tick();
         }
         if(projectiles != null){
             for(int i = 0; i < projectiles.size(); i++){

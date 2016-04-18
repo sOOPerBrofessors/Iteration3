@@ -20,6 +20,7 @@ public class VisualCortex implements Tickable {
 
         VisualInformation newVisualInformation = new VisualInformation();
 
+        // TODO: Need to add all entities seen by the current entity here
         // Need to get area around entity, then add all entities/etc to their respective hashmaps
 
         memory.setVisualInformation(newVisualInformation);

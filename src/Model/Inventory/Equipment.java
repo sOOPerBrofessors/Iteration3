@@ -43,19 +43,25 @@ public class Equipment implements Subject{
     } // end equipArmor
 
     public Weapon unequipWeapon() {
-        Weapon currentWeapon = this.weapon;
-        this.weapon = null;
-        GameMessageQueue.push("You unequipped your weapon.");
-        alert();
-        return currentWeapon;
+        if (this.weapon!=null){ //optimization, needs check for GameMessageQueue regardless
+            Weapon currentWeapon = this.weapon;
+            this.weapon = null;
+            GameMessageQueue.push("You unequipped your weapon.");
+            alert();
+            return currentWeapon;
+        }
+        return null;
     } // end unequipWeapon
 
     public Armor unequipArmor() {
-        Armor currentArmor = this.armor;
-        this.armor = null;
-        GameMessageQueue.push("You unequipped your armor.");
-        alert();
-        return currentArmor;
+        if (this.armor!=null) { //optimization, needs check for GameMessageQueue regardless
+            Armor currentArmor = this.armor;
+            this.armor = null;
+            GameMessageQueue.push("You unequipped your armor.");
+            alert();
+            return currentArmor;
+        }
+        return null;
     } // end unequipArmor
 
     public int getArmorValue() { return armor != null ? armor.getArmorValue() : 0; }

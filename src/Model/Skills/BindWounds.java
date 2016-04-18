@@ -20,7 +20,7 @@ public class BindWounds extends Skill{
 
     @Override
     public void execute(Map map) {
-        if (checkAll()) {
+        if (allConditionChecked()) {
             performBindWounds();
 
             enforceManaCost();

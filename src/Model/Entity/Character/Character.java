@@ -41,6 +41,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     private CombatTimer combatTimer;
     private int delay;
     private boolean canMove;
+    private float alpha = 1f;
 
     protected Character(Occupation o, Location location) {
         super(Navigation.makeCharNav(), location);
@@ -154,6 +155,12 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         alert();
     }
 
+    public void defensiveRatingEffect (int amount) {
+        stats.defensiveRatingEffect(amount);
+        alert();
+    }
+
+
     public void experienceEffect(int amount) {
         stats.experienceEffect(amount);
         if(amount >= 0)
@@ -175,6 +182,16 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         inventory.equipArmor(armor);
         alert();
     } // end equipArmor
+
+    public void unEquipWeapon(){
+        inventory.unequipWeapon();
+        alert();
+    }
+
+    public void unEquipArmor(){
+        inventory.unequipArmor();
+        alert();
+    }
 
     public void equipSmasherWeapon(Weapon weapon) {
         o.equipSmasherWeapon(weapon, this);
@@ -351,6 +368,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
 
     public void utilizeItem(int index){
         inventory.utilizeItem(index,this);
+        alert();
     }
 
     public CharacterStats getCharacterStats() {return stats;}
@@ -360,5 +378,12 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         return inventory;
     }
 
+    public void setAlpha(float alpha) {
+        this.alpha = alpha;
+    }
+
+    public float getAlpha() {
+        return alpha;
+    }
 
 } // end abstract class Character
