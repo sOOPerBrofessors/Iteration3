@@ -131,8 +131,8 @@ public class InventoryView extends AllDirPanel implements Observer{
         g2d.drawImage(ImageAssets.eqSlot, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2-2*squareSize+yShift*3/2,squareSize*2,squareSize*2, null);
         g2d.drawImage(ImageAssets.eqSlot, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2+yShift*3/2, squareSize*2,squareSize*2, null);
         //draw armor and weapon
-        g2d.drawImage(armorImage, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2-2*squareSize+yShift*3/2,squareSize*2,squareSize*2, null);
-        g2d.drawImage(weaponImage, xBorderOffset +xSize/2 + squareSize+10, Settings.GAMEHEIGHT/2+yShift*3/2, squareSize*2,squareSize*2, null);
+        g2d.drawImage(armorImage, (xBorderOffset +xSize/2 + squareSize*3/2+10)*Settings.SCALEFACTOR, (Settings.GAMEHEIGHT/2-2*squareSize+yShift*5/2)*Settings.SCALEFACTOR,squareSize,squareSize, null);
+        g2d.drawImage(weaponImage, (xBorderOffset +xSize/2 + squareSize*3/2+10)*Settings.SCALEFACTOR, (Settings.GAMEHEIGHT/2+yShift*5/2)*Settings.SCALEFACTOR, squareSize,squareSize, null);
 
 
         //get rid of opaqueness
