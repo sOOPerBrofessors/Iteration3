@@ -33,9 +33,9 @@ public class ItemFactory {
         interactableItems = new HashMap<>();
         mapItemViews = new HashMap<>();
     }
+
     public static void init(Map map){
 
-        //initHashMaps(); MIGHT cause problems later
         // create new health potion
         Potion healthPotion = ItemFactory.makeBasicHealthPotion();
         ItemView healthView = new UsableView(ImageAssets.healthPotion);
