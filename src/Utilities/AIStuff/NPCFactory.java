@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class NPCFactory {
 
     public static NPC makeGanondorf(){
-        Personality personality = PersonalityFactory.getPersonality("friendly");
+        Personality personality = PersonalityFactory.getPersonality("enemy");
         Faction faction = FactionFactory.getFaction("red");
         //This should be a factory, testing for now
         NPCStrategy strategy = new TalkNPCStrategy("Ganondorf: Hi minion", "Ganondorf: I am awesome", "Ganondorf: What do you want?");

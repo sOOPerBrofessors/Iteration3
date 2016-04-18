@@ -127,6 +127,7 @@ public class Decision {
     public void update(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         interest.update(visualInformation, memoryInterface);
+        interest.onEntityTouch(memoryInterface);
 
     }
 

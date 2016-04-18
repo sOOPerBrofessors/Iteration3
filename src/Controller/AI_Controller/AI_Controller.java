@@ -3,6 +3,7 @@ package Controller.AI_Controller;
 import Controller.AI_Controller.VisualCortex.VisualCortex;
 import Controller.AI_Controller.VisualCortex.VisualCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
+import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Entity;
 import Model.Map.Location;
 import Model.Map.Map;
@@ -78,6 +79,7 @@ public class AI_Controller {
         HashMap<Location, TileColumn> columns = new HashMap<>();
 
         ArrayList<Location> locations = RadialEffect.getRadialArea(memoryInterface.getNPC().getLocation(), memoryInterface.getNPC().getRadiusVisibility());
+        locations.remove(memoryInterface.getNPC().getLocation());
 
         for (Location location : locations) {
 
@@ -92,6 +94,12 @@ public class AI_Controller {
         }
 
         return columns;
+
+    }
+
+    public void attack(NPC npc) {
+
+        npc.attack(map);
 
     }
 
