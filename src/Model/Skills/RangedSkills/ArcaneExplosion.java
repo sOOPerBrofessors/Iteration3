@@ -21,7 +21,7 @@ public class ArcaneExplosion extends RangedSkill{
 
     public ArcaneExplosion (Avatar avatar) {
         super(avatar);
-        name = "Arcane explosions";
+        name = "Arcane explosion";
         coolDownTime = 1;
         manaCost = 1;
     }
