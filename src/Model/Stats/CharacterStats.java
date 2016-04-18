@@ -1,11 +1,9 @@
 package Model.Stats;
 
-import Utilities.DamageObject;
-import Utilities.DamageQueue;
+import Utilities.Splats.DamageQueue;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
-import Utilities.Visitor.CharacterVisitable;
-import View.EntityView.CharacterView;
+import Utilities.Splats.ExperienceQueue;
 
 import java.util.ArrayList;
 
@@ -220,6 +218,7 @@ public class CharacterStats extends EntityStats implements Subject {
         } else if (experience >= experienceThreshold) {
             levelUp();
         }
+        ExperienceQueue.push(new ExperienceQueue.ExperienceSplat(effect));
         alert();
     }
     public void levelEffect(int effect){
@@ -239,7 +238,7 @@ public class CharacterStats extends EntityStats implements Subject {
         else if (health > baseHealth) {
             health = baseHealth;
         }
-        DamageQueue.push(new DamageObject(effect));
+        DamageQueue.push(new DamageQueue.DamageSplat(effect));
         alert();
     }
     public void manaEffect(int effect){
@@ -267,6 +266,14 @@ public class CharacterStats extends EntityStats implements Subject {
         skillPoint += effect;
         if(skillPoint < 0) {
             skillPoint = 0;
+        }
+        alert();
+    }
+
+    public void defensiveRatingEffect (int effect) {
+        defensiveRating += effect;
+        if (defensiveRating < 0) {
+            defensiveRating = 0;
         }
         alert();
     }

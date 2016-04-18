@@ -1,8 +1,6 @@
 package Model.Skills;
 
 import Model.Entity.Character.Avatar;
-import Model.Map.Map;
-import Model.Map.Orientation;
 
 /**
  * Created by AndyZhu on 13/4/2016.
@@ -20,7 +18,7 @@ public class Bargain extends Skill{
 
     public double executeBargain() {
         double discount = 1;
-        if (checkAll()) {
+        if (allConditionChecked()) {
             enforceManaCost();
             setTimePerformed();
             return bargain();

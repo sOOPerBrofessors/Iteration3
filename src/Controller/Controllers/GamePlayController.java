@@ -75,11 +75,23 @@ public class GamePlayController extends Controller{
             }
         });
 
-        // skill two key press
-        commands.put(Settings.TWO, () -> new ObservationTimer(state.playerSecondSkill()).start());
+        // skill 2 key press
+        commands.put(Settings.TWO, () -> new ObservationTimer(state.playerObservationSkill()).start());
 
-        // skill three key pree
-        commands.put(Settings.THREE, () -> state.playerThirdSkill());
+        // skill 3 key press
+        commands.put(Settings.THREE, () -> state.playerExecuteSkill(2));
+
+        // skill 4 key press
+        commands.put(Settings.FOUR, () -> state.playerExecuteSkill(3));
+
+        // skill 5 key press
+        commands.put(Settings.FIVE, () -> state.playerExecuteSkill(4));
+
+        // skill 6 key press
+        commands.put(Settings.SIX, () -> state.playerExecuteSkill(5));
+
+        // skill 7 key press
+        commands.put(Settings.SEVEN, () -> state.playerExecuteSkill(6));
 
         // inventory key press
         commands.put(Settings.INVENTORY, () -> controllerManager.setInventoryState());
@@ -99,22 +111,23 @@ public class GamePlayController extends Controller{
         commands.put(Settings.TEST_KEY, () -> {
             switch((int)(Math.random()*5)+1){
                 case 1:
-                    state.getAvatar().experienceEffect((int)(Math.random()*5)+1);
+                    state.getAvatar().experienceEffect((int)(Math.random()*5));
                     break;
                 case 2:
-                    state.getAvatar().healthEffect((int)(Math.random()*3)+1);
+                    state.getAvatar().healthEffect((int)(Math.random()*3));
                     break;
                 case 3:
-                    state.getAvatar().manaEffect((int)(Math.random()*3)+1);
+                    state.getAvatar().manaEffect((int)(Math.random()*3));
                     break;
                 case 4:
-                    state.getAvatar().healthEffect(-1*((int)(Math.random()*3)+1));
+                    state.getAvatar().healthEffect(-1*((int)(Math.random()*3)));
                     break;
                 case 5:
-                    state.getAvatar().manaEffect(-1*((int)(Math.random()*3)+1));
+                    state.getAvatar().manaEffect(-1*((int)(Math.random()*3)));
                     break;
             }
             //state.getAvatar().healthEffect((int)(Math.random()*3)+1);
+            state.getAvatar().manaEffect(10000);
         });
 
         commands.put(KeyEvent.VK_9, new Command() {

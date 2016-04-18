@@ -2,11 +2,8 @@ package Model.Skills.CombatSkills;
 
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
-import Utilities.ErrorLevel;
 import Utilities.GameMessageQueue;
 import Utilities.InfluenceAreas.Linear.LinearEffect;
-import Utilities.MessageHandler;
-import Utilities.PersonFilter;
 
 /**
  * Created by AndyZhu on 13/4/2016.
@@ -30,7 +27,7 @@ public class BrawlingSkill extends CombatSkill{
 
     @Override
     public void execute(Map map) {
-        if (checkAll() && weaponCheck()) {
+        if (allConditionChecked() && weaponCheck()) {
             damage = calculateDamage();
             radius = level > 3 ? 3 : level;
             affectedArea = LinearEffect.getLinearSameLevel(avatar.getLocation(), avatar.getOrientation(), radius);

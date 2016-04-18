@@ -12,6 +12,7 @@ import Model.Skills.CombatSkills.BrawlingSkill;
 import Model.Skills.RangedSkills.Observation;
 import Model.Skills.RangedSkills.ObservationInfo;
 import Model.Skills.Skill;
+import Utilities.GameMessageQueue;
 import Utilities.ItemStuff.ItemManager;
 import Utilities.Timer.TimedEvent;
 
@@ -34,7 +35,7 @@ public class ActiveGameState extends GameState {
         }
         if(projectiles != null){
             for(int i = 0; i < projectiles.size(); i++){
-                projectiles.get(i).tick();
+                projectiles.get(i).tick(map);
             }
         }
     }
@@ -71,25 +72,23 @@ public class ActiveGameState extends GameState {
     }
 
     public void playerAttack(){
-        Projectile temp = Projectile.makeFireBall(new Location(6,5,0), avatar.getOrientation());
+        Location tempLoc = new Location(avatar.getX(), avatar.getY(), avatar.getZ());
+        Projectile temp = Projectile.makeFireBall(tempLoc, avatar.getOrientation());
         projectiles.add(temp);
-        map.addProjectile(temp);
     }
 
-    public void playerExecuteSkill(int index){
-        avatar.getSkill(index).execute(map);
-    }
-
-    public void playerFirstSkill(){}
-
-    public void playerThirdSkill() {
-        Skill skill = avatar.getSkill(2);
-        skill.execute(map);
+    public void playerExecuteSkill(int index) {
+        if (avatar.getSKillList().size() > index) {
+            avatar.getSkill(index).execute(map);
+        }
+        else {
+            GameMessageQueue.push("You don't have skill at this position");
+        }
     }
 
     public void startCombatTimer() { avatar.startCombatTimer(); }
 
-    public ObservationInfo playerSecondSkill(){
+    public ObservationInfo playerObservationSkill(){
         Observation skill = (Observation) avatar.getSkill(1);
         return skill.execute(map, avatar.getOrientation());
     }

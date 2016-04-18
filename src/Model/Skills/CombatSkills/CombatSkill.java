@@ -7,7 +7,6 @@ import Model.Map.Map;
 import Model.Map.Tile.Tile;
 import Model.Skills.Skill;
 import Utilities.GameMessageQueue;
-import Utilities.InfluenceAreas.Linear.LinearEffect;
 
 import java.util.ArrayList;
 
