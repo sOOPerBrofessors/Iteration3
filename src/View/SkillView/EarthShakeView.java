@@ -1,8 +1,6 @@
 package View.SkillView;
 
-import Model.Entity.Character.Character;
 import Model.Map.Location;
-import Model.Skills.RangedSkills.ObservationInfo;
 import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.awt.*;
@@ -13,8 +11,7 @@ import java.util.ArrayList;
  */
 public class EarthShakeView {
     private static boolean earthShakeViewOn = false;
-    private static ArrayList<Location> locationArrayList;
-    private static int radius;
+
     public EarthShakeView () {
     }
 
@@ -48,10 +45,10 @@ public class EarthShakeView {
     }
 
     public static void setLocationArrayList(ArrayList<Location> arrayList) {
-        locationArrayList = arrayList;
+        ArrayList<Location> locationArrayList = arrayList;
     }
 
     public static void setRadius(int newRadius) {
-        radius = newRadius;
+        int radius = newRadius;
     }
 }

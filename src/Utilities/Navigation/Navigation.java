@@ -14,7 +14,7 @@ import Utilities.Navigation.NavStrategy.*;
  */
 public class Navigation {
 
-    NavStrategy s;
+    private final NavStrategy s;
 
     //private constructor to be called by factory methods
 

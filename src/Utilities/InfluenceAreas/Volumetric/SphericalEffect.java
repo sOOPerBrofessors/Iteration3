@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * There are three public methods in this class, you can get whole sphere or hemi sphere
  */
-public class SphericalEffect extends InfluenceArea {
+class SphericalEffect extends InfluenceArea {
 
     /**
      * base method in this class, the other two methods are similar
@@ -28,7 +28,7 @@ public class SphericalEffect extends InfluenceArea {
         System.out.println("(" + aList.getX() + ", " + aList.getY() + ", " + aList.getZ() + ')');
     }
     */
-    public static ArrayList<Location> getSphericalEffect(Location location, int radius) {
+    private static ArrayList<Location> getSphericalEffect(Location location, int radius) {
         ArrayList<Location> list = new ArrayList<>();
         ArrayList<Location> tempLocations = RadialEffect.getRadialArea(location, radius);
         list.addAll(tempLocations); //on same level

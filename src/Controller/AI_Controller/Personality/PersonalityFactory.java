@@ -7,7 +7,7 @@ import java.util.HashMap;
  */
 public class PersonalityFactory {
 
-    private static HashMap<String, Personality> personalities = new HashMap<>();
+    private static final HashMap<String, Personality> personalities = new HashMap<>();
 
     public static void addPersonality(String personalityName, Personality personality) {
 

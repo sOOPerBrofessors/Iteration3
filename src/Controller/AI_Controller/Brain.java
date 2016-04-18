@@ -12,10 +12,10 @@ import Utilities.Tickable;
  */
 public class Brain implements Tickable {
 
-    private VisualCortex visualCortex;
-    private FrontalLobe frontalLobe;
-    private MotorCortex motorCortex;
-    private Memory memory;
+    private final VisualCortex visualCortex;
+    private final FrontalLobe frontalLobe;
+    private final MotorCortex motorCortex;
+    private final Memory memory;
 
     public Brain(NPC npc) { //What if it took in an NPC which has a personality?
 

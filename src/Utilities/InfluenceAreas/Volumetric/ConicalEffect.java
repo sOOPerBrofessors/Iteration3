@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * For all the methods in this class, distance between locations and origin location are not recorded
  *
  */
-public class ConicalEffect extends InfluenceArea {
+class ConicalEffect extends InfluenceArea {
     /** Example of use, the same for all methods */
     /*
     ArrayList<Location> list = ConicalEffect.getConicalEffectTop(new Location(11,3,1), 12);
@@ -40,7 +40,7 @@ public class ConicalEffect extends InfluenceArea {
         return list;
     }
 
-    public static ArrayList<Location> getConicalEffect(Orientation orientation, Location location, int length) {
+    private static ArrayList<Location> getConicalEffect(Orientation orientation, Location location, int length) {
         ArrayList<Location> list = new ArrayList<>();
         ArrayList<Location> centerLine = LinearEffect.getLinearSameLevel(location, orientation, length);
 

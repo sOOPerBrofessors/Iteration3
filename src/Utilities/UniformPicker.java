@@ -9,7 +9,7 @@ import java.util.Map;
 public class UniformPicker<T> {
 
     // We store all the values in a hashmap with their weights
-    private HashMap<T, Double> values = new HashMap<>();
+    private final HashMap<T, Double> values = new HashMap<>();
     private double totalWeight = 0.0;
 
     // Method for adding values to the hashmap
@@ -21,7 +21,7 @@ public class UniformPicker<T> {
     }
 
     // Method for removing values from the hashmap
-    public void remove(T value) {
+    private void remove(T value) {
 
         if (values.containsKey(value)) {
 
@@ -50,7 +50,7 @@ public class UniformPicker<T> {
 
     }
 
-    public boolean isEmpty() {
+    private boolean isEmpty() {
 
         return values.isEmpty();
 
@@ -122,8 +122,8 @@ public class UniformPicker<T> {
 
     private class Range {
 
-        private double begin;
-        private double end;
+        private final double begin;
+        private final double end;
 
         public Range(double begin, double end) {
 

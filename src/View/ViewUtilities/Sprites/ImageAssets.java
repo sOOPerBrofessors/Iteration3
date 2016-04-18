@@ -29,11 +29,14 @@ public class ImageAssets {
     public static BufferedImage shopKeeperSW, shopKeeperNW, shopKeeperN, shopKeeperNE, shopKeeperSE, shopKeeperS;
     public static BufferedImage enemyS, enemySW, enemyNW, enemyN, enemyNE, enemySE;
     public static BufferedImage crabS, crabSW, crabNW, crabN, crabNE, crabSE;
-    public static BufferedImage grass, grass2, dirt, water;
+    public static BufferedImage grass;
+    public static BufferedImage grass2;
+    public static BufferedImage dirt;
+    public static BufferedImage water;
     public static BufferedImage invSlot, eqSlot, select;
     public static BufferedImage hud, messageBox, interfaceBorder;
     public static BufferedImage mount;
-    public static ArrayList<BufferedImage> fireballs = new ArrayList<>();
+    public static final ArrayList<BufferedImage> fireballs = new ArrayList<>();
 
     //skill things
     public static BufferedImage crackedEarth, arcaneExplosion;
@@ -55,7 +58,7 @@ public class ImageAssets {
     //AOE
     public static BufferedImage goldStarAOE;
     public static BufferedImage redCrossAOE;
-    public static BufferedImage damageAOE;
+    private static BufferedImage damageAOE;
     public static BufferedImage instantDeathAOE;
     public static BufferedImage teleportAOE;
     public static BufferedImage trapAOE;

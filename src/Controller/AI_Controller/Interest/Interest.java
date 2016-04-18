@@ -3,7 +3,6 @@ package Controller.AI_Controller.Interest;
 import Controller.AI_Controller.FrontalLobe.FrontalLobeMemoryInterface;
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
-import Model.Entity.Entity;
 import Model.Map.Orientation;
 
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public abstract class Interest {
 
     }
 
-    private PriorityQueue<Orientation> movementQueue = new PriorityQueue<>();
+    private final PriorityQueue<Orientation> movementQueue = new PriorityQueue<>();
 
     protected final void addToMovementQueue(Orientation orientation) {
 
@@ -46,7 +45,7 @@ public abstract class Interest {
 
     }
 
-    protected final Orientation getNextMovement() {
+    private Orientation getNextMovement() {
 
         return movementQueue.peek();
 

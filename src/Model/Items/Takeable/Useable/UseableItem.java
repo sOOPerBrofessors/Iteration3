@@ -11,10 +11,10 @@ import Model.Items.Takeable.TakeableItem;
  */
 public abstract class UseableItem extends TakeableItem {
 
-    protected Effect e;
-    protected int amount;
+    Effect e;
+    int amount;
 
-    protected UseableItem(String name, String description, int value) {
+    UseableItem(String name, String description, int value) {
         super(name, description, value);
     } // end protected constructor
 

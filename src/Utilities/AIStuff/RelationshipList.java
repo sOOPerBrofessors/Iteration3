@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class RelationshipList<T> {
 
-    HashMap<T, Relationship> relationships = new HashMap<>();
+    private final HashMap<T, Relationship> relationships = new HashMap<>();
 
     public void addRelationship(T object, Relationship relationship) {
 

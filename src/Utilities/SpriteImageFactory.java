@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * Created by dyeung on 4/5/16.
  */
-public class SpriteImageFactory {
+class SpriteImageFactory {
 
     public static ImageIcon getImageIcon(String string) {
 

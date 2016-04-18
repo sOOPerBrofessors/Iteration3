@@ -8,7 +8,6 @@ import Utilities.InfluenceAreas.Planer.RadialEffect;
 import Utilities.Timer.ArcaneExplosionTimer;
 import Utilities.Timer.SecondArcaneExplosionTimer;
 import View.SkillView.ArcaneExplosionView;
-import View.SkillView.EarthShakeView;
 
 import java.util.ArrayList;
 
@@ -17,7 +16,7 @@ import java.util.ArrayList;
  */
 public class ArcaneExplosion extends RangedSkill{
 
-    ArrayList<ArrayList<Location>> list = new ArrayList<>();
+    private ArrayList<ArrayList<Location>> list = new ArrayList<>();
 
     public ArcaneExplosion (Avatar avatar) {
         super(avatar);

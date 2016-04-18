@@ -11,10 +11,10 @@ import java.util.Map;
  */
 public class Personality {
 
-    private String name;
-    private double scatter_brainedness;
-    private double aggressiveness;
-    private double laziness;
+    private final String name;
+    private final double scatter_brainedness;
+    private final double aggressiveness;
+    private final double laziness;
     private HashMap<String, Double> interests = new HashMap<>();
 
     public Personality(String name, double scatter_brainedness, double aggressiveness, double laziness, HashMap<String, Double> interests) {
@@ -27,7 +27,7 @@ public class Personality {
 
     }
 
-    public String getName() {
+    private String getName() {
 
         return name;
 

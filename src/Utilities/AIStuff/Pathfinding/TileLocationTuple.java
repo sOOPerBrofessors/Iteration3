@@ -8,8 +8,8 @@ import Model.Map.Tile.Tile;
  */
 public class TileLocationTuple {
 
-    private Tile tile;
-    private Location location;
+    private final Tile tile;
+    private final Location location;
 
     public TileLocationTuple(Tile tile, Location location) {
 

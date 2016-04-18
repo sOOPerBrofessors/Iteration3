@@ -15,12 +15,12 @@ import java.util.ArrayList;
  * Created by broskj on 4/17/16.
  */
 public class DamageSplat implements Subject {
-    private int damage;
+    private final int damage;
     private int xDelta;
     private int yDelta;
-    private DamageTimer timer;
+    private final DamageTimer timer;
     private int r,g,b,a;
-    private ArrayList<Observer> observers;
+    private final ArrayList<Observer> observers;
 
     public DamageSplat(int damage) {
         observers = new ArrayList<>();

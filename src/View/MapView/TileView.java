@@ -29,12 +29,12 @@ import java.awt.*;
  */
 public class TileView extends JComponent implements TileObserver, TileVisitor, Observer{
 
-    protected Location location;
-    protected int xPixel; // on the map
-    protected int yPixel; // on the map
+    private final Location location;
+    private int xPixel; // on the map
+    private int yPixel; // on the map
     protected Image image;
     private CharacterView characterView;
-    private Tile tile;
+    private final Tile tile;
     private ItemView itemView;
     private AreaOfEffectView areaOfEffectView;
     private TerrainView terrainView;
@@ -95,42 +95,22 @@ public class TileView extends JComponent implements TileObserver, TileVisitor, O
     }
 
     private boolean hasCharacter(){
-        if (characterView == null) {
-            return false;
-        }else {
-            return true;
-        }
+        return characterView != null;
     }
 
     private boolean hasMount(){
-        if (mountView == null) {
-            return false;
-        }else {
-            return true;
-        }
+        return mountView != null;
     }
 
     private boolean hasItem(){
-        if (itemView == null) {
-            return false;
-        }else {
-            return true;
-        }
+        return itemView != null;
     }
 
     private boolean hasProjectile(){
-        if (projectileView == null) {
-            return false;
-        }else {
-            return true;
-        }
+        return projectileView != null;
     }
     private boolean hasAOE(){
-        if (areaOfEffectView == null) {
-            return false;
-        }else {
-            return true;
-        }
+        return areaOfEffectView != null;
     }
 
     //TODO: change this so it just renders map object views

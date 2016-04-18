@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by broskj on 4/17/16.
  */
 public class ExperienceQueue implements Observer {
-    private ArrayList<ExperienceSplat> experience = new ArrayList<>();
+    private final ArrayList<ExperienceSplat> experience = new ArrayList<>();
 
     public ArrayList<ExperienceSplat> getAll() {
         return experience;
@@ -18,7 +18,7 @@ public class ExperienceQueue implements Observer {
         experience.add(object);
     } // end push
 
-    public void pop() {
+    private void pop() {
         if(experience.size() > 0)
             experience.remove(0);
     } // end pop

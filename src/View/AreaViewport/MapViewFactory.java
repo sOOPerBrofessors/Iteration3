@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by dyeung on 4/7/16.
  */
-public class MapViewFactory {
+class MapViewFactory {
 
     //gets views of items through itemManager
     public MapViewFactory(){
@@ -32,7 +32,7 @@ public class MapViewFactory {
         }
         return new MapView(tmp);
     }
-    public TileColumnView createTileColumnView(TileColumn tileColumn, int x , int y){
+    private TileColumnView createTileColumnView(TileColumn tileColumn, int x, int y){
         ArrayList<TileView> tileViews = new ArrayList<>();
         for(int i = 0; i < 10; i++){
             Tile t = tileColumn.getTileAt(i);

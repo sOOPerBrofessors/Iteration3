@@ -96,11 +96,6 @@ public class MountGameState extends GameState {
         Location temp = activeMount.getLocation().getAdjacent(activeMount.getOrientation());
         if (temp.getX() < 0 || temp.getY() < 0 || temp.getX() >= 14 || temp.getY() >= 14) {
             return false;
-        }else if(Math.abs(map.getTopTilePosition(temp.getX(),temp.getY()) - activeMount.getZ()) > 1){
-             return false;
-        }
-        else{
-            return true;
-        }
+        }else return Math.abs(map.getTopTilePosition(temp.getX(), temp.getY()) - activeMount.getZ()) <= 1;
     }
 }

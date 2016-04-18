@@ -1,15 +1,12 @@
 package View.MenuViews;
 
 import Controller.ControllerUtility.Command;
-import Model.Entity.Character.Character;
-import Utilities.Observers.Observer;
 import Utilities.Settings;
 import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
-import java.util.Set;
 
 /**
  * Created by sgl on 4/16/16.
@@ -17,14 +14,14 @@ import java.util.Set;
 public class SettingsView extends VertPanel{
 
 
-    String[] settingsArray = {"MOVE_N", "MOVE_NW", "MOVE_NE", "MOVE_S","MOVE_SW","MOVE_SE","ATTACK","INTERACT",
+    private final String[] settingsArray = {"MOVE_N", "MOVE_NW", "MOVE_NE", "MOVE_S","MOVE_SW","MOVE_SE","ATTACK","INTERACT",
             "SKILL_1","SKILL_2","SKILL_3","SKILL_4","SKILL_5","SKILL_6","SKILL_7","INVENTORY","STATS", "SKILLS"};
-    int[] settingsInt={Settings.UP, Settings.UP_LEFT, Settings.UP_RIGHT, Settings.DOWN, Settings.DOWN_LEFT, Settings.DOWN_RIGHT, Settings.ATTACK, Settings.INTERACT,
+    private final int[] settingsInt={Settings.UP, Settings.UP_LEFT, Settings.UP_RIGHT, Settings.DOWN, Settings.DOWN_LEFT, Settings.DOWN_RIGHT, Settings.ATTACK, Settings.INTERACT,
             Settings.SKILL_1, Settings.SKILL_2, Settings.SKILL_3, Settings.SKILL_4,Settings.SKILL_5,Settings.SKILL_6, Settings.SKILL_7,
             Settings.INVENTORY, Settings.STATS, Settings.SKILLS};
-    boolean selected;
+    private boolean selected;
     private int lastkey;
-    private HashMap<Integer, Command> commands;
+    private final HashMap<Integer, Command> commands;
 
 
     public SettingsView(){
@@ -92,6 +89,15 @@ public class SettingsView extends VertPanel{
         g2d.drawString(String.valueOf((char)settingsInt[ySel]), xBorderOffset*4, yBorderOffset*3);
         g2d.drawString(String.valueOf((char)lastkey), xBorderOffset*4, yBorderOffset*4);
         if(settingsInt[ySel]== KeyEvent.VK_SPACE) g2d.drawString("Space", xBorderOffset*4, yBorderOffset*3);
+
+        g2d.setColor(Color.BLACK);
+        g2d.setFont(new Font(Font.MONOSPACED, 1, 20));
+        g2d.drawString("Press Enter", xBorderOffset*3+100, yBorderOffset*4);
+        g2d.drawString("Press New Key", xBorderOffset*3+100, yBorderOffset*4+20);
+        g2d.drawString("Press Enter", xBorderOffset*3+100, yBorderOffset*4+40);
+
+
+
         g2d.dispose();
     }
 }

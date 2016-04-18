@@ -11,7 +11,7 @@ import Model.Items.Takeable.Equippable.Weapon.TwoHandedWeapon;
  *
  *  Money value amount is determined by 7 * value / 2
  */
-public class WeaponFactory {
+class WeaponFactory {
     public static OneHandedWeapon makeOneHandedSmasherWeapon(String grade, int value) {
         return OneHandedWeapon.makeSmasherWeapon(
                 grade + " Sword",
@@ -30,12 +30,12 @@ public class WeaponFactory {
         );
     } // end makeSmasherWeapon
 
-    public static OneHandedWeapon makeSummonerWeapon(String grade, int value) {
+    public static OneHandedWeapon makeSummonerWeapon(String grade) {
         return OneHandedWeapon.makeSummonerWeapon(
-                grade + " Staff",
-                "A " + grade.toLowerCase() + " staff for spellcasters (+" + value + ")",
-                value,
-                7 * value / 2
+                "Wooden" + " Staff",
+                "A " + "Wooden".toLowerCase() + " staff for spellcasters (+" + 2 + ")",
+                2,
+                7 * 2 / 2
         );
     } // end makeSummonerWeapon
 

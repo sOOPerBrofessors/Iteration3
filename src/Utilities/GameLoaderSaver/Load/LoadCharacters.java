@@ -1,12 +1,8 @@
 package Utilities.GameLoaderSaver.Load;
 
 import Model.Entity.Character.Avatar;
-import Model.Entity.Character.Character;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Character.Occupation.Occupation;
-import Model.Entity.Character.Occupation.Smasher;
-import Model.Entity.Character.Occupation.Sneak;
-import Model.Entity.Character.Occupation.Summoner;
 import Model.Map.Location;
 import Model.Map.Orientation;
 import org.w3c.dom.Element;
@@ -16,10 +12,10 @@ import java.util.HashMap;
 /**
  * Created by dyeung on 4/17/16.
  */
-public class LoadCharacters {
+class LoadCharacters {
     //Creating a list of commands to run by the messsage
-    private HashMap<String, Runnable> orientationCommands;
-    private HashMap<String, Runnable> occupationCommands;
+    private final HashMap<String, Runnable> orientationCommands;
+    private final HashMap<String, Runnable> occupationCommands;
 
     private Orientation orientation;
     private Occupation occupation;
@@ -29,16 +25,16 @@ public class LoadCharacters {
     public LoadCharacters(){
         occupationCommands = new HashMap<>();
         orientationCommands = new HashMap<>();
-        occupationCommands.put("smasher", () -> makeSmasher());
-        occupationCommands.put("summoner", () -> makeSummoner());
-        occupationCommands.put("sneak", () -> makeSneak());
+        occupationCommands.put("smasher", this::makeSmasher);
+        occupationCommands.put("summoner", this::makeSummoner);
+        occupationCommands.put("sneak", this::makeSneak);
 
-        orientationCommands.put("south", () -> setSouth());
-        orientationCommands.put("southWest", () -> setSouthWest());
-        orientationCommands.put("southEast", () -> setSouthEast());
-        orientationCommands.put("north", () -> setNorth());
-        orientationCommands.put("northWest", () -> setNorthWest());
-        orientationCommands.put("northEast", () -> setNorthEast());
+        orientationCommands.put("south", this::setSouth);
+        orientationCommands.put("southWest", this::setSouthWest);
+        orientationCommands.put("southEast", this::setSouthEast);
+        orientationCommands.put("north", this::setNorth);
+        orientationCommands.put("northWest", this::setNorthWest);
+        orientationCommands.put("northEast", this::setNorthEast);
     }
     public Avatar convertToAvatar(Element characterElement){
         //Idea is that I make it call all these functions and set it later and then reset to redo

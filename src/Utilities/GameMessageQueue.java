@@ -12,8 +12,8 @@ import java.util.ArrayList;
  * Any messages with length over a
  */
 public class GameMessageQueue {
-    public static ArrayList<String> queue = new ArrayList<>();
-    final static int cap = 5;
+    public static final ArrayList<String> queue = new ArrayList<>();
+    private final static int cap = 5;
 
     public static void push(String message) {
         while(message.length() > Settings.CHAR_LIMIT) {
