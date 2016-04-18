@@ -45,11 +45,20 @@ public class ItemFactory {
         allItemViews.put(healthPotion, healthView);
         mapItemViews.put(healthPotion, healthView);
 
+        // create new health potion
+        Potion healthPotion2 = ItemFactory.makeBasicHealthPotion();
+        ItemView healthView2 = new UsableView(ImageAssets.healthPotion);
+        Location healthLocation2 = new Location(5,8,map.getTopTilePosition(5,8));
+        healthView.setLocation(5,8);
+        takableItems.put(healthLocation2, healthPotion2);
+        allItemViews.put(healthPotion2, healthView2);
+        mapItemViews.put(healthPotion2, healthView2);
+
         // create sword
         Weapon sword = ItemFactory.makeWoodenSword();
         ItemView swordView = new UsableView(ImageAssets.sword);
-        Location swordLocation = new Location(4,3,map.getTopTilePosition(4,3));
-        swordView.setLocation(4,3);
+        Location swordLocation = new Location(13,12,map.getTopTilePosition(13,12));
+        swordView.setLocation(13,12);
         takableItems.put(swordLocation, sword);
         allItemViews.put(sword, swordView);
         mapItemViews.put(sword, swordView);
@@ -57,8 +66,8 @@ public class ItemFactory {
         // create chest armor
         Armor chestArmor = ItemFactory.makeLightArmor();
         ItemView chestArmorView = new UsableView(ImageAssets.chestPlate);
-        Location chestArmorLocation = new Location(3,3,map.getTopTilePosition(3,3));
-        chestArmorView.setLocation(3,3);
+        Location chestArmorLocation = new Location(12,12,map.getTopTilePosition(12,12));
+        chestArmorView.setLocation(12,12);
         takableItems.put(chestArmorLocation, chestArmor);
         allItemViews.put(chestArmor, chestArmorView);
         mapItemViews.put(chestArmor, chestArmorView);
@@ -66,8 +75,8 @@ public class ItemFactory {
         // create key for chest
         TakeableItem chestKey = Quest.makeKey();
         ItemView chestKeyView = new UsableView(ImageAssets.chestKey);
-        Location chestKeyLocation = new Location(7,2, map.getTopTilePosition(7,2));
-        chestKeyView.setLocation(7,2);
+        Location chestKeyLocation = new Location(10,0, map.getTopTilePosition(10,0));
+        chestKeyView.setLocation(10,0);
         takableItems.put(chestKeyLocation, chestKey);
         allItemViews.put(chestKey, chestKeyView);
         mapItemViews.put(chestKey, chestKeyView);
