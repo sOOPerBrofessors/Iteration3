@@ -35,38 +35,42 @@ public class Inventory implements Observer, Subject{
         return temp;
     }
 
+    public void add(TakeableItem item) {
+        pack.add(item);
+    } // end add
+
     public void utilizeItem(int index, Character character){
         pack.utilizeItem(index,character);
     }
 
-    public void equipWeapon(Weapon weapon) {
+    public Weapon equipWeapon(Weapon weapon) {
         MessageHandler.println("equip Weapon called from Inventory", ErrorLevel.NOTICE, PersonFilter.SAM);
-        pack.add(equipment.equipWeapon(weapon));    // add currently equipped weapon to pack; remove from pack
+        //pack.add(equipment.equipWeapon(weapon));    // add currently equipped weapon to pack; remove from pack
         MessageHandler.println("Inventory: Weapon Equipped", ErrorLevel.NOTICE, PersonFilter.SAM);
+        return equipment.equipWeapon(weapon);
     } // end equipWeapon
 
-    public void equipArmor(Armor armor) {
+    public Armor equipArmor(Armor armor) {
         MessageHandler.println("equip Armor called from Inventory", ErrorLevel.NOTICE, PersonFilter.SAM);
-            pack.add(equipment.equipArmor(armor));      // add currently equipped armor to pack; remove from pack
-            MessageHandler.println("Inventory: Armor Equipped", ErrorLevel.NOTICE, PersonFilter.SAM);
-
-
+        //pack.add(equipment.equipArmor(armor));      // add currently equipped armor to pack; remove from pack
+        MessageHandler.println("Inventory: Armor Equipped", ErrorLevel.NOTICE, PersonFilter.SAM);
+        return equipment.equipArmor(armor);
     } // end equipArmor
 
-    public void unequipWeapon() {
+    public boolean unequipWeapon() {
         if(pack.hasRoom()) {
             pack.add(equipment.unequipWeapon());        // add equipped weapon to pack if room exists
-        } else {
-            GameMessageQueue.push("Your inventory is full, can't remove weapon.");
+            return true;
         }
+        return false;
     } // end unequipWeapon
 
-    public void unequipArmor() {
+    public boolean unequipArmor() {
         if(pack.hasRoom()) {
             pack.add(equipment.unequipArmor());         // add equipped armor to pack if room exists
-        } else {
-            GameMessageQueue.push("Inventory full, can't remove armor.");
+            return true;
         }
+        return false;
     } // end unequipArmor
 
     public boolean removeItem(TakeableItem item) { //NEEDS ALERT
@@ -120,12 +124,14 @@ public class Inventory implements Observer, Subject{
 
     } // end remove
 
-    public void pickUpItem(TakeableItem item){
-        pack.add(item);
+    public boolean pickUpItem(TakeableItem item){
+        return pack.add(item);
     }
 
     public void pickUpMoney(Money money) {
         pack.addMoney(money);
     }
+
+    public void spendMoney(int amount) { pack.spendMoney(amount); }
 
 } // end class Inventory

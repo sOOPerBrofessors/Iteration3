@@ -176,23 +176,25 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     handle equipping items
      */
     public void equipWeapon(Weapon weapon) {
-        inventory.equipWeapon(weapon);
+        inventory.add(inventory.equipWeapon(weapon));
         alert();
     } // end equipArmor
 
     public void equipArmor(Armor armor) {
-        inventory.equipArmor(armor);
+        inventory.add(inventory.equipArmor(armor));
         alert();
     } // end equipArmor
 
-    public void unEquipWeapon(){
-        inventory.unequipWeapon();
+    public boolean unEquipWeapon(){
+        boolean success = inventory.unequipWeapon();
         alert();
+        return success;
     }
 
-    public void unEquipArmor(){
-        inventory.unequipArmor();
+    public boolean unEquipArmor(){
+        boolean success = inventory.unequipArmor();
         alert();
+        return success;
     }
 
     public void equipSmasherWeapon(Weapon weapon) {
@@ -360,15 +362,21 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
        return navigation.canMove(terrain);
     }
 
-    public void pickUpItem(TakeableItem item){
-        inventory.pickUpItem(item);
+    public boolean pickUpItem(TakeableItem item){
+        boolean success = inventory.pickUpItem(item);
         alert();
+        return success;
     } // end pickUpItem
 
     public void pickUpMoney(Money money) {
         inventory.pickUpMoney(money);
         alert();
     } // end pickUpMoney
+
+    public void spendMoney(int amount) {
+        inventory.spendMoney(amount);
+        alert();
+    } // end spendMoney
 
     public boolean removeItem(TakeableItem item) {
         alert();
