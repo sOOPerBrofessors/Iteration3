@@ -1,24 +1,21 @@
 package Model.Skills.RangedSkills;
 
 import Model.Entity.Character.Avatar;
-import Model.Map.Location;
+import Model.Map.Map;
 import Model.State.GameState.ActiveGameState;
+import Utilities.InfluenceAreas.Planer.AngularEffect;
 import Utilities.InfluenceAreas.Planer.RadialEffect;
 import Utilities.Timer.EarthShakeTimer;
 import View.SkillView.EarthShakeView;
-import Model.Map.Map;
-
-import java.util.ArrayList;
 
 /**
  * Created by AndyZhu on 18/4/2016.
  */
-public class EarthShake extends RangedSkill {
-
-    public EarthShake(Avatar avatar) {
+public class Cleave extends RangedSkill {
+    private int radius;
+    public Cleave(Avatar avatar) {
         super(avatar);
-        name = "Earth shake";
-        level = 10;
+        name = "Cleave";
         manaCost = 1;
         coolDownTime = 1;
     }
@@ -27,16 +24,16 @@ public class EarthShake extends RangedSkill {
     public void execute (ActiveGameState activeGameState) {
         Map map = activeGameState.getMap();
         if(allConditionChecked()) {
-            new EarthShakeTimer(this, map).start();
+            cleave(map);
             enforceManaCost();
             setTimePerformed();
         }
     }
 
-    public void activateEarthShake(Map map) {
-        EarthShakeView.setEarthShakeViewOn(true);
+    public void cleave(Map map) {
         calculateDamage();
-        affectedArea = RadialEffect.getRadialArea(avatar.getLocation(), 1);
+        radius = level + 2 > 5 ? 5 : level + 2;
+        affectedArea = AngularEffect.getAngularArea(avatar.getLocation(), avatar.getOrientation(), radius);
         for (int i = 1; i < affectedArea.size(); i++) {
             curLocation = affectedArea.get(i);
             curTile = map.getTopTile(curLocation.getX(), curLocation.getY());
@@ -44,15 +41,13 @@ public class EarthShake extends RangedSkill {
                 enemy = curTile.getCharacter();
                 enemy.healthEffect(-damage);
             }
+            else {
+
+            }
         }
     }
 
-    public void endEarthShake() {
-        EarthShakeView.setEarthShakeViewOn(false);
-    }
-
     private void calculateDamage() {
-        damage = avatar.getStrength() * level / 5;
-        damage = damage < 1 ? 1 : damage;
+        damage = avatar.getStrength() * level;
     }
 }
