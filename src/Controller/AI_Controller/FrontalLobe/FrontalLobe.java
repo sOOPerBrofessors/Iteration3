@@ -40,6 +40,8 @@ public class FrontalLobe implements Tickable {
 
         }
 
+        memory.updateDecision();
+
     }
 
     private void checkForNewRelationships() {

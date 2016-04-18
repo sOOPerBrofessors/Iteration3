@@ -17,6 +17,8 @@ public interface FrontalLobeMemoryInterface {
     // Getter for visual information
     VisualInformation getVisualInformation();
 
+    void updateDecision();
+
     // Relationship related methods
     RelationshipList<Entity> getRelationships();
     void setRelationships(RelationshipList<Entity> entityRelationships);

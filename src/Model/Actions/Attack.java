@@ -50,6 +50,13 @@ public class Attack{
             calculateDamage();
             setTimePerformed();
             affectedArea = LinearEffect.getLinearSameLevel(character.getLocation(), character.getOrientation(), 1);
+
+            if (affectedArea.size() != 2) {
+
+                return;
+
+            }
+
             targetLocation = affectedArea.get(1);
             targetTile = map.getTopTile(targetLocation.getX(), targetLocation.getY());
             if (targetTile.hasCharacter()) {

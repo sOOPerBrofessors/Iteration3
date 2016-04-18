@@ -99,7 +99,7 @@ public class AI_Controller {
 
     public void attack(NPC npc) {
 
-//        npc.attack(map);
+        npc.attack(map);
 
     }
 
