@@ -29,6 +29,7 @@ public class ImageAssets {
     public static BufferedImage shopKeeperSW, shopKeeperNW, shopKeeperN, shopKeeperNE, shopKeeperSE, shopKeeperS;
     public static BufferedImage enemyS, enemySW, enemyNW, enemyN, enemyNE, enemySE;
     public static BufferedImage crabS, crabSW, crabNW, crabN, crabNE, crabSE;
+    public static BufferedImage catS, catSW, catNW, catN, catNE, catSE;
     public static BufferedImage grass, grass2, dirt, water;
     public static BufferedImage invSlot, eqSlot, select;
     public static BufferedImage hud, messageBox, interfaceBorder;
@@ -65,6 +66,8 @@ public class ImageAssets {
         SpriteSheet crabSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/crab.png"));
         SpriteSheet borderSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/interfaceborder.png"));
         SpriteSheet shopKeeperSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/ShopKeeper.png"));
+
+        SpriteSheet cat
 
         // fireballs!
         SpriteSheet fireballSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall.png"));
@@ -115,6 +118,8 @@ public class ImageAssets {
         grass2 = terrainSheet.cropSheet(terrainWidth*2,0,terrainWidth,terrainHeight);
         dirt = terrainSheet.cropSheet(terrainWidth,0,terrainWidth,terrainHeight);
         water = waterSheet.cropSheet(0,0,terrainWidth,terrainHeight);
+
+
 
         invSlot = invButtonsSheet.cropSheet(0,0,60,60);
         eqSlot = invButtonsSheet.cropSheet(60,0,60,60);

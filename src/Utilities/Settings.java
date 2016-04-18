@@ -15,8 +15,8 @@ public class Settings {
     public static int SCALEFACTOR = 1;
 
     public static boolean debug = true;
-    public static ErrorLevel errorLevel = ErrorLevel.WARNING;
-    public static PersonFilter personFilter = PersonFilter.AUSTIN;
+    public static ErrorLevel errorLevel = ErrorLevel.DEV;
+    public static PersonFilter personFilter = PersonFilter.ALL;
 
     // Key Presses
     public static int UP_ARROW = KeyEvent.VK_UP;

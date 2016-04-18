@@ -21,7 +21,9 @@ public class OccupationViewFactory {
     public static OrientationView createSneakView(Orientation orientation){
         return new OrientationView(orientation, ImageAssets.sneakN, ImageAssets.sneakNW, ImageAssets.sneakNE,ImageAssets.sneakS,ImageAssets.sneakSE,ImageAssets.sneakSW);
     }
-
+    public static OrientationView createPetView(Orientation orientation){
+        return new OrientationView(orientation, ImageAssets.sneakN, ImageAssets.sneakNW, ImageAssets.sneakNE,ImageAssets.sneakS,ImageAssets.sneakSE,ImageAssets.sneakSW);
+    }
 
 
 }

@@ -38,14 +38,12 @@ import java.util.HashMap;
 public class NPC extends Character implements Tickable{
 
     private Brain brain;
-    private Faction faction;
     private Personality personality;
     private NPCStrategy npcStrategy;
     AI_Controller controller;
 
     public NPC(Occupation o, Location location, Personality personality, Faction faction, NPCStrategy npcStrategy) {
-        super(o, location);
-        this.faction = faction;
+        super(o, location, faction);
         this.personality = personality;
         this.npcStrategy = npcStrategy;
         addItems();
