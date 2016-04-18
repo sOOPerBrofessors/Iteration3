@@ -65,5 +65,5 @@ public abstract class Mount extends Entity implements Subject{
         return passenger;
     }
 
-    public abstract void levitate();
+    public abstract void levitate(int z);
 }

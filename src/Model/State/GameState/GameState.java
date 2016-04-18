@@ -23,7 +23,6 @@ public abstract class GameState extends State {
     protected ItemManager itemManager;
     protected ArrayList<Projectile> projectiles;
     protected ArrayList<Mount> mounts;
-    protected GamePlayController controller;
 
     public GameState(Map map, Avatar avatar, ArrayList<NPC> entities, ArrayList<Mount> mounts, ItemManager itemManager){
         //This will be done in the gameLoader
@@ -53,9 +52,5 @@ public abstract class GameState extends State {
 
     public ItemManager getItemManager() {
         return itemManager;
-    }
-
-    public void setController(GamePlayController controller) {
-        this.controller = controller;
     }
 }

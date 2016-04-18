@@ -91,6 +91,11 @@ public class TileColumn implements TileVisitable, TerrainVisitable{
         tileList.get(z).removeCharacter();
     }
 
+    public void removeMount(Mount mount){
+        int z = mount.getZ();
+        tileList.get(z).removeMount();
+    }
+
     // all about them projectiles bro
     public void addProjectile(Projectile projectile){
         int z = projectile.getLocation().getZ();

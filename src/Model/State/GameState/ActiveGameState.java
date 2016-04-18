@@ -1,5 +1,6 @@
 package Model.State.GameState;
 
+import Controller.Controllers.GamePlayController;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.NPC.NPC;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
  */
 public class ActiveGameState extends GameState implements Observer{
     StateManager stateManager;
+    private GamePlayController controller;
 
     private Mount activeMount;
 
@@ -155,4 +157,8 @@ public class ActiveGameState extends GameState implements Observer{
     }
 
     public void setStateManager(StateManager stateManager) { this.stateManager = stateManager; }
+
+    public void setController(GamePlayController controller) {
+        this.controller = controller;
+    }
 }

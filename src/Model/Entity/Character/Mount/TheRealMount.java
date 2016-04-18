@@ -22,7 +22,7 @@ public class TheRealMount extends Mount {
             int x = location.getX() + orientation.x;
             int y = location.getY() + orientation.y;
             //z is zero here. Since it is a character it will move based on the next possible height
-            Location newLocation = new Location(x,y,0);
+            Location newLocation = new Location(x,y,location.getAdjacent(orientation).getX());
             delayMovement();
             return map.moveMount(this, newLocation);
         }else {
@@ -39,8 +39,8 @@ public class TheRealMount extends Mount {
         new TimedEvent(delay, () -> canMove = false, e -> canMove = true).start();
     } // end delayMovement
 
-    public void levitate(){
-        System.out.println("Levitate");
-        setLocation(new Location(location.getX(), location.getY(), location.getZ()));
+    public void levitate(int z){
+        setLocation(new Location(location.getX(), location.getY(), z));
+        passenger.setLocation(location);
     }
 }
