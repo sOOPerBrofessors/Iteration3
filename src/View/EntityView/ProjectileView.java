@@ -30,7 +30,7 @@ public class ProjectileView extends MapObjectView{
     private boolean metXGoal;
     private boolean metYGoal;
 
-    public ProjectileView(Projectile projectile){
+    public ProjectileView(Projectile projectile, ArrayList<BufferedImage> images){
         this.projectile = projectile;
         this.images = images;
         viewHeight = Settings.PROJECTILEHEIGHT;
