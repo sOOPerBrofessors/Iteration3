@@ -66,9 +66,6 @@ public class Attack{
                     character.experienceEffect(enemy.getBaseHealth());
             }
         }
-        else {
-            //GameMessageQueue.push("You are not prepared for next attack");
-        }
     }
 
     private void calculateDamage(Character enemy) {

@@ -11,4 +11,5 @@ public interface AOEVisitor {
     void visitTeleportAoe();
     void visitLevelUpAoe();
     void visitInstantDeath();
+    void visitTrap();
 }

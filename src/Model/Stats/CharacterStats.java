@@ -125,7 +125,7 @@ public class CharacterStats extends EntityStats implements Subject {
                 2,      // intellect
                 3,      // lives
                 2,      // strength
-                7);     // movement
+                17);     // movement
     }
 
     public void makeNPC() {
