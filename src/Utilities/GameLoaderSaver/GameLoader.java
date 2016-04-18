@@ -6,12 +6,8 @@ import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.NPC.NPC;
 import Model.Map.AreaEffect.*;
 
-import Model.Map.AreaEffect.TeleportAOE;
-import Model.Map.AreaEffect.Trap;
-
 import Model.Map.Location;
 import Model.Map.Map;
-import Model.Map.Orientation;
 import Model.State.GameState.ActiveGameState;
 import Model.State.GameState.MountGameState;
 import Model.State.GameState.PausedGameState;
@@ -27,7 +23,6 @@ import Utilities.MovementCalculations.ViewCalculations;
 import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by dyeung on 4/6/16.
@@ -35,12 +30,11 @@ import java.util.HashMap;
 public class GameLoader {
 
     private Map map;
-    private Avatar avatar;
-    private ActiveGameState activeGameState;
-    private PausedGameState pausedGameState;
-    private MountGameState mountGameState;
+    private final Avatar avatar;
+    private final ActiveGameState activeGameState;
+    private final PausedGameState pausedGameState;
+    private final MountGameState mountGameState;
     private ArrayList<NPC> entities;
-    private ItemManager itemManager;
     private ArrayList<Mount> mounts;
 
     //Needs a constructor in order to create what type of occupation it is
@@ -52,7 +46,7 @@ public class GameLoader {
         initMap();
         ItemFactory.initHashMaps();
         initNPC();
-        itemManager = new ItemManager(ItemFactory.getTakableItems(), ItemFactory.getInteractableItems(), ItemFactory.getAllItemViews(), ItemFactory.getMapItemViews());
+        ItemManager itemManager = new ItemManager(ItemFactory.getTakableItems(), ItemFactory.getInteractableItems(), ItemFactory.getAllItemViews(), ItemFactory.getMapItemViews());
         initAreaEffect();
         activeGameState = new ActiveGameState(map, player, entities, mounts, itemManager);
         pausedGameState = new PausedGameState(map, player, entities, mounts, itemManager);
@@ -116,12 +110,12 @@ public class GameLoader {
     }
 
     private void initAreaEffect(){
-        map.addAOE(new HealDamageAOE(5), new Location(8,12,0));
+        map.addAOE(new HealDamageAOE(), new Location(8,12,0));
         map.addAOE(new TakeDamageAOE(-5), new Location(8,13,0));
-        map.addAOE(new InstantDeathAOE(1), new Location(8,14,0));
-        map.addAOE(new LevelUpAOE(1), new Location(9,12,0));
-        map.addAOE(new TeleportAOE(0, new Location(10,10,0), map), new Location(3,1,0));
-        map.addAOE(new TeleportAOE(0, new Location(5,5,0), map), new Location(11,11,0));
+        map.addAOE(new InstantDeathAOE(), new Location(8,14,0));
+        map.addAOE(new LevelUpAOE(), new Location(9,12,0));
+        map.addAOE(new TeleportAOE(new Location(10,10,0), map), new Location(3,1,0));
+        map.addAOE(new TeleportAOE(new Location(5,5,0), map), new Location(11,11,0));
         map.addAOE(new Trap(), new Location(6,3,0));
 
     }

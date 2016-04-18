@@ -10,8 +10,8 @@ import Model.Items.Takeable.TakeableItem;
  */
 public class Chest extends Interactable {
 
-    public Chest(Quest requiredItem, TakeableItem treasure, String name) {
-        super(new ChestStrategy(requiredItem, treasure), name);
+    public Chest(Quest requiredItem, TakeableItem treasure) {
+        super(new ChestStrategy(requiredItem, treasure), "ClosedChest");
         success = false;
     } // end constructor
 

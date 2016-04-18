@@ -20,8 +20,8 @@ import java.util.Iterator;
  * Created by dyeung on 4/17/16.
  */
 public class ItemSaver implements ItemVisitor {
-    private Document doc;
-    private ArrayList<Element> list;
+    private final Document doc;
+    private final ArrayList<Element> list;
     //SKETCHY WAY TO DO THIS SORRY
     private String tmpLocation;
     public ItemSaver(Document document ) {
@@ -47,7 +47,7 @@ public class ItemSaver implements ItemVisitor {
     @Override
     public void visitTakeableItem(TakeableItem item) {
         Element element = doc.createElement("Takeable-Item");
-        element.setAttributeNode(SaverUtility.getAttrWithSS(doc,"name",item.getName()));
+        element.setAttributeNode(SaverUtility.getAttrWithSS(doc, item.getName()));
         Attr location = doc.createAttribute("location");
         location.setValue(tmpLocation);
         element.setAttributeNode(location);
@@ -57,7 +57,7 @@ public class ItemSaver implements ItemVisitor {
     @Override
     public void visitInteractive(Interactable item) {
         Element element = doc.createElement("Interactable-Item");
-        element.setAttributeNode(SaverUtility.getAttrWithSS(doc,"name",item.toString()));
+        element.setAttributeNode(SaverUtility.getAttrWithSS(doc, item.toString()));
         Attr location = doc.createAttribute("location");
         location.setValue(tmpLocation);
         element.setAttributeNode(location);

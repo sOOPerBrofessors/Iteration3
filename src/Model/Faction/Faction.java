@@ -8,8 +8,8 @@ import Utilities.AIStuff.RelationshipList;
  */
 public class Faction {
 
-    private String name;
-    private RelationshipList<Faction> factionRelationshipList = new RelationshipList<>();
+    private final String name;
+    private final RelationshipList<Faction> factionRelationshipList = new RelationshipList<>();
 
     public Faction(String name) {
 
@@ -23,7 +23,7 @@ public class Faction {
 
     }
 
-    public String getName() {
+    private String getName() {
 
         return name;
 

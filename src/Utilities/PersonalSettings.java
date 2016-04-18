@@ -3,10 +3,10 @@ package Utilities;
 /**
  * Created by sgl on 4/16/16.
  */
-public class PersonalSettings {
+class PersonalSettings {
 
-    public static ErrorLevel errorLevel = ErrorLevel.NOTICE;
+    public static final ErrorLevel errorLevel = ErrorLevel.NOTICE;
 
-    public static PersonFilter personFilter = PersonFilter.SAM;
+    public static final PersonFilter personFilter = PersonFilter.SAM;
 
 }

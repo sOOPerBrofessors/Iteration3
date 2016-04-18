@@ -3,7 +3,6 @@ package Model.Entity.Character.NPC;
 import Controller.AI_Controller.AI_Controller;
 import Controller.AI_Controller.Brain;
 import Controller.AI_Controller.Personality.Personality;
-import Model.Effect.Effect;
 import Model.Entity.Character.Character;
 import Model.Entity.Character.NPC.NPCStrategy.NPCStrategy;
 import Model.Entity.Character.Occupation.Occupation;
@@ -15,7 +14,6 @@ import Model.Items.Takeable.Equippable.Weapon.Weapon;
 import Model.Items.Takeable.TakeableItem;
 import Model.Items.Takeable.Useable.Potion;
 import Model.Map.Location;
-import Utilities.GameMessageQueue;
 import Utilities.ItemStuff.ItemFactory.ItemFactory;
 import Utilities.ItemStuff.ItemManager;
 import Utilities.Tickable;
@@ -33,9 +31,9 @@ import java.util.HashMap;
 public class NPC extends Character implements Tickable{
 
     private Brain brain;
-    private Personality personality;
-    private NPCStrategy npcStrategy;
-    AI_Controller controller;
+    private final Personality personality;
+    private final NPCStrategy npcStrategy;
+    private AI_Controller controller;
 
     public NPC(Occupation o, Location location, Personality personality, Faction faction, Inventory inventory, NPCStrategy npcStrategy) {
         super(o, location, faction, inventory);

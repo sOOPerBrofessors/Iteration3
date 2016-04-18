@@ -15,8 +15,7 @@ import java.awt.*;
  */
 public class GamePanel extends JPanel{
 
-    private AreaViewport areaViewport;
-    private ViewManager viewManager;
+    private final ViewManager viewManager;
     private GamePlayController controller;
 
     private InventoryView inventoryView;
@@ -26,9 +25,6 @@ public class GamePanel extends JPanel{
     private SkillsView skillsView;
     private TradeView tradeView;
 
-    //
-    private int paintOrder;
-
     // gamePanel observer (viewManager)
     private Observer observer;
 
@@ -36,12 +32,12 @@ public class GamePanel extends JPanel{
         //When initalized it'll create the AreaViewport - might be changed for later though
         setLayout(new BorderLayout());
         this.viewManager = viewManager;
-        paintOrder = 1;
+        int paintOrder = 1;
     }
 
     //These views come built in with the GamePanel
     public void init(ActiveGameState gameState, GamePlayController gamePlayController){
-        areaViewport = new AreaViewport(gameState);
+        AreaViewport areaViewport = new AreaViewport(gameState);
         inventoryView = new InventoryView(gameState);
         statsView = new StatsView(gameState);
         pauseView = new PauseView(viewManager);
@@ -111,7 +107,7 @@ public class GamePanel extends JPanel{
         Component temp;
         System.out.println("you");
         temp = getComponent(0);
-        remove((JComponent)temp);
+        remove(temp);
         add(view, BorderLayout.CENTER);
         add(temp, BorderLayout.CENTER);
     }

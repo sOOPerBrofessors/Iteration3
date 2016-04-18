@@ -12,9 +12,9 @@ import java.util.ArrayList;
  */
 public class FogOfWar {
     //Takes in avatar or takes in avatar view? for now agree on avatar
-    int radius;
-    Avatar avatar; //we can probably get rid of avatar by using the observer
-    Location oldLocation;
+    private final int radius;
+    private final Avatar avatar; //we can probably get rid of avatar by using the observer
+    private Location oldLocation;
     public FogOfWar(Avatar avatar){
         radius = avatar.getRadiusVisibility();
         this.avatar = avatar;

@@ -7,9 +7,7 @@ import Model.Map.TileColumn;
 import Utilities.MathUtilities;
 import Utilities.Tickable;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -17,7 +15,7 @@ import java.util.Map;
  */
 public class VisualCortex implements Tickable {
 
-    private VisualCortexMemoryInterface memory;
+    private final VisualCortexMemoryInterface memory;
 
     public VisualCortex(VisualCortexMemoryInterface memory) {
 

@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public abstract class InfluenceArea {
 
-    protected static Orientation[] orientationArr = {
+    protected static final Orientation[] orientationArr = {
             Orientation.NORTH,
             Orientation.NORTHEAST,
             Orientation.SOUTHEAST,

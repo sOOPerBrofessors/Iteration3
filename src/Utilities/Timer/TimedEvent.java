@@ -15,9 +15,9 @@ import java.awt.event.ActionListener;
  * Time can be reset if start() is called while already running.
  */
 public class TimedEvent {
-    protected Timer t;
-    protected Command beforeTask;
-    protected ActionListener afterTask;
+    private final Timer t;
+    private final Command beforeTask;
+    private final ActionListener afterTask;
 
     public TimedEvent(int time, Command beforeTask, ActionListener afterTask) {
         t = new Timer(time, afterTask);

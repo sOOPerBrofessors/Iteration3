@@ -1,7 +1,6 @@
 package Model.Items.ItemStrategy;
 
 import Model.Entity.Character.Character;
-import Model.Items.Item;
 import Model.Items.Takeable.TakeableItem;
 
 /**
@@ -12,5 +11,5 @@ import Model.Items.Takeable.TakeableItem;
  *  vs equipped vs ... for each type of entity who could use them.
  */
 public interface ItemStrategy {
-    public boolean onInteract(TakeableItem item, Character character);   // to be called on item interaction from within inventory
+    boolean onInteract(TakeableItem item, Character character);   // to be called on item interaction from within inventory
 } // end interface ItemStrategy

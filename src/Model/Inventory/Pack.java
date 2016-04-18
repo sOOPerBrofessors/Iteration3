@@ -4,11 +4,7 @@ import Model.Entity.Character.Character;
 import Model.Items.Item;
 import Model.Items.Takeable.TakeableItem;
 import Model.Items.Takeable.Useable.Money;
-import Utilities.ErrorLevel;
-import Utilities.GameMessageQueue;
 import Utilities.ItemStuff.ItemManager;
-import Utilities.MessageHandler;
-import Utilities.PersonFilter;
 
 import java.util.ArrayList;
 
@@ -16,9 +12,9 @@ import java.util.ArrayList;
  * Created by broskj on 4/8/16.
  */
 public class Pack {
-    private ArrayList<TakeableItem> items;
+    private final ArrayList<TakeableItem> items;
     private int money;
-    final int cap = 16;
+    private final int cap = 16;
 
     public Pack() {
         items = new ArrayList<>();

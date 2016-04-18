@@ -7,8 +7,8 @@ import Utilities.Visitor.AOEVisitor;
  * Created by dyeung on 4/14/16.
  */
 public class LevelUpAOE extends AreaOfEffect{
-    public LevelUpAOE(int value) {
-        super(value);
+    public LevelUpAOE() {
+        super(1);
     }
 
     @Override

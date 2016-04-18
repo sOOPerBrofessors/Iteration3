@@ -7,11 +7,11 @@ import Utilities.MathUtilities;
  */
 public class Relationship {
 
-    double value = 0.0;
+    private double value = 0.0;
 
     public Relationship(double value) {
 
-        this.value = MathUtilities.putInRange(-1.0, value, 1.0);
+        this.value = MathUtilities.putInRange(-1.0, value);
 
     }
 
@@ -23,7 +23,7 @@ public class Relationship {
 
     private void setValue(double value) {
 
-        this.value = MathUtilities.putInRange(-1.0, value, 1.0);
+        this.value = MathUtilities.putInRange(-1.0, value);
 
     }
 

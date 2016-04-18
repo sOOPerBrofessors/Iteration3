@@ -1,12 +1,8 @@
 package Model.Entity.Character.Occupation;
 
 import Model.Entity.Character.Avatar;
-import Model.Items.Takeable.TakeableItem;
 import Model.Map.Orientation;
 import Model.Skills.BindWounds;
-import Model.Skills.CombatSkills.BrawlingSkill;
-import Model.Skills.CombatSkills.OneHandedWeaponSkill;
-import Model.Skills.CombatSkills.TwoHandedWeaponSkill;
 import Model.Skills.RangedSkills.Observation;
 import Model.Skills.Skill;
 import Model.Stats.CharacterStats;

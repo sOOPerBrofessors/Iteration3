@@ -8,7 +8,7 @@ import Model.Items.Takeable.Equippable.Armor;
  * An armor factory.  Given a string for the grade of armor and and integer modification value, a different name and
  *  description will be generated.
  */
-public class ArmorFactory {
+class ArmorFactory {
     public static Armor makeSmasherArmor(String grade, int value) {
         return Armor.makeSmasherArmor(
                 grade + " Armor",
@@ -27,12 +27,12 @@ public class ArmorFactory {
         );
     } // end factory method makeSummonerArmor
 
-    public static Armor makeSneakArmor(String grade, int value) {
+    public static Armor makeSneakArmor(String grade) {
         return Armor.makeSneakArmor(
                 grade + " Leather Gear",
                 "Some " + grade.toLowerCase() + " leather gear for sneaky types.",
-                value,
-                7 * value / 2
+                3,
+                7 * 3 / 2
         );
     } // end factory method makeSummonerArmor
 

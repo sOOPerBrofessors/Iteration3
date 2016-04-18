@@ -8,7 +8,7 @@ import org.w3c.dom.Document;
  */
 public class LoadDocument {
 
-    Document document;
+    final Document document;
 
     public LoadDocument(Document document) {
 

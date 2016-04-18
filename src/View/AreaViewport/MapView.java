@@ -15,7 +15,7 @@ public class MapView implements Observer{
 
     private ItemManager itemManager;
     private ItemView[] itemViews;
-    private TileColumnView[][] tileColumnView;
+    private final TileColumnView[][] tileColumnView;
 
     public MapView(TileColumnView[][] tileColumnView){
         this.tileColumnView = tileColumnView;
@@ -37,11 +37,7 @@ public class MapView implements Observer{
         tileColumnView[x][y].paintComponent(g);
     }
     private boolean notOutBounds(int x, int y){
-        if (x < tileColumnView.length && y < tileColumnView[0].length){
-            return true;
-        }else{
-            return false;
-        }
+        return x < tileColumnView.length && y < tileColumnView[0].length;
     }
     public void setVisibleState(int x, int y){
         if (notOutBounds(x,y)){
@@ -77,7 +73,7 @@ public class MapView implements Observer{
 
     }
 
-    public void clearItemViews(){
+    private void clearItemViews(){
         if(itemViews != null) {
             // clear old item views
             for (ItemView view : itemViews) {

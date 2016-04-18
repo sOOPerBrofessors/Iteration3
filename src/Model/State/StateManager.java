@@ -13,10 +13,7 @@ import Model.Model;
  */
 public class StateManager implements Tickable {
 
-    private Model model;
-
-    // controller manager used to issue commands when controller needs to be changed
-    private ControllerManager controllerManager;
+    private final Model model;
 
     private State activeState;
     private ActiveGameState activeGameState;
@@ -51,7 +48,7 @@ public class StateManager implements Tickable {
     }
 
     public void setControllerManager(ControllerManager controllerManager) {
-        this.controllerManager = controllerManager;
+        ControllerManager controllerManager1 = controllerManager;
     }
 
     public void setPausedGameState(PausedGameState pausedGameState){

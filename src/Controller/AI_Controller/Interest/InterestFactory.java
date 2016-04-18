@@ -16,7 +16,7 @@ public class InterestFactory {
 
 //    private static final String urlString = IOUtilities.getFileSystemDependentPath("Controller/AI_Controller/Interest/");
 //    private static final String packagePath = InterestFactory.class.getPackage().getName();
-    private static HashMap<String, AbstractInterestFactory> interests = new HashMap<>();
+    private static final HashMap<String, AbstractInterestFactory> interests = new HashMap<>();
 
     static {
 

@@ -14,12 +14,12 @@ import javax.swing.JFrame;
  */
 public class View implements Runnable, Observer{
 
-    private JFrame mainFrame;
-    private ViewManager viewManager;
+    private final JFrame mainFrame;
+    private final ViewManager viewManager;
     private static Model gameLoop;
 
     public View(Model gameLoop){
-        this.gameLoop = gameLoop;
+        View.gameLoop = gameLoop;
         mainFrame = new MainFrame();
         viewManager = new ViewManager();
         viewManager.addObserver(this);

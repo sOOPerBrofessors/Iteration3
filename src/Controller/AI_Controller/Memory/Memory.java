@@ -22,8 +22,8 @@ import Utilities.Tickable;
 
 public class Memory implements Tickable, VisualCortexMemoryInterface, FrontalLobeMemoryInterface, MotorCortexMemoryInterface {
 
-    private NPC npc;
-    private Personality personality;
+    private final NPC npc;
+    private final Personality personality;
 
     private VisualInformation visualInformation;
     private RelationshipList<Entity> entityRelationships = new RelationshipList<>();

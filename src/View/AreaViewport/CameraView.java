@@ -7,13 +7,13 @@ import Utilities.Settings;
 /**
  * Created by dyeung on 4/6/16.
  */
-public class CameraView {
+class CameraView {
 
-    private Avatar avatar;
+    private final Avatar avatar;
     private int xPixels;
     private int yPixels;
-    private int tileWidth = Settings.TILEWIDTH;
-    private int tileHeight = Settings.TILEHEIGHT;
+    private final int tileWidth = Settings.TILEWIDTH;
+    private final int tileHeight = Settings.TILEHEIGHT;
     public CameraView(Avatar avatar){
         this.avatar = avatar;
     }

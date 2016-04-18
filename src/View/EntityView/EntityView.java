@@ -10,23 +10,23 @@ import View.MapView.MapObjectView;
  */
 public abstract class EntityView extends MapObjectView implements EntityObserver{
     //Honestly the x and y shouldn't matter, its only for printing on the coordinate system and testing
-    protected int x; // on the coordinate system
-    protected int y; // on the coordinate system
+    private int x; // on the coordinate system
+    private int y; // on the coordinate system
 
-    protected OrientationView orientationView;
-    protected int xPixel; // on the map
-    protected int yPixel; // on the map
-    protected Orientation orientation;
+    OrientationView orientationView;
+    int xPixel; // on the map
+    int yPixel; // on the map
+    Orientation orientation;
 
     /*Entity is private because it is only available to update its position and orientation.
     All the view rendering must be done by that specific class. This is to avoid specific items
     being rendered at wrong times (IE a projectile having a health bar). The projectile should have its own orientation view
     to render
     */
-    protected Entity entity; //property that  is being observered
+    private final Entity entity; //property that  is being observered
 
 
-    public EntityView(Entity observerable){
+    EntityView(Entity observerable){
         entity = observerable;
         observerable.addObserver(this);
         orientation = entity.getOrientation();
@@ -39,7 +39,7 @@ public abstract class EntityView extends MapObjectView implements EntityObserver
         updateLocation();
         updateOrientation();
     }
-    public abstract void updateOrientation();
+    protected abstract void updateOrientation();
 
     private void updateLocation(){
         x = entity.getX();

@@ -10,7 +10,6 @@ import Model.Skills.CombatSkills.StaffSkill;
 import Model.Skills.RangedSkills.*;
 import Model.Skills.Skill;
 import Model.Skills.SkillsWithDuration.Boon;
-import Model.Skills.SkillsWithDuration.Creep;
 import Model.Stats.CharacterStats;
 import Utilities.Visitor.OccupationVisitor;
 
