@@ -36,7 +36,7 @@ public class ImageAssets {
     public static ArrayList<BufferedImage> fireballs = new ArrayList<>();
 
     //skill things
-    public static BufferedImage crackedEarth;
+    public static BufferedImage crackedEarth, arcaneExplosion;
     public static ArrayList<BufferedImage> arrows = new ArrayList<>();
 
     public static BufferedImage hellCatN, hellCatNW, hellCatSW, hellCatS, hellCatSE, hellCatNE;
@@ -58,6 +58,7 @@ public class ImageAssets {
     public static BufferedImage damageAOE;
     public static BufferedImage instantDeathAOE;
     public static BufferedImage teleportAOE;
+    public static BufferedImage trapAOE;
 
     //needs to be called once
     public static void init(){
@@ -66,6 +67,7 @@ public class ImageAssets {
         SpriteSheet damageAOESheet = new SpriteSheet(SpriteLoader.loadImage("./res/Decal/skull-and-crossbones.png"));
         SpriteSheet instantDeathAOESheet = new SpriteSheet(SpriteLoader.loadImage("./res/Decal/skull-and-crossbones.png"));
         SpriteSheet teleportAOESheet = new SpriteSheet(SpriteLoader.loadImage("./res/Decal/teleport-sample.png"));
+        SpriteSheet trapImageSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Decal/trap.png"));
 
         SpriteSheet healthPotionSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/HealthPotion.png"));
         SpriteSheet chestKeySheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/key.png"));
@@ -90,6 +92,7 @@ public class ImageAssets {
 
         // Cracked earth
         SpriteSheet crackedEarthSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/crackedGrass.png"));
+        SpriteSheet arcaneExplosionSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/arcaneExplosion.png"));
         // fireballs!
         SpriteSheet fireballSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall.png"));
         SpriteSheet fireball90Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall90.png"));
@@ -197,9 +200,11 @@ public class ImageAssets {
         damageAOE = damageAOESheet.cropSheet(0,0,30,30);
         instantDeathAOE = instantDeathAOESheet.cropSheet(0,0,30,30);
         teleportAOE = teleportAOESheet.cropSheet(0,0,30,30);
-
+        trapAOE = trapImageSheet.cropSheet(0,0,92,80);
 
         //skill things
         crackedEarth = crackedEarthSheet.cropSheet(0, 0, terrainWidth, 71);
+        arcaneExplosion = arcaneExplosionSheet.cropSheet(0, 0, terrainWidth, 71);
+
     }
 }

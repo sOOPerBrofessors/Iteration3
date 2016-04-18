@@ -6,6 +6,7 @@ import Model.Map.Map;
 import Model.State.GameState.GameState;
 import View.AreaViewport.FogOfWar.FogOfWar;
 import View.AreaViewport.HUDView.HUD;
+import View.SkillView.ArcaneExplosionView;
 import View.SkillView.EarthShakeView;
 import View.SkillView.ObservedNPC;
 
@@ -29,6 +30,7 @@ public class AreaViewport extends JPanel{
     private HUD hud;
     private ObservedNPC observedNPC;
     private EarthShakeView earthShakeView;
+    private ArcaneExplosionView arcaneExplosionView;
 
     public AreaViewport(GameState gameState){
         //This needs to be initialized later on or grabbed from the inventory
@@ -41,6 +43,7 @@ public class AreaViewport extends JPanel{
         hud = new HUD(avatar);
         observedNPC = new ObservedNPC();
         earthShakeView = new EarthShakeView();
+        arcaneExplosionView = new ArcaneExplosionView();
         map = gameState.getMap();
         MapViewFactory mapViewFactory = new MapViewFactory();
         mapView = mapViewFactory.createMapViewObjects(map);
@@ -81,5 +84,6 @@ public class AreaViewport extends JPanel{
         hud.updateHUD(g);
         observedNPC.updateObservation(g);
         earthShakeView.updateObservation(g);
+        arcaneExplosionView.updateObservation(g);
     }
 }

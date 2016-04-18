@@ -42,11 +42,18 @@ public class ControllerManager implements KeyListener {
         mountController = new MountController(this);
     }
 
+    public void setActiveController(Controller gs){
+        activeController = gs;
+    }
+    //End testing
+
+    public void initGameplayController(){
+        gamePlayController.initCommands();
+    }
+
     public ControllerManager(ViewManager viewManager, StateManager stateManager){
         this.viewManager = viewManager;
         this.stateManager = stateManager;
-        //Needs to set active controller
-        //activeController = new GamePlayController()
     }
 
     public void setInventoryState(){

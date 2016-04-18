@@ -30,7 +30,9 @@ public class GamePlayController extends Controller{
         }
     } // end keyPress
 
-    private void initCommands(){
+    public void initCommands(){
+
+        commands.clear();
 
         // up key press
         commands.put(Settings.UP, () -> state.movePlayerN());
@@ -68,7 +70,7 @@ public class GamePlayController extends Controller{
         commands.put(Settings.INTERACT, () -> state.playerInteract());
 
         // skill one key press
-        commands.put(Settings.ONE, new Command() {
+        commands.put(Settings.SKILL_1, new Command() {
             @Override
             public void execute() {
                 state.playerExecuteSkill(0);
@@ -76,22 +78,25 @@ public class GamePlayController extends Controller{
         });
 
         // skill 2 key press
-        commands.put(Settings.TWO, () -> new ObservationTimer(state.playerObservationSkill()).start());
+        commands.put(Settings.SKILL_2, () -> new ObservationTimer(state.playerObservationSkill()).start());
 
         // skill 3 key press
-        commands.put(Settings.THREE, () -> state.playerExecuteSkill(2));
+        commands.put(Settings.SKILL_3, () -> state.playerExecuteSkill(2));
 
         // skill 4 key press
-        commands.put(Settings.FOUR, () -> state.playerExecuteSkill(3));
+        commands.put(Settings.SKILL_4, () -> state.playerExecuteSkill(3));
 
         // skill 5 key press
-        commands.put(Settings.FIVE, () -> state.playerExecuteSkill(4));
+        commands.put(Settings.SKILL_5, () -> state.playerExecuteSkill(4));
 
         // skill 6 key press
-        commands.put(Settings.SIX, () -> state.playerExecuteSkill(5));
+        commands.put(Settings.SKILL_6, () -> state.playerExecuteSkill(5));
 
         // skill 7 key press
-        commands.put(Settings.SEVEN, () -> state.playerExecuteSkill(6));
+        commands.put(Settings.SKILL_7, () -> state.playerExecuteSkill(6));
+
+        // skill 8 key pree
+        commands.put(Settings.EIGHT, () -> state.playerExecuteSkill(7));
 
         // inventory key press
         commands.put(Settings.INVENTORY, () -> controllerManager.setInventoryState());
@@ -132,6 +137,13 @@ public class GamePlayController extends Controller{
             //state.getAvatar().manaEffect(10000);
         });
 
+//        commands.put(KeyEvent.VK_9, new Command() {
+//            @Override
+//            public void execute() {
+//                GameSaver gameSaver = new GameSaver(state);
+//                gameSaver.startSave(state);
+//            }
+//        });
     }
 
     public void setState(ActiveGameState state) {
