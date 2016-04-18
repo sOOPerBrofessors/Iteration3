@@ -2,6 +2,7 @@ package Controller.AI_Controller.Interest;
 
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
+import Model.Entity.Entity;
 import Model.Map.Orientation;
 
 import java.util.ArrayList;
@@ -92,6 +93,8 @@ public abstract class Interest {
 
     // Gets the individual interest type, this allows me to group them according to if they deal with entities, items, or points
     abstract public InterestType getType();
+
+    abstract public void onEntityTouch(MotorCortexMemoryInterface memory);
 
     public final String toString() {
 

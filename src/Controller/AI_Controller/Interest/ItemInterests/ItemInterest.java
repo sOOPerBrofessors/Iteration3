@@ -1,6 +1,8 @@
 package Controller.AI_Controller.Interest.ItemInterests;
 
 import Controller.AI_Controller.Interest.Interest;
+import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
+import Model.Entity.Entity;
 import Model.Items.Item;
 
 /**
@@ -13,6 +15,12 @@ public abstract class ItemInterest extends Interest {
     public void setTarget(Item targetItem) {
 
         this.targetItem = targetItem;
+
+    }
+
+    public void onEntityTouch(MotorCortexMemoryInterface memory) {
+
+
 
     }
 

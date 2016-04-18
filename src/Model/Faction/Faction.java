@@ -29,9 +29,19 @@ public class Faction {
 
     }
 
+    public double getRelationship(Faction otherFaction) {
+
+        if (this == otherFaction) {
+            return 1.0;
+        }
+
+        return factionRelationshipList.getRelationship(otherFaction).getValue();
+
+    }
+
     public String printRelationships() {
 
-        String output = new String();
+        String output = "";
 
         output += "Faction: " + getName() + "\n";
         output += factionRelationshipList.toString();

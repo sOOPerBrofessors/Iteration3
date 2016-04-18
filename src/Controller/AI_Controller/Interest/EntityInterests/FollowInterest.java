@@ -2,6 +2,7 @@ package Controller.AI_Controller.Interest.EntityInterests;
 
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
+import Model.Entity.Entity;
 import Model.Map.Location;
 
 /**
@@ -55,6 +56,12 @@ public class FollowInterest extends EntityInterest {
     public double getValue() {
 
         return 100;
+
+    }
+
+    public void onEntityTouch(MotorCortexMemoryInterface memory) {
+
+        // Do nothing! Gaze at them, we don't care.
 
     }
 
