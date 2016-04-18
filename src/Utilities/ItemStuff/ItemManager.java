@@ -23,7 +23,6 @@ public class ItemManager implements Subject{
     private HashMap<Item, ItemView> mapItemViews;
     private HashMap<Item, ItemView> allItemViews;
     private HashMap<Location, Interactable> interactableItems;
-    //private HashMap<Location, Obstacle>
     private Observer observer;
 
     public ItemManager(HashMap<Location, TakeableItem> takableItems, HashMap<Location, Interactable> interactableItems, HashMap<Item, ItemView> allItemViews, HashMap<Item, ItemView> mapItemViews){
