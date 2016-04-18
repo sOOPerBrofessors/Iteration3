@@ -65,15 +65,29 @@ public abstract class Entity implements EntityObservable, MapObject {
 
     public boolean canMove(Map map, Orientation orientation) {
 
-        Tile nextTile = getNextTile(map, orientation);
+        TileColumn nextTileColumn = getNextTileColumn(map, orientation);
 
-        if (nextTile == null) {
+        if (nextTileColumn == null) {
 
             return false;
 
         }
 
-        return navigation.canMove(nextTile);
+        int nextZ = nextTileColumn.getTopPosition() - 1;
+        int difference = nextZ - location.getZ();
+        if (difference > 1) { //Allows fall to happen, probably need some check to account if <0
+
+            return false;
+
+        }
+
+        return canMove(nextTileColumn.getTopTile());
+
+    }
+
+    public boolean canMove(Tile tile) {
+
+        return navigation.canMove(tile);
 
     }
 
@@ -113,5 +127,3 @@ public abstract class Entity implements EntityObservable, MapObject {
 
 
 }
-
-

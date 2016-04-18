@@ -6,6 +6,7 @@ import Model.Entity.Character.NPC.NPC;
 import Model.Map.AreaEffect.TeleportAOE;
 import Model.Map.Location;
 import Model.Map.Map;
+import Model.Map.Orientation;
 import Model.State.GameState.ActiveGameState;
 import Model.State.GameState.PausedGameState;
 import Model.State.StateManager;
@@ -16,6 +17,7 @@ import Utilities.GameLoaderSaver.Load.LoadParser;
 import Utilities.ItemStuff.ItemFactory.ItemFactory;
 import Utilities.ItemStuff.ItemManager;
 import Utilities.MessageHandler;
+import Utilities.MovementCalculations.ViewCalculations;
 import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.util.ArrayList;
@@ -35,10 +37,12 @@ public class GameLoader {
     //Needs a constructor in order to create what type of occupation it is
     public GameLoader(Avatar player, StateManager stateManager) {
         ImageAssets.init();
+        ViewCalculations.initPixels();
         entities = new ArrayList<>();
         avatar = player;
         initMap();
         ItemFactory.initHashMaps();
+        initNPC();
         itemManager = new ItemManager(ItemFactory.getTakableItems(), ItemFactory.getInteractableItems(), ItemFactory.getAllItemViews(), ItemFactory.getMapItemViews());
         activeGameState = new ActiveGameState(map, player, entities, itemManager);
         pausedGameState = new PausedGameState(map, player, entities, itemManager);
@@ -46,14 +50,12 @@ public class GameLoader {
         stateManager.setPausedGameState(pausedGameState);
     }
     public void loadGame(){
-        initNPC();
         addPlayerToMap(); //load game is done earlier
         //loadItems();
         initItems();
         initAreaEffect();
     }
     public void createNewGame(){
-        initNPC();
         addPlayerToMap();
         initItems();
         initAreaEffect();
@@ -85,17 +87,19 @@ public class GameLoader {
 
     private void initNPC() {
 
-
         entities = NPCFactory.init();
 
         AI_Controller controller = new AI_Controller();
 
         for (int i = 0; i < entities.size(); i++) {
-            entities.get(i).setController(controller);
-            map.addCharacter(entities.get(i));
-        }
 
+            entities.get(i).setController(controller);
+
+            map.addCharacter(entities.get(i));
+
+        }
         controller.setMap(map);
+
     }
 
     private void initAreaEffect(){
@@ -111,6 +115,4 @@ public class GameLoader {
     public PausedGameState getPausedGameState() {
         return pausedGameState;
     }
-
-
 }

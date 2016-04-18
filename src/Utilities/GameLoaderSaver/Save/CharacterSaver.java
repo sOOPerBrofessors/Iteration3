@@ -127,6 +127,7 @@ public class CharacterSaver implements CharacterVisitor {
 
         characterList.add(statElm);
 
+
     }
 
 

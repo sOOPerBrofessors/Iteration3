@@ -2,9 +2,7 @@ package Model.Skills;
 
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
-import Utilities.ErrorLevel;
-import Utilities.MessageHandler;
-import Utilities.PersonFilter;
+import Utilities.GameMessageQueue;
 
 import java.util.Random;
 
@@ -13,8 +11,7 @@ import java.util.Random;
  *
  * All skills are active. Skill is the parent of all kinds of skills.
  */
-public abstract class Skill { //TODO: skills should also be ticked if we want to display remaining CD
-    //TODO: complete everything after avatar is done
+public abstract class Skill {
     protected int level; //level range: [1, 10]
     protected String name;
     protected double coolDownTime;
@@ -30,26 +27,27 @@ public abstract class Skill { //TODO: skills should also be ticked if we want to
     }
 
     public void levelUp() {
-        if (level < 10) {// and avatar have enough skill point
+        // level < 10, and avatar have enough skill point
+        if (level < 10 && avatar.getSkillPoint() >= 1) {
             level += 1;
-            //TODO: also modify CD, manaCost, substact skillPoint, etc
+            avatar.skillPointEffect(-1);
         }
     }
 
     public void execute(Map map){
-        System.out.println("Wrong place");
+        System.out.println("You've reached a Wrong place! Skill:line 42");
     }
 
     public void enforceManaCost() {
         avatar.manaEffect( -manaCost );
     }
+
     protected void setTimePerformed() {
         timePerformed = System.currentTimeMillis();
         remainingCoolDownTime = coolDownTime;
     }
 
     public void tick() {
-        //TODO: this is dumb implementation
         double timePassed = (System.currentTimeMillis() - timePerformed) / 1000;
         remainingCoolDownTime = coolDownTime - timePassed;
         if (remainingCoolDownTime <= 0) {
@@ -75,25 +73,26 @@ public abstract class Skill { //TODO: skills should also be ticked if we want to
         return compareNumber <= chanceOfSuccess;
     }
 
-    protected boolean checkAll() {
+    protected boolean allConditionChecked() {
         if (!checkCD()) {
-            MessageHandler.println(name + "Not cooled down, remaining CD: " + getRemainingCoolDownTime(), ErrorLevel.NOTICE, PersonFilter.ANDY);
+            GameMessageQueue.push(name + " failed. Not cooled down");
             return false;
         }
         else if (!checkMana()) {
-            MessageHandler.println(name + "Not enough mana", ErrorLevel.NOTICE, PersonFilter.ANDY);
+            GameMessageQueue.push(name + " failed. Not enough mana");
             return false;
         }
         else if (!checkPerformanceSuccess()) {
             enforceManaCost();
             setTimePerformed();
-            MessageHandler.println(name + "Fail" + getRemainingCoolDownTime(), ErrorLevel.NOTICE, PersonFilter.ANDY);
+            GameMessageQueue.push(name + " failed. Bad luck!");
             return false;
         }
         else {
             return true;
         }
     }
+
     // accessors
     public int getLevel() {
         return level;

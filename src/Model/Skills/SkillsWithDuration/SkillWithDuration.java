@@ -8,7 +8,13 @@ import Model.Skills.Skill;
  */
 public abstract class SkillWithDuration extends Skill {
 
+    int durationInMillis;
+
     public SkillWithDuration(Avatar avatar) {
         super(avatar);
+    }
+
+    protected void calculateDuration() {
+        durationInMillis = 10000;
     }
 }

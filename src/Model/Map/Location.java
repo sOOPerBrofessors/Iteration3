@@ -62,4 +62,26 @@ public class Location {
     public String toString(){
         return x+","+y+","+z;
     }
+
+//    public String toString() {
+//
+//        return "(" + getX() + ", " + getY() + ", " + getZ() + ")";
+//
+//    }
+
+    public boolean equals(Object o) {
+
+        if (o instanceof Location) {
+
+            Location loc = (Location) o;
+
+            return (this.getX() == loc.getX() && this.getY() == loc.getY() && this.getZ() == loc.getZ());
+
+        }
+
+        return false;
+
+    }
+
+
 }

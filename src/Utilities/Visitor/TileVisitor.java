@@ -1,11 +1,9 @@
 package Utilities.Visitor;
 
 import Model.Entity.Character.Character;
-import Model.Entity.Entity;
-import Model.Items.Item;
 import Model.Map.AreaEffect.AreaOfEffect;
 import Model.Map.Tile.Terrain.Terrain;
-import Model.Projectile.Projectile;
+import Model.Entity.Projectile.Projectile;
 
 /**
  * Created by dyeung on 4/15/16.

@@ -1,7 +1,11 @@
 package Model.Stats;
 
+import Model.State.State;
+import Utilities.GameMessageQueue;
+import Utilities.Splats.DamageQueue;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
+import Utilities.Splats.ExperienceQueue;
 
 import java.util.ArrayList;
 
@@ -33,8 +37,6 @@ public class CharacterStats extends EntityStats implements Subject {
     private int strength;
 
     // derived stats
-    private int baseHealth;
-    private int health;
     private int level;
     private int baseMana;
     private int mana;
@@ -50,6 +52,7 @@ public class CharacterStats extends EntityStats implements Subject {
     private int equippedArmor;
 
     // miscellaneous
+    private int skillPoint;
     private int experienceThreshold;        // experience to next level
     private double experienceMultiplier;    // amount to multiply experienceThreshold by on level up
     private double levelMultiplier;         // amount to multiply primary stats by on level up
@@ -62,6 +65,7 @@ public class CharacterStats extends EntityStats implements Subject {
         intellect = baseIntellect = stats[3];
         lives = baseLives = stats[4];
         strength = baseStrength = stats[5];
+        movement = baseMovement = stats[6];
 
         equippedWeapon = equippedArmor = 0;
 
@@ -74,7 +78,8 @@ public class CharacterStats extends EntityStats implements Subject {
 
         experienceThreshold = 10;
         experienceMultiplier = 1.5;
-        levelMultiplier = 1.2;
+        levelMultiplier = 1.1;
+        skillPoint = 1;
     } // end constructor
 
     public static CharacterStats makeSmasherStats() {
@@ -84,7 +89,8 @@ public class CharacterStats extends EntityStats implements Subject {
                 3,      // hardiness
                 3,      // intellect
                 3,      // lives
-                5);     // strength
+                5,      // strength
+                3);      // movement
     } // end factory method makeSmasherStats
 
     public static CharacterStats makeSneakStats() {
@@ -94,7 +100,8 @@ public class CharacterStats extends EntityStats implements Subject {
                 3,      // hardiness
                 3,      // intellect
                 3,      // lives
-                3);     // strength
+                3,      // strength
+                5);     // movement
     } // end factory method makeSneakStats
 
     public static CharacterStats makeSummonerStats() {
@@ -104,8 +111,20 @@ public class CharacterStats extends EntityStats implements Subject {
                 3,      // hardiness
                 5,      // intellect
                 3,      // lives
-                5);     // strength
+                3,      // strength
+                4);     // movement
     } // end factory method makeSummonerStats
+
+    public static CharacterStats makePetStats() {
+        return new CharacterStats(
+                5,      // agility
+                0,      // experience
+                3,      // hardiness
+                2,      // intellect
+                3,      // lives
+                2,      // strength
+                7);     // movement
+    }
 
     public CharacterStats makeNPC() {
         /*
@@ -123,6 +142,7 @@ public class CharacterStats extends EntityStats implements Subject {
     public void levelUp() {
         // increase level by one; reset lives
         level++;
+
         lives = baseLives;
 
         // modify current xp and xp to next level
@@ -130,16 +150,18 @@ public class CharacterStats extends EntityStats implements Subject {
         experienceThreshold *= experienceMultiplier;
 
         // modify base stats by a constant multiplier
-        baseAgility *= levelMultiplier + 1;
-        hardiness *= levelMultiplier + 1;
-        intellect *= levelMultiplier + 1;
-        strength *= levelMultiplier + 1;
+        baseAgility = (int)(baseAgility * levelMultiplier + 1);
+        baseHardiness = (int)(baseHardiness * levelMultiplier + 1);
+        baseIntellect = (int)(baseIntellect * levelMultiplier + 1);
+        baseStrength = (int)(baseStrength * levelMultiplier + 1);
+        baseMovement = (int)(baseMovement * levelMultiplier + 1);
 
         // reflect new stats
         agility = baseAgility;
         hardiness = baseHardiness;
         intellect = baseIntellect;
         strength = baseStrength;
+        movement = baseMovement;
 
         // recompute derived stats
         recompute();
@@ -147,19 +169,18 @@ public class CharacterStats extends EntityStats implements Subject {
         // reset health and mana
         health = baseHealth;
         mana = baseMana;
+
+        skillPoint += level;
     } // end levelup
 
     public void kill() {
         --lives;
 
-        if(lives == 0) {
-            agility = baseAgility;
-            hardiness = baseHardiness;
-            intellect = baseIntellect;
-            strength = baseStrength;
-        }
-
-        alert();
+        agility = baseAgility;
+        hardiness = baseHardiness;
+        intellect = baseIntellect;
+        strength = baseStrength;
+        movement = baseMovement;
 
         health = baseHealth;
         mana = baseMana;
@@ -217,13 +238,7 @@ public class CharacterStats extends EntityStats implements Subject {
     }
     public void healthEffect(int effect){
         health += effect;
-        if (health < 0){
-            health = 0;
-            livesEffect(-1); //decrement a life
-        } else if (health > baseHealth) {
-            health = baseHealth;
-        }
-        else if (health > baseHealth) {
+        if (health > baseHealth) {
             health = baseHealth;
         }
         alert();
@@ -237,6 +252,30 @@ public class CharacterStats extends EntityStats implements Subject {
         }
         else if (mana > baseMana) {
             mana = baseMana;
+        }
+        alert();
+    }
+
+    public void movementEffect(int effect) {
+        movement += effect;
+        if(movement < 1) {
+            movement = 1;
+        }
+        alert();
+    }
+
+    public void skillPointEffect (int effect) {
+        skillPoint += effect;
+        if(skillPoint < 0) {
+            skillPoint = 0;
+        }
+        alert();
+    }
+
+    public void defensiveRatingEffect (int effect) {
+        defensiveRating += effect;
+        if (defensiveRating < 0) {
+            defensiveRating = 0;
         }
         alert();
     }
@@ -255,9 +294,12 @@ public class CharacterStats extends EntityStats implements Subject {
     public void recompute() {
         baseHealth = (hardiness + level);
         baseMana = (intellect + level);
-        baseOffensiveRating = (equippedWeapon + strength + level);
-        baseDefensiveRating = (agility + level);
-        baseArmorRating = (equippedArmor + hardiness);
+        baseOffensiveRating = (equippedWeapon + baseStrength + level);
+        baseDefensiveRating = (baseAgility + level);
+        baseArmorRating = (equippedArmor + baseHardiness);
+        offensiveRating = equippedWeapon+strength+level;
+        defensiveRating = agility+level;
+        armorRating = equippedArmor + hardiness;
     } // end recompute
 
     @Override
@@ -369,6 +411,8 @@ public class CharacterStats extends EntityStats implements Subject {
     public int getEquippedArmor() {
         return equippedArmor;
     }
+
+    public int getSkillPoint() {return skillPoint;}
 
     public int getExperienceThreshold() {
         return experienceThreshold;

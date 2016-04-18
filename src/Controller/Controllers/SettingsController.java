@@ -4,7 +4,7 @@ import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Utilities.Settings;
-import View.InventoryView.SettingsView;
+import View.MenuViews.SettingsView;
 import View.ViewUtilities.Panels.GamePanel;
 
 public class SettingsController extends Controller { //NOT VERY OOPY
@@ -64,7 +64,7 @@ public class SettingsController extends Controller { //NOT VERY OOPY
             }
         });
 
-        // Exit InventoryView
+        // Exit SettingsView
         commands.put(Settings.ESC, new Command() {
             @Override
             public void execute() {
@@ -72,7 +72,7 @@ public class SettingsController extends Controller { //NOT VERY OOPY
             }
         });
 
-        // Exit InventoryView
+        // Exit SettingsView
         commands.put(Settings.SETTINGS, new Command() {
             @Override
             public void execute() {

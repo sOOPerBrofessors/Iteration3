@@ -10,5 +10,4 @@ public interface TerrainVisitor {
     void visitAirTerrain();
     void visitRiverTerrain();
     void visitDirtTerrain();
-
 }

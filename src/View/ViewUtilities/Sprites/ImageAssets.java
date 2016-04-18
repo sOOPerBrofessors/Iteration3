@@ -3,6 +3,7 @@ package View.ViewUtilities.Sprites;
 import Utilities.Settings;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  * Created by sgl on 4/6/16.
@@ -25,11 +26,14 @@ public class ImageAssets {
     public static BufferedImage smasherSW, smasherNW, smasherN, smasherNE, smasherSE, smasherS;
     public static BufferedImage sneakSW, sneakNW, sneakN, sneakNE, sneakSE, sneakS;
     public static BufferedImage summonerS,summonerSW, summonerNW, summonerN, summonerNE, summonerSE;
+    public static BufferedImage shopKeeperSW, shopKeeperNW, shopKeeperN, shopKeeperNE, shopKeeperSE, shopKeeperS;
     public static BufferedImage enemyS, enemySW, enemyNW, enemyN, enemyNE, enemySE;
     public static BufferedImage crabS, crabSW, crabNW, crabN, crabNE, crabSE;
     public static BufferedImage grass, grass2, dirt, water;
     public static BufferedImage invSlot, eqSlot, select;
-    public static BufferedImage hud, messageBox;
+    public static BufferedImage hud, messageBox, interfaceBorder;
+    public static ArrayList<BufferedImage> fireballs = new ArrayList<>();
+    public static BufferedImage hellCatN, hellCatNW, hellCatSW, hellCatS, hellCatSE, hellCatNE;
 
     // items
     public static BufferedImage healthPotion;
@@ -60,6 +64,22 @@ public class ImageAssets {
         SpriteSheet hudSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/hud.png"));
         SpriteSheet messageBoxSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/messagebox.png"));
         SpriteSheet crabSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/crab.png"));
+        SpriteSheet borderSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/interfaceborder.png"));
+        SpriteSheet shopKeeperSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/ShopKeeper.png"));
+
+        // fireballs!
+        SpriteSheet fireballSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall.png"));
+        SpriteSheet fireball90Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall90.png"));
+        SpriteSheet fireball180Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall180.png"));
+        SpriteSheet fireball270Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall270.png"));
+
+        // hellcat!
+        SpriteSheet hellcatNsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatN.png"));
+        SpriteSheet hellcatNWsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatNW.png"));
+        SpriteSheet hellcatSWsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatSW.png"));
+        SpriteSheet hellcatSsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatS.png"));
+        SpriteSheet hellcatSEsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatSE.png"));
+        SpriteSheet hellcatNEsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatNE.png"));
 
         smasherSW = smasherSheet.cropSheet(0,0, smasherWidth, smasherHeight);
         smasherNW = smasherSheet.cropSheet(smasherWidth*1, 0, smasherWidth, smasherHeight);
@@ -67,6 +87,13 @@ public class ImageAssets {
         smasherNE = smasherSheet.cropSheet(smasherWidth*3, 0, smasherWidth, smasherHeight);
         smasherSE = smasherSheet.cropSheet(smasherWidth*4, 0, smasherWidth, smasherHeight);
         smasherS = smasherSheet.cropSheet(smasherWidth*5, 0, smasherWidth, smasherHeight);
+
+        shopKeeperSW = shopKeeperSheet.cropSheet(0,0, smasherWidth, smasherHeight);
+        shopKeeperNW = shopKeeperSheet.cropSheet(smasherWidth*1, 0, smasherWidth, smasherHeight);
+        shopKeeperN = shopKeeperSheet.cropSheet(smasherWidth*2, 0, smasherWidth, smasherHeight);
+        shopKeeperNE = shopKeeperSheet.cropSheet(smasherWidth*3, 0, smasherWidth, smasherHeight);
+        shopKeeperSE = shopKeeperSheet.cropSheet(smasherWidth*4, 0, smasherWidth, smasherHeight);
+        shopKeeperS = shopKeeperSheet.cropSheet(smasherWidth*5, 0, smasherWidth, smasherHeight);
 
         sneakSW = sneakSheet.cropSheet(0,0, sneakWidth, sneakHeight);
         sneakNW = sneakSheet.cropSheet(sneakWidth*1, 0, sneakWidth, sneakHeight);
@@ -104,6 +131,7 @@ public class ImageAssets {
 
         hud = hudSheet.cropSheet(0,0,960,320);
         messageBox = messageBoxSheet.cropSheet(0,0,640,400);
+        interfaceBorder = borderSheet.cropSheet(0,0,810,540);
 
         //items
         healthPotion = healthPotionSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
@@ -114,5 +142,18 @@ public class ImageAssets {
         closedChest = closedChestSheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
         money = moneySheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
         chestKey = chestKeySheet.cropSheet(0,0,Settings.TAKABLEWIDTH, Settings.TAKABLEHEIGHT);
+
+        // fireBall!
+        fireballs.add(fireballSheet.cropSheet(0,0,Settings.PROJECTILEWIDTH,Settings.PROJECTILEHEIGHT));
+        fireballs.add(fireball90Sheet.cropSheet(0,0,Settings.PROJECTILEWIDTH,Settings.PROJECTILEHEIGHT));
+        fireballs.add(fireball180Sheet.cropSheet(0,0,Settings.PROJECTILEWIDTH,Settings.PROJECTILEHEIGHT));
+        fireballs.add(fireball270Sheet.cropSheet(0,0,Settings.PROJECTILEWIDTH,Settings.PROJECTILEHEIGHT));
+
+        hellCatN = hellcatNsheet.cropSheet(0,0,328,350);
+        hellCatNW = hellcatNWsheet.cropSheet(0,0,328,350);
+        hellCatSW = hellcatSWsheet.cropSheet(0,0,328,350);
+        hellCatS = hellcatSsheet.cropSheet(0,0,328,350);
+        hellCatSE = hellcatSEsheet.cropSheet(0,0,328,350);
+        hellCatNE = hellcatNEsheet.cropSheet(0,0,328,350);
     }
 }

@@ -7,12 +7,15 @@ import Model.Items.Item;
 import Model.Items.Takeable.TakeableItem;
 import Model.Map.AreaEffect.*;
 import Model.Map.Location;
+import Model.Entity.Projectile.Projectile;
+import Model.Map.AreaEffect.AreaOfEffect;
+
 import Model.Map.Map;
 import Model.Map.Tile.Terrain.Terrain;
-import Model.Projectile.Projectile;
+import Model.Items.Takeable.TakeableItem;
+import Model.Map.Location;
 import Model.State.GameState.GameState;
 import Utilities.ItemStuff.ItemManager;
-import Utilities.Observers.EntityObserver;
 import Utilities.Visitor.*;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
@@ -143,7 +146,7 @@ public class SaveVisitor implements TileVisitor, CharacterTypeVisitor {
             //Output to console for testing
             //StreamResult consoleResult = new StreamResult(System.out);
             //transformer.transform(source, consoleResult);
-            System.out.println("Saved success!");
+            System.out.println("SaveVisitor: Saved success!");
         } catch (TransformerConfigurationException e) {
             e.printStackTrace();
         } catch (TransformerException e) {

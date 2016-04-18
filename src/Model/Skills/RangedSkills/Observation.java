@@ -6,10 +6,8 @@ import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Orientation;
 import Model.Map.Tile.Tile;
-import Utilities.ErrorLevel;
-import Utilities.InfluenceAreas.Linear.LinearEffect;
-import Utilities.MessageHandler;
-import Utilities.PersonFilter;
+import Utilities.GameMessageQueue;
+import Utilities.InfluenceAreas.Volumetric.PrismEffect;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -38,14 +36,13 @@ public class Observation extends RangedSkill{
     }
 
     public ObservationInfo execute(Map map, Orientation orientation) {
-        if (checkAll()) {
+        if (allConditionChecked()) {
             enforceManaCost();
             setTimePerformed();
-            MessageHandler.println(name + "success! remaining CD:" + getRemainingCoolDownTime(), ErrorLevel.NOTICE, PersonFilter.ANDY);
+            GameMessageQueue.push(name + " Success!");
             return performObservation(map, orientation);
         }
         else {
-            MessageHandler.println(name + "Failed for some reason", ErrorLevel.NOTICE, PersonFilter.ANDY);
             observedMsg = new ArrayList<>();
             observedMsg.add("Failed");
             observationInfo = new ObservationInfo(observedMsg);
@@ -54,7 +51,7 @@ public class Observation extends RangedSkill{
     }
 
     private ObservationInfo performObservation(Map map, Orientation orientation) {
-        affectedArea = LinearEffect.getLinearSameLevel(avatar.getLocation(), orientation, level);
+        affectedArea = PrismEffect.getPrismVolumeFullHeight(avatar.getLocation(), level);
 
         for (int i = 1; i < affectedArea.size(); i++) {
             Location location = affectedArea.get(i);

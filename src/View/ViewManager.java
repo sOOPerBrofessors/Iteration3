@@ -3,6 +3,7 @@ package View;
 import Controller.ControllerManager;
 import Controller.Controllers.*;
 import Model.Entity.Character.Avatar;
+import Model.State.GameState.GameState;
 import Model.State.StateManager;
 import Utilities.GameLoaderSaver.GameLoader;
 import Utilities.GameLoaderSaver.Load.LoadParser;
@@ -115,6 +116,7 @@ public class ViewManager implements Subject {
     public void displaySettings(){
         gamePanel.addSettingsView();
         stateManager.pauseGame();
+        //controllerManager.setSettingsState(); //need to tell controllerManager to go to Settings state since get here from PauseMenu
     }
 
     public void closeSettings(){
@@ -197,6 +199,11 @@ public class ViewManager implements Subject {
         TradeController.setTradeView(gamePanel);
         View.startGameLoop(); // starts loop in Model class
         alert(); // notifies view of the updated panel
+    }
+
+    //FOR SAVE
+    public GameState getGameState(){
+        return stateManager.getGameState();
     }
 
 

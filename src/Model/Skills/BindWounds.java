@@ -2,9 +2,7 @@ package Model.Skills;
 
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
-import Utilities.ErrorLevel;
-import Utilities.MessageHandler;
-import Utilities.PersonFilter;
+import Utilities.GameMessageQueue;
 
 /**
  * Created by AndyZhu on 13/4/2016.
@@ -22,17 +20,14 @@ public class BindWounds extends Skill{
 
     @Override
     public void execute(Map map) {
-        if (checkAll()) {
+        if (allConditionChecked()) {
             performBindWounds();
 
             enforceManaCost();
             setTimePerformed();
 
-            MessageHandler.println(name + "success! remaining CD:" + getRemainingCoolDownTime(), ErrorLevel.NOTICE, PersonFilter.ANDY);
+            GameMessageQueue.push(name + " Success!");
 
-        }
-        else {
-            MessageHandler.println(name + "Failed for some reason", ErrorLevel.NOTICE, PersonFilter.ANDY);
         }
     }
 

@@ -1,13 +1,13 @@
 package Model.Map;
 
-import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
-import Model.Entity.Entity;
 import Model.Map.AreaEffect.AreaOfEffect;
 import Model.Map.Tile.Tile;
-import Model.Projectile.Projectile;
+import Model.Entity.Projectile.Projectile;
 import Utilities.ItemStuff.ItemManager;
-import com.sun.org.apache.xpath.internal.operations.Or;
+import Utilities.AIStuff.Pathfinding.TileLocationTuple;
+
+import java.util.HashSet;
 
 /**
  * Created by sgl on 4/5/16.
@@ -40,6 +40,9 @@ public class Map {
         int newY = newLocation.getY();
         int newZ = getTopTilePosition(newX, newY);
         Tile newTile = getTopTile(newX,newY);
+        if(newTile == null)
+            return false;
+        //newTile.doRiverEffect(this, character);
         Location location = character.getLocation();
         //Needs to move the character before the tile does interaction because of "teleport" effect
         if (checkCanInteractWithTile(location, newLocation)
@@ -48,12 +51,41 @@ public class Map {
             getTileAt(currentX, currentY, currentZ).removeCharacter();
             character.updateLocation(new Location(newX,newY,newZ));
             newTile.doTileEffects(character); //does the interaction
+            newTile.doRiverEffect(this,character);
+            if(currentZ - newZ >= 3)
+                character.applyFallDamage(-1*(currentZ - newZ)/3);
             return true;
         }else{
             return false;
         }
-
     }
+
+    public boolean teleportCharacter(Character character, Location targetLocation) {
+        character.notifyOfTeleport();
+        return moveCharacter(character, targetLocation);
+    } // end teleportCharacter
+
+    public boolean moveProjectile(Projectile projectile, Location newLocation){
+        int currentX = projectile.getX();
+        int currentY = projectile.getY();
+        int currentZ = projectile.getZ();
+        int newX = newLocation.getX();
+        int newY = newLocation.getY();
+        int newZ = getTopTilePosition(newX, newY);
+        Tile newTile = getTopTile(newX,newY);
+        Location location = projectile.getLocation();
+        //Needs to move the character before the tile does interaction because of "teleport" effect
+        if (checkCanInteractWithTile(location, newLocation)
+                && !checkHasObstacle(newLocation)
+                && newTile.moveProjectile(projectile)){
+            getTileAt(currentX, currentY, currentZ).removeProjectile();
+            projectile.updateLocation(new Location(newX,newY,newZ));
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     private boolean checkHeightDifference(int current, int target){
         if ((target - current) <= 1){
             return true;
@@ -99,6 +131,12 @@ public class Map {
         }
     }
 
+    public Tile getTile(Location location) {
+
+        return getTileAt(location.getX(), location.getY(), location.getZ());
+
+    }
+
     public Tile getTopTile(int x, int y) {
         //TODO: Needs some better checks for height difference
         //might be more helpful to add more defining functions withing 'TileColumn' to check for height
@@ -118,6 +156,57 @@ public class Map {
             return mapOfTiles[x][y].getTopPosition();
         }
     } // end getTile
+
+    public Tile getTileNeighbor(int x, int y, int z, Orientation orientation) {
+
+        return getTileTupleNeighbor(x, y, z, orientation).getTile();
+
+    }
+
+    public TileLocationTuple getTileTupleNeighbor(int x, int y, int z, Orientation orientation) {
+
+        int newX = x + orientation.x;
+        int newY = y + orientation.y;
+        Tile topTile = getTopTile(newX, newY);
+        int nextZ = getTopTilePosition(newX, newY);
+        int difference = (nextZ - 1) - z;
+
+        if (getTopTile(newX, newY) == null) {
+
+            return null;
+
+        }
+
+        if (difference <= 1) {
+
+            return new TileLocationTuple(topTile, new Location(newX, newY, nextZ));
+
+        }
+
+        // We don't want to consider tiles with a significant height difference neighbors so that pathfinding works well.
+        return null;
+
+    }
+
+    public HashSet<TileLocationTuple> getTileNeighbors(int x, int y, int z) {
+
+        HashSet<TileLocationTuple> neighbors = new HashSet<>();
+
+        for (Orientation orientation : Orientation.values()) {
+
+            TileLocationTuple tuple = getTileTupleNeighbor(x, y, z, orientation);
+
+            if (tuple != null) {
+
+                neighbors.add(getTileTupleNeighbor(x, y, z, orientation));
+
+            }
+
+        }
+
+        return neighbors;
+
+    }
 
     public TileColumn getTileColumn(int x, int y){
         if (x < 0 || y < 0 || x >= maxColumn || y >= maxRow) {
@@ -143,10 +232,6 @@ public class Map {
 
 
     //FOR LOADING IN MAP OBJECTS (ENTITY/ITEM)
-    //Entities include projectile things that could be anywhere on 3d axis
-    public void addProjectile(Projectile projectile){
-
-    }
     //Characters are essentially things that exist on the top of group types
     public void addCharacter(Character character){
         mapOfTiles[character.getX()][character.getY()].addCharacter(character);
@@ -154,6 +239,11 @@ public class Map {
 
     public void removeCharacter(Character character){
         mapOfTiles[character.getX()][character.getY()].removeCharacter(character);
+    }
+
+    // All about them projectiles bro
+    public void addProjectile(Projectile projectile){
+        mapOfTiles[projectile.getX()][projectile.getY()].addProjectile(projectile);
     }
 
     public void addAOE(AreaOfEffect areaOfEffect, Location location){
