@@ -56,6 +56,7 @@ public class Settings {
     public static int FIVE = 0x35;
     public static int SIX = 0x36;
     public static int SEVEN = 0x37;
+    public static int EIGHT = 0x38;
     //public static int DROP = 0x44;
     public static int MAP = 0x4D;
     public static int INTERACT = KeyEvent.VK_ENTER; //This was overwriting the "Q" key which is used for movement.

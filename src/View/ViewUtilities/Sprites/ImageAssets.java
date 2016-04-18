@@ -35,7 +35,7 @@ public class ImageAssets {
     public static ArrayList<BufferedImage> fireballs = new ArrayList<>();
 
     //skill things
-    public static BufferedImage crackedEarth;
+    public static BufferedImage crackedEarth, arcaneExplosion;
     public static ArrayList<BufferedImage> arrows = new ArrayList<>();
 
     public static BufferedImage hellCatN, hellCatNW, hellCatSW, hellCatS, hellCatSE, hellCatNE;
@@ -75,6 +75,7 @@ public class ImageAssets {
 
         // Cracked earth
         SpriteSheet crackedEarthSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/crackedGrass.png"));
+        SpriteSheet arcaneExplosionSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/arcaneExplosion.png"));
         // fireballs!
         SpriteSheet fireballSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall.png"));
         SpriteSheet fireball90Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall90.png"));
@@ -177,5 +178,6 @@ public class ImageAssets {
 
         //skill things
         crackedEarth = crackedEarthSheet.cropSheet(0, 0, terrainWidth, 71);
+        arcaneExplosion = arcaneExplosionSheet.cropSheet(0, 0, terrainWidth, 71);
     }
 }
