@@ -2,6 +2,7 @@ package Model.Skills.CombatSkills;
 
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
+import Model.State.GameState.ActiveGameState;
 import Utilities.GameMessageQueue;
 import Utilities.InfluenceAreas.Linear.LinearEffect;
 
@@ -25,13 +26,14 @@ public class StaffSkill extends CombatSkill{
     }
 
     @Override
-    public void execute(Map map) {
+    public void execute(ActiveGameState activeGameState) {
+        Map map = activeGameState.getMap();
         if (allConditionChecked() && weaponCheck()) {
             damage = calculateDamage();
             radius = 1;
             affectedArea = LinearEffect.getLinearSameLevel(avatar.getLocation(), avatar.getOrientation(), radius);
             staffAttack(map);
-            GameMessageQueue.push(name + " Success!");
+            GameMessageQueue.push(name + " Success! Damage: " + damage);
             enforceManaCost();
             setTimePerformed();
         }

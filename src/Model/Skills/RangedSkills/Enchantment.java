@@ -5,6 +5,7 @@ import Model.Entity.Character.Character;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Tile.Tile;
+import Model.State.GameState.ActiveGameState;
 import Utilities.GameMessageQueue;
 import Utilities.InfluenceAreas.Planer.RadialEffect;
 import Utilities.Timer.EnchantmentTimer;
@@ -31,7 +32,8 @@ public class Enchantment extends RangedSkill{
     }
 
     @Override
-    public void execute (Map map) {
+    public void execute(ActiveGameState activeGameState) {
+        Map map = activeGameState.getMap();
         if (allConditionChecked()) {
             enchantment(map);
             GameMessageQueue.push(name + " success");

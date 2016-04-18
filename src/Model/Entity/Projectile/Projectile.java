@@ -49,6 +49,14 @@ public class Projectile extends Entity implements Subject, Effect {
         return new Projectile(Navigation.makeProjectileNav(), location, orientation, -2);
     }
 
+    public static Projectile makeFireBall(Location location, Orientation orientation, int damange){
+        return new Projectile(Navigation.makeProjectileNav(), location, orientation, -damange);
+    }
+
+    public static Projectile makeArrow(Location location, Orientation orientation, int damange){
+        return new Projectile(Navigation.makeProjectileNav(), location, orientation, -damange);
+    }
+
     public void tick(Map map) {
         move(map, orientation);
     }
