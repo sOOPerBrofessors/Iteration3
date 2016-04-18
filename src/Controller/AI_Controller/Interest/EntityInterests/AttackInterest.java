@@ -11,7 +11,7 @@ import Utilities.AIStuff.Relationship;
  */
 public class AttackInterest extends EntityInterest {
 
-    Location targetOldLocation;
+    private Location targetOldLocation;
 
     public void initialize(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 

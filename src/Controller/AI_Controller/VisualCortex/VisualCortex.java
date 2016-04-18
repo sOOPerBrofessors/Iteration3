@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class VisualCortex implements Tickable {
 
-    private VisualCortexMemoryInterface memory;
+    private final VisualCortexMemoryInterface memory;
 
     public VisualCortex(VisualCortexMemoryInterface memory) {
 

@@ -26,7 +26,7 @@ public class Cleave extends RangedSkill {
         }
     }
 
-    public void cleave(Map map) {
+    private void cleave(Map map) {
         calculateDamage();
         int radius = level + 2 > 5 ? 5 : level + 2;
         affectedArea = AngularEffect.getAngularArea(avatar.getLocation(), avatar.getOrientation(), radius);

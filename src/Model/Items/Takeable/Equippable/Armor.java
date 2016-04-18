@@ -13,7 +13,7 @@ import Model.Items.ItemStrategy.EquippableStrategy.SummonerArmorStrategy;
  */
 public class Armor extends EquippableItem {
 
-    private int armorValue;
+    private final int armorValue;
 
     private Armor(String name, String description, EquippableStrategy s, int armorValue, int value) {
         super(name, description, s, value);

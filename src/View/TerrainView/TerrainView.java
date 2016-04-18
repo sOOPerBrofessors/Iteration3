@@ -11,11 +11,11 @@ import java.awt.*;
  * Created by dyeung on 4/15/16.
  */
 public class TerrainView implements TerrainVisitor{
-    protected Image image;
-    protected int xPixel;
-    protected int yPixel;
-    protected int tileWidth = Settings.TILEWIDTH;
-    protected int tileHeight = Settings.TILEHEIGHT;
+    private Image image;
+    private int xPixel;
+    private int yPixel;
+    private final int tileWidth = Settings.TILEWIDTH;
+    private final int tileHeight = Settings.TILEHEIGHT;
 
     public TerrainView(Terrain terrain){
         Terrain terrain1 = terrain;

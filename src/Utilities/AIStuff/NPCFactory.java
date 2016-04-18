@@ -39,7 +39,7 @@ public class NPCFactory {
         return gandorf;
     }
 
-    public static NPC makeGanondorf(Map map) {
+    private static NPC makeGanondorf(Map map) {
         Personality personality = PersonalityFactory.getPersonality("enemy");
         Faction faction = FactionFactory.getFaction("red");
         NPCStrategy strategy = new TalkNPCStrategy("Ganondorf: Hi minion", "Ganondorf: I am awesome", "Ganondorf: What do you want?");
@@ -50,7 +50,7 @@ public class NPCFactory {
         return gandorf;
     }
 
-    public static Mount theRealMount(Map map){
+    private static Mount theRealMount(Map map){
         return new TheRealMount(Navigation.makeVehicleNav(), new Location(6,2,map.getTopTilePosition(6,2)));
     }
 

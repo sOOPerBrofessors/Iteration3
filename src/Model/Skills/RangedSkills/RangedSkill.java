@@ -16,20 +16,20 @@ import java.util.ArrayList;
  */
 public abstract class RangedSkill extends Skill {
 
-    protected int damage;
-    protected ArrayList<Location> affectedArea = new ArrayList<>();
+    int damage;
+    ArrayList<Location> affectedArea = new ArrayList<>();
     int radius;
     Tile curTile;
-    protected Location curLocation = new Location(0, 0, 0);
+    Location curLocation = new Location(0, 0, 0);
     Character enemy;
 
-    public RangedSkill(Avatar avatar) {
+    RangedSkill(Avatar avatar) {
         super(avatar);
     }
 
     public void execute(ActiveGameState activeGameState) {}
 
-    protected void attackAreaSingleTarget(Map map) {
+    void attackAreaSingleTarget(Map map) {
         for (int i = 1; i < affectedArea.size(); i++) {
             Location location = affectedArea.get(i);
             curTile = map.getTopTile(location.getX(), location.getY());

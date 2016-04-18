@@ -7,17 +7,17 @@ import java.awt.event.KeyEvent;
  */
 public class Settings {
 
-    public static String TITLE = "sOOPer Brogrammers!";
+    public static final String TITLE = "sOOPer Brogrammers!";
 
-    public static int GAMEWIDTH = 1080;
-    public static int GAMEHEIGHT = 720;
-    public static int SCALEFACTOR = 1;
+    public static final int GAMEWIDTH = 1080;
+    public static final int GAMEHEIGHT = 720;
+    public static final int SCALEFACTOR = 1;
 
-    public static int SPAWN_X = 5;
-    public static int SPAWN_Y = 5;
-    public static int SPAWN_Z = 0;
+    public static final int SPAWN_X = 5;
+    public static final int SPAWN_Y = 5;
+    public static final int SPAWN_Z = 0;
 
-    public static boolean debug = true;
+    private static boolean debug = true;
 
     //CHANGEABLE IN SETTINGS
     public static int UP = KeyEvent.VK_W;
@@ -40,21 +40,21 @@ public class Settings {
     public static int SKILLS = KeyEvent.VK_K; //"originally"0x53 " s"This is most likely overwritting the "S" key which is used for movement;
 
 
-    public static int RIGHT_ARROW = KeyEvent.VK_RIGHT;
-    public static int DOWN_ARROW = KeyEvent.VK_DOWN;
-    public static int LEFT_ARROW = KeyEvent.VK_LEFT;
-    public static int UP_ARROW = KeyEvent.VK_UP;
-    public static int TEST_KEY = KeyEvent.VK_T;
+    public static final int RIGHT_ARROW = KeyEvent.VK_RIGHT;
+    public static final int DOWN_ARROW = KeyEvent.VK_DOWN;
+    public static final int LEFT_ARROW = KeyEvent.VK_LEFT;
+    public static final int UP_ARROW = KeyEvent.VK_UP;
+    public static final int TEST_KEY = KeyEvent.VK_T;
 
     public static int EQUIP = 10001; //This was overwritting VK_E which is used for movement
-    public static int DROP = KeyEvent.VK_D;
+    public static final int DROP = KeyEvent.VK_D;
 
-    public static int SETTINGS = KeyEvent.VK_L;
+    public static final int SETTINGS = KeyEvent.VK_L;
     // end adjustable keys
 
     public static int TAB = 0x09;
-    public static int ENTER = 10;
-    public static int ESC = 0x1B;
+    public static final int ENTER = 10;
+    public static final int ESC = 0x1B;
 
     public static int SPACE = 32;
     public static int ONE = 0x31;
@@ -64,7 +64,7 @@ public class Settings {
     public static int FIVE = 0x35;
     public static int SIX = 0x36;
     public static int SEVEN = 0x37;
-    public static int EIGHT = 0x38;
+    public static final int EIGHT = 0x38;
     //public static int DROP = 0x44;
     public static int MAP = 0x4D;
 
@@ -73,22 +73,22 @@ public class Settings {
 
     public static void setDebug() { debug = true; }
     //Original grass
-    public static int TILEWIDTH = 96;
-    public static int TILEHEIGHT = 62; //used to be 48, shouldn't it be 62???
-    public static int ENTITYWIDTH = 42;
-    public static int ENTITYHEIGHT = 75;
+    public static final int TILEWIDTH = 96;
+    public static final int TILEHEIGHT = 62; //used to be 48, shouldn't it be 62???
+    public static final int ENTITYWIDTH = 42;
+    public static final int ENTITYHEIGHT = 75;
 
-    public static int TAKABLEWIDTH = 32;
-    public static int TAKABLEHEIGHT = 32;
+    public static final int TAKABLEWIDTH = 32;
+    public static final int TAKABLEHEIGHT = 32;
 
-    public static int INTERACTABLEWIDTH = 48;
-    public static int INTERACTABLEHEIGHT = 48;
+    public static final int INTERACTABLEWIDTH = 48;
+    public static final int INTERACTABLEHEIGHT = 48;
 
-    public static int PROJECTILEHEIGHT = 32;
-    public static int PROJECTILEWIDTH = 32;
+    public static final int PROJECTILEHEIGHT = 32;
+    public static final int PROJECTILEWIDTH = 32;
 
-    public static int MOUNTHEIGHT = 48;
-    public static int MOUNTWIDTH = 48;
+    public static final int MOUNTHEIGHT = 48;
+    public static final int MOUNTWIDTH = 48;
 
     public static final int MAX_INVENTORY_SIZE = 16;
 

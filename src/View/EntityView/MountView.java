@@ -11,9 +11,9 @@ import java.awt.*;
  */
 public class MountView extends MapObjectView{
 
-    private Image image;
-    private int viewWidth;
-    private int viewHeight;
+    private final Image image;
+    private final int viewWidth;
+    private final int viewHeight;
     private int xPixel; // on the map
     private int yPixel; // on the map
 

@@ -18,7 +18,7 @@ import java.util.ArrayList;
  *   then recompute offensiveRating/armorRating
  */
 public class CharacterStats extends EntityStats implements Subject {
-    ArrayList<Observer> observers;
+    private final ArrayList<Observer> observers;
     // primaryStats
     private int baseAgility;
     private int agility;
@@ -50,8 +50,8 @@ public class CharacterStats extends EntityStats implements Subject {
     // miscellaneous
     private int skillPoint;
     private int experienceThreshold;        // experience to next level
-    private double experienceMultiplier;    // amount to multiply experienceThreshold by on level up
-    private double levelMultiplier;         // amount to multiply primary stats by on level up
+    private final double experienceMultiplier;    // amount to multiply experienceThreshold by on level up
+    private final double levelMultiplier;         // amount to multiply primary stats by on level up
 
     private CharacterStats(int... stats){
         observers = new ArrayList<>();

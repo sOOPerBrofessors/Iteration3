@@ -10,7 +10,7 @@ import Utilities.GameLoaderSaver.Save.SaveVisitor;
  */
 public class GameSaver {
 
-    private SaveVisitor saveVisitor;
+    private final SaveVisitor saveVisitor;
 
     public GameSaver(GameState gameState){
         GameState gameState1 = gameState;

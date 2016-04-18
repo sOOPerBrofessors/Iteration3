@@ -9,7 +9,7 @@ import Model.Items.Item;
  */
 public abstract class ItemInterest extends Interest {
 
-    Item targetItem;
+    private Item targetItem;
 
     public void setTarget(Item targetItem) {
 

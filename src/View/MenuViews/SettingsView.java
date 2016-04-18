@@ -14,14 +14,14 @@ import java.util.HashMap;
 public class SettingsView extends VertPanel{
 
 
-    String[] settingsArray = {"MOVE_N", "MOVE_NW", "MOVE_NE", "MOVE_S","MOVE_SW","MOVE_SE","ATTACK","INTERACT",
+    private final String[] settingsArray = {"MOVE_N", "MOVE_NW", "MOVE_NE", "MOVE_S","MOVE_SW","MOVE_SE","ATTACK","INTERACT",
             "SKILL_1","SKILL_2","SKILL_3","SKILL_4","SKILL_5","SKILL_6","SKILL_7","INVENTORY","STATS", "SKILLS"};
-    int[] settingsInt={Settings.UP, Settings.UP_LEFT, Settings.UP_RIGHT, Settings.DOWN, Settings.DOWN_LEFT, Settings.DOWN_RIGHT, Settings.ATTACK, Settings.INTERACT,
+    private final int[] settingsInt={Settings.UP, Settings.UP_LEFT, Settings.UP_RIGHT, Settings.DOWN, Settings.DOWN_LEFT, Settings.DOWN_RIGHT, Settings.ATTACK, Settings.INTERACT,
             Settings.SKILL_1, Settings.SKILL_2, Settings.SKILL_3, Settings.SKILL_4,Settings.SKILL_5,Settings.SKILL_6, Settings.SKILL_7,
             Settings.INVENTORY, Settings.STATS, Settings.SKILLS};
-    boolean selected;
+    private boolean selected;
     private int lastkey;
-    private HashMap<Integer, Command> commands;
+    private final HashMap<Integer, Command> commands;
 
 
     public SettingsView(){

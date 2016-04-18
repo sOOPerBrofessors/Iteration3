@@ -28,11 +28,11 @@ import java.util.ArrayList;
  * Created by dyeung on 4/16/16.
  */
 public class SaveVisitor implements TileVisitor, CharacterTypeVisitor {
-    private String fileNamePath;
-    private GameState gameState;
-    private  ArrayList<Element> list;
+    private final String fileNamePath;
+    private final GameState gameState;
+    private final ArrayList<Element> list;
     private Document doc;
-    private Map map;
+    private final Map map;
     private Element mainRootElement;
     public SaveVisitor(String fileName, GameState gameState){
         this.fileNamePath = fileName;
@@ -66,7 +66,7 @@ public class SaveVisitor implements TileVisitor, CharacterTypeVisitor {
         //Write to XML
         writeToXml(doc, fileNamePath);
     }
-    public Element saveCharacters() {
+    private Element saveCharacters() {
         Element e = doc.createElement("Characters");
 
         for(int i = 0; i < map.getMaxRow(); i++){
@@ -79,7 +79,7 @@ public class SaveVisitor implements TileVisitor, CharacterTypeVisitor {
 
         return e;
     }
-    public Element saveItems(){
+    private Element saveItems(){
         Element e = doc.createElement("Map-Items");
         ItemManager itemManager = gameState.getItemManager();
         ItemSaver itemSaver = new ItemSaver(doc);

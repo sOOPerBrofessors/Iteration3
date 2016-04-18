@@ -47,7 +47,7 @@ public class Enchantment extends RangedSkill{
             Tile curTile = map.getTopTile(curLocation.getX(), curLocation.getY());
             if (curTile.hasCharacter()) {
                 Character enemy = curTile.getCharacter();
-                new EnchantmentTimer(durationMillis, enemy, 10).start();
+                new EnchantmentTimer(durationMillis, enemy).start();
                 GameMessageQueue.push("Enemy at (" + curLocation.getX() + ", " + curLocation.getY() + ") is slowed down");
             }
         }

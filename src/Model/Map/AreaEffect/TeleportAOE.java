@@ -9,11 +9,11 @@ import Utilities.Visitor.AOEVisitor;
  * Created by dyeung on 4/15/16.
  */
 public class TeleportAOE extends AreaOfEffect {
-    private Location targetLocation;
-    private Map map;
+    private final Location targetLocation;
+    private final Map map;
     //This is kinda bad to have to know map but its the only way to move/jump
-    public TeleportAOE(int value, Location targetLocation, Map map) {
-        super(value);
+    public TeleportAOE(Location targetLocation, Map map) {
+        super(0);
         this.targetLocation = targetLocation;
         this.map = map;
     }

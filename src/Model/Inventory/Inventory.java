@@ -15,9 +15,9 @@ import java.util.ArrayList;
  * Created by broskj on 4/8/16.
  */
 public class Inventory implements Observer, Subject{
-    private ArrayList<Observer> observers;
-    private Pack pack;
-    private Equipment equipment;
+    private final ArrayList<Observer> observers;
+    private final Pack pack;
+    private final Equipment equipment;
 
     public Inventory() {
         observers = new ArrayList<>();

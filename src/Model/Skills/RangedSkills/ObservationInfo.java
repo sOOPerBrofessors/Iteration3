@@ -8,8 +8,8 @@ import java.util.ArrayList;
  * Created by AndyZhu on 16/4/2016.
  */
 public class ObservationInfo {
-    private Location location;
-    private ArrayList<String> observedMsg;
+    private final Location location;
+    private final ArrayList<String> observedMsg;
 
     public ObservationInfo (Location location, ArrayList<String> observedMsg) {
         this.location = location;

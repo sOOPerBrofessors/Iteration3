@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Created by broskj on 4/8/16.
  */
 public class Equipment implements Subject{
-    private ArrayList<Observer> observers;
+    private final ArrayList<Observer> observers;
     private Armor armor;
     private Weapon weapon;
 

@@ -15,8 +15,8 @@ import java.awt.event.ActionListener;
  * Created by sgl on 4/5/16.
  */
 public class RiverTerrain extends WaterTerrain {
-    private int flowRate;
-    private Orientation direction;
+    private final int flowRate;
+    private final Orientation direction;
 
     public RiverTerrain(Orientation orientation){
         flowRate = 1000;

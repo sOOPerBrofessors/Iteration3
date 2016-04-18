@@ -12,9 +12,9 @@ import java.util.ArrayList;
  * Created by broskj on 4/8/16.
  */
 public class Pack {
-    private ArrayList<TakeableItem> items;
+    private final ArrayList<TakeableItem> items;
     private int money;
-    final int cap = 16;
+    private final int cap = 16;
 
     public Pack() {
         items = new ArrayList<>();

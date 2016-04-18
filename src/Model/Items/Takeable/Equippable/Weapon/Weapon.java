@@ -10,9 +10,9 @@ import Model.Items.Takeable.Equippable.EquippableItem;
  *  likely need a decorator.
  */
 public abstract class Weapon extends EquippableItem {
-    private int weaponValue;
+    private final int weaponValue;
 
-    protected Weapon(String name, String description, EquippableStrategy s, int weaponValue, int value) {
+    Weapon(String name, String description, EquippableStrategy s, int weaponValue, int value) {
         super(name, description, s, value);
         this.weaponValue = weaponValue;
     }

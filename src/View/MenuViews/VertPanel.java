@@ -3,9 +3,10 @@ package View.MenuViews;
 /**
  * Created by sgl on 4/16/16.
  */
-public abstract class VertPanel extends ViewPanel {
+abstract class VertPanel extends ViewPanel {
 
-    protected int ySel,yMax;
+    int ySel;
+    int yMax;
     public abstract void selectUp();
     public abstract void selectDown();
     //public abstract void select();

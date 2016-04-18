@@ -12,9 +12,9 @@ import java.util.ArrayList;
  * Created by sgl on 4/16/16.
  */
 public class SkillsView extends VertPanel{
-    ArrayList<Skill> skills;
-    boolean selected;
-    Avatar avatar;
+    private final ArrayList<Skill> skills;
+    private final boolean selected;
+    private final Avatar avatar;
 
     public SkillsView(Avatar avatar) {
         ySel = 0;

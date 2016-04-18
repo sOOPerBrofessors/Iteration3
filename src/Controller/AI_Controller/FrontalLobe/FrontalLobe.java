@@ -20,7 +20,7 @@ import java.util.Map;
  */
 public class FrontalLobe implements Tickable {
 
-    private FrontalLobeMemoryInterface memory;
+    private final FrontalLobeMemoryInterface memory;
 
     public FrontalLobe(FrontalLobeMemoryInterface memory) {
 

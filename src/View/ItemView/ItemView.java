@@ -10,13 +10,13 @@ import java.awt.*;
  */
 public abstract class ItemView  extends MapObjectView {
 
-    protected Image image;
-    protected int itemWidth;
-    protected int itemHeight;
-    protected int x;
-    protected int y;
-    protected int xPixel; // on the map
-    protected int yPixel; // on the map
+    Image image;
+    int itemWidth;
+    int itemHeight;
+    private int x;
+    private int y;
+    int xPixel; // on the map
+    int yPixel; // on the map
 
     @Override
     public void paintComponent(Graphics2D g2d){

@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class ArcaneExplosion extends RangedSkill{
 
-    ArrayList<ArrayList<Location>> list = new ArrayList<>();
+    private ArrayList<ArrayList<Location>> list = new ArrayList<>();
 
     public ArcaneExplosion (Avatar avatar) {
         super(avatar);

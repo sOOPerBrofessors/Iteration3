@@ -19,10 +19,10 @@ import java.util.HashMap;
 
 public class ItemManager implements Subject{
 
-    private HashMap<Location, TakeableItem> takableItems;
-    private HashMap<Item, ItemView> mapItemViews;
-    private HashMap<Item, ItemView> allItemViews;
-    private HashMap<Location, Interactable> interactableItems;
+    private final HashMap<Location, TakeableItem> takableItems;
+    private final HashMap<Item, ItemView> mapItemViews;
+    private final HashMap<Item, ItemView> allItemViews;
+    private final HashMap<Location, Interactable> interactableItems;
     private Observer observer;
 
     public ItemManager(HashMap<Location, TakeableItem> takableItems, HashMap<Location, Interactable> interactableItems, HashMap<Item, ItemView> allItemViews, HashMap<Item, ItemView> mapItemViews){
@@ -118,10 +118,6 @@ public class ItemManager implements Subject{
 
     private boolean checkLoc(Character character){
         Location temp = character.getLocation().getAdjacent(character.getOrientation());
-        if (temp.getX() < 0 || temp.getY() < 0 || temp.getX() >= 14 || temp.getY() >= 14) {
-            return false;
-        }else {
-            return true;
-        }
+        return !(temp.getX() < 0 || temp.getY() < 0 || temp.getX() >= 14 || temp.getY() >= 14);
     }
 }

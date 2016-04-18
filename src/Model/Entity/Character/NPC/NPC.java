@@ -31,9 +31,9 @@ import java.util.HashMap;
 public class NPC extends Character implements Tickable{
 
     private Brain brain;
-    private Personality personality;
-    private NPCStrategy npcStrategy;
-    AI_Controller controller;
+    private final Personality personality;
+    private final NPCStrategy npcStrategy;
+    private AI_Controller controller;
 
     public NPC(Occupation o, Location location, Personality personality, Faction faction, Inventory inventory, NPCStrategy npcStrategy) {
         super(o, location, faction, inventory);

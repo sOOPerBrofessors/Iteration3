@@ -11,10 +11,10 @@ import java.awt.*;
  */
 public class StatsView extends ViewPanel implements Observer {
 
-    Avatar avatar;
-    String statsArray[]={"Level", "Experience", "Exp. to Level", "Lives Left", "Health", "Mana", "Movement", "Agility",
+    private final Avatar avatar;
+    private final String[] statsArray={"Level", "Experience", "Exp. to Level", "Lives Left", "Health", "Mana", "Movement", "Agility",
             "Hardiness", "Intellect", "Strength", "Offensive Rating", "Defensive Rating", "Armor Rating"};
-    int statsValArray[]={};
+    private int[] statsValArray={};
 
     public StatsView(GameState gameState){
         this.avatar = gameState.getAvatar();

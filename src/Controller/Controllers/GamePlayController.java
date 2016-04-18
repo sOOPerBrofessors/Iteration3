@@ -95,19 +95,19 @@ public class GamePlayController extends Controller{
         commands.put(Settings.EIGHT, () -> state.playerExecuteSkill(7));
 
         // inventory key press
-        commands.put(Settings.INVENTORY, () -> controllerManager.setInventoryState());
+        commands.put(Settings.INVENTORY, controllerManager::setInventoryState);
 
         // Stats key press
-        commands.put(Settings.STATS, () -> controllerManager.setStatsState());
+        commands.put(Settings.STATS, controllerManager::setStatsState);
 
         // PAUSE game key press
-        commands.put(Settings.ESC, () -> controllerManager.setPauseState());
+        commands.put(Settings.ESC, controllerManager::setPauseState);
 
         // Skills key Press
-        commands.put(Settings.SKILLS, () -> controllerManager.setSkillsState());
+        commands.put(Settings.SKILLS, controllerManager::setSkillsState);
 
         // settings key press
-        commands.put(Settings.SETTINGS, () -> controllerManager.setSettingsState());
+        commands.put(Settings.SETTINGS, controllerManager::setSettingsState);
 
         commands.put(Settings.TEST_KEY, () -> {
             /*

@@ -30,10 +30,10 @@ import java.util.ArrayList;
 public class GameLoader {
 
     private Map map;
-    private Avatar avatar;
-    private ActiveGameState activeGameState;
-    private PausedGameState pausedGameState;
-    private MountGameState mountGameState;
+    private final Avatar avatar;
+    private final ActiveGameState activeGameState;
+    private final PausedGameState pausedGameState;
+    private final MountGameState mountGameState;
     private ArrayList<NPC> entities;
     private ArrayList<Mount> mounts;
 
@@ -110,12 +110,12 @@ public class GameLoader {
     }
 
     private void initAreaEffect(){
-        map.addAOE(new HealDamageAOE(5), new Location(8,12,0));
+        map.addAOE(new HealDamageAOE(), new Location(8,12,0));
         map.addAOE(new TakeDamageAOE(-5), new Location(8,13,0));
-        map.addAOE(new InstantDeathAOE(1), new Location(8,14,0));
-        map.addAOE(new LevelUpAOE(1), new Location(9,12,0));
-        map.addAOE(new TeleportAOE(0, new Location(10,10,0), map), new Location(3,1,0));
-        map.addAOE(new TeleportAOE(0, new Location(5,5,0), map), new Location(11,11,0));
+        map.addAOE(new InstantDeathAOE(), new Location(8,14,0));
+        map.addAOE(new LevelUpAOE(), new Location(9,12,0));
+        map.addAOE(new TeleportAOE(new Location(10,10,0), map), new Location(3,1,0));
+        map.addAOE(new TeleportAOE(new Location(5,5,0), map), new Location(11,11,0));
         map.addAOE(new Trap(), new Location(6,3,0));
 
     }

@@ -15,8 +15,8 @@ import java.util.Random;
  */
 public class EntityRelationshipVisitor implements VisualInformationVisitor {
 
-    private RelationshipList<Entity> relationshipList;
-    private FrontalLobeMemoryInterface memory;
+    private final RelationshipList<Entity> relationshipList;
+    private final FrontalLobeMemoryInterface memory;
 
     public EntityRelationshipVisitor(RelationshipList<Entity> relationshipList, FrontalLobeMemoryInterface memory) {
 
@@ -42,7 +42,7 @@ public class EntityRelationshipVisitor implements VisualInformationVisitor {
                 double factionFactor = memory.getNPC().getFaction().getRelationship(entity.getFaction());
 
                 double relationalValue = aggressiveFactor + scatterBrainFactor + factionFactor;
-                relationalValue = MathUtilities.putInRange(-1.0, relationalValue, 1.0);
+                relationalValue = MathUtilities.putInRange(-1.0, relationalValue);
 
                 Relationship relationship = new Relationship(relationalValue);
                 //MessageHandler.println("RELATIONAL VALUE: " + memory.getNPC() + " -> " + entity + ": " +  relationalValue, ErrorLevel.NOTICE);

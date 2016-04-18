@@ -14,7 +14,7 @@ public enum PersonFilter {
     AUSTIN(64, "Austin"),
     MICHAEL(128, "Michael");
 
-    private String name;
+    private final String name;
 
     PersonFilter(int value, String name) {
 

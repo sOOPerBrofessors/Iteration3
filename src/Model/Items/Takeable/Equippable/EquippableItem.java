@@ -11,7 +11,7 @@ import Model.Items.Takeable.TakeableItem;
  */
 public abstract class EquippableItem extends TakeableItem {
 
-    protected EquippableStrategy s;
+    private final EquippableStrategy s;
 
     protected EquippableItem(String name, String description, EquippableStrategy s, int value) {
         super(name,description, value);

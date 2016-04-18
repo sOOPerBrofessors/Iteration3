@@ -17,8 +17,8 @@ import java.util.ArrayList;
  * Created by sgl on 4/5/16.
  */
 public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
-    private ArrayList<TileObserver> observers;
-    private Terrain terrain;
+    private final ArrayList<TileObserver> observers;
+    private final Terrain terrain;
     private Character character;
     private Projectile projectile;
     private AreaOfEffect areaOfEffect;
@@ -50,11 +50,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
 
     //Might be increased later for items
     private boolean checkMovement(){
-        if (hasCharacter() || hasMount()) {
-            return false;
-        }else{
-            return true;
-        }
+        return !(hasCharacter() || hasMount());
     }
 
     @Override
@@ -79,27 +75,15 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
     }
 
     public boolean hasCharacter(){
-        if (character != null) {
-            return true;
-        }else {
-            return false;
-        }
+        return character != null;
     }
 
-    public boolean hasMount(){
-        if (mount != null) {
-            return true;
-        }else {
-            return false;
-        }
+    private boolean hasMount(){
+        return mount != null;
     }
 
     private boolean hasAOE(){
-        if (areaOfEffect != null) {
-            return true;
-        }else {
-            return false;
-        }
+        return areaOfEffect != null;
     }
 
     public void addCharacter(Character character) {
@@ -127,7 +111,6 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         this.projectile = projectile;
         if(hasCharacter()){
             projectile.execute(character, projectile.getEffect());
-            projectile = null;
         }
         notifyObservers();
     }
@@ -144,10 +127,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
 
     public boolean hasTrap() {
         if (areaOfEffect != null) {
-            if (areaOfEffect.getAlpha() == 0f && areaOfEffect.getActive()) {
-                return true;
-            }
-            return false;
+            return areaOfEffect.getAlpha() == 0f && areaOfEffect.getActive();
         }else {
             return false;
         }
@@ -168,7 +148,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
     }
 
     public void removeTrap() {
-        this.areaOfEffect.setActive(false);
+        this.areaOfEffect.setActive();
         this.areaOfEffect.setAlpha(0f);
     }
     /*The character being passed in the function is the character doing the interacting

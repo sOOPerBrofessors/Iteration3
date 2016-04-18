@@ -10,7 +10,7 @@ import Utilities.PersonFilter;
  */
 public class Model implements Runnable{
 
-    private StateManager stateManager;
+    private final StateManager stateManager;
 
     private final int TICK_RATE = 60 ;
     private volatile boolean running = true;
@@ -33,7 +33,7 @@ public class Model implements Runnable{
         }
     }
 
-    public synchronized void start(){
+    private synchronized void start(){
         new Thread(this).start();
     }
 

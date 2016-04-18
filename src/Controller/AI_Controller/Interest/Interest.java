@@ -21,7 +21,7 @@ public abstract class Interest {
 
     }
 
-    private PriorityQueue<Orientation> movementQueue = new PriorityQueue<>();
+    private final PriorityQueue<Orientation> movementQueue = new PriorityQueue<>();
 
     protected final void addToMovementQueue(Orientation orientation) {
 
@@ -45,7 +45,7 @@ public abstract class Interest {
 
     }
 
-    protected final Orientation getNextMovement() {
+    private Orientation getNextMovement() {
 
         return movementQueue.peek();
 

@@ -33,9 +33,9 @@ public class ViewManager implements Subject {
     private JPanel activePanel;
 
     // all views that need to be swapped between
-    private JPanel introPanel;
+    private final JPanel introPanel;
     private GamePanel gamePanel;
-    private JPanel createPanel;
+    private final JPanel createPanel;
 
     public ViewManager(){
         // set intro screen panel
@@ -86,7 +86,7 @@ public class ViewManager implements Subject {
         stateManager.pauseGame();
     }
 
-    public void closeInventory(){
+    private void closeInventory(){
         gamePanel.closeInventoryView();
         stateManager.activeGame();
     }
@@ -96,7 +96,7 @@ public class ViewManager implements Subject {
         stateManager.pauseGame();
     }
 
-    public void closeStats(){
+    private void closeStats(){
         gamePanel.closeStatsView();
         stateManager.activeGame();
     }
@@ -117,7 +117,7 @@ public class ViewManager implements Subject {
         //controllerManager.setSettingsState(); //need to tell controllerManager to go to Settings state since get here from PauseMenu
     }
 
-    public void closeSettings(){
+    private void closeSettings(){
         gamePanel.closeSettingsView();
         stateManager.activeGame();
     }
@@ -127,7 +127,7 @@ public class ViewManager implements Subject {
         stateManager.pauseGame();
     }
 
-    public void closeSkills(){
+    private void closeSkills(){
         gamePanel.closeSkillsView();
         stateManager.activeGame();
     }

@@ -15,8 +15,8 @@ public class Decision {
     // We should only change decisions if the decision is finished, or the entity has randomly decided to drop it.
     // Dropping decisions is less likely if  the entity is more interested in the decision
 
-    private Interest interest;
-    private double weight;
+    private final Interest interest;
+    private final double weight;
     private int interestSatisfiableTicker = -1;
 
     public Decision(Interest interest, double weight, VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
@@ -73,13 +73,7 @@ public class Decision {
         }
 
         // If the interest ticker is 0, we have lost interest due to time.
-        if (hasInterestTickerFinished()) {
-
-            return true;
-
-        }
-
-        return false;
+        return hasInterestTickerFinished();
 
     }
 

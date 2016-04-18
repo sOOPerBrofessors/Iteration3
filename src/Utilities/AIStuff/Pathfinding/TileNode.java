@@ -10,9 +10,9 @@ import java.util.HashSet;
  */
 public class TileNode extends Node { // Wrapper class for boxes that contains a reference to a parent node, used to traverse backwards once the endBox has been located
 
-    protected TileLocationTuple box;
+    final TileLocationTuple box;
     public TileNode parentNode;
-    protected Map map;
+    private final Map map;
 
     public TileNode(TileLocationTuple current_Box, TileNode parent_Node, Map map) {
 

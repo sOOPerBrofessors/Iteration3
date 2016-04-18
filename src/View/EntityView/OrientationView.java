@@ -11,12 +11,12 @@ import java.util.Map;
  */
 public class OrientationView {
     private Image currentDirectionImage;
-    private Image north;
-    private Image northWest;
-    private Image northEast;
-    private Image south;
-    private Image southWest;
-    private Image southEast;
+    private final Image north;
+    private final Image northWest;
+    private final Image northEast;
+    private final Image south;
+    private final Image southWest;
+    private final Image southEast;
 
     private Map<Orientation, Runnable> commands;
 
@@ -32,12 +32,12 @@ public class OrientationView {
     }
     private void initCommands(){
         commands = new HashMap<>();
-        commands.put(Orientation.NORTH, () -> setNorth());
-        commands.put(Orientation.NORTHWEST, () -> setNorthWest());
-        commands.put(Orientation.NORTHEAST, () -> setNorthEast());
-        commands.put(Orientation.SOUTH, () -> setSouth());
-        commands.put(Orientation.SOUTHWEST, () -> setSouthWest());
-        commands.put(Orientation.SOUTHEAST, () -> setSouthEast());
+        commands.put(Orientation.NORTH, this::setNorth);
+        commands.put(Orientation.NORTHWEST, this::setNorthWest);
+        commands.put(Orientation.NORTHEAST, this::setNorthEast);
+        commands.put(Orientation.SOUTH, this::setSouth);
+        commands.put(Orientation.SOUTHWEST, this::setSouthWest);
+        commands.put(Orientation.SOUTHEAST, this::setSouthEast);
     }
     public void setDirection(Orientation orientation){
         commands.get(orientation).run();

@@ -10,10 +10,10 @@ import Utilities.Visitor.ItemVisitor;
  * Abstract class for items which may be picked up from the map by a character.
  */
 public abstract class TakeableItem extends Item {
-    private String description;
-    private int value;
+    private final String description;
+    private final int value;
 
-    public TakeableItem(String name, String description, int value) {
+    protected TakeableItem(String name, String description, int value) {
         super(name);
         this.description = description;
         this.value = value;

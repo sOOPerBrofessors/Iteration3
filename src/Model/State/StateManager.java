@@ -13,7 +13,7 @@ import Model.Model;
  */
 public class StateManager implements Tickable {
 
-    private Model model;
+    private final Model model;
 
     private State activeState;
     private ActiveGameState activeGameState;

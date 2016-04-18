@@ -36,20 +36,20 @@ import java.util.ArrayList;
  * Abstract class to act as the superclass to the player (Avatar) and NPCs.
  */
 public abstract class Character extends Entity implements Observer, Subject, CharacterVisitable {
-    private ArrayList<Observer> observers;
+    private final ArrayList<Observer> observers;
 
-    protected ArrayList<Skill> skills = new ArrayList<>();
-    protected Occupation o;
-    protected CharacterStats stats;
-    protected Inventory inventory;
-    private int radiusVisibility;
-    private Faction faction;
-    private CombatTimer combatTimer;
-    private Attack attack;
+    final ArrayList<Skill> skills = new ArrayList<>();
+    protected final Occupation o;
+    protected final CharacterStats stats;
+    protected final Inventory inventory;
+    private final int radiusVisibility;
+    private final Faction faction;
+    private final CombatTimer combatTimer;
+    private final Attack attack;
     private int delay;
     private boolean canMove;
-    private DamageQueue damageQueue;
-    private ExperienceQueue experienceQueue;
+    private final DamageQueue damageQueue;
+    private final ExperienceQueue experienceQueue;
     private float alpha = 1f;
     private boolean dead;
 
@@ -72,11 +72,11 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         attack = new Attack(this);
     } // end private constructor
 
-    public void dropItems(ItemManager itemManager) {
+    protected void dropItems(ItemManager itemManager) {
         inventory.dump(itemManager, this);
     } // end dropItems
 
-    public void delayMovement() {
+    private void delayMovement() {
         /*
         starts a timer of duration 'delay'; the beginning of which toggles the userCanMakeInput
          value to false, and after finishing execution toggles it back to true
@@ -88,7 +88,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         healthEffect(amount);
     } // end applyFallDamage()
 
-    public void setDelay(int amount) {
+    protected void setDelay(int amount) {
         delay = 1500 / amount;
     } // end setDelay
 
@@ -202,13 +202,13 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         alert();
     } // end equipArmor
 
-    public boolean unEquipWeapon(){
+    boolean unEquipWeapon(){
         boolean success = inventory.unequipWeapon();
         alert();
         return success;
     }
 
-    public boolean unEquipArmor(){
+    boolean unEquipArmor(){
         boolean success = inventory.unequipArmor();
         alert();
         return success;
@@ -387,7 +387,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         alert();
     } // end pickUpMoney
 
-    public void spendMoney(int amount) {
+    void spendMoney(int amount) {
         inventory.spendMoney(amount);
         alert();
     } // end spendMoney

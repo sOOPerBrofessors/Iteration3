@@ -8,7 +8,7 @@ import java.util.Observer;
  * Created by broskj on 4/17/16.
  */
 public class DamageQueue implements Observer {
-    private ArrayList<DamageSplat> damage = new ArrayList<>();
+    private final ArrayList<DamageSplat> damage = new ArrayList<>();
 
     public ArrayList<DamageSplat> getAll() {
         return damage;
@@ -19,7 +19,7 @@ public class DamageQueue implements Observer {
         damage.add(object);
     } // end push
 
-    public void pop() {
+    private void pop() {
         if(damage.size() > 0)
             damage.remove(0);
     } // end pop

@@ -3,9 +3,9 @@ package View.ViewUtilities.Sprites;
 import java.awt.image.BufferedImage;
 
 //pulls in the whole sprite.png image, has a crop method to crop them into individual images
-public class SpriteSheet {
+class SpriteSheet {
 
-    private BufferedImage sheet;
+    private final BufferedImage sheet;
 
     public SpriteSheet(BufferedImage sheet){
         this.sheet = sheet;

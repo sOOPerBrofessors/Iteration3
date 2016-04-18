@@ -12,11 +12,11 @@ import java.util.ArrayList;
  * Created by AndyZhu on 17/4/2016.
  */
 public class Attack{
-    private int coolDownTime;
+    private final int coolDownTime;
     private double timePerformed;
     private double remainingCoolDownTime;
     private int damage;
-    private Character character;
+    private final Character character;
 
     public Attack(Character character) {
         this.character = character;
@@ -27,12 +27,12 @@ public class Attack{
         tick();
         return remainingCoolDownTime == 0.0;
     }
-    protected void setTimePerformed() {
+    private void setTimePerformed() {
         timePerformed = System.currentTimeMillis();
         remainingCoolDownTime = coolDownTime;
     }
 
-    public void tick() {
+    private void tick() {
         double timePassed = (System.currentTimeMillis() - timePerformed) / 1000;
         remainingCoolDownTime = coolDownTime - timePassed;
         if (remainingCoolDownTime <= 0) {

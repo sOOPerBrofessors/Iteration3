@@ -30,7 +30,7 @@ public class TheRealMount extends Mount {
         }
     }
 
-    public void delayMovement() {
+    private void delayMovement() {
         /*
         starts a timer of duration 'delay'; the beginning of which toggles the userCanMakeInput
          value to false, and after finishing execution toggles it back to true

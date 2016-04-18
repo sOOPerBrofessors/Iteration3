@@ -10,7 +10,7 @@ import Model.Inventory.Inventory;
  *  to the tile being faced by the Entity which will trigger an action with that tile;
  *  given that the tile contains a door, the door will open and no longer be an obstacle.
  */
-public class QuestStrategy {
+class QuestStrategy {
 
     public boolean onInteract(Inventory inventory) {
         //entity.interactWithFacingTile(item);

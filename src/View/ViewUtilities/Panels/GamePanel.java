@@ -15,7 +15,7 @@ import java.awt.*;
  */
 public class GamePanel extends JPanel{
 
-    private ViewManager viewManager;
+    private final ViewManager viewManager;
     private GamePlayController controller;
 
     private InventoryView inventoryView;
@@ -107,7 +107,7 @@ public class GamePanel extends JPanel{
         Component temp;
         System.out.println("you");
         temp = getComponent(0);
-        remove((JComponent)temp);
+        remove(temp);
         add(view, BorderLayout.CENTER);
         add(temp, BorderLayout.CENTER);
     }

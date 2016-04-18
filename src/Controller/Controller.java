@@ -10,10 +10,10 @@ import java.util.HashMap;
 public abstract class Controller {
 
     // common attributes and operations to all controllers
-    protected HashMap<Integer, Command> commands;
-    protected ControllerManager controllerManager;
+    protected final HashMap<Integer, Command> commands;
+    protected final ControllerManager controllerManager;
 
-    public Controller(ControllerManager controllerManager){
+    protected Controller(ControllerManager controllerManager){
         this.controllerManager = controllerManager;
         commands = new HashMap<>();
     }

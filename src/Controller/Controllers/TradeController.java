@@ -27,6 +27,6 @@ public class TradeController extends Controller { //NOT VERY OOPY
     private void initCommands(){
 
         // Exit TradeView
-        commands.put(Settings.ESC, () -> controllerManager.switchGamePlay());
+        commands.put(Settings.ESC, controllerManager::switchGamePlay);
     }
 }

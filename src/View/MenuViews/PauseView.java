@@ -18,15 +18,15 @@ public class PauseView extends VertPanel {
     private int sel = 0;
     private final int selMax = 3;
     private final String[] menuArray = {"SAVE","SETTINGS","MAIN_MENU","QUIT"};
-    private HashMap<Integer, Command> commands;
-    private ViewManager viewManager;
+    private final HashMap<Integer, Command> commands;
+    private final ViewManager viewManager;
 
     public PauseView(ViewManager viewManager){
         this.viewManager = viewManager;
         commands = new HashMap<>();
-        commands.put(0, () -> doSave());
-        commands.put(1, () -> goToSettings());
-        commands.put(2, () -> restart());
+        commands.put(0, this::doSave);
+        commands.put(1, this::goToSettings);
+        commands.put(2, this::restart);
         commands.put(3, () -> System.exit(0));
     }
 

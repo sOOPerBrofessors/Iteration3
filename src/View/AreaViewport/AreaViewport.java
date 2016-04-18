@@ -21,15 +21,15 @@ public class AreaViewport extends JPanel{
 
     //TODO: Change this to map
     //View objects
-    private MapView mapView;
+    private final MapView mapView;
 
     //private CharacterView avatarView;
-    private CameraView cameraView;
-    private FogOfWar fogOfWar;
-    private HUD hud;
-    private ObservedNPC observedNPC;
-    private EarthShakeView earthShakeView;
-    private ArcaneExplosionView arcaneExplosionView;
+    private final CameraView cameraView;
+    private final FogOfWar fogOfWar;
+    private final HUD hud;
+    private final ObservedNPC observedNPC;
+    private final EarthShakeView earthShakeView;
+    private final ArcaneExplosionView arcaneExplosionView;
 
     public AreaViewport(GameState gameState){
         //This needs to be initialized later on or grabbed from the inventory
@@ -63,7 +63,7 @@ public class AreaViewport extends JPanel{
         fogOfWar.setFogOfWar(mapView);
     }
 
-    public void renderTiles(Graphics g){
+    private void renderTiles(Graphics g){
         Location offset = cameraView.computeOffset();
         for (int i = 0; i < mapView.getXBound(); i++) {
             for (int j = 0; j < mapView.getYBound(); j++){

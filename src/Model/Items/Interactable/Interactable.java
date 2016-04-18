@@ -9,11 +9,11 @@ import Utilities.Visitor.ItemVisitor;
  */
 public abstract class Interactable extends Item {
 
-    InteractableStrategy s;
+    final InteractableStrategy s;
 
-    protected boolean success;
+    boolean success;
 
-    protected Interactable(InteractableStrategy s, String name) {
+    Interactable(InteractableStrategy s, String name) {
         super(name);
         this.s = s;
     } // end protected constructor

@@ -82,12 +82,12 @@ public class ItemFactory {
         mapItemViews.put(chestKey, chestKeyView);
 
         // create money in chest
-        Money treasure = Money.makeMoney(100);
+        Money treasure = Money.makeMoney();
         ItemView treasureView = new UsableView(ImageAssets.money);
         allItemViews.put(treasure, treasureView);
 
         // create closed chest
-        Interactable closedChest = new Chest((Quest)chestKey, treasure, "ClosedChest");
+        Interactable closedChest = new Chest((Quest)chestKey, treasure);
         ItemView closedChestView = new InteractableView(ImageAssets.closedChest);
         Location closedChestLocation = new Location(3,4, map.getTopTilePosition(3,4));
         closedChestView.setLocation(3,4);
@@ -225,7 +225,7 @@ public class ItemFactory {
     } // end factory method makeDiamondGreatsword
 
     public static Weapon makeWoodenStaff() {
-        return WeaponFactory.makeSummonerWeapon("Wooden", 2);
+        return WeaponFactory.makeSummonerWeapon("Wooden");
     } // end factory method makeWoodenStaff
 
     public static Weapon makeEnchantedStaff() {
@@ -277,15 +277,15 @@ public class ItemFactory {
     } // end factory method makeTatteredRobes
 
     public static Armor makeLeatherArmor() {
-        return ArmorFactory.makeSneakArmor("Leather", 3);
+        return ArmorFactory.makeSneakArmor("Leather");
     } // end factory method makeLeatherArmor
 
     public static Armor makeStuddedArmor() {
-        return ArmorFactory.makeSneakArmor("Studded", 3);
+        return ArmorFactory.makeSneakArmor("Studded");
     } // end factory method makeStuddedArmor
 
     public static Armor makeShroudedArmor() {
-        return ArmorFactory.makeSneakArmor("Shrouded", 3);
+        return ArmorFactory.makeSneakArmor("Shrouded");
     } // end factory method makeShroudedArmor
 
     public static HashMap<Location, TakeableItem> getTakableItems(){

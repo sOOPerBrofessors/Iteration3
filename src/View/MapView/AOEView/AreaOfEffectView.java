@@ -16,7 +16,7 @@ public class AreaOfEffectView extends MapObjectView implements AOEVisitor{
     private int xPixels;
     private int yPixels;
     private final int viewHeight = 30;
-    private AreaOfEffect areaOfEffect;
+    private final AreaOfEffect areaOfEffect;
     public AreaOfEffectView(AreaOfEffect areaOfEffect){
         this.areaOfEffect = areaOfEffect;
         areaOfEffect.acceptAOEVisitor(this);
@@ -49,7 +49,7 @@ public class AreaOfEffectView extends MapObjectView implements AOEVisitor{
     @Override
     public void visitHealAOE() {
         //needs to change heal effect image
-        image = ImageAssets.redCrossAOE;;//new AreaOfEffectView();
+        image = ImageAssets.redCrossAOE;//new AreaOfEffectView();
     }
 
     @Override

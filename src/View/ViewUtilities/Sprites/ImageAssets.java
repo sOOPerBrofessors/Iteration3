@@ -27,13 +27,26 @@ public class ImageAssets {
     public static BufferedImage sneakSW, sneakNW, sneakN, sneakNE, sneakSE, sneakS;
     public static BufferedImage summonerS,summonerSW, summonerNW, summonerN, summonerNE, summonerSE;
     public static BufferedImage shopKeeperSW, shopKeeperNW, shopKeeperN, shopKeeperNE, shopKeeperSE, shopKeeperS;
-    public static BufferedImage enemyS, enemySW, enemyNW, enemyN, enemyNE, enemySE;
-    public static BufferedImage crabS, crabSW, crabNW, crabN, crabNE, crabSE;
-    public static BufferedImage grass, grass2, dirt, water;
+    private static BufferedImage enemyS;
+    private static BufferedImage enemySW;
+    private static BufferedImage enemyNW;
+    private static BufferedImage enemyN;
+    private static BufferedImage enemyNE;
+    private static BufferedImage enemySE;
+    private static BufferedImage crabS;
+    private static BufferedImage crabSW;
+    private static BufferedImage crabNW;
+    private static BufferedImage crabN;
+    private static BufferedImage crabNE;
+    private static BufferedImage crabSE;
+    public static BufferedImage grass;
+    private static BufferedImage grass2;
+    public static BufferedImage dirt;
+    public static BufferedImage water;
     public static BufferedImage invSlot, eqSlot, select;
     public static BufferedImage hud, messageBox, interfaceBorder;
     public static BufferedImage mount;
-    public static ArrayList<BufferedImage> fireballs = new ArrayList<>();
+    public static final ArrayList<BufferedImage> fireballs = new ArrayList<>();
 
     //skill things
     public static BufferedImage crackedEarth, arcaneExplosion;
@@ -55,7 +68,7 @@ public class ImageAssets {
     //AOE
     public static BufferedImage goldStarAOE;
     public static BufferedImage redCrossAOE;
-    public static BufferedImage damageAOE;
+    private static BufferedImage damageAOE;
     public static BufferedImage instantDeathAOE;
     public static BufferedImage teleportAOE;
     public static BufferedImage trapAOE;
