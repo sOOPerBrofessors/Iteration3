@@ -48,11 +48,7 @@ public class NPC extends Character implements Tickable{
         this.faction = faction;
         this.personality = personality;
         this.npcStrategy = npcStrategy;
-        addItems();//TODO: added by Andy to test Pick pocket
-        ArrayList<TakeableItem> items = inventory.getPack().getItems();
-        for (TakeableItem aItem : items) {
-            System.out.println(aItem.getName());
-        }
+        addItems();
     }
 
     @Override
@@ -115,7 +111,7 @@ public class NPC extends Character implements Tickable{
         addSmaherWeapon();
         addSmaherWeapon();
     }
-    
+
     private void addItem(TakeableItem item) {
         Pack pack = this.inventory.getPack();
         pack.add(item);

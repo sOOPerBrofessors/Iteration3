@@ -11,8 +11,7 @@ import java.util.Random;
  *
  * All skills are active. Skill is the parent of all kinds of skills.
  */
-public abstract class Skill { //TODO: skills should also be ticked if we want to display remaining CD
-    //TODO: complete everything after avatar is done
+public abstract class Skill {
     protected int level; //level range: [1, 10]
     protected String name;
     protected double coolDownTime;
@@ -49,7 +48,6 @@ public abstract class Skill { //TODO: skills should also be ticked if we want to
     }
 
     public void tick() {
-        //TODO: this is dumb implementation
         double timePassed = (System.currentTimeMillis() - timePerformed) / 1000;
         remainingCoolDownTime = coolDownTime - timePassed;
         if (remainingCoolDownTime <= 0) {

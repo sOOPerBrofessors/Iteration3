@@ -21,7 +21,6 @@ public class PickPocket extends RangedSkill {
     public PickPocket (Avatar avatar) {
         super(avatar);
         name = "Pick pocket";
-        level = 10; //TODO: testing
         manaCost = 1;
         coolDownTime = 1;
     }
