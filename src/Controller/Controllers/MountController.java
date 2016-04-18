@@ -79,6 +79,10 @@ public class MountController extends Controller {
 
     }
 
+    public void activeGame(){
+        controllerManager.switchGamePlay();
+    }
+
     public void setState(MountGameState state) {
         this.state = state;
         initCommands();

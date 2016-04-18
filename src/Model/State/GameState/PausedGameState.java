@@ -1,5 +1,6 @@
 package Model.State.GameState;
 
+import Controller.Controllers.GamePlayController;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.NPC.NPC;

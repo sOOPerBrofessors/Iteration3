@@ -21,7 +21,7 @@ public class BoatMount extends Mount {
     }
 
     @Override
-    public void levitate() {
+    public void levitate(int z) {
 
     }
 }
