@@ -50,6 +50,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     private DamageQueue damageQueue;
     private ExperienceQueue experienceQueue;
     private float alpha = 1f;
+    private boolean dead;
 
     protected Character(Occupation o, Location location, Faction faction) {
         super(Navigation.makeCharNav(), location);
@@ -66,6 +67,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         canMove = true;
         damageQueue = new DamageQueue();
         experienceQueue = new ExperienceQueue();
+        dead = false;
     } // end private constructor
 
     public void delayMovement() {
@@ -411,4 +413,8 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     public float getAlpha() {
         return alpha;
     }
+
+    public boolean isDead() { return dead; }
+
+    public void setDead(boolean dead) { this.dead = dead; }
 } // end abstract class Character

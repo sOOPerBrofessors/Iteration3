@@ -14,6 +14,7 @@ import Model.Map.Location;
 import Model.Skills.Skill;
 import Model.Map.Map;
 import Utilities.GameMessageQueue;
+import Utilities.Settings;
 import Utilities.Visitor.CharacterTypeVisitor;
 
 import Utilities.Visitor.CharacterVisitor;
@@ -46,15 +47,15 @@ public class Avatar extends Character {
     } // end factory method makeSneak
 
     public static Avatar makeSmasher() {
-        return new Avatar(new Smasher(), new Location(5,5,0));
+        return new Avatar(new Smasher(), new Location(Settings.SPAWN_X, Settings.SPAWN_Y, Settings.SPAWN_Z));
     } // end factory method makeSmasher
 
     public static Avatar makeSneak() {
-        return new Avatar(new Sneak(),new Location(5,5,0));
+        return new Avatar(new Sneak(),new Location(Settings.SPAWN_X, Settings.SPAWN_Y, Settings.SPAWN_Z));
     } // end factory method makeSneak
 
     public static Avatar makeSummoner() {
-        return new Avatar(new Summoner(), new Location(5,5,0));
+        return new Avatar(new Summoner(), new Location(Settings.SPAWN_X, Settings.SPAWN_Y, Settings.SPAWN_Z));
     } // end factory method makeSneak
 
     public Inventory getInventory(){ //needed for InventoryView - Sam
@@ -79,6 +80,7 @@ public class Avatar extends Character {
         }
         if(getHealth() <= 0) {
             stats.kill();
+            setDead(true);
 
             if(getLives() == 0) {
                 GameMessageQueue.push("Game over!");
@@ -100,8 +102,8 @@ public class Avatar extends Character {
 
     @Override
     public void applyFallDamage(int amount) {
-        super.applyFallDamage(amount);
         GameMessageQueue.push("You hurt yourself from the fall!");
+        super.applyFallDamage(amount);
     }
 
     @Override
