@@ -3,23 +3,25 @@ package Model.Skills.RangedSkills;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Projectile.Projectile;
 import Model.Map.Location;
+import Model.Map.Map;
 import Model.State.GameState.ActiveGameState;
 
 /**
- * Created by AndyZhu on 13/4/2016.
+ * Created by AndyZhu on 17/4/2016.
  */
-public class RangedWeapon extends RangedSkill{
-    public RangedWeapon(Avatar avatar) {
+public class Fireball extends RangedSkill {
+
+    public Fireball(Avatar avatar) {
         super(avatar);
-        name = "Ranged weapon";
+        name = "Fireball";
         manaCost = 1;
         coolDownTime = 1;
-    }
 
+    }
 
     public void execute(ActiveGameState activeGameState) {
         if (allConditionChecked()) {
-            calculateRangedWeaponDamage();
+            calculateDamage();
             Location tempLoc = new Location(avatar.getX(), avatar.getY(), avatar.getZ());
             activeGameState.getProjectiles().add(Projectile.makeFireBall(tempLoc, avatar.getOrientation(), damage));
             enforceManaCost();
@@ -27,7 +29,7 @@ public class RangedWeapon extends RangedSkill{
         }
     }
 
-    private void calculateRangedWeaponDamage() {
-        damage = level * avatar.getAgility();
+    private void calculateDamage() {
+        damage = level * avatar.getIntellect();
     }
 }

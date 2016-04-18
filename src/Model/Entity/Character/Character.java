@@ -1,5 +1,6 @@
 package Model.Entity.Character;
 
+import Model.Actions.Attack;
 import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Entity;
@@ -45,6 +46,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     private int radiusVisibility;
     private Faction faction;
     private CombatTimer combatTimer;
+    private Attack attack;
     private int delay;
     private boolean canMove;
     private DamageQueue damageQueue;
@@ -66,6 +68,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         canMove = true;
         damageQueue = new DamageQueue();
         experienceQueue = new ExperienceQueue();
+        attack = new Attack(this);
     } // end private constructor
 
     public void delayMovement() {
@@ -416,5 +419,9 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
 
     public float getAlpha() {
         return alpha;
+    }
+
+    public void attack(Map map) {
+        this.attack.execute(map);
     }
 } // end abstract class Character

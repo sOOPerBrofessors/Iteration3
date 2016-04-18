@@ -3,18 +3,14 @@ package Model.State.GameState;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Projectile.Projectile;
-import Model.Items.Takeable.Equippable.Weapon.OneHandedWeapon;
 import Model.Map.Location;
 import Model.Map.Map;
 
 import Model.Map.Orientation;
-import Model.Skills.CombatSkills.BrawlingSkill;
 import Model.Skills.RangedSkills.Observation;
 import Model.Skills.RangedSkills.ObservationInfo;
-import Model.Skills.Skill;
 import Utilities.GameMessageQueue;
 import Utilities.ItemStuff.ItemManager;
-import Utilities.Timer.TimedEvent;
 
 import java.util.ArrayList;
 
@@ -72,14 +68,17 @@ public class ActiveGameState extends GameState {
     }
 
     public void playerAttack(){
+        avatar.attack(map);
+        /* This is for fireball
         Location tempLoc = new Location(avatar.getX(), avatar.getY(), avatar.getZ());
         Projectile temp = Projectile.makeFireBall(tempLoc, avatar.getOrientation());
         projectiles.add(temp);
+        */
     }
 
     public void playerExecuteSkill(int index) {
         if (avatar.getSKillList().size() > index) {
-            avatar.getSkill(index).execute(map);
+            avatar.getSkill(index).execute(this);
         }
         else {
             GameMessageQueue.push("You don't have skill at this position");
@@ -104,5 +103,9 @@ public class ActiveGameState extends GameState {
 
     public int getAvatarMovement() {
         return player.getMovement();
+    }
+
+    public ArrayList<Projectile> getProjectiles() {
+        return projectiles;
     }
 }
