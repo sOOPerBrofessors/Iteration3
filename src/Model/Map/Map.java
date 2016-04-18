@@ -57,6 +57,11 @@ public class Map {
         }
     }
 
+    public boolean teleportCharacter(Character character, Location targetLocation) {
+        character.notifyOfTeleport();
+        return moveCharacter(character, targetLocation);
+    }
+
     public boolean moveProjectile(Projectile projectile, Location newLocation){
         int currentX = projectile.getX();
         int currentY = projectile.getY();

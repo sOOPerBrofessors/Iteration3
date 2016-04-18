@@ -123,7 +123,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
             startCombatTimer();
         damageQueue.push(new DamageSplat(amount));
         stats.healthEffect(amount);
-        alert();
+        startCombatTimer();
     } // end lifeEffect
 
     public void livesEffect(int amount) {
@@ -353,6 +353,8 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
             return false;
         }
     }
+
+    public void notifyOfTeleport() {}
 
     public boolean checkStrategy(Terrain terrain){
        return navigation.canMove(terrain);

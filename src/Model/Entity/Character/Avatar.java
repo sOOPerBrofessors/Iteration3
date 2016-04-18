@@ -68,10 +68,30 @@ public class Avatar extends Character {
     public void update() {
         stats.setEquippedArmor(inventory.getArmorValue());
         stats.setEquippedWeapon(inventory.getWeaponValue());
+        if(getExperience() > getExperienceThreshold()) {
+            GameMessageQueue.push("Level up!");
+            stats.levelUp();
+        }
+        if(getHealth() <= 0) {
+            stats.kill();
+
+            if(getLives() == 0) {
+                GameMessageQueue.push("Game over!");
+                // TODO: go to death state
+            } else {
+                GameMessageQueue.push("Oh dear, you are dead!  " + getLives() + " lives remaining.");
+            }
+
+        }
         stats.recompute();
         setDelay(getMovement());
         alert();
     } // end update
+
+    @Override
+    public void notifyOfTeleport() {
+        GameMessageQueue.push("You've been teleported!");
+    } // end notifyOfTeleport
 
     @Override
     public void healthEffect(int amount) {
