@@ -205,23 +205,23 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         return success;
     }
 
-    public void equipSmasherWeapon(Weapon weapon) {
-        o.equipSmasherWeapon(weapon, this);
+    public boolean equipSmasherWeapon(Weapon weapon) {
+        return o.equipSmasherWeapon(weapon, this);
     } // end equipSmasherWeapon
-    public void equipSmasherArmor(Armor armor) {
-        o.equipSmasherArmor(armor, this);
+    public boolean equipSmasherArmor(Armor armor) {
+        return o.equipSmasherArmor(armor, this);
     } // end equipSmasherArmor
-    public void equipSneakWeapon(Weapon weapon) {
-        o.equipSneakWeapon(weapon, this);
+    public boolean equipSneakWeapon(Weapon weapon) {
+        return o.equipSneakWeapon(weapon, this);
     } // end equipSneakWeapon
-    public void equipSneakArmor(Armor armor) {
-        o.equipSneakArmor(armor, this);
+    public boolean equipSneakArmor(Armor armor) {
+        return o.equipSneakArmor(armor, this);
     } // end equipSneakArmor
-    public void equipSummonerWeapon(Weapon weapon) {
-        o.equipSummonerWeapon(weapon, this);
+    public boolean equipSummonerWeapon(Weapon weapon) {
+        return o.equipSummonerWeapon(weapon, this);
     } // end equipSummonerWeapon
-    public void equipSummonerArmor(Armor armor) {
-        o.equipSummonerArmor(armor, this);
+    public boolean equipSummonerArmor(Armor armor) {
+        return o.equipSummonerArmor(armor, this);
     } // end equipSummonerArmor
 
     public void rideMount(Mount mount){

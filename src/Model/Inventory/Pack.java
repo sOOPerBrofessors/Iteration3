@@ -25,8 +25,10 @@ public class Pack {
     } // end default constructor
 
     public void utilizeItem(int index, Character character){
-        items.remove(index).utilize(character);
-    }
+        if(items.get(index).utilize(character)) {
+            items.remove(index);
+        }
+    } // end utilizeItem
 
     public boolean add(TakeableItem item) {
         if(item == null || size() >= cap)
