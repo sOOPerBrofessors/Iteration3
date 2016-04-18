@@ -68,7 +68,7 @@ public class InventoryController extends Controller { //NOT VERY OOPY
         commands.put(Settings.ENTER, new Command() {
             @Override
             public void execute() {
-                inventoryView.interactWithItem();
+                inventoryView.select();
             }
         });
 
