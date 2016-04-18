@@ -4,7 +4,6 @@ import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
-import Model.Map.Location;
 import Model.Skills.Skill;
 import Model.Stats.CharacterStats;
 import Utilities.ErrorLevel;
@@ -12,7 +11,6 @@ import Utilities.MessageHandler;
 import Utilities.Visitor.OccupationVisitable;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * Created by broskj on 4/6/16.

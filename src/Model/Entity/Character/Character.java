@@ -3,6 +3,7 @@ package Model.Entity.Character;
 import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Entity;
+import Model.Faction.Faction;
 import Model.Inventory.Inventory;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
@@ -42,6 +43,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     protected CharacterStats stats;
     protected Inventory inventory;
     private int radiusVisibility;
+    private Faction faction;
     private CombatTimer combatTimer;
     private int delay;
     private boolean canMove;
@@ -49,9 +51,10 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     private ExperienceQueue experienceQueue;
     private float alpha = 1f;
 
-    protected Character(Occupation o, Location location) {
+    protected Character(Occupation o, Location location, Faction faction) {
         super(Navigation.makeCharNav(), location);
         this.o = o;
+        this.faction = faction;
         this.stats = o.initStats();
         this.inventory = new Inventory();
         stats.addObserver(this);

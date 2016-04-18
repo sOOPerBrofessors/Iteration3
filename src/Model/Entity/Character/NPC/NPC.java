@@ -8,17 +8,10 @@ import Model.Entity.Character.Character;
 import Model.Entity.Character.NPC.NPCStrategy.NPCStrategy;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Faction.Faction;
-import Model.Inventory.Inventory;
 import Model.Inventory.Pack;
-import Model.Items.Interactable.Interactable;
 import Model.Items.Item;
-import Model.Items.ItemStrategy.EquippableStrategy.EquippableStrategy;
-import Model.Items.Takeable.Equippable.Armor;
-import Model.Items.Takeable.Equippable.EquippableItem;
-import Model.Items.Takeable.Equippable.Weapon.OneHandedWeapon;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
 import Model.Items.Takeable.TakeableItem;
-import Model.Items.Takeable.Useable.Money;
 import Model.Items.Takeable.Useable.Potion;
 import Model.Map.Location;
 import Utilities.ItemStuff.ItemFactory.ItemFactory;
@@ -29,7 +22,6 @@ import View.ItemView.ItemView;
 import View.ItemView.UsableView;
 import View.ViewUtilities.Sprites.ImageAssets;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -38,14 +30,12 @@ import java.util.HashMap;
 public class NPC extends Character implements Tickable{
 
     private Brain brain;
-    private Faction faction;
     private Personality personality;
     private NPCStrategy npcStrategy;
     AI_Controller controller;
 
     public NPC(Occupation o, Location location, Personality personality, Faction faction, NPCStrategy npcStrategy) {
-        super(o, location);
-        this.faction = faction;
+        super(o, location, faction);
         this.personality = personality;
         this.npcStrategy = npcStrategy;
         addItems();

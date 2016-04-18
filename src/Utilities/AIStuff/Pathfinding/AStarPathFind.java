@@ -28,7 +28,6 @@ public class AStarPathFind {
 
         RawAStarPathFinding pathing = new RawAStarPathFinding(startNode, endNode);
         pathing.run();
-        pathing.waitForFinish();
 
         if (!pathing.pathFound) {
 
@@ -36,7 +35,6 @@ public class AStarPathFind {
 
         }
 
-        System.out.println("trying to find orientation list");
         return convertNodeToOrientation((TileNode) pathing.path(), startNode);
 
     }
@@ -52,25 +50,16 @@ public class AStarPathFind {
         ArrayList<Orientation> orientations = new ArrayList<>();
 
         TileNode lastNode;
-        TileNode currentNode;
+        TileNode currentNode = endPathNode;
 
-        do {
+        while (!currentNode.equals(startNode)) {
 
-            lastNode = endPathNode;
-            currentNode = endPathNode.parentNode;
-
-            if (currentNode == null) {
-
-                break;
-
-            }
-
+            lastNode = currentNode;
+            currentNode = currentNode.parentNode;
             Orientation orientation = getTileOrientationRelationship(currentNode.box.getLocation(), lastNode.box.getLocation());
             orientations.add(0, orientation);
 
         }
-
-        while (!currentNode.box.equals(startNode.box));
 
         return orientations;
 

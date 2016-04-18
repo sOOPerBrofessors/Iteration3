@@ -9,6 +9,7 @@ public interface OccupationVisitor {
     void visitSmasher(Orientation orientation);
     void visitSummoner(Orientation orientation);
     void visitSneak(Orientation orientation);
+    void visitPet(Orientation orientation);
 
     //For future usage
 //    void createNPCView();

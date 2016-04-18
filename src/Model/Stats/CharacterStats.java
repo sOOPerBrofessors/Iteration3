@@ -115,6 +115,17 @@ public class CharacterStats extends EntityStats implements Subject {
                 4);     // movement
     } // end factory method makeSummonerStats
 
+    public static CharacterStats makePetStats() {
+        return new CharacterStats(
+                5,      // agility
+                0,      // experience
+                3,      // hardiness
+                2,      // intellect
+                3,      // lives
+                2,      // strength
+                7);     // movement
+    }
+
     public CharacterStats makeNPC() {
         /*
         not sure if this works.  Ideally, when you make an NPC's stats you'll do it by saying:

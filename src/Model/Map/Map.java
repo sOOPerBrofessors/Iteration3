@@ -168,8 +168,14 @@ public class Map {
         int newX = x + orientation.x;
         int newY = y + orientation.y;
         Tile topTile = getTopTile(newX, newY);
-        int nextZ = getTopTilePosition(newX, newY) - 1;
-        int difference = nextZ - z;
+        int nextZ = getTopTilePosition(newX, newY);
+        int difference = (nextZ - 1) - z;
+
+        if (getTopTile(newX, newY) == null) {
+
+            return null;
+
+        }
 
         if (difference <= 1) {
 
@@ -188,7 +194,13 @@ public class Map {
 
         for (Orientation orientation : Orientation.values()) {
 
-            neighbors.add(getTileTupleNeighbor(x, y, z, orientation));
+            TileLocationTuple tuple = getTileTupleNeighbor(x, y, z, orientation);
+
+            if (tuple != null) {
+
+                neighbors.add(getTileTupleNeighbor(x, y, z, orientation));
+
+            }
 
         }
 
