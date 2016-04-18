@@ -29,7 +29,7 @@ public class Equipment implements Subject{
     public Weapon equipWeapon(Weapon weapon) {
         Weapon currentWeapon = this.weapon;
         this.weapon = weapon;
-        GameMessageQueue.push("You equipped a " + weapon.getName());
+        //GameMessageQueue.push("You equipped a " + weapon.getName());
         alert();
         return currentWeapon;
     } // end equipWeapon
@@ -37,7 +37,7 @@ public class Equipment implements Subject{
     public Armor equipArmor(Armor armor) {
         Armor currentArmor = this.armor;
         this.armor = armor;
-        GameMessageQueue.push("You equipped " + armor.getName());
+        //GameMessageQueue.push("You equipped " + armor.getName());
         alert();
         return currentArmor;
     } // end equipArmor
@@ -46,7 +46,7 @@ public class Equipment implements Subject{
         if (this.weapon!=null){ //optimization, needs check for GameMessageQueue regardless
             Weapon currentWeapon = this.weapon;
             this.weapon = null;
-            GameMessageQueue.push("You unequipped your weapon.");
+            //GameMessageQueue.push("You unequipped your weapon.");
             alert();
             return currentWeapon;
         }
@@ -57,7 +57,7 @@ public class Equipment implements Subject{
         if (this.armor!=null) { //optimization, needs check for GameMessageQueue regardless
             Armor currentArmor = this.armor;
             this.armor = null;
-            GameMessageQueue.push("You unequipped your armor.");
+            //GameMessageQueue.push("You unequipped your armor.");
             alert();
             return currentArmor;
         }

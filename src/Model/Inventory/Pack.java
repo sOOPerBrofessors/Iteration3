@@ -28,23 +28,19 @@ public class Pack {
         items.remove(index).utilize(character);
     }
 
-    public void add(TakeableItem item) {
-        if(item != null && size() < cap) {
-            items.add(item);
-            GameMessageQueue.push("Picked up " + item.getName());
-        } else if (size() >= cap) {
-            GameMessageQueue.push("Your inventory is full.");
-        }
+    public boolean add(TakeableItem item) {
+        if(item == null || size() >= cap)
+            return false;
+        items.add(item);
+        return true;
     } // end add
 
     public void addMoney(Money money) {
         this.money += money.getQuantity();
-        GameMessageQueue.push("Picked up " + money.getQuantity() + " coins.");
     } // end addMoney
 
     public void spendMoney(int amount) {
         this.money -= amount;
-        GameMessageQueue.push("Spent " + amount + " coins.");
     } // end spendMoney
 
     public int indexOf(Item item) {
@@ -53,7 +49,6 @@ public class Pack {
 
     public TakeableItem remove(int index) {
         TakeableItem temp = items.remove(index);
-        //MessageHandler.println("Removed from pack: "+temp.getName(), ErrorLevel.NOTICE, PersonFilter.SAM);
         return temp;
     } // end remove
 
