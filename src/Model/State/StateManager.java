@@ -39,6 +39,7 @@ public class StateManager implements Tickable {
 
     public void setActiveGameState(ActiveGameState activeGameState){
         this.activeGameState = activeGameState;
+        this.activeGameState.setStateManager(this);
         activeState = activeGameState;
     }
 

@@ -61,7 +61,7 @@ public class GamePlayController extends Controller{
         // attack key press
         commands.put(Settings.ATTACK, () -> {
             state.playerAttack();
-            state.startCombatTimer();
+            //state.startCombatTimer();
         });
 
         // interact key press

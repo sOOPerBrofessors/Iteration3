@@ -23,7 +23,7 @@ public abstract class EquippableItem extends TakeableItem {
         return super.clone();
     }
 
-    public void utilize(Character character) {
-        s.onInteract(this, character);
+    public boolean utilize(Character character) {
+        return s.onInteract(this, character);
     } // end onInteract
 } // end abstract class EquippableItem

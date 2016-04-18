@@ -11,7 +11,8 @@ import Model.Items.Takeable.TakeableItem;
  * Class to allow summoners to equip summoner armor
  */
 public class SummonerArmorStrategy extends EquippableStrategy {
-    public void onInteract(TakeableItem item, Character character) {
+    public boolean onInteract(TakeableItem item, Character character) {
         character.equipSummonerArmor((Armor)item);
+        return true;
     } // end onInteract
 } // end class SummonerArmorStrategy

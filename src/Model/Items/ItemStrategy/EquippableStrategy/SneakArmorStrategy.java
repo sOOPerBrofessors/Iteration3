@@ -11,7 +11,8 @@ import Model.Items.Takeable.TakeableItem;
  * Class to allow sneaks to equip sneak armor
  */
 public class SneakArmorStrategy extends EquippableStrategy {
-    public void onInteract(TakeableItem item, Character character) {
+    public boolean onInteract(TakeableItem item, Character character) {
         character.equipSneakArmor((Armor)item);
+        return true;
     } // end onInteract
 } // end class SneakArmorStrategy

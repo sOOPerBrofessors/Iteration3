@@ -11,7 +11,8 @@ import Model.Items.Takeable.TakeableItem;
  * Class to allow smashers to equip smasher armor
  */
 public class SmasherArmorStrategy extends EquippableStrategy {
-    public void onInteract(TakeableItem item, Character character) {
+    public boolean onInteract(TakeableItem item, Character character) {
         character.equipSmasherArmor((Armor)item);
+        return true;
     } // end onInteract
 } // end class SmasherArmorStrategy
