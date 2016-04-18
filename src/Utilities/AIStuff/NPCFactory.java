@@ -5,13 +5,12 @@ import Controller.AI_Controller.Personality.Personality;
 import Controller.AI_Controller.Personality.PersonalityFactory;
 import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.Mount.TheRealMount;
+import Model.Entity.Character.NPC.KingKrab;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Character.NPC.NPCStrategy.NPCStrategy;
 import Model.Entity.Character.NPC.NPCStrategy.TalkNPCStrategy;
-import Model.Entity.Character.Occupation.Enemy;
-import Model.Entity.Character.Occupation.Pet;
-import Model.Entity.Character.Occupation.Shopkeeper;
-import Model.Entity.Character.Occupation.Smasher;
+import Model.Entity.Character.NPC.SeaGull;
+import Model.Entity.Character.Occupation.*;
 import Model.Faction.Faction;
 import Model.Faction.FactionFactory;
 import Model.Inventory.Inventory;
@@ -61,6 +60,30 @@ public class NPCFactory {
         return enemy;
     }
 
+    public static NPC makeCrab(Location location) {
+
+        Personality personality = PersonalityFactory.getPersonality("enemy");
+        Faction faction = FactionFactory.getFaction("neutral");
+        NPCStrategy strategy = new TalkNPCStrategy("");
+        NPC enemy = new KingKrab(new Crabby(), location, personality, faction, new Inventory(), strategy);
+        Brain brain = new Brain(enemy);
+        enemy.setBrain(brain);
+        return enemy;
+
+    }
+
+    public static NPC makeBird(Location location) {
+
+        Personality personality = PersonalityFactory.getPersonality("friendly");
+        Faction faction = FactionFactory.getFaction("neutral");
+        NPCStrategy strategy = new TalkNPCStrategy("");
+        NPC enemy = new SeaGull(new Bird(), location, personality, faction, new Inventory(), strategy);
+        Brain brain = new Brain(enemy);
+        enemy.setBrain(brain);
+        return enemy;
+
+    }
+
     private static Mount theRealMount(Map map){
         return new TheRealMount(Navigation.makeVehicleNav(), new Location(6,2,map.getTopTilePosition(6,2)));
     }
@@ -77,6 +100,10 @@ public class NPCFactory {
         npcs.add(makeEnemy(map,13,13, "blue"));
         npcs.add(makeEnemy(map,10,10, "blue"));
         npcs.add(makeEnemy(map,12,12, "blue"));
+        npcs.add(makeCrab(new Location(2,3, map.getTopTilePosition(2,3))));
+        npcs.add(makeShopkeeper());
+
+//        npcs.add(makeBird(new Location(10, 7, 6)));
         mounts.add(theRealMount(map));
     }
 
@@ -89,7 +116,6 @@ public class NPCFactory {
         Faction faction = FactionFactory.getFaction("blue");
         //This should be a factory, testing for now
         NPCStrategy strategy = new TalkNPCStrategy("");
-//        NPC gandorf = new NPC(new Smasher(), new Location(1,1,0), personality, faction, strategy);
         NPC hellcat = new NPC(new Pet(), new Location(5,3,0), personality, faction, new Inventory(), strategy);
         Brain brain = new Brain(hellcat);
         hellcat.setBrain(brain);
@@ -102,7 +128,7 @@ public class NPCFactory {
         //This should be a factory, testing for now
         NPCStrategy strategy = new TalkNPCStrategy("Hi! I'm the shopkeeper! Trade me!");
 //        NPC gandorf = new NPC(new Smasher(), new Location(1,1,0), personality, faction, strategy);
-        NPC shopkeeper = new NPC(new Shopkeeper(), new Location(7, 4, 0), personality, faction, new Inventory(), strategy);
+        NPC shopkeeper = new NPC(new Shopkeeper(), new Location(4, 6, 0), personality, faction, new Inventory(), strategy);
         Brain brain = new Brain(shopkeeper);
         shopkeeper.setBrain(brain);
         return shopkeeper;

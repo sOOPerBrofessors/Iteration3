@@ -116,12 +116,10 @@ public class FrontalLobe implements Tickable {
 
         }
 
-        Decision newDecision;
 
         try {
 
-            newDecision = decisionPicker.pick();
-            memory.setCurrentDecision(newDecision);
+            memory.setCurrentDecision(decisionPicker.pick());
 
         } catch (NullPointerException e) {
 

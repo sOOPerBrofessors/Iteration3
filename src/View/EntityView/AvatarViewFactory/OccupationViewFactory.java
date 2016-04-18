@@ -30,5 +30,11 @@ public class OccupationViewFactory {
     public static OrientationView createEnemyView(Orientation orientation){
         return new OrientationView(orientation, ImageAssets.enemyN, ImageAssets.enemyNW, ImageAssets.enemyNE,ImageAssets.enemyS,ImageAssets.enemySE,ImageAssets.enemySW);
     }
+    public static OrientationView createBirdView(Orientation orientation){
+        return new OrientationView(orientation, ImageAssets.enemyN, ImageAssets.enemyNW, ImageAssets.enemyNE,ImageAssets.enemyS,ImageAssets.enemySE,ImageAssets.enemySW);
+    }
+    public static OrientationView createCrabbyView(Orientation orientation){
+        return new OrientationView(orientation, ImageAssets.crabN, ImageAssets.crabNW, ImageAssets.crabNE,ImageAssets.crabS,ImageAssets.crabSE,ImageAssets.crabSW);
+    }
 
 }

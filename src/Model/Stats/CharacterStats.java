@@ -146,6 +146,28 @@ public class CharacterStats extends EntityStats implements Subject {
                 10);     // movement
     }
 
+    public static CharacterStats makeCrabbyStats() {
+        return new CharacterStats(
+                3,      // agility
+                0,      // experience
+                100,      // hardiness
+                1,      // intellect
+                1,      // lives
+                125,      // strength
+                2);     // movement
+    }
+
+    public static CharacterStats makeBirdStats() {
+        return new CharacterStats(
+                7,      // agility
+                0,      // experience
+                3,      // hardiness
+                1,      // intellect
+                1,      // lives
+                2,      // strength
+                15);     // movement
+    }
+
     public void makeNPC() {
         /*
         not sure if this works.  Ideally, when you make an NPC's stats you'll do it by saying:
