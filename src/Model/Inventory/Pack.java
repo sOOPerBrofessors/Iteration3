@@ -6,6 +6,7 @@ import Model.Items.Takeable.TakeableItem;
 import Model.Items.Takeable.Useable.Money;
 import Utilities.ErrorLevel;
 import Utilities.GameMessageQueue;
+import Utilities.ItemStuff.ItemManager;
 import Utilities.MessageHandler;
 import Utilities.PersonFilter;
 
@@ -36,6 +37,11 @@ public class Pack {
         items.add(item);
         return true;
     } // end add
+
+    public void dump(ItemManager itemManager, Character character) {
+        for(TakeableItem t : items)
+            itemManager.addItem(t, character);
+    } // end dump
 
     public void addMoney(Money money) {
         this.money += money.getQuantity();

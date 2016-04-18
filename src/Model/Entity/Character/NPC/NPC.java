@@ -8,13 +8,16 @@ import Model.Entity.Character.Character;
 import Model.Entity.Character.NPC.NPCStrategy.NPCStrategy;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Faction.Faction;
+import Model.Inventory.Inventory;
 import Model.Inventory.Pack;
 import Model.Items.Item;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
 import Model.Items.Takeable.TakeableItem;
 import Model.Items.Takeable.Useable.Potion;
 import Model.Map.Location;
+import Utilities.GameMessageQueue;
 import Utilities.ItemStuff.ItemFactory.ItemFactory;
+import Utilities.ItemStuff.ItemManager;
 import Utilities.Tickable;
 import Utilities.Visitor.CharacterTypeVisitor;
 import Utilities.Visitor.CharacterVisitor;
@@ -34,8 +37,8 @@ public class NPC extends Character implements Tickable{
     private NPCStrategy npcStrategy;
     AI_Controller controller;
 
-    public NPC(Occupation o, Location location, Personality personality, Faction faction, NPCStrategy npcStrategy) {
-        super(o, location, faction);
+    public NPC(Occupation o, Location location, Personality personality, Faction faction, Inventory inventory, NPCStrategy npcStrategy) {
+        super(o, location, faction, inventory);
         stats.makeNPC();
         this.personality = personality;
         this.npcStrategy = npcStrategy;
@@ -64,11 +67,16 @@ public class NPC extends Character implements Tickable{
         setDelay(getMovement());
         if (getHealth() <= 0) {
             stats.kill();
-
             if (getLives() == 0) {
 
             }
         }
+    }
+
+    @Override
+    public void dropItems(ItemManager itemManager) {
+        super.dropItems(itemManager);
+        GameMessageQueue.push("Your items have been placed on the floor.");
     }
 
     @Override

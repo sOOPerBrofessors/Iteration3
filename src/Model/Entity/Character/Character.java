@@ -16,6 +16,7 @@ import Model.Map.Orientation;
 import Model.Map.Tile.Terrain.Terrain;
 import Model.Skills.Skill;
 import Model.Stats.CharacterStats;
+import Utilities.ItemStuff.ItemManager;
 import Utilities.Splats.DamageQueue;
 import Utilities.Splats.DamageSplat;
 import Utilities.Splats.ExperienceQueue;
@@ -54,12 +55,12 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     private float alpha = 1f;
     private boolean dead;
 
-    protected Character(Occupation o, Location location, Faction faction) {
+    protected Character(Occupation o, Location location, Faction faction, Inventory inventory) {
         super(Navigation.makeCharNav(), location);
         this.o = o;
         this.faction = faction;
         this.stats = o.initStats();
-        this.inventory = new Inventory();
+        this.inventory = inventory;
         stats.addObserver(this);
         inventory.addObserver(this);
         this.radiusVisibility = 3; //might need to change to some sort of default later
@@ -72,6 +73,10 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         dead = false;
         attack = new Attack(this);
     } // end private constructor
+
+    public void dropItems(ItemManager itemManager) {
+        inventory.dump(itemManager, this);
+    } // end dropItems
 
     public void delayMovement() {
         /*
@@ -428,6 +433,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     public void setDead(boolean dead) { this.dead = dead; }
 
     public void attack(Map map) {
+        startCombatTimer();
         this.attack.execute(map);
     }
 } // end abstract class Character

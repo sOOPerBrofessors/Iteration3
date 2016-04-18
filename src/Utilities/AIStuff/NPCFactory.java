@@ -10,6 +10,8 @@ import Model.Entity.Character.Occupation.Pet;
 import Model.Entity.Character.Occupation.Smasher;
 import Model.Faction.Faction;
 import Model.Faction.FactionFactory;
+import Model.Inventory.Inventory;
+import Model.Items.Takeable.Useable.Money;
 import Model.Map.Location;
 
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ public class NPCFactory {
         Faction faction = FactionFactory.getFaction("red");
         //This should be a factory, testing for now
         NPCStrategy strategy = new TalkNPCStrategy("Ganondorf: Hi minion", "Ganondorf: I am awesome", "Ganondorf: What do you want?");
-        NPC gandorf = new NPC(new Smasher(), new Location(1,1,0), personality, faction, strategy);
+        NPC gandorf = new NPC(new Smasher(), new Location(1,1,0), personality, faction, new Inventory(), strategy);
         Brain brain = new Brain(gandorf);
         gandorf.setBrain(brain);
         return gandorf;
@@ -36,7 +38,7 @@ public class NPCFactory {
         //This should be a factory, testing for now
         NPCStrategy strategy = new TalkNPCStrategy("");
 //        NPC gandorf = new NPC(new Smasher(), new Location(1,1,0), personality, faction, strategy);
-        NPC hellcat = new NPC(new Pet(), new Location(5,3,0), personality, faction, strategy);
+        NPC hellcat = new NPC(new Pet(), new Location(5,3,0), personality, faction, new Inventory(), strategy);
         Brain brain = new Brain(hellcat);
         hellcat.setBrain(brain);
         return hellcat;

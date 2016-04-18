@@ -14,6 +14,7 @@ import Model.Map.Location;
 import Model.Skills.Skill;
 import Model.Map.Map;
 import Utilities.GameMessageQueue;
+import Utilities.ItemStuff.ItemManager;
 import Utilities.Settings;
 import Utilities.Visitor.CharacterTypeVisitor;
 
@@ -33,7 +34,7 @@ public class Avatar extends Character {
 
     private Avatar(Occupation o, Location location) {
         //TODO:I'm not sure how this is going to work but we need something here to define the initial location of an avatar
-        super(o, location, FactionFactory.getFaction("blue"));
+        super(o, location, FactionFactory.getFaction("blue"), new Inventory());
         this.skills.addAll(o.getSkillList(this)); //initialize skills
     } // end constructor
 
@@ -77,6 +78,10 @@ public class Avatar extends Character {
 
     public ArrayList<Skill> getSKillList () {
         return skills;
+    }
+
+    public void dropItems(ItemManager itemManager) {
+        inventory.dump(itemManager, this);
     }
 
     @Override

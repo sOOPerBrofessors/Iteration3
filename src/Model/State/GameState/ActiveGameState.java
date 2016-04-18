@@ -34,10 +34,12 @@ public class ActiveGameState extends GameState {
                 if(avatar.getLives() == 0) {
                     // TODO: death state
                 } else {
+                    avatar.dropItems(itemManager);
                     map.moveCharacter(avatar, new Location(Settings.SPAWN_X, Settings.SPAWN_Y, Settings.SPAWN_Z));
                     avatar.setDead(false);
                 }
             } else if(entities.get(i).getLives() == 0) {           // indicated dead entity
+                entities.get(i).dropItems(itemManager);
                 map.removeCharacter(entities.get(i));
                 entities.remove(i);
                 continue;
