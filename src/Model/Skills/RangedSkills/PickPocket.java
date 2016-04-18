@@ -2,8 +2,8 @@ package Model.Skills.RangedSkills;
 
 import Model.Entity.Character.Avatar;
 import Model.Items.Takeable.TakeableItem;
-import Model.Map.Location;
 import Model.Map.Map;
+import Model.State.GameState.ActiveGameState;
 import Utilities.GameMessageQueue;
 import Utilities.InfluenceAreas.Linear.LinearEffect;
 
@@ -26,7 +26,8 @@ public class PickPocket extends RangedSkill {
     }
 
     @Override
-    public void execute(Map map) {
+    public void execute(ActiveGameState activeGameState) {
+        Map map = activeGameState.getMap();
         if (allConditionChecked()) {
             pickPocket(map);
             GameMessageQueue.push(name + " success!");

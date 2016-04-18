@@ -30,12 +30,14 @@ public abstract class CombatSkill extends Skill {
 
     protected int calculateDamage() {
         int offensiveRating = avatar.getBaseOffensiveRating();
-        return damageFactor * level * offensiveRating / 5;
+        int totalDamage = damageFactor * level * offensiveRating / 5;
+        totalDamage = totalDamage < 1 ? 1 : totalDamage;
+        return totalDamage;
     }
 
     protected void attackAreaSingleTarget(Map map, ArrayList<Location> locations) {
-        for (int i = 1; i < affectedArea.size(); i++) {
-            Location location = affectedArea.get(i);
+        for (int i = 1; i < locations.size(); i++) {
+            Location location = locations.get(i);
             int x = location.getX();
             int y = location.getY();
             curTile = map.getTopTile(x, y);
