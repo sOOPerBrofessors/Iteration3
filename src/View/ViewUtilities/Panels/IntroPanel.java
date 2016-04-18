@@ -46,8 +46,7 @@ public class IntroPanel extends JPanel {
         loadGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // switch state
-                //viewManager.;
+                viewManager.loadGame();
             }
         });
 

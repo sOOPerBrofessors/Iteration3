@@ -1,6 +1,7 @@
 package Controller.AI_Controller.MotorCortex;
 
 import Controller.AI_Controller.Decision.Decision;
+import Controller.AI_Controller.Personality.Personality;
 import Model.Entity.Character.NPC.NPC;
 
 /**
@@ -12,5 +13,6 @@ public interface MotorCortexMemoryInterface {
     NPC getNPC();
     void moveNPC();
     Decision getCurrentDecision();
+    Personality getPersonality();
 
 }

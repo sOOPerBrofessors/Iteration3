@@ -2,9 +2,8 @@ package Controller.Controllers;
 
 import Controller.Controller;
 import Controller.ControllerManager;
-import Controller.ControllerUtility.Command;
 import Utilities.Settings;
-import View.InventoryView.TradeView;
+import View.MenuViews.TradeView;
 import View.ViewUtilities.Panels.GamePanel;
 
 
@@ -28,11 +27,6 @@ public class TradeController extends Controller { //NOT VERY OOPY
     private void initCommands(){
 
         // Exit TradeView
-        commands.put(Settings.ESC, new Command() {
-            @Override
-            public void execute() {
-                controllerManager.switchGamePlay();
-            }
-        });
+        commands.put(Settings.ESC, () -> controllerManager.switchGamePlay());
     }
 }

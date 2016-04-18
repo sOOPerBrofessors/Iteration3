@@ -3,8 +3,10 @@ package View;
 import Controller.ControllerManager;
 import Controller.Controllers.*;
 import Model.Entity.Character.Avatar;
+import Model.State.GameState.GameState;
 import Model.State.StateManager;
 import Utilities.GameLoaderSaver.GameLoader;
+import Utilities.GameLoaderSaver.Load.LoadParser;
 import Utilities.Observers.Subject;
 import Utilities.Observers.Observer;
 import View.ViewUtilities.Panels.CharacterCreationPanel;
@@ -62,15 +64,15 @@ public class ViewManager implements Subject {
     }
 
     public void createSmasher(){
-        initGame(Avatar.makeSmasher());
+        newGame(Avatar.makeSmasher());
     }
 
     public void createSneak(){
-        initGame(Avatar.makeSneak());
+        newGame(Avatar.makeSneak());
     }
 
     public void createSummoner(){
-        initGame(Avatar.makeSummoner());
+        newGame(Avatar.makeSummoner());
     }
 
     public void closeAll(){ //Massive OCP violation
@@ -114,6 +116,7 @@ public class ViewManager implements Subject {
     public void displaySettings(){
         gamePanel.addSettingsView();
         stateManager.pauseGame();
+        //controllerManager.setSettingsState(); //need to tell controllerManager to go to Settings state since get here from PauseMenu
     }
 
     public void closeSettings(){
@@ -167,14 +170,27 @@ public class ViewManager implements Subject {
         this.stateManager = stateManager;
     }
 
+    public void loadGame(){
+        System.out.println("ViewManager start load game:");
+        //No input needed to avatar
+        LoadParser loadParser = new LoadParser();
+        Avatar avatar = loadParser.loadAvatar();
+        GameLoader gameLoader = new GameLoader(avatar, stateManager); // initializes player and attributes of GameState
+        gameLoader.loadGame();
+        initGame(gameLoader);
+    }
     // initialize game once players selection is confirmed
-    private void initGame(Avatar player){
-        GameLoader gameLoader = new GameLoader(player); // initializes player and attributes of GameState
+    private void newGame(Avatar player){
+        GameLoader gameLoader = new GameLoader(player, stateManager); // initializes player and attributes of GameState
+        gameLoader.createNewGame();
+        initGame(gameLoader);
+    }
+
+    private void initGame(GameLoader gameLoader){
+        GamePlayController gamePlayController = controllerManager.getGamePlayController();
+        gamePanel = new GamePanel(this);
+        gamePanel.init(gameLoader.getActiveGameState(), gamePlayController); // initializes the game view
         activePanel = gamePanel;
-        stateManager.setActiveGameState(gameLoader.getActiveGameState());
-        stateManager.setPausedGameState(gameLoader.getPausedGameState());
-        if (!alreadystarted)
-            gamePanel.init(gameLoader.getActiveGameState()); // initializes the game view
         controllerManager.switchGamePlay(); // switch to gameplay controller
         InventoryController.setInventoryView(gamePanel);
         PauseController.setPauseView(gamePanel);
@@ -183,6 +199,12 @@ public class ViewManager implements Subject {
         TradeController.setTradeView(gamePanel);
         View.startGameLoop(); // starts loop in Model class
         alert(); // notifies view of the updated panel
-        alreadystarted = true;
     }
+
+    //FOR SAVE
+    public GameState getGameState(){
+        return stateManager.getGameState();
+    }
+
+
 }

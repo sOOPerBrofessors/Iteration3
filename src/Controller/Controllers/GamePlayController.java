@@ -5,7 +5,7 @@ import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Model.State.GameState.ActiveGameState;
 import Utilities.GameLoaderSaver.GameSaver;
-import Utilities.ObservationTimer;
+import Utilities.Timer.ObservationTimer;
 import Utilities.Settings;
 import View.ViewUtilities.Panels.GamePanel;
 
@@ -28,9 +28,11 @@ public class GamePlayController extends Controller{
         if(commands.containsKey(key)) {
             commands.get(key).execute();
         }
-    }
+    } // end keyPress
 
-    private void initCommands(){
+    public void initCommands(){
+
+        commands.clear();
 
         // up key press
         commands.put(Settings.UP, () -> state.movePlayerN());
@@ -61,25 +63,37 @@ public class GamePlayController extends Controller{
         // attack key press
         commands.put(Settings.ATTACK, () -> {
             state.playerAttack();
-            state.startCombatTimer();
+            //state.startCombatTimer();
         });
 
         // interact key press
         commands.put(Settings.INTERACT, () -> state.playerInteract());
 
         // skill one key press
-        commands.put(Settings.ONE, new Command() {
+        commands.put(Settings.SKILL_1, new Command() {
             @Override
             public void execute() {
                 state.playerExecuteSkill(0);
             }
         });
 
-        // skill two key press
-        commands.put(Settings.TWO, () -> new ObservationTimer(state.playerSecondSkill()).start());
+        // skill 2 key press
+        commands.put(Settings.SKILL_2, () -> new ObservationTimer(state.playerObservationSkill()).start());
 
-        // skill three key pree
-        commands.put(Settings.THREE, () -> state.playerThirdSkill());
+        // skill 3 key press
+        commands.put(Settings.SKILL_3, () -> state.playerExecuteSkill(2));
+
+        // skill 4 key press
+        commands.put(Settings.SKILL_4, () -> state.playerExecuteSkill(3));
+
+        // skill 5 key press
+        commands.put(Settings.SKILL_5, () -> state.playerExecuteSkill(4));
+
+        // skill 6 key press
+        commands.put(Settings.SKILL_6, () -> state.playerExecuteSkill(5));
+
+        // skill 7 key press
+        commands.put(Settings.SKILL_7, () -> state.playerExecuteSkill(6));
 
         // inventory key press
         commands.put(Settings.INVENTORY, () -> controllerManager.setInventoryState());
@@ -97,33 +111,36 @@ public class GamePlayController extends Controller{
         commands.put(Settings.SETTINGS, () -> controllerManager.setSettingsState());
 
         commands.put(Settings.TEST_KEY, () -> {
+            /*
             switch((int)(Math.random()*5)+1){
                 case 1:
-                    state.getAvatar().experienceEffect((int)(Math.random()*5)+1);
+                    state.getAvatar().experienceEffect((int)(Math.random()*5));
                     break;
                 case 2:
-                    state.getAvatar().healthEffect((int)(Math.random()*3)+1);
+                    state.getAvatar().healthEffect((int)(Math.random()*3));
                     break;
                 case 3:
-                    state.getAvatar().manaEffect((int)(Math.random()*3)+1);
+                    state.getAvatar().manaEffect((int)(Math.random()*3));
                     break;
                 case 4:
-                    state.getAvatar().healthEffect(-1*((int)(Math.random()*3)+1));
+                    state.getAvatar().healthEffect(-1*((int)(Math.random()*3)));
                     break;
                 case 5:
-                    state.getAvatar().manaEffect(-1*((int)(Math.random()*3)+1));
+                    state.getAvatar().manaEffect(-1*((int)(Math.random()*3)));
                     break;
-            }
-            state.getAvatar().manaEffect(100);
+            }*/
+            state.getAvatar().healthEffect(-1);
+            //state.getAvatar().healthEffect((int)(Math.random()*3)+1);
+            //state.getAvatar().manaEffect(10000);
         });
 
-        commands.put(KeyEvent.VK_9, new Command() {
-            @Override
-            public void execute() {
-                GameSaver gameSaver = new GameSaver(state);
-                gameSaver.startSave(state);
-            }
-        });
+//        commands.put(KeyEvent.VK_9, new Command() {
+//            @Override
+//            public void execute() {
+//                GameSaver gameSaver = new GameSaver(state);
+//                gameSaver.startSave(state);
+//            }
+//        });
     }
 
     public void setState(ActiveGameState state) {

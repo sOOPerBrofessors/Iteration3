@@ -14,8 +14,14 @@ import View.MapView.MapObjectView;
  *  May be extended to be picked up by a player, may act as an obstacle, or may be interacted with by the player.
  */
 public abstract class Item implements MapObject, ItemVisitable {
-    public String name;
+    protected String name;
+    public Item(String name){
+        this.name = name;
+    }
     public abstract void onInteract(Character character);
 
+    public String toString(){
+        return name;
+    }
 } // end abstract class Item
 

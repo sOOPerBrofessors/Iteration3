@@ -1,7 +1,9 @@
 package Controller.AI_Controller.Interest;
 
+import Controller.AI_Controller.FrontalLobe.FrontalLobeMemoryInterface;
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
+import Model.Entity.Entity;
 import Model.Map.Orientation;
 
 import java.util.ArrayList;
@@ -38,13 +40,13 @@ public abstract class Interest {
 
     }
 
-    protected final Orientation deQueueMovement() {
+    public final void consumeMovement() {
 
-        if (movementQueue.isEmpty()) {
+        movementQueue.poll();
 
-            throw new NullPointerException();
+    }
 
-        }
+    protected final Orientation getNextMovement() {
 
         return movementQueue.peek();
 
@@ -65,7 +67,7 @@ public abstract class Interest {
     // Allows the interest to return its declared point of interest
     public final Orientation getNextOrientationToMove() {
 
-        return deQueueMovement();
+        return getNextMovement();
 
     }
 
@@ -88,10 +90,12 @@ public abstract class Interest {
 
     // Gets the declared value of the interest, the higher the value, the higher the probabliity of its corresponding
     // decision will be picked from a uniform picker.
-    abstract public double getValue();
+    abstract public double getValue(FrontalLobeMemoryInterface memoryInterface);
 
     // Gets the individual interest type, this allows me to group them according to if they deal with entities, items, or points
     abstract public InterestType getType();
+
+    abstract public void onEntityTouch(MotorCortexMemoryInterface memory);
 
     public final String toString() {
 

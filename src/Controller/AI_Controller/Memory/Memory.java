@@ -50,6 +50,12 @@ public class Memory implements Tickable, VisualCortexMemoryInterface, FrontalLob
 
     }
 
+    public void updateDecision() {
+
+        currentDecision.update(visualInformation, this);
+
+    }
+
     public boolean isCurrentDecisionValid() {
 
         // If the current decision doesn't exist, return false so we choose a new one
@@ -77,7 +83,7 @@ public class Memory implements Tickable, VisualCortexMemoryInterface, FrontalLob
 
     public void setCurrentDecision(Decision currentDecision) {
 
-        MessageHandler.println("Memory: setCurrentDecision: " + currentDecision.toString(), ErrorLevel.NOTICE, PersonFilter.AUSTIN);
+        MessageHandler.println("Memory: setCurrentDecision: " + currentDecision.toString(), ErrorLevel.DEV, PersonFilter.AUSTIN);
         this.currentDecision = currentDecision;
 
     }

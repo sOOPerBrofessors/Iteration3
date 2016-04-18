@@ -4,7 +4,7 @@ import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Utilities.Settings;
-import View.InventoryView.InventoryView;
+import View.MenuViews.InventoryView;
 import View.ViewUtilities.Panels.GamePanel;
 
 /**
@@ -57,10 +57,18 @@ public class InventoryController extends Controller { //NOT VERY OOPY
         });
 
         // interact key press
+        commands.put(Settings.DROP, new Command() {
+            @Override
+            public void execute() {
+                inventoryView.dropItem();
+            }
+        });
+
+        // interact key press
         commands.put(Settings.ENTER, new Command() {
             @Override
             public void execute() {
-                inventoryView.interactWithItem();
+                inventoryView.select();
             }
         });
 

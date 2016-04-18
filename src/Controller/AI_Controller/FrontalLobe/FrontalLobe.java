@@ -1,15 +1,19 @@
 package Controller.AI_Controller.FrontalLobe;
 
 import Controller.AI_Controller.Decision.Decision;
+import Controller.AI_Controller.Interest.EntityInterests.EntityInterest;
 import Controller.AI_Controller.Interest.Interest;
+import Controller.AI_Controller.Interest.PointInterests.ExploreInterest;
 import Controller.AI_Controller.Memory.Memory;
 import Controller.AI_Controller.Personality.Personality;
 import Controller.AI_Controller.VisualCortex.VisualInformation.EntityRelationshipVisitor;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
+import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Utilities.*;
 import Utilities.AIStuff.RelationshipList;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,19 +33,14 @@ public class FrontalLobe implements Tickable {
     public void tick() {
 
         checkForNewRelationships();
-        boolean shouldChangeDecision = shouldChangeDecisions();
 
-        if (shouldChangeDecision) {
+        if (shouldChangeDecisions()) {
 
             selectNewDecision();
 
         }
 
-        // Need faction loader, and personality loader
-
-        // Check if any new entities in map, then add them as relationships
-        // Check if we should reselect our decision
-        // IF need new decision, select one
+        memory.updateDecision();
 
     }
 
@@ -50,7 +49,7 @@ public class FrontalLobe implements Tickable {
         VisualInformation visualInformation = memory.getVisualInformation();
 
         RelationshipList<Entity> relationshipList = memory.getRelationships();
-        EntityRelationshipVisitor visitor = new EntityRelationshipVisitor(relationshipList);
+        EntityRelationshipVisitor visitor = new EntityRelationshipVisitor(relationshipList, memory);
         visualInformation.accept(visitor);
 
         relationshipList = visitor.getRelationshipList();
@@ -62,14 +61,14 @@ public class FrontalLobe implements Tickable {
 
         if (!memory.isCurrentDecisionValid()) {
 
-            MessageHandler.println("FrontalLobe: current decision not valid", ErrorLevel.NOTICE, PersonFilter.AUSTIN);
+            MessageHandler.println("FrontalLobe: current decision not valid", ErrorLevel.DEV, PersonFilter.AUSTIN);
             return true;
 
         }
 
         if (isScatterBrainTrue()) {
 
-            MessageHandler.println("FrontalLobe: scatter brain returned true", ErrorLevel.NOTICE, PersonFilter.AUSTIN);
+            MessageHandler.println("FrontalLobe: scatter brain returned true", ErrorLevel.DEV, PersonFilter.AUSTIN);
             return true;
 
         }
@@ -81,10 +80,6 @@ public class FrontalLobe implements Tickable {
     private boolean isScatterBrainTrue() {
 
         Personality personality = memory.getPersonality();
-//        System.out.println(personality.getScatter_brainedness());
-//        double r = Math.random();
-//        System.out.println(r);
-//        System.out.println(personality.getScatter_brainedness() >= r);
         return personality.getScatter_brainedness() >= Math.random();
 
     }
@@ -99,7 +94,14 @@ public class FrontalLobe implements Tickable {
 
         for (Map.Entry<Interest, Double> entry : entityInterests.entrySet()) {
 
+            for (Map.Entry<Character, Double> entry2 : memory.getVisualInformation().getEntityInformation().entrySet()) {
 
+                EntityInterest interest = (EntityInterest) entry.getKey();
+                interest.setTarget(entry2.getKey());
+                Decision decision = new Decision(interest, entry.getValue(), memory.getVisualInformation(), (Memory) memory);
+                decisionPicker.add(decision, decision.getValue(memory, entry2.getValue()));
+
+            }
 
         }
 
@@ -112,11 +114,22 @@ public class FrontalLobe implements Tickable {
         for (Map.Entry<Interest, Double> entry : pointInterests.entrySet()) {
 
             Decision decision = new Decision(entry.getKey(), entry.getValue(), memory.getVisualInformation(), (Memory) memory);
-            decisionPicker.add(decision, decision.getValue());
+            decisionPicker.add(decision, decision.getValue(memory, entry.getValue()));
 
         }
 
-        memory.setCurrentDecision(decisionPicker.pick());
+        Decision newDecision;
+
+        try {
+
+            newDecision = decisionPicker.pick();
+            memory.setCurrentDecision(newDecision);
+
+        } catch (NullPointerException e) {
+
+            MessageHandler.println("FrontalLobe: Decision picker was empty when you tried to pick from it, make sure all personalities have ExploreInterest", ErrorLevel.ERROR);
+
+        }
 
     }
 

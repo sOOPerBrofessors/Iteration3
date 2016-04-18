@@ -4,7 +4,7 @@ import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Utilities.Settings;
-import View.InventoryView.PauseView;
+import View.MenuViews.PauseView;
 import View.ViewUtilities.Panels.GamePanel;
 
 public class PauseController extends Controller { //NOT VERY OOPY

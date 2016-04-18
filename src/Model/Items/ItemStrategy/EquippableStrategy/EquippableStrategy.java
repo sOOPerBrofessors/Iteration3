@@ -3,7 +3,9 @@ package Model.Items.ItemStrategy.EquippableStrategy;
 import Model.Entity.Character.Character;
 import Model.Items.Item;
 import Model.Items.ItemStrategy.ItemStrategy;
+import Model.Items.Takeable.TakeableItem;
 import Utilities.ErrorLevel;
+import Utilities.GameMessageQueue;
 import Utilities.MessageHandler;
 
 /**
@@ -15,7 +17,8 @@ import Utilities.MessageHandler;
 public class EquippableStrategy implements ItemStrategy {
 
     @Override
-    public void onInteract(Item item, Character character) {
-        MessageHandler.println("You cannot equip this item.", ErrorLevel.ERROR);
+    public boolean onInteract(TakeableItem item, Character character) {
+        GameMessageQueue.push   ("You can't equip the " + item.getName());
+        return false;
     } // end onInteract
 } // end class EquippableStrategy

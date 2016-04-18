@@ -4,12 +4,14 @@ import Controller.Controller;
 import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Utilities.Settings;
-import View.InventoryView.SettingsView;
+import View.MenuViews.SettingsView;
 import View.ViewUtilities.Panels.GamePanel;
 
 public class SettingsController extends Controller { //NOT VERY OOPY
 
     private static SettingsView settingsView;
+
+    private int lastKeypressed, secondLast;
 
     public SettingsController(ControllerManager controllerManager){
         super(controllerManager);
@@ -19,6 +21,8 @@ public class SettingsController extends Controller { //NOT VERY OOPY
 
     @Override
     public void keyPress(Integer key){
+        secondLast = lastKeypressed;
+        lastKeypressed = key;
         if(commands.containsKey(key)) {
             commands.get(key).execute();
         }
@@ -28,43 +32,22 @@ public class SettingsController extends Controller { //NOT VERY OOPY
 
         commands.put(Settings.UP_ARROW, new Command() {
             @Override
-            public void execute() {
-
-                //inventoryView.selectUp();
-            }
+            public void execute() { settingsView.selectUp();}
         });
-
-        commands.put(Settings.RIGHT_ARROW, new Command() {
-            @Override
-            public void execute() {
-
-                //inventoryView.selectRight();
-            }
-        });
-
         commands.put(Settings.DOWN_ARROW, new Command() {
             @Override
-            public void execute() {
-                //inventoryView.selectDown();
-            }
+            public void execute() { settingsView.selectDown(); }
         });
-
-        commands.put(Settings.LEFT_ARROW, new Command() {
-            @Override
-            public void execute() {
-                //inventoryView.selectLeft();
-            }
-        });
-
         // interact key press
         commands.put(Settings.ENTER, new Command() {
             @Override
             public void execute() {
-                //inventoryView.interactWithItem();
+                settingsView.select(secondLast);
+                controllerManager.initGameplayController();
             }
         });
 
-        // Exit InventoryView
+        // Exit SettingsView
         commands.put(Settings.ESC, new Command() {
             @Override
             public void execute() {
@@ -72,7 +55,7 @@ public class SettingsController extends Controller { //NOT VERY OOPY
             }
         });
 
-        // Exit InventoryView
+        // Exit SettingsView
         commands.put(Settings.SETTINGS, new Command() {
             @Override
             public void execute() {

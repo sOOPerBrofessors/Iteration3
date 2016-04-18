@@ -2,10 +2,9 @@ package Model.Skills.CombatSkills;
 
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
-import Utilities.ErrorLevel;
+import Model.State.GameState.ActiveGameState;
+import Utilities.GameMessageQueue;
 import Utilities.InfluenceAreas.Linear.LinearEffect;
-import Utilities.MessageHandler;
-import Utilities.PersonFilter;
 
 /**
  * Created by AndyZhu on 13/4/2016.
@@ -27,18 +26,16 @@ public class OneHandedWeaponSkill extends CombatSkill{
     }
 
     @Override
-    public void execute(Map map) {
-        if (checkAll() && weaponCheck()) {
+    public void execute(ActiveGameState activeGameState) {
+        Map map = activeGameState.getMap();
+        if (allConditionChecked() && weaponCheck()) {
             damage = calculateDamage();
             radius = level > 3 ? 3 : level;
             affectedArea = LinearEffect.getLinearSameLevel(avatar.getLocation(), avatar.getOrientation(), radius);
             oneHandedAttack(map);
-
+            GameMessageQueue.push(name + " Success!");
             enforceManaCost();
             setTimePerformed();
-        }
-        else {
-            MessageHandler.println(name + "failed", ErrorLevel.NOTICE, PersonFilter.ANDY);
         }
     }
 

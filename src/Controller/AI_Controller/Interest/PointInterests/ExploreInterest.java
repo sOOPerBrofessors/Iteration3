@@ -1,5 +1,6 @@
 package Controller.AI_Controller.Interest.PointInterests;
 
+import Controller.AI_Controller.FrontalLobe.FrontalLobeMemoryInterface;
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
 import Model.Map.Orientation;
@@ -26,8 +27,6 @@ public class ExploreInterest extends PointInterest {
         }
 
         addToMovementQueue(orientations.pick());
-//        addToMovementQueue(orientations.pick());
-//        addToMovementQueue(orientations.pick());
 
     }
 
@@ -55,7 +54,7 @@ public class ExploreInterest extends PointInterest {
 
     }
 
-    public double getValue() {
+    public double getValue(FrontalLobeMemoryInterface memoryInterface) {
 
         return 100;
 

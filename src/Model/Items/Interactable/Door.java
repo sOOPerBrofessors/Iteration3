@@ -7,8 +7,8 @@ import Model.Items.ItemStrategy.InteractableStrategy.DoorStrategy;
  * Created by broskj on 4/7/16.
  */
 public class Door extends Interactable {
-    public Door() {
-        super(new DoorStrategy());
+    public Door(String name) {
+        super(new DoorStrategy(), name);
     } // end constructor
 
     public void onInteract(Character character) {

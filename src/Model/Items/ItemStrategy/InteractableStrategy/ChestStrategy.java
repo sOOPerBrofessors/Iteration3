@@ -25,13 +25,13 @@ public class ChestStrategy extends InteractableStrategy {
             GameMessageQueue.push("The chest is empty.");
             return false;
         }
-        for(Item item : character.getInventory().getPack().getItems()){
+        for(TakeableItem item : character.getInventory().getPack().getItems()){
             if(item == requiredItem){
                 GameMessageQueue.push("You unlock the chest...");
                 treasure.onInteract(character);
                 //character.pickUpItem(treasure);
                 treasure = null;
-                character.getInventory().getPack().remove(item);
+                character.removeItem(item);
                 return true;
             }
         }

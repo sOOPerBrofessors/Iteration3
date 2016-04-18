@@ -1,20 +1,21 @@
 package View.MapView;
 
 import Model.Entity.Character.Character;
-import Model.Items.Item;
 import Model.Map.AreaEffect.AreaOfEffect;
 import Model.Map.Location;
 import Model.Map.Tile.Terrain.Terrain;
 import Model.Map.Tile.Tile;
-import Model.Projectile.Projectile;
+import Model.Entity.Projectile.Projectile;
+import Utilities.Observers.Observer;
 import Utilities.Observers.TileObserver;
 import Utilities.Settings;
 import Utilities.Visitor.TileVisitor;
 import View.EntityView.CharacterView;
 import View.MapView.AOEView.AreaOfEffectView;
-import View.MapView.ProjectileView.ProjectileView;
+import View.EntityView.ProjectileView;
 import View.TerrainView.*;
 import View.ItemView.ItemView;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 
 import javax.swing.*;
@@ -23,7 +24,7 @@ import java.awt.*;
 /**
  * Created by dyeung on 4/7/16.
  */
-public class TileView extends JComponent implements TileObserver, TileVisitor {
+public class TileView extends JComponent implements TileObserver, TileVisitor, Observer{
 
     protected Location location;
     protected int tileWidth = Settings.TILEWIDTH;
@@ -37,9 +38,9 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
     private AreaOfEffectView areaOfEffectView;
     private TerrainView terrainView;
     private ProjectileView projectileView;
+
     public TileView(Tile tile, Location location){
         this.location = location;
-
         this.tile = tile;
         init();
         tile.acceptTileObserver(this);
@@ -51,17 +52,13 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
     }
 
     //TODO: make it so it just records the tile...this should not have to have
-    protected void updateTileView(){
+    private void updateTileView(){
        tile.acceptTileVisitor(this);
     }
 
      public void setPixels(int x, int y){
          xPixel = x;
          yPixel = y;
-    }
-
-    public void setLocation(int x, int y, int z){
-        location = new Location(x,y,z);
     }
 
     public void paintComponent(Graphics g){
@@ -78,6 +75,7 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
         renderAOE(g2d, centeredX, centeredY);
         renderItem(g2d, centeredX, centeredY);
         renderEntity(g2d, centeredX, centeredY);
+        renderProjectile(g2d);
     }
     private void renderTerrain(Graphics g){
         terrainView.setXY(xPixel,yPixel);
@@ -90,21 +88,29 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
             areaOfEffectView.paintComponent(g2d);
         }
     }
-    protected boolean hasCharacter(){
+    private boolean hasCharacter(){
         if (characterView == null) {
             return false;
         }else {
             return true;
         }
     }
-    protected boolean hasItem(){
+    private boolean hasItem(){
         if (itemView == null) {
             return false;
         }else {
             return true;
         }
     }
-    protected boolean hasAOE(){
+
+    private boolean hasProjectile(){
+        if (projectileView == null) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+    private boolean hasAOE(){
         if (areaOfEffectView == null) {
             return false;
         }else {
@@ -115,31 +121,45 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
     //TODO: change this so it just renders map object views
     private void renderEntity(Graphics2D g2d, int centeredX, int centeredY){
         if (hasCharacter()){
-            characterView.setPixels(centeredX, centeredY);
+            characterView.setPixels(centeredX + 3, centeredY +12);
             characterView.paintComponent(g2d);
         }
     }
 
     private void renderItem(Graphics2D g2d, int centeredX, int centeredY){
         if(hasItem()) {
-//            System.out.println("TileView item:" + location.getX() + "," + location.getY() + "," + location.getZ());
-//            System.out.println("TileView item:" + centeredX + "," + centeredY);
             itemView.setPixels(centeredX, centeredY);
             itemView.paintComponent(g2d);
         }
     }
 
-
+    private void renderProjectile(Graphics2D g2d){
+        if (hasProjectile() && !projectileView.ViewDone()){
+            projectileView.paintComponent(g2d);
+        }
+    }
 
     @Override //This function is called when a tile is updated (for an example when a tile has a new entity)
     public void update() {
         updateTileView();
     }
 
+    @Override
+    public void remove() {
+
+    }
+
     private void removeCharacterView(){
         if(characterView != null) {
             characterView.removeObservable();
             characterView = null;
+        }
+    }
+
+    private void removeProjectileView(){
+        if(projectileView != null) {
+            //projectileView.removeObservable();
+            projectileView = null;
         }
     }
 
@@ -152,7 +172,6 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
         itemView = null;
     }
 
-
     @Override
     public void visitTileTerrain(Terrain terrain) {
         terrainView = new TerrainView(terrain);
@@ -164,11 +183,6 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
         if (character != null) characterView = new CharacterView(character);
     }
 
-//    @Override
-//    public void visitTileHasItem(Item item) {
-//        //do nothing
-//    }
-
     @Override
     public void visitTileHasAOE(AreaOfEffect areaOfEffect) {
         if(areaOfEffect != null) {
@@ -179,8 +193,8 @@ public class TileView extends JComponent implements TileObserver, TileVisitor {
     @Override
     public void visitTileHasProjectile(Projectile projectile) {
         if(projectile != null) {
-            projectileView = new ProjectileView(projectile);
+            projectileView = new ProjectileView(projectile, ImageAssets.fireballs);
+            projectileView.setPixels(xPixel + Settings.TILEWIDTH/4, yPixel + Settings.TILEHEIGHT/2);
         }
     }
-
 }

@@ -19,5 +19,8 @@ public abstract class UseableItem extends TakeableItem {
     } // end protected constructor
 
     // apply effect to passed in character
-    protected void utilize(Character character){e.execute(character, amount);};
+    public boolean utilize(Character character){
+        e.execute(character, amount);
+        return true;
+    }
 } // end abstract class UseableItem

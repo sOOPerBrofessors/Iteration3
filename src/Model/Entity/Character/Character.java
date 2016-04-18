@@ -1,8 +1,10 @@
 package Model.Entity.Character;
 
+import Model.Actions.Attack;
 import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.Occupation.Occupation;
 import Model.Entity.Entity;
+import Model.Faction.Faction;
 import Model.Inventory.Inventory;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
@@ -12,14 +14,20 @@ import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Orientation;
 import Model.Map.Tile.Terrain.Terrain;
+import Model.Skills.Skill;
 import Model.Stats.CharacterStats;
+import Utilities.ItemStuff.ItemManager;
+import Utilities.Splats.DamageQueue;
+import Utilities.Splats.DamageSplat;
+import Utilities.Splats.ExperienceQueue;
+import Utilities.Splats.ExperienceSplat;
 import Utilities.Timer.CombatTimer;
 import Utilities.GameMessageQueue;
 import Utilities.Navigation.Navigation;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
+import Utilities.Timer.TimedEvent;
 import Utilities.Visitor.CharacterVisitable;
-import View.EntityView.CharacterView;
 
 import java.util.ArrayList;
 
@@ -32,23 +40,59 @@ import java.util.ArrayList;
 public abstract class Character extends Entity implements Observer, Subject, CharacterVisitable {
     private ArrayList<Observer> observers;
 
-    private Occupation o;
+    protected ArrayList<Skill> skills = new ArrayList<>();
+    protected Occupation o;
     protected CharacterStats stats;
     protected Inventory inventory;
     private int radiusVisibility;
+    private Faction faction;
     private CombatTimer combatTimer;
+    private Attack attack;
+    private int delay;
+    private boolean canMove;
+    private DamageQueue damageQueue;
+    private ExperienceQueue experienceQueue;
+    private float alpha = 1f;
+    private boolean dead;
 
-    protected Character(Occupation o, Location location) {
+    protected Character(Occupation o, Location location, Faction faction, Inventory inventory) {
         super(Navigation.makeCharNav(), location);
         this.o = o;
+        this.faction = faction;
         this.stats = o.initStats();
-        this.inventory = new Inventory();
+        this.inventory = inventory;
         stats.addObserver(this);
         inventory.addObserver(this);
         this.radiusVisibility = 3; //might need to change to some sort of default later
         observers = new ArrayList<>();
         combatTimer = new CombatTimer();
+        delay = 1500 / stats.getMovement();
+        canMove = true;
+        damageQueue = new DamageQueue();
+        experienceQueue = new ExperienceQueue();
+        dead = false;
+        attack = new Attack(this);
     } // end private constructor
+
+    public void dropItems(ItemManager itemManager) {
+        inventory.dump(itemManager, this);
+    } // end dropItems
+
+    public void delayMovement() {
+        /*
+        starts a timer of duration 'delay'; the beginning of which toggles the userCanMakeInput
+         value to false, and after finishing execution toggles it back to true
+         */
+        new TimedEvent(delay, () -> canMove = false, e -> canMove = true).start();
+    } // end delayMovement
+
+    public void applyFallDamage(int amount) {
+        healthEffect(amount);
+    } // end applyFallDamage()
+
+    public void setDelay(int amount) {
+        delay = 1500 / amount;
+    } // end setDelay
 
     public boolean isInCombat() {
         return combatTimer.isRunning();
@@ -66,6 +110,12 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     @Override
     public void removeObserver(Observer o) {
         observers.remove(o);
+    }
+
+    public Faction getFaction() {
+
+        return faction;
+
     }
 
     @Override
@@ -92,14 +142,11 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     } // end intellectEffect
 
     public void healthEffect(int amount) {
-        stats.healthEffect(amount);
         if(amount >= 0)
-            GameMessageQueue.push("You gained " + amount + " health.");
-        else {
-            GameMessageQueue.push("You took " + -1 * amount + " damage.");
             startCombatTimer();
-        }
-        alert();
+        damageQueue.push(new DamageSplat(amount));
+        stats.healthEffect(amount);
+        startCombatTimer();
     } // end lifeEffect
 
     public void livesEffect(int amount) {
@@ -114,10 +161,6 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
 
     public void manaEffect(int amount) {
         stats.manaEffect(amount);
-        if(amount >= 0)
-            GameMessageQueue.push("You gained " + amount + " mana.");
-        else
-            GameMessageQueue.push("Lost " + -1*amount + " mana.");
         alert();
     } // end manaEffect
 
@@ -131,12 +174,20 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         alert();
     } // end strengthEffect
 
+    public void skillPointEffect (int amount) {
+        stats.skillPointEffect(amount);
+        alert();
+    }
+
+    public void defensiveRatingEffect (int amount) {
+        stats.defensiveRatingEffect(amount);
+        alert();
+    }
+
+
     public void experienceEffect(int amount) {
+        experienceQueue.push(new ExperienceSplat(amount));
         stats.experienceEffect(amount);
-        if(amount >= 0)
-            GameMessageQueue.push("You gained " + amount + " experience.");
-        else
-            GameMessageQueue.push("Lost " + -1*amount + " experience.");
         alert();
     } // end experienceEffect
 
@@ -144,32 +195,44 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     handle equipping items
      */
     public void equipWeapon(Weapon weapon) {
-        inventory.equipWeapon(weapon);
+        inventory.add(inventory.equipWeapon(weapon));
         alert();
     } // end equipArmor
 
     public void equipArmor(Armor armor) {
-        inventory.equipArmor(armor);
+        inventory.add(inventory.equipArmor(armor));
         alert();
     } // end equipArmor
 
-    public void equipSmasherWeapon(Weapon weapon) {
-        o.equipSmasherWeapon(weapon, this);
+    public boolean unEquipWeapon(){
+        boolean success = inventory.unequipWeapon();
+        alert();
+        return success;
+    }
+
+    public boolean unEquipArmor(){
+        boolean success = inventory.unequipArmor();
+        alert();
+        return success;
+    }
+
+    public boolean equipSmasherWeapon(Weapon weapon) {
+        return o.equipSmasherWeapon(weapon, this);
     } // end equipSmasherWeapon
-    public void equipSmasherArmor(Armor armor) {
-        o.equipSmasherArmor(armor, this);
+    public boolean equipSmasherArmor(Armor armor) {
+        return o.equipSmasherArmor(armor, this);
     } // end equipSmasherArmor
-    public void equipSneakWeapon(Weapon weapon) {
-        o.equipSneakWeapon(weapon, this);
+    public boolean equipSneakWeapon(Weapon weapon) {
+        return o.equipSneakWeapon(weapon, this);
     } // end equipSneakWeapon
-    public void equipSneakArmor(Armor armor) {
-        o.equipSneakArmor(armor, this);
+    public boolean equipSneakArmor(Armor armor) {
+        return o.equipSneakArmor(armor, this);
     } // end equipSneakArmor
-    public void equipSummonerWeapon(Weapon weapon) {
-        o.equipSummonerWeapon(weapon, this);
+    public boolean equipSummonerWeapon(Weapon weapon) {
+        return o.equipSummonerWeapon(weapon, this);
     } // end equipSummonerWeapon
-    public void equipSummonerArmor(Armor armor) {
-        o.equipSummonerArmor(armor, this);
+    public boolean equipSummonerArmor(Armor armor) {
+        return o.equipSummonerArmor(armor, this);
     } // end equipSummonerArmor
 
     public void rideMount(Mount mount){
@@ -245,6 +308,10 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         return stats.getMana();
     }
 
+    public int getMovement() {
+        return stats.getMovement();
+    }
+
     public int getBaseOffensiveRating() {
         return stats.getBaseOffensiveRating();
     }
@@ -277,6 +344,10 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         return stats.getArmorRating();
     }
 
+    public int getSkillPoint() {
+        return stats.getSkillPoint();
+    }
+
     public int getExperienceThreshold() {
         return stats.getExperienceThreshold();
     }
@@ -291,28 +362,48 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
 
     @Override
     public boolean move(Map map, Orientation orientation) {
-        if (this.orientation.equals(orientation)) {
+        if (this.orientation.equals(orientation) && canMove) {
             int x = location.getX() + orientation.x;
             int y = location.getY() + orientation.y;
             //z is zero here. Since it is a character it will move based on the next possible height
             Location newLocation = new Location(x,y,0);
+            delayMovement();
             return map.moveCharacter(this, newLocation);
         }else {
             setOrientation(orientation);
             return false;
         }
     }
+
+    public void notifyOfTeleport() {}
+
     public boolean checkStrategy(Terrain terrain){
        return navigation.canMove(terrain);
     }
 
-    public void pickUpItem(TakeableItem item){
-        inventory.pickUpItem(item);
+    public boolean pickUpItem(TakeableItem item){
+        boolean success = inventory.pickUpItem(item);
         alert();
-    }
+        return success;
+    } // end pickUpItem
 
     public void pickUpMoney(Money money) {
         inventory.pickUpMoney(money);
+        alert();
+    } // end pickUpMoney
+
+    public void spendMoney(int amount) {
+        inventory.spendMoney(amount);
+        alert();
+    } // end spendMoney
+
+    public boolean removeItem(TakeableItem item) {
+        alert();
+        return inventory.removeItem(item);
+    } // end removeItem
+
+    public void utilizeItem(int index){
+        inventory.utilizeItem(index,this);
         alert();
     }
 
@@ -323,5 +414,26 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         return inventory;
     }
 
+    public boolean hasDamageQueued() { return damageQueue.size() > 0; }
+    public boolean hasExperienceQueued() { return experienceQueue.size() > 0; }
 
+    public DamageQueue getDamageQueue() { return damageQueue; }
+    public ExperienceQueue getExperienceQueue() { return experienceQueue; }
+
+    public void setAlpha(float alpha) {
+        this.alpha = alpha;
+    }
+
+    public float getAlpha() {
+        return alpha;
+    }
+
+    public boolean isDead() { return dead; }
+
+    public void setDead(boolean dead) { this.dead = dead; }
+
+    public void attack(Map map) {
+        startCombatTimer();
+        this.attack.execute(map);
+    }
 } // end abstract class Character

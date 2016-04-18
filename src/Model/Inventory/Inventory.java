@@ -1,12 +1,19 @@
 package Model.Inventory;
 
+import Model.Entity.Character.Avatar;
+import Model.Entity.Character.Character;
 import Model.Items.Takeable.Equippable.Armor;
+import Model.Items.Takeable.Equippable.EquippableItem;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
 import Model.Items.Takeable.TakeableItem;
 import Model.Items.Takeable.Useable.Money;
+import Utilities.ErrorLevel;
 import Utilities.GameMessageQueue;
+import Utilities.ItemStuff.ItemManager;
+import Utilities.MessageHandler;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
+import Utilities.PersonFilter;
 
 import java.util.ArrayList;
 
@@ -25,33 +32,72 @@ public class Inventory implements Observer, Subject{
         equipment.addObserver(this);
     } // end default constructor
 
-    public void equipWeapon(Weapon weapon) {
-        if (pack.remove(weapon)) {
-            pack.add(equipment.equipWeapon(weapon));    // add currently equipped weapon to pack; remove from pack
+    public Inventory(Weapon weapon, Armor armor, TakeableItem... items) {
+        observers = new ArrayList<>();
+        this.pack = new Pack();
+        this.equipment = new Equipment();
+        equipment.addObserver(this);
+
+        if(weapon != null)
+            equipWeapon(weapon);
+        if(armor != null)
+            equipArmor(armor);
+        for(TakeableItem i : items) {
+            add(i);
         }
+    } // end constructor
+
+    public TakeableItem dropItem(int index){
+        TakeableItem temp = pack.remove(index);
+        alert();
+        return temp;
+    }
+
+    public void dump(ItemManager itemManager, Character character) {
+        pack.dump(itemManager, character);
+    } // end dump
+
+    public void add(TakeableItem item) {
+        pack.add(item);
+    } // end add
+
+    public void utilizeItem(int index, Character character){
+        pack.utilizeItem(index,character);
+    }
+
+    public Weapon equipWeapon(Weapon weapon) {
+        return equipment.equipWeapon(weapon);
     } // end equipWeapon
 
-    public void equipArmor(Armor armor) {
-        if (pack.remove(armor)) {
-            pack.add(equipment.equipArmor(armor));      // add currently equipped armor to pack; remove from pack
-        }
+    public Armor equipArmor(Armor armor) {
+        return equipment.equipArmor(armor);
     } // end equipArmor
 
-    public void unequipWeapon() {
+    public boolean unequipWeapon() {
         if(pack.hasRoom()) {
             pack.add(equipment.unequipWeapon());        // add equipped weapon to pack if room exists
-        } else {
-            GameMessageQueue.push("Your inventory is full, can't remove weapon.");
+            return true;
         }
+        return false;
     } // end unequipWeapon
 
-    public void unequipArmor() {
+    public boolean unequipArmor() {
         if(pack.hasRoom()) {
             pack.add(equipment.unequipArmor());         // add equipped armor to pack if room exists
-        } else {
-            GameMessageQueue.push("Inventory full, can't remove armor.");
+            return true;
         }
+        return false;
     } // end unequipArmor
+
+    public boolean removeItem(TakeableItem item) { //NEEDS ALERT
+        return pack.remove(item);
+    } // end removeItem
+
+//    public TakeableItem removeItem(int index) { //NEEDS ALERT
+//        TakeableItem temp = pack.remove(index);
+//        alert();
+//        return temp;
+//    }
 
     public int getWeaponValue() {
         return equipment.getWeaponValue();
@@ -64,6 +110,10 @@ public class Inventory implements Observer, Subject{
     public Pack getPack() { return pack;}
 
     public Equipment getEquipment(){return equipment;}
+
+    public Armor getArmor(){return equipment.getArmor();}
+
+    public Weapon getWeapon() {return equipment.getWeapon();}
 
     @Override
     public void addObserver(Observer o) {
@@ -90,12 +140,14 @@ public class Inventory implements Observer, Subject{
 
     } // end remove
 
-    public void pickUpItem(TakeableItem item){
-        pack.add(item);
+    public boolean pickUpItem(TakeableItem item){
+        return pack.add(item);
     }
 
     public void pickUpMoney(Money money) {
         pack.addMoney(money);
     }
+
+    public void spendMoney(int amount) { pack.spendMoney(amount); }
 
 } // end class Inventory

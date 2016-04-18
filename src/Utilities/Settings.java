@@ -13,27 +13,43 @@ public class Settings {
     public static int GAMEWIDTH = 1080;
     public static int GAMEHEIGHT = 720;
     public static int SCALEFACTOR = 1;
-    public static boolean debug = false;
 
+    public static int SPAWN_X = 5;
+    public static int SPAWN_Y = 5;
+    public static int SPAWN_Z = 0;
 
-    // Key Presses
-    public static int UP_ARROW = KeyEvent.VK_UP;
-    public static int LEFT_ARROW = KeyEvent.VK_LEFT;
-    public static int DOWN_ARROW = KeyEvent.VK_DOWN;
-    public static int RIGHT_ARROW = KeyEvent.VK_RIGHT;
-    public static int UP_RIGHT = KeyEvent.VK_E;
+    public static boolean debug = true;
+
+    //CHANGEABLE IN SETTINGS
     public static int UP = KeyEvent.VK_W;
     public static int UP_LEFT = KeyEvent.VK_Q;
-    public static int DOWN_LEFT = KeyEvent.VK_A;
+    public static int UP_RIGHT = KeyEvent.VK_E;
     public static int DOWN = KeyEvent.VK_S;
+    public static int DOWN_LEFT = KeyEvent.VK_A;
     public static int DOWN_RIGHT = KeyEvent.VK_D;
-    public static int TEST_KEY = KeyEvent.VK_T;
-
     public static int ATTACK = 32;
-    public static int EQUIP = 10001; //This was overwritting VK_E which is used for movement
+    public static int INTERACT = KeyEvent.VK_ENTER; //This was overwriting the "Q" key which is used for movement.
+    public static int SKILL_1 = KeyEvent.VK_1;
+    public static int SKILL_2 = KeyEvent.VK_2;
+    public static int SKILL_3 = KeyEvent.VK_3;
+    public static int SKILL_4 = KeyEvent.VK_4;
+    public static int SKILL_5 = KeyEvent.VK_5;
+    public static int SKILL_6 = KeyEvent.VK_6;
+    public static int SKILL_7 = KeyEvent.VK_7;
     public static int INVENTORY = KeyEvent.VK_I; // 'i'
     public static int STATS = KeyEvent.VK_O;
     public static int SKILLS = KeyEvent.VK_K; //"originally"0x53 " s"This is most likely overwritting the "S" key which is used for movement;
+
+
+    public static int RIGHT_ARROW = KeyEvent.VK_RIGHT;
+    public static int DOWN_ARROW = KeyEvent.VK_DOWN;
+    public static int LEFT_ARROW = KeyEvent.VK_LEFT;
+    public static int UP_ARROW = KeyEvent.VK_UP;
+    public static int TEST_KEY = KeyEvent.VK_T;
+
+    public static int EQUIP = 10001; //This was overwritting VK_E which is used for movement
+    public static int DROP = KeyEvent.VK_D;
+
     public static int SETTINGS = KeyEvent.VK_L;
     // end adjustable keys
 
@@ -49,9 +65,8 @@ public class Settings {
     public static int FIVE = 0x35;
     public static int SIX = 0x36;
     public static int SEVEN = 0x37;
-    public static int DROP = 0x44;
+    //public static int DROP = 0x44;
     public static int MAP = 0x4D;
-    public static int INTERACT = KeyEvent.VK_ENTER; //This was overwriting the "Q" key which is used for movement.
 
 
     // End Key Presses
@@ -68,9 +83,9 @@ public class Settings {
 
     public static int INTERACTABLEWIDTH = 48;
     public static int INTERACTABLEHEIGHT = 48;
-    //Grass flat
-//    public static int TILEWIDTH = 96;
-//    public static int TILEHEIGHT = 62;
+
+    public static int PROJECTILEHEIGHT = 32;
+    public static int PROJECTILEWIDTH = 32;
 
     public static final int MAX_INVENTORY_SIZE = 16;
 
