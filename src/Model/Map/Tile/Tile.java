@@ -1,6 +1,7 @@
 package Model.Map.Tile;
 
 import Model.Entity.Character.Character;
+import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Entity;
 import Model.Map.AreaEffect.AreaOfEffect;
 import Model.Map.Map;
@@ -22,6 +23,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
     private Character character;
     private Projectile projectile;
     private AreaOfEffect areaOfEffect;
+    private Mount mount;
 
     public Tile(Terrain terrain){
         this.terrain = terrain;
@@ -38,9 +40,18 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         }
     }
 
+    public boolean moveMount(Mount mount){
+        if(mount.checkStrategy(terrain) && checkMovement()){
+            addMount(mount);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     //Might be increased later for items
     private boolean checkMovement(){
-        if (hasCharacter()) {
+        if (hasCharacter() || hasMount()) {
             return false;
         }else{
             return true;
@@ -76,6 +87,14 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         }
     }
 
+    public boolean hasMount(){
+        if (mount != null) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
     private boolean hasAOE(){
         if (areaOfEffect != null) {
             return true;
@@ -89,8 +108,18 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         notifyObservers();
     }
 
+    public void addMount(Mount mount) {
+        this.mount = mount;
+        notifyObservers();
+    }
+
     public void removeCharacter() {
-        this.character = null;
+        character = null;
+        notifyObservers();
+    }
+
+    public void removeMount() {
+        this.mount = null;
         notifyObservers();
     }
 
@@ -99,7 +128,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         this.projectile = projectile;
         if(hasCharacter()){
             projectile.execute(character, projectile.getEffect());
-            this.projectile = null;
+            projectile = null;
         }
         notifyObservers();
     }
@@ -150,6 +179,9 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         if (hasCharacter()) {
             this.character.onInteract();
         }
+        if(hasMount()){
+            mount.addPassenger(initCharacter);
+        }
     }
 
     public void doTileEffects(Character character) {
@@ -172,10 +204,6 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         new TimedEvent(delay, () -> canMove = false, e -> canMove = true).start();
     } // end delayMovement
 
-    public void applyProjectileEffects(Projectile projectile){
-
-    }
-
     private void doEffectAOE(Character character){
         if (hasAOE()){
             areaOfEffect.onInteract(character);
@@ -189,6 +217,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         tv.visitTileHasCharacter(character);
         tv.visitTileTerrain(terrain);
         tv.visitTileHasProjectile(projectile);
+        tv.visitTileHasMount(mount);
     }
 
     @Override

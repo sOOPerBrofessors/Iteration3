@@ -64,11 +64,9 @@ public class Model implements Runnable{
                 e.printStackTrace();
             }
         }
-            //Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
     }
 
     public StateManager getStateManager() {
         return stateManager;
     }
 }
-

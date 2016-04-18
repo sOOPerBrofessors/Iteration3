@@ -13,7 +13,7 @@ import Utilities.Observers.EntityObserver;
  *
  */
 
-//All entities are able now Observables for a specific model view
+//All npcs are able now Observables for a specific model view
 
 public abstract class Entity implements EntityObservable, MapObject {
     protected Location location;

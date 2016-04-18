@@ -2,8 +2,6 @@ package View.EntityView;
 
 import Model.Entity.Projectile.Projectile;
 import Utilities.MovementCalculations.ViewCalculations;
-import Utilities.Observers.Observer;
-import Utilities.Observers.Subject;
 import Utilities.Settings;
 import View.MapView.MapObjectView;
 
@@ -18,7 +16,6 @@ public class ProjectileView extends MapObjectView{
 
     private Projectile projectile;
     private ArrayList<BufferedImage> images;
-    private Observer observer;
 
     private int xPixel; // on the map
     private int yPixel; // on the map
