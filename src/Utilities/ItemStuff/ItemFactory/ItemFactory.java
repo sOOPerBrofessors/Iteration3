@@ -33,9 +33,9 @@ public class ItemFactory {
         interactableItems = new HashMap<>();
         mapItemViews = new HashMap<>();
     }
+
     public static void init(Map map){
 
-        //initHashMaps(); MIGHT cause problems later
         // create new health potion
         Potion healthPotion = ItemFactory.makeBasicHealthPotion();
         ItemView healthView = new UsableView(ImageAssets.healthPotion);
@@ -49,7 +49,7 @@ public class ItemFactory {
         Potion healthPotion2 = ItemFactory.makeBasicHealthPotion();
         ItemView healthView2 = new UsableView(ImageAssets.healthPotion);
         Location healthLocation2 = new Location(5,8,map.getTopTilePosition(5,8));
-        healthView.setLocation(5,8);
+        healthView2.setLocation(5,8);
         takableItems.put(healthLocation2, healthPotion2);
         allItemViews.put(healthPotion2, healthView2);
         mapItemViews.put(healthPotion2, healthView2);
