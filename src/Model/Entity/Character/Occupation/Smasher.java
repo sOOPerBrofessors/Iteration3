@@ -10,6 +10,7 @@ import Model.Skills.BindWounds;
 import Model.Skills.CombatSkills.BrawlingSkill;
 import Model.Skills.CombatSkills.OneHandedWeaponSkill;
 import Model.Skills.CombatSkills.TwoHandedWeaponSkill;
+import Model.Skills.RangedSkills.EarthShake;
 import Model.Skills.RangedSkills.Observation;
 import Model.Skills.Skill;
 import Model.Stats.CharacterStats;
@@ -55,6 +56,7 @@ public class Smasher extends Occupation {
         skillList.add(new OneHandedWeaponSkill(avatar));
         skillList.add(new TwoHandedWeaponSkill(avatar));
         skillList.add(new BrawlingSkill(avatar));
+        skillList.add(new EarthShake(avatar));
 
         return skillList;
     }
