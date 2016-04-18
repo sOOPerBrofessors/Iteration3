@@ -190,12 +190,12 @@ public class ImageAssets {
         fireballs.add(fireball180Sheet.cropSheet(0,0,Settings.PROJECTILEWIDTH,Settings.PROJECTILEHEIGHT));
         fireballs.add(fireball270Sheet.cropSheet(0,0,Settings.PROJECTILEWIDTH,Settings.PROJECTILEHEIGHT));
 
-        hellCatN = hellcatNsheet.cropSheet(0,0,328,350);
-        hellCatNW = hellcatNWsheet.cropSheet(0,0,328,350);
-        hellCatSW = hellcatSWsheet.cropSheet(0,0,328,350);
-        hellCatS = hellcatSsheet.cropSheet(0,0,328,350);
-        hellCatSE = hellcatSEsheet.cropSheet(0,0,328,350);
-        hellCatNE = hellcatNEsheet.cropSheet(0,0,328,350);
+        hellCatN = hellcatNsheet.cropSheet(25,0,300,350);
+        hellCatNW = hellCatN;//hellcatNWsheet.cropSheet(0,0,328,350);
+        hellCatSW = hellCatN;//hellcatSWsheet.cropSheet(0,0,328,350);
+        hellCatS = hellCatN;//hellcatSsheet.cropSheet(0,0,328,350);
+        hellCatSE = hellCatN;//hellcatSEsheet.cropSheet(0,0,328,350);
+        hellCatNE = hellCatN;//hellcatNEsheet.cropSheet(0,0,328,350);
 
         //Decals
         goldStarAOE = goldStarAOESheet.cropSheet(0,0,30,30);

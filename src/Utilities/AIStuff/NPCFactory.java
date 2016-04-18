@@ -40,22 +40,22 @@ public class NPCFactory {
         return gandorf;
     }
 
-    private static NPC makeGanondorf(Map map) {
+    private static NPC makeGanondorf(Map map, int xloc, int yloc, String factionString) {
         Personality personality = PersonalityFactory.getPersonality("enemy");
-        Faction faction = FactionFactory.getFaction("red");
+        Faction faction = FactionFactory.getFaction(factionString);
         NPCStrategy strategy = new TalkNPCStrategy("Ganondorf: Hi minion", "Ganondorf: I am awesome", "Ganondorf: What do you want?");
-        NPC gandorf = new NPC(new Smasher(), new Location(10,10,map.getTopTilePosition(10,10)), personality, faction, new Inventory(), strategy);
+        NPC gandorf = new NPC(new Smasher(), new Location(xloc,yloc,map.getTopTilePosition(xloc,yloc)), personality, faction, new Inventory(), strategy);
         //gandorf.experienceEffect(5000);
         Brain brain = new Brain(gandorf);
         gandorf.setBrain(brain);
         return gandorf;
     }
 
-    public static NPC makeEnemy(Map map) {
+    public static NPC makeEnemy(Map map, int xloc, int yloc, String factionString) {
         Personality personality = PersonalityFactory.getPersonality("enemy");
-        Faction faction = FactionFactory.getFaction("red");
+        Faction faction = FactionFactory.getFaction(factionString);
         NPCStrategy strategy = new TalkNPCStrategy("MegaWizard: Die", "MegaWizard: I will break your Game", "MegaWizard: You will fail");
-        NPC enemy = new NPC(new Enemy(), new Location(5, 7, map.getTopTilePosition(5, 7)), personality, faction, new Inventory(), strategy);
+        NPC enemy = new NPC(new Enemy(), new Location(xloc,yloc , map.getTopTilePosition(xloc, yloc)), personality, faction, new Inventory(), strategy);
         Brain brain = new Brain(enemy);
         enemy.setBrain(brain);
         return enemy;
@@ -68,9 +68,15 @@ public class NPCFactory {
     public static void init(Map map){
         mounts = new ArrayList<>();
         npcs = new ArrayList<>();
-
-        npcs.add(makeGanondorf(map));
-        npcs.add(makeEnemy(map));
+        npcs.add(makeHellCat());
+        npcs.add(makeGanondorf(map,11,11,"red"));
+        npcs.add(makeGanondorf(map,9,9,"red"));
+        npcs.add(makeGanondorf(map,9,10,"red"));
+        npcs.add(makeGanondorf(map,10,9,"red"));
+        npcs.add(makeEnemy(map,14,14, "blue"));
+        npcs.add(makeEnemy(map,13,13, "blue"));
+        npcs.add(makeEnemy(map,10,10, "blue"));
+        npcs.add(makeEnemy(map,12,12, "blue"));
         mounts.add(theRealMount(map));
     }
 
