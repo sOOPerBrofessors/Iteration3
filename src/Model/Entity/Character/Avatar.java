@@ -100,10 +100,10 @@ public class Avatar extends Character {
                 // TODO: go to death state
             } else {
                 String life;
-                if(getLives() > 1)
-                    life = "lives";
-                else
+                if(getLives() == 1)
                     life = "life";
+                else
+                    life = "lives";
                 GameMessageQueue.push("Oh dear, you are dead!  " + getLives() + " " + life + " remaining.");
             }
 
