@@ -89,7 +89,7 @@ public class InventoryView extends AllDirPanel implements Observer{
         if (ySel< yMax-1) ySel++;
     }
 
-    public void interactWithItem(){ //MAKE SURE INVENTORY HANDLES ERROR CHECKING IF TRYING TO USE AN ITEMSLOT THAT ISN'T FILLED!!!
+    public void select(){ //MAKE SURE INVENTORY HANDLES ERROR CHECKING IF TRYING TO USE AN ITEMSLOT THAT ISN'T FILLED!!!
         if (armorSel){
             avatar.unEquipArmor();
         } else if (weaponSel){
