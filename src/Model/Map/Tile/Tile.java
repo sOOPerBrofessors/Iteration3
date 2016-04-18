@@ -3,10 +3,12 @@ package Model.Map.Tile;
 import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Map.AreaEffect.AreaOfEffect;
+import Model.Map.Map;
 import Model.Map.Tile.Terrain.Terrain;
 import Model.Entity.Projectile.Projectile;
 import Utilities.Observers.TileObservable;
 import Utilities.Observers.TileObserver;
+import Utilities.Timer.TimedEvent;
 import Utilities.Visitor.*;
 
 import java.util.ArrayList;
@@ -123,9 +125,23 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
 
     public void doTileEffects(Character character) {
         doEffectAOE(character);
+
         //Effect item
         //Effect
     }
+    private boolean canMove;
+    public void doRiverEffect(Map map, Character character) {
+
+        terrain.onInteract(map, character);
+    }
+    public void delayMovement() {
+        int delay = 100;
+        /*
+        starts a timer of duration 'delay'; the beginning of which toggles the userCanMakeInput
+         value to false, and after finishing execution toggles it back to true
+         */
+        new TimedEvent(delay, () -> canMove = false, e -> canMove = true).start();
+    } // end delayMovement
 
     public void applyProjectileEffects(Projectile projectile){
 

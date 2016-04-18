@@ -1,6 +1,7 @@
 package Controller.AI_Controller.Interest.EntityInterests;
 
 import Controller.AI_Controller.Interest.Interest;
+import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Entity;
 import Model.Map.Orientation;
@@ -26,8 +27,9 @@ public abstract class EntityInterest extends Interest {
 
     }
 
-    protected ArrayList<Orientation> computePathToTarget(NPC npc) {
+    protected ArrayList<Orientation> computePathToTarget(MotorCortexMemoryInterface memoryInterface) {
 
+        NPC npc = memoryInterface.getNPC();
         return npc.getController().findPath(npc, getTargetEntity().getLocation());
 
     }

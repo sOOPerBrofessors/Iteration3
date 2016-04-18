@@ -33,7 +33,11 @@ public class ImageAssets {
     public static BufferedImage invSlot, eqSlot, select;
     public static BufferedImage hud, messageBox, interfaceBorder;
     public static ArrayList<BufferedImage> fireballs = new ArrayList<>();
+
     public static ArrayList<BufferedImage> arrows = new ArrayList<>();
+
+    public static BufferedImage hellCatN, hellCatNW, hellCatSW, hellCatS, hellCatSE, hellCatNE;
+
 
     // items
     public static BufferedImage healthPotion;
@@ -73,6 +77,7 @@ public class ImageAssets {
         SpriteSheet fireball180Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall180.png"));
         SpriteSheet fireball270Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall270.png"));
 
+
         // projectiles!
         SpriteSheet arrow0Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Arrow0.png"));
         SpriteSheet arrow60Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Arrow60.png"));
@@ -80,6 +85,15 @@ public class ImageAssets {
         SpriteSheet arrow180Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Arrow180.png"));
         SpriteSheet arrow240Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Arrow240.png"));
         SpriteSheet arrow300Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Arrow300.png"));
+
+        // hellcat!
+        SpriteSheet hellcatNsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatN.png"));
+        SpriteSheet hellcatNWsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatNW.png"));
+        SpriteSheet hellcatSWsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatSW.png"));
+        SpriteSheet hellcatSsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatS.png"));
+        SpriteSheet hellcatSEsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatSE.png"));
+        SpriteSheet hellcatNEsheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/pet/hellcatNE.png"));
+
 
         smasherSW = smasherSheet.cropSheet(0,0, smasherWidth, smasherHeight);
         smasherNW = smasherSheet.cropSheet(smasherWidth*1, 0, smasherWidth, smasherHeight);
@@ -148,5 +162,12 @@ public class ImageAssets {
         fireballs.add(fireball90Sheet.cropSheet(0,0,Settings.PROJECTILEWIDTH,Settings.PROJECTILEHEIGHT));
         fireballs.add(fireball180Sheet.cropSheet(0,0,Settings.PROJECTILEWIDTH,Settings.PROJECTILEHEIGHT));
         fireballs.add(fireball270Sheet.cropSheet(0,0,Settings.PROJECTILEWIDTH,Settings.PROJECTILEHEIGHT));
+
+        hellCatN = hellcatNsheet.cropSheet(0,0,328,350);
+        hellCatNW = hellcatNWsheet.cropSheet(0,0,328,350);
+        hellCatSW = hellcatSWsheet.cropSheet(0,0,328,350);
+        hellCatS = hellcatSsheet.cropSheet(0,0,328,350);
+        hellCatSE = hellcatSEsheet.cropSheet(0,0,328,350);
+        hellCatNE = hellcatNEsheet.cropSheet(0,0,328,350);
     }
 }

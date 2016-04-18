@@ -40,6 +40,9 @@ public class Map {
         int newY = newLocation.getY();
         int newZ = getTopTilePosition(newX, newY);
         Tile newTile = getTopTile(newX,newY);
+        if(newTile == null)
+            return false;
+        //newTile.doRiverEffect(this, character);
         Location location = character.getLocation();
         //Needs to move the character before the tile does interaction because of "teleport" effect
         if (checkCanInteractWithTile(location, newLocation)
@@ -48,11 +51,19 @@ public class Map {
             getTileAt(currentX, currentY, currentZ).removeCharacter();
             character.updateLocation(new Location(newX,newY,newZ));
             newTile.doTileEffects(character); //does the interaction
+            newTile.doRiverEffect(this,character);
+            if(currentZ - newZ >= 3)
+                character.applyFallDamage(-1*(currentZ - newZ)/3);
             return true;
         }else{
             return false;
         }
     }
+
+    public boolean teleportCharacter(Character character, Location targetLocation) {
+        character.notifyOfTeleport();
+        return moveCharacter(character, targetLocation);
+    } // end teleportCharacter
 
     public boolean moveProjectile(Projectile projectile, Location newLocation){
         int currentX = projectile.getX();
@@ -157,8 +168,14 @@ public class Map {
         int newX = x + orientation.x;
         int newY = y + orientation.y;
         Tile topTile = getTopTile(newX, newY);
-        int nextZ = getTopTilePosition(newX, newY) - 1;
-        int difference = nextZ - z;
+        int nextZ = getTopTilePosition(newX, newY);
+        int difference = (nextZ - 1) - z;
+
+        if (getTopTile(newX, newY) == null) {
+
+            return null;
+
+        }
 
         if (difference <= 1) {
 
@@ -177,7 +194,13 @@ public class Map {
 
         for (Orientation orientation : Orientation.values()) {
 
-            neighbors.add(getTileTupleNeighbor(x, y, z, orientation));
+            TileLocationTuple tuple = getTileTupleNeighbor(x, y, z, orientation);
+
+            if (tuple != null) {
+
+                neighbors.add(getTileTupleNeighbor(x, y, z, orientation));
+
+            }
 
         }
 

@@ -1,6 +1,9 @@
 package Utilities.AIStuff.Pathfinding;
 
+import Utilities.ErrorLevel;
 import Utilities.MathUtilities;
+import Utilities.MessageHandler;
+import Utilities.PersonFilter;
 
 import java.util.HashSet;
 
@@ -24,8 +27,6 @@ public class RawAStarPathFinding extends Pathfind {
 
         synchronized (this) {
 
-            System.out.println("pathing start");
-
             do {
 
 
@@ -40,7 +41,6 @@ public class RawAStarPathFinding extends Pathfind {
                 addNodeToClosed(currentNode);
                 HashSet<TileNode> neighboringNodes = currentNode.findNeighboringNodes();
                 expandedCounter++;
-                System.out.println("expanded: " + expandedCounter);
 
                 for (TileNode neighbor : neighboringNodes) {
 
@@ -73,19 +73,20 @@ public class RawAStarPathFinding extends Pathfind {
 
                 pathFound = true;
                 endOfPath = currentNode;
-                System.out.println("Path found! Retracing our steps and highlighting the path.");
+                MessageHandler.println("Path found! Retracing our steps and highlighting the path.", ErrorLevel.NOTICE, PersonFilter.AUSTIN);
 
             } else if (isExpandedCounterExceeded()) {
 
-                System.out.println("Path could not be produced as counter expanded past the hard cap.");
+                MessageHandler.println("Path could not be produced as counter expanded past the hard cap.", ErrorLevel.NOTICE, PersonFilter.AUSTIN);
 
             } else {
 
-                System.out.println("Path could not be produced as there are no more nodes to be searched.");
+                MessageHandler.println("Path could not be produced as there are no more nodes to be searched.", ErrorLevel.NOTICE, PersonFilter.AUSTIN);
 
             }
 
             running = false;
+            notifyAll();
 
         }
 
