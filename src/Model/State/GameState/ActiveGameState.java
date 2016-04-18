@@ -1,6 +1,7 @@
 package Model.State.GameState;
 
 import Model.Entity.Character.Avatar;
+import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Projectile.Projectile;
 import Model.Map.Location;
@@ -9,9 +10,10 @@ import Model.Map.Map;
 import Model.Map.Orientation;
 import Model.Skills.RangedSkills.Observation;
 import Model.Skills.RangedSkills.ObservationInfo;
-import Model.State.StateManager;
 import Utilities.GameMessageQueue;
 import Utilities.ItemStuff.ItemManager;
+import Utilities.Observers.Observer;
+import Model.State.StateManager;
 import Utilities.Settings;
 
 import java.util.ArrayList;
@@ -19,17 +21,20 @@ import java.util.ArrayList;
 /**
  * Created by Wimberley on 4/6/16.
  */
-public class ActiveGameState extends GameState {
+public class ActiveGameState extends GameState implements Observer{
     StateManager stateManager;
 
-    public ActiveGameState(Map map, Avatar avatar, ArrayList<NPC> entities, ItemManager itemManager) {
-        super(map, avatar, entities, itemManager);
+    private Mount activeMount;
+
+    public ActiveGameState(Map map, Avatar avatar, ArrayList<NPC> npcs, ArrayList<Mount> mounts, ItemManager itemManager) {
+        super(map, avatar, npcs, mounts, itemManager);
+        observerMount();
         map.addItemManager(itemManager);
     }
 
     @Override
     public void tick(){
-        for(int i = 0; i < entities.size(); i++){
+        for(int i = 0; i < npcs.size(); i++){
             if(avatar.isDead()) {                    // indicates dead avatar
                 if(avatar.getLives() == 0) {
                     // TODO: death state
@@ -38,13 +43,13 @@ public class ActiveGameState extends GameState {
                     map.moveCharacter(avatar, new Location(Settings.SPAWN_X, Settings.SPAWN_Y, Settings.SPAWN_Z));
                     avatar.setDead(false);
                 }
-            } else if(entities.get(i).getLives() == 0) {           // indicated dead entity
-                entities.get(i).dropItems(itemManager);
-                map.removeCharacter(entities.get(i));
-                entities.remove(i);
+            } else if(npcs.get(i).getLives() == 0) {           // indicated dead entity
+                npcs.get(i).dropItems(itemManager);
+                map.removeCharacter(npcs.get(i));
+                npcs.remove(i);
                 continue;
             }
-            entities.get(i).tick();
+            npcs.get(i).tick();
         }
         if(projectiles != null){
             for(int i = 0; i < projectiles.size(); i++){
@@ -110,7 +115,7 @@ public class ActiveGameState extends GameState {
     }
 
     public void playerInteract(){
-        avatar.checkInteract(map);
+        map.checkTileInteraction(avatar,avatar.getLocation(), avatar.getLocation().getAdjacent(avatar.getOrientation()));
         itemManager.interact(avatar);
     }
 
@@ -118,8 +123,31 @@ public class ActiveGameState extends GameState {
         this.player = player;
     }
 
-    public int getAvatarMovement() {
-        return player.getMovement();
+    @Override
+    public void update() {
+        for(Mount mount : mounts){
+            if(mount.getPassenger() != null){
+                activeMount = mount;
+                map.removeCharacter(avatar);
+                controller.switchMount();
+            }
+        }
+    }
+
+    @Override
+    public void remove() {
+
+    }
+
+    private void observerMount(){
+        for (int i = 0; i < mounts.size(); i++) {
+            map.addMount(mounts.get(i));
+            mounts.get(i).addObserver(this);
+        }
+    }
+
+    public Mount getActiveMount(){
+        return activeMount;
     }
 
     public ArrayList<Projectile> getProjectiles() {

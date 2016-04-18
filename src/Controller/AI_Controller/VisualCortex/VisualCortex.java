@@ -45,6 +45,8 @@ public class VisualCortex implements Tickable {
 
             }
 
+        // TODO: Need to add all npcs seen by the current entity here
+        // Need to get area around entity, then add all npcs/etc to their respective hashmaps
         }
 
         memory.setVisualInformation(newVisualInformation);
