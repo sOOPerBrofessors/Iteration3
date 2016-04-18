@@ -26,14 +26,13 @@ import java.util.HashMap;
     //armor on top of weapon for equipment view
 public class InventoryView extends AllDirPanel implements Observer{
 
-    private final Avatar avatar;
-    private final Inventory inventory; //handle to Avatar's inventory
-    private final ArrayList<TakeableItem> items; //handle to Avatar's ArrayList of Items
-    private final Image[] invImages = new Image[16]; //Local Array of Images of Inventory
-    //private Armor equippedArmor;
-    //private Weapon equippedWeapon;
-    private final ItemManager itemManager;
-    private final HashMap<Item, ItemView> itemViewHashMap;
+    private Avatar avatar;
+    private Inventory inventory; //handle to Avatar's inventory
+    ArrayList<TakeableItem> items; //handle to Avatar's ArrayList of Items
+    Image[] invImages = new Image[16]; //Local Array of Images of Inventory
+    private ItemManager itemManager;
+    private HashMap<Item, ItemView> itemViewHashMap;
+
 
     private int xSel;
     private int ySel;
@@ -107,10 +106,6 @@ public class InventoryView extends AllDirPanel implements Observer{
 
     private int calcSel(){
         return ySel*4+xSel;
-    }
-
-    private void debug(String string){
-        MessageHandler.println(string,ErrorLevel.NOTICE, PersonFilter.SAM);
     }
 
     @Override

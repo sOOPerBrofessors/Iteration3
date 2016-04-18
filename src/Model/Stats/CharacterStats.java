@@ -130,9 +130,20 @@ public class CharacterStats extends EntityStats implements Subject {
                 0,      // experience
                 5,      // hardiness
                 7,      // intellect
-                3,      // lives
+                1,      // lives
                 10,      // strength
                 4);     // movement
+    }
+
+    public static CharacterStats makeEnemyStats() {
+        return new CharacterStats(
+                3,      // agility
+                0,      // experience
+                100,      // hardiness
+                7,      // intellect
+                1,      // lives
+                10,      // strength
+                10);     // movement
     }
 
     public void makeNPC() {
