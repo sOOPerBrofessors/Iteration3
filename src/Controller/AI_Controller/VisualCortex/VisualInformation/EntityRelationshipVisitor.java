@@ -47,7 +47,7 @@ public class EntityRelationshipVisitor implements VisualInformationVisitor {
                 relationalValue = MathUtilities.putInRange(-1.0, relationalValue, 1.0);
 
                 Relationship relationship = new Relationship(relationalValue);
-                MessageHandler.println("RELATIONAL VALUE: " + memory.getNPC() + " -> " + entity + ": " +  relationalValue, ErrorLevel.NOTICE);
+                //MessageHandler.println("RELATIONAL VALUE: " + memory.getNPC() + " -> " + entity + ": " +  relationalValue, ErrorLevel.NOTICE);
                 relationshipList.addRelationship(entity, relationship);
 
             }

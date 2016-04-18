@@ -1,6 +1,7 @@
 package Model.Entity.Character.Occupation;
 
 import Model.Entity.Character.Avatar;
+import Model.Items.Takeable.TakeableItem;
 import Model.Map.Orientation;
 import Model.Skills.BindWounds;
 import Model.Skills.CombatSkills.BrawlingSkill;

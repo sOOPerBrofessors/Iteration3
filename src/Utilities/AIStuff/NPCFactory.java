@@ -63,10 +63,10 @@ public class NPCFactory {
         //This should be a factory, testing for now
         NPCStrategy strategy = new TalkNPCStrategy("Hi! I'm the shopkeeper! Trade me!");
 //        NPC gandorf = new NPC(new Smasher(), new Location(1,1,0), personality, faction, strategy);
-        NPC hellcat = new NPC(new Shopkeeper(), new Location(7, 4, 0), personality, faction, new Inventory(), strategy);
-        Brain brain = new Brain(hellcat);
-        hellcat.setBrain(brain);
-        return hellcat;
+        NPC shopkeeper = new NPC(new Shopkeeper(), new Location(7, 4, 0), personality, faction, new Inventory(), strategy);
+        Brain brain = new Brain(shopkeeper);
+        shopkeeper.setBrain(brain);
+        return shopkeeper;
     }
 
     public static ArrayList<NPC> init(){
