@@ -53,7 +53,7 @@ public class Map {
             newTile.doTileEffects(character); //does the interaction
             newTile.doRiverEffect(this,character);
             if(currentZ - newZ >= 3)
-                character.applyFallDamage(-1*(currentZ - newZ)/3);
+                character.applyFallDamage(-1*(currentZ - newZ + 1)/3);
             return true;
         }else{
             return false;
