@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class TwoHandedWeaponSkill extends CombatSkill{
     public TwoHandedWeaponSkill (Avatar avatar) {
         super(avatar);
-        name = "Two Handed Weapon Attack";
+        name = "THW Attack";
         manaCost = 1;
         coolDownTime = 1;
         damageFactor = 3;

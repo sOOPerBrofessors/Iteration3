@@ -30,34 +30,23 @@ public class SkillsController extends Controller { //NOT VERY OOPY
         commands.put(Settings.UP_ARROW, new Command() {
             @Override
             public void execute() {
-                //inventoryView.selectUp();
-            }
-        });
-
-        commands.put(Settings.RIGHT_ARROW, new Command() {
-            @Override
-            public void execute() {
-                //inventoryView.selectRight();
+                skillsView.selectUp();
             }
         });
 
         commands.put(Settings.DOWN_ARROW, new Command() {
             @Override
-            public void execute() { //inventoryView.selectDown();
+            public void execute() {
+                skillsView.selectDown();
             }
         });
 
-        commands.put(Settings.LEFT_ARROW, new Command() {
-            @Override
-            public void execute() { //inventoryView.selectLeft();
-                 }
-        });
 
         // interact key press
         commands.put(Settings.ENTER, new Command() {
             @Override
             public void execute() {
-                //inventoryView.interactWithItem();
+                skillsView.select();
             }
         });
 
