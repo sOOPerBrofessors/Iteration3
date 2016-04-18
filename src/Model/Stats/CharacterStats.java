@@ -246,6 +246,7 @@ public class CharacterStats extends EntityStats implements Subject {
     }
     public void levelEffect(int effect){
         for(int i = 0; i < effect; i++) {
+            experience = experienceThreshold;
             levelUp();
         }
         alert();

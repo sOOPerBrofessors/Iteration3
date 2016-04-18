@@ -76,7 +76,7 @@ public class NPC extends Character implements Tickable{
     @Override
     public void dropItems(ItemManager itemManager) {
         super.dropItems(itemManager);
-        GameMessageQueue.push("Your items have been placed on the floor.");
+        //GameMessageQueue.push("Your items have been placed on the floor.");
     }
 
     @Override
