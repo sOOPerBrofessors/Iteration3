@@ -45,6 +45,7 @@ public class NPCFactory {
         Faction faction = FactionFactory.getFaction("red");
         NPCStrategy strategy = new TalkNPCStrategy("Ganondorf: Hi minion", "Ganondorf: I am awesome", "Ganondorf: What do you want?");
         NPC gandorf = new NPC(new Smasher(), new Location(10,10,map.getTopTilePosition(10,10)), personality, faction, new Inventory(), strategy);
+        //gandorf.experienceEffect(5000);
         Brain brain = new Brain(gandorf);
         gandorf.setBrain(brain);
         return gandorf;

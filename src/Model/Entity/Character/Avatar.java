@@ -120,6 +120,9 @@ public class Avatar extends Character {
     } // end notifyOfTeleport
 
     @Override
+    public void notifyOfTrap() { GameMessageQueue.push("You've activated a trap!"); } // end notifyOfTrap
+
+    @Override
     public void applyFallDamage(int amount) {
         GameMessageQueue.push("You hurt yourself from the fall!");
         super.applyFallDamage(amount);
@@ -152,6 +155,15 @@ public class Avatar extends Character {
         else
             GameMessageQueue.push("Lost " + -1*amount + " experience.");
     } // end experienceEffect
+
+    @Override
+    public void movementEffect(int amount) {
+        super.movementEffect(amount);
+        if(amount >= 0)
+            GameMessageQueue.push("You can now move more quickly.");
+        else
+            GameMessageQueue.push("Your movement has been slowed!");
+    }
 
     public void equipWeapon(Weapon weapon) {
         super.equipWeapon(weapon);

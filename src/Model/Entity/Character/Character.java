@@ -372,6 +372,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     }
 
     public void notifyOfTeleport() {}
+    public void notifyOfTrap() {}
 
     public boolean checkStrategy(Terrain terrain){
        return navigation.canMove(terrain);
