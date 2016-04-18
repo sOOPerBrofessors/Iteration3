@@ -173,11 +173,11 @@ public class InventoryView extends AllDirPanel implements Observer{
         weaponImage = armorImage = null; //reset images so that they don't retain old images if unequipped shit
         if (inventory.getWeapon()!=null) {
             weaponImage = itemViewHashMap.get(inventory.getWeapon()).getImage();
-            MessageHandler.println("WeaponUpdate: "+inventory.getWeapon().getName(),ErrorLevel.NOTICE,PersonFilter.SAM);
+            //MessageHandler.println("WeaponUpdate: "+inventory.getWeapon().getName(),ErrorLevel.NOTICE,PersonFilter.SAM);
         }
         if (inventory.getArmor()!=null) {
             armorImage = itemViewHashMap.get(inventory.getArmor()).getImage();
-            MessageHandler.println("ArmorUpdate: "+inventory.getArmor().getName(),ErrorLevel.NOTICE,PersonFilter.SAM);
+            //MessageHandler.println("ArmorUpdate: "+inventory.getArmor().getName(),ErrorLevel.NOTICE,PersonFilter.SAM);
         }
     }
 

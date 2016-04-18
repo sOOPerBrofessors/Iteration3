@@ -84,11 +84,16 @@ public class ItemManager implements Subject{
     }
 
     public void addItem(TakeableItem item, Character character){
-        Location temp = character.getLocation().getAdjacent(character.getOrientation());
-        takableItems.put(temp, item);
-        mapItemViews.put(item, allItemViews.get(item));
-        mapItemViews.get(item).setLocation(temp.getX(), temp.getY());
-        alert();
+        if(checkLoc(character)) {
+            Location temp = character.getLocation().getAdjacent(character.getOrientation());
+            takableItems.put(temp, item);
+            mapItemViews.put(item, allItemViews.get(item));
+            mapItemViews.get(item).setLocation(temp.getX(), temp.getY());
+            alert();
+        }
+        else{
+            allItemViews.remove(item);
+        }
     }
 
     public boolean tileContainsObstacle(Location targetLocation) {
@@ -111,5 +116,14 @@ public class ItemManager implements Subject{
     @Override
     public void alert() {
         observer.update();
+    }
+
+    private boolean checkLoc(Character character){
+        Location temp = character.getLocation().getAdjacent(character.getOrientation());
+        if (temp.getX() < 0 || temp.getY() < 0 || temp.getX() >= 14 || temp.getY() >= 14) {
+            return false;
+        }else {
+            return true;
+        }
     }
 }
