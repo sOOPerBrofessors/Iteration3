@@ -95,6 +95,9 @@ public class GamePlayController extends Controller{
         // skill 7 key press
         commands.put(Settings.SKILL_7, () -> state.playerExecuteSkill(6));
 
+        // skill 8 key pree
+        commands.put(Settings.EIGHT, () -> state.playerExecuteSkill(7));
+
         // inventory key press
         commands.put(Settings.INVENTORY, () -> controllerManager.setInventoryState());
 
