@@ -20,22 +20,29 @@ public class OneHandedWeaponSkill extends CombatSkill{
 
     @Override
     public boolean weaponCheck() {
-        boolean properWeapon = true;
-
+        boolean properWeapon = false;
+        if (avatar.getAttackInterval() == 1.5) {
+            properWeapon = true;
+        }
         return properWeapon;
     }
 
     @Override
     public void execute(ActiveGameState activeGameState) {
         Map map = activeGameState.getMap();
-        if (allConditionChecked() && weaponCheck()) {
-            damage = calculateDamage();
-            radius = level > 3 ? 3 : level;
-            affectedArea = LinearEffect.getLinearSameLevel(avatar.getLocation(), avatar.getOrientation(), radius);
-            oneHandedAttack(map);
-            GameMessageQueue.push(name + " Success!");
-            enforceManaCost();
-            setTimePerformed();
+        if (weaponCheck()) {
+            if (allConditionChecked()) {
+                damage = calculateDamage();
+                radius = level > 3 ? 3 : level;
+                affectedArea = LinearEffect.getLinearSameLevel(avatar.getLocation(), avatar.getOrientation(), radius);
+                oneHandedAttack(map);
+                GameMessageQueue.push(name + " Success!");
+                enforceManaCost();
+                setTimePerformed();
+            }
+        }
+        else {
+            GameMessageQueue.push("Improper weapon, you should equip an THW");
         }
     }
 

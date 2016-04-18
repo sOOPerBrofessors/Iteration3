@@ -12,6 +12,7 @@ public class OneHandedWeapon extends Weapon {
 
     private OneHandedWeapon(String name, String description, EquippableStrategy s, int weaponValue, int value) {
         super(name, description, s, weaponValue, value);
+        attackInterval = 1.5;
     } // end private constructor
 
     public static OneHandedWeapon makeSmasherWeapon(String name, String description, int weaponValue, int value) {
