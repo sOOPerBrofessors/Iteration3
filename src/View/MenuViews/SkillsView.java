@@ -46,7 +46,7 @@ public class SkillsView extends VertPanel{
 
         g2d.setColor(new Color(166, 0, 4, 255));
         g2d.setFont(new Font(Font.MONOSPACED, 1, 48));
-        g2d.drawString("Settings", xBorderOffset*3+35, yBorderOffset+70);
+        g2d.drawString("Skills", xBorderOffset*3+35, yBorderOffset+70);
 
         g2d.setColor(Color.BLACK);
         g2d.setFont(new Font(Font.MONOSPACED, 1, 22));
