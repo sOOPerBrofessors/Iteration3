@@ -36,6 +36,7 @@ public class NPC extends Character implements Tickable{
 
     public NPC(Occupation o, Location location, Personality personality, Faction faction, NPCStrategy npcStrategy) {
         super(o, location, faction);
+        stats.makeNPC();
         this.personality = personality;
         this.npcStrategy = npcStrategy;
         addItems();
@@ -61,6 +62,13 @@ public class NPC extends Character implements Tickable{
     @Override
     public void update() {
         setDelay(getMovement());
+        if (getHealth() <= 0) {
+            stats.kill();
+
+            if (getLives() == 0) {
+
+            }
+        }
     }
 
     @Override

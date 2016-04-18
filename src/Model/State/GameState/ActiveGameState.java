@@ -31,6 +31,12 @@ public class ActiveGameState extends GameState {
     @Override
     public void tick(){
         for(int i = 0; i < entities.size(); i++){
+            if(entities.get(i).getLives() == 0) {
+                map.removeCharacter(entities.get(i));
+                entities.remove(i);
+                System.out.println("an entity died");
+                continue;
+            }
             entities.get(i).tick();
         }
         if(projectiles != null){

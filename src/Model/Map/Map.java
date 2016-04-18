@@ -61,8 +61,11 @@ public class Map {
     }
 
     public boolean teleportCharacter(Character character, Location targetLocation) {
-        character.notifyOfTeleport();
-        return moveCharacter(character, targetLocation);
+        if(moveCharacter(character, targetLocation)) {
+            character.notifyOfTeleport();
+            return true;
+        }
+        return false;
     } // end teleportCharacter
 
     public boolean moveProjectile(Projectile projectile, Location newLocation){

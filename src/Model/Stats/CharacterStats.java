@@ -126,7 +126,7 @@ public class CharacterStats extends EntityStats implements Subject {
                 7);     // movement
     }
 
-    public CharacterStats makeNPC() {
+    public void makeNPC() {
         /*
         not sure if this works.  Ideally, when you make an NPC's stats you'll do it by saying:
             NPC.makeSmasher() {
@@ -136,7 +136,6 @@ public class CharacterStats extends EntityStats implements Subject {
          stats a character with that occupation should get with the exception of having one life.
          */
         baseLives = lives = 1;
-        return this;
     } // end makeNPC
 
     public void levelUp() {
@@ -175,6 +174,8 @@ public class CharacterStats extends EntityStats implements Subject {
 
     public void kill() {
         --lives;
+        if(lives == 0)
+            return;
 
         agility = baseAgility;
         hardiness = baseHardiness;
