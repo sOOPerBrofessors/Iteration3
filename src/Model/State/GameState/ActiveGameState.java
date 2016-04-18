@@ -68,7 +68,6 @@ public class ActiveGameState extends GameState {
     }
 
     public void playerAttack(){
-        System.out.printf("Hi");
         avatar.attack(map);
         /* This is for fireball
         Location tempLoc = new Location(avatar.getX(), avatar.getY(), avatar.getZ());
