@@ -23,8 +23,8 @@ import java.util.ArrayList;
  * Created by Wimberley on 4/6/16.
  */
 public class ActiveGameState extends GameState implements Observer{
-    StateManager stateManager;
     private GamePlayController controller;
+    private StateManager stateManager;
 
     private Mount activeMount;
 

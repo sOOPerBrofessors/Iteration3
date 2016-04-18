@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public abstract class Occupation implements OccupationVisitable {
 
-    protected ArrayList<Skill> skillList = new ArrayList<>();
+    final ArrayList<Skill> skillList = new ArrayList<>();
 
     public abstract CharacterStats initStats();
     public abstract String toString();

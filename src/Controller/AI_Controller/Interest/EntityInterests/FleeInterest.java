@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * Created by aseber on 4/9/16.
  */
-public class FleeInterest {// extends EntityInterest {
+class FleeInterest {// extends EntityInterest {
 
     public boolean isValid(Point pointOfInterest, VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 

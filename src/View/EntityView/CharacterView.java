@@ -2,10 +2,8 @@ package View.EntityView;
 
 import Model.Entity.Character.Character;
 import Model.Map.Orientation;
-import Utilities.Splats.DamageQueue;
 import Utilities.Settings;
 import Utilities.Splats.DamageSplat;
-import Utilities.Splats.ExperienceQueue;
 import Utilities.Splats.ExperienceSplat;
 import Utilities.Visitor.OccupationVisitor;
 import View.EntityView.AvatarViewFactory.OccupationViewFactory;
@@ -19,9 +17,9 @@ import java.awt.*;
 public class CharacterView extends EntityView implements OccupationVisitor {
     //Width height scale formula is Height/Width * new width = new height
     private Image image;
-    private Character character;
-    protected int viewHeight = Settings.ENTITYHEIGHT;
-    protected int viewWidth = Settings.ENTITYWIDTH;
+    private final Character character;
+    private final int viewHeight = Settings.ENTITYHEIGHT;
+    private final int viewWidth = Settings.ENTITYWIDTH;
 
     public CharacterView(Character character){
         super(character);
@@ -51,7 +49,7 @@ public class CharacterView extends EntityView implements OccupationVisitor {
         g2d.dispose();
     }
 
-    public void renderDamageSplats(Graphics2D g2d) {
+    private void renderDamageSplats(Graphics2D g2d) {
         g2d.setFont(new Font(Font.MONOSPACED, Font.ITALIC, 20));
         for(DamageSplat d : character.getDamageQueue().getAll()) {
             if(!d.isRunning())
@@ -65,7 +63,7 @@ public class CharacterView extends EntityView implements OccupationVisitor {
         }
     } // end renderDamageSplate
 
-    public void renderExperienceSplats(Graphics2D g2d) {
+    private void renderExperienceSplats(Graphics2D g2d) {
         g2d.setFont(new Font(Font.MONOSPACED, Font.ITALIC, 20));
         for(ExperienceSplat e : character.getExperienceQueue().getAll()) {
             if(!e.isRunning())
@@ -84,7 +82,7 @@ public class CharacterView extends EntityView implements OccupationVisitor {
         yPixel = yPixel - viewHeight;
     }
 
-    public void drawHealthBar(Graphics2D g2d) {
+    private void drawHealthBar(Graphics2D g2d) {
         double health = character.getHealth();
         double baseHealth = character.getBaseHealth();
         int width = Settings.GAMEWIDTH;
@@ -110,7 +108,6 @@ public class CharacterView extends EntityView implements OccupationVisitor {
         orientationView = OccupationViewFactory.createSmasherView(orientation);
     }
 
-    //TODO: CHANGE TO SUMMONER (CREATE A SUMMONERVIEW)
     @Override
     public void visitSummoner(Orientation orientation) {
         orientationView = OccupationViewFactory.createSummonerView(orientation);
@@ -122,15 +119,15 @@ public class CharacterView extends EntityView implements OccupationVisitor {
     }
 
     public void visitPet(Orientation orientation) {
-
         orientationView = OccupationViewFactory.createPetView(orientation);
-
     }
 
     public void visitShopkeeper(Orientation orientation) {
-
         orientationView = OccupationViewFactory.createShopkeeperView(orientation);
+    }
 
+    public void visitEnemy(Orientation orientation) {
+        orientationView = OccupationViewFactory.createEnemyView(orientation);
     }
 
 }

@@ -17,12 +17,12 @@ import Utilities.Observers.EntityObserver;
 
 public abstract class Entity implements EntityObservable, MapObject {
     protected Location location;
-    protected Navigation navigation;
+    protected final Navigation navigation;
     protected Orientation orientation;
 
-    private ArrayList<EntityObserver> observers;
+    private final ArrayList<EntityObserver> observers;
 
-    public Entity(Navigation navigation, Location location){
+    protected Entity(Navigation navigation, Location location){
         this.navigation = navigation;
         this.location = location;
         observers = new ArrayList<>();
@@ -85,7 +85,7 @@ public abstract class Entity implements EntityObservable, MapObject {
 
     }
 
-    public boolean canMove(Tile tile) {
+    private boolean canMove(Tile tile) {
 
         return navigation.canMove(tile);
 

@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 public class IntroPanel extends JPanel {
 
     private static JPanel introPanel;
-    private ViewManager viewManager;
+    private final ViewManager viewManager;
 
     public IntroPanel(ViewManager viewManager){
         introPanel = introPanel();

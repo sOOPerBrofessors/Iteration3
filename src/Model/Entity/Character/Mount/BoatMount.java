@@ -4,7 +4,6 @@ import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Orientation;
 import Utilities.Navigation.Navigation;
-import Utilities.Observers.Observer;
 
 /**
  * Created by dyeung on 4/15/16.

@@ -9,8 +9,6 @@ import Utilities.GameMessageQueue;
  */
 public class BindWounds extends Skill{
 
-    private int healAmt;
-
     public BindWounds(Avatar avatar) {
         super(avatar);
         name = "Bind wounds";
@@ -32,7 +30,7 @@ public class BindWounds extends Skill{
     }
 
     private void performBindWounds() {
-        healAmt = avatar.getStrength() + level;
+        int healAmt = avatar.getStrength() + level;
         avatar.healthEffect(healAmt);
     }
 }

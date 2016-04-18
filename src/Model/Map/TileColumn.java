@@ -2,7 +2,6 @@ package Model.Map;
 
 import Model.Entity.Character.Character;
 import Model.Entity.Character.Mount.Mount;
-import Model.Entity.Entity;
 import Model.Entity.Projectile.Projectile;
 import Model.Map.Tile.*;
 import Utilities.Visitor.*;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
  */
 public class TileColumn implements TileVisitable, TerrainVisitable{
 
-    ArrayList<Tile> tileList;
+    private final ArrayList<Tile> tileList;
     //WATER IS ALWAYS ABOVE GROUND IN THIS ITERATION (So it goes from topGround -> checks topWater -> top tile not air
     private int topGroundTile;
     private int topWater; //Maybe necessary?

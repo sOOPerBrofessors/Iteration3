@@ -15,8 +15,8 @@ import java.util.HashSet;
  */
 public class Map {
 
-    private int maxRow;
-    private int maxColumn;
+    private final int maxRow;
+    private final int maxColumn;
     private ItemManager itemManager;
 
     public Map(TileColumn[][] tiles){
@@ -29,7 +29,7 @@ public class Map {
         this.itemManager = itemManager;
     } // end addItemManager
 
-    private TileColumn[][] mapOfTiles;
+    private final TileColumn[][] mapOfTiles;
 
     //MAP movement for character (This will only walk on the top of the characters, will most likely
     //need a separate move for fishes that swim below or birds that go above
@@ -112,11 +112,7 @@ public class Map {
     }
 
     private boolean checkHeightDifference(int current, int target){
-        if ((target - current) <= 1){
-            return true;
-        }else{
-            return false;
-        }
+        return (target - current) <= 1;
     }
 
     public void checkTileInteraction(Character character, Location currentLocation, Location newLocation){
@@ -132,11 +128,7 @@ public class Map {
         int newY = newLocation.getY();
         int newZ = getTopTilePosition(newX, newY);
 
-        if (checkBounds(newX, newY) && checkHeightDifference(currentZ, newZ)){
-            return true;
-        }else{
-            return false;
-        }
+        return checkBounds(newX, newY) && checkHeightDifference(currentZ, newZ);
     }
 
     private boolean checkHasObstacle(Location newLocation) {
@@ -148,12 +140,8 @@ public class Map {
 
 
     //Other stuff for map
-    public boolean checkBounds(int x, int y){
-        if (x < 0 || y < 0 || x >= maxColumn || y >= maxRow) {
-            return false;
-        }else {
-            return true;
-        }
+    private boolean checkBounds(int x, int y){
+        return !(x < 0 || y < 0 || x >= maxColumn || y >= maxRow);
     }
 
     public Tile getTile(Location location) {
@@ -188,7 +176,7 @@ public class Map {
 
     }
 
-    public TileLocationTuple getTileTupleNeighbor(int x, int y, int z, Orientation orientation) {
+    private TileLocationTuple getTileTupleNeighbor(int x, int y, int z, Orientation orientation) {
 
         int newX = x + orientation.x;
         int newY = y + orientation.y;

@@ -13,7 +13,7 @@ import View.ViewManager;
 /**
  * Created by Wimberley on 3/23/16.
  */
-public class Main {
+class Main {
 
     public static void main(String[] args) {
 

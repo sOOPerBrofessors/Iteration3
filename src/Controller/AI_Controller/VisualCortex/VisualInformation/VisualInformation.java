@@ -4,7 +4,6 @@ import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Visitors.VisualInformationVisitor;
 
-import java.awt.*;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +16,7 @@ public class VisualInformation {
     // I should know the current entity location?
     // This lets me compute distances and then pump that into a hashmap<Entity, dist> so I can do more fun stuff with weights
 
-    private HashMap<Character, Double> entityVisualInformation = new HashMap<>();
+    private final HashMap<Character, Double> entityVisualInformation = new HashMap<>();
 //    private HashMap<Point, Item> itemVIsualInformation = new HashMap<>();
 
     public void addEntityVisualInformation(Character character, double distance) {

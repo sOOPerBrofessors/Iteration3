@@ -24,7 +24,7 @@ public abstract class GameState extends State {
     protected ArrayList<Projectile> projectiles;
     protected ArrayList<Mount> mounts;
 
-    public GameState(Map map, Avatar avatar, ArrayList<NPC> entities, ArrayList<Mount> mounts, ItemManager itemManager){
+    GameState(Map map, Avatar avatar, ArrayList<NPC> entities, ArrayList<Mount> mounts, ItemManager itemManager){
         //This will be done in the gameLoader
         this.map = map;
         this.avatar = avatar;

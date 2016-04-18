@@ -9,7 +9,7 @@ import Model.Map.Tile.Terrain.Terrain;
  */
 
 //MobileTile can hold a single entity
-public abstract class MobileTile extends Tile {
+abstract class MobileTile extends Tile {
     protected Entity entity;
     protected AreaOfEffect areaOfEffect;
 

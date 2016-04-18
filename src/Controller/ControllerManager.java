@@ -5,7 +5,6 @@ import Model.State.StateManager;
 import Utilities.ErrorLevel;
 import Utilities.MessageHandler;
 import Utilities.PersonFilter;
-import Utilities.Settings;
 import View.ViewManager;
 
 import java.awt.event.KeyEvent;
@@ -28,7 +27,6 @@ public class ControllerManager implements KeyListener {
     private PauseController pauseController;
     private SkillsController skillsController;
     private SettingsController settingsController;
-    private TradeController tradeController;
     private MountController mountController;
 
     public ControllerManager(){
@@ -38,7 +36,7 @@ public class ControllerManager implements KeyListener {
         pauseController = new PauseController(this);
         skillsController = new SkillsController(this);
         settingsController = new SettingsController(this);
-        tradeController = new TradeController(this);
+        TradeController tradeController = new TradeController(this);
         mountController = new MountController(this);
     }
 

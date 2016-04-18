@@ -9,7 +9,7 @@ import Utilities.Observers.Observer;
  *  of changes to self
  */
 public interface Subject {
-    public void addObserver(Observer o); // add an observer to this class
-    public void removeObserver(Observer o); // remove an observer from this class
-    public void alert(); // alert all observers
+    void addObserver(Observer o); // add an observer to this class
+    void removeObserver(Observer o); // remove an observer from this class
+    void alert(); // alert all observers
 } // end interface Observables

@@ -1,8 +1,6 @@
 package Model.Items.ItemStrategy.InteractableStrategy;
 
 import Model.Entity.Character.Character;
-import Model.Inventory.Inventory;
-import Model.Items.Item;
 import Model.Items.Takeable.Quest;
 import Model.Items.Takeable.TakeableItem;
 import Utilities.GameMessageQueue;

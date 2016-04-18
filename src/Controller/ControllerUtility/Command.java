@@ -4,5 +4,5 @@ package Controller.ControllerUtility;
  * Created by Wimberley on 4/6/16.
  */
 public interface Command {
-    public void execute();
+    void execute();
 }

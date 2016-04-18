@@ -12,8 +12,8 @@ public enum ErrorLevel {
     CRITICAL(16, "Critical Error"), // A critical error that usually results in a crash
     NONE(32, "None"); // Not recommended to use unless you want no messages to show up
 
-    private int level;
-    private String name;
+    private final int level;
+    private final String name;
 
     ErrorLevel(int level, String name) {
 

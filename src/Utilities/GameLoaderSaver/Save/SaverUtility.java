@@ -6,13 +6,13 @@ import org.w3c.dom.Document;
 /**
  * Created by dyeung on 4/17/16.
  */
-public class SaverUtility {
+class SaverUtility {
 
 
     //gets attributes with a space in the string
-    public static Attr getAttrWithSS(Document doc, String attrName, String value){
+    public static Attr getAttrWithSS(Document doc, String value){
         String newValue = value.replace(' ', '-');
-        Attr attr = doc.createAttribute(attrName);
+        Attr attr = doc.createAttribute("name");
         attr.setValue(newValue);
         return attr;
     }

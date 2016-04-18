@@ -27,5 +27,8 @@ public class OccupationViewFactory {
     public static OrientationView createShopkeeperView(Orientation orientation){
         return new OrientationView(orientation, ImageAssets.shopKeeperN, ImageAssets.shopKeeperNW, ImageAssets.shopKeeperNE,ImageAssets.shopKeeperS,ImageAssets.shopKeeperSE,ImageAssets.shopKeeperSW);
     }
+    public static OrientationView createEnemyView(Orientation orientation){
+        return new OrientationView(orientation, ImageAssets.enemyN, ImageAssets.enemyNW, ImageAssets.enemyNE,ImageAssets.enemyS,ImageAssets.enemySE,ImageAssets.enemySW);
+    }
 
 }

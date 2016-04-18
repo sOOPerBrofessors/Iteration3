@@ -1,7 +1,6 @@
 package Utilities.Visitor;
 
 import Model.Items.Interactable.Interactable;
-import Model.Items.Item;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
 import Model.Items.Takeable.TakeableItem;

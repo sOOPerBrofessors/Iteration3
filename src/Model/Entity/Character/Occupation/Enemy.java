@@ -1,6 +1,7 @@
 package Model.Entity.Character.Occupation;
 
 import Model.Entity.Character.Avatar;
+import Model.Entity.Character.Character;
 import Model.Map.Orientation;
 import Model.Skills.BindWounds;
 import Model.Skills.RangedSkills.Observation;
@@ -11,30 +12,29 @@ import Utilities.Visitor.OccupationVisitor;
 import java.util.ArrayList;
 
 /**
- * Created by aseber on 4/18/16.
+ * Created by sgl on 4/18/16.
  */
-public class Shopkeeper extends Occupation {
+public class Enemy extends Occupation {
 
     @Override
     public CharacterStats initStats() {
-        return CharacterStats.makeShopkeeperStats();
+        return CharacterStats.makeEnemyStats();
     } // end initStats
 
     @Override
     public void acceptOccupationVistor(OccupationVisitor occupationViewVisitor, Orientation orientation) {
-        occupationViewVisitor.visitShopkeeper(orientation);
+        occupationViewVisitor.visitEnemy(orientation);
     }
 
     @Override
     public String toString() {
-        return "shopkeeper";
+        return "enemy";
     }
 
-    public ArrayList<Skill> getSkillList(Avatar avatar) {
-        skillList.add(new BindWounds(avatar));
-        skillList.add(new Observation(avatar));
+    public ArrayList<Skill> getSkillList(Avatar character) {
+        skillList.add(new BindWounds(character));
+        skillList.add(new Observation(character));
 
         return skillList;
     }
-
 }

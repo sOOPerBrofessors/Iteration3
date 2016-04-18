@@ -9,17 +9,17 @@ package Model.Stats;
     //
 public class EntityStats {
 
-    protected int health;
-    protected int baseHealth;
-    protected int movement;
-    protected int baseMovement;
+    int health;
+    int baseHealth;
+    int movement;
+    int baseMovement;
 
-    public EntityStats(int health, int movement){
-        this.health = baseHealth = health;
-        this.movement = baseMovement = movement;
+    public EntityStats(int health){
+        this.health = baseHealth = 30;
+        this.movement = baseMovement = 20;
     }
 
-    public EntityStats(){
+    EntityStats(){
         health = baseHealth = 0;
         movement = baseMovement = 0;
     }

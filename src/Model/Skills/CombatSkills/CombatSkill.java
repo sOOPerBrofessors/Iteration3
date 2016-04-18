@@ -13,29 +13,29 @@ import java.util.ArrayList;
 /**
  * Created by AndyZhu on 5/4/2016.
  */
-public abstract class CombatSkill extends Skill {
+abstract class CombatSkill extends Skill {
     Character enemy;
     Tile curTile;
     int radius;
 
-    protected int damage;
-    protected int damageFactor;
-    protected ArrayList<Location> affectedArea;
+    int damage;
+    int damageFactor;
+    ArrayList<Location> affectedArea;
 
-    public CombatSkill(Avatar avatar) {
+    CombatSkill(Avatar avatar) {
         super(avatar);
     }
 
     public abstract boolean weaponCheck();
 
-    protected int calculateDamage() {
+    int calculateDamage() {
         int offensiveRating = avatar.getBaseOffensiveRating();
         int totalDamage = damageFactor * level * offensiveRating / 5;
         totalDamage = totalDamage < 1 ? 1 : totalDamage;
         return totalDamage;
     }
 
-    protected void attackAreaSingleTarget(Map map, ArrayList<Location> locations) {
+    void attackAreaSingleTarget(Map map, ArrayList<Location> locations) {
         for (int i = 1; i < locations.size(); i++) {
             Location location = locations.get(i);
             int x = location.getX();

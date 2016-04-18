@@ -8,7 +8,7 @@ import Model.Items.Takeable.Useable.Potion;
  * A potion factory.  Given a string for the grade of potion and and integer modification value, a different name and
  *  description will be generated.
  */
-public class PotionFactory {
+class PotionFactory {
 
     public static Potion makeAgilityPotion(String grade, int amount) {
         return Potion.makeManaPotion(

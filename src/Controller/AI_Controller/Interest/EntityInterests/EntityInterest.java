@@ -21,13 +21,13 @@ public abstract class EntityInterest extends Interest {
 
     }
 
-    protected final Entity getTargetEntity() {
+    final Entity getTargetEntity() {
 
         return targetEntity;
 
     }
 
-    protected ArrayList<Orientation> computePathToTarget(MotorCortexMemoryInterface memoryInterface) {
+    ArrayList<Orientation> computePathToTarget(MotorCortexMemoryInterface memoryInterface) {
 
         NPC npc = memoryInterface.getNPC();
         return npc.getController().findPath(npc, getTargetEntity().getLocation());

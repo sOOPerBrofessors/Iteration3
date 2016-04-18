@@ -12,7 +12,6 @@ import Model.Items.Takeable.TakeableItem;
 import Model.Items.Takeable.Useable.Money;
 import Model.Map.Location;
 import Model.Skills.Skill;
-import Model.Map.Map;
 import Utilities.GameMessageQueue;
 import Utilities.ItemStuff.ItemManager;
 import Utilities.Settings;
@@ -72,6 +71,15 @@ public class Avatar extends Character {
         return inventory;
     }
 
+    public double getAttackInterval() {
+        if (inventory.getEquipment().getWeapon() != null) {
+            return inventory.getEquipment().getWeapon().getAttackInterval();
+        }
+        else {
+            return 1;
+        }
+    }
+
     public Skill getSkill (int index) {
         return skills.get(index);
     }
@@ -120,6 +128,9 @@ public class Avatar extends Character {
     } // end notifyOfTeleport
 
     @Override
+    public void notifyOfTrap() { GameMessageQueue.push("You've activated a trap!"); } // end notifyOfTrap
+
+    @Override
     public void applyFallDamage(int amount) {
         GameMessageQueue.push("You hurt yourself from the fall!");
         super.applyFallDamage(amount);
@@ -152,6 +163,15 @@ public class Avatar extends Character {
         else
             GameMessageQueue.push("Lost " + -1*amount + " experience.");
     } // end experienceEffect
+
+    @Override
+    public void movementEffect(int amount) {
+        super.movementEffect(amount);
+        if(amount >= 0)
+            GameMessageQueue.push("You can now move more quickly.");
+        else
+            GameMessageQueue.push("Your movement has been slowed!");
+    }
 
     public void equipWeapon(Weapon weapon) {
         super.equipWeapon(weapon);

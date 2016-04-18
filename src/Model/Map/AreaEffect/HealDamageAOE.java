@@ -8,8 +8,8 @@ import Utilities.Visitor.AOEVisitor;
  */
 public class HealDamageAOE extends AreaOfEffect {
 
-    public HealDamageAOE(int value) {
-        super(value);
+    public HealDamageAOE() {
+        super(5);
     }
 
     @Override

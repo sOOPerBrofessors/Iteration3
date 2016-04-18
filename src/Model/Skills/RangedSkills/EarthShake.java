@@ -1,14 +1,11 @@
 package Model.Skills.RangedSkills;
 
 import Model.Entity.Character.Avatar;
-import Model.Map.Location;
 import Model.State.GameState.ActiveGameState;
 import Utilities.InfluenceAreas.Planer.RadialEffect;
 import Utilities.Timer.EarthShakeTimer;
 import View.SkillView.EarthShakeView;
 import Model.Map.Map;
-
-import java.util.ArrayList;
 
 /**
  * Created by AndyZhu on 18/4/2016.
@@ -18,7 +15,6 @@ public class EarthShake extends RangedSkill {
     public EarthShake(Avatar avatar) {
         super(avatar);
         name = "Earth shake";
-        level = 10;
         manaCost = 1;
         coolDownTime = 1;
     }

@@ -14,15 +14,15 @@ import java.util.ArrayList;
  */
 public class ProjectileView extends MapObjectView{
 
-    private Projectile projectile;
-    private ArrayList<BufferedImage> images;
+    private final Projectile projectile;
+    private final ArrayList<BufferedImage> images;
 
     private int xPixel; // on the map
     private int yPixel; // on the map
     private int pixelXGoal;
     private int pixelYGoal;
-    private int viewWidth;
-    private int viewHeight;
+    private final int viewWidth;
+    private final int viewHeight;
     private int imageIndex;
     private boolean metXGoal;
     private boolean metYGoal;

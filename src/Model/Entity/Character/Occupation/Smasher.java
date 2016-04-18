@@ -4,7 +4,6 @@ import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Items.Takeable.Equippable.Armor;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
-import Model.Map.Location;
 import Model.Map.Orientation;
 import Model.Skills.BindWounds;
 import Model.Skills.CombatSkills.BrawlingSkill;

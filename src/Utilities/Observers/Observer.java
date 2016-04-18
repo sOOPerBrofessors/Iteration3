@@ -7,6 +7,6 @@ package Utilities.Observers;
  *  of changes to subjects
  */
 public interface Observer {
-    public void update(); // method called when alerted by a subject
-    public void remove(); // remove a subject from observers
+    void update(); // method called when alerted by a subject
+    void remove(); // remove a subject from observers
 } // end interface Observer

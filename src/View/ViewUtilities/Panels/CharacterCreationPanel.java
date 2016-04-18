@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 public class CharacterCreationPanel extends JPanel {
 
     private static JPanel createPanel;
-    private ViewManager viewManager;
+    private final ViewManager viewManager;
 
     public CharacterCreationPanel(ViewManager viewManager){
         createPanel = createPanel();

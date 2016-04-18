@@ -14,11 +14,14 @@ import java.util.ArrayList;
  * Created by broskj on 4/17/16.
  */
 public class ExperienceSplat implements Subject {
-    private int experience;
+    private final int experience;
     private int xDelta;
     private int yDelta;
-    private DamageTimer timer;
-    private int r,g,b,a;
+    private final DamageTimer timer;
+    private final int r;
+    private final int g;
+    private final int b;
+    private int a;
     private ArrayList<Observer> observers;
 
     public ExperienceSplat(int experience) {

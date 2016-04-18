@@ -19,9 +19,9 @@ public abstract class Skill {
     private double remainingCoolDownTime;
     protected int manaCost;
 
-    protected Avatar avatar;
+    protected final Avatar avatar;
 
-    public Skill (Avatar avatar) {
+    protected Skill(Avatar avatar) {
         this.avatar = avatar;
         level = 1;
     }
@@ -38,7 +38,7 @@ public abstract class Skill {
         System.out.println("You've reached a Wrong place! Skill:line 42");
     }
 
-    public void enforceManaCost() {
+    protected void enforceManaCost() {
         avatar.manaEffect( -manaCost );
     }
 
@@ -47,7 +47,7 @@ public abstract class Skill {
         remainingCoolDownTime = coolDownTime;
     }
 
-    public void tick() {
+    private void tick() {
         double timePassed = (System.currentTimeMillis() - timePerformed) / 1000;
         remainingCoolDownTime = coolDownTime - timePassed;
         if (remainingCoolDownTime <= 0) {
@@ -55,15 +55,15 @@ public abstract class Skill {
         }
     }
 
-    protected boolean checkCD() {
+    private boolean checkCD() {
         tick();
         return remainingCoolDownTime == 0.0;
     }
 
-    protected boolean checkMana() { return avatar.getMana() >= manaCost; }
+    private boolean checkMana() { return avatar.getMana() >= manaCost; }
 
     //chance of success is 0.5 when skill level is 1, and reaches 1 when skill level is 5
-    protected boolean checkPerformanceSuccess() {
+    private boolean checkPerformanceSuccess() {
         Random random = new Random();
         //it's a number increments from 0.5 to 1 with level
         double chanceOfSuccess = 0.5 + (double) level / 10;

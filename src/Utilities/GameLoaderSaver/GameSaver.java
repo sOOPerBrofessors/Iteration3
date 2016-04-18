@@ -2,7 +2,6 @@ package Utilities.GameLoaderSaver;
 
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
-import Model.State.GameState.ActiveGameState;
 import Model.State.GameState.GameState;
 import Utilities.GameLoaderSaver.Save.SaveVisitor;
 
@@ -11,12 +10,12 @@ import Utilities.GameLoaderSaver.Save.SaveVisitor;
  */
 public class GameSaver {
 
-    private final String path = "./res/SaveFile/";
-    private String testFileName = "SaveFile1.xml";
-    private SaveVisitor saveVisitor;
-    private GameState gameState;
+    private final SaveVisitor saveVisitor;
+
     public GameSaver(GameState gameState){
-        this.gameState = gameState;
+        GameState gameState1 = gameState;
+        String testFileName = "SaveFile1.xml";
+        String path = "./res/SaveFile/";
         saveVisitor = new SaveVisitor(path + testFileName, gameState);
     }
 

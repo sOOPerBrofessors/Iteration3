@@ -3,7 +3,6 @@ package Controller.AI_Controller.Interest.EntityInterests;
 import Controller.AI_Controller.FrontalLobe.FrontalLobeMemoryInterface;
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
-import Model.Entity.Entity;
 import Model.Map.Location;
 import Utilities.AIStuff.Relationship;
 

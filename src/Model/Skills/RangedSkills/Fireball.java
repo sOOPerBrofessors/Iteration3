@@ -3,7 +3,6 @@ package Model.Skills.RangedSkills;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Projectile.Projectile;
 import Model.Map.Location;
-import Model.Map.Map;
 import Model.State.GameState.ActiveGameState;
 
 /**
