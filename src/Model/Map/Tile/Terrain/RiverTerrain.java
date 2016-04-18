@@ -27,7 +27,8 @@ public class RiverTerrain extends WaterTerrain {
 
     @Override
     public void onInteract(Map map, Character character) {
-        character.setOrientation(direction);
+        map.moveCharacter(character, character.getLocation().getAdjacent(direction));
+        //character.setOrientation(direction);
         //character.setDelay(flowRate);
         //character.move(map, direction);
         //map.moveCharacter(character, map.ge)
