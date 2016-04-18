@@ -14,7 +14,7 @@ public class InstantDeathAOE extends AreaOfEffect {
 
     @Override
     public void onInteract(Character character) {
-        character.healthEffect(value);
+        character.healthEffect(-character.getHealth());
     }
 
     @Override
