@@ -18,12 +18,13 @@ public class FollowInterest extends EntityInterest {
 
         // TODO: Need to pathfind to entity, and save the entities current location!
         addToMovementQueue(computePathToTarget(memoryInterface));
+        targetOldLocation = getTargetEntity().getLocation();
 
     }
 
     public boolean isFinished(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
-        // We can always follow our interest!
+        // We can always follow our target!
         return false;
 
     }
@@ -38,10 +39,11 @@ public class FollowInterest extends EntityInterest {
 
         if (isSatisfiable(visualInformation, memoryInterface)) {
 
-            if (!getTargetEntity().getLocation().equals(targetOldLocation)) {
+            if (!(getTargetEntity().getLocation().equals(targetOldLocation))) {
 
                 resetMovementQueue();
                 addToMovementQueue(computePathToTarget(memoryInterface));
+                targetOldLocation = getTargetEntity().getLocation();
 
             }
 

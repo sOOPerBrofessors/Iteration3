@@ -12,11 +12,12 @@ import Utilities.AIStuff.Relationship;
  */
 public class AttackInterest extends EntityInterest {
 
-    Location locationOfEnemy;
+    Location targetOldLocation;
 
     public void initialize(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         addToMovementQueue(computePathToTarget(memoryInterface));
+        targetOldLocation = getTargetEntity().getLocation();
 
     }
 
@@ -43,14 +44,15 @@ public class AttackInterest extends EntityInterest {
             newLocation = getTargetEntity().getLocation();
 
             // TODO: Rebuild the navigation queue when the old locaiton does not equal the new location
-            if (!locationOfEnemy.equals(newLocation)) {
+            if (!targetOldLocation.equals(newLocation)) {
 
                 resetMovementQueue();
                 addToMovementQueue(computePathToTarget(memoryInterface));
+                targetOldLocation = getTargetEntity().getLocation();
 
             }
 
-            locationOfEnemy = newLocation;
+            targetOldLocation = newLocation;
 
         }
 

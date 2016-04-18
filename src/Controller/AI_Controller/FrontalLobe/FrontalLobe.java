@@ -118,7 +118,18 @@ public class FrontalLobe implements Tickable {
 
         }
 
-        memory.setCurrentDecision(decisionPicker.pick());
+        Decision newDecision;
+
+        try {
+
+            newDecision = decisionPicker.pick();
+            memory.setCurrentDecision(newDecision);
+
+        } catch (NullPointerException e) {
+
+            MessageHandler.println("FrontalLobe: Decision picker was empty when you tried to pick from it, make sure all personalities have ExploreInterest", ErrorLevel.ERROR);
+
+        }
 
     }
 

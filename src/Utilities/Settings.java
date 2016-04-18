@@ -16,7 +16,7 @@ public class Settings {
 
     public static boolean debug = true;
     public static ErrorLevel errorLevel = ErrorLevel.DEV;
-    public static PersonFilter personFilter = PersonFilter.ALL;
+    public static PersonFilter personFilter = PersonFilter.AUSTIN;
 
     // Key Presses
     public static int UP_ARROW = KeyEvent.VK_UP;
