@@ -5,7 +5,6 @@ import Controller.ControllerManager;
 import Controller.ControllerUtility.Command;
 import Model.State.GameState.MountGameState;
 import Utilities.Settings;
-import View.ViewUtilities.Panels.GamePanel;
 
 import java.awt.event.KeyEvent;
 
@@ -16,7 +15,6 @@ import java.awt.event.KeyEvent;
 public class MountController extends Controller {
 
     private MountGameState state;
-    private GamePanel gamePanel;
 
     public MountController(ControllerManager controllerManager){
         super(controllerManager);
@@ -24,7 +22,6 @@ public class MountController extends Controller {
 
     @Override
     public void keyPress(Integer key) {
-        System.out.println("here");
         if(commands.containsKey(key)) {
             commands.get(key).execute();
         }
@@ -69,7 +66,6 @@ public class MountController extends Controller {
             @Override
             public void execute() {
                 state.dismount();
-                controllerManager.switchGamePlay();
             }
         });
 

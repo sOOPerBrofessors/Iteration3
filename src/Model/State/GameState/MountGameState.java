@@ -7,6 +7,7 @@ import Model.Entity.Projectile.Projectile;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Orientation;
+import Utilities.GameMessageQueue;
 import Utilities.ItemStuff.ItemManager;
 
 import java.util.ArrayList;
@@ -70,8 +71,13 @@ public class MountGameState extends GameState {
     }
 
     public void dismount(){
-        activeMount.removePassenger();
-        map.addCharacter(avatar);
+        if(canDismount()) {
+            activeMount.removePassenger();
+            map.addCharacter(avatar);
+        }
+        else{
+            GameMessageQueue.push("You can't dismount here :(");
+        }
     }
 
     public void playerAttack(){
@@ -84,5 +90,17 @@ public class MountGameState extends GameState {
 
     public void setActiveMount(Mount mount){
         activeMount = mount;
+    }
+
+    private boolean canDismount(){
+        Location temp = activeMount.getLocation().getAdjacent(activeMount.getOrientation());
+        if (temp.getX() < 0 || temp.getY() < 0 || temp.getX() >= 14 || temp.getY() >= 14) {
+            return false;
+        }else if(Math.abs(map.getTopTilePosition(temp.getX(),temp.getY()) - activeMount.getZ()) > 1){
+             return false;
+        }
+        else{
+            return true;
+        }
     }
 }
