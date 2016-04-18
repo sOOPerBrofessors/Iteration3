@@ -58,4 +58,25 @@ public class Location {
     public Location getAdjacentBottom() {
         return new Location(x, y, z - 1);
     }
+
+    public String toString() {
+
+        return "(" + getX() + ", " + getY() + ", " + getZ() + ")";
+
+    }
+
+    public boolean equals(Object o) {
+
+        if (o instanceof Location) {
+
+            Location loc = (Location) o;
+
+            return (this.getX() == loc.getX() && this.getY() == loc.getY() && this.getZ() == loc.getZ());
+
+        }
+
+        return false;
+
+    }
+
 }

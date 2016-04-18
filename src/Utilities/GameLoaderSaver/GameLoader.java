@@ -68,15 +68,29 @@ public class GameLoader {
     }
 
     private void initNPC() {
+
         entities = NPCFactory.init();
 
         AI_Controller controller = new AI_Controller();
 
         for (int i = 0; i < entities.size(); i++) {
+
             entities.get(i).setController(controller);
             map.addCharacter(entities.get(i));
+
         }
         controller.setMap(map);
+
+//        ArrayList<Orientation> ba = controller.findPath(entities.get(0), new Location(7, 3, 0));
+
+//        System.out.println("\nBEGIN PATHING RESULT size: " + ba.size());
+//        for (Orientation orientation : ba) {
+//
+//            System.out.println("\t" + orientation + "\n");
+//
+//        }
+//        System.out.println("\nEND PATHING RESULT");
+
     }
 
     private void initAreaEffect(){
