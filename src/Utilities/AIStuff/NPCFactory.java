@@ -92,18 +92,17 @@ public class NPCFactory {
         mounts = new ArrayList<>();
         npcs = new ArrayList<>();
         npcs.add(makeHellCat());
-        npcs.add(makeGanondorf(map,11,11,"red"));
-        npcs.add(makeGanondorf(map,9,9,"red"));
+        //npcs.add(makeGanondorf(map,11,11,"red"));
+        //npcs.add(makeGanondorf(map,9,9,"red"));
         npcs.add(makeGanondorf(map,9,10,"red"));
         npcs.add(makeGanondorf(map,10,9,"red"));
-        npcs.add(makeEnemy(map,14,14, "blue"));
-        npcs.add(makeEnemy(map,13,13, "blue"));
+        //npcs.add(makeEnemy(map,14,14, "blue"));
+        //npcs.add(makeEnemy(map,13,13, "blue"));
         npcs.add(makeEnemy(map,10,10, "blue"));
         npcs.add(makeEnemy(map,12,12, "blue"));
         npcs.add(makeCrab(new Location(2,3, map.getTopTilePosition(2,3))));
-        npcs.add(makeShopkeeper());
 
-//        npcs.add(makeBird(new Location(10, 7, 6)));
+        //npcs.add(makeBird(new Location(10, 7, 6)));
         mounts.add(theRealMount(map));
     }
 
@@ -122,7 +121,7 @@ public class NPCFactory {
         return hellcat;
     }
 
-    public static NPC makeShopkeeper(){
+    /*public static NPC makeShopkeeper(){
         Personality personality = PersonalityFactory.getPersonality("shopkeeper");
         Faction faction = FactionFactory.getFaction("shopkeeper");
         //This should be a factory, testing for now
@@ -132,7 +131,7 @@ public class NPCFactory {
         Brain brain = new Brain(shopkeeper);
         shopkeeper.setBrain(brain);
         return shopkeeper;
-    }
+    }*/
 
     public static ArrayList<Mount> getMounts(){
         return mounts;

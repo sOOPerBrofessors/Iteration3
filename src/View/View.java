@@ -8,6 +8,7 @@ import Model.Model;
 //import javafx.beans.Observable;
 
 import javax.swing.JFrame;
+import java.awt.*;
 
 /**
  * Created by Wimberley on 4/7/16.
@@ -24,6 +25,7 @@ public class View implements Runnable, Observer{
         viewManager = new ViewManager();
         viewManager.addObserver(this);
         mainFrame.add(viewManager.getActivePanel());
+        update();
         mainFrame.setVisible(true);
     }
 

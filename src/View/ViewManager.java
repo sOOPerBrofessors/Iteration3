@@ -14,6 +14,7 @@ import View.ViewUtilities.Panels.GamePanel;
 import View.ViewUtilities.Panels.IntroPanel;
 
 import javax.swing.JPanel;
+import java.awt.*;
 
 /**
  * Created by Wimberley on 3/23/16.
@@ -40,10 +41,11 @@ public class ViewManager implements Subject {
     public ViewManager(){
         // set intro screen panel
         introPanel = new IntroPanel(this).introPanel();
+        introPanel.setBackground(Color.DARK_GRAY);
         createPanel = new CharacterCreationPanel(this).createPanel();
+        createPanel.setBackground(Color.darkGray);
         gamePanel = new GamePanel(this);
         activePanel = introPanel;
-        //inventoryView = new InventoryView()
         boolean alreadystarted = false;
     }
 
