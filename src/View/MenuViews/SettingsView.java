@@ -1,5 +1,6 @@
 package View.MenuViews;
 
+import Controller.ControllerUtility.Command;
 import Model.Entity.Character.Character;
 import Utilities.Observers.Observer;
 import Utilities.Settings;
@@ -7,6 +8,7 @@ import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -14,16 +16,40 @@ import java.util.Set;
  */
 public class SettingsView extends VertPanel{
 
+
     String[] settingsArray = {"MOVE_N", "MOVE_NW", "MOVE_NE", "MOVE_S","MOVE_SW","MOVE_SE","ATTACK","INTERACT",
             "SKILL_1","SKILL_2","SKILL_3","SKILL_4","SKILL_5","SKILL_6","SKILL_7","INVENTORY","STATS", "SKILLS"};
     int[] settingsInt={Settings.UP, Settings.UP_LEFT, Settings.UP_RIGHT, Settings.DOWN, Settings.DOWN_LEFT, Settings.DOWN_RIGHT, Settings.ATTACK, Settings.INTERACT,
             Settings.SKILL_1, Settings.SKILL_2, Settings.SKILL_3, Settings.SKILL_4,Settings.SKILL_5,Settings.SKILL_6, Settings.SKILL_7,
             Settings.INVENTORY, Settings.STATS, Settings.SKILLS};
-    boolean selected = false;
+    boolean selected;
+    private int lastkey;
+    private HashMap<Integer, Command> commands;
+
 
     public SettingsView(){
         ySel = 0;
         yMax = 17;
+        selected = false;
+        commands = new HashMap<>();
+        commands.put(0, () -> Settings.UP = lastkey);
+        commands.put(1, () -> Settings.UP_LEFT = lastkey);
+        commands.put(2, () -> Settings.UP_RIGHT = lastkey);
+        commands.put(3, () -> Settings.DOWN = lastkey);
+        commands.put(4, () -> Settings.DOWN_LEFT = lastkey);
+        commands.put(5, () -> Settings.DOWN_RIGHT = lastkey);
+        commands.put(6, () -> Settings.ATTACK = lastkey);
+        commands.put(7, () -> Settings.INTERACT = lastkey);
+        commands.put(8, () -> Settings.SKILL_1 = lastkey);
+        commands.put(9, () -> Settings.SKILL_2 = lastkey);
+        commands.put(10, () -> Settings.SKILL_3 = lastkey);
+        commands.put(11, () -> Settings.SKILL_4 = lastkey);
+        commands.put(12, () -> Settings.SKILL_5 = lastkey);
+        commands.put(13, () -> Settings.SKILL_6 = lastkey);
+        commands.put(14, () -> Settings.SKILL_7 = lastkey);
+        commands.put(15, () -> Settings.INVENTORY = lastkey);
+        commands.put(16, () -> Settings.STATS = lastkey);
+        commands.put(17, () -> Settings.SKILLS = lastkey);
     }
 
     @Override
@@ -36,9 +62,10 @@ public class SettingsView extends VertPanel{
         if (ySel < yMax) ySel++;
     }
 
-    @Override
-    public void select(){
+    public void select(int lastKey){
+        this.lastkey = lastKey;
         selected=!selected;
+        if (!selected)commands.get(ySel).execute();
     }
 
     @Override
@@ -63,6 +90,7 @@ public class SettingsView extends VertPanel{
 
         if (selected) g2d.setColor(Color.WHITE);
         g2d.drawString(String.valueOf((char)settingsInt[ySel]), xBorderOffset*4, yBorderOffset*3);
+        g2d.drawString(String.valueOf((char)lastkey), xBorderOffset*4, yBorderOffset*4);
         if(settingsInt[ySel]== KeyEvent.VK_SPACE) g2d.drawString("Space", xBorderOffset*4, yBorderOffset*3);
         g2d.dispose();
     }

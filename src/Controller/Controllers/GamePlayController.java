@@ -30,7 +30,9 @@ public class GamePlayController extends Controller{
         }
     } // end keyPress
 
-    private void initCommands(){
+    public void initCommands(){
+
+        commands.clear();
 
         // up key press
         commands.put(Settings.UP, () -> state.movePlayerN());

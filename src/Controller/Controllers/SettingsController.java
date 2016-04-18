@@ -11,6 +11,8 @@ public class SettingsController extends Controller { //NOT VERY OOPY
 
     private static SettingsView settingsView;
 
+    private int lastKeypressed, secondLast;
+
     public SettingsController(ControllerManager controllerManager){
         super(controllerManager);
         initCommands();
@@ -19,6 +21,8 @@ public class SettingsController extends Controller { //NOT VERY OOPY
 
     @Override
     public void keyPress(Integer key){
+        secondLast = lastKeypressed;
+        lastKeypressed = key;
         if(commands.containsKey(key)) {
             commands.get(key).execute();
         }
@@ -38,7 +42,8 @@ public class SettingsController extends Controller { //NOT VERY OOPY
         commands.put(Settings.ENTER, new Command() {
             @Override
             public void execute() {
-                settingsView.select();
+                settingsView.select(secondLast);
+                controllerManager.initGameplayController();
             }
         });
 
