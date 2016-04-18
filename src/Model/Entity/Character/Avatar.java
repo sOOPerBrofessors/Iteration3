@@ -17,8 +17,11 @@ import Utilities.GameMessageQueue;
 import Utilities.Visitor.CharacterTypeVisitor;
 
 import Utilities.Visitor.CharacterVisitor;
+import View.AreaViewport.HUDView.HUD;
+import View.ViewUtilities.Sprites.ImageAssets;
 
 import java.util.ArrayList;
+
 
 /**
  * Created by broskj on 4/6/16.
@@ -34,26 +37,32 @@ public class Avatar extends Character {
     } // end constructor
 
     public static Avatar makeSmasher(Location location) {
+        HUD.setOccupationSprite(ImageAssets.smasherS);
         return new Avatar(new Smasher(), location);
     } // end factory method makeSmasher
 
     public static Avatar makeSneak(Location location) {
+        HUD.setOccupationSprite(ImageAssets.sneakS);
         return new Avatar(new Sneak(),location);
     } // end factory method makeSneak
 
     public static Avatar makeSummoner(Location location) {
+        HUD.setOccupationSprite(ImageAssets.sneakS);
         return new Avatar(new Summoner(), location);
     } // end factory method makeSneak
 
     public static Avatar makeSmasher() {
+        HUD.setOccupationSprite(ImageAssets.smasherS);
         return new Avatar(new Smasher(), new Location(5,5,0));
     } // end factory method makeSmasher
 
     public static Avatar makeSneak() {
+        HUD.setOccupationSprite(ImageAssets.sneakS);
         return new Avatar(new Sneak(),new Location(5,5,0));
     } // end factory method makeSneak
 
     public static Avatar makeSummoner() {
+        HUD.setOccupationSprite(ImageAssets.summonerS);
         return new Avatar(new Summoner(), new Location(5,5,0));
     } // end factory method makeSneak
 

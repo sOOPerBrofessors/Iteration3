@@ -22,6 +22,7 @@ public abstract class Occupation implements OccupationVisitable {
     protected ArrayList<Skill> skillList = new ArrayList<>();
 
     public abstract CharacterStats initStats();
+    public abstract String toString();
 
     public void equipSmasherWeapon(Weapon weapon, Character character) {
         MessageHandler.println("You cannot equip this weapon.", ErrorLevel.ERROR);

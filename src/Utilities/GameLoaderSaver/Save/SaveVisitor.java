@@ -3,8 +3,13 @@ package Utilities.GameLoaderSaver.Save;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Entity.Character.NPC.NPC;
+import Model.Items.Item;
+import Model.Items.Takeable.TakeableItem;
+import Model.Map.AreaEffect.*;
+import Model.Map.Location;
 import Model.Entity.Projectile.Projectile;
 import Model.Map.AreaEffect.AreaOfEffect;
+
 import Model.Map.Map;
 import Model.Map.Tile.Terrain.Terrain;
 import Model.Items.Takeable.TakeableItem;
@@ -12,6 +17,7 @@ import Model.Map.Location;
 import Model.State.GameState.GameState;
 import Utilities.ItemStuff.ItemManager;
 import Utilities.Visitor.*;
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -82,18 +88,15 @@ public class SaveVisitor implements TileVisitor, CharacterTypeVisitor {
         return e;
     }
     public Element saveItems(){
-        Element e = doc.createElement("Items");
+        Element e = doc.createElement("Map-Items");
         ItemManager itemManager = gameState.getItemManager();
-
-        HashMap<Location, TakeableItem> tmp = itemManager.getMapTakableItems();
-        Iterator it = tmp.entrySet().iterator();
-        //Test to see
-        while (it.hasNext()) {
-            HashMap.Entry pair = (HashMap.Entry)it.next();
-            System.out.println(pair.getKey() + " = " + pair.getValue());
-            it.remove(); // avoids a ConcurrentModificationException
+        ItemSaver itemSaver = new ItemSaver(doc);
+        ArrayList<Element> tmp = itemSaver.getItems(itemManager);
+        for(Element element : tmp){
+            e.appendChild(element);
         }
 
+        mainRootElement.appendChild(e);
         return e;
     }
 
@@ -143,7 +146,7 @@ public class SaveVisitor implements TileVisitor, CharacterTypeVisitor {
             //Output to console for testing
             //StreamResult consoleResult = new StreamResult(System.out);
             //transformer.transform(source, consoleResult);
-            System.out.println("Saved success!");
+            System.out.println("SaveVisitor: Saved success!");
         } catch (TransformerConfigurationException e) {
             e.printStackTrace();
         } catch (TransformerException e) {
@@ -156,6 +159,8 @@ public class SaveVisitor implements TileVisitor, CharacterTypeVisitor {
         CharacterSaver characterSaver = new CharacterSaver(doc);
         ArrayList<Element> tmp = characterSaver.getElementsList(avatar);
         Element element = doc.createElement("Avatar");
+        internalCharAttr(element, avatar);
+        doSkillsForAvatar(element, avatar);
         for(Element elm : tmp){
             element.appendChild(elm);
         }
@@ -167,9 +172,28 @@ public class SaveVisitor implements TileVisitor, CharacterTypeVisitor {
         CharacterSaver characterSaver = new CharacterSaver(doc);
         ArrayList<Element> tmp = characterSaver.getElementsList(npc);
         Element element = doc.createElement("NPC");
+        internalCharAttr(element, npc);
         for(Element elm : tmp){
             element.appendChild(elm);
         }
         mainRootElement.appendChild(element);
+    }
+
+    private void internalCharAttr(Element element, Character character){
+        Attr locAttr = doc.createAttribute("location");
+        locAttr.setValue(character.getLocation().toString());
+        element.setAttributeNode(locAttr);
+        Attr occupationAttr = doc.createAttribute("occupation");
+        occupationAttr.setValue(character.getOccupation().toString());
+        element.setAttributeNode(occupationAttr);
+        Attr orientationAttr = doc.createAttribute("orientation");
+        orientationAttr.setValue(character.getOrientation().toString());
+        element.setAttributeNode(orientationAttr);
+    }
+
+    private void doSkillsForAvatar(Element element, Avatar avatar){
+        Element skillsElement = doc.createElement("Skills");
+
+        element.appendChild(skillsElement);
     }
 }

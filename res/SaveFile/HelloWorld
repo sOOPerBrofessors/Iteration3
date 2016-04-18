@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Save_File xmlns="./res/SaveFile/HelloWorld">
-     <NPC>
+     <NPC location="1,1,0" occupation="smasher" orientation="south">
           <Inventory>
-               <Pack/>
+               <Pack>
+                    <Takeable-Item name="Basic-Health-Potion"/>
+                    <Takeable-Item name="Basic-Health-Potion"/>
+                    <Takeable-Item name="Diamond-Sword"/>
+                    <Takeable-Item name="Diamond-Sword"/>
+               </Pack>
                <Equip/>
           </Inventory>
+          <occupation/>
+          <Stats agility="3" base-agility="3" base-hardiness="3" base-health="4" base-intellect="3" base-lives="3" base-mana="4" base-strength="5" experience="0" hardiness="3" health="4" intellect="3" lives="3" mana="4" strength="5"/>
      </NPC>
-     <Avatar>
+     <NPC location="6,4,0" occupation="Pet" orientation="southEast">
           <Inventory>
-               <Pack/>
+               <Pack>
+                    <Takeable-Item name="Basic-Health-Potion"/>
+                    <Takeable-Item name="Basic-Health-Potion"/>
+                    <Takeable-Item name="Diamond-Sword"/>
+                    <Takeable-Item name="Diamond-Sword"/>
+               </Pack>
                <Equip/>
           </Inventory>
+          <occupation/>
+          <Stats agility="5" base-agility="5" base-hardiness="3" base-health="4" base-intellect="2" base-lives="3" base-mana="3" base-strength="2" experience="0" hardiness="3" health="4" intellect="2" lives="3" mana="3" strength="2"/>
+     </NPC>
+     <Avatar location="8,0,0" occupation="smasher" orientation="northEast">
+          <Skills/>
+          <Inventory>
+               <Pack>
+                    <Takeable-Item name="Key"/>
+               </Pack>
+               <Equip/>
+          </Inventory>
+          <occupation/>
+          <Stats agility="3" base-agility="3" base-hardiness="3" base-health="4" base-intellect="3" base-lives="3" base-mana="4" base-strength="5" experience="0" hardiness="3" health="4" intellect="3" lives="3" mana="4" strength="5"/>
      </Avatar>
+     <Map-Items>
+          <Takeable-Item location="4,4,0" name="Basic-Health-Potion"/>
+          <Takeable-Item location="4,3,0" name="Wooden-Sword"/>
+          <Takeable-Item location="3,3,0" name="Light-Armor"/>
+     </Map-Items>
 </Save_File>

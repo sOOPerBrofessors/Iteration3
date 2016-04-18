@@ -80,7 +80,6 @@ public class NPC extends Character implements Tickable{
     public void acceptCharacterVisitor(CharacterVisitor characterVisitor) {
         characterVisitor.visitInventory(inventory);
         characterVisitor.visitOccupation(o);
-        characterVisitor.visitSkills(skills);
         characterVisitor.visitStats(stats);
     }
 
@@ -91,7 +90,6 @@ public class NPC extends Character implements Tickable{
 
     @Override
     public void onInteract() {
-        System.out.println("NPC: I am being interacted on");
         npcStrategy.onInteract();
     }
 
