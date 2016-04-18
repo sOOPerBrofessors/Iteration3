@@ -20,7 +20,6 @@ public class Enchantment extends RangedSkill{
     private int modifier;
     private Character enemy;
     private ArrayList<Location> affectedArea;
-    private Location curLocation;
     private Tile curTile;
 
     public Enchantment (Avatar avatar) {
