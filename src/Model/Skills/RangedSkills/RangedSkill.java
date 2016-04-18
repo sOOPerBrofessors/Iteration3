@@ -27,10 +27,6 @@ public abstract class RangedSkill extends Skill {
         super(avatar);
     }
 
-    public void execute() {
-
-    }
-
     public void execute(ActiveGameState activeGameState) {}
 
     protected void attackAreaSingleTarget(Map map) {

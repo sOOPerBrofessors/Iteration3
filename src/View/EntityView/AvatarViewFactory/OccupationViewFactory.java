@@ -24,6 +24,8 @@ public class OccupationViewFactory {
     public static OrientationView createPetView(Orientation orientation){
         return new OrientationView(orientation, ImageAssets.hellCatN, ImageAssets.hellCatNW, ImageAssets.hellCatNE,ImageAssets.hellCatS,ImageAssets.hellCatSE,ImageAssets.hellCatSW);
     }
-
+    public static OrientationView createShopkeeperView(Orientation orientation){
+        return new OrientationView(orientation, ImageAssets.shopKeeperN, ImageAssets.shopKeeperNW, ImageAssets.shopKeeperNE,ImageAssets.shopKeeperS,ImageAssets.shopKeeperSE,ImageAssets.shopKeeperSW);
+    }
 
 }

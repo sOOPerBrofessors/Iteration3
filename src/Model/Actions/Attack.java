@@ -47,7 +47,6 @@ public class Attack{
 
     public void execute(Map map) {
         if (checkCD()) {
-            calculateDamage();
             setTimePerformed();
             affectedArea = LinearEffect.getLinearSameLevel(character.getLocation(), character.getOrientation(), 1);
 
@@ -61,16 +60,21 @@ public class Attack{
             targetTile = map.getTopTile(targetLocation.getX(), targetLocation.getY());
             if (targetTile.hasCharacter()) {
                 enemy = targetTile.getCharacter();
+                calculateDamage(enemy);
                 enemy.healthEffect(-damage);
+                if(enemy.getHealth() <= 0)
+                    character.experienceEffect(enemy.getBaseHealth());
             }
-        }
-        else {
-            GameMessageQueue.push("You are not prepared for next attack");
         }
     }
 
-    private void calculateDamage() {
-        damage = character.getOffensiveRating() / 5;
+    private void calculateDamage(Character enemy) {
+        int enemyDefense = enemy.getDefensiveRating(),
+                enemyArmor = enemy.getArmorRating();
+        damage = (int)(Math.random() * character.getOffensiveRating())+1 -
+                (int)(Math.random() * enemyArmor/2)+1 -
+                (int)(Math.random() * enemyDefense/2)+1;
+        System.out.println("enemy defense " + enemyDefense + " enemy armor " + enemyArmor + " char offense " + character.getOffensiveRating() + "; Damage is " + damage);
         if (damage < 1) {
             damage = 1;
         }
