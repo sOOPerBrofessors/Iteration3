@@ -38,9 +38,9 @@ public class GameLoader {
         entities = new ArrayList<>();
         avatar = player;
         initMap();
-        initNPC();
         initPlayer();
         initItems();
+        initNPC();
         itemManager = new ItemManager(ItemFactory.getTakableItems(), ItemFactory.getInteractableItems(), ItemFactory.getAllItemViews(), ItemFactory.getMapItemViews());
         initAreaEffect();
         activeGameState = new ActiveGameState(map, player, entities, itemManager);
@@ -76,6 +76,7 @@ public class GameLoader {
         for (int i = 0; i < entities.size(); i++) {
 
             entities.get(i).setController(controller);
+
             map.addCharacter(entities.get(i));
 
         }
