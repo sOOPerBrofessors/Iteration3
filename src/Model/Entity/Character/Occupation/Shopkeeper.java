@@ -1,10 +1,6 @@
 package Model.Entity.Character.Occupation;
 
 import Model.Entity.Character.Avatar;
-import Model.Entity.Character.Character;
-import Model.Items.Takeable.Equippable.Armor;
-import Model.Items.Takeable.Equippable.Weapon.Weapon;
-import Model.Map.Location;
 import Model.Map.Orientation;
 import Model.Skills.BindWounds;
 import Model.Skills.CombatSkills.BrawlingSkill;
@@ -18,21 +14,9 @@ import Utilities.Visitor.OccupationVisitor;
 import java.util.ArrayList;
 
 /**
- * Created by broskj on 4/6/16.
- *
- * Class to allow a character access to only smasher equippables, skills, and abilities.
+ * Created by aseber on 4/18/16.
  */
-public class Smasher extends Occupation {
-
-    @Override
-    public void equipSmasherWeapon(Weapon weapon, Character character) {
-        character.equipWeapon(weapon);
-    } // end equipSmasherWeapon
-
-    @Override
-    public void equipSmasherArmor(Armor armor, Character character) {
-        character.equipArmor(armor);
-    } // end equipSmasherArmor
+public class Shopkeeper extends Occupation {
 
     @Override
     public CharacterStats initStats() {
@@ -41,7 +25,7 @@ public class Smasher extends Occupation {
 
     @Override
     public void acceptOccupationVistor(OccupationVisitor occupationViewVisitor, Orientation orientation) {
-        occupationViewVisitor.visitShopkeeper(orientation);
+        occupationViewVisitor.visitSmasher(orientation);
     }
 
     @Override
@@ -52,7 +36,11 @@ public class Smasher extends Occupation {
     public ArrayList<Skill> getSkillList(Avatar avatar) {
         skillList.add(new BindWounds(avatar));
         skillList.add(new Observation(avatar));
+        skillList.add(new OneHandedWeaponSkill(avatar));
+        skillList.add(new TwoHandedWeaponSkill(avatar));
+        skillList.add(new BrawlingSkill(avatar));
+
         return skillList;
     }
 
-} // end class Smasher
+}

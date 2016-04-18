@@ -128,6 +128,17 @@ public class CharacterStats extends EntityStats implements Subject {
                 17);     // movement
     }
 
+    public static CharacterStats makeShopkeeperStats() {
+        return new CharacterStats(
+                7,      // agility
+                0,      // experience
+                5,      // hardiness
+                7,      // intellect
+                3,      // lives
+                10,      // strength
+                4);     // movement
+    }
+
     public CharacterStats makeNPC() {
         /*
         not sure if this works.  Ideally, when you make an NPC's stats you'll do it by saying:

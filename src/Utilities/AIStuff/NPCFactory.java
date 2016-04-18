@@ -7,6 +7,7 @@ import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Character.NPC.NPCStrategy.NPCStrategy;
 import Model.Entity.Character.NPC.NPCStrategy.TalkNPCStrategy;
 import Model.Entity.Character.Occupation.Pet;
+import Model.Entity.Character.Occupation.Shopkeeper;
 import Model.Entity.Character.Occupation.Smasher;
 import Model.Faction.Faction;
 import Model.Faction.FactionFactory;
@@ -42,11 +43,24 @@ public class NPCFactory {
         return hellcat;
     }
 
+    public static NPC makeShopkeeper(){
+        Personality personality = PersonalityFactory.getPersonality("shopkeeper");
+        Faction faction = FactionFactory.getFaction("shopkeeper");
+        //This should be a factory, testing for now
+        NPCStrategy strategy = new TalkNPCStrategy("Hi! I'm the shopkeeper! Trade me!");
+//        NPC gandorf = new NPC(new Smasher(), new Location(1,1,0), personality, faction, strategy);
+        NPC hellcat = new NPC(new Shopkeeper(), new Location(7, 4, 0), personality, faction, strategy);
+        Brain brain = new Brain(hellcat);
+        hellcat.setBrain(brain);
+        return hellcat;
+    }
+
     public static ArrayList<NPC> init(){
         ArrayList<NPC> entities = new ArrayList<>();
 
         entities.add(makeGanondorf());
         entities.add(makeHellCat());
+        entities.add(makeShopkeeper());
 
         return entities;
     }
