@@ -13,8 +13,10 @@ public class Settings {
     public static int GAMEWIDTH = 1080;
     public static int GAMEHEIGHT = 720;
     public static int SCALEFACTOR = 1;
-    public static boolean debug = false;
 
+    public static boolean debug = true;
+    public static ErrorLevel errorLevel = ErrorLevel.WARNING;
+    public static PersonFilter personFilter = PersonFilter.AUSTIN;
 
     // Key Presses
     public static int UP_ARROW = KeyEvent.VK_UP;
