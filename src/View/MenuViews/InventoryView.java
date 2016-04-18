@@ -91,9 +91,9 @@ public class InventoryView extends AllDirPanel implements Observer{
 
     public void interactWithItem(){ //MAKE SURE INVENTORY HANDLES ERROR CHECKING IF TRYING TO USE AN ITEMSLOT THAT ISN'T FILLED!!!
         if (armorSel){
-
+            avatar.unEquipArmor();
         } else if (weaponSel){
-
+            avatar.unEquipWeapon();
         } else if (calcSel() < items.size()){
             avatar.utilizeItem(calcSel());
         }
@@ -170,8 +170,7 @@ public class InventoryView extends AllDirPanel implements Observer{
                     //MessageHandler.println("Adding Image to Inventory ERROR: " + Integer.toString(i), ErrorLevel.CRITICAL, PersonFilter.SAM);
                 }
         }
-        //weaponImage = itemViewHashMap.get(inventory.getWeapon()).getImage();
-        //armorImage =  itemViewHashMap.get(inventory.getArmor()).getImage();
+        weaponImage = armorImage = null; //reset images so that they don't retain old images if unequipped shit
         if (inventory.getWeapon()!=null) {
             weaponImage = itemViewHashMap.get(inventory.getWeapon()).getImage();
             MessageHandler.println("WeaponUpdate: "+inventory.getWeapon().getName(),ErrorLevel.NOTICE,PersonFilter.SAM);

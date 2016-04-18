@@ -176,6 +176,16 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         alert();
     } // end equipArmor
 
+    public void unEquipWeapon(){
+        inventory.unequipWeapon();
+        alert();
+    }
+
+    public void unEquipArmor(){
+        inventory.unequipArmor();
+        alert();
+    }
+
     public void equipSmasherWeapon(Weapon weapon) {
         o.equipSmasherWeapon(weapon, this);
     } // end equipSmasherWeapon
