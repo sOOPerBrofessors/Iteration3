@@ -254,6 +254,10 @@ public class Map {
         mapOfTiles[character.getX()][character.getY()].removeCharacter(character);
     }
 
+    public void removeMount(Mount mount){
+        mapOfTiles[mount.getX()][mount.getY()].removeMount(mount);
+    }
+
     public void addMount(Mount mount){
         mapOfTiles[mount.getX()][mount.getY()].addMount(mount);
     }

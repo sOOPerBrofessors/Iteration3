@@ -15,7 +15,6 @@ public class EarthShake extends RangedSkill {
     public EarthShake(Avatar avatar) {
         super(avatar);
         name = "Earth shake";
-        level = 10;
         manaCost = 1;
         coolDownTime = 1;
     }

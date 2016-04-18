@@ -16,7 +16,7 @@ import Utilities.Observers.Subject;
 //For now this will only contain this stuff (might implement more later)
 public abstract class Mount extends Entity implements Subject{
 
-    private Character passenger;
+    protected Character passenger;
     final int delay;
     boolean canMove;
     private final EntityStats stats;
@@ -62,5 +62,5 @@ public abstract class Mount extends Entity implements Subject{
         return passenger;
     }
 
-    public abstract void levitate();
+    public abstract void levitate(int z);
 }

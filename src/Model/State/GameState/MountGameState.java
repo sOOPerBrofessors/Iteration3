@@ -1,5 +1,6 @@
 package Model.State.GameState;
 
+import Controller.Controllers.MountController;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Character.NPC.NPC;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 public class MountGameState extends GameState {
 
     private Mount activeMount;
+    private MountController controller;
 
     public MountGameState(Map map, Avatar avatar, ArrayList<NPC> entities, ArrayList<Mount> mounts, ItemManager itemManager) {
         super(map, avatar, entities, mounts, itemManager);
@@ -67,13 +69,17 @@ public class MountGameState extends GameState {
     }
 
     public void levitate(){
-        activeMount.levitate();
+        map.removeMount(activeMount);
+        Location temp = activeMount.getLocation().getAdjacent(activeMount.getOrientation());
+        activeMount.levitate(map.getTopTilePosition(temp.getX(), temp.getY()));
+        map.addMount(activeMount);
     }
 
     public void dismount(){
         if(canDismount()) {
             activeMount.removePassenger();
             map.addCharacter(avatar);
+            controller.activeGame();
         }
         else{
             GameMessageQueue.push("You can't dismount here :(");
@@ -97,5 +103,9 @@ public class MountGameState extends GameState {
         if (temp.getX() < 0 || temp.getY() < 0 || temp.getX() >= 14 || temp.getY() >= 14) {
             return false;
         }else return Math.abs(map.getTopTilePosition(temp.getX(), temp.getY()) - activeMount.getZ()) <= 1;
+    }
+
+    public void setController(MountController controller) {
+        this.controller = controller;
     }
 }

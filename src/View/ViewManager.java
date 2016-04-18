@@ -190,6 +190,7 @@ public class ViewManager implements Subject {
         gamePanel = new GamePanel(this);
         gamePanel.init(gameLoader.getActiveGameState(), gamePlayController); // initializes the game view
         mountController.setState(gameLoader.getMountGameState());
+        gameLoader.getMountGameState().setController(mountController);
 
         activePanel = gamePanel;
         stateManager.setActiveGameState(gameLoader.getActiveGameState());

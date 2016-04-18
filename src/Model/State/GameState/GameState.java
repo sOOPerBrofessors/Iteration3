@@ -17,13 +17,12 @@ import Utilities.ItemStuff.ItemManager;
  */
 public abstract class GameState extends State {
 
-    final ArrayList<NPC> npcs;
-    Map map;
-    Avatar avatar;
-    final ItemManager itemManager;
-    final ArrayList<Projectile> projectiles;
-    final ArrayList<Mount> mounts;
-    GamePlayController controller;
+    protected ArrayList<NPC> npcs;
+    protected Map map;
+    protected Avatar avatar;
+    protected ItemManager itemManager;
+    protected ArrayList<Projectile> projectiles;
+    protected ArrayList<Mount> mounts;
 
     GameState(Map map, Avatar avatar, ArrayList<NPC> entities, ArrayList<Mount> mounts, ItemManager itemManager){
         //This will be done in the gameLoader
@@ -53,9 +52,5 @@ public abstract class GameState extends State {
 
     public ItemManager getItemManager() {
         return itemManager;
-    }
-
-    public void setController(GamePlayController controller) {
-        this.controller = controller;
     }
 }
