@@ -20,7 +20,7 @@ public class EntityRelationshipVisitor implements VisualInformationVisitor {
 
     public void visit(VisualInformation target) {
 
-        for (Entity entity : target.getEntityInformation().values()) {
+        for (Entity entity : target.getEntityInformation().keySet()) {
 
             if (!relationshipList.relationshipExists(entity)) {
 

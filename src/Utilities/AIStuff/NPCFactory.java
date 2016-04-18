@@ -24,10 +24,21 @@ public class NPCFactory {
         //This should be a factory, testing for now
         NPCStrategy strategy = new TalkNPCStrategy("Ganondorf: Hi minion", "Ganondorf: I am awesome", "Ganondorf: What do you want?");
         NPC gandorf = new NPC(new Smasher(), new Location(1,1,0), personality, faction, strategy);
-//        NPC gandorf = new NPC(new Smasher(), new Location(5,3,0), personality, faction, strategy);
         Brain brain = new Brain(gandorf);
         gandorf.setBrain(brain);
         return gandorf;
+    }
+
+    public static NPC makeHellCat(){
+        Personality personality = PersonalityFactory.getPersonality("pet");
+        Faction faction = FactionFactory.getFaction("blue");
+        //This should be a factory, testing for now
+        NPCStrategy strategy = new TalkNPCStrategy("");
+//        NPC gandorf = new NPC(new Smasher(), new Location(1,1,0), personality, faction, strategy);
+        NPC hellcat = new NPC(new Smasher(), new Location(5,3,0), personality, faction, strategy);
+        Brain brain = new Brain(hellcat);
+        hellcat.setBrain(brain);
+        return hellcat;
     }
 
     public static ArrayList<NPC> init(){

@@ -6,6 +6,7 @@ import Model.Entity.Character.NPC.NPC;
 import Model.Map.AreaEffect.TeleportAOE;
 import Model.Map.Location;
 import Model.Map.Map;
+import Model.Map.Orientation;
 import Model.State.GameState.ActiveGameState;
 import Model.State.GameState.PausedGameState;
 import Utilities.AIStuff.NPCFactory;
@@ -80,16 +81,6 @@ public class GameLoader {
 
         }
         controller.setMap(map);
-
-//        ArrayList<Orientation> ba = controller.findPath(entities.get(0), new Location(7, 3, 0));
-
-//        System.out.println("\nBEGIN PATHING RESULT size: " + ba.size());
-//        for (Orientation orientation : ba) {
-//
-//            System.out.println("\t" + orientation + "\n");
-//
-//        }
-//        System.out.println("\nEND PATHING RESULT");
 
     }
 

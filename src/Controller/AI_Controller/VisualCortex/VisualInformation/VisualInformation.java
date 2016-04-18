@@ -16,16 +16,16 @@ public class VisualInformation {
     // I should know the current entity location?
     // This lets me compute distances and then pump that into a hashmap<Entity, dist> so I can do more fun stuff with weights
 
-    private HashMap<Point, Entity> entityVisualInformation = new HashMap<>();
+    private HashMap<Entity, Double> entityVisualInformation = new HashMap<>();
 //    private HashMap<Point, Item> itemVIsualInformation = new HashMap<>();
 
-    public void addEntityVisualInformation(Point point, Entity entity) {
+    public void addEntityVisualInformation(Entity entity, double distance) {
 
-        entityVisualInformation.put(point, entity);
+        entityVisualInformation.put(entity, distance);
 
     }
 
-    public final Map<Point, Entity> getEntityInformation() {
+    public final Map<Entity, Double> getEntityInformation() {
 
         return Collections.unmodifiableMap(entityVisualInformation);
 

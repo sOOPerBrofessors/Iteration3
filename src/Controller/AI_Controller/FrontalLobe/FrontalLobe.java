@@ -91,10 +91,10 @@ public class FrontalLobe implements Tickable {
 
         for (Map.Entry<Interest, Double> entry : entityInterests.entrySet()) {
 
-            for (Map.Entry<Point, Entity> entry2 : memory.getVisualInformation().getEntityInformation().entrySet()) {
+            for (Map.Entry<Entity, Double> entry2 : memory.getVisualInformation().getEntityInformation().entrySet()) {
 
                 EntityInterest interest = (EntityInterest) entry.getKey();
-                interest.setTarget(entry2.getValue());
+                interest.setTarget(entry2.getKey());
                 Decision decision = new Decision(interest, entry.getValue(), memory.getVisualInformation(), (Memory) memory);
                 decisionPicker.add(decision, decision.getValue());
 
