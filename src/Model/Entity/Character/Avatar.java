@@ -97,5 +97,4 @@ public class Avatar extends Character {
     public void onInteract() {
         //Do nothing on interact
     }
-
 }

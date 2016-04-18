@@ -172,12 +172,15 @@ public class ViewManager implements Subject {
     private void initGame(Avatar player){
         GameLoader gameLoader = new GameLoader(player); // initializes player and attributes of GameState
         GamePlayController gamePlayController = controllerManager.getGamePlayController();
+        MountController mountController = controllerManager.getMountController();
         gamePanel = new GamePanel(this);
         gamePanel.init(gameLoader.getActiveGameState(), gamePlayController); // initializes the game view
+        mountController.setState(gameLoader.getMountGameState());
 
         activePanel = gamePanel;
         stateManager.setActiveGameState(gameLoader.getActiveGameState());
         stateManager.setPausedGameState(gameLoader.getPausedGameState());
+        stateManager.setMountGameState(gameLoader.getMountGameState());
         controllerManager.switchGamePlay(); // switch to gameplay controller
         InventoryController.setInventoryView(gamePanel);
         PauseController.setPauseView(gamePanel);

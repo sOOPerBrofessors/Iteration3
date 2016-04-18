@@ -51,6 +51,7 @@ public class GamePanel extends JPanel{
         controller = gamePlayController;
         addView(areaViewport);
         controller.setState(gameState);
+        gameState.setController(controller);
     }
 
     //These views can be added to the GamePanel

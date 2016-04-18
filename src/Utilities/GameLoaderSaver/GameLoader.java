@@ -8,6 +8,7 @@ import Model.Map.AreaEffect.TeleportAOE;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.State.GameState.ActiveGameState;
+import Model.State.GameState.MountGameState;
 import Model.State.GameState.PausedGameState;
 import Utilities.AIStuff.NPCFactory;
 import Utilities.ErrorLevel;
@@ -29,6 +30,7 @@ public class GameLoader {
     private Avatar avatar;
     private ActiveGameState activeGameState;
     private PausedGameState pausedGameState;
+    private MountGameState mountGameState;
     private ArrayList<NPC> entities;
     private ItemManager itemManager;
     private ArrayList<Mount> mounts;
@@ -47,6 +49,7 @@ public class GameLoader {
         initAreaEffect();
         activeGameState = new ActiveGameState(map, player, entities, mounts, itemManager);
         pausedGameState = new PausedGameState(map, player, entities, mounts, itemManager);
+        mountGameState = new MountGameState(map, player, entities, mounts, itemManager);
     }
 
     //Map has to contain an avatar (might be unnecessary in the constructor though)
@@ -97,5 +100,9 @@ public class GameLoader {
 
     public PausedGameState getPausedGameState() {
         return pausedGameState;
+    }
+
+    public MountGameState getMountGameState() {
+        return mountGameState;
     }
 }

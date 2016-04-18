@@ -68,7 +68,7 @@ public class Map {
         if (checkCanInteractWithTile(location, newLocation)
                 && !checkHasObstacle(newLocation)
                 && newTile.moveMount(mount)){
-            getTileAt(currentX, currentY, currentZ).removeCharacter();
+            getTileAt(currentX, currentY, currentZ).removeMount();
             mount.updateLocation(new Location(newX,newY,newZ));
             //newTile.doTileEffects(mount); //does the interaction
             return true;

@@ -38,4 +38,9 @@ public class TheRealMount extends Mount {
          */
         new TimedEvent(delay, () -> canMove = false, e -> canMove = true).start();
     } // end delayMovement
+
+    public void levitate(){
+        System.out.println("Levitate");
+        setLocation(new Location(location.getX(), location.getY(), location.getZ()));
+    }
 }

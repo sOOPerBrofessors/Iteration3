@@ -24,14 +24,12 @@ public abstract class Mount extends Entity implements Subject{
     protected boolean canMove;
     protected EntityStats stats;
     protected Observer observer;
-    protected boolean dismount;
 
     protected Mount(Navigation navigation, Location location){
         super(navigation, location);
         stats = new EntityStats(30,20);
         delay = 1500 / stats.getMovement();
         canMove = true;
-        dismount = false;
     }
 
     public void addPassenger(Character passenger){
@@ -43,10 +41,6 @@ public abstract class Mount extends Entity implements Subject{
 
     public void removePassenger(){
         passenger.setLocation(location.getAdjacent(passenger.getOrientation()));
-        dismount = true;
-        alert();
-        passenger = null;
-        dismount = false;
     }
 
     public boolean checkStrategy(Terrain terrain){
@@ -71,7 +65,5 @@ public abstract class Mount extends Entity implements Subject{
         return passenger;
     }
 
-    public boolean dismounting() {
-        return dismount;
-    }
+    public abstract void levitate();
 }

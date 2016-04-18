@@ -20,4 +20,9 @@ public class BoatMount extends Mount {
         //The move functionality for Mount might be different from character or projectile
         return false;
     }
+
+    @Override
+    public void levitate() {
+
+    }
 }

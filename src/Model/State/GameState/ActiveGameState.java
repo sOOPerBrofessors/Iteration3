@@ -21,6 +21,8 @@ import java.util.ArrayList;
  */
 public class ActiveGameState extends GameState implements Observer{
 
+    private Mount activeMount;
+
     public ActiveGameState(Map map, Avatar avatar, ArrayList<NPC> npcs, ArrayList<Mount> mounts, ItemManager itemManager) {
         super(map, avatar, npcs, mounts, itemManager);
         observerMount();
@@ -105,10 +107,9 @@ public class ActiveGameState extends GameState implements Observer{
     public void update() {
         for(Mount mount : mounts){
             if(mount.getPassenger() != null){
+                activeMount = mount;
                 map.removeCharacter(avatar);
-            }
-            else if(mount.dismounting()){
-                map.addCharacter(avatar);
+                controller.switchMount();
             }
         }
     }
@@ -123,5 +124,9 @@ public class ActiveGameState extends GameState implements Observer{
             map.addMount(mounts.get(i));
             mounts.get(i).addObserver(this);
         }
+    }
+
+    public Mount getActiveMount(){
+        return activeMount;
     }
 }

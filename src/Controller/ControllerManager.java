@@ -29,6 +29,7 @@ public class ControllerManager implements KeyListener {
     private SkillsController skillsController;
     private SettingsController settingsController;
     private TradeController tradeController;
+    private MountController mountController;
 
     public ControllerManager(){
         gamePlayController = new GamePlayController(this);
@@ -38,13 +39,9 @@ public class ControllerManager implements KeyListener {
         skillsController = new SkillsController(this);
         settingsController = new SettingsController(this);
         tradeController = new TradeController(this);
+        mountController = new MountController(this);
     }
 
-    public void setActiveController(Controller gs){
-        activeController = gs;
-    }
-    //End testing
-    //
     public ControllerManager(ViewManager viewManager, StateManager stateManager){
         this.viewManager = viewManager;
         this.stateManager = stateManager;
@@ -83,6 +80,11 @@ public class ControllerManager implements KeyListener {
         viewManager.displaySettings();
     }
 
+    public void setMountState(){
+        activeController = mountController;
+        stateManager.activeMount();
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
     }
@@ -117,4 +119,8 @@ public class ControllerManager implements KeyListener {
     }
 
     public ViewManager getViewManager(){return viewManager;}
+
+    public MountController getMountController() {
+        return mountController;
+    }
 }
