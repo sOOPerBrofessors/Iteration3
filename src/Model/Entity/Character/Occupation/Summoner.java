@@ -33,4 +33,9 @@ public class Summoner extends Occupation {
     public void acceptOccupationVistor(OccupationVisitor occupationViewVisitor, Orientation orientation) {
         occupationViewVisitor.visitSummoner(orientation);
     }
+
+    @Override
+    public String toString() {
+        return "summoner";
+    }
 } // end class Summoner

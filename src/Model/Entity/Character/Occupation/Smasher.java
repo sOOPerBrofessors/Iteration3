@@ -33,4 +33,9 @@ public class Smasher extends Occupation {
     public void acceptOccupationVistor(OccupationVisitor occupationViewVisitor, Orientation orientation) {
         occupationViewVisitor.visitSmasher(orientation);
     }
+
+    @Override
+    public String toString() {
+        return "smasher";
+    }
 } // end class Smasher

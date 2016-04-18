@@ -5,6 +5,7 @@ import Controller.Controllers.*;
 import Model.Entity.Character.Avatar;
 import Model.State.StateManager;
 import Utilities.GameLoaderSaver.GameLoader;
+import Utilities.GameLoaderSaver.Load.LoadParser;
 import Utilities.Observers.Subject;
 import Utilities.Observers.Observer;
 import View.ViewUtilities.Panels.CharacterCreationPanel;
@@ -62,15 +63,15 @@ public class ViewManager implements Subject {
     }
 
     public void createSmasher(){
-        initGame(Avatar.makeSmasher());
+        newGame(Avatar.makeSmasher());
     }
 
     public void createSneak(){
-        initGame(Avatar.makeSneak());
+        newGame(Avatar.makeSneak());
     }
 
     public void createSummoner(){
-        initGame(Avatar.makeSummoner());
+        newGame(Avatar.makeSummoner());
     }
 
     public void closeAll(){ //Massive OCP violation
@@ -167,16 +168,24 @@ public class ViewManager implements Subject {
         this.stateManager = stateManager;
     }
 
+    private void loadGame(){
+        //No input needed to avatar
+        LoadParser loadParser = new LoadParser();
+        GameLoader gameLoader = new GameLoader(null, stateManager); // initializes player and attributes of GameState
+
+    }
     // initialize game once players selection is confirmed
-    private void initGame(Avatar player){
-        GameLoader gameLoader = new GameLoader(player); // initializes player and attributes of GameState
+    private void newGame(Avatar player){
+        GameLoader gameLoader = new GameLoader(player, stateManager); // initializes player and attributes of GameState
+        gameLoader.createNewGame();
+        initGame(gameLoader);
+    }
+
+    private void initGame(GameLoader gameLoader){
         GamePlayController gamePlayController = controllerManager.getGamePlayController();
         gamePanel = new GamePanel(this);
         gamePanel.init(gameLoader.getActiveGameState(), gamePlayController); // initializes the game view
-
         activePanel = gamePanel;
-        stateManager.setActiveGameState(gameLoader.getActiveGameState());
-        stateManager.setPausedGameState(gameLoader.getPausedGameState());
         controllerManager.switchGamePlay(); // switch to gameplay controller
         InventoryController.setInventoryView(gamePanel);
         PauseController.setPauseView(gamePanel);
@@ -185,6 +194,7 @@ public class ViewManager implements Subject {
         TradeController.setTradeView(gamePanel);
         View.startGameLoop(); // starts loop in Model class
         alert(); // notifies view of the updated panel
-        alreadystarted = true;
     }
+
+
 }

@@ -27,13 +27,15 @@ public class ItemFactory {
     private static HashMap<Location, Interactable> interactableItems;
     private static HashMap<Item, ItemView> allItemViews;
     private static HashMap<Item, ItemView> mapItemViews;
-
-    public static void init(Map map){
+    public static void initHashMaps(){
         takableItems = new HashMap<>();
         allItemViews = new HashMap<>();
         interactableItems = new HashMap<>();
         mapItemViews = new HashMap<>();
+    }
+    public static void init(Map map){
 
+        //initHashMaps(); MIGHT cause problems later
         // create new health potion
         Potion healthPotion = ItemFactory.makeBasicHealthPotion();
         ItemView healthView = new UsableView(ImageAssets.healthPotion);
@@ -76,7 +78,7 @@ public class ItemFactory {
         allItemViews.put(treasure, treasureView);
 
         // create closed chest
-        Interactable closedChest = new Chest((Quest)chestKey, treasure);
+        Interactable closedChest = new Chest((Quest)chestKey, treasure, "ClosedChest");
         ItemView closedChestView = new InteractableView(ImageAssets.closedChest);
         Location closedChestLocation = new Location(3,4, map.getTopTilePosition(3,4));
         closedChestView.setLocation(3,4);

@@ -58,4 +58,8 @@ public class Location {
     public Location getAdjacentBottom() {
         return new Location(x, y, z - 1);
     }
+
+    public String toString(){
+        return x+","+y+","+z;
+    }
 }

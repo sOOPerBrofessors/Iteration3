@@ -33,4 +33,9 @@ public class Sneak extends Occupation {
     public void acceptOccupationVistor(OccupationVisitor occupationViewVisitor, Orientation orientation) {
         occupationViewVisitor.visitSneak(orientation);
     }
+
+    @Override
+    public String toString() {
+        return "sneak";
+    }
 } // end class Sneak

@@ -16,6 +16,7 @@ import Utilities.Visitor.OccupationVisitable;
 public abstract class Occupation implements OccupationVisitable {
 
     public abstract CharacterStats initStats();
+    public abstract String toString();
 
     public void equipSmasherWeapon(Weapon weapon, Character character) {
         MessageHandler.println("You cannot equip this weapon.", ErrorLevel.ERROR);

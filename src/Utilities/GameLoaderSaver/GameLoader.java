@@ -8,6 +8,7 @@ import Model.Map.Location;
 import Model.Map.Map;
 import Model.State.GameState.ActiveGameState;
 import Model.State.GameState.PausedGameState;
+import Model.State.StateManager;
 import Utilities.AIStuff.NPCFactory;
 import Utilities.ErrorLevel;
 import Utilities.GameFactory.MapFactory;
@@ -29,24 +30,31 @@ public class GameLoader {
     private PausedGameState pausedGameState;
     private ArrayList<NPC> entities;
     private ItemManager itemManager;
-
     //Needs a constructor in order to create what type of occupation it is
-    public GameLoader(Avatar player) {
+    public GameLoader(Avatar player, StateManager stateManager) {
         ImageAssets.init();
         entities = new ArrayList<>();
         avatar = player;
         initMap();
-        initNPC();
-        initPlayer();
-        initItems();
+        ItemFactory.initHashMaps();
         itemManager = new ItemManager(ItemFactory.getTakableItems(), ItemFactory.getInteractableItems(), ItemFactory.getAllItemViews(), ItemFactory.getMapItemViews());
-        initAreaEffect();
         activeGameState = new ActiveGameState(map, player, entities, itemManager);
         pausedGameState = new PausedGameState(map, player, entities, itemManager);
+        stateManager.setActiveGameState(activeGameState);
+        stateManager.setPausedGameState(pausedGameState);
+    }
+    public void loadGame(){
+
+    }
+    public void createNewGame(){
+        initNPC();
+        addPlayerToMap();
+        initItems();
+        initAreaEffect();
     }
 
     //Map has to contain an avatar (might be unnecessary in the constructor though)
-    public void initMap() {
+    private void initMap() {
         MessageHandler.println("GameLoader: Loading Map and Avatar and ActiveGameState", ErrorLevel.NOTICE);
         int maxRow = 15;
         int maxCol = 15;
@@ -61,7 +69,7 @@ public class GameLoader {
         ItemFactory.init(map);
     }
 
-    private void initPlayer() {
+    private void addPlayerToMap() {
         map.addCharacter(avatar); //(This doesn't have to worry about 3d things)
     }
 
