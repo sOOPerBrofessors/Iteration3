@@ -155,6 +155,12 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         alert();
     }
 
+    public void defensiveRatingEffect (int amount) {
+        stats.defensiveRatingEffect(amount);
+        alert();
+    }
+
+
     public void experienceEffect(int amount) {
         stats.experienceEffect(amount);
         if(amount >= 0)
