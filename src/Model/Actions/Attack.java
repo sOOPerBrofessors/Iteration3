@@ -74,7 +74,6 @@ public class Attack{
         damage = (int)(Math.random() * character.getOffensiveRating())+1 -
                 (int)(Math.random() * enemyArmor/2)+1 -
                 (int)(Math.random() * enemyDefense/2)+1;
-        System.out.println("enemy defense " + enemyDefense + " enemy armor " + enemyArmor + " char offense " + character.getOffensiveRating() + "; Damage is " + damage);
         if (damage < 1) {
             damage = 1;
         }
