@@ -51,7 +51,7 @@ public class NPCFactory {
     }
 
     public static Mount theRealMount(Map map){
-        return new TheRealMount(Navigation.makeVehicleNav(), new Location(6,2,map.getTopTilePosition(7,4)));
+        return new TheRealMount(Navigation.makeVehicleNav(), new Location(6,2,map.getTopTilePosition(6,2)));
     }
 
     public static void init(Map map){
