@@ -256,8 +256,8 @@ public class CharacterStats extends EntityStats implements Subject {
 
     public void movementEffect(int effect) {
         movement += effect;
-        if(movement < 0) {
-            movement = 0;
+        if(movement < 1) {
+            movement = 1;
         }
         alert();
     }
