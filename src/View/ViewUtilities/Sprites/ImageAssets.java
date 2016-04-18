@@ -196,7 +196,7 @@ public class ImageAssets {
         damageAOE = damageAOESheet.cropSheet(0,0,30,30);
         instantDeathAOE = instantDeathAOESheet.cropSheet(0,0,30,30);
         teleportAOE = teleportAOESheet.cropSheet(0,0,30,30);
-        trapAOE = trapImageSheet.cropSheet(0,0,30,30);
+        trapAOE = trapImageSheet.cropSheet(0,0,92,80);
 
         //skill things
         crackedEarth = crackedEarthSheet.cropSheet(0, 0, terrainWidth, 71);
