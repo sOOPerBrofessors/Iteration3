@@ -35,7 +35,15 @@ public class Faction {
             return 1.0;
         }
 
-        return factionRelationshipList.getRelationship(otherFaction).getValue();
+        Relationship relationship = factionRelationshipList.getRelationship(otherFaction);
+
+        if (relationship == null) {
+
+            return 0.0;
+
+        }
+
+        return relationship.getValue();
 
     }
 

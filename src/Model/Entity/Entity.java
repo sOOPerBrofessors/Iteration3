@@ -17,7 +17,7 @@ import Utilities.Observers.EntityObserver;
 
 public abstract class Entity implements EntityObservable, MapObject {
     protected Location location;
-    protected final Navigation navigation;
+    protected Navigation navigation;
     protected Orientation orientation;
 
     private final ArrayList<EntityObserver> observers;

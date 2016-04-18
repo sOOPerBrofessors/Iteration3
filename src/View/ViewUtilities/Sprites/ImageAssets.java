@@ -29,6 +29,7 @@ public class ImageAssets {
     public static BufferedImage shopKeeperSW, shopKeeperNW, shopKeeperN, shopKeeperNE, shopKeeperSE, shopKeeperS;
     public static BufferedImage enemyS, enemySW, enemyNW, enemyN, enemyNE, enemySE;
     public static BufferedImage crabS, crabSW, crabNW, crabN, crabNE, crabSE;
+    public static BufferedImage birdS, birdSW, birdNW, birdN, birdNE, birdSE;
     public static BufferedImage grass;
     public static BufferedImage grass2;
     public static BufferedImage dirt;
@@ -92,6 +93,7 @@ public class ImageAssets {
         SpriteSheet borderSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/interfaceborder.png"));
         SpriteSheet shopKeeperSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/ShopKeeper.png"));
         SpriteSheet mountSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Mount.png"));
+        SpriteSheet birdSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/bird.png"));
 
         // Cracked earth
         SpriteSheet crackedEarthSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/crackedGrass.png"));
@@ -155,10 +157,16 @@ public class ImageAssets {
         summonerNE = EnemySummonerSheet.cropSheet(summonerWidth*10, 0, summonerWidth, summonerHeight);
         summonerSE = EnemySummonerSheet.cropSheet(summonerWidth*11, 0, summonerWidth, summonerHeight);
 
-        crabS = crabSW = crabSheet.cropSheet(0,50,100,50);
-        crabSE = crabSheet.cropSheet(50,50,100,50);
-        crabN = crabNE = crabSheet.cropSheet(100,50,100,50);
-        crabNW = crabSheet.cropSheet(150,50,100,50);
+        crabS = crabSheet.cropSheet(0,0,100,100);
+        crabSE = crabSheet.cropSheet(100,0,100,100);
+        crabSW = crabSheet.cropSheet(900, 0, 100, 100);
+        crabN = crabSheet.cropSheet(100,0,100,100);
+        crabNW = crabSheet.cropSheet(200,0,100,100);
+        crabNE = crabSheet.cropSheet(300, 0, 100, 100);
+
+        birdN = birdNW = birdNE = birdSheet.cropSheet(220, 0, 30, 30);
+        birdS = birdSW = birdSE = birdSheet.cropSheet(220, 100, 30, 30);
+
         grass = terrainSheet.cropSheet(0,0,terrainWidth,terrainHeight);
         grass2 = terrainSheet.cropSheet(terrainWidth*2,0,terrainWidth,terrainHeight);
         dirt = terrainSheet.cropSheet(terrainWidth,0,terrainWidth,terrainHeight);

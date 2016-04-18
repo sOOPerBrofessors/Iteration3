@@ -4,6 +4,8 @@ import Controller.AI_Controller.FrontalLobe.FrontalLobeMemoryInterface;
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
 import Model.Map.Orientation;
+import Utilities.ErrorLevel;
+import Utilities.MessageHandler;
 import Utilities.UniformPicker;
 
 import java.util.ArrayList;
@@ -26,7 +28,16 @@ public class ExploreInterest extends PointInterest {
 
         }
 
-        addToMovementQueue(orientations.pick());
+        try {
+
+            addToMovementQueue(orientations.pick());
+
+        } catch (NullPointerException e) {
+
+            MessageHandler.println("ExploreInterest: Decision picker was empty when you tried to pick from it, make sure this NPC is in an area it's actually mean't to be", ErrorLevel.ERROR);
+
+        }
+
 
     }
 
