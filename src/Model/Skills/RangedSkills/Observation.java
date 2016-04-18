@@ -36,7 +36,7 @@ public class Observation extends RangedSkill{
     }
 
     public ObservationInfo execute(Map map, Orientation orientation) {
-        if (checkAll()) {
+        if (allConditionChecked()) {
             enforceManaCost();
             setTimePerformed();
             GameMessageQueue.push(name + " Success!");

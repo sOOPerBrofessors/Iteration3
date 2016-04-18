@@ -47,6 +47,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     private boolean canMove;
     private DamageQueue damageQueue;
     private ExperienceQueue experienceQueue;
+    private float alpha = 1f;
 
     protected Character(Occupation o, Location location) {
         super(Navigation.makeCharNav(), location);
@@ -162,6 +163,12 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         stats.skillPointEffect(amount);
         alert();
     }
+
+    public void defensiveRatingEffect (int amount) {
+        stats.defensiveRatingEffect(amount);
+        alert();
+    }
+
 
     public void experienceEffect(int amount) {
         if(amount >= 0)
@@ -381,5 +388,11 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     public DamageQueue getDamageQueue() { return damageQueue; }
     public ExperienceQueue getExperienceQueue() { return experienceQueue; }
 
+    public void setAlpha(float alpha) {
+        this.alpha = alpha;
+    }
 
+    public float getAlpha() {
+        return alpha;
+    }
 } // end abstract class Character

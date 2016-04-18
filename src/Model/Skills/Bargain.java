@@ -18,7 +18,7 @@ public class Bargain extends Skill{
 
     public double executeBargain() {
         double discount = 1;
-        if (checkAll()) {
+        if (allConditionChecked()) {
             enforceManaCost();
             setTimePerformed();
             return bargain();

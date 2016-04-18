@@ -1,5 +1,6 @@
 package Controller.AI_Controller.Interest;
 
+import Controller.AI_Controller.Interest.EntityInterests.FollowInterest;
 import Controller.AI_Controller.Interest.PointInterests.ExploreInterest;
 import Utilities.ErrorLevel;
 import Utilities.PersonFilter;
@@ -18,9 +19,9 @@ public class InterestFactory {
     static {
 
         addInterest(ExploreInterest::new);
+        addInterest(FollowInterest::new);
 //        addInterest(new AttackInterest());
 //        addInterest(new FleeInterest());
-//        addInterest(new FollowInterest());
 //        addInterest(new ItemPickupInterest());
 //        addInterest(new TalkInterest());
 //        addInterest(new TradeInterest());

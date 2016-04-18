@@ -274,6 +274,14 @@ public class CharacterStats extends EntityStats implements Subject {
         alert();
     }
 
+    public void defensiveRatingEffect (int effect) {
+        defensiveRating += effect;
+        if (defensiveRating < 0) {
+            defensiveRating = 0;
+        }
+        alert();
+    }
+
     public void setEquippedWeapon(int equippedWeapon) {
         this.equippedWeapon = equippedWeapon;
         //alert();
