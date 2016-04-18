@@ -64,9 +64,6 @@ public class Attack{
                 enemy.healthEffect(-damage);
             }
         }
-        else {
-            GameMessageQueue.push("You are not prepared for next attack");
-        }
     }
 
     private void calculateDamage() {
