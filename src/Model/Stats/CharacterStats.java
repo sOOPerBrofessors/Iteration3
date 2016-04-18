@@ -1,5 +1,7 @@
 package Model.Stats;
 
+import Model.State.State;
+import Utilities.GameMessageQueue;
 import Utilities.Splats.DamageQueue;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
@@ -129,6 +131,8 @@ public class CharacterStats extends EntityStats implements Subject {
     public void levelUp() {
         // increase level by one; reset lives
         level++;
+        GameMessageQueue.push("Level up!");
+
         lives = baseLives;
 
         // modify current xp and xp to next level
@@ -163,12 +167,17 @@ public class CharacterStats extends EntityStats implements Subject {
         --lives;
 
         if(lives == 0) {
-            agility = baseAgility;
-            hardiness = baseHardiness;
-            intellect = baseIntellect;
-            strength = baseStrength;
-            movement = baseMovement;
+            GameMessageQueue.push("Game over!");
+            // TODO: go to death state
         }
+
+        GameMessageQueue.push("Oh dear, you are dead!  " + lives + " lives remaining.");
+
+        agility = baseAgility;
+        hardiness = baseHardiness;
+        intellect = baseIntellect;
+        strength = baseStrength;
+        movement = baseMovement;
 
         alert();
 
@@ -218,7 +227,6 @@ public class CharacterStats extends EntityStats implements Subject {
         } else if (experience >= experienceThreshold) {
             levelUp();
         }
-        ExperienceQueue.push(new ExperienceQueue.ExperienceSplat(effect));
         alert();
     }
     public void levelEffect(int effect){
@@ -229,16 +237,14 @@ public class CharacterStats extends EntityStats implements Subject {
     }
     public void healthEffect(int effect){
         health += effect;
-        if (health < 0){
-            health = 0;
-            livesEffect(-1); //decrement a life
+        if (health <= 0){
+            kill();
         } else if (health > baseHealth) {
             health = baseHealth;
         }
         else if (health > baseHealth) {
             health = baseHealth;
         }
-        DamageQueue.push(new DamageQueue.DamageSplat(effect));
         alert();
     }
     public void manaEffect(int effect){

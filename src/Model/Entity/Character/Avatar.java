@@ -6,12 +6,9 @@ import Model.Entity.Character.Occupation.Sneak;
 import Model.Entity.Character.Occupation.Summoner;
 import Model.Inventory.Inventory;
 import Model.Map.Location;
-import Model.Skills.BindWounds;
-import Model.Skills.CombatSkills.BrawlingSkill;
-import Model.Skills.RangedSkills.Observation;
 import Model.Skills.Skill;
 import Model.Map.Map;
-import Utilities.MessageHandler;
+import Utilities.GameMessageQueue;
 import Utilities.Visitor.CharacterTypeVisitor;
 
 import Utilities.Visitor.CharacterVisitor;
@@ -75,6 +72,24 @@ public class Avatar extends Character {
         setDelay(getMovement());
         alert();
     } // end update
+
+    @Override
+    public void healthEffect(int amount) {
+        super.healthEffect(amount);
+        if(amount > 0)
+            GameMessageQueue.push("You gained " + amount + " health.");
+        else if(amount > 0) {
+            GameMessageQueue.push("You took " + -1 * amount + " damage.");
+        }
+    } // end healthEffect
+
+    @Override
+    public void manaEffect(int amount) {
+        if(amount >= 0)
+            GameMessageQueue.push("You gained " + amount + " mana.");
+        else
+            GameMessageQueue.push("Lost " + -1*amount + " mana.");
+    } // end manaEffect
 
     @Override
     public void remove() {
