@@ -193,7 +193,7 @@ public class TileView extends JComponent implements TileObserver, TileVisitor, O
     @Override
     public void visitTileHasProjectile(Projectile projectile) {
         if(projectile != null) {
-            projectileView = new ProjectileView(projectile, ImageAssets.fireballs);
+            projectileView = new ProjectileView(projectile);
             projectileView.setPixels(xPixel + Settings.TILEWIDTH/4, yPixel + Settings.TILEHEIGHT/2);
         }
     }

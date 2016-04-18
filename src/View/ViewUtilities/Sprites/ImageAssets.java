@@ -33,6 +33,7 @@ public class ImageAssets {
     public static BufferedImage invSlot, eqSlot, select;
     public static BufferedImage hud, messageBox, interfaceBorder;
     public static ArrayList<BufferedImage> fireballs = new ArrayList<>();
+    public static ArrayList<BufferedImage> arrows = new ArrayList<>();
 
     // items
     public static BufferedImage healthPotion;
@@ -71,6 +72,14 @@ public class ImageAssets {
         SpriteSheet fireball90Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall90.png"));
         SpriteSheet fireball180Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall180.png"));
         SpriteSheet fireball270Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall270.png"));
+
+        // projectiles!
+        SpriteSheet arrow0Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Arrow0.png"));
+        SpriteSheet arrow60Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Arrow60.png"));
+        SpriteSheet arrow120Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Arrow120.png"));
+        SpriteSheet arrow180Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Arrow180.png"));
+        SpriteSheet arrow240Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Arrow240.png"));
+        SpriteSheet arrow300Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/Arrow300.png"));
 
         smasherSW = smasherSheet.cropSheet(0,0, smasherWidth, smasherHeight);
         smasherNW = smasherSheet.cropSheet(smasherWidth*1, 0, smasherWidth, smasherHeight);
