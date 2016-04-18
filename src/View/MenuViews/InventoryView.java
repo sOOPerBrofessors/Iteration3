@@ -30,8 +30,6 @@ public class InventoryView extends AllDirPanel implements Observer{
     private Inventory inventory; //handle to Avatar's inventory
     ArrayList<TakeableItem> items; //handle to Avatar's ArrayList of Items
     Image[] invImages = new Image[16]; //Local Array of Images of Inventory
-    //private Armor equippedArmor;
-    //private Weapon equippedWeapon;
     private ItemManager itemManager;
     private HashMap<Item, ItemView> itemViewHashMap;
 
@@ -105,10 +103,6 @@ public class InventoryView extends AllDirPanel implements Observer{
 
     private int calcSel(){
         return ySel*4+xSel;
-    }
-
-    private void debug(String string){
-        MessageHandler.println(string,ErrorLevel.NOTICE, PersonFilter.SAM);
     }
 
     @Override
