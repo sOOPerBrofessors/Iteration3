@@ -29,8 +29,6 @@ public class Observation extends RangedSkill{
     public Observation (Avatar avatar){
         super(avatar);
         name = "Observation";
-        //TODO:level = 10 for testing
-        level = 10;
         manaCost = 1;
         coolDownTime = 5;
     }

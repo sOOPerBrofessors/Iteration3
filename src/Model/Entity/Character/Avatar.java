@@ -71,6 +71,15 @@ public class Avatar extends Character {
         return inventory;
     }
 
+    public double getAttackInterval() {
+        if (inventory.getEquipment().getWeapon() != null) {
+            return inventory.getEquipment().getWeapon().getAttackInterval();
+        }
+        else {
+            return 1;
+        }
+    }
+
     public Skill getSkill (int index) {
         return skills.get(index);
     }
