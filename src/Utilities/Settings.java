@@ -14,9 +14,13 @@ public class Settings {
     public static int GAMEHEIGHT = 720;
     public static int SCALEFACTOR = 1;
 
+    public static int SPAWN_X = 5;
+    public static int SPAWN_Y = 5;
+    public static int SPAWN_Z = 0;
+
     public static boolean debug = true;
     public static ErrorLevel errorLevel = ErrorLevel.DEV;
-    public static PersonFilter personFilter = PersonFilter.ALL;
+    public static PersonFilter personFilter = PersonFilter.AUSTIN;
 
     // Key Presses
     public static int UP_ARROW = KeyEvent.VK_UP;

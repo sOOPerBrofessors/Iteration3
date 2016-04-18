@@ -127,4 +127,10 @@ public class CharacterView extends EntityView implements OccupationVisitor {
 
     }
 
+    public void visitShopkeeper(Orientation orientation) {
+
+        orientationView = OccupationViewFactory.createShopkeeperView(orientation);
+
+    }
+
 }

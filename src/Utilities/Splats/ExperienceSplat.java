@@ -63,8 +63,12 @@ public class ExperienceSplat implements Subject {
 
     @Override
     public void alert() {
-        for(Observer o : observers) {
-            o.update();
+        try{
+            for(Observer o : observers) {
+                o.update();
+            }
+        } catch (NullPointerException e) {
+
         }
     }
 }

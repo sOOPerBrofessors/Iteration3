@@ -8,8 +8,6 @@ import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
  */
 public abstract class PointInterest extends Interest {
 
-    abstract public double getValue();
-
     public final InterestType getType() {
 
         return InterestType.POINT;

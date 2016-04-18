@@ -53,7 +53,7 @@ public class Map {
             newTile.doTileEffects(character); //does the interaction
             newTile.doRiverEffect(this,character);
             if(currentZ - newZ >= 3)
-                character.applyFallDamage(-1*(currentZ - newZ)/3);
+                character.applyFallDamage(-1*(currentZ - newZ + 1)/3);
             return true;
         }else{
             return false;
@@ -61,8 +61,11 @@ public class Map {
     }
 
     public boolean teleportCharacter(Character character, Location targetLocation) {
-        character.notifyOfTeleport();
-        return moveCharacter(character, targetLocation);
+        if(moveCharacter(character, targetLocation)) {
+            character.notifyOfTeleport();
+            return true;
+        }
+        return false;
     } // end teleportCharacter
 
     public boolean moveProjectile(Projectile projectile, Location newLocation){
