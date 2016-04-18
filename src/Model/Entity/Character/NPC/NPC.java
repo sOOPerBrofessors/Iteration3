@@ -110,18 +110,17 @@ public class NPC extends Character implements Tickable{
     }
 
     private void addItems() {
+        //addHealthPotion();
         addHealthPotion();
-        addHealthPotion();
-        addSmaherWeapon();
+        //addSmaherWeapon();
         addSmaherWeapon();
     }
 
     private void addItem(TakeableItem item) {
-        Pack pack = this.inventory.getPack();
+        Pack pack = inventory.getPack();
         pack.add(item);
     }
     private void addSmaherWeapon() {
-        Pack pack = this.inventory.getPack();
         HashMap<Item, ItemView> allItemViews = ItemFactory.getAllItemViews();
 
         //make smasher weapon
@@ -129,10 +128,9 @@ public class NPC extends Character implements Tickable{
         ItemView smasherOHWView = new UsableView(ImageAssets.sword);
 
         allItemViews.put(smasherOHW, smasherOHWView);
-        pack.add(smasherOHW);
+        inventory.add(smasherOHW);
     }
     private void addHealthPotion() {
-        Pack pack = this.inventory.getPack();
         HashMap<Item, ItemView> allItemViews = ItemFactory.getAllItemViews();
 
         //make healthPotion
@@ -140,6 +138,6 @@ public class NPC extends Character implements Tickable{
         ItemView healthView = new UsableView(ImageAssets.healthPotion);
 
         allItemViews.put(healthPotion, healthView);
-        pack.add(healthPotion);
+        inventory.add(healthPotion);
     }
 }
