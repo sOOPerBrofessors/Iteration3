@@ -292,9 +292,12 @@ public class CharacterStats extends EntityStats implements Subject {
     public void recompute() {
         baseHealth = (hardiness + level);
         baseMana = (intellect + level);
-        baseOffensiveRating = (equippedWeapon + strength + level);
-        baseDefensiveRating = (agility + level);
-        baseArmorRating = (equippedArmor + hardiness);
+        baseOffensiveRating = (equippedWeapon + baseStrength + level);
+        baseDefensiveRating = (baseAgility + level);
+        baseArmorRating = (equippedArmor + baseHardiness);
+        offensiveRating = equippedWeapon+strength+level;
+        defensiveRating = agility+level;
+        armorRating = equippedArmor + hardiness;
     } // end recompute
 
     @Override
