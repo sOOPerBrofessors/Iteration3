@@ -132,13 +132,6 @@ public class GamePlayController extends Controller{
             //state.getAvatar().manaEffect(10000);
         });
 
-        commands.put(KeyEvent.VK_9, new Command() {
-            @Override
-            public void execute() {
-                GameSaver gameSaver = new GameSaver(state);
-                gameSaver.startSave(state);
-            }
-        });
     }
 
     public void setState(ActiveGameState state) {

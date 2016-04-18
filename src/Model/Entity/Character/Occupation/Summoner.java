@@ -43,6 +43,11 @@ public class Summoner extends Occupation {
         occupationViewVisitor.visitSummoner(orientation);
     }
 
+    @Override
+    public String toString() {
+        return "summoner";
+    }
+
     public ArrayList<Skill> getSkillList(Avatar avatar) {
         skillList.add(new BindWounds(avatar));
         skillList.add(new Observation(avatar));

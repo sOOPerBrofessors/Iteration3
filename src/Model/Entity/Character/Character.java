@@ -105,6 +105,12 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         observers.remove(o);
     }
 
+    public Faction getFaction() {
+
+        return faction;
+
+    }
+
     @Override
     public void alert() {
         observers.forEach(Observer::update);

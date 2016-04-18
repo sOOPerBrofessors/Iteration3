@@ -20,7 +20,7 @@ public class GameSaver {
         saveVisitor = new SaveVisitor(path + testFileName, gameState);
     }
 
-    public void startSave(ActiveGameState activeGameState){
+    public void startSave(){
         saveVisitor.save();
         //saveAvatar(activeGameState.getAvatar());
     }

@@ -3,6 +3,7 @@ package Controller.AI_Controller.FrontalLobe;
 import Controller.AI_Controller.Decision.Decision;
 import Controller.AI_Controller.Personality.Personality;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
+import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Entity;
 import Utilities.AIStuff.RelationshipList;
 
@@ -11,8 +12,12 @@ import Utilities.AIStuff.RelationshipList;
  */
 public interface FrontalLobeMemoryInterface {
 
+    NPC getNPC();
+
     // Getter for visual information
     VisualInformation getVisualInformation();
+
+    void updateDecision();
 
     // Relationship related methods
     RelationshipList<Entity> getRelationships();

@@ -1,6 +1,8 @@
 package View.MenuViews;
 
 import Controller.ControllerUtility.Command;
+import Model.State.GameState.GameState;
+import Utilities.GameLoaderSaver.GameSaver;
 import Utilities.Settings;
 import View.ViewManager;
 import View.ViewUtilities.Sprites.ImageAssets;
@@ -23,7 +25,7 @@ public class PauseView extends VertPanel {
     public PauseView(ViewManager viewManager){
         this.viewManager = viewManager;
         commands = new HashMap<>();
-        commands.put(0, () -> doNothing());
+        commands.put(0, () -> doSave());
         commands.put(1, () -> goToSettings());
         commands.put(2, () -> restart());
         commands.put(3, () -> System.exit(0));
@@ -52,7 +54,14 @@ public class PauseView extends VertPanel {
         viewManager.closePauseScreen();
         viewManager.displaySettings();
     }
-    private void doNothing(){    }
+    private void doSave(){
+        GameState gameState = viewManager.getGameState();
+        GameSaver gameSaver = new GameSaver(gameState);
+        gameSaver.startSave();
+        System.out.println("PauseView: save is done!");
+        viewManager.closePauseScreen();
+
+    }
 
     @Override
     public void paintComponent(Graphics g){
