@@ -68,9 +68,13 @@ public class ActiveGameState extends GameState {
     }
 
     public void playerAttack(){
+        System.out.printf("Hi");
+        avatar.attack(map);
+        /* This is for fireball
         Location tempLoc = new Location(avatar.getX(), avatar.getY(), avatar.getZ());
         Projectile temp = Projectile.makeFireBall(tempLoc, avatar.getOrientation());
         projectiles.add(temp);
+        */
     }
 
     public void playerExecuteSkill(int index) {
