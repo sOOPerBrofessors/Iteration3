@@ -12,7 +12,7 @@ import Utilities.GameLoaderSaver.Save.SaveVisitor;
 public class GameSaver {
 
     private final String path = "./res/SaveFile/";
-    private String testFileName = "HelloWorld";
+    private String testFileName = "SaveFile1.xml";
     private SaveVisitor saveVisitor;
     private GameState gameState;
     public GameSaver(GameState gameState){

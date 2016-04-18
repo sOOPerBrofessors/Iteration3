@@ -51,8 +51,21 @@ public class ImageAssets {
     public static BufferedImage money;
     public static BufferedImage chestKey;
 
+    //AOE
+    public static BufferedImage goldStarAOE;
+    public static BufferedImage redCrossAOE;
+    public static BufferedImage damageAOE;
+    public static BufferedImage instantDeathAOE;
+    public static BufferedImage teleportAOE;
+
     //needs to be called once
     public static void init(){
+        SpriteSheet goldStarAOESheet = new SpriteSheet(SpriteLoader.loadImage("./res/Decal/gold-star.png"));
+        SpriteSheet redCrossAOESheet = new SpriteSheet(SpriteLoader.loadImage("./res/Decal/red-cross.png"));
+        SpriteSheet damageAOESheet = new SpriteSheet(SpriteLoader.loadImage("./res/Decal/skull-and-crossbones.png"));
+        SpriteSheet instantDeathAOESheet = new SpriteSheet(SpriteLoader.loadImage("./res/Decal/skull-and-crossbones.png"));
+        SpriteSheet teleportAOESheet = new SpriteSheet(SpriteLoader.loadImage("./res/Decal/teleport-sample.png"));
+
         SpriteSheet healthPotionSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/HealthPotion.png"));
         SpriteSheet chestKeySheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/key.png"));
         SpriteSheet moneySheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/Money.png"));
@@ -173,6 +186,13 @@ public class ImageAssets {
         hellCatS = hellcatSsheet.cropSheet(0,0,328,350);
         hellCatSE = hellcatSEsheet.cropSheet(0,0,328,350);
         hellCatNE = hellcatNEsheet.cropSheet(0,0,328,350);
+
+        //Decals
+        goldStarAOE = goldStarAOESheet.cropSheet(0,0,30,30);
+        redCrossAOE = redCrossAOESheet.cropSheet(0,0,30,30);
+        damageAOE = damageAOESheet.cropSheet(0,0,30,30);
+        instantDeathAOE = instantDeathAOESheet.cropSheet(0,0,30,30);
+        teleportAOE = teleportAOESheet.cropSheet(0,0,30,30);
 
 
         //skill things

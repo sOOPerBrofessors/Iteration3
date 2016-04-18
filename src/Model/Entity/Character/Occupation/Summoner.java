@@ -56,7 +56,7 @@ public class Summoner extends Occupation {
         skillList.add(new Enchantment(avatar));
         skillList.add(new Boon(avatar));
         skillList.add(new Bane(avatar));
-        skillList.add(new Fireball(avatar));
+        skillList.add(new FireBall(avatar));
         skillList.add(new StaffSkill(avatar));
 
         return skillList;
