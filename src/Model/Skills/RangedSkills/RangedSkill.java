@@ -6,6 +6,7 @@ import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Tile.Tile;
 import Model.Skills.Skill;
+import Model.State.GameState.ActiveGameState;
 import Utilities.GameMessageQueue;
 
 import java.util.ArrayList;
@@ -15,8 +16,8 @@ import java.util.ArrayList;
  */
 public abstract class RangedSkill extends Skill {
 
-    int damage;
-    ArrayList<Location> affectedArea = new ArrayList<>();
+    protected int damage;
+    protected ArrayList<Location> affectedArea = new ArrayList<>();
     int radius;
     Tile curTile;
     protected Location curLocation = new Location(0, 0, 0);
@@ -30,7 +31,7 @@ public abstract class RangedSkill extends Skill {
 
     }
 
-    public void execute(Map map) {}
+    public void execute(ActiveGameState activeGameState) {}
 
     protected void attackAreaSingleTarget(Map map) {
         for (int i = 1; i < affectedArea.size(); i++) {

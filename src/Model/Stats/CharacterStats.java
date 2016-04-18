@@ -74,6 +74,8 @@ public class CharacterStats extends EntityStats implements Subject {
         mana = baseMana = (baseIntellect + level);
         baseOffensiveRating = (equippedWeapon + baseStrength + level);
         baseDefensiveRating = (baseAgility + level);
+        offensiveRating = baseOffensiveRating;
+        defensiveRating = baseDefensiveRating;
         baseArmorRating = (equippedArmor + baseHardiness);
 
         experienceThreshold = 10;

@@ -2,6 +2,7 @@ package Model.Skills.CombatSkills;
 
 import Model.Entity.Character.Avatar;
 import Model.Map.Map;
+import Model.State.GameState.ActiveGameState;
 import Utilities.GameMessageQueue;
 import Utilities.InfluenceAreas.Linear.LinearEffect;
 
@@ -26,7 +27,8 @@ public class BrawlingSkill extends CombatSkill{
     }
 
     @Override
-    public void execute(Map map) {
+    public void execute(ActiveGameState activeGameState) {
+        Map map = activeGameState.getMap();
         if (allConditionChecked() && weaponCheck()) {
             damage = calculateDamage();
             radius = level > 3 ? 3 : level;

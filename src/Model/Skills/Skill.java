@@ -1,7 +1,7 @@
 package Model.Skills;
 
 import Model.Entity.Character.Avatar;
-import Model.Map.Map;
+import Model.State.GameState.ActiveGameState;
 import Utilities.GameMessageQueue;
 
 import java.util.Random;
@@ -34,7 +34,7 @@ public abstract class Skill {
         }
     }
 
-    public void execute(Map map){
+    public void execute(ActiveGameState activeGameState){
         System.out.println("You've reached a Wrong place! Skill:line 42");
     }
 

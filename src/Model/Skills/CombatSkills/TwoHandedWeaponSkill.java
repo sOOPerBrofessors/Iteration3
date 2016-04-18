@@ -4,6 +4,7 @@ import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Map.Location;
 import Model.Map.Map;
+import Model.State.GameState.ActiveGameState;
 import Utilities.GameMessageQueue;
 import Utilities.InfluenceAreas.Planer.AngularEffect;
 
@@ -31,7 +32,8 @@ public class TwoHandedWeaponSkill extends CombatSkill{
     }
 
     @Override
-    public void execute(Map map) {
+    public void execute(ActiveGameState activeGameState) {
+        Map map = activeGameState.getMap();
         if (allConditionChecked() && weaponCheck()) {
             damage = calculateDamage();
             radius = level > 4 ? 4 : level;
