@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * Created by sgl on 4/16/16.
  */
-public class SettingsView extends VertPanel {
+public class SettingsView extends VertPanel{
 
     String[] settingsArray = {"MOVE_N", "MOVE_NW", "MOVE_NE", "MOVE_S","MOVE_SW","MOVE_SE","ATTACK","INTERACT",
             "SKILL_1","SKILL_2","SKILL_3","SKILL_4","SKILL_5","SKILL_6","SKILL_7","INVENTORY","STATS", "SKILLS"};
