@@ -3,7 +3,7 @@ package Utilities.GameLoaderSaver;
 import Controller.AI_Controller.AI_Controller;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.NPC.NPC;
-import Model.Map.AreaEffect.TeleportAOE;
+import Model.Map.AreaEffect.*;
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Orientation;
@@ -74,7 +74,8 @@ public class GameLoader {
         //This would be the original map
         //map = mapFactory.createNewMap();
         //This is the testing map with rivers
-        map = mapFactory.createNewMapRiver();
+        //map = mapFactory.createNewMapRiver();
+        map = mapFactory.createSeparateMap();
     }
 
     private void initItems() {
@@ -103,9 +104,12 @@ public class GameLoader {
     }
 
     private void initAreaEffect(){
-        //map.addAOE(new HealDamageAOE(5), new Location(1,1,0));
-        //map.addAOE(new LevelUpAOE(1), new Location(3,1,0));
-        map.addAOE(new TeleportAOE(0, new Location(10,10,1), map), new Location(3,1,0));
+        map.addAOE(new HealDamageAOE(5), new Location(8,12,0));
+        map.addAOE(new TakeDamageAOE(-5), new Location(8,13,0));
+        map.addAOE(new InstantDeathAOE(1), new Location(8,14,0));
+        map.addAOE(new LevelUpAOE(1), new Location(9,12,0));
+        map.addAOE(new TeleportAOE(0, new Location(10,10,0), map), new Location(3,1,0));
+        map.addAOE(new TeleportAOE(0, new Location(5,5,0), map), new Location(11,11,0));
     }
 
     public ActiveGameState getActiveGameState() {

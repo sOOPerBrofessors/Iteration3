@@ -9,9 +9,9 @@ import Model.State.GameState.ActiveGameState;
 /**
  * Created by AndyZhu on 17/4/2016.
  */
-public class Fireball extends RangedSkill {
+public class FireBall extends RangedSkill {
 
-    public Fireball(Avatar avatar) {
+    public FireBall(Avatar avatar) {
         super(avatar);
         name = "Fireball";
         manaCost = 1;

@@ -26,33 +26,43 @@ public class TileColumn implements TileVisitable, TerrainVisitable{
         tileList = new ArrayList<>();
     }
     public void addWaterTile(Tile tile){
-        tileList.add(tile);
-        topWater++;
-        topTileNotAir++;
+        if (tileList.size() < 10) {
+            tileList.add(tile);
+            topWater++;
+            topTileNotAir++;
+        }
     }
     public void addAirTile(Tile tile){
         tileList.add(tile);
     }
     public void addGrassTile(Tile tile){
-        tileList.add(tile);
-        topGroundTile++;
-        topTileNotAir++;
+        if (tileList.size() < 10) {
+            tileList.add(tile);
+            topGroundTile++;
+            topTileNotAir++;
+        }
     }
     public void addRiverTile(Tile tile){
-        tileList.add(tile);
-        topWater++;
-        topTileNotAir++;
+        if (tileList.size() < 10) {
+            tileList.add(tile);
+            topWater++;
+            topTileNotAir++;
+        }
     }
     public void addDirtTile(Tile tile){
-        tileList.add(tile);
-        topTileNotAir++;
-        topGroundTile++;
+        if (tileList.size() < 10) {
+            tileList.add(tile);
+            topTileNotAir++;
+            topGroundTile++;
+        }
     }
 
     public Tile getTopTile(){
         return tileList.get(topTileNotAir - 1);
     }
     public Tile getTileAt(int i){
+        if (tileList.size() < 10)
+            return null;
         return tileList.get(i);
     }
     public int getTopPosition(){

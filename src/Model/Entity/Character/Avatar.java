@@ -47,7 +47,7 @@ public class Avatar extends Character {
     } // end factory method makeSneak
 
     public static Avatar makeSummoner(Location location) {
-        HUD.setOccupationSprite(ImageAssets.sneakS);
+        HUD.setOccupationSprite(ImageAssets.summonerS);
         return new Avatar(new Summoner(), location);
     } // end factory method makeSneak
 
