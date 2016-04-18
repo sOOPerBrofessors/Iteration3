@@ -21,8 +21,8 @@ public class TeleportAOE extends AreaOfEffect {
 
     @Override
     public void onInteract(Character character) {
-        map.moveCharacter(character,targetLocation);
-        GameMessageQueue.push("You've been teleported!");
+        map.teleportCharacter(character, targetLocation);
+        //map.moveCharacter(character,targetLocation);
     }
 
     @Override

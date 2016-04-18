@@ -142,7 +142,6 @@ public class CharacterStats extends EntityStats implements Subject {
     public void levelUp() {
         // increase level by one; reset lives
         level++;
-        GameMessageQueue.push("Level up!");
 
         lives = baseLives;
 
@@ -177,20 +176,11 @@ public class CharacterStats extends EntityStats implements Subject {
     public void kill() {
         --lives;
 
-        if(lives == 0) {
-            GameMessageQueue.push("Game over!");
-            // TODO: go to death state
-        }
-
-        GameMessageQueue.push("Oh dear, you are dead!  " + lives + " lives remaining.");
-
         agility = baseAgility;
         hardiness = baseHardiness;
         intellect = baseIntellect;
         strength = baseStrength;
         movement = baseMovement;
-
-        alert();
 
         health = baseHealth;
         mana = baseMana;
@@ -248,12 +238,7 @@ public class CharacterStats extends EntityStats implements Subject {
     }
     public void healthEffect(int effect){
         health += effect;
-        if (health <= 0){
-            kill();
-        } else if (health > baseHealth) {
-            health = baseHealth;
-        }
-        else if (health > baseHealth) {
+        if (health > baseHealth) {
             health = baseHealth;
         }
         alert();
