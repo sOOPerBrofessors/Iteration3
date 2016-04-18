@@ -1,6 +1,7 @@
 package Model.Map.Tile;
 
 import Model.Entity.Character.Character;
+import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Entity;
 import Model.Map.AreaEffect.AreaOfEffect;
 import Model.Map.Tile.Terrain.Terrain;
@@ -20,6 +21,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
     private Character character;
     private Projectile projectile;
     private AreaOfEffect areaOfEffect;
+    private Mount mount;
 
     public Tile(Terrain terrain){
         this.terrain = terrain;
@@ -36,9 +38,18 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         }
     }
 
+    public boolean moveMount(Mount mount){
+        if(mount.checkStrategy(terrain) && checkMovement()){
+            addMount(mount);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     //Might be increased later for items
     private boolean checkMovement(){
-        if (hasCharacter()) {
+        if (hasCharacter() || hasMount()) {
             return false;
         }else{
             return true;
@@ -74,6 +85,14 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         }
     }
 
+    public boolean hasMount(){
+        if (mount != null) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
     private boolean hasAOE(){
         if (areaOfEffect != null) {
             return true;
@@ -87,6 +106,11 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         notifyObservers();
     }
 
+    public void addMount(Mount mount) {
+        this.mount = mount;
+        notifyObservers();
+    }
+
     public void removeCharacter() {
         this.character = null;
         notifyObservers();
@@ -97,7 +121,7 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         this.projectile = projectile;
         if(hasCharacter()){
             projectile.execute(character, projectile.getEffect());
-            this.projectile = null;
+            projectile = null;
         }
         notifyObservers();
     }
@@ -125,10 +149,6 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         doEffectAOE(character);
         //Effect item
         //Effect
-    }
-
-    public void applyProjectileEffects(Projectile projectile){
-
     }
 
     private void doEffectAOE(Character character){

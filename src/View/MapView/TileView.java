@@ -11,6 +11,7 @@ import Utilities.Observers.TileObserver;
 import Utilities.Settings;
 import Utilities.Visitor.TileVisitor;
 import View.EntityView.CharacterView;
+import View.EntityView.MountView;
 import View.MapView.AOEView.AreaOfEffectView;
 import View.EntityView.ProjectileView;
 import View.TerrainView.*;
@@ -27,8 +28,6 @@ import java.awt.*;
 public class TileView extends JComponent implements TileObserver, TileVisitor, Observer{
 
     protected Location location;
-    protected int tileWidth = Settings.TILEWIDTH;
-    protected int tileHeight = Settings.TILEHEIGHT;
     protected int xPixel; // on the map
     protected int yPixel; // on the map
     protected Image image;
@@ -38,6 +37,7 @@ public class TileView extends JComponent implements TileObserver, TileVisitor, O
     private AreaOfEffectView areaOfEffectView;
     private TerrainView terrainView;
     private ProjectileView projectileView;
+    private MountView mountView;
 
     public TileView(Tile tile, Location location){
         this.location = location;
@@ -75,12 +75,15 @@ public class TileView extends JComponent implements TileObserver, TileVisitor, O
         renderAOE(g2d, centeredX, centeredY);
         renderItem(g2d, centeredX, centeredY);
         renderEntity(g2d, centeredX, centeredY);
+        renderMount(g2d, centeredX, centeredY);
         renderProjectile(g2d);
     }
+
     private void renderTerrain(Graphics g){
         terrainView.setXY(xPixel,yPixel);
         terrainView.paintComponent(g, location.getX(), location.getY());
     }
+
     private void renderAOE(Graphics g, int centerX, int centerY){
         if (hasAOE()) {
             areaOfEffectView.setPixels(centerX, centerY);
@@ -88,6 +91,7 @@ public class TileView extends JComponent implements TileObserver, TileVisitor, O
             areaOfEffectView.paintComponent(g2d);
         }
     }
+
     private boolean hasCharacter(){
         if (characterView == null) {
             return false;
@@ -95,6 +99,15 @@ public class TileView extends JComponent implements TileObserver, TileVisitor, O
             return true;
         }
     }
+
+    private boolean hasMount(){
+        if (mountView == null) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+
     private boolean hasItem(){
         if (itemView == null) {
             return false;
@@ -123,6 +136,13 @@ public class TileView extends JComponent implements TileObserver, TileVisitor, O
         if (hasCharacter()){
             characterView.setPixels(centeredX + 3, centeredY +12);
             characterView.paintComponent(g2d);
+        }
+    }
+
+    private void renderMount(Graphics2D g2d, int centeredX, int centeredY){
+        if (hasMount()){
+            mountView.setPixels(centeredX + 3, centeredY +12);
+            mountView.paintComponent(g2d);
         }
     }
 
@@ -156,10 +176,9 @@ public class TileView extends JComponent implements TileObserver, TileVisitor, O
         }
     }
 
-    private void removeProjectileView(){
-        if(projectileView != null) {
-            //projectileView.removeObservable();
-            projectileView = null;
+    private void removeMountView(){
+        if(mountView != null) {
+            mountView = null;
         }
     }
 
@@ -170,6 +189,11 @@ public class TileView extends JComponent implements TileObserver, TileVisitor, O
 
     public void removeItemView(){
         itemView = null;
+    }
+
+    @Override
+    public void visitTileHasMount() {
+
     }
 
     @Override

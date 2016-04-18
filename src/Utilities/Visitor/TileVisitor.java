@@ -9,6 +9,7 @@ import Model.Entity.Projectile.Projectile;
  * Created by dyeung on 4/15/16.
  */
 public interface TileVisitor {
+    void visitTileHasMount();
     void visitTileTerrain(Terrain terrain);
     void visitTileHasCharacter(Character character);
     //void visitTileHasItem(Item item);

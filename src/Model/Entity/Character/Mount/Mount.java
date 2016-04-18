@@ -3,6 +3,8 @@ package Model.Entity.Character.Mount;
 import Model.Entity.Character.Character;
 import Model.Entity.Entity;
 import Model.Map.Location;
+import Model.Map.Tile.Terrain.Terrain;
+import Model.Stats.EntityStats;
 import Utilities.Navigation.Navigation;
 import Utilities.Tickable;
 import Utilities.Visitor.CharacterVisitor;
@@ -12,19 +14,28 @@ import Utilities.Visitor.CharacterVisitor;
  */
 
 //For now this will only contain this stuff (might implement more later)
-public abstract class Mount extends Entity implements Tickable{
-    protected Character character;
-    public Mount(Navigation navigation, Location location){
+public abstract class Mount extends Entity{
+
+    protected Character passenger;
+    protected int delay;
+    protected boolean canMove;
+    protected EntityStats stats;
+
+    protected Mount(Navigation navigation, Location location){
         super(navigation, location);
+        delay = 1500 / stats.getMovement();
+        canMove = true;
     }
 
-    @Override
-    public void tick() {
+    protected void addPassenger(Character passenger){
+        this.passenger = passenger;
+    }
+
+    protected void removePassenger(){
 
     }
 
-
-    public void addCharacter(Character character){
-        this.character = character;
+    public boolean checkStrategy(Terrain terrain){
+        return navigation.canMove(terrain);
     }
 }

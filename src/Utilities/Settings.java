@@ -73,6 +73,9 @@ public class Settings {
     public static int PROJECTILEHEIGHT = 32;
     public static int PROJECTILEWIDTH = 32;
 
+    public static int MOUNTHEIGHT = 32;
+    public static int MOUNTWIDTH = 32;
+
     public static final int MAX_INVENTORY_SIZE = 16;
 
     // int to limit character count in game window

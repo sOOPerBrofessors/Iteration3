@@ -194,10 +194,6 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     public void equipSummonerArmor(Armor armor) {
         o.equipSummonerArmor(armor, this);
     } // end equipSummonerArmor
-
-    public void rideMount(Mount mount){
-        mount.addCharacter(this);
-    }
     public Occupation getOccupation(){
         return o;
     }
