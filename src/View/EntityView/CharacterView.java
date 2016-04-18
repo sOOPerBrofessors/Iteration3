@@ -120,4 +120,11 @@ public class CharacterView extends EntityView implements OccupationVisitor {
     public void visitSneak(Orientation orientation) {
         orientationView = OccupationViewFactory.createSneakView(orientation);
     }
+
+    public void visitPet(Orientation orientation) {
+
+        orientationView = OccupationViewFactory.createPetView(orientation);
+
+    }
+
 }

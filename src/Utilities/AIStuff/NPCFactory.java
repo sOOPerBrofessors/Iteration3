@@ -6,6 +6,7 @@ import Controller.AI_Controller.Personality.PersonalityFactory;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Character.NPC.NPCStrategy.NPCStrategy;
 import Model.Entity.Character.NPC.NPCStrategy.TalkNPCStrategy;
+import Model.Entity.Character.Occupation.Pet;
 import Model.Entity.Character.Occupation.Smasher;
 import Model.Faction.Faction;
 import Model.Faction.FactionFactory;
@@ -35,7 +36,7 @@ public class NPCFactory {
         //This should be a factory, testing for now
         NPCStrategy strategy = new TalkNPCStrategy("");
 //        NPC gandorf = new NPC(new Smasher(), new Location(1,1,0), personality, faction, strategy);
-        NPC hellcat = new NPC(new Smasher(), new Location(5,3,0), personality, faction, strategy);
+        NPC hellcat = new NPC(new Pet(), new Location(5,3,0), personality, faction, strategy);
         Brain brain = new Brain(hellcat);
         hellcat.setBrain(brain);
         return hellcat;
@@ -45,6 +46,7 @@ public class NPCFactory {
         ArrayList<NPC> entities = new ArrayList<>();
 
         entities.add(makeGanondorf());
+        entities.add(makeHellCat());
 
         return entities;
     }
