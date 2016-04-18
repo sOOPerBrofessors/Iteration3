@@ -1,9 +1,11 @@
 package Controller.AI_Controller.Interest.EntityInterests;
 
+import Controller.AI_Controller.FrontalLobe.FrontalLobeMemoryInterface;
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
 import Model.Entity.Entity;
 import Model.Map.Location;
+import Utilities.AIStuff.Relationship;
 
 /**
  * Created by aseber on 4/8/16.
@@ -53,9 +55,17 @@ public class FollowInterest extends EntityInterest {
 
     }
 
-    public double getValue() {
+    public double getValue(FrontalLobeMemoryInterface memoryInterface) {
 
-        return 100;
+        Relationship entityRelationship = memoryInterface.getRelationships().getRelationship(getTargetEntity());
+
+        if (entityRelationship.isFriendly()) {
+
+            return 100 * entityRelationship.getValue();
+
+        }
+
+        return 0;
 
     }
 
