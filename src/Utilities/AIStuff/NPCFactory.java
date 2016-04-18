@@ -8,9 +8,13 @@ import Model.Entity.Character.Mount.TheRealMount;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Character.NPC.NPCStrategy.NPCStrategy;
 import Model.Entity.Character.NPC.NPCStrategy.TalkNPCStrategy;
+import Model.Entity.Character.Occupation.Pet;
+import Model.Entity.Character.Occupation.Shopkeeper;
 import Model.Entity.Character.Occupation.Smasher;
 import Model.Faction.Faction;
 import Model.Faction.FactionFactory;
+import Model.Inventory.Inventory;
+import Model.Items.Takeable.Useable.Money;
 import Model.Map.Location;
 import Model.Map.Map;
 import Utilities.Navigation.Navigation;
@@ -25,11 +29,22 @@ public class NPCFactory {
     private static ArrayList<Mount> mounts;
     private static ArrayList<NPC> npcs;
 
-    public static NPC makeGanondorf(Map map){
-        Personality personality = PersonalityFactory.getPersonality("friendly");
+    public static NPC makeGuard(Location location) {
+        Personality personality = PersonalityFactory.getPersonality("enemy");
+        Faction faction = FactionFactory.getFaction("blue");
+        //This should be a factory, testing for now
+        NPCStrategy strategy = new TalkNPCStrategy("Ganondorf: Hi minion", "Ganondorf: I am awesome", "Ganondorf: What do you want?");
+        NPC gandorf = new NPC(new Smasher(), location, personality, faction, new Inventory(), strategy);
+        Brain brain = new Brain(gandorf);
+        gandorf.setBrain(brain);
+        return gandorf;
+    }
+
+    public static NPC makeGanondorf(Map map) {
+        Personality personality = PersonalityFactory.getPersonality("enemy");
         Faction faction = FactionFactory.getFaction("red");
         NPCStrategy strategy = new TalkNPCStrategy("Ganondorf: Hi minion", "Ganondorf: I am awesome", "Ganondorf: What do you want?");
-        NPC gandorf = new NPC(new Smasher(), new Location(1,1,map.getTopTilePosition(1,1)), personality, faction, strategy);
+        NPC gandorf = new NPC(new Smasher(), new Location(10,10,map.getTopTilePosition(10,10)), personality, faction, new Inventory(), strategy);
         Brain brain = new Brain(gandorf);
         gandorf.setBrain(brain);
         return gandorf;
@@ -49,6 +64,30 @@ public class NPCFactory {
 
     public static ArrayList<NPC> getNPCS(){
         return npcs;
+    }
+
+    public static NPC makeHellCat(){
+        Personality personality = PersonalityFactory.getPersonality("pet");
+        Faction faction = FactionFactory.getFaction("blue");
+        //This should be a factory, testing for now
+        NPCStrategy strategy = new TalkNPCStrategy("");
+//        NPC gandorf = new NPC(new Smasher(), new Location(1,1,0), personality, faction, strategy);
+        NPC hellcat = new NPC(new Pet(), new Location(5,3,0), personality, faction, new Inventory(), strategy);
+        Brain brain = new Brain(hellcat);
+        hellcat.setBrain(brain);
+        return hellcat;
+    }
+
+    public static NPC makeShopkeeper(){
+        Personality personality = PersonalityFactory.getPersonality("shopkeeper");
+        Faction faction = FactionFactory.getFaction("shopkeeper");
+        //This should be a factory, testing for now
+        NPCStrategy strategy = new TalkNPCStrategy("Hi! I'm the shopkeeper! Trade me!");
+//        NPC gandorf = new NPC(new Smasher(), new Location(1,1,0), personality, faction, strategy);
+        NPC shopkeeper = new NPC(new Shopkeeper(), new Location(7, 4, 0), personality, faction, new Inventory(), strategy);
+        Brain brain = new Brain(shopkeeper);
+        shopkeeper.setBrain(brain);
+        return shopkeeper;
     }
 
     public static ArrayList<Mount> getMounts(){

@@ -17,7 +17,8 @@ import Utilities.MessageHandler;
 public class EquippableStrategy implements ItemStrategy {
 
     @Override
-    public void onInteract(TakeableItem item, Character character) {
-        GameMessageQueue.push("You can't equip the " + item.getName());
+    public boolean onInteract(TakeableItem item, Character character) {
+        GameMessageQueue.push   ("You can't equip the " + item.getName());
+        return false;
     } // end onInteract
 } // end class EquippableStrategy

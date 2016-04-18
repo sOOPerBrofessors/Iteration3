@@ -19,5 +19,5 @@ public interface CharacterVisitor {
     void visitInventory(Inventory inventory);
     void visitOccupation(Occupation occupation);
     void visitStats(CharacterStats stats);
-    void visitSkills(ArrayList<Skill> skills);
 }
+

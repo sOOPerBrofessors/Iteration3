@@ -6,6 +6,7 @@ import Model.Items.Takeable.TakeableItem;
 import Model.Items.Takeable.Useable.Money;
 import Utilities.ErrorLevel;
 import Utilities.GameMessageQueue;
+import Utilities.ItemStuff.ItemManager;
 import Utilities.MessageHandler;
 import Utilities.PersonFilter;
 
@@ -25,26 +26,29 @@ public class Pack {
     } // end default constructor
 
     public void utilizeItem(int index, Character character){
-        items.remove(index).utilize(character);
-    }
-
-    public void add(TakeableItem item) {
-        if(item != null && size() < cap) {
-            items.add(item);
-            GameMessageQueue.push("Picked up " + item.getName());
-        } else if (size() >= cap) {
-            GameMessageQueue.push("Your inventory is full.");
+        if(items.get(index).utilize(character)) {
+            items.remove(index);
         }
+    } // end utilizeItem
+
+    public boolean add(TakeableItem item) {
+        if(item == null || size() >= cap)
+            return false;
+        items.add(item);
+        return true;
     } // end add
+
+    public void dump(ItemManager itemManager, Character character) {
+        for(TakeableItem t : items)
+            itemManager.addItem(t, character);
+    } // end dump
 
     public void addMoney(Money money) {
         this.money += money.getQuantity();
-        GameMessageQueue.push("Picked up " + money.getQuantity() + " coins.");
     } // end addMoney
 
     public void spendMoney(int amount) {
         this.money -= amount;
-        GameMessageQueue.push("Spent " + amount + " coins.");
     } // end spendMoney
 
     public int indexOf(Item item) {
@@ -53,7 +57,6 @@ public class Pack {
 
     public TakeableItem remove(int index) {
         TakeableItem temp = items.remove(index);
-        //MessageHandler.println("Removed from pack: "+temp.getName(), ErrorLevel.NOTICE, PersonFilter.SAM);
         return temp;
     } // end remove
 

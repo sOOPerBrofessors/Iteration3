@@ -4,10 +4,12 @@ import Model.Entity.Character.Character;
 import Model.Entity.Character.Mount.Mount;
 import Model.Entity.Entity;
 import Model.Map.AreaEffect.AreaOfEffect;
+import Model.Map.Map;
 import Model.Map.Tile.Terrain.Terrain;
 import Model.Entity.Projectile.Projectile;
 import Utilities.Observers.TileObservable;
 import Utilities.Observers.TileObserver;
+import Utilities.Timer.TimedEvent;
 import Utilities.Visitor.*;
 
 import java.util.ArrayList;
@@ -141,6 +143,35 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
         notifyObservers();
     }
 
+    public boolean hasTrap() {
+        if (areaOfEffect != null) {
+            if (areaOfEffect.getAlpha() == 0f && areaOfEffect.getActive()) {
+                return true;
+            }
+            return false;
+        }else {
+            return false;
+        }
+    }
+
+    public void detectTrap() {
+        this.areaOfEffect.setAlpha(1f);
+        this.areaOfEffect.setDetected();
+    }
+
+    public boolean hasDetectedTrap() {
+        if (this.hasAOE()) {
+            return this.areaOfEffect.getDetected();
+        }
+        else {
+            return false;
+        }
+    }
+
+    public void removeTrap() {
+        this.areaOfEffect.setActive(false);
+        this.areaOfEffect.setAlpha(0f);
+    }
     /*The character being passed in the function is the character doing the interacting
     Tile contains the character being interacted on
     */
@@ -155,9 +186,23 @@ public class Tile implements TileVisitable, TileObservable, TerrainVisitable{
 
     public void doTileEffects(Character character) {
         doEffectAOE(character);
+
         //Effect item
         //Effect
     }
+    private boolean canMove;
+    public void doRiverEffect(Map map, Character character) {
+
+        terrain.onInteract(map, character);
+    }
+    public void delayMovement() {
+        int delay = 100;
+        /*
+        starts a timer of duration 'delay'; the beginning of which toggles the userCanMakeInput
+         value to false, and after finishing execution toggles it back to true
+         */
+        new TimedEvent(delay, () -> canMove = false, e -> canMove = true).start();
+    } // end delayMovement
 
     private void doEffectAOE(Character character){
         if (hasAOE()){

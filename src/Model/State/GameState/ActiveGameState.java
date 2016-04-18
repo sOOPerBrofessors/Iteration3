@@ -13,6 +13,8 @@ import Model.Skills.RangedSkills.ObservationInfo;
 import Utilities.GameMessageQueue;
 import Utilities.ItemStuff.ItemManager;
 import Utilities.Observers.Observer;
+import Model.State.StateManager;
+import Utilities.Settings;
 
 import java.util.ArrayList;
 
@@ -20,6 +22,7 @@ import java.util.ArrayList;
  * Created by Wimberley on 4/6/16.
  */
 public class ActiveGameState extends GameState implements Observer{
+    StateManager stateManager;
 
     private Mount activeMount;
 
@@ -32,6 +35,20 @@ public class ActiveGameState extends GameState implements Observer{
     @Override
     public void tick(){
         for(int i = 0; i < npcs.size(); i++){
+            if(avatar.isDead()) {                    // indicates dead avatar
+                if(avatar.getLives() == 0) {
+                    // TODO: death state
+                } else {
+                    avatar.dropItems(itemManager);
+                    map.moveCharacter(avatar, new Location(Settings.SPAWN_X, Settings.SPAWN_Y, Settings.SPAWN_Z));
+                    avatar.setDead(false);
+                }
+            } else if(npcs.get(i).getLives() == 0) {           // indicated dead entity
+                npcs.get(i).dropItems(itemManager);
+                map.removeCharacter(npcs.get(i));
+                npcs.remove(i);
+                continue;
+            }
             npcs.get(i).tick();
         }
         if(projectiles != null){
@@ -73,14 +90,17 @@ public class ActiveGameState extends GameState implements Observer{
     }
 
     public void playerAttack(){
+        avatar.attack(map);
+        /* This is for fireball
         Location tempLoc = new Location(avatar.getX(), avatar.getY(), avatar.getZ());
         Projectile temp = Projectile.makeFireBall(tempLoc, avatar.getOrientation());
         projectiles.add(temp);
+        */
     }
 
     public void playerExecuteSkill(int index) {
         if (avatar.getSKillList().size() > index) {
-            avatar.getSkill(index).execute(map);
+            avatar.getSkill(index).execute(this);
         }
         else {
             GameMessageQueue.push("You don't have skill at this position");
@@ -129,4 +149,10 @@ public class ActiveGameState extends GameState implements Observer{
     public Mount getActiveMount(){
         return activeMount;
     }
+
+    public ArrayList<Projectile> getProjectiles() {
+        return projectiles;
+    }
+
+    public void setStateManager(StateManager stateManager) { this.stateManager = stateManager; }
 }

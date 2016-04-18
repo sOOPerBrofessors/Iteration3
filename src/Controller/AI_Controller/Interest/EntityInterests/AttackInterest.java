@@ -1,19 +1,23 @@
 package Controller.AI_Controller.Interest.EntityInterests;
 
+import Controller.AI_Controller.FrontalLobe.FrontalLobeMemoryInterface;
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
+import Model.Entity.Entity;
 import Model.Map.Location;
+import Utilities.AIStuff.Relationship;
 
 /**
  * Created by aseber on 4/8/16.
  */
 public class AttackInterest extends EntityInterest {
 
-    Location locationOfEnemy;
+    Location targetOldLocation;
 
     public void initialize(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
-        update(visualInformation, memoryInterface);
+        addToMovementQueue(computePathToTarget(memoryInterface));
+        targetOldLocation = getTargetEntity().getLocation();
 
     }
 
@@ -40,13 +44,15 @@ public class AttackInterest extends EntityInterest {
             newLocation = getTargetEntity().getLocation();
 
             // TODO: Rebuild the navigation queue when the old locaiton does not equal the new location
-            if (!locationOfEnemy.equals(newLocation)) {
+            if (!targetOldLocation.equals(newLocation)) {
 
-
+                resetMovementQueue();
+                addToMovementQueue(computePathToTarget(memoryInterface));
+                targetOldLocation = getTargetEntity().getLocation();
 
             }
 
-            locationOfEnemy = newLocation;
+            targetOldLocation = newLocation;
 
         }
 
@@ -58,9 +64,23 @@ public class AttackInterest extends EntityInterest {
 
     }
 
-    public double getValue() {
+    public double getValue(FrontalLobeMemoryInterface memoryInterface) {
 
-        return 100;
+        Relationship entityRelationship = memoryInterface.getRelationships().getRelationship(getTargetEntity());
+
+        if (entityRelationship.isHostile()) {
+
+            return 100 * entityRelationship.getValue();
+
+        }
+
+        return 0;
+
+    }
+
+    public void onEntityTouch(MotorCortexMemoryInterface memoryInterface) {
+
+        memoryInterface.getNPC().getController().attack(memoryInterface.getNPC());
 
     }
 

@@ -1,7 +1,7 @@
 package Model.Skills;
 
 import Model.Entity.Character.Avatar;
-import Model.Map.Map;
+import Model.State.GameState.ActiveGameState;
 import Utilities.GameMessageQueue;
 
 import java.util.Random;
@@ -11,8 +11,7 @@ import java.util.Random;
  *
  * All skills are active. Skill is the parent of all kinds of skills.
  */
-public abstract class Skill { //TODO: skills should also be ticked if we want to display remaining CD
-    //TODO: complete everything after avatar is done
+public abstract class Skill {
     protected int level; //level range: [1, 10]
     protected String name;
     protected double coolDownTime;
@@ -35,7 +34,7 @@ public abstract class Skill { //TODO: skills should also be ticked if we want to
         }
     }
 
-    public void execute(Map map){
+    public void execute(ActiveGameState activeGameState){
         System.out.println("You've reached a Wrong place! Skill:line 42");
     }
 
@@ -49,7 +48,6 @@ public abstract class Skill { //TODO: skills should also be ticked if we want to
     }
 
     public void tick() {
-        //TODO: this is dumb implementation
         double timePassed = (System.currentTimeMillis() - timePerformed) / 1000;
         remainingCoolDownTime = coolDownTime - timePassed;
         if (remainingCoolDownTime <= 0) {

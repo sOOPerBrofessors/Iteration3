@@ -24,13 +24,15 @@ import java.util.ArrayList;
 public class Summoner extends Occupation {
 
     @Override
-    public void equipSummonerWeapon(Weapon weapon, Character character) {
+    public boolean equipSummonerWeapon(Weapon weapon, Character character) {
         character.equipWeapon(weapon);
+        return true;
     } // end equipSummonerWeapon
 
     @Override
-    public void equipSummonerArmor(Armor armor, Character character) {
+    public boolean equipSummonerArmor(Armor armor, Character character) {
         character.equipArmor(armor);
+        return true;
     } // end equipSummonerArmor
 
     @Override
@@ -43,12 +45,18 @@ public class Summoner extends Occupation {
         occupationViewVisitor.visitSummoner(orientation);
     }
 
+    @Override
+    public String toString() {
+        return "summoner";
+    }
+
     public ArrayList<Skill> getSkillList(Avatar avatar) {
         skillList.add(new BindWounds(avatar));
         skillList.add(new Observation(avatar));
         skillList.add(new Enchantment(avatar));
         skillList.add(new Boon(avatar));
         skillList.add(new Bane(avatar));
+        skillList.add(new Fireball(avatar));
         skillList.add(new StaffSkill(avatar));
 
         return skillList;

@@ -1,12 +1,15 @@
 package Model.Inventory;
 
+import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Items.Takeable.Equippable.Armor;
+import Model.Items.Takeable.Equippable.EquippableItem;
 import Model.Items.Takeable.Equippable.Weapon.Weapon;
 import Model.Items.Takeable.TakeableItem;
 import Model.Items.Takeable.Useable.Money;
 import Utilities.ErrorLevel;
 import Utilities.GameMessageQueue;
+import Utilities.ItemStuff.ItemManager;
 import Utilities.MessageHandler;
 import Utilities.Observers.Observer;
 import Utilities.Observers.Subject;
@@ -29,44 +32,61 @@ public class Inventory implements Observer, Subject{
         equipment.addObserver(this);
     } // end default constructor
 
+    public Inventory(Weapon weapon, Armor armor, TakeableItem... items) {
+        observers = new ArrayList<>();
+        this.pack = new Pack();
+        this.equipment = new Equipment();
+        equipment.addObserver(this);
+
+        if(weapon != null)
+            equipWeapon(weapon);
+        if(armor != null)
+            equipArmor(armor);
+        for(TakeableItem i : items) {
+            add(i);
+        }
+    } // end constructor
+
     public TakeableItem dropItem(int index){
         TakeableItem temp = pack.remove(index);
         alert();
         return temp;
     }
 
+    public void dump(ItemManager itemManager, Character character) {
+        pack.dump(itemManager, character);
+    } // end dump
+
+    public void add(TakeableItem item) {
+        pack.add(item);
+    } // end add
+
     public void utilizeItem(int index, Character character){
         pack.utilizeItem(index,character);
     }
 
-    public void equipWeapon(Weapon weapon) {
-        MessageHandler.println("equip Weapon called from Inventory", ErrorLevel.NOTICE, PersonFilter.SAM);
-        pack.add(equipment.equipWeapon(weapon));    // add currently equipped weapon to pack; remove from pack
-        MessageHandler.println("Inventory: Weapon Equipped", ErrorLevel.NOTICE, PersonFilter.SAM);
+    public Weapon equipWeapon(Weapon weapon) {
+        return equipment.equipWeapon(weapon);
     } // end equipWeapon
 
-    public void equipArmor(Armor armor) {
-        MessageHandler.println("equip Armor called from Inventory", ErrorLevel.NOTICE, PersonFilter.SAM);
-            pack.add(equipment.equipArmor(armor));      // add currently equipped armor to pack; remove from pack
-            MessageHandler.println("Inventory: Armor Equipped", ErrorLevel.NOTICE, PersonFilter.SAM);
-
-
+    public Armor equipArmor(Armor armor) {
+        return equipment.equipArmor(armor);
     } // end equipArmor
 
-    public void unequipWeapon() {
+    public boolean unequipWeapon() {
         if(pack.hasRoom()) {
             pack.add(equipment.unequipWeapon());        // add equipped weapon to pack if room exists
-        } else {
-            GameMessageQueue.push("Your inventory is full, can't remove weapon.");
+            return true;
         }
+        return false;
     } // end unequipWeapon
 
-    public void unequipArmor() {
+    public boolean unequipArmor() {
         if(pack.hasRoom()) {
             pack.add(equipment.unequipArmor());         // add equipped armor to pack if room exists
-        } else {
-            GameMessageQueue.push("Inventory full, can't remove armor.");
+            return true;
         }
+        return false;
     } // end unequipArmor
 
     public boolean removeItem(TakeableItem item) { //NEEDS ALERT
@@ -120,12 +140,14 @@ public class Inventory implements Observer, Subject{
 
     } // end remove
 
-    public void pickUpItem(TakeableItem item){
-        pack.add(item);
+    public boolean pickUpItem(TakeableItem item){
+        return pack.add(item);
     }
 
     public void pickUpMoney(Money money) {
         pack.addMoney(money);
     }
+
+    public void spendMoney(int amount) { pack.spendMoney(amount); }
 
 } // end class Inventory

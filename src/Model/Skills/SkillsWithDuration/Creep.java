@@ -3,6 +3,7 @@ package Model.Skills.SkillsWithDuration;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.Character;
 import Model.Map.Location;
+import Model.State.GameState.ActiveGameState;
 import Utilities.GameMessageQueue;
 import Utilities.InfluenceAreas.Linear.LinearEffect;
 import Utilities.Timer.CreepTimer;
@@ -30,7 +31,8 @@ public class Creep extends SkillWithDuration {
     }
 
     @Override
-    public void execute (Map map) {
+    public void execute(ActiveGameState activeGameState) {
+        Map map = activeGameState.getMap();
         if (creeping) {
             calculateDamage();
             backStab(map);
@@ -72,6 +74,7 @@ public class Creep extends SkillWithDuration {
     public void activateCreep() {
         avatar.setAlpha(0.5f);
         avatar.agilityEffect(level);
+        avatar.movementEffect(3);
         creeping = true;
     }
 
@@ -80,6 +83,7 @@ public class Creep extends SkillWithDuration {
         if (creeping) {
             avatar.setAlpha(1f);
             avatar.agilityEffect(-level);
+            avatar.movementEffect(-3);
             creeping = false;
         }
     }

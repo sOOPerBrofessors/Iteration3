@@ -16,4 +16,7 @@ public class CharStrategy extends NavStrategy {
     public void visitGrassTerrain() {
         canMoveFlag = true;
     }
+
+    @Override
+    public void visitRiverTerrain() { canMoveFlag = true; }
 }

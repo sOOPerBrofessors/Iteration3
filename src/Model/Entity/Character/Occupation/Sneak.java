@@ -25,13 +25,15 @@ import java.util.ArrayList;
 public class Sneak extends Occupation {
 
     @Override
-    public void equipSneakWeapon(Weapon weapon, Character character) {
+    public boolean equipSneakWeapon(Weapon weapon, Character character) {
         character.equipWeapon(weapon);
+        return true;
     } // end equipSneakWeapon
 
     @Override
-    public void equipSneakArmor(Armor armor, Character character) {
+    public boolean equipSneakArmor(Armor armor, Character character) {
         character.equipArmor(armor);
+        return true;
     } // end equipSneakArmor
 
     @Override
@@ -44,6 +46,10 @@ public class Sneak extends Occupation {
         occupationViewVisitor.visitSneak(orientation);
     }
 
+    @Override
+    public String toString() {
+        return "sneak";
+    }
     public ArrayList<Skill> getSkillList(Avatar avatar) {
         skillList.add(new BindWounds(avatar));
         skillList.add(new Observation(avatar));
@@ -54,5 +60,6 @@ public class Sneak extends Occupation {
         skillList.add(new RangedWeapon(avatar));
 
         return skillList;
+
     }
 } // end class Sneak

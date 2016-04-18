@@ -59,11 +59,15 @@ public class Location {
         return new Location(x, y, z - 1);
     }
 
-    public String toString() {
-
-        return "(" + getX() + ", " + getY() + ", " + getZ() + ")";
-
+    public String toString(){
+        return x+","+y+","+z;
     }
+
+//    public String toString() {
+//
+//        return "(" + getX() + ", " + getY() + ", " + getZ() + ")";
+//
+//    }
 
     public boolean equals(Object o) {
 
@@ -78,5 +82,6 @@ public class Location {
         return false;
 
     }
+
 
 }

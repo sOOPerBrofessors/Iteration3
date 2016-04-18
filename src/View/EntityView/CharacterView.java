@@ -4,7 +4,9 @@ import Model.Entity.Character.Character;
 import Model.Map.Orientation;
 import Utilities.Splats.DamageQueue;
 import Utilities.Settings;
+import Utilities.Splats.DamageSplat;
 import Utilities.Splats.ExperienceQueue;
+import Utilities.Splats.ExperienceSplat;
 import Utilities.Visitor.OccupationVisitor;
 import View.EntityView.AvatarViewFactory.OccupationViewFactory;
 
@@ -39,9 +41,11 @@ public class CharacterView extends EntityView implements OccupationVisitor {
 
         if(character.isInCombat()) {
             drawHealthBar(g2d);
-            renderDamageSplats(g2d);
-            renderExperienceSplats(g2d);
         }
+        if(character.hasDamageQueued())
+            renderDamageSplats(g2d);
+        if(character.hasExperienceQueued())
+            renderExperienceSplats(g2d);
 
 
         g2d.dispose();
@@ -49,7 +53,7 @@ public class CharacterView extends EntityView implements OccupationVisitor {
 
     public void renderDamageSplats(Graphics2D g2d) {
         g2d.setFont(new Font(Font.MONOSPACED, Font.ITALIC, 20));
-        for(DamageQueue.DamageSplat d : DamageQueue.getAll()) {
+        for(DamageSplat d : character.getDamageQueue().getAll()) {
             if(!d.isRunning())
                 d.start();
             g2d.setColor(d.getColor());
@@ -63,7 +67,7 @@ public class CharacterView extends EntityView implements OccupationVisitor {
 
     public void renderExperienceSplats(Graphics2D g2d) {
         g2d.setFont(new Font(Font.MONOSPACED, Font.ITALIC, 20));
-        for(ExperienceQueue.ExperienceSplat e : ExperienceQueue.getAll()) {
+        for(ExperienceSplat e : character.getExperienceQueue().getAll()) {
             if(!e.isRunning())
                 e.start();
             g2d.setColor(e.getColor());
@@ -116,4 +120,17 @@ public class CharacterView extends EntityView implements OccupationVisitor {
     public void visitSneak(Orientation orientation) {
         orientationView = OccupationViewFactory.createSneakView(orientation);
     }
+
+    public void visitPet(Orientation orientation) {
+
+        orientationView = OccupationViewFactory.createPetView(orientation);
+
+    }
+
+    public void visitShopkeeper(Orientation orientation) {
+
+        orientationView = OccupationViewFactory.createShopkeeperView(orientation);
+
+    }
+
 }

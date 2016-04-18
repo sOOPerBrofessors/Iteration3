@@ -1,10 +1,13 @@
 package Controller.AI_Controller.Decision;
 
+import Controller.AI_Controller.FrontalLobe.FrontalLobeMemoryInterface;
 import Controller.AI_Controller.Interest.Interest;
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
 import Model.Entity.Character.NPC.NPC;
+import Model.Map.Location;
 import Model.Map.Orientation;
+import Utilities.MathUtilities;
 
 /**
  * Created by aseber on 4/6/16.
@@ -127,6 +130,7 @@ public class Decision {
     public void update(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
         interest.update(visualInformation, memoryInterface);
+        interest.onEntityTouch(memoryInterface);
 
     }
 
@@ -169,10 +173,11 @@ public class Decision {
 
     }
 
-    public double getValue() {
+    public double getValue(FrontalLobeMemoryInterface memoryInterface, double distance) {
 
         // TODO: Need to multiply by distance!
-        return interest.getValue();
+        double distanceScaling = 1 / Math.sqrt(distance);
+        return interest.getValue(memoryInterface) * distanceScaling * weight;
 
     }
 

@@ -1,7 +1,6 @@
 package Model.State;
 
 import Controller.ControllerManager;
-import Model.Entity.Character.Mount.Mount;
 import Model.State.GameState.ActiveGameState;
 import Model.State.GameState.GameState;
 import Model.State.GameState.MountGameState;
@@ -23,7 +22,6 @@ public class StateManager implements Tickable {
     private ActiveGameState activeGameState;
     private PausedGameState pausedGameState;
     private MountGameState mountGameState;
-    private State lastGameState;
 
     public StateManager(Model model){
         this.model=model;
@@ -34,12 +32,11 @@ public class StateManager implements Tickable {
     }
 
     public void pauseGame(){
-        lastGameState = activeState;
         activeState = pausedGameState;
     }
 
     public void activeGame(){
-        activeState = lastGameState;
+        activeState = activeGameState;
     }
 
     public void activeMount(){
@@ -49,6 +46,7 @@ public class StateManager implements Tickable {
 
     public void setActiveGameState(ActiveGameState activeGameState){
         this.activeGameState = activeGameState;
+        this.activeGameState.setStateManager(this);
         activeState = activeGameState;
     }
 
@@ -69,5 +67,9 @@ public class StateManager implements Tickable {
         if(activeState != null) {
             activeState.tick();
         }
+    }
+
+    public GameState getGameState(){
+        return activeGameState;
     }
 }

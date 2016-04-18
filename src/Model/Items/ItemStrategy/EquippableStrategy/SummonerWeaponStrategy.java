@@ -11,7 +11,8 @@ import Model.Items.Takeable.TakeableItem;
  * Class to allow summoners to equip summoner weapons
  */
 public class SummonerWeaponStrategy extends EquippableStrategy {
-    public void onInteract(TakeableItem item, Character character) {
+    public boolean onInteract(TakeableItem item, Character character) {
         character.equipSummonerWeapon((Weapon)item);
+        return true;
     } // end onInteract
 } // end class SummonerWeaponStrategy

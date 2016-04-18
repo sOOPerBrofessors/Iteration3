@@ -1,7 +1,7 @@
 package Model.Skills;
 
 import Model.Entity.Character.Avatar;
-import Model.Map.Map;
+import Model.State.GameState.ActiveGameState;
 import Utilities.GameMessageQueue;
 
 /**
@@ -19,7 +19,7 @@ public class BindWounds extends Skill{
     }
 
     @Override
-    public void execute(Map map) {
+    public void execute(ActiveGameState activeGameState) {
         if (allConditionChecked()) {
             performBindWounds();
 
