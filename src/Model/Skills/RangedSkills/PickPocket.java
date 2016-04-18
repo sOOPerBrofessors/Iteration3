@@ -3,6 +3,7 @@ package Model.Skills.RangedSkills;
 import Model.Entity.Character.Avatar;
 import Model.Items.Takeable.TakeableItem;
 import Model.Map.Map;
+import Model.Skills.SkillsWithDuration.Boon;
 import Model.State.GameState.ActiveGameState;
 import Utilities.GameMessageQueue;
 import Utilities.InfluenceAreas.Linear.LinearEffect;
@@ -47,17 +48,16 @@ public class PickPocket extends RangedSkill {
                 enemyItems = enemy.getInventory().getPack().getItems();
                 Random rand = new Random();
                 int itemIndex;
-                int maxSize = enemyItems.size() - 1 <= 0 ? 0 : enemyItems.size() - 1;
-                if (maxSize != 0)
-                    itemIndex = rand.nextInt(maxSize);
+                int maxIndex = enemyItems.size() - 1 <= 0 ? 0 : enemyItems.size() - 1;
+                if (maxIndex != 0)
+                    itemIndex = rand.nextInt(maxIndex);
                 else {
                     itemIndex = 0;
                 }
                 if (enemyItems.size() > 0) {
                     itemToSteal = enemyItems.get(itemIndex);
                     enemy.getInventory().removeItem(itemToSteal);
-                    avatar.pickUpItem(itemToSteal);
-                    GameMessageQueue.push("You stole a " + itemToSteal.getName());
+                    Boolean successSteal = avatar.pickUpItem(itemToSteal);
                 }
                 else {
                     GameMessageQueue.push("Oops! Enemy has no item.");
