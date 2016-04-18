@@ -109,6 +109,7 @@ public class GamePlayController extends Controller{
         commands.put(Settings.SETTINGS, () -> controllerManager.setSettingsState());
 
         commands.put(Settings.TEST_KEY, () -> {
+            /*
             switch((int)(Math.random()*5)+1){
                 case 1:
                     state.getAvatar().experienceEffect((int)(Math.random()*5));
@@ -125,8 +126,8 @@ public class GamePlayController extends Controller{
                 case 5:
                     state.getAvatar().manaEffect(-1*((int)(Math.random()*3)));
                     break;
-            }
-            //state.getAvatar().healthEffect((int)(Math.random()*3)+1);
+            }*/
+            state.getAvatar().healthEffect(-1);
         });
 
         commands.put(KeyEvent.VK_9, new Command() {

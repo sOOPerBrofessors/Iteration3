@@ -14,6 +14,10 @@ import Model.Map.Orientation;
 import Model.Map.Tile.Terrain.Terrain;
 import Model.Skills.Skill;
 import Model.Stats.CharacterStats;
+import Utilities.Splats.DamageQueue;
+import Utilities.Splats.DamageSplat;
+import Utilities.Splats.ExperienceQueue;
+import Utilities.Splats.ExperienceSplat;
 import Utilities.Timer.CombatTimer;
 import Utilities.GameMessageQueue;
 import Utilities.Navigation.Navigation;
@@ -41,6 +45,8 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     private CombatTimer combatTimer;
     private int delay;
     private boolean canMove;
+    private DamageQueue damageQueue;
+    private ExperienceQueue experienceQueue;
 
     protected Character(Occupation o, Location location) {
         super(Navigation.makeCharNav(), location);
@@ -54,6 +60,8 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
         combatTimer = new CombatTimer();
         delay = 1500 / stats.getMovement();
         canMove = true;
+        damageQueue = new DamageQueue();
+        experienceQueue = new ExperienceQueue();
     } // end private constructor
 
     public void delayMovement() {
@@ -110,13 +118,14 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     } // end intellectEffect
 
     public void healthEffect(int amount) {
-        stats.healthEffect(amount);
         if(amount >= 0)
             GameMessageQueue.push("You gained " + amount + " health.");
         else {
             GameMessageQueue.push("You took " + -1 * amount + " damage.");
             startCombatTimer();
         }
+        damageQueue.push(new DamageSplat(amount));
+        stats.healthEffect(amount);
         alert();
     } // end lifeEffect
 
@@ -131,11 +140,11 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     } // end levelsEffect
 
     public void manaEffect(int amount) {
-        stats.manaEffect(amount);
         if(amount >= 0)
             GameMessageQueue.push("You gained " + amount + " mana.");
         else
             GameMessageQueue.push("Lost " + -1*amount + " mana.");
+        stats.manaEffect(amount);
         alert();
     } // end manaEffect
 
@@ -155,11 +164,12 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     }
 
     public void experienceEffect(int amount) {
-        stats.experienceEffect(amount);
         if(amount >= 0)
             GameMessageQueue.push("You gained " + amount + " experience.");
         else
             GameMessageQueue.push("Lost " + -1*amount + " experience.");
+        experienceQueue.push(new ExperienceSplat(amount));
+        stats.experienceEffect(amount);
         alert();
     } // end experienceEffect
 
@@ -334,6 +344,7 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
             return false;
         }
     }
+
     public boolean checkStrategy(Terrain terrain){
        return navigation.canMove(terrain);
     }
@@ -363,6 +374,12 @@ public abstract class Character extends Entity implements Observer, Subject, Cha
     public Inventory getInventory(){ //needed for InventoryView - Sam
         return inventory;
     }
+
+    public boolean hasDamageQueued() { return damageQueue.size() > 0; }
+    public boolean hasExperienceQueued() { return experienceQueue.size() > 0; }
+
+    public DamageQueue getDamageQueue() { return damageQueue; }
+    public ExperienceQueue getExperienceQueue() { return experienceQueue; }
 
 
 } // end abstract class Character
