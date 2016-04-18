@@ -51,6 +51,7 @@ public class Map {
             getTileAt(currentX, currentY, currentZ).removeCharacter();
             character.updateLocation(new Location(newX,newY,newZ));
             newTile.doTileEffects(character); //does the interaction
+            newTile.doRiverEffect(this,character);
             return true;
         }else{
             return false;
