@@ -4,6 +4,10 @@ import Controller.AI_Controller.AI_Controller;
 import Model.Entity.Character.Avatar;
 import Model.Entity.Character.NPC.NPC;
 import Model.Map.AreaEffect.*;
+
+import Model.Map.AreaEffect.TeleportAOE;
+import Model.Map.AreaEffect.Trap;
+
 import Model.Map.Location;
 import Model.Map.Map;
 import Model.Map.Orientation;
@@ -110,6 +114,7 @@ public class GameLoader {
         map.addAOE(new LevelUpAOE(1), new Location(9,12,0));
         map.addAOE(new TeleportAOE(0, new Location(10,10,0), map), new Location(3,1,0));
         map.addAOE(new TeleportAOE(0, new Location(5,5,0), map), new Location(11,11,0));
+
     }
 
     public ActiveGameState getActiveGameState() {

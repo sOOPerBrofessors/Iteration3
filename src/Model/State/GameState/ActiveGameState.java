@@ -9,8 +9,10 @@ import Model.Map.Map;
 import Model.Map.Orientation;
 import Model.Skills.RangedSkills.Observation;
 import Model.Skills.RangedSkills.ObservationInfo;
+import Model.State.StateManager;
 import Utilities.GameMessageQueue;
 import Utilities.ItemStuff.ItemManager;
+import Utilities.Settings;
 
 import java.util.ArrayList;
 
@@ -18,6 +20,7 @@ import java.util.ArrayList;
  * Created by Wimberley on 4/6/16.
  */
 public class ActiveGameState extends GameState {
+    StateManager stateManager;
 
     public ActiveGameState(Map map, Avatar avatar, ArrayList<NPC> entities, ItemManager itemManager) {
         super(map, avatar, entities, itemManager);
@@ -27,6 +30,20 @@ public class ActiveGameState extends GameState {
     @Override
     public void tick(){
         for(int i = 0; i < entities.size(); i++){
+            if(avatar.isDead()) {                    // indicates dead avatar
+                if(avatar.getLives() == 0) {
+                    // TODO: death state
+                } else {
+                    avatar.dropItems(itemManager);
+                    map.moveCharacter(avatar, new Location(Settings.SPAWN_X, Settings.SPAWN_Y, Settings.SPAWN_Z));
+                    avatar.setDead(false);
+                }
+            } else if(entities.get(i).getLives() == 0) {           // indicated dead entity
+                entities.get(i).dropItems(itemManager);
+                map.removeCharacter(entities.get(i));
+                entities.remove(i);
+                continue;
+            }
             entities.get(i).tick();
         }
         if(projectiles != null){
@@ -108,4 +125,6 @@ public class ActiveGameState extends GameState {
     public ArrayList<Projectile> getProjectiles() {
         return projectiles;
     }
+
+    public void setStateManager(StateManager stateManager) { this.stateManager = stateManager; }
 }

@@ -21,7 +21,6 @@ public class AreaOfEffectView extends MapObjectView implements AOEVisitor{
     public AreaOfEffectView(AreaOfEffect areaOfEffect){
         this.areaOfEffect = areaOfEffect;
         areaOfEffect.acceptAOEVisitor(this);
-
     }
 
     @Override
@@ -30,9 +29,8 @@ public class AreaOfEffectView extends MapObjectView implements AOEVisitor{
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         //for now paint a graphics 2d
-//        g2d.setColor(Color.yellow);
-//        g2d.fillOval(xPixels,yPixels,50,50);
         g2d.drawImage(image,xPixels*Settings.SCALEFACTOR,yPixels*Settings.SCALEFACTOR,viewWidth*Settings.SCALEFACTOR,viewHeight* Settings.SCALEFACTOR,null);
+
     }
 
     @Override
@@ -72,4 +70,7 @@ public class AreaOfEffectView extends MapObjectView implements AOEVisitor{
     public void visitInstantDeath() {
         image = ImageAssets.instantDeathAOE;
     }
+
+    @Override
+    public void visitTrap() { image = null; }
 }

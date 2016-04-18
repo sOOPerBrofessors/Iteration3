@@ -34,6 +34,8 @@ public class ImageAssets {
     public static BufferedImage hud, messageBox, interfaceBorder;
     public static ArrayList<BufferedImage> fireballs = new ArrayList<>();
 
+    //skill things
+    public static BufferedImage crackedEarth;
     public static ArrayList<BufferedImage> arrows = new ArrayList<>();
 
     public static BufferedImage hellCatN, hellCatNW, hellCatSW, hellCatS, hellCatSE, hellCatNE;
@@ -84,6 +86,8 @@ public class ImageAssets {
         SpriteSheet borderSheet = new SpriteSheet(SpriteLoader.loadImage("./res/interface/interfaceborder.png"));
         SpriteSheet shopKeeperSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/ShopKeeper.png"));
 
+        // Cracked earth
+        SpriteSheet crackedEarthSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/crackedGrass.png"));
         // fireballs!
         SpriteSheet fireballSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall.png"));
         SpriteSheet fireball90Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall90.png"));
@@ -189,5 +193,9 @@ public class ImageAssets {
         damageAOE = damageAOESheet.cropSheet(0,0,30,30);
         instantDeathAOE = instantDeathAOESheet.cropSheet(0,0,30,30);
         teleportAOE = teleportAOESheet.cropSheet(0,0,30,30);
+
+
+        //skill things
+        crackedEarth = crackedEarthSheet.cropSheet(0, 0, terrainWidth, 71);
     }
 }

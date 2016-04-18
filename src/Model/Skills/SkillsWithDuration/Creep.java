@@ -74,6 +74,7 @@ public class Creep extends SkillWithDuration {
     public void activateCreep() {
         avatar.setAlpha(0.5f);
         avatar.agilityEffect(level);
+        avatar.movementEffect(3);
         creeping = true;
     }
 
@@ -82,6 +83,7 @@ public class Creep extends SkillWithDuration {
         if (creeping) {
             avatar.setAlpha(1f);
             avatar.agilityEffect(-level);
+            avatar.movementEffect(-3);
             creeping = false;
         }
     }

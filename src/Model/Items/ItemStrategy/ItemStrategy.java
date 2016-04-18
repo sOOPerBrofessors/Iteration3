@@ -12,5 +12,5 @@ import Model.Items.Takeable.TakeableItem;
  *  vs equipped vs ... for each type of entity who could use them.
  */
 public interface ItemStrategy {
-    public void onInteract(TakeableItem item, Character character);   // to be called on item interaction from within inventory
+    public boolean onInteract(TakeableItem item, Character character);   // to be called on item interaction from within inventory
 } // end interface ItemStrategy

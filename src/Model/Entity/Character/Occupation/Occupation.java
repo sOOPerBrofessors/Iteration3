@@ -24,29 +24,34 @@ public abstract class Occupation implements OccupationVisitable {
     public abstract CharacterStats initStats();
     public abstract String toString();
 
-    public void equipSmasherWeapon(Weapon weapon, Character character) {
+    public boolean equipSmasherWeapon(Weapon weapon, Character character) {
         MessageHandler.println("You cannot equip this weapon.", ErrorLevel.ERROR);
-
+        return false;
     } // end equipSmasherWeapon
 
-    public void equipSmasherArmor(Armor armor, Character character) {
+    public boolean equipSmasherArmor(Armor armor, Character character) {
         MessageHandler.println("You cannot equip this armor.", ErrorLevel.ERROR);
+        return false;
     } // end equipSmasherArmor
 
-    public void equipSneakWeapon(Weapon weapon, Character character) {
+    public boolean equipSneakWeapon(Weapon weapon, Character character) {
         MessageHandler.println("You cannot equip this weapon.", ErrorLevel.ERROR);
+        return false;
     } // end equipSneakWeapon
 
-    public void equipSneakArmor(Armor armor, Character character) {
+    public boolean equipSneakArmor(Armor armor, Character character) {
         MessageHandler.println("You cannot equip this armor.", ErrorLevel.ERROR);
+        return false;
     } // end equipSneakArmor
 
-    public void equipSummonerWeapon(Weapon weapon, Character character) {
+    public boolean equipSummonerWeapon(Weapon weapon, Character character) {
         MessageHandler.println("You cannot equip this weapon.", ErrorLevel.ERROR);
+        return false;
     } // end equipSummonerWeapon
 
-    public void equipSummonerArmor(Armor armor, Character character) {
+    public boolean equipSummonerArmor(Armor armor, Character character) {
         MessageHandler.println("You cannot equip this armor.", ErrorLevel.ERROR);
+        return false;
     } // end equipSummonerArmor
 
     public abstract ArrayList<Skill> getSkillList(Avatar avatar);

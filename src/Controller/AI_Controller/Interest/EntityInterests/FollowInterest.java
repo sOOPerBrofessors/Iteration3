@@ -1,8 +1,11 @@
 package Controller.AI_Controller.Interest.EntityInterests;
 
+import Controller.AI_Controller.FrontalLobe.FrontalLobeMemoryInterface;
 import Controller.AI_Controller.MotorCortex.MotorCortexMemoryInterface;
 import Controller.AI_Controller.VisualCortex.VisualInformation.VisualInformation;
+import Model.Entity.Entity;
 import Model.Map.Location;
+import Utilities.AIStuff.Relationship;
 
 /**
  * Created by aseber on 4/8/16.
@@ -15,12 +18,13 @@ public class FollowInterest extends EntityInterest {
 
         // TODO: Need to pathfind to entity, and save the entities current location!
         addToMovementQueue(computePathToTarget(memoryInterface));
+        targetOldLocation = getTargetEntity().getLocation();
 
     }
 
     public boolean isFinished(VisualInformation visualInformation, MotorCortexMemoryInterface memoryInterface) {
 
-        // We can always follow our interest!
+        // We can always follow our target!
         return false;
 
     }
@@ -35,10 +39,11 @@ public class FollowInterest extends EntityInterest {
 
         if (isSatisfiable(visualInformation, memoryInterface)) {
 
-            if (!getTargetEntity().getLocation().equals(targetOldLocation)) {
+            if (!(getTargetEntity().getLocation().equals(targetOldLocation))) {
 
                 resetMovementQueue();
                 addToMovementQueue(computePathToTarget(memoryInterface));
+                targetOldLocation = getTargetEntity().getLocation();
 
             }
 
@@ -52,9 +57,23 @@ public class FollowInterest extends EntityInterest {
 
     }
 
-    public double getValue() {
+    public double getValue(FrontalLobeMemoryInterface memoryInterface) {
 
-        return 100;
+        Relationship entityRelationship = memoryInterface.getRelationships().getRelationship(getTargetEntity());
+
+        if (entityRelationship.isFriendly()) {
+
+            return 100 * entityRelationship.getValue();
+
+        }
+
+        return 0;
+
+    }
+
+    public void onEntityTouch(MotorCortexMemoryInterface memory) {
+
+        // Do nothing! Gaze at them, we don't care.
 
     }
 
