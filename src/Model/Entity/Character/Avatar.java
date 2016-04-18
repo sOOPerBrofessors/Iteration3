@@ -11,6 +11,7 @@ import Model.Skills.CombatSkills.BrawlingSkill;
 import Model.Skills.RangedSkills.Observation;
 import Model.Skills.Skill;
 import Model.Map.Map;
+import Utilities.MessageHandler;
 import Utilities.Visitor.CharacterTypeVisitor;
 
 import Utilities.Visitor.CharacterVisitor;

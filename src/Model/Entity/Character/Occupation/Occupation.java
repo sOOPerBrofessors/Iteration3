@@ -27,6 +27,7 @@ public abstract class Occupation implements OccupationVisitable {
 
     public void equipSmasherWeapon(Weapon weapon, Character character) {
         MessageHandler.println("You cannot equip this weapon.", ErrorLevel.ERROR);
+
     } // end equipSmasherWeapon
 
     public void equipSmasherArmor(Armor armor, Character character) {
