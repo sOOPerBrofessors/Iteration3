@@ -11,6 +11,7 @@ public interface OccupationVisitor {
     void visitSneak(Orientation orientation);
     void visitPet(Orientation orientation);
     void visitShopkeeper(Orientation orientation);
+    void visitEnemy(Orientation orientation);
 
     //For future usage
 //    void createNPCView();

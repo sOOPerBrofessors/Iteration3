@@ -110,7 +110,6 @@ public class CharacterView extends EntityView implements OccupationVisitor {
         orientationView = OccupationViewFactory.createSmasherView(orientation);
     }
 
-    //TODO: CHANGE TO SUMMONER (CREATE A SUMMONERVIEW)
     @Override
     public void visitSummoner(Orientation orientation) {
         orientationView = OccupationViewFactory.createSummonerView(orientation);
@@ -122,15 +121,15 @@ public class CharacterView extends EntityView implements OccupationVisitor {
     }
 
     public void visitPet(Orientation orientation) {
-
         orientationView = OccupationViewFactory.createPetView(orientation);
-
     }
 
     public void visitShopkeeper(Orientation orientation) {
-
         orientationView = OccupationViewFactory.createShopkeeperView(orientation);
+    }
 
+    public void visitEnemy(Orientation orientation) {
+        orientationView = OccupationViewFactory.createEnemyView(orientation);
     }
 
 }

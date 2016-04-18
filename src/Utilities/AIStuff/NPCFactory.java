@@ -8,6 +8,7 @@ import Model.Entity.Character.Mount.TheRealMount;
 import Model.Entity.Character.NPC.NPC;
 import Model.Entity.Character.NPC.NPCStrategy.NPCStrategy;
 import Model.Entity.Character.NPC.NPCStrategy.TalkNPCStrategy;
+import Model.Entity.Character.Occupation.Enemy;
 import Model.Entity.Character.Occupation.Pet;
 import Model.Entity.Character.Occupation.Shopkeeper;
 import Model.Entity.Character.Occupation.Smasher;
@@ -50,6 +51,16 @@ public class NPCFactory {
         return gandorf;
     }
 
+    public static NPC makeEnemy(Map map) {
+        Personality personality = PersonalityFactory.getPersonality("enemy");
+        Faction faction = FactionFactory.getFaction("red");
+        NPCStrategy strategy = new TalkNPCStrategy("MegaWizard: Die", "MegaWizard: I will break your Game", "MegaWizard: You will fail");
+        NPC enemy = new NPC(new Enemy(), new Location(5, 7, map.getTopTilePosition(5, 7)), personality, faction, new Inventory(), strategy);
+        Brain brain = new Brain(enemy);
+        enemy.setBrain(brain);
+        return enemy;
+    }
+
     public static Mount theRealMount(Map map){
         return new TheRealMount(Navigation.makeVehicleNav(), new Location(6,2,map.getTopTilePosition(6,2)));
     }
@@ -59,6 +70,7 @@ public class NPCFactory {
         npcs = new ArrayList<>();
 
         npcs.add(makeGanondorf(map));
+        npcs.add(makeEnemy(map));
         mounts.add(theRealMount(map));
     }
 
