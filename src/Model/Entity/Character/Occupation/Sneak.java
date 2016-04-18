@@ -44,6 +44,10 @@ public class Sneak extends Occupation {
         occupationViewVisitor.visitSneak(orientation);
     }
 
+    @Override
+    public String toString() {
+        return "sneak";
+    }
     public ArrayList<Skill> getSkillList(Avatar avatar) {
         skillList.add(new BindWounds(avatar));
         skillList.add(new Observation(avatar));
@@ -54,5 +58,6 @@ public class Sneak extends Occupation {
         skillList.add(new RangedWeapon(avatar));
 
         return skillList;
+
     }
 } // end class Sneak
