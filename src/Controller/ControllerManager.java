@@ -44,6 +44,11 @@ public class ControllerManager implements KeyListener {
         activeController = gs;
     }
     //End testing
+
+    public void initGameplayController(){
+        gamePlayController.initCommands();
+    }
+
     //
     public ControllerManager(ViewManager viewManager, StateManager stateManager){
         this.viewManager = viewManager;
