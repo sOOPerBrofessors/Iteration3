@@ -33,7 +33,7 @@ public class LoadParser {
 //        lp.loadItemMap();
 //    }
     public LoadParser(){
-        String updateFile = "./res/SaveFile/HelloWorld" ;
+        String updateFile = "./res/SaveFile/SaveFile1.xml" ;
         String filePath = IOUtilities.getFileSystemDependentPath(updateFile);
         System.out.println(filePath);
 

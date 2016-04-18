@@ -38,6 +38,7 @@ public class NPCFactory {
         Faction faction = FactionFactory.getFaction("red");
         //This should be a factory, testing for now
         NPCStrategy strategy = new TalkNPCStrategy("Ganondorf: Hi minion", "Ganondorf: I am awesome", "Ganondorf: What do you want?");
+       // NPC gandorf = new NPC(new Smasher(), new Location(9,2,3), personality, faction, new Inventory(), strategy);
         NPC gandorf = new NPC(new Smasher(), location, personality, faction, new Inventory(), strategy);
         Brain brain = new Brain(gandorf);
         gandorf.setBrain(brain);
@@ -62,27 +63,19 @@ public class NPCFactory {
         //This should be a factory, testing for now
         NPCStrategy strategy = new TalkNPCStrategy("Hi! I'm the shopkeeper! Trade me!");
 //        NPC gandorf = new NPC(new Smasher(), new Location(1,1,0), personality, faction, strategy);
-        NPC hellcat = new NPC(new Shopkeeper(), new Location(7, 4, 0), personality, faction, new Inventory(), strategy);
-        Brain brain = new Brain(hellcat);
-        hellcat.setBrain(brain);
-        return hellcat;
+        NPC shopkeeper = new NPC(new Shopkeeper(), new Location(7, 4, 0), personality, faction, new Inventory(), strategy);
+        Brain brain = new Brain(shopkeeper);
+        shopkeeper.setBrain(brain);
+        return shopkeeper;
     }
 
     public static ArrayList<NPC> init(){
         ArrayList<NPC> entities = new ArrayList<>();
 
-        entities.add(makeGanondorf(new Location(8,10,0)));
-        entities.add(makeGanondorf(new Location(8,11,0)));
-        entities.add(makeGanondorf(new Location(8,12,0)));
-        entities.add(makeGanondorf(new Location(8,13,0)));
-        entities.add(makeGanondorf(new Location(8,14,0)));
-        entities.add(makeGuard(new Location(10,11,0)));
-        entities.add(makeGuard(new Location(10,12,0)));
-        entities.add(makeGuard(new Location(10,13,0)));
-        entities.add(makeGuard(new Location(10,14,0)));
+        entities.add(makeGanondorf(new Location(10,13,0)));
+        entities.add(makeGuard(new Location(11,12,0)));
 
         entities.add(makeHellCat());
-        entities.add(makeShopkeeper());
 
         return entities;
     }

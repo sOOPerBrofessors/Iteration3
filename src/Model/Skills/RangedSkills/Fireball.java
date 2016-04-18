@@ -13,7 +13,7 @@ public class Fireball extends RangedSkill {
 
     public Fireball(Avatar avatar) {
         super(avatar);
-        name = "Fireball";
+        name = "FireBall";
         manaCost = 1;
         coolDownTime = 1;
 

@@ -22,8 +22,9 @@ public class MapFactory {
     }
     public Map createNewMap() {
         TileColumn[][] tmpList = new TileColumn[maxTileRow][maxTileCol];
-        for (int i = 0; i < maxTileRow; i++) {
-            for (int j = 0; j < maxTileCol; j++) {
+        createPartOne(tmpList);
+        for (int i = 0; i < maxTileRow/2; i++) {
+            for (int j = 0; j < maxTileCol/2; j++) {
                 tmpList[i][j] = new TileColumn();
                 for (int k = 0; k < 10; k++) {
                     TileColumn tC = tmpList[i][j];
@@ -71,6 +72,110 @@ public class MapFactory {
             }
         }
         return new Map(tmpList);
+    }
+
+    public Map createSeparateMap(){
+        TileColumn[][] tmpList = new TileColumn[maxTileRow][maxTileCol];
+//        createLines(tmpList);
+        createPartOne(tmpList);
+        createPartTwo(tmpList);
+        createPartThree(tmpList);
+        createPartFour(tmpList);
+        createLines(tmpList);
+        addSpecificTiles(tmpList);
+        return new Map(tmpList);
+    }
+
+    private void createPartOne(TileColumn[][] tmpList){
+        for (int i = 0; i < maxTileRow/2; i++) {
+            for (int j = 0; j < maxTileCol/2; j++) {
+                tmpList[i][j] = new TileColumn();
+                for (int k = 0; k < 10; k++) {
+                    TileColumn tC = tmpList[i][j];
+                    if (k < 1) {
+                        if ((i == 2 ) && (j > 2 && j < 8)) {
+                            tC.addRiverTile(new Tile(new RiverTerrain(Orientation.SOUTH)));
+                        }else if ((i == 1) && (j > 2 && j < 8)) {
+                            tC.addRiverTile(new Tile(new RiverTerrain(Orientation.NORTH)));
+                        } else {
+                            tC.addGrassTile(new Tile(new GrassTerrain()));
+                        }
+
+                    } else {
+                        if (i == 0 && j > 1 && k < j) {
+                            tC.addGrassTile(new Tile(new GrassTerrain()));
+                        }else {
+                            tC.addAirTile(new Tile(new AirTerrain()));
+                        }
+                    }
+                }
+            }
+        }
+    }
+    private void createPartTwo(TileColumn[][] tmpList){
+        for (int i = maxTileRow/2; i < maxTileRow; i++) {
+            for (int j = 0; j < maxTileCol/2; j++) {
+                tmpList[i][j] = new TileColumn();
+                for (int k = 0; k < 10; k++) {
+                    TileColumn tC = tmpList[i][j];
+                    if (k<3) {
+                        tC.addGrassTile(new Tile(new GrassTerrain()));
+                    }else{
+                        tC.addAirTile(new Tile(new AirTerrain()));
+                    }
+                }
+            }
+        }
+    }
+    private void createPartThree(TileColumn[][] tmpList){
+        for (int i = 0; i < maxTileRow/2; i++) {
+            for (int j = maxTileCol/2; j < maxTileCol; j++) {
+                tmpList[i][j] = new TileColumn();
+                for (int k = 0; k < 10; k++) {
+                    TileColumn tC = tmpList[i][j];
+                    if (k<3) {
+                        if  (j == 9){
+                            tC.addRiverTile(new Tile(new RiverTerrain(Orientation.SOUTHEAST)));
+                        }else {
+                            tC.addGrassTile(new Tile(new GrassTerrain()));
+                        }
+                    }else{
+                        if (j == 10 && (i >= 2 && i <= 9) && k < (i)) {
+                            tC.addGrassTile(new Tile(new GrassTerrain()));
+                        } else {
+                            tC.addAirTile(new Tile(new AirTerrain()));
+                        }
+                    }
+                }
+            }
+        }
+    }
+    private void createPartFour(TileColumn[][] tmpList){
+        for (int i = maxTileRow/2; i < maxTileRow; i++) {
+            for (int j = maxTileCol/2; j < maxTileCol; j++) {
+                tmpList[i][j] = new TileColumn();
+                for (int k = 0; k < 10; k++) {
+                    TileColumn tC = tmpList[i][j];
+                    if (k<1) {
+                        tC.addGrassTile(new Tile(new GrassTerrain()));
+                    }else{
+                        if ((i == 14) && j < 8 && k < 2) {
+                            tC.addGrassTile(new Tile(new GrassTerrain()));
+                        } else {
+                            tC.addAirTile(new Tile(new AirTerrain()));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void createLines(TileColumn[][] tmpList){
+
+    }
+    private void addSpecificTiles(TileColumn[][] tmpList){
+
+        tmpList[14][7].addGrassTile(new Tile (new GrassTerrain()));
     }
 
 }

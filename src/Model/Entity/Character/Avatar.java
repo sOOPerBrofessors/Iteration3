@@ -49,7 +49,7 @@ public class Avatar extends Character {
     } // end factory method makeSneak
 
     public static Avatar makeSummoner(Location location) {
-        HUD.setOccupationSprite(ImageAssets.sneakS);
+        HUD.setOccupationSprite(ImageAssets.summonerS);
         return new Avatar(new Summoner(), location);
     } // end factory method makeSneak
 
@@ -100,7 +100,12 @@ public class Avatar extends Character {
                 GameMessageQueue.push("Game over!");
                 // TODO: go to death state
             } else {
-                GameMessageQueue.push("Oh dear, you are dead!  " + getLives() + " lives remaining.");
+                String life;
+                if(getLives() > 1)
+                    life = "lives";
+                else
+                    life = "life";
+                GameMessageQueue.push("Oh dear, you are dead!  " + getLives() + " " + life + " remaining.");
             }
 
         }

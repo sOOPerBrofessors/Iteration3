@@ -160,7 +160,7 @@ public class InventoryView extends AllDirPanel implements Observer{
 
     @Override
     public void update() {
-        MessageHandler.println("UPDATE called", ErrorLevel.NOTICE, PersonFilter.SAM);
+        //MessageHandler.println("UPDATE called", ErrorLevel.NOTICE, PersonFilter.SAM);
         for (int i = 0; i<items.size(); i++){
                 //MessageHandler.println("Adding Image to Inventory: " + Integer.toString(i), ErrorLevel.NOTICE, PersonFilter.SAM);
                 try {

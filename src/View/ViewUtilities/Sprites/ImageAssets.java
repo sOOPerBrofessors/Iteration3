@@ -35,7 +35,7 @@ public class ImageAssets {
     public static ArrayList<BufferedImage> fireballs = new ArrayList<>();
 
     //skill things
-    public static BufferedImage crackedEarth;
+    public static BufferedImage crackedEarth, arcaneExplosion;
     public static ArrayList<BufferedImage> arrows = new ArrayList<>();
 
     public static BufferedImage hellCatN, hellCatNW, hellCatSW, hellCatS, hellCatSE, hellCatNE;
@@ -51,8 +51,21 @@ public class ImageAssets {
     public static BufferedImage money;
     public static BufferedImage chestKey;
 
+    //AOE
+    public static BufferedImage goldStarAOE;
+    public static BufferedImage redCrossAOE;
+    public static BufferedImage damageAOE;
+    public static BufferedImage instantDeathAOE;
+    public static BufferedImage teleportAOE;
+
     //needs to be called once
     public static void init(){
+        SpriteSheet goldStarAOESheet = new SpriteSheet(SpriteLoader.loadImage("./res/Decal/gold-star.png"));
+        SpriteSheet redCrossAOESheet = new SpriteSheet(SpriteLoader.loadImage("./res/Decal/red-cross.png"));
+        SpriteSheet damageAOESheet = new SpriteSheet(SpriteLoader.loadImage("./res/Decal/skull-and-crossbones.png"));
+        SpriteSheet instantDeathAOESheet = new SpriteSheet(SpriteLoader.loadImage("./res/Decal/skull-and-crossbones.png"));
+        SpriteSheet teleportAOESheet = new SpriteSheet(SpriteLoader.loadImage("./res/Decal/teleport-sample.png"));
+
         SpriteSheet healthPotionSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/HealthPotion.png"));
         SpriteSheet chestKeySheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/key.png"));
         SpriteSheet moneySheet = new SpriteSheet(SpriteLoader.loadImage("./res/Item/Money.png"));
@@ -75,6 +88,7 @@ public class ImageAssets {
 
         // Cracked earth
         SpriteSheet crackedEarthSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/crackedGrass.png"));
+        SpriteSheet arcaneExplosionSheet = new SpriteSheet(SpriteLoader.loadImage("./res/terrain/arcaneExplosion.png"));
         // fireballs!
         SpriteSheet fireballSheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall.png"));
         SpriteSheet fireball90Sheet = new SpriteSheet(SpriteLoader.loadImage("./res/Entity/FireBall90.png"));
@@ -174,8 +188,16 @@ public class ImageAssets {
         hellCatSE = hellcatSEsheet.cropSheet(0,0,328,350);
         hellCatNE = hellcatNEsheet.cropSheet(0,0,328,350);
 
+        //Decals
+        goldStarAOE = goldStarAOESheet.cropSheet(0,0,30,30);
+        redCrossAOE = redCrossAOESheet.cropSheet(0,0,30,30);
+        damageAOE = damageAOESheet.cropSheet(0,0,30,30);
+        instantDeathAOE = instantDeathAOESheet.cropSheet(0,0,30,30);
+        teleportAOE = teleportAOESheet.cropSheet(0,0,30,30);
+
 
         //skill things
         crackedEarth = crackedEarthSheet.cropSheet(0, 0, terrainWidth, 71);
+        arcaneExplosion = arcaneExplosionSheet.cropSheet(0, 0, terrainWidth, 71);
     }
 }
