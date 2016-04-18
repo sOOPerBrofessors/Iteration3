@@ -25,20 +25,17 @@ public class Shopkeeper extends Occupation {
 
     @Override
     public void acceptOccupationVistor(OccupationVisitor occupationViewVisitor, Orientation orientation) {
-        occupationViewVisitor.visitSmasher(orientation);
+        occupationViewVisitor.visitShopkeeper(orientation);
     }
 
     @Override
     public String toString() {
-        return "smasher";
+        return "shopkeeper";
     }
 
     public ArrayList<Skill> getSkillList(Avatar avatar) {
         skillList.add(new BindWounds(avatar));
         skillList.add(new Observation(avatar));
-        skillList.add(new OneHandedWeaponSkill(avatar));
-        skillList.add(new TwoHandedWeaponSkill(avatar));
-        skillList.add(new BrawlingSkill(avatar));
 
         return skillList;
     }

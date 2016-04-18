@@ -42,7 +42,7 @@ public class NPC extends Character implements Tickable{
     }
 
     @Override
-    public void tick(){
+    public void tick() {
         brain.tick();
     }
 

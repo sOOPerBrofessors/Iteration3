@@ -36,12 +36,12 @@ public class Smasher extends Occupation {
 
     @Override
     public CharacterStats initStats() {
-        return CharacterStats.makeShopkeeperStats();
+        return CharacterStats.makeSmasherStats();
     } // end initStats
 
     @Override
     public void acceptOccupationVistor(OccupationVisitor occupationViewVisitor, Orientation orientation) {
-        occupationViewVisitor.visitShopkeeper(orientation);
+        occupationViewVisitor.visitSmasher(orientation);
     }
 
     @Override
@@ -52,6 +52,10 @@ public class Smasher extends Occupation {
     public ArrayList<Skill> getSkillList(Avatar avatar) {
         skillList.add(new BindWounds(avatar));
         skillList.add(new Observation(avatar));
+        skillList.add(new OneHandedWeaponSkill(avatar));
+        skillList.add(new TwoHandedWeaponSkill(avatar));
+        skillList.add(new BrawlingSkill(avatar));
+
         return skillList;
     }
 
