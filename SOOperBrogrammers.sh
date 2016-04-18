@@ -1,3 +1,4 @@
 #/!bin/bash
 cd src/
-java Main
+javac Main.java
+java Main >> ../output
